@@ -2,17 +2,19 @@
 Einleitung
 **********
 
+.. epigraph::
+
+   Digital ist besser!
+
+   -- Marc--Uwe Kling, deutscher Kabarettist
+
 Motivation
 ==========
 
-
-The Digitalisierung der modernen Konsumgesellschaft schreitet immer mehr voran.
-
-
+Die Digitalisierung der modernen Konsumgesellschaft schreitet weiter mehr voran.
 Wo es vor ein paar Jahren noch üblich war die eigene Filme-Sammlung im Regal
 aufzubewahren, wird Sie heute oft nur noch digital auf dem Home Theater PC,
 Smart-TV, PC oder anderen Endgeräten digital verwaltet und aufgezeichnet.
-
 
 Das Aufkommen der digitalen HDTV-Sender und das große Angebot an Pay-TV Sendern
 hat dem Trend der letzten Jahre nochmal frischen Auftrieb verpasst. Und hat man
@@ -32,32 +34,3 @@ Ziele
 Das Ziel ist es ein modulares System zu erschaffen, dass das Spagat zwischen den
 verschiedenen Formaten und Metadatenquellen bildet und eine einheitliche API
 unabhängig von Metadaten--Quelle und Ausgabe--Format bereitstellt.
-
-
-.. _test:
-
-.. figure:: figures/aww.png
-   :alt: Empfehlung
-   :width: 100%
-   :align: center
-
-hallo
-
-
-
-
-
-   Hut ab dass das hier so funktioniert. Hätte ich ehrlich gesagt nicht
-   gedacht.
-
-
-Ein anderer Punkt ist der folgende:
-
-
-Desweiteren soll das System die Möglichkeit bieten, Metadaten *automatisiert* zu
-analysieren
-
-Zielgruppe
-==========
-
-Alle.
