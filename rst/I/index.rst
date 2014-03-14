@@ -8,6 +8,7 @@ Einleitung
 
    -- *Marc-Uwe Kling, deutscher Kabarettist*
 
+
 Motivation
 ==========
 
@@ -66,17 +67,14 @@ Es soll eine einheitliche Schnittstelle unabhängig von Metadaten--Quelle und
 Ausgabe--Format bereitstellen und sich durch einen *modularen* Aufbau erweitern
 lassen. Zusammengefasst soll das System gut an die jeweilige *Umgebung* und
 *Bedürfnisse* des Benutzers anpassbar sein. Im Gegensatz zu den bereits
-vorhandenen *Movie Management*-Tools, bei denen fehlende Metadaten manuell vom
+vorhandenen *Movie Management--Tools*, bei denen fehlende Metadaten manuell vom
 Benutzer nachgepflegt werden müssen, soll das System mehr auf automatisierte
 Verarbeitung ohne zutun des Benutzers ausgelegt sein.
-
-
 
 .. rubric:: Footnotes
 
 .. [#f1] http://www.amazon.de/Layer-Cake-Film-Flash-Drive/dp/B001Q3LOTQ
 .. [#f2] http://encodingwissen.de/formatedschungel/container
-
 
 .. http://www.vodprofessional.com/features/introduction-to-video-metadata/
 .. https://www.videouniversity.com/articles/metadata-for-video/
