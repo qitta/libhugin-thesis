@@ -21,7 +21,7 @@
     Abkürzung                Bedeutung
     =======================  ==================================
     **API**                  *Application Programming Interface*
-    **GUI**                  *Graphical User Interface*
+    **CLI**                  *Command Line Interface*
     **LoC**                  *Lines of Code*
     =======================  ==================================
 

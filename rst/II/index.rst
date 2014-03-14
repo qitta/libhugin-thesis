@@ -12,12 +12,12 @@ Einstieg
 Warum überhaupt?
 ================
 
-TestTestTestTestTestTest......
+Weil Odin das so will.
 
 Alternativen
 ============
 
-Test.
+Alternativlos.
 
 Übersicht
 =========

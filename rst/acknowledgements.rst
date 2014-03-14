@@ -5,7 +5,9 @@
     Danksagung
     ==========
 
-Danke an folgende Personen und Dinge: Katzen, Vögel aller Art, Teehersteller
-alle Länder, Herrn Prof. Dr. Jörg Scheidt und meiner Familie sowie Freunden.
+Danke an folgende Personen: Herr Prof. Günther Köhler (Betreuung eines
+selbst gewählten FOSS Projekts), Herr Prof. Jörg Scheidt (Bereitstellung eines
+Raumes für Projekt Zeitraum), Teegeschwendner, Cricetulus, Micrathene Whitneyi,
+Columbidae und natürlich auch --- Alces alces.
 
-Ihr wisst warum.
+You know why.

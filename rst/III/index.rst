@@ -5,9 +5,14 @@ Hauptteil
 Implementierung
 ===============
 
-Sehr kompliziert:
+Eine Implementierung findet nicht statt. Das Projekt ist rein ein
+Phantasie--Erlebnis des Entwicklers und lebt für sich selbst.
+
+Die folgende Funktion lässt hugin miauaen:
 
 .. code-block:: python
 
-    def hello(world):
-        print(world)
+    def make_hugin_cry(world):
+        print('miau.')
+
+
