@@ -1,6 +1,6 @@
-**********
+##########
 Einleitung
-**********
+##########
 
 .. epigraph::
 
@@ -14,7 +14,7 @@ Motivation
 
 :dropcaps:`Die` Digitalisierung der modernen Konsumgesellschaft schreitet mehr
 voran.  Wo es vor ein paar Jahren noch üblich war die eigene Filme-Sammlung im
-Regal aufzubewahren, wird Sie heute oft nur noch digital auf dem Home-Theater
+Regal aufzubewahren, wird sie heute oft nur noch digital auf dem Home-Theater
 PC, Smart-TV, PC oder anderen Endgeräten digital verwaltet und aufgezeichnet.
 Das Aufkommen der digitalen HDTV-Sender und das große Angebot an Pay-TV Sendern
 hat dem Trend der letzten Jahre nochmal frischen Auftrieb verpasst. Und hat man
@@ -56,7 +56,6 @@ einen bei der Pflege der Filmesammlung unterstützen sollen. Auch hier gibt es
 nicht das *Tool der Wahl*. Es gibt wieder verschiedene Tools, die nur bestimmte
 Formate verstehen, nur bestimmte Online Metadatenquellen ansprechen können oder
 nur unter bestimmten Betriebssystemen verfügbar sind.
-
 
 Projektziel
 ===========
