@@ -20,7 +20,7 @@ aufgezeichnet und verwaltet. Das Aufkommen der digitalen HDTV-Sender und das
 große Angebot an Pay-TV Sendern hat dem Trend der letzten Jahre nochmal frischen
 Auftrieb verpasst. Und hat man mal einen Spielfilm verpasst, so kann dieser
 bequem über einen der vielen Online Videorecorder-Dienste nachträglich bezogen
-werden. Es geht sogar soweit, dass USB-Sticks [#f1]_ mit Hollywood Spielfilmen
+werden. Es geht sogar soweit, dass USB-Sticks (siehe :cite:`usbstickmovie`) mit Hollywood Spielfilmen
 beworben und verkauft werden.
 
 Zeichnet man viele Filme auf oder digitalisiert seine Filmesammlung, so muss
@@ -36,21 +36,21 @@ ein Film geschaut wird oder nicht.
 Die Metadaten werden in der Regel über Onlineportale wie beispielsweise die
 Internet Movie Database (IMDb) bezogen. Die Anzahl der möglichen Onlinedienste
 die Metadaten bereitstellen, ist hier praktisch *ungebrenzt*. Viele Anwendungen
-wie das Windows Media Center oder das Xbox Media Center (XBMC) können ihre
-Metadaten automatisch aus dem Internet beziehen. Je nach Anwendung kann es hier
-im Hintergrund eine oder mehrere Bezugsquellen für Metadaten geben.
+wie das Windows Media Center oder das Xbox Media Center (XBMC, siehe
+:cite:`xbmc`') können ihre Metadaten automatisch aus dem Internet beziehen. Je
+nach Anwendung kann es hier im Hintergrund eine oder mehrere Bezugsquellen für
+Metadaten geben.
 
 Ein Problem bei der Pflege der Metadaten im Videobereich ist, dass es hier
 keinen Standard gibt der sich durchgesetzt hat. Es gibt einerseits die
-Möglichkeit bestimmte Metadaten in bestimmte Containerformate [#f2]_ zu
-integrieren, andererseits werden diese in separaten Dateien (dvdid.xml--Format
-[#f3]_ beim Windows Media Center, movie.nfo--Format [#f4]_, beim Xbox Media
-Center) oder Datenbanken der jeweiligen Abspiel--/Verwaltungssoftware gepflegt.
+Möglichkeit bestimmte Metadaten in bestimmte Containerformate (siehe
+:cite:`containerformate` zu integrieren, andererseits werden diese in separaten
+Dateien oder Datenbanken der jeweiligen Abspiel--/Verwaltungssoftware gepflegt.
 
-oder Xbox Media Center. Ein weiteres Problem das hinzukommt, sind die
-verschiedenen Onlinequellen von denen die Metadaten bezogen werden. Hier werden
-von Anwendung zu Anwendung unterschiedliche Quellen verwendet, die je nach
-Filmesammlung gut oder weniger gut geeignet sind.
+Ein weiteres Problem das hinzukommt, sind die verschiedenen Onlinequellen von
+denen die Metadaten bezogen werden. Hier werden von Anwendung zu Anwendung
+unterschiedliche Quellen verwendet, die je nach Filmesammlung gut oder weniger
+gut geeignet sind.
 
 Ein weiteres Problem beim Bezug von Film--Metadaten ist, dass sich die
 Onlinequellen stark in der Qualität, Umfang und Art der angebotenen Metadaten
@@ -98,10 +98,6 @@ automatisierte Verarbeitung ohne zutun des Benutzers ausgelegt sein.
 .. [#f0] Ein auf PC Komponenten basierendes Gerät zur Wiedergabe multimedialer
          Inhalte, dieser wird oft mit sog. Media Center Software wie dem Xbox
          Media Center betrieben
-.. [#f1] http://www.amazon.de/Layer-Cake-Film-Flash-Drive/dp/B001Q3LOTQ
-.. [#f2] http://encodingwissen.de/formatedschungel/container
-.. [#f3] http://dvdxml.com/p/faq/faq.php?0.cat.2.3
-.. [#f4] http://wiki.xbmc.org/index.php?title=NFO_files/movies
 
 .. http://www.vodprofessional.com/features/introduction-to-video-metadata/
 .. https://www.videouniversity.com/articles/metadata-for-video/
