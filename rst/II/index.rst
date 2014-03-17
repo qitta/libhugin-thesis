@@ -343,18 +343,44 @@ Technik* durch den Benutzer mühsam manuell gepflegt. Bei kleinen Filmesammlunge
 ist der Aufwand der manuellen *nachpflege* noch vertretbar, nicht jedoch bei
 *größeren* Sammlungen von mehreren hundert Filmen.
 
+Weitere Probleme
+-----------------
+
+**Exakte Suchstrings**
+
+Die Metadatentools erwarten i.d.R. exakte Suchbegriffe. Bei den getesteten Tools
+wird bei Eingabe von "the marix" kein Film gefunden.
+
+**Suche nach IMDB-ID**
+
+Die Suche nach der IMDB-ID ist bei den getestenten Tools nicht möglich, obwohl
+diese von manchen Onlineanbietern unterstützt wird.
+
+
+
 Erkentnisse und Anforderungen an das Projekt
 ============================================
 
-Vielen der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur nicht
-beheben. Ziel der Arbeit ist es einen andere Herangehensweise umzusetzen mit dem
-Ziel die genannten Probleme abzumildern oder zu beheben.
+**Vielen der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur und dem
+aktuellen Kombination aus Abspielsoftware und Management Tools nicht oder nur
+mit manuellen Eingriff durch den Benutzer beheben beheben.**
 
-Es soll kein *neues* Metadaten Management Tool entwickelt werden. Die Idee ist
-dem Entwickler bzw.  Endbenutzer eine ,,Werkzeugbaukasten'' bereitzustellen, der
-über eine einheitliche Schnittstelle angesprochen werden kann, sich aber dennoch
-flexibel anpassen und erweitern lässt. Hauptaugenmerk ist hier die
-*automatisierte* Verarbeitung großer Datenmengen.
+
+Idee
+====
+
+Die Idee ist es eine andere Herangehensweise umzusetzen mit dem Ziel die
+genannten Probleme abzumildern oder zu beheben.
+
+Es soll *kein neues* Metadaten Management Tool entwickelt werden. Die Idee ist
+es dem Entwickler bzw. Endbenutzer einen ,,Werkzeugbaukasten'' in Form einer
+Bibliothek über eine einheitliche Schnittstelle bereitzustellen, welcher an die
+persönlichen Bedürfnisse anpassbar mit der zusätzlichen Funktionalität der
+Datenanalyse basierend auf Data-Mining Algorithmen. Abbildung X zeigt den
+konzeptuellen Ansatz.
+
+Das Hauptaugenmerk hier liegt, im Gegensatz zu den bisherigen Metadaten
+Management Tools, auf der *automatisierten* Verarbeitung großer Datenmengen.
 
 .. rubric:: Footnotes
 
