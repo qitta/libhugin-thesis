@@ -15,7 +15,8 @@ Suche von Metadaten
 
 Die Onlinedienste die verwendet werden, sollen austauschbar sein. Der Benutzer
 hat die Möglichkeit durch schreiben eines *Plugins* seine bevorzugte Plattform
-als Metadatenanbieter zu implementieren.
+als Metadatenanbieter zu implementieren. Diese Grundprinzip wird bereits bei der
+freien Musik--Metadatensuchlibrary  glyr (siehe :cite:`glyr`) verwendet.
 
 **Modulares Postprocessing--System**
 
