@@ -6,8 +6,8 @@ Softwarespezifikation
 Anforderungen an die Library
 ============================
 
-**Die Anforderungen werden aus den Schwierigkeiten der Momentan vorhandenen
-Lösungen abgeleitet.**
+*Die Anforderungen werden aus den Schwierigkeiten der Momentan vorhandenen
+Lösungen abgeleitet.*
 
 Anforderungen an die Suche von Metadaten
 ----------------------------------------
@@ -72,8 +72,8 @@ Hier soll eine *deep--strategy* und eine eine *flat--strategy*
 ermöglicht werden nach der die Ergebnisse verarbeitet werden. Folgende
 Ergebnisse werden bei jeweiliger Strategie an den Aufrufer gegeben:
 
-    * *deep-strategy*, A_R1, A_R2, A_R3
-    * *flat-strategy*, B_R1, B_R2, C_R2
+    * *deep-strategy*, A-R1, A-R2, A-R3
+    * *flat-strategy*, B-R1, B-R2, C-R2
 
 
 

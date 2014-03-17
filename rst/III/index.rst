@@ -120,6 +120,7 @@ von großen Filmesammlungen geeignet.
     Screenshot einer im Xbox Media Center gefpegten Filmesammlung.
 
 
+
 Video Management Tools
 ----------------------
 
@@ -381,6 +382,7 @@ konzeptuellen Ansatz.
 
 Das Hauptaugenmerk hier liegt, im Gegensatz zu den bisherigen Metadaten
 Management Tools, auf der *automatisierten* Verarbeitung großer Datenmengen.
+
 
 .. rubric:: Footnotes
 
