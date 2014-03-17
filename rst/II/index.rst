@@ -307,7 +307,7 @@ Der vierte Film, eine Hollywood Remake--Produktion ist hier bei allen drei
 Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`)
 
 
-**Zusammenfassung Dateninhomogenität**
+**Zusammenfassung**
 
 Wo die Inhaltsbeschreibung noch relativ *problemlos* zwischen den
 unterschiedlichen Metadatenanbietern austauschbar ist, treten beim Genre mehrere
@@ -338,7 +338,23 @@ OFDb ,,Science-Fiction'' gepflegt, was wieder zwei Einträge beim parallelen
 Nutzen der beiden Anbieter in unsere Datenbank schreiben würde.
 
 Beim Bezug von drei Filmen wird deutlich welche *Probleme* bei der Beschaffung
-der Metadaten enstehen können.
+der Metadaten enstehen können. Diese Probleme werden beim *aktuellen Stand der
+Technik* durch den Benutzer mühsam manuell gepflegt. Bei kleinen Filmesammlungen
+ist der Aufwand der manuellen *nachpflege* noch vertretbar, nicht jedoch bei
+*größeren* Sammlungen von mehreren hundert Filmen.
+
+Erkentnisse und Anforderungen an das Projekt
+============================================
+
+Vielen der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur nicht
+beheben. Ziel der Arbeit ist es einen andere Herangehensweise umzusetzen mit dem
+Ziel die genannten Probleme abzumildern oder zu beheben.
+
+Es soll kein *neues* Metadaten Management Tool entwickelt werden. Die Idee ist
+dem Entwickler bzw.  Endbenutzer eine ,,Werkzeugbaukasten'' bereitzustellen, der
+über eine einheitliche Schnittstelle angesprochen werden kann, sich aber dennoch
+flexibel anpassen und erweitern lässt. Hauptaugenmerk ist hier die
+*automatisierte* Verarbeitung großer Datenmengen.
 
 .. rubric:: Footnotes
 

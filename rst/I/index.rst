@@ -93,11 +93,11 @@ vorhandenen *Movie Management--Tools*, bei denen fehlende Metadaten manuell vom
 Benutzer explizit nachgepflegt werden müssen, soll das System mehr auf
 automatisierte Verarbeitung ohne zutun des Benutzers ausgelegt sein.
 
-Da die aktuellen Tools zur Metadatenverwaltung einen *eher statischen* Ansatz
-verfolgen, ist es Ziel dieser Arbeit ein modulares System zu Entwickeln das an
-die jeweiligen Bedürfnisse angepasst werden kann. Dieses Konzept soll wieterhin
-durch Analysewerkzeuge, die über die reine Datenerhebung hnaus gehen, erweitert
-werden.
+Die aktuellen Tools zur Video Metadatenverwaltung verfolgen einen eher
+*statischen* Ansatz. Ziel der Arbeit ist es ein dynamisches und modulares System
+zu entwickeln, das sich an die jeweiligen Bedürfnisse anpassen lässt. Dieses
+Konzept soll, über die reine Datenerhebung hinaus, um Werkzeuge zur
+Metadatenanalyse erweitert werden.
 
 .. rubric:: Footnotes
 
