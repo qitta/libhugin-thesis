@@ -8,6 +8,9 @@ Anforderungen an die Library
 **Die Anforderungen werden aus den Schwierigkeiten der Momentan vorhandenen
 Lösungen abgeleitet.**
 
+Suche von Metadaten
+-------------------
+
 **Modulares Providersystem**
 
 Die Onlinedienste die verwendet werden, sollen austauschbar sein. Der Benutzer
@@ -49,7 +52,35 @@ Das Suchverhalten soll folgende zwei Suchstrategien bieten:
 Die Suche nach Filmen soll eine gewissen *unschärfe* erlauben. Der Benutzer soll
 auch Ergebnisse erhalten wenn im Suchstring Tippfehler enthalten sind. Der
 Suchstring ,,The Marix'' soll *metadatenanbieterübergreifend* den Film ,,The
-Matrix (1999)'' liefern.
+Matrix (1999)'' liefern. Eine Providerübergreifende Suche wäre hier
+wünschenswert.
+
+**IMDB-ID Suche**
+
+Die Suche nach Filmen über die IMDB-ID soll möglich sein. Eine
+Providerübergreifende Suche wäre hier wünschenswert.
+
+Analyse von Metadaten
+---------------------
+
+*Die Analyse von Metadaten soll auf bereits existierende Metadaten anwendbar
+sein, mit dem Ziel die Qualität dieser zu verbessern.*
+
+Die Analyse von Metadaten soll mit folgenden **Pluginarten** umgesetzt werden:
+
+**Modifier Plugins**
+
+Über diese Art von Plugins lassen sich die Metadaten direkt modifizieren. Ein
+Beispiel hier wäre z.B. das entfernen von unerwünschten Sonderzeichen aus der
+Inhaltsbeschreibung.
+
+**Analyzer Plugins**
+
+Diese Art von Plugins erlaubt es dem Benutzer die vorliegenden Metadaten zu
+analysieren um neue Erkenntnisse zu gewinnen oder Defizite zu identifizieren.
 
 
+**Comperator Plugins**
 
+Diese Art von Plugins ist experimentell. Sie ist für *Forschungszwecke*
+bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
