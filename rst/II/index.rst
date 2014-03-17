@@ -10,6 +10,7 @@ Schwierigkeiten beim Video--Metadaten pflegen erläutert werden.*
 alle bekannten Plattformen, Player und Tools aufzulisten ist aufgrund der
 Vielfalt bzw.  Komplexität nicht möglich.*
 
+
 Metadatenarten und Quellen
 ==========================
 
@@ -37,6 +38,7 @@ gepflegt werden müssen. Gängige Metadaten hier sind:
     * Besetzung
     * Produktionsland
     * Schlagwörter
+
 
 Metadatenquellen
 ----------------
@@ -86,6 +88,7 @@ andere deutsche Inhaltsbeschreibung gefplegt hat.
 Manche Filmbeschreibungen erzählen den ganzen Film, andere verraten fast gar
 nichts. Je nach persönlichen Präferenzen, möchte man nur eine bestimmte Art von
 Inhaltsbeschreibung einpflegen.
+
 
 Software und Metadatenformate
 =============================
@@ -147,6 +150,7 @@ pflegt. Je nach Anwendung wird dies aber nicht immer unterstützt.
     :align: center
 
     Screenshot Video Management Tool MediaElch.
+
 
 Metadatenformate
 ----------------
@@ -214,6 +218,7 @@ Möchte man seine Metadaten in deutscher Sprache pflegen, so fällt kategorisch
 der IMDb Anbieter weg, da hier nur englischsprachige Informationen bezogen
 werden.
 
+
 **After.Life (2010)**
 
 .. figtable::
@@ -235,6 +240,7 @@ Inhaltsbeschreibung ist deutschsprachig, das Genre feingranular gepflegt. Des
 weiteren bietet uns TMDb auch gleich hochauflösende Cover und Film-Fanart. Bei
 OFDb ist das Genre ,,Mystery'' nicht gepflegt und zudem gibt es nur ein
 niedrigauflösendes Cover und kein Fanart (siehe Tabelle :num:`table-afterlife`).
+
 
 **Feuchtgebiete (2013)**
 
@@ -281,6 +287,7 @@ zu den beiden anderen Metadatenanbietern feingranularer gefplegt -- was laut
 Wikipedia (siehe :cite:`nymphomaniac`) auch besser zum Film passen würde (siehe
 Tabelle :num:`table-nymphomaniac`).
 
+
 **RoboCop (2014)**
 
 .. figtable::
@@ -299,11 +306,13 @@ Tabelle :num:`table-nymphomaniac`).
 Der vierte Film, eine Hollywood Remake--Produktion ist hier bei allen drei
 Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`)
 
+
 **Zusammenfassung Dateninhomogenität**
 
 Wo die Inhaltsbeschreibung noch relativ *problemlos* zwischen den
 unterschiedlichen Metadatenanbietern austauschbar ist, treten beim Genre mehrere
 Schwierigkeiten auf:
+
 
 **Unterschiedliche Sprache**
 
@@ -313,6 +322,7 @@ bezogen wird. IMDb listet hier das Genre ,,Comedy'' (siehe Tabelle
 Umstand würde in unserer Datenbank nach dem Einpflegen die beiden Genres
 ,,Comedy'' und ''Komödie'' einpflegen, was eine Gruppierung bzw. Auswahl von
 Filmen nach einem bestimmten Genre unmöglich macht bzw. einschränkt.
+
 
 **Divergente Genres**
 

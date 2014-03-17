@@ -34,12 +34,12 @@ unterschied zur Musik essentiell, da hierüber die Entscheidung getroffen wird o
 ein Film geschaut wird oder nicht.
 
 Die Metadaten werden in der Regel über Onlineportale wie beispielsweise die
-Internet Movie Database (IMDb) bezogen. Die Anzahl der möglichen Onlinedienste
-die Metadaten bereitstellen, ist hier praktisch *ungebrenzt*. Viele Anwendungen
-wie das Windows Media Center oder das Xbox Media Center (XBMC, siehe
-:cite:`xbmc`') können ihre Metadaten automatisch aus dem Internet beziehen. Je
-nach Anwendung kann es hier im Hintergrund eine oder mehrere Bezugsquellen für
-Metadaten geben.
+Internet Movie Database (IMDb, siehe :cite:`imdb`) bezogen. Die Anzahl der
+möglichen Onlinedienste die Metadaten bereitstellen, ist hier praktisch
+*ungebrenzt*. Viele Abspiel--Anwendungen wie das Windows Media Center oder das
+Xbox Media Center (XBMC, siehe :cite:`xbmc`') können ihre Metadaten automatisch
+aus dem Internet beziehen. Je nach Anwendung kann es hier im Hintergrund eine
+oder mehrere Bezugsquellen für Metadaten geben.
 
 Ein Problem bei der Pflege der Metadaten im Videobereich ist, dass es hier
 keinen Standard gibt der sich durchgesetzt hat. Es gibt einerseits die
@@ -93,11 +93,18 @@ vorhandenen *Movie Management--Tools*, bei denen fehlende Metadaten manuell vom
 Benutzer explizit nachgepflegt werden müssen, soll das System mehr auf
 automatisierte Verarbeitung ohne zutun des Benutzers ausgelegt sein.
 
+Da die aktuellen Tools zur Metadatenverwaltung einen *eher statischen* Ansatz
+verfolgen, ist es Ziel dieser Arbeit ein modulares System zu Entwickeln das an
+die jeweiligen Bedürfnisse angepasst werden kann. Dieses Konzept soll wieterhin
+durch Analysewerkzeuge, die über die reine Datenerhebung hnaus gehen, erweitert
+werden.
+
 .. rubric:: Footnotes
 
 .. [#f0] Ein auf PC Komponenten basierendes Gerät zur Wiedergabe multimedialer
          Inhalte, dieser wird oft mit sog. Media Center Software wie dem Xbox
          Media Center betrieben
+
 
 .. http://www.vodprofessional.com/features/introduction-to-video-metadata/
 .. https://www.videouniversity.com/articles/metadata-for-video/
