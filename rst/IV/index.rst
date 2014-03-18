@@ -2,7 +2,6 @@
 Softwarespezifikation
 #####################
 
-
 Anforderungen an die Library
 ============================
 
@@ -49,33 +48,32 @@ Suchstrategien bieten:
 .. figtable::
     :label: table-searchstrategy
     :caption: Abbildung zeigt Metadatenanbieter (A, B, C) und die jeweils
-              gelieferten Ergebnisse  pro Anbieter (R1-R3)
+              gelieferten Ergebnisse  pro Anbieter
     :alt: Abbildung zeigt Metadatenanbieter (A, B, C) und die jeweils
-              gelieferten Ergebnisse  pro Anbieter (R1-R3)
+              gelieferten Ergebnisse  pro Anbieter
 
-    +-------------------+------+------+------+
-    | Metadatenanbieter | A    | B    | C    |
-    +===================+======+======+======+
-    |                   | A-R1 | B-R1 | C-R1 |
-    +-------------------+------+------+------+
-    |                   | A-R2 | B-R2 | C-R1 |
-    +-------------------+------+------+------+
-    |                   | A-R3 | B-R3 | C-R3 |
-    +-------------------+------+------+------+
+    +-------------------+---------------------+-----------------+-------------------+
+    | Metadatenanbieter | A                   | B               | C                 |
+    +===================+=====================+=================+===================+
+    |                   | Sin (2003)          | Sin (2003)      | Sin (2003)        |
+    +-------------------+---------------------+-----------------+-------------------+
+    |                   | Sin Nombre (2009)   | Sin City (2005) | Sin City (2005)   |
+    +-------------------+---------------------+-----------------+-------------------+
+    |                   | Original Sin (2001) |                 | Sin Nombre (2009) |
+    +-------------------+---------------------+-----------------+-------------------+
 
-Die Tabelle :num:`table-searchstrategy` ist nach *Priorität* der Anbieter
-sortiert. Anbieter A hat die höchste Priorität. Die Ergebnisse R1-R3 sind nach
-der Übereinstimmung zum Suchstring sortiert. R1 hat jeweils die höchste
-übereinstimmung.
+Die Tabelle :num:`table-searchstrategy` zeigt die Suchanfrage nach dem Film
+,,Sin'' mit der Begrenzung auf vier Ergebnisse. Jeder Metadatenanbieter hat
+eine *Priorität* gepflegt. Die Anbieter sind nach *Priorität* sortiert. A hat
+die höchste Priorität. Die Ergebnisse pro Anbieter sind nach der Übereinstimmung
+zum Suchstring sortiert.
 
-Hier soll eine *deep--strategy* und eine eine *flat--strategy*
-ermöglicht werden nach der die Ergebnisse verarbeitet werden. Folgende
-Ergebnisse werden bei jeweiliger Strategie an den Aufrufer gegeben:
+Hier soll eine *deep--strategy* und eine eine *flat--strategy* ermöglicht
+werden, nach der die Ergebnisse verarbeitet werden. Folgende Ergebnisse werden
+bei jeweiliger Strategie und der Begrenzung auf drei Ergebnisse an den Aufrufer gegeben:
 
-    * *deep-strategy*, A-R1, A-R2, A-R3
-    * *flat-strategy*, B-R1, B-R2, C-R2
-
-
+    * *deep-strategy*: Sin (2003) A, Sin Nombre (2009) A, Original Sin (2001) A, Sin (2003) B
+    * *flat-strategy*: Sin (2003) A, Sin (2003) B, Sin (2003) C, Sin Nombre (2009) A
 
 **Unschärfesuche**
 

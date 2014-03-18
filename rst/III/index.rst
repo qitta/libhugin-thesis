@@ -362,10 +362,9 @@ diese von manchen Onlineanbietern unterstützt wird.
 Erkentnisse und Anforderungen an das Projekt
 ============================================
 
-**Vielen der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur und dem
+*Vielen der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur und dem
 aktuellen Kombination aus Abspielsoftware und Management Tools nicht oder nur
-mit manuellen Eingriff durch den Benutzer beheben beheben.**
-
+mit manuellen Eingriff durch den Benutzer beheben beheben.*
 
 Idee
 ====
