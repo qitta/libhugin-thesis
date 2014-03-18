@@ -30,41 +30,12 @@ Pluginarten bereitstellen:
 
 .. _fig-harvest-arch
 
-.. figure:: fig/harvest-arch.png
-    :alt: Architekturübersich libhugin harvest
+.. figure:: fig/arch-overview.png
+    :alt: Architekturübersich libhugin
     :width: 90%
     :align: center
 
-    Architekturübersicht libhugin harvest.
-
-**Session**
-
-Das ist der *Einstiegspunkt* für libhugin harvest. Über eine Sitzung
-konfiguriert der Benutzer das ,,System'' und hat Zugriff auf die verschiedenen
-Plugins.
-
-**Queue**
-
-Die Queue wird verwendet um die Suchanfrage zu konfigurieren. Hier werden auch
-für nicht gesetzte Parameter ,,Defaultwerte'' gesetzt.
-
-**Cache**
-
-Wird verwendet um erfolgreiche Ergebnisse von Suchanfragen persistent
-zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus dem Cache
-geladen werden. Dies funktioniert schneller und entlastet den Metadatenanbieter.
-
-**Downloadqueue**
-
-Die Downloadqueue ist für den eigentlichen Download der Daten zuständig. Die
-Provider--Plugins müssen so keine eigene Downloadqueue implementieren. Durch
-eine zentrale Downloadqueue bleibt die Kontrolle über den Download der Daten bei
-libhugin selbst und nicht bei den Plugins.
-
-**GenreNormalize**
-
-GenreNormalize kann von den Provider--Plugins verwendet werden um das Genre zu
-*normalisieren*.
+    Architekturübersicht libhugin.
 
 libhugin analyze
 ----------------
@@ -77,13 +48,4 @@ bereitstellen.
     * Analyzer--Plugins
     * Comperator--Plugins
 
-
-.. _fig-analyze-arch
-
-.. figure:: fig/analyze-arch.png
-    :alt: Architekturübersich libhugin analyze
-    :width: 90%
-    :align: center
-
-    Architekturübersicht libhugin analyze.
 
