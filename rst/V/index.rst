@@ -6,16 +6,150 @@ Entwurf
 verwendetetn Algorithmen, Probleme sowie Möglichgeiten der technischen Umsetzung
 werden in der Bachelorarbeit genauer beleuchtet und diskutiert.*
 
-Grundüberlegung
-===============
+Grundüberlegungen
+=================
+
+Grundprinzip -- Beschaffung der Metadaten
+-----------------------------------------
+
+Die Metadaten werden über verschiedene Onlineanbieter gezogen. Hier muss
+zwischen Anbietern mit API und Anbietern ohne API unterschieden werden. Anbieter
+mit API bieten dem Entwickler direkt eine Schnittstelle über die, die interne
+Datenbank des Metadatenanbieters abgefragt werden kann. Folgendes Code--Snippet
+demonstriert einen Zugriff mit dem Webtransfer--Tool ``curl`` auf die API des
+Webdienstes `http://www.omdbapi.com`, es wird nach dem Film ,,The Matrix''
+gesucht:
+
+.. code-block:: bash
+
+   $ curl http://www.omdbapi.com/?t=The+Matrix
+   {"Title":"The Matrix",
+   "Year":"1999",
+   "Rated":"R",
+   "Released":"31 Mar 1999",
+   "Runtime":"136 min",
+   "Genre":"Action, Sci-Fi",
+   "Director":"Andy Wachowski, Lana Wachowski",
+   "Writer":"Andy Wachowski, Lana Wachowski",
+   "Actors":"Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving",
+   "Plot":"A computer hacker learns from mysterious [...]",
+   "Language":"English",
+   "Country":"USA, Australia",
+   "Poster":"http://ia.media-imdb.com/images/M/SX300.jpg",
+   "imdbRating":"8.7",
+   "imdbVotes":"836.596",
+   "imdbID":"tt0133093",
+   "Type":"movie",
+   "Response":"True"
+   }%
+
+Der *Such--URL* bekommt den Titel  als Queryparameter (``t=The+Matrix``)
+übergeben, zurück bekommt man ein in *Json* formatiertes Response. Dieses kann
+nun vom Aufrufer der API nach belieben verarbeitet werden.
+
+Bietet ein Webseite wie beispielsweise ``http://www.filmstars.de`` keine API an,
+so muss der ,,normale Weg'' wie über den Webbrowser erfolgen. Hierzu muss man
+herausfinden wie sich die *Such--URL* aussieht die im Hintergrund an den
+Webserver geschickt wird sobald man den ,,Suche''--Button auf der Webseite
+betätigt hat. Bei ``Filmstars.de`` setzt sich die ,,Such--URL'' wie folgt
+zusammen:
+
+    * http://www.filmstarts.de/suche/?q={Filmtitel}
+
+
+Rufen wir nun curl mit der Url und unseren Film als Parameter auf so erhalten
+wir die ,,HTTP--Response'' die auch der Webbrowser erhalten würde. Folgendes
+Code--Snippet demonstriert den aufruf:
+
+.. code-block:: bash
+
+   $ curl  http://www.filmstarts.de/suche/?q=The+Matrix
+   <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#"
+   xmlns:fb="http://www.facebook.com/2008/fbml"
+   xml:lang="de" lang="de">
+   <head><title>The Matrix – Suchen auf FILMSTARTS.de</title>
+   <meta http-equiv="Content-Language" content="DE" /><meta
+   http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta
+   http-equiv="imagetoolbar" content="no" />
+   [...]
+   </html>
+
+Die Ausgabe wurde gekürzt. Man bekommt als Aufrufer der Url die Webseite
+zurückgeliefert und muss nun die Daten aus dem Dokument extrahieren, was in der
+Regel mühsamer ist, wie über eine API, die die Daten sauber im *Json*-- oder
+*XML*--Format zurückliefert.
+
+**Grundprinzip Provider--Plugins**
+
+Ziel ist es die Plugins so einfach wie möglich zu halten um den Entwickler zu
+motivieren neue Plugins zu schreiben. Der das Prinzip beim Beschaffen von
+Metadaten ist immer gleich lässt sich somit gut auf Provider--Plugins
+übertragen. Die Provider--Plugins müssen im Prinzip *nur* folgendes zwei Punkte
+können:
+
+    * Provider muss wissen wie er aus den Suchparametern die *Such--Url* zusammenbaut
+    * Provider muss wissen wie er die Daten aus dem zurückgelieferten *HTTP--Response* extrahiert
+
+Um den Download selbst muss sich der Provider bei diesem Ansatz nicht kümmern,
+das ,,entlastet'' den Pluginentwickler und übergibt libhugin die Kontrolle über
+den Download.
+
+.. _fig-provider-concept
+
+.. figure:: fig/provider-concept.png
+    :alt: Grundprinzip Provider--Plugins
+    :width: 80%
+    :align: center
+
+    Grundprinzip der Provider--Plugins.
+
+Damit der Provider weiß welche ,,Roh--Daten'' er zurückliefern soll, muss
+hierfür noch eine Struktur mit Attributen festgelegt werden die vom Provider
+befüllt werden soll. In unserem Fall sind das die Typischen Film--Metadaten wie
+Titel, Erscheinungsjahr, Inhaltsbeschreibung, etc.
+
+.. **Grundprinzip Postprocessing--Plugins und Converter--Plugins**
+..
+.. Hier wird davon ausgegangen das ein Plugin eine bestimmte Operation auf einem
+.. definierten ,,Ergebnisobjekt'' durchführt. Das Prinzip ist trivial, ein
+.. ,,Ergebnisobjekt'' wird an das Plugin gegeben und das Plugin führt die gewünschte
+.. Operation auf diesem durch oder gibt ein neues definiertes Ergebnis zurück.
+..
+.. **Normalisierung vom Genre**
+..
+.. Das Genre ist ein wichtiges Attribut unter den Film--Metadaten. Da hier das
+.. Problem der Normalisierung besteht, wird für den libhugin Prototypen eine
+.. globale Genreliste definiert. Provider--Plugins haben nun die Möglichkeit eine
+.. Normalisierung des Genre durchzuführen indem sie eine Liste mit Abbildungen
+.. bereitstellen. Die Abbildungen bilden ein oder mehrere Provider--Genre auf genau
+.. einem globalen Genre ab.
+..
+.. .. code-block:: bash
+..
+..     lokale Genre (Provider)                                    globales Genre
+..     -----------------------                                   ---------------
+..     Provider A, Genre SciFi        -- wird abgebildet auf --> Science Fiction
+..     Provider A, Genre Horrorfilm   -- wird abgebildet auf --> Horror
+..
+..     Provider B, Genre Sci-Fi       -- wird abgebildet auf --> Science Fiction
+..     Provider B, Genre Splatter     -- wird abgebildet auf --> Horror
+..
+..     Provider C, Genre Zukunftsfilm -- wird abgebildet auf --> Science Fiction
+..     Provider C, Genre Horror       -- wird abgebildet auf --> Horror
+..
+..
+.. Weitere Informationen, Probleme und Ansätze zur Genre Normalisierung werden in
+.. der Bachelorarbeit diskutiert.
+
+
+
+Libhugin Architektur
+====================
 
 Die Library soll über die Metadatenbeschaffung hinaus Werkzeuge zur
 Metadatenanalyse bereitstellen. Um eine saubere Trennung zwischen
 Metadatenbeschaffung und Metadatenanalyse zu schaffen, wird die Library in die
 zwei Teile *libhugin harvest* und *libhugin analyze* aufgeteilt.
-
-Libhugin Architektur
-====================
 
 **libhugin harvest**
 
@@ -55,6 +189,7 @@ Der Analyze Teil der library hat eine interne *Datenbank* die die
 ,,normalisierten'' Metadaten enthält. Diese Datenbank wird durch den Import
 externer Metadaten aufgebaut. Auf diesen ,,arbeiten'' dann die
 Modifier--, Analyzer-- und Comperator--Plugins.
+
 
 Klassenübersicht und Schnittstellen
 ===================================
