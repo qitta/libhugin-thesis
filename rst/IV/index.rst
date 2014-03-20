@@ -11,7 +11,7 @@ Lösungen abgeleitet.*
 Anforderungen an die Suche von Metadaten
 ----------------------------------------
 
-**Modulares Providersystem**
+**Modulares Provider--System**
 
 Die Onlinedienste die verwendet werden, sollen austauschbar sein. Der Benutzer
 hat die Möglichkeit durch schreiben eines *Plugins* seine bevorzugte Plattform

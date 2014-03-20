@@ -25,6 +25,21 @@ Fachbegriffe
 
      Bezeichnung für einen Fernseher mit Computerfunktion der Internetfähig ist.
 
+    API
+
+     Application Programming Interface, bezeichnet eine Programmierschnittstelle
+     die eine Anbindung an ein Softwaresystem bereit stellt.
+
+    XML
+
+     Extensible Markup Language, eine Auszeichnungssprache zur strukturierten
+     Darstellung von Daten in Form von Textdateien.
+
+    Json
+
+     JavaScript Object Notation, eine Auszeichnungssprache ähnlich wie XML mit
+     dem Ziel von Mensch und Maschine einfacher lesbar zu sein.
+
 Kontextspezifische Fachbegriffe
 -------------------------------
 

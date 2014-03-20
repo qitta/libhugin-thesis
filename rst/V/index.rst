@@ -3,8 +3,8 @@ Entwurf
 #######
 
 *Im folgenden wird der systematische Entwurf der Software dargestellt. Die
-verwendetetn Algorithmen, Probleme sowie Möglichgeiten der technischen Umsetzung
-werden in der Bachelorarbeit genauer beleuchtet und diskutiert.*
+verwendetetn Algorithmen, Probleme, sowie Möglichgeiten der technischen
+Umsetzung werden in der Bachelorarbeit genauer beleuchtet und diskutiert.*
 
 Grundüberlegungen
 =================
@@ -12,33 +12,34 @@ Grundüberlegungen
 Grundprinzip -- Beschaffung der Metadaten
 -----------------------------------------
 
-Die Metadaten werden über verschiedene Onlineanbieter gezogen. Hier muss
-zwischen Anbietern mit API und Anbietern ohne API unterschieden werden. Anbieter
-mit API bieten dem Entwickler direkt eine Schnittstelle über die, die interne
-Datenbank des Metadatenanbieters abgefragt werden kann. Folgendes Code--Snippet
-demonstriert einen Zugriff mit dem Webtransfer--Tool ``curl`` auf die API des
-Webdienstes `http://www.omdbapi.com`, es wird nach dem Film ,,The Matrix''
-gesucht:
+*Im folgenden wird das Grundprinzip der Metadatenbeschaffung erläutert und daraus
+ableitend die Schnittstellen--Spezifikation für die Plugins definiert.*
+
+Metadaten werden über verschiedene Webplattformen bezogen. Hier wird
+grundsätzlich zwischen Anbietern mit API und Anbietern ohne API unterschieden.
+Anbieter mit API bieten dem Entwickler direkt eine Schnittstelle über die, die
+interne Datenbank des Metadatenanbieters abgefragt werden kann.
+
+Folgendes Bash--Snippet demonstriert einen Zugriff mit dem Webtransfer--Tool
+*cULR* (siehe :cite:`curl`) auf die API des ,,The Open Movie
+Database''--Webdienstes (siehe :cite:`omdb`), es wird nach dem Film ,,The
+Matrix'' gesucht:
 
 .. code-block:: bash
 
    $ curl http://www.omdbapi.com/?t=The+Matrix
    {"Title":"The Matrix",
    "Year":"1999",
-   "Rated":"R",
-   "Released":"31 Mar 1999",
    "Runtime":"136 min",
    "Genre":"Action, Sci-Fi",
    "Director":"Andy Wachowski, Lana Wachowski",
-   "Writer":"Andy Wachowski, Lana Wachowski",
    "Actors":"Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving",
    "Plot":"A computer hacker learns from mysterious [...]",
-   "Language":"English",
    "Country":"USA, Australia",
    "Poster":"http://ia.media-imdb.com/images/M/SX300.jpg",
    "imdbRating":"8.7",
-   "imdbVotes":"836.596",
    "imdbID":"tt0133093",
+   [...]
    "Type":"movie",
    "Response":"True"
    }%
@@ -47,19 +48,18 @@ Der *Such--URL* bekommt den Titel  als Queryparameter (``t=The+Matrix``)
 übergeben, zurück bekommt man ein in *Json* formatiertes Response. Dieses kann
 nun vom Aufrufer der API nach belieben verarbeitet werden.
 
-Bietet ein Webseite wie beispielsweise ``http://www.filmstars.de`` keine API an,
-so muss der ,,normale Weg'' wie über den Webbrowser erfolgen. Hierzu muss man
-herausfinden wie sich die *Such--URL* aussieht die im Hintergrund an den
-Webserver geschickt wird sobald man den ,,Suche''--Button auf der Webseite
-betätigt hat. Bei ``Filmstars.de`` setzt sich die ,,Such--URL'' wie folgt
-zusammen:
+Bietet ein Webseite wie beispielsweise ,,filmstars.de'' (siehe
+:cite:`filmstars`) keine API an, so muss der ,,normale Weg'' wie über den
+Webbrowser erfolgen. Hierzu muss man herausfinden wie sich die *Such--URL*
+aussieht die im Hintergrund an den Webserver geschickt wird sobald man den
+,,Suche''--Button auf der Webseite betätigt hat. Bei ,,filmstars.de`` setzt sich
+die ,,Such--URL'' wie folgt zusammen:
 
-    * http://www.filmstarts.de/suche/?q={Filmtitel}
+    ``http://www.filmstarts.de/suche/?q={Filmtitel}``
 
-
-Rufen wir nun curl mit der Url und unseren Film als Parameter auf so erhalten
-wir die ,,HTTP--Response'' die auch der Webbrowser erhalten würde. Folgendes
-Code--Snippet demonstriert den aufruf:
+Rufen wir nun *cURL* mit der Url und unseren Film als Query--Parameter auf so
+erhalten wir die HTML--Dokument als ,,HTTP--Response'' das auch der Webbrowser
+erhalten würde. Folgendes Bash--Snippet demonstriert den aufruf:
 
 .. code-block:: bash
 
@@ -79,20 +79,28 @@ zurückgeliefert und muss nun die Daten aus dem Dokument extrahieren, was in der
 Regel mühsamer ist, wie über eine API, die die Daten sauber im *Json*-- oder
 *XML*--Format zurückliefert.
 
-**Grundprinzip Provider--Plugins**
 
-Ziel ist es die Plugins so einfach wie möglich zu halten um den Entwickler zu
-motivieren neue Plugins zu schreiben. Der das Prinzip beim Beschaffen von
-Metadaten ist immer gleich lässt sich somit gut auf Provider--Plugins
-übertragen. Die Provider--Plugins müssen im Prinzip *nur* folgendes zwei Punkte
-können:
+Pluginsystem
+------------
 
-    * Provider muss wissen wie er aus den Suchparametern die *Such--Url* zusammenbaut
-    * Provider muss wissen wie er die Daten aus dem zurückgelieferten *HTTP--Response* extrahiert
+Ein Ziel bei der Entwicklung der Pluginspezifikation ist, den Aufwand für das
+implementieren eines Plugins so gering wie möglich zu halten, um Softwarebugs
+bzw. Fehlverhalten durch Plugins zu minimieren, aber auch um Entwickler zu
+*motivieren* Plugins zu schreiben.
+
+Übertragung vom Grundprinzip auf das Pluginssytem
+-------------------------------------------------
+
+Der das Prinzip beim Beschaffen von Metadaten ist immer gleich lässt sich somit
+gut auf Provider--Plugins übertragen. Die Provider--Plugins müssen im Prinzip
+*nur* folgendes zwei Punkte können:
+
+    * aus den Suchparametern die *Such--Url* zusammenbauen
+    * extrahieren der Daten aus dem zurückgelieferten *HTTP--Response*
 
 Um den Download selbst muss sich der Provider bei diesem Ansatz nicht kümmern,
 das ,,entlastet'' den Pluginentwickler und übergibt libhugin die Kontrolle über
-den Download.
+das Downloadmanagement.
 
 .. _fig-provider-concept
 
@@ -103,10 +111,9 @@ den Download.
 
     Grundprinzip der Provider--Plugins.
 
-Damit der Provider weiß welche ,,Roh--Daten'' er zurückliefern soll, muss
-hierfür noch eine Struktur mit Attributen festgelegt werden die vom Provider
-befüllt werden soll. In unserem Fall sind das die Typischen Film--Metadaten wie
-Titel, Erscheinungsjahr, Inhaltsbeschreibung, etc.
+Damit der Provider weiß, welche ,,Roh--Daten'' er zurückliefern soll, muss
+hierfür noch eine Struktur mit Attributen festgelegt werden, an welche sich alle
+Provider--Plugins halten müssen.
 
 .. **Grundprinzip Postprocessing--Plugins und Converter--Plugins**
 ..
@@ -141,10 +148,8 @@ Titel, Erscheinungsjahr, Inhaltsbeschreibung, etc.
 .. Weitere Informationen, Probleme und Ansätze zur Genre Normalisierung werden in
 .. der Bachelorarbeit diskutiert.
 
-
-
-Libhugin Architektur
-====================
+Libhugin Architektur Überblick
+==============================
 
 Die Library soll über die Metadatenbeschaffung hinaus Werkzeuge zur
 Metadatenanalyse bereitstellen. Um eine saubere Trennung zwischen
@@ -160,11 +165,6 @@ Pluginarten bereitstellen:
     * Provider--Plugins
     * Postprocessing--Plugins
     * Output--Converter--Plugins
-
-Libhugin harvest besitzt ein zentrales Downloadmodul. Somit bleibt die Kontrolle
-über den Download bei der library und die Provider-Plugin--Entwickler müssen
-keine Downloadfunktionalität implementieren.
-
 
 .. _fig-harvest-arch
 
@@ -185,58 +185,119 @@ bereitstellen.
     * Analyzer--Plugins
     * Comperator--Plugins
 
-Der Analyze Teil der library hat eine interne *Datenbank* die die
-,,normalisierten'' Metadaten enthält. Diese Datenbank wird durch den Import
-externer Metadaten aufgebaut. Auf diesen ,,arbeiten'' dann die
-Modifier--, Analyzer-- und Comperator--Plugins.
+Der Analyze Teil der library soll eine interne Datenbank besitzen, in welche
+externe Metadaten zur Analyse importiert werden. So können alle Plugins auf
+einem ,,definiertem'' Zustand arbeiten.
 
 
-Klassenübersicht und Schnittstellen
-===================================
+Klassen-- und Schnittstellenübersicht
+=====================================
 
-Aus der Architektur wurde ein Entwurf abgeleitet, Abbildung X zeigt eine
-Klassenübersicht und ihre Schnittstellen.
+Die Architektur von libhugin ist objektorientiert. Aus der Architektur und den
+Anforderungen an das System wurden folgende Klassen und Schnittstellen
+abgeleitet, Abbildung X zeigt eine Klassenübersicht samt interaktion mit den
+Schnittstellen. Im folgenden werden die Grundlegenden Objekte und Schnittstellen
+erläutert.
 
-**Session**
+Libhugin harvest
+----------------
 
-Das ist der Einstiegspunkt für libhugin harvest. Über eine Sitzung konfiguriert
-der Benutzer das ,,System'' und hat Zugriff auf die verschiedenen Plugins.
+Session
+~~~~~~~
 
-    * ``create_query()``
-    * ``submit()``
-    * ``submit_async()``
+Diese Klasse bildet den Grundstein für libhugin harvest. Über eine Sitzung
+konfiguriert der Benutzer das ,,System'' und hat Zugriff auf die verschiedenen
+Plugins. Von der Session werden folgende Methoden bereit gestellt:
 
-    * ``provider_plugins()``
-    * ``postprocessing_plugins()``
-    * ``converter_plugins()``
+``create_query(**kwargs)``: Schnittstelle zur Konfiguration der Suchanfrage. Die
+Methode gibt ein Query--Objekt zurück, das eine Python Dictionary entspricht.
+Diese Methode dient als ,,Hilfestellung'' für den Benutzer der API. Theoretisch
+kann der Benutzer die Query auch manuell zusammenbauen.
 
-    * ``cancel()``
-    * ``clean_up()``
+``submit(query)``: Schnittstelle um eine Suchanfrage ,,loszuschicken''. Die
+Methode gibt eine Liste mit gefundenen Metadaten als ,,Result--Objekte'' zurück.
+Die Methode holt eine Downloadqueue und einen Cache, falls dieser vom Benutzer
+über die Query nicht deaktiviert wurde. Anschließendund generiert für jeden Provider eine
+sog. *Job--Struktur*. Diese *Job--Struktur* kapselt jeweils einen Provider, die
+Suchanfrage und die ,,Zwisschenergebnisse'' die während des Submit--Aufrufs
+generiert werden.
+
+Zur Übersicht eine Job--Struktur in Python Dictionary Notation:
+
+.. code-block:: python
+
+    job_structure = {
+        'url': None,          # Url die als nächstes von Downloadqueue geladen werden soll
+        'provider': None,     # Referenz auf Provider--Plugin
+        'future': None,       # Referenz auf Future Objekt bei async.  Ausführung
+        'response': None,     # Ergebnis des Downloads, Http Response
+        'return_code': None,  # Return Code der Http Anfrage
+        'retries_left': None, # Anzahl der noch übrigen Versuche
+        'done': None,         # Flag das gesetzt wird wenn Job fertig ist
+        'result': None        # Ergebnis der Suchanfrage
+    }
+
+Nachdem ein Job fertiggestellt wurde, wird er in ein Result--Objekt gekapselt.
+Am Ende der ``submit``--Methode wird eine Liste mit Result--Objekten an den
+Aufrufen zurückgegeben.
 
 
-**Queue**
+``submit_async()``: Methode für eine asynchrone Nutzung der API.
+``submit(query)`` asynchron aus und gibt ein Python Future Objekt zurück,
+welches die Anfrage kapselt. Durch Aufrufen der ``done()`` Methode auf dem
+Future--Objekt, kann festgestellt werden ob die Suchanfrage bereits fertig ist.
+Ein Aufruf der ``result()``--Methode auf dem Future--Objekt liefert das
+eigentliche Result--Objekt zurück. Für mehr Informationen siehe Python API
+[lin,].
 
-Die Queue kapselt die Parameter der Suchanfrage. Die Queue wird mit den
-Parametern der Suchanfrage *instanziiert*, hierbei werden bestimmte Werte
-validiert und *Defaultwerte* gesetzt.
+``provider_plugins(pluginname=None)``: Diese Methode gibt eine Liste mit den
+Provider--Plugins zurück oder bei Angabe eines Pluginnamen, dieses direkt.
 
-**Cache**
+``postprocessing_plugins(pluginname)``: Analog ``provider_plugins(pluginname=None).
 
-Wird intern verwendet um erfolgreiche Ergebnisse von Suchanfragen persistent
-zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus dem Cache
-geladen werden. Dies funktioniert schneller und entlastet den Metadatenanbieter.
+``converter_plugins(pluginname)``: Analog ``provider_plugins(pluginname=None).
 
-``open()``: Öffne den übergebenen Cache.
-``read()``: Lese Element an Position *key* aus dem Cache.
-``write()``: Schreibe Element Value an Position *key* in den Cache.
+``cancel()``: Diese Methode dient zum abbrechen eine asynchronen Suchanfrage.
+Hier sollte folgend noch die ``clean_up()``--Methode aufgerufen werden um alle
+Ressourcen wieder freizugeben.
+
+``clean_up()``: Methode zum *aufräumen* nach dem Abbrechen einer asynchronen
+Anfrage. Die Methode blockt solange noch nicht alle Ressourcen freigegeben
+wurden.
+
+Queue
+~~~~~
+
+Die Queue kapselt die Parameter der Suchanfrage. Sie wird direkt mit den
+Parametern der Suchanfrage *instanziiert*, hierbei werden bestimmte Werte die
+übergebenen Werte validiert und *Standardwerte* gesetzt.
+
+Cache
+~~~~~
+
+Der Cache wird intern verwendet um erfolgreiche Ergebnisse von Suchanfragen
+persistent zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus
+dem Cache geladen werden. Dadurch gewinnt man Performance und der
+Metadatenanbieter wird entlastet. Zum persistenten speichern wird ein Python
+Shelve verwendet.
+
+``open(path, cache_name)``: Öffne den übergebenen Cache.
+
+``read(key)``: Liest Element an Position ``key`` aus dem Cache.
+
+``write(key, value)``: Schreibt das Element ``value`` an Position ``key`` in den Cache.
+
 ``close()``: Schließe den Cache.
 
-**Downloadqueue**
 
-Die Downloadqueue ist für den eigentlichen Download der Daten zuständig. Die
-Provider--Plugins müssen so keine eigene Downloadqueue implementieren. Durch
-eine zentrale Downloadqueue bleibt die Kontrolle über den Download der Daten bei
-libhugin selbst und nicht bei den Plugins.
+Downloadqueue
+~~~~~~~~~~~~~
+
+Die Downloadqueue ist für den eigentlichen Download der Daten zuständig. Sie
+arbeitet mit Job-Strukturen. Die Provider--Plugins müssen so keine
+eigene Downloadqueue implementieren. Durch eine zentrale Downloadqueue bleibt
+die Kontrolle über den Download der Daten bei libhugin selbst und nicht bei den
+Plugins.
 
 ``pop()``: Fügt einen *Job* der *Downloadqueue* hinzu.
 ``push()``: Holt den nächsten fertigen *Job* aus der *Downloadqueue*.
@@ -276,22 +337,23 @@ ist ansonsten ``False``.
 Plugininterface
 ---------------
 
-Das Modul hugin bietet für jeden Plugintyp bestimmte Schnittstellen, die
-vom Plugin implementiert werden müssen.
+Libhugin bietet für jeden Plugintyp bestimmte Schnittstellen an, die vom Plugin
+implementiert werden müssen.
 
-**Provider--Plugins**
+Provider--Plugins
+~~~~~~~~~~~~~~~~~
 
 Diese Plugins haben die Möglichkeiten von den folgenden Oberklassen abzuleiten:
 
-``IMovieProvider``: Plugins die textuelle Metadaten für Filme beschaffen.
-``IMoviePictureProvider``: Plugins die grafische Metadaten für Filme beschaffen.
+**IMovieProvider**: Plugins die textuelle Metadaten für Filme beschaffen.
+**IMoviePictureProvider**: Plugins die grafische Metadaten für Filme beschaffen.
 
-``IPersonProvider``: Plugins die textuelle Metadaten für Personen beschaffen.
-``IPersonPictureProvider``:Plugins die textuelle Metadaten für Personen
+**IPersonProvider**: Plugins die textuelle Metadaten für Personen beschaffen.
+**IPersonPictureProvider**:Plugins die textuelle Metadaten für Personen
 beschaffen.
 
-``ITVShowProvider``:Plugins die textuelle Metadaten für Serien beschaffen.
-``ITVShowPictureProvider``:Plugins die textuelle Metadaten für Serien
+**ITVShowProvider**:Plugins die textuelle Metadaten für Serien beschaffen.
+**ITVShowPictureProvider**:Plugins die textuelle Metadaten für Serien
 beschaffen.
 
 Jedes konkrete Provider--Plugin muss folgende Methoden implementieren:
@@ -312,20 +374,20 @@ werden.
 Für weitere Informationen zur Schnittstellenspezifikation des Plugin--Providers
 siehe libhugin Dokumentation.
 
-**Postprocessing--Plugins**
+Postprocessing-- und Converter--Plugins
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Die Postprocessing--Plugins haben die Möglichkeiten von den folgenden
-Oberklassen abzuleiten:
+Diese haben die Möglichkeiten von den folgenden Oberklassen abzuleiten:
 
-``IPostProcesssing``.
+**IPostProcesssing**: Plugins die als Postprocessing--Plugins fungieren.
 
-``process()``: Diese Methode bekommt ein ,,Result--Objekt'' übergeben und
-manipuliert dieses nach bestimmten Kriterien oder gibt ein neues
-,,Result--Objekt'' zurück.
+``process()``: Diese Methode bekommt ein Liste mit Result--Objekten übergeben und
+manipuliert dieses nach bestimmten Kriterien oder gibt eine neue Liste mit
+,,Result--Objekten'' zurück.
 
-**OutputConverter--Plulgins**
+**IPostProcesssing**: Plugins die als OutputConverter--Plugins fungieren.
 
-``convert``: Diese Methode bekommt ein ,,Result--Objekt'' übergeben und gibt
+``convert()``: Diese Methode bekommt ein ,,Result--Objekt'' übergeben und gibt
 die Stringrepräsentation von diesem in einem spezifischen Format wieder.
 
 
