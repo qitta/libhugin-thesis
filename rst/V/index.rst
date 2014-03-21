@@ -104,12 +104,13 @@ das Downloadmanagement.
 
 .. _fig-provider-concept
 
-.. figure:: fig/provider-concept.png
+.. figure:: fig/provider-concept-svg.pdf
     :alt: Grundprinzip Provider--Plugins
-    :width: 80%
+    :width: 100%
     :align: center
 
     Grundprinzip der Provider--Plugins.
+
 
 Damit der Provider weiß, welche ,,Roh--Daten'' er zurückliefern soll, muss
 hierfür noch eine Struktur mit Attributen festgelegt werden, an welche sich alle
@@ -168,9 +169,9 @@ Pluginarten bereitstellen:
 
 .. _fig-harvest-arch
 
-.. figure:: fig/arch-overview.png
+.. figure:: fig/arch-overview-svg.pdf
     :alt: Architekturübersich libhugin
-    :width: 80%
+    :width: 100%
     :align: center
 
     Architekturübersicht libhugin.
@@ -209,12 +210,12 @@ Diese Klasse bildet den Grundstein für libhugin harvest. Über eine Sitzung
 konfiguriert der Benutzer das ,,System'' und hat Zugriff auf die verschiedenen
 Plugins. Von der Session werden folgende Methoden bereit gestellt:
 
-``create_query(**kwargs)``: Schnittstelle zur Konfiguration der Suchanfrage. Die
+**create_query(**kwargs)**: Schnittstelle zur Konfiguration der Suchanfrage. Die
 Methode gibt ein Query--Objekt zurück, das eine Python Dictionary entspricht.
 Diese Methode dient als ,,Hilfestellung'' für den Benutzer der API. Theoretisch
 kann der Benutzer die Query auch manuell zusammenbauen.
 
-``submit(query)``: Schnittstelle um eine Suchanfrage ,,loszuschicken''. Die
+**submit(query)**: Schnittstelle um eine Suchanfrage ,,loszuschicken''. Die
 Methode gibt eine Liste mit gefundenen Metadaten als ,,Result--Objekte'' zurück.
 Die Methode holt eine Downloadqueue und einen Cache, falls dieser vom Benutzer
 über die Query nicht deaktiviert wurde. Anschließendund generiert für jeden Provider eine
@@ -242,26 +243,27 @@ Am Ende der ``submit``--Methode wird eine Liste mit Result--Objekten an den
 Aufrufen zurückgegeben.
 
 
-``submit_async()``: Methode für eine asynchrone Nutzung der API.
-``submit(query)`` asynchron aus und gibt ein Python Future Objekt zurück,
-welches die Anfrage kapselt. Durch Aufrufen der ``done()`` Methode auf dem
+**submit_async()**: Methode für eine asynchrone Nutzung der API.
+
+**submit(query)** asynchron aus und gibt ein Python Future Objekt zurück,
+welches die Anfrage kapselt. Durch Aufrufen der **done()** Methode auf dem
 Future--Objekt, kann festgestellt werden ob die Suchanfrage bereits fertig ist.
-Ein Aufruf der ``result()``--Methode auf dem Future--Objekt liefert das
+Ein Aufruf der **result()**--Methode auf dem Future--Objekt liefert das
 eigentliche Result--Objekt zurück. Für mehr Informationen siehe Python API
 [lin,].
 
-``provider_plugins(pluginname=None)``: Diese Methode gibt eine Liste mit den
+**provider_plugins(pluginname=None)**: Diese Methode gibt eine Liste mit den
 Provider--Plugins zurück oder bei Angabe eines Pluginnamen, dieses direkt.
 
-``postprocessing_plugins(pluginname)``: Analog ``provider_plugins(pluginname=None).
+**postprocessing_plugins(pluginname)**: Analog zu **provider_plugins(pluginname=None)**.
 
-``converter_plugins(pluginname)``: Analog ``provider_plugins(pluginname=None).
+**converter_plugins(pluginname)**: Analog zu **provider_plugins(pluginname=None)**.
 
-``cancel()``: Diese Methode dient zum abbrechen eine asynchronen Suchanfrage.
-Hier sollte folgend noch die ``clean_up()``--Methode aufgerufen werden um alle
+**cancel()**: Diese Methode dient zum abbrechen eine asynchronen Suchanfrage.
+Hier sollte folgend noch die **clean_up()**--Methode aufgerufen werden um alle
 Ressourcen wieder freizugeben.
 
-``clean_up()``: Methode zum *aufräumen* nach dem Abbrechen einer asynchronen
+**clean_up()**: Methode zum *aufräumen* nach dem Abbrechen einer asynchronen
 Anfrage. Die Methode blockt solange noch nicht alle Ressourcen freigegeben
 wurden.
 
@@ -281,13 +283,13 @@ dem Cache geladen werden. Dadurch gewinnt man Performance und der
 Metadatenanbieter wird entlastet. Zum persistenten speichern wird ein Python
 Shelve verwendet.
 
-``open(path, cache_name)``: Öffne den übergebenen Cache.
+**open(path, cache_name)**: Öffne den übergebenen Cache.
 
-``read(key)``: Liest Element an Position ``key`` aus dem Cache.
+**read(key)**: Liest Element an Position **key** aus dem Cache.
 
-``write(key, value)``: Schreibt das Element ``value`` an Position ``key`` in den Cache.
+**write(key, value)**: Schreibt das Element **value** an Position **key** in den Cache.
 
-``close()``: Schließe den Cache.
+**close()**: Schließe den Cache.
 
 
 Downloadqueue
@@ -299,46 +301,58 @@ eigene Downloadqueue implementieren. Durch eine zentrale Downloadqueue bleibt
 die Kontrolle über den Download der Daten bei libhugin selbst und nicht bei den
 Plugins.
 
-``pop()``: Fügt einen *Job* der *Downloadqueue* hinzu.
-``push()``: Holt den nächsten fertigen *Job* aus der *Downloadqueue*.
-``running_jobs()``: Gibt die Anzahl der *Jobs* die in Verarbeitung sind.
+**pop()**: Fügt einen *Job* der *Downloadqueue* hinzu.
 
+**push()**: Holt den nächsten fertigen *Job* aus der *Downloadqueue*.
 
-**GenreNormalize**
+**running_jobs()**: Gibt die Anzahl der *Jobs* die in Verarbeitung sind.
+
+GenreNormalize
+~~~~~~~~~~~~~~
 
 GenreNormalize kann von den Provider--Plugins verwendet werden um das Genre zu
 normalisieren.
 
-``normalize_genre()``: Normalisiert ein Genre Anhand einer festgelegten
+**normalize_genre(genre)**: Normalisiert ein Genre Anhand einer festgelegten
 Lookup--Table. Weitere Informationen hierzu in der Bachelorarbeit.
 
-``normalize_genre_list()``: Normalisiert eine Liste aus Genres wie
-``normalize_genre()``.
+**normalize_genre_list(genrelist)**: Normalisiert eine Liste aus Genres wie
+**normalize_genre()**.
 
-
-**PluginHandler**
+PluginHandler
+~~~~~~~~~~~~~
 
 Das Pluginsystem wurde mit Hilfe der Yapsy--Library umgesetzt. Es bietet
 folgende Schnittstellen nach außen:
 
-``activate_plugin_by_category(category)``: Aktiviert *Plugins* einer bestimmten
+**activate_plugin_by_category(category)**: Aktiviert *Plugins* einer bestimmten
 Kategorie. Bei libhugin harvest gibt es die Kategorien  *Provider*,
 *Postprocessing* und *Converter*.
 
-``deactivate_plugin_by_category(category)``: Deaktiviert *Plugins* einer bestimmten
+**deactivate_plugin_by_category(category)**: Deaktiviert *Plugins* einer bestimmten
 Kategorie.
 
-``get_plugins_from_category(category)``: Liefert Plugins einer bestimmten Kategorie
+**get_plugins_from_category(category)**: Liefert Plugins einer bestimmten Kategorie
 zurück.
 
-``is_activated(category)``: Gibt ``True`` zurück wenn eine Kategorie bereits aktiviert
+**is_activated(category)**: Gibt ``True`` zurück wenn eine Kategorie bereits aktiviert
 ist ansonsten ``False``.
+
 
 libhugin harvest Plugininterface
 --------------------------------
 
-Libhugin bietet für jeden Plugintyp bestimmte Schnittstellen an, die vom Plugin
-implementiert werden müssen.
+Libhugin harvest bietet für jeden Plugintyp eine bestimmte Schnittstellen an,
+die vom Plugin implementiert werden müssen.
+
+.. _fig-harvest-plulgin-interface
+
+.. figure:: fig/harvest-plugin-interface.pdf
+    :alt: libhugin harvest plugins interface
+    :width: 100%
+    :align: center
+
+    libhugin harvest plugins interface
 
 Provider--Plugins
 ~~~~~~~~~~~~~~~~~
@@ -397,6 +411,15 @@ die Stringrepräsentation von diesem in einem spezifischen Format wieder.
 Libhugin analyze
 ----------------
 
+.. _fig-analyze-plulgin-interface
+
+.. figure:: fig/analyze-plugin-interface.pdf
+    :alt: libhugin analyzeplugins interface
+    :width: 100%
+    :align: center
+
+    libhugin analyze plugins interface
+
 Session
 ~~~~~~~
 
@@ -406,6 +429,34 @@ libhugin harvest Session die API bereit.
 ``add(metadata_file, helper)``: Diese Methode dient zum *importieren* externer
 Metadaten. Sie erwartet eine Datei mit Metadaten und als Callback--Funktion eine
 *Helferfunktion* welche weiss wie die Metadaten zu extrahieren sind.
+
+``analyze_raw(plugin, attr, data)``: Wrapper Methode, welche es erlaubt die
+Analyzerplugins auf *externen* Daten auszuführen.
+
+``analyzer_plugins(pluginname=None)``: Liefert eine Liste mit den vorhandenen
+Analyzer--Plugins zurück. Bei Angabe eines bestimmten Pluginnamen, wird dieses
+Plugin direkt zurückgeliefert.
+
+``modifier_plugins(pluginname=None)``: Analog zu
+``analyzer_plugins(pluginname=None)``.
+
+``comperator_plugins(pluginname=None)``: Analog zu
+``analyzer_plugins(pluginname=None)``.
+
+Folgende weitere Methoden erlauben es die Plugins vom Analyzer auf *externen*
+Daten auszuführen:
+
+``modify_raw(plugin, attr, data)``: Analog zu ``analyze_raw(plugin, attr, data)``.
+
+``compare_raw(plugin, attr, data)``: Analog zu ``analyze_raw(plugin, attr, data)``.
+
+``get_database()``: Liefert die interne Datenbank (Python Dictionary) zurück.
+
+Für die interne Datenbank der Session:
+
+``databse_open(databasename)``: Lädt die angegebene Datenbank.
+``databse_close()``: Schließt und schreibt die aktuelle Datenbank persistent auf
+die Festplatte.
 
 **Helferfunktion**
 
@@ -454,6 +505,19 @@ verdeutlicht:
            internal_repr[internal_db_key] = metadata[metadata_key]
 
        return internal_repr
+
+
+Movie
+~~~~~
+
+Die Movie Klasse repräsentiert ein Metadatenobjekt welches in der internen
+Datenbank zur Analyze gespeichert wird. Es enthält folgende Attribute:
+
+    * ,,key'', über den die Metadaten eindeutig zugeordnet werden können
+    * Pfad zur Metadatendatei
+    * Hashmap mit den Metadaten
+    * Hashmap mit Analyzer--Analysedaten
+    * Hashmap mit Comperator--Analysedaten
 
 
 

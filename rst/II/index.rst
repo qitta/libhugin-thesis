@@ -1,6 +1,6 @@
-#######
-Glossar
-#######
+####################
+Begriffsdefinitionen
+####################
 
 Im Folgenden werden Fachbegriffe und Begriffe, die im Kontext von *libhugin*
 anders bestzt sind, definiert:
