@@ -200,6 +200,15 @@ abgeleitet, Abbildung X zeigt eine Klassenübersicht samt interaktion mit den
 Schnittstellen. Im folgenden werden die Grundlegenden Objekte und Schnittstellen
 erläutert.
 
+.. _fig-harvest-plulgin-interface
+
+.. figure:: fig/klassenuebersicht-svg.pdf
+    :alt: Klassenübersicht und Interaktion.
+    :width: 100%
+    :align: center
+
+    Libhugin Klassenübersicht und Interaktion.
+
 Libhugin harvest
 ----------------
 
