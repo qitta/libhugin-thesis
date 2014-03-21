@@ -334,8 +334,8 @@ zurück.
 ``is_activated(category)``: Gibt ``True`` zurück wenn eine Kategorie bereits aktiviert
 ist ansonsten ``False``.
 
-Plugininterface
----------------
+libhugin harvest Plugininterface
+--------------------------------
 
 Libhugin bietet für jeden Plugintyp bestimmte Schnittstellen an, die vom Plugin
 implementiert werden müssen.
@@ -346,13 +346,16 @@ Provider--Plugins
 Diese Plugins haben die Möglichkeiten von den folgenden Oberklassen abzuleiten:
 
 **IMovieProvider**: Plugins die textuelle Metadaten für Filme beschaffen.
+
 **IMoviePictureProvider**: Plugins die grafische Metadaten für Filme beschaffen.
 
 **IPersonProvider**: Plugins die textuelle Metadaten für Personen beschaffen.
-**IPersonPictureProvider**:Plugins die textuelle Metadaten für Personen
+
+**IPersonPictureProvider**: Plugins die grafische Metadaten für Personen
 beschaffen.
 
 **ITVShowProvider**:Plugins die textuelle Metadaten für Serien beschaffen.
+
 **ITVShowPictureProvider**:Plugins die textuelle Metadaten für Serien
 beschaffen.
 
@@ -389,6 +392,69 @@ manipuliert dieses nach bestimmten Kriterien oder gibt eine neue Liste mit
 
 ``convert()``: Diese Methode bekommt ein ,,Result--Objekt'' übergeben und gibt
 die Stringrepräsentation von diesem in einem spezifischen Format wieder.
+
+
+Libhugin analyze
+----------------
+
+Session
+~~~~~~~
+
+Diese Klasse bildet den Grundstein für libhugin analyze. Sie stellt analog zur
+libhugin harvest Session die API bereit.
+
+``add(metadata_file, helper)``: Diese Methode dient zum *importieren* externer
+Metadaten. Sie erwartet eine Datei mit Metadaten und als Callback--Funktion eine
+*Helferfunktion* welche weiss wie die Metadaten zu extrahieren sind.
+
+**Helferfunktion**
+
+Die Helferfunktion hat folgende Schnittstelle:
+
+    ``helper_func(metadata, attr_mask)``
+
+Der ``attr_mask`` Parameter gibt die Abbildungen der Attribute zwischen der
+*externen* und *internen* Datenbank an.
+
+Wir nehmen an unsere Metadaten sind im *Json--Format* gespeichert, bei einlesen
+der *Json--Datei* wird diese zu einer Hashmap konvertiert die wie folgt aussieht.
+
+.. code-block:: bash
+
+    metadata_the_movie = {
+
+        'Filmtitel' = 'The Movie',
+        'Erscheinungsjahr' = '2025',
+        'Inhaltsbeschreibung' = 'Es war einmal vor langer langer Zeit...'
+    }
+
+Folgendes Python--Pseudocode--Snippet zeigt nun die Funktionalität der
+*Helferfunktion*, welche die Abbildung von externer Quelle auf interne Datenbank
+verdeutlicht:
+
+.. code-block:: python
+
+    attr_mask = {
+        'Filmtitel': 'title',
+        # Filmtitel = Attributname unter welchem der Filmtitel
+        # in der externen Metadatendatei hinterlegt ist
+        # title = Attributname unter dem der Titel
+        # in der internen Datenbank abgelegt werden soll
+        #
+        # folgenden zwei Attribute analog hierzu
+
+        'Erscheinungsjahr' = 'year',
+        'Inhaltsbeschreibung': 'plot'
+    }
+
+   def helper(metadata, attr_mask):
+       internal_repr = {}
+
+       for metadata_key, internal_db_key in attr_mask.items():
+           internal_repr[internal_db_key] = metadata[metadata_key]
+
+       return internal_repr
+
 
 
 Library Dateistruktur
