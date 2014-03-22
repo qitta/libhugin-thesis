@@ -99,6 +99,44 @@ zu entwickeln, das sich an die jeweiligen Bedürfnisse anpassen lässt. Dieses
 Konzept soll, über die reine Datenerhebung hinaus, um Werkzeuge zur
 Metadatenanalyse erweitert werden.
 
+Projektlizenz und Namensgebung
+==============================
+
+Lizenz
+------
+
+Es soll ein System entwickelt werden, welches von der Community stätig erweitert
+werden kann. Um dies zu gewährleisten und damit auch ,,Verbesserungen'' an das
+Projekt zurückfließen wird er unter der GPLv3 Lizenz (siehe :cite:`gpl`)
+entwickelt.
+
+Namensgebung und Logo
+---------------------
+
+Um dem freie Software Projekt ein ,,Gesicht'' zu geben und den
+Wiedererkennungwert zu steigern, wird das Projekt auf den Namen ,,libhugin''
+getauft und ein Logo entwickelt (siehe Abbildung :num:`fig-libhugin`), welches
+einen Raben in Pixelgrafik und ein Stück Filmrolle zeigt. Der Name Hugin aus der
+nordischen Mythologie:
+
+.. epigraph::
+
+   *Hugin gehört zum altnordischen Verb huga „denken“, das hierzu zu stellende*
+   *Substantiv hugi „Gedanke, Sinn“ ist seinerseits die Grundlage für den Namen*
+   *Hugin, der mit dem altnordischen Schlussartikel –in gebildet wurde. Hugin*
+   *bedeutet folglich „der Gedanke“.*
+
+                    -- http://de.wikipedia.org/wiki/Hugin_and_Munin :cite:`hugin`
+
+.. _fig-libhugin
+
+.. figure:: fig/hugin.png
+    :alt: libhugin Logo.
+    :width: 30%
+    :align: center
+
+    libhugin Logo.
+
 
 .. http://www.vodprofessional.com/features/introduction-to-video-metadata/
 .. https://www.videouniversity.com/articles/metadata-for-video/

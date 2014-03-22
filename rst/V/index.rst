@@ -200,14 +200,14 @@ abgeleitet, Abbildung X zeigt eine Klassenübersicht samt interaktion mit den
 Schnittstellen. Im folgenden werden die Grundlegenden Objekte und Schnittstellen
 erläutert.
 
-.. _fig-harvest-plulgin-interface
+.. _fig-klassenuebersicht-harvest
 
-.. figure:: fig/klassenuebersicht-svg.pdf
-    :alt: Klassenübersicht und Interaktion.
+.. figure:: fig/klassenuebersicht-harvest-svg.pdf
+    :alt: Libhugin harvest Klassenübersicht und Interaktion.
     :width: 100%
     :align: center
 
-    Libhugin Klassenübersicht und Interaktion.
+    Libhugin harvest Klassenübersicht und Interaktion.
 
 Libhugin harvest
 ----------------
@@ -352,7 +352,7 @@ libhugin harvest Plugininterface
 --------------------------------
 
 Libhugin harvest bietet für jeden Plugintyp eine bestimmte Schnittstellen an,
-die vom Plugin implementiert werden müssen.
+die vom jeweiligen Plugintyp implementiert werden müssen.
 
 .. _fig-harvest-plulgin-interface
 
@@ -420,14 +420,16 @@ die Stringrepräsentation von diesem in einem spezifischen Format wieder.
 Libhugin analyze
 ----------------
 
-.. _fig-analyze-plulgin-interface
+.. _fig-klassenuebersicht-analyze
 
-.. figure:: fig/analyze-plugin-interface.pdf
-    :alt: libhugin analyzeplugins interface
+.. figure:: fig/klassenuebersicht-analyze-svg.pdf
+    :alt: Libhugin analyze Klassenübersicht und Interaktion.
     :width: 100%
     :align: center
 
-    libhugin analyze plugins interface
+    Libhugin analyze Klassenübersicht und Interaktion.
+
+
 
 Session
 ~~~~~~~
@@ -529,9 +531,57 @@ Datenbank zur Analyze gespeichert wird. Es enthält folgende Attribute:
     * Hashmap mit Comperator--Analysedaten
 
 
+libhugin analyze Plugininterface
+--------------------------------
+
+Libhugin analyze bietet für jeden Plugintyp eine bestimmte Schnittstellen an,
+die vom jeweiligen Plugintyp implementiert werden müssen.
+
+.. _fig-analyze-plulgin-interface
+
+.. figure:: fig/analyze-plugin-interface.pdf
+    :alt: libhugin analyzeplugins interface
+    :width: 100%
+    :align: center
+
+    libhugin analyze plugins interface
+
 
 Library Dateistruktur
 =====================
 
-...
+Die folgende Auflistung zeigt die die Ordnerstruktur des Projektes.
+Normalerweise enthält unter Python jeder Ordner eine *__init__.py--Datei* welche
+diesen Ordner dann als ,,Modul'' erscheinen lässt. Diese wurden wegen der
+Übersichtlichkeit weggelassen.
 
+.. code-block:: python
+
+    hugin
+    |-- harvest/                           # libhugin harvest Ordner
+    |   |-- session.py                     # Implementierungen der o.g. Klassen
+    |   |-- query.py                       #              -- || --
+    |   |-- cache.py                       #              -- || --
+    |   |-- downloadqueue.py               #              -- || --
+    |   |-- pluginhandler.py               #              -- || --
+    |   |
+    |   |-- converter/                      # Ordner für Converter Plugins
+    |   |-- postprocessing/                 # Ordner für Postprocessing Plugins
+    |   |-- provider/                       # Ordner für Provider Plugins
+    |   |   |-- genrefiles/                 # Genre Dateien für ,,Normalisierung''
+    |   |   |   |-- normalized_genre.dat    # Globale Normalisierungstabelle Genre
+    |   |   |-- result.py                   # Implementierung ,,ErgebnisObjekt''
+    |   |   |-- genrenorm.py                # Implementierung Genrenormalisierung
+    |-- utils/                              # Gemeinsame Hilfsfunktionen
+    |   |-- logutil.py
+    |   |-- stringcompare.py
+    |
+    |-- analyze/                            # libhugin analyze Ordner
+    |   |-- session.py                      # Implementierungen der o.g. Klassen
+    |   |-- movie.py                        # Implementierung des ,,Movie'' Objektes
+    |   |-- pluginhandler.py
+    |   |-- rake.py                         # Implementierung Rake Algorithmus (BA)
+    |   |-- analyzer/                       # Ordner für Analyzer Plugins
+    |   |-- comparator/                     # Ordner für Modifier Plugins
+    |   |-- modifier/                       # Ordner für Comperator Plugins
+    |-- filewalk.py                         # Helferfunktion für import/export
