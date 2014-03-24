@@ -2,11 +2,29 @@
 Implementierung
 ###############
 
-Im folgenden soll beispielhaft die API und die implementierten Plugins
-vorgestellt werden.
+Im folgenden soll die API und die implementierten Plugins vorgestellt werden.
 
 libhugin harvest API
 ====================
+
+Die API wurde sehr einfach gehalten und ermöglicht dadurch dem Benutzer ein
+schnelles Einarbeiten. Folgendes Beispiel, in der interaktiven Python--Shell
+,zeigt die typische BenuSuccess!  Wrote 50 pagestzung der API
+Success!  Wrote 50 pages
+.. code-block:: python
+
+   >>> from hugin.harvest.session import Session
+
+   >>> session = Session()
+   >>> query = session.create_query(title='Prometheus')
+   >>> results = session.submit(query)
+   >>> print(results))
+   [<TMDBMovie <picture, movie> : Prometheus (2012)>,
+   <OFDBMovie <movie> :  Prometheus - Dunkle Zeichen (2012)>,
+   <OMDBMovie <movie> : Prometheus (2012)>]
+
+Für weitere Beispiele siehe Angang X. Eine ausführliche API Dokumentation zum
+Projekt ist Online unter http://libhugin.rtfd.org zu finden.
 
 Libhugin harvest Plugins
 ------------------------
@@ -14,30 +32,130 @@ Libhugin harvest Plugins
 Provider--Plugins
 ~~~~~~~~~~~~~~~~~
 
-    * tmdb movie
-    * tmdb person
-    * omdb movie
-    * omdb person
-    * ofdb movie
-    * videobuster movie
-    * filmstars movie
+The Movie Database
+""""""""""""""""""
+
+Die TMDb ist im Moment der bevorzugte Metadaten--Provider. Für diesen wurde ein
+Movie und ein Person Plugin implementiert. Er unterstützt neben der textuellen
+Suche auch die Suche nach Bildmaterial. Der Provider wird über die offizielle
+API (siehe Angang X) angesprochen.
+
+    * **TMDBMovie**, Metadaten: textuell, grafisch, multilingual
+    * **TMDBPerson**, Metadaten: textuell, grafisch, multilingual
+
+Open Movie Database
+"""""""""""""""""""
+
+Die Open Movie Database API (siehe OMDB) bietet hauptsächlich textuelle
+englischsprache Metadaten. Hier wurde auch ein Film und Personen Provider
+implementiert.
+
+    * **OMDBMovie**, Metadaten: textuell, englischsprachig
+    * **OMDBPerson**, Metadaten: textutell, englischsprachig
+
+Online Filmdatenbank
+""""""""""""""""""""
+
+Die Online Filmdatenbank ist eine deutschsprachige Plattform die ebenso eine API
+anbietet. Hier wurde ein Movie Provider implementiert.
+
+    * **OFBDMovie**, Metadaten: textuell, deutschsprachig
+
+Videobuster.de
+""""""""""""""
+
+Videobuster ist eine deutschsprachige BluRay und DVD Verleihplattform. Sie
+bietet leider keine API. Der hier implementierte Provider muss die Daten manuell
+extrahieren. Die Plattform eignet sich gut um seine digitalisierte
+BluRay/DVD--Sammlung mit Metadaten zu versorgen. Hier wurde ein Movie Provider
+implementiert.
+
+    * **VIDEOBUSTERMovie**, Metadaten: textuell, deutschsprachig
+
+Filmstarts.de
+"""""""""""""
+
+Filmstarts ist eine *gute* deutsprachige Filmeplattform mit Review, Kritiken und
+allgemeinen Filminformationen.  Die Seite bietet wie Videobuster keine API. Hier
+wurde ein Movie Provider implementiert.
+
+    * **FILMSTARTSMovie**, Metadaten: textuell, deutschsprachig
+
+
+*Die beiden Plattformen Filmstarts und Videobuster bieten auch Personen Metadaten
+und grafische Metadaten an, diese müssen jedoch noch implementiert werden.*
 
 
 Postprocessing Plugins
 ~~~~~~~~~~~~~~~~~~~~~~
 
-    * Composer
-    * ResultTrimmer
+Die Postprocessing Plugins beim libgugin harvest Teil sind für die direkte
+,,Nachbearbeitung'' der Daten gedacht. Über diese sollen sich beispielsweise
+,,Provider--Kombinationen'' realisieren lassen oder eine bestimmte
+Foarmatierung/Encoding bestimmt werden.
+
+Composer
+""""""""
+
+Das Composer Plugin ist das momentane Kernstück der Postprocessing Metadaten. Es
+erlaubt dem Benutzer sich ein nach seinen wünschen zusammengesetztes Ergebnis zu
+,,kompoinieren''. Der Benutzer kann über das angeben eine ,,Pofilemaske''
+bestimmten wie sich die Metadaten zusammensetzen sollen. Hier kann er
+beispielsweise angeben dass er den Filmtitel, Jahr, Cover vom Provider TMDb
+möchte, die Inhaltsbeschreibung jedoch immer vom Filmstarts Provider. Hier
+besteht auch die Möglichkeit eines ,,Fallbacks'', falls Filmstarts keine
+Inhaltsbeschreibung hat, dann kann auch auf andere Provider zurückgegriffen
+werden. Die Beispiele im Angang YYY sowie die Beispiele der Demoanwendung Geri
+(YYY2) zeigen den Einsatz des Plugins.
+
+ResultTrimmer
+"""""""""""""
+
+Der Resulttrimmer ist vergleichsweise eine einfaches Plugin, welches dafür
+zuständig ist vorangehende und nachziehende Leerzeichen bei den Metadaten zu
+entfernen. Das Plugin fürht so gesehen nur eine ,,Säuberung'' durch, diese muss
+nicht vom Provider Plugin durchgeführt werden.
+
 
 OutputConverter Plugins
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-    * html
-    * json
-    * nfo
+Bei den OutputConverter Plugins wurde zu Demozwecken ein HTML--OutputConverter
+und ein Json--OutputConverter implementiert.
+
+Des weiteren wurde für den ,,Produktiveinsatz'' ein XBMC-NFO-Fileconverter
+implementiert, dieser wird von der Demoanwendung ,,libhugin proxy'' (siehe SDA)
+verwendet um den XBMC--libhugin--Plugin die Metadaten im richtigen Format zu
+liefern.
+
 
 libhugin analyze API
 ====================
+
+Die API von libhugin analyze ist vom Grundaufbau ähnlich zu der libhugin harvest
+API. Folgendes Beispielsnippet zeigt die Anwendung des ,,Plotcleaner''--Plugins
+auf 'Rohdaten'.
+
+
+.. code-block:: python
+
+    >>> from hugin.analyze.session import Session
+
+        # Beispieltext. Erstelle Sitzung mit Dummy DB. Hole PlotClean Plugin.
+    >>> example_text = "Aus diesem Text wird die Klammer (welche?) samt Inhalt entfernt!"
+    >>> session = session('/tmp/temporary.db')
+    >>> plotclean = session.modifier_plugins('plotclean')  # hole das PlotClean Plugin
+
+        # Wende Plugin im raw Modus auf Daten an
+    >>> result = session.modify_raw(plotclean, 'plot', example_text)
+    >>> print(result)
+    Aus diesem Text wird die Klammer samt Inhalt entfernt!
+
+
+Ein weiteres ausführliches Beispiel findet sich im Anhang S. Desweiteren
+demonstriert die Demoanwendung Freki den Einsatz des Analyzeteils der Library.
+Die offizielle API Beschreibung ist unter http://libhugin.rtfd.org zu finden.
+
 
 Libhugin analyze Plugins
 ------------------------
@@ -45,23 +163,60 @@ Libhugin analyze Plugins
 Modifier Plugins
 ~~~~~~~~~~~~~~~~
 
-    * plotchange
-    * plotclean
+plotclean
+"""""""""
+
+Das PlotClean Plugin ist für nachträgliche Manipulation der
+Filminhaltsbeschreibung gedacht. In Fall vom PlotClean Plugin werden alle
+Klammern samt Inhalt aus der Beschreibung entfernt. Das ,,vereinheitlich'' die
+Inhaltbeschreibungen in dem Sinne dass alle Schauspieler oder Informationen in
+Klammern aus der Beschreibung entfernt werden.
+
+plotchange
+""""""""""
+
+Das PlotChange Plugin ist für das nachträgliche ändern der Inhaltsbeschreibung
+zuständig. Im Moment hat es die Option die Sprache des Plots zu ändern.
 
 Analyzer Plugins
 ~~~~~~~~~~~~~~~~
 
-    * filetype analyzer
-    * plotlang
+filetype analyzer
+"""""""""""""""""
+
+Der Filetype--Analyzer arbeitet mit den Videodaten selbst. Er ist für die
+extraktion der Datei--Metadaten zuständig. Momentan extrahiert er
+
+    * Auflösung
+    * Seitenverhältnis
+    * Videocodec
+    * Audiocodec, Anzahl der Audiokanäle, Sprache
+
+plotlang
+""""""""
+
+Der Plotlang--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
+die Information in das Analyzerdata Array.
+
 
 Comperator Plugins
 ~~~~~~~~~~~~~~~~~~
 
-    * genrecmp
-    * keywordcmp
+Dieser Plugintyp ist experimentiell, er ist für statistische Zwecke und
+*Forschungsarbeiten* bzgl. der Vergleichbareit von Filmen anhand Metadaten
+gedacht. Weiteres hierzu wird in der Bachelorarbeit behandelt.
 
+Die Plugins die man hier findet sind:
 
+genrecmp
+""""""""
 
+Ein Plugin, das die Genres verschiedener Filme miteinander vergleicht.
+
+keywordcmp
+""""""""""
+
+Ein Plugin, das die Schlüsselwörter verschiedener Filme miteinander vergleicht.
 
 
 Verschiedenes
@@ -187,8 +342,7 @@ Onlinedokumentation hinzu.
 
 .. code-block:: bash
 
-    christoph@hitomi [06:45:20] [~/code/libhugin] [master *]
-    -> % cloc hugin tools
+    $ cloc hugin/ tools/
          119 text files.
          117 unique files.
           87 files ignored.
@@ -203,4 +357,3 @@ Onlinedokumentation hinzu.
     -------------------------------------------------------------------------------
     SUM:                            56           1230           1284           3607
     -------------------------------------------------------------------------------
-
