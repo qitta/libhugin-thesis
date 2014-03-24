@@ -332,12 +332,50 @@ Diese Projektarbeit wurde auch *reStructuredText* und *Sphinx* generiert.
 Abhängigkeiten
 --------------
 
-libhugin ist abhängig -- meth.
+Die folgende Tabelle (Tabelle :num:`table-abhängigkeiten`) listet alle Momentan
+verwendetet externen Abhängigkeiten für die Libhugin--Library.
+
+
+.. figtable::
+    :label: table-abhängigkeiten
+    :caption: Übersicht externe Abhängigkeiten
+    :alt: Übersicht externe Abhängigkeiten
+
+    +-----------------------+----------------+---------------------------------+
+    | Abhängigkeit          | Verwendung in  | Einsatzzweck                    |
+    +=======================+================+=================================+
+    | yapsy                 | Pluginsystem   | Laden von Plugins               |
+    +-----------------------+----------------+---------------------------------+
+    | charade               | Downloadqueue  | Encodingerkennung               |
+    +-----------------------+----------------+---------------------------------+
+    | parse                 | Plugins        | Parsen von Zeitstrings          |
+    +-----------------------+----------------+---------------------------------+
+    | httplib2              | Downloadqueue  | Content download                |
+    +-----------------------+----------------+---------------------------------+
+    | jinja2                | Plugins        | HTML Template Engine            |
+    +-----------------------+----------------+---------------------------------+
+    | docopt                | Cli--Tools     | CLI--Optionparser               |
+    +-----------------------+----------------+---------------------------------+
+    | Flask                 | Huginproxy     | Webframework, RESTFul interface |
+    +-----------------------+----------------+---------------------------------+
+    | guess_language-spirit | Plugins        | Spracherkennung                 |
+    +-----------------------+----------------+---------------------------------+
+    | PyStemmer             | Plugins        | Stemming von Wörtern            |
+    +-----------------------+----------------+---------------------------------+
+    | pyxDamerauLevenshtein | Plugins, Utils | Vergleich von Strings           |
+    +-----------------------+----------------+---------------------------------+
+    | Pyaml                 | Plugins        | Verarbeitung von Yaml Dateien   |
+    +-----------------------+----------------+---------------------------------+
+    | beaufifulsoup4        | Plugins        | Parsen von HTML Seiten          |
+    +-----------------------+----------------+---------------------------------+
+    | xmltodict             | Plugins        | Verarbeitung von XML Dokumenten |
+    +-----------------------+----------------+---------------------------------+
+
 
 Projektumfang
 -------------
 
-Der Projektumfang (siehe Abb.: s) beträgt ~3500 *lines of code*,  hier kommt noch die
+Der Projektumfang beträgt ~3500 *lines of code*,  hier kommt noch die
 Onlinedokumentation hinzu.
 
 .. code-block:: bash
