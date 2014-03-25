@@ -407,7 +407,7 @@ eine Library die Änderungen am Dateisystem erkennt. Man kann hier z.B. einen
 bestimmten Ordner "monitoren" indem man ,,inofitywatch'' auf diesem Ordner
 ,,lauschen'' lässt. Hier wäre z.B. ein Szenario denkbar, dass sobald man eine
 Videodatei in einen bestimmten Ordner kopiert hat bzw. diese nach dem
-Aufzeichnet beispielsweise mit einem mit VDR in einen bestimmten Ordner
-verschoben wurde, man dann einfach über libnotifywait ein Script ,,triggert''
+Aufzeichnet beispielsweise mit einem VDR in einen bestimmten Ordner
+verschoben wurde, man dann einfach über libnotifywatch ein Script ,,triggert''
 welches einen Ordner anlegt, die Datei und Ordner umbenennt und die
 entsprechenden Metadaten für den Film sucht und im Ordner ablegt.
