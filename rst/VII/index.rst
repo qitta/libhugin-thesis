@@ -5,6 +5,7 @@ Libhugin Einsatzmöglichkeiten in der Praxis
 Im Folgenden werden die beiden CLI--Demoanwendungen Geri und Freki vorgestellt,
 sowie weitere Einsatzmöglichkeiten.
 
+
 *Das vorgestellten CLI-Tools stellen nur einen kleinen Ausschnit der Fähigkeiten
 der Library dar, die Library selbst ist um jede denkbare Funktionalität
 erweiterbar.*
@@ -24,6 +25,8 @@ Tools:
 .. code-block:: bash
 
    $python tools/geri -h
+   Libhugin commandline tool.
+
    Usage:
      geri (-t <title>) [-y <year>] [-a <amount>] [-p <providers>...] [-c <converter>] \
           [-o <path>] [-l <lang>] [-P <pm>]  [-r <processor>] [-f <pfile>] [-L]
@@ -36,12 +39,144 @@ Tools:
      geri -h | --help
      geri --version
 
+    Options:
+      -t, --title=<title>               Movie title.
+      -y, --year=<year>                 Year of movie release date.
+      -n, --name=<name>                 Person name.
+      -i, --imdbid=<imdbid>             A imdbid prefixed with tt.
+      -p, --providers=<providers>       Providers to be used.
+      -c, --convert=<converter>         Converter to be used.
+      -r, --postprocess=<processor>     Postprocessor to be used.
+      -o, --output=<path>               Output folder for converter result [default: /tmp].
+      -a, --amount=<amount>             Amount of items to retrieve.
+      -l, --language=<lang>             Language in ISO 639-1 [default: de]
+      -P, --predator-mode               The magic 'fuzzy search' mode.
+      -L, --lookup-mode                 Does a title -> imdbid lookup.
+      -f, --profile-file=<pfile>        User specified profile.
+      -v, --version                     Show version.
+      -h, --help                        Show this screen.
+
 
 Das Tool eignet sich neben dem Einsatz als Testwerkzeug für Library und Plugins
 auch gut für Scripte und somit für automatische Verarbeitung *großer*
 Datenmengen.
 
-Im Angang C wird die Anewendung Anhand von Beispielen demonstriert.
+
+Filmsuche
+---------
+
+Ein Film kann über den Titel oder über die IMDBid gesucht werden. Hier gibt es
+die Möglichkeit auch bestimmten Provider, Converter, Sprache und Postproxessing
+Plugins anzugeben.
+
+Um das ,,Ausgabeformat'' zu konfigurieren gibt es im Geri--Ordner eine
+,,movie.mask'' und ,,person.mask'' Datei. Über diese Datei kann die Ausgabe
+formatiert werden. Die Syntax ist simpel, einfach das gewünschte Attribut in
+geschweiften klammern. Das ,,num''--Attribut gibt Geri noch die Möglichkeit die
+Resultate durch zu nummerieren.
+
+Definition einer Ausgabemaske für Filme
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   echo "{num}) {title} ({year}), IMDBid: {imdbid} Provider: {provider}\
+   \nInhalt: {plot}" > tools/geri/movie.mask
+
+Filmsuche
+~~~~~~~~~
+
+Standard Suche nach Titel mit der Begrenzung auf fünf Ergebnisse:
+
+.. code-block:: bash
+
+   $geri -t "sin city" -a5
+   1) Sin City (2005), IMDBid: tt0401792, Provider: TMDBMovie <picture, movie>
+   Inhalt: Basin City, genannt Sin City, ist ein düsteres Metropolis, in dem nichts
+   und niemand wirklich sicher ist, in dem die Gewalt allgegenwärtig ist [...]
+
+   2) Sin City (2005), IMDBid: tt0401792, Provider: OFDBMovie <movie>
+   Inhalt: Basin City, genannt Sin City, ist ein düsteres Metropolis, in dem nichts
+   und niemand wirklich sicher ist, in dem die Gewalt allgegenwärtig ist [...]
+
+   3) Sin City (2005), IMDBid: None, Provider: VIDEOBUSTERMovie <movie>
+   Inhalt: Willkommen in Sin City.  Diese Stadt begrüßt die Harten, die Korrupten,
+   die mit den gebrochenen Herzen.  Einer von ihnen ist Marv [...]
+
+   4) Sin City (2005), IMDBid: tt0401792, Provider: OMDBMovie <movie>
+   Inhalt: Four tales of crime adapted from Frank Miller's popular comics focusing
+   around a muscular brute who's looking for the person responsible for the [...]
+
+   5) Sin City (2005), IMDBid: None, Provider: FILMSTARSMovie <movie>
+   Inhalt: "Sin City" enthält drei lose verbundene und ineinander verschachtelt
+   erzählte Episoden: Los geht es mit Hartigan (Bruce Willis) - einem Cop [...]
+
+Hier die Suche kann wie die Optionen zeigen feingranularer konfiguriert werden,
+was jedoch hier den Rahmen sprengen würde alle Optionen zu zeigen.
+
+Unschärfesuche
+~~~~~~~~~~~~~~
+
+Ein nennenswertes Feature ist die Unschärfesuche. Die getesteten Tools haben
+immer ein Problem damit Filme zu finden wenn der Titel nicht exakt geschrieben
+ist. Das trifft auch in der Standardkonfiguration für libhugin zu, weil hier die
+Webservices auf die man zugreift exakte Suchnegriffe erwarten.
+
+.. code-block:: bash
+
+   # Findet keine Ergebnisse, weil hier ,,Matrix'' flasch geschreiben ist
+   gylfie -t "the marix" -a2
+
+   # Mit dem aktivierten ,,Predator-Mode'' findet libhugin providerübergreifend
+   # den gesuchten Film
+   gylfie -t "the marix" -a2
+   1) Matrix (1999), IMDBid: tt0133093, Provider: TMDBMovie <movie, picture>
+   Inhalt: Der Hacker Neo wird übers Internet von einer geheimnisvollen Untergrund-
+   Organisation kontaktiert.  Der Kopf der Gruppe - der gesuchte Terrorist [...]
+
+   2) Matrix (1999), IMDBid: tt0133093, Provider: OFDBMovie <movie>
+   Inhalt: Was ist die Matrix?  Diese Frage quält den Hacker Neo seit Jahren.  Er
+   führt ein Doppelleben - tagsüber ist er Thomas Anderson und arbeitet in [...]
+
+Suche über IMDBid
+~~~~~~~~~~~~~~~~~
+
+Normalerweise kann nur über die IMDBid gesucht werden wenn es die jeweilige
+Plattform unterstützt. Deswegen funktioniert standardmäßig die Suche bei bei
+Providern wie Filmstarts oder Videobuster nicht.
+
+
+.. code-block:: bash
+
+   # Findet keine Ergebnisse, weil Anbieter die Suche über IMDBid nicht
+   # unterstützt
+   $geri -i "tt0133093" -p videobustermovie -a 1
+
+   # Mit dem ,,Lookup-Mode'' funktioniert auch die Suche über IMDBid bei
+   # Anbietern die da normalerweise nicht unterstützen
+   $geri -i "tt0133093" -p videobustermovie --lookup-mode
+   1) Matrix (1999), IMDBid: None, Provider: VIDEOBUSTERMovie <movie>
+
+   Inhalt: Der Hacker Neo (Keanu Reeves) wird übers Internet von einer
+   geheimnisvollen Untergrund-Organisation kontaktiert.  Der Kopf der [...]
+
+   [...]
+
+Einsatz von Postprocessing Plugins
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ein noch nennenswertes Feature ist der Einsatz vom Composer Plugin. Dies
+ermöglicht dem Benutzer das Ergebnis nach seinen Bedürfnissen zu komponieren und
+besitzt die Fähigkeit das normalisierte Genre mehrerer Provider zusammenzuführen.
+
+.. code-block:: bash
+
+   # Zuerst passen wir unsere movie.mask an damit wir das Genre und das
+   # normalisierte Genre sehen
+   echo "{num}) {title} ({year}), IMDBid: {imdbid}, Provider: {provider}\
+   \nGenre: {genre}\nGenre normalisiert: {genre_norm} \n\nInhalt: {plot}" > movie.mask
+
+   geri -t "feuchtgebiete" -r composer -f userprofile -ptmdbmovie,ofdbmovie -a2
 
 
 Freki
