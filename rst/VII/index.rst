@@ -404,7 +404,7 @@ libnotify
 
 Ein weiterer Ansatz libhugin zu nutzen wäre über *libnotify* denkbar. Das ist
 eine Library die Änderungen am Dateisystem erkennt. Man kann hier z.B. einen
-bestimmten Ordner "monitoren" indem man ,,inofitywait'' auf diesem Ordner
+bestimmten Ordner "monitoren" indem man ,,inofitywatch'' auf diesem Ordner
 ,,lauschen'' lässt. Hier wäre z.B. ein Szenario denkbar, dass sobald man eine
 Videodatei in einen bestimmten Ordner kopiert hat bzw. diese nach dem
 Aufzeichnet beispielsweise mit einem mit VDR in einen bestimmten Ordner
