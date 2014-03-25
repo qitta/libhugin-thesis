@@ -369,7 +369,7 @@ Script laufen:
 .. code-block:: bash
 
    $mkdir movies/{"alien1","alien 2","geständnisse","ironman2","iron man3","iron men 1",\
-   "jung unt schon","marix","only good forgives","teh marix 2"}
+   "jung unt schon","marix","oonly good forgives","teh marix 2"}
 
    $ ./rename.sh movies
    ‘movies/alien1’ -> ‘movies/Alien (1979), [tt0078748]’
@@ -380,16 +380,34 @@ Script laufen:
    ‘movies/iron men 1’ -> ‘movies/Iron Man (2008), [tt0371746]’
    ‘movies/jung unt schon’ -> ‘movies/Young & Beautiful (2013), [tt2752200]’
    ‘movies/marix’ -> ‘movies/The Matrix (1999), [tt0133093]’
-   ‘movies/only good forgives’ -> ‘movies/Only God Forgives (2013), [tt1602613]’
+   ‘movies/oonly good forgives’ -> ‘movies/Only God Forgives (2013), [tt1602613]’
    ‘movies/teh marix 2’ -> ‘movies/The Matrix Reloaded (2003), [tt0234215]’
 
 
 An diesem Beispiel sieht man wie ,,gut'' die Unschärfesuche funktionieren kann.
 Bei diesem kleinem Testsample haben wir eine Trefferwahrscheinlichkeit von 100%.
 
-* libnotify
-* scripting
+
+D--Bus
+------
 
 
+Eine weitere Möglichkeit neben dem ,,Proxy--Server--Ansatz'' wäre D--Bus zu
+verwenden. DBus ist ein Framework das unter Linux zur Interprocesskommunikation
+verwendet wird. Man kann hier beispielsweise libhugin als D--Bus--Service laufen
+lassen und jede andere beliebige Anwendung hätte die Möglichkeit
+programmiersprachenunabhängig mit libhugin zu kommunizieren.
 
 
+libnotify
+---------
+
+Ein weiterer Ansatz libhugin zu nutzen wäre über *libnotify* denkbar. Das ist
+eine Library die Änderungen am Dateisystem erkennt. Man kann hier z.B. einen
+bestimmten Ordner "monitoren" indem man ,,inofitywait'' auf diesem Ordner
+,,lauschen'' lässt. Hier wäre z.B. ein Szenario denkbar, dass sobald man eine
+Videodatei in einen bestimmten Ordner kopiert hat bzw. diese nach dem
+Aufzeichnet beispielsweise mit einem mit VDR in einen bestimmten Ordner
+verschoben wurde, man dann einfach über libnotifywait ein Script ,,triggert''
+welches einen Ordner anlegt, die Datei und Ordner umbenennt und die
+entsprechenden Metadaten für den Film sucht und im Ordner ablegt.
