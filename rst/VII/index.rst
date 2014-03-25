@@ -255,27 +255,141 @@ Betrachtet man nun die nfo--Dateien der jeweiligen Filme, so sieht man dass
 hier sich hier die Sprache von spanisch auf deutsch geändert hat.
 
 
-Implementierung von libhugin in das Open Source Projekt XBMC
-============================================================
+Xbox Meda Center Plugin Integration
+===================================
 
-Neben der Kommandozeilentools Geri und Freki wurde konzeptuell für das Xbox
-Media Center ein Plugin geschreiben das libhugin als Metadaten--Dienst Nutzen
-kann.
+XBMC Plugin
+-----------
 
+Neben der Kommandozeilentools Geri und Freki wurde *konzeptuell* für das Xbox
+Media Center ein Plugin (siehe Abb.: :num:`fig-xbmcscreenshot-hugin`) geschrieben das
+libhugin als Metadaten--Dienst Nutzen kann.
+
+Das XBMC erlaubt es sogenannte Scraper zu schreiben. Diese arbeiten vom
+Grundprinzip ähnlich wie die Provider von libhugin. Das ,,Problem'' bei dessen
+Scrapern ist, dass diese vollständig mittels Regulärer Ausdrücke innerhalb von
+XML--Dateien geschrieben sind. Dies ist nach Meinung des Autors
+fehleranfälliger, aufwändiger und nur schwer lesbar. Des Weiteren sind hier die
+Möglichkeiten des Postprocessing nur begrenzt umsetzbar.
+
+Die Referenzimplementierung des offiziellen TMDb--Scrapers hat insgesamt über 600
+lines of code, recht kryptischer regulärer Ausdrücke (siehe X und Y). Die
+Implementierung des libhugin Plugins in das XBMC hat an dieser Stelle nur 23
+lines of code (siehe Z).  Das liegt daran, dass der libhugin Proxy hier dem XBMC
+die Daten bereits im benötigten Format über das nfo OutputConverter--Plugin
+liefern kann.
+
+
+.. _fig-xbmcscreenshot-hugin:
+
+.. figure:: fig/hugin_xbmc.png
+    :alt: Libhugin im XBMC als Plugin
+    :width: 70%
+    :align: center
+
+    libhugin im XBMC Scraper Meune.
+
+
+libhugin--Proxy
+---------------
 
 Da die direkte Integration in das XBMC aufgrund der begrenzten Zeit der
 Projektarbeit nicht möglich ist, wurde hier der Ansatz eines ,,Proxy--Dienstes''
 angewandt. Für Libhugin wurde mittels dem Webframework Flask ein *minimalier*
-Webservice geschreiben, welcher über eine eigenst definierte API Metadaten an
-das XBMC liefert.
+Webservice geschreiben (siehe Anhang: hhh), welcher über eine eigens definierte
+API Metadaten an das XBMC liefert.
 
-* xbmc plugin
-* vor und nachteile
+Der Libhugin--Proxy zeigt konzeptuell die Integration von libhugin als
+Netzwerkdienst, welcher eine RESTful API bereitstellt. Der implementierte
+Test--API bietet die folgenden Schnittstellen:
+
+    * ``/search/<titlename or imdbid>``, Suche nach Film über Titel oder IMDBid
+    * ``/movie/<position>``, Zugriff auf einen bestimmten Film
+    * ``/stats``, Server ,,Statistik'', welche zeigt ob Postprocessing aktiviert ist
+    * ``/toggle_pp``, Postprocessing aktivieren/deaktivieren
+    * ``/shutdown``, Server herunterfahren
+
+Die Implementierung des Proxy zeigt, dass es problemlos möglich ist mit relativ
+wenig Aufwand, libhugin als ,,neuen'' Dienst für Multimedia--Anwendungen und
+auch Metadaten Management Tools zu verwenden.
+
+Hierbei kommt die Flexibilität und Anpassbarkeit des System den bisherigen Tools
+zu gute. Auf diese Art und Weise lassen sich alle Postprocessing Verfahren und
+Features die libhugin bietet in bereits existierende Tools integrieren.
+
+Unterschiede TMDb XBMC und TMDb libhugin
+----------------------------------------
+
+Im Vergleich zum XBMC TMDb--Scraper bietet der libhugin XBMC Scraper (Provider
+zum Testen auch auf nur TMDb konfiguriert) zusätzliche Features.
+
+    * Suche über IMDBid möglich
+    * Unschärfesuche möglich, dadurch auch erhöhte Trefferquote
+    * Postprocessing, je nach dazugeschalteten Plugin möglich
+
+Beim Nutzen weiter Provider sowie Plugins wie dem Composer Plugin eröffnen sich
+hier für das XBMC ganz neue Möglichkeiten seine Metadaten nach den eigenen
+Wünschen ,,zusammen zu bauen'' ohne Dabei auf externe Video Metadaten Management
+Tools zugreifen zu müssen.
 
 Weitere Einsatzmöglichkeiten
 ============================
 
+Scripting Tasks
+---------------
+
+Die Einsatzmöglichkeiten sind je nach Szenario anpassbar. Für einfache
+Anwendungen lassen sich auch Geri und Freki bereits direkt verwenden.
+
+Ein schönes Beispiel für einen Scripting--Task ist das ,,normalisieren'' der
+Ordnerstruktur/Benennung von großen Filmesammlungen.
+
+Hierzu reicht es einfach die ,,movie.mask'' von Geri anzupassen und ein kleines
+Bash--Script zu schreiben:
+
+.. code-block:: bash
+
+   # Anpassen unserer movie.mask
+   $echo "{title} ({year}), [{imdbid}]" > tools/geri/movie.mask
+
+   # So schaut das minimalistiche rename script aus
+   #!/bin/bash
+
+   for movie in $1/*; do
+       old_name=$(basename "$movie")
+       new_name=$(geri -t "$old_name" -P --language=en -a1 -p tmdbmovie);
+       mv -v "$f" "$1/$new_name";
+   done
+
+
+Um eine schlampig gepflegte Filmesammlung zu ,,simulieren'', erstellen wir
+einfach ein paar Ordner mit Filmen die falsch geschrieben sind und lassen unser
+Script laufen:
+
+.. code-block:: bash
+
+   $mkdir movies/{"alien1","alien 2","geständnisse","ironman2","iron man3","iron men 1",\
+   "jung unt schon","marix","only good forgives","teh marix 2"}
+
+   $ ./rename.sh movies
+   ‘movies/alien1’ -> ‘movies/Alien (1979), [tt0078748]’
+   ‘movies/alien 2’ -> ‘movies/Aliens (1986), [tt0090605]’
+   ‘movies/geständnisse’ -> ‘movies/Confessions (2010), [tt1590089]’
+   ‘movies/ironman2’ -> ‘movies/Iron Man 2 (2010), [tt1228705]’
+   ‘movies/iron man3’ -> ‘movies/Iron Man 3 (2013), [tt1300854]’
+   ‘movies/iron men 1’ -> ‘movies/Iron Man (2008), [tt0371746]’
+   ‘movies/jung unt schon’ -> ‘movies/Young & Beautiful (2013), [tt2752200]’
+   ‘movies/marix’ -> ‘movies/The Matrix (1999), [tt0133093]’
+   ‘movies/only good forgives’ -> ‘movies/Only God Forgives (2013), [tt1602613]’
+   ‘movies/teh marix 2’ -> ‘movies/The Matrix Reloaded (2003), [tt0234215]’
+
+
+An diesem Beispiel sieht man wie ,,gut'' die Unschärfesuche funktionieren kann.
+Bei diesem kleinem Testsample haben wir eine Trefferwahrscheinlichkeit von 100%.
+
 * libnotify
 * scripting
+
+
 
 
