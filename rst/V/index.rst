@@ -22,7 +22,7 @@ interne Datenbank des Metadatenanbieters abgefragt werden kann.
 
 Folgendes Bash--Snippet demonstriert einen Zugriff mit dem Webtransfer--Tool
 *cULR* (siehe :cite:`curl`) auf die API des ,,The Open Movie
-Database''--Webdienstes (siehe :cite:`omdb`), es wird nach dem Film ,,The
+Database"--Webdienstes (siehe :cite:`omdb`), es wird nach dem Film ,,The
 Matrix'' gesucht:
 
 .. code-block:: bash
@@ -219,16 +219,16 @@ Diese Klasse bildet den Grundstein für libhugin harvest. Über eine Sitzung
 konfiguriert der Benutzer das ,,System'' und hat Zugriff auf die verschiedenen
 Plugins. Von der Session werden folgende Methoden bereit gestellt:
 
-**create_query(**kwargs)**: Schnittstelle zur Konfiguration der Suchanfrage. Die
+``create_query(**kwargs)``: Schnittstelle zur Konfiguration der Suchanfrage. Die
 Methode gibt ein Query--Objekt zurück, das eine Python Dictionary entspricht.
 Diese Methode dient als ,,Hilfestellung'' für den Benutzer der API. Theoretisch
 kann der Benutzer die Query auch manuell zusammenbauen.
 
-**submit(query)**: Schnittstelle um eine Suchanfrage ,,loszuschicken''. Die
+``submit(query)``: Schnittstelle um eine Suchanfrage ,,loszuschicken''. Die
 Methode gibt eine Liste mit gefundenen Metadaten als ,,Result--Objekte'' zurück.
 Die Methode holt eine Downloadqueue und einen Cache, falls dieser vom Benutzer
 über die Query nicht deaktiviert wurde. Anschließendund generiert für jeden Provider eine
-sog. *Job--Struktur*. Diese *Job--Struktur* kapselt jeweils einen Provider, die
+sog. `Job--Struktur`. Diese `Job--Struktur` kapselt jeweils einen Provider, die
 Suchanfrage und die ,,Zwisschenergebnisse'' die während des Submit--Aufrufs
 generiert werden.
 
@@ -252,27 +252,27 @@ Am Ende der ``submit``--Methode wird eine Liste mit Result--Objekten an den
 Aufrufen zurückgegeben.
 
 
-**submit_async()**: Methode für eine asynchrone Nutzung der API.
+``submit_async()``: Methode für eine asynchrone Nutzung der API.
 
-**submit(query)** asynchron aus und gibt ein Python Future Objekt zurück,
-welches die Anfrage kapselt. Durch Aufrufen der **done()** Methode auf dem
+``submit(query)`` asynchron aus und gibt ein Python Future Objekt zurück,
+welches die Anfrage kapselt. Durch Aufrufen der ``done()`` Methode auf dem
 Future--Objekt, kann festgestellt werden ob die Suchanfrage bereits fertig ist.
-Ein Aufruf der **result()**--Methode auf dem Future--Objekt liefert das
+Ein Aufruf der ``result()``--Methode auf dem Future--Objekt liefert das
 eigentliche Result--Objekt zurück. Für mehr Informationen siehe Python API
 [lin,].
 
-**provider_plugins(pluginname=None)**: Diese Methode gibt eine Liste mit den
+``provider_plugins(pluginname=None)``: Diese Methode gibt eine Liste mit den
 Provider--Plugins zurück oder bei Angabe eines Pluginnamen, dieses direkt.
 
-**postprocessing_plugins(pluginname)**: Analog zu **provider_plugins(pluginname=None)**.
+``postprocessing_plugins(pluginname)``: Analog zu ``provider_plugins(pluginname=None)``.
 
-**converter_plugins(pluginname)**: Analog zu **provider_plugins(pluginname=None)**.
+``converter_plugins(pluginname)``: Analog zu ``provider_plugins(pluginname=None)``.
 
-**cancel()**: Diese Methode dient zum abbrechen eine asynchronen Suchanfrage.
-Hier sollte folgend noch die **clean_up()**--Methode aufgerufen werden um alle
+``cancel()``: Diese Methode dient zum abbrechen eine asynchronen Suchanfrage.
+Hier sollte folgend noch die ``clean_up()``--Methode aufgerufen werden um alle
 Ressourcen wieder freizugeben.
 
-**clean_up()**: Methode zum *aufräumen* nach dem Abbrechen einer asynchronen
+``clean_up()``: Methode zum *aufräumen* nach dem Abbrechen einer asynchronen
 Anfrage. Die Methode blockt solange noch nicht alle Ressourcen freigegeben
 wurden.
 
@@ -292,13 +292,13 @@ dem Cache geladen werden. Dadurch gewinnt man Performance und der
 Metadatenanbieter wird entlastet. Zum persistenten speichern wird ein Python
 Shelve verwendet.
 
-**open(path, cache_name)**: Öffne den übergebenen Cache.
+``open(path, cache_name)``: Öffne den übergebenen Cache.
 
-**read(key)**: Liest Element an Position **key** aus dem Cache.
+``read(key)``: Liest Element an Position ``key`` aus dem Cache.
 
-**write(key, value)**: Schreibt das Element **value** an Position **key** in den Cache.
+``write(key, value)``: Schreibt das Element ``value`` an Position ``key`` in den Cache.
 
-**close()**: Schließe den Cache.
+``close()``: Schließe den Cache.
 
 
 Downloadqueue

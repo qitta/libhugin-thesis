@@ -24,7 +24,7 @@ Tools:
 
 .. code-block:: bash
 
-   $python tools/geri -h
+   $ geri -h
    Libhugin commandline tool.
 
    Usage:
@@ -174,9 +174,35 @@ besitzt die Fähigkeit das normalisierte Genre mehrerer Provider zusammenzuführ
    # Zuerst passen wir unsere movie.mask an damit wir das Genre und das
    # normalisierte Genre sehen
    echo "{num}) {title} ({year}), IMDBid: {imdbid}, Provider: {provider}\
-   \nGenre: {genre}\nGenre normalisiert: {genre_norm} \n\nInhalt: {plot}" > movie.mask
+   \nGenre: {genre}\nGenre normalisiert: {genre_norm} \nInhalt: {plot}" > movie.mask
 
    geri -t "feuchtgebiete" -r composer -f userprofile -ptmdbmovie,ofdbmovie -a2
+   1) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: TMDBMovie <movie, picture>
+   Genre: ['Komödie', 'Drama']
+   Genre normalisiert: ['Komödie', 'Drama']
+   Inhalt: Helen ist eine Herausforderung für ihre Mutter und ihren Vater, die
+   getrennt leben und geschieden sind.  Trotzdem wünscht sich Helen nichts
+
+   2) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: OFDBMovie <movie>
+   Genre: ['Erotik']
+   Genre normalisiert: ['Erotik']
+   Inhalt: Die 18jährige Helen (Carla Juri) hat schon seit ihrer Kindheit
+   Hämorrhoiden, hat diesen Fakt aber immer verheimlicht, da sie glaubte,
+
+   3) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: Composer
+   Genre: ['Komödie', 'Drama']
+   Genre normalisiert: {'Erotik', 'Drama', 'Komödie'}
+   Inhalt: Die 18jährige Helen (Carla Juri) hat schon seit ihrer Kindheit
+   Hämorrhoiden, hat diesen Fakt aber immer verheimlicht, da sie glaubte,
+
+Das dritte Resultat in der Ausgabe wurde vom Provider ,,Composer'' generiert,
+das ist das komponierte Ergebnis. Hier wurde wie über die Profilemaske
+definiert der TMDB--Provider als Standard genommen und die Inahaltsangabe durch
+die Inhaltsangabe des OFDB--Providers ausgetauscht.
+
+Des weiteren wurde das normalisierte Genre "verschmolzen". Dieses Feature macht
+das gepflegte Genre in unseren Metadaten feingranularer und lässt vielleicht
+auch besser vermuten ob ein Film für Kinder geeignet ist oder nicht.
 
 
 Freki
@@ -228,11 +254,9 @@ Center getaggt wurden.
     $freki create mydb.db ./movies
 
 
-Datenbank Inhalt und Analyzer--Data anzeigens
----------------------------------------------
 
 Datenbank anzeigen
-~~~~~~~~~~~~~~~~~~
+------------------
 
 Listen des Inhalts der erstellten Datenbank. Der Plot wurde wegen der
 Übersichtlichkeit gekürzt. Wie die Ausgabe zeigt wurden die Attribute title,
@@ -262,7 +286,7 @@ originaltitle, genre, director, year und plot eingelesen.
      'year': '1992'}
 
 Analyzer--Data anzeigen
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 .. code-block:: bash
 
@@ -274,11 +298,8 @@ Analyzer--Data anzeigen
 
 Da noch nichts weiter analysiert wurde, sieht man hier nur *leere* Klammern.
 
-Modifier/Analyzer anzeigen und anwenden
----------------------------------------
-
 Analyzer und Modifier anzeigen
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 Anzeigen der vorhandenen Analyzer:
 
@@ -307,11 +328,8 @@ Anzeigen der vorhandenen Modifier:
     Parameters:     {'attr_name': <class 'str'>}
 
 
-Anwenden von Analyzern und Modifiern
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Anwenden von Analyzern
-""""""""""""""""""""""
+----------------------
 
 .. code-block:: bash
 
@@ -330,7 +348,7 @@ Plugin hat sich in das Analyzerdata--Array mit seinem ermittelten Ergebnis
 reingeschreiben.
 
 Anwenden von Modifiern
-""""""""""""""""""""""
+----------------------
 
 .. code-block:: bash
 
@@ -492,8 +510,8 @@ Bash--Script zu schreiben:
 
    for movie in $1/*; do
        old_name=$(basename "$movie")
-       new_name=$(geri -t "$old_name" -P --language=en -a1 -p tmdbmovie);
-       mv -v "$f" "$1/$new_name";
+       new_name=$(geri -t "$old_name" -P --language=en --amount 1 -providers tmdbmovie);
+       mv -v "$movie" "$1/$new_name";
    done
 
 

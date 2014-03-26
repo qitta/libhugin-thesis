@@ -17,7 +17,7 @@ Metadatenarten und Quellen
 Metadatenarten
 --------------
 
-:dropcaps:`Grundsätzlich` lassen sich Video--Metadaten in zwei Kategorien
+Grundsätzlich lassen sich Video--Metadaten in zwei Kategorien
 einordnen. Metadaten die das Videoformat (Auflösung, Bitrate, ...) beschreiben
 und Metadaten die den Inhalt beschreiben. Metadaten zur Beschreibung des
 Videoformat können je nach Container-Format direkt in in die Datei eingebettet
@@ -26,18 +26,18 @@ werden.
 Inhaltsbezogene Metadaten sind Daten die bei der Digitalisierung nachträglich
 gepflegt werden müssen. Gängige Metadaten hier sind:
 
-    * Titel
-    * Erscheinungsjahr
-    * IMDB-ID
-    * Genre
-    * Bewertung
-    * Cover (i.d.R. DVD/BD--Cover)
-    * Fanart, Backdrops (zusätzliches Bildmaterial)
-    * Inhaltsbeschreibung
-    * Regisseur
-    * Besetzung
-    * Produktionsland
-    * Schlagwörter
+     * Titel
+     * Erscheinungsjahr
+     * IMDB-ID
+     * Genre
+     * Bewertung
+     * Cover (i.d.R. DVD/BD--Cover)
+     * Fanart, Backdrops (zusätzliches Bildmaterial)
+     * Inhaltsbeschreibung
+     * Regisseur
+     * Besetzung
+     * Produktionsland
+     * Schlagwörter
 
 
 Metadatenquellen
@@ -123,6 +123,8 @@ von großen Filmesammlungen geeignet.
 
 Video Management Tools
 ----------------------
+
+http://www.junauza.com/2013/01/best-movie-collection-managers-for-linux.html
 
 Neben den Media Center Lösungen gibt es spezielle Tools für die Pflege und
 Korrektur von Film--Metadaten, sog.  *Video--Management--Tools*. Ein
@@ -347,15 +349,11 @@ ist der Aufwand der manuellen *nachpflege* noch vertretbar, nicht jedoch bei
 Weitere Probleme
 -----------------
 
-**Exakte Suchstrings**
-
-Die Metadatentools erwarten i.d.R. exakte Suchbegriffe. Bei den getesteten Tools
+**Exakte Suchstrings:** Die Metadatentools erwarten i.d.R. exakte Suchbegriffe. Bei den getesteten Tools
 wird bei Eingabe von "the marix" kein Film gefunden.
 
-**Suche nach IMDB-ID**
-
-Die Suche nach der IMDB-ID ist bei den getestenten Tools nicht möglich, obwohl
-diese von manchen Onlineanbietern unterstützt wird.
+**Suche nach IMDB-ID:** Die Suche nach der IMDB-ID ist bei den getestenten Tools
+nicht möglich, obwohl diese von manchen Onlineanbietern unterstützt wird.
 
 
 

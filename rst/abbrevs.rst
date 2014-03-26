@@ -22,7 +22,9 @@
     =======================  ==================================
     **API**                  *Application Programming Interface*
     **CLI**                  *Command Line Interface*
+    **HDTV**                 *High Definition Television*
     **LoC**                  *Lines of Code*
+    **XML**                  *Extensible Markup Language*
     =======================  ==================================
 
 .. raw:: latex

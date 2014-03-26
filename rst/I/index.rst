@@ -12,19 +12,19 @@ Einleitung
 Motivation
 ==========
 
-:dropcaps:`Die` Digitalisierung der modernen Konsumgesellschaft schreitet immer
-weiter voran. Wo es vor ein paar Jahren noch üblich war die eigene Filmesammlung
-im Regal aufzubewahren, wird sie heute oft nur noch digital auf dem
+Die Digitalisierung der modernen Konsumgesellschaft schreitet immer weiter
+voran. Wo es vor ein paar Jahren noch üblich war die eigene Filmsammlung im
+Regal aufzubewahren, wird sie heute oft nur noch digital auf dem
 :term:`Home--Theatre--PC`, :term:`Smart--TV`, PC oder anderen Endgeräten digital
-aufgezeichnet und verwaltet. Das Aufkommen der digitalen HDTV-Sender und das
-große Angebot an Pay-TV Sendern hat dem Trend der letzten Jahre nochmal frischen
-Auftrieb verpasst. Und hat man mal einen Spielfilm verpasst, so kann dieser
-bequem über einen der vielen Online Videorecorder-Dienste nachträglich bezogen
-werden. Es geht sogar soweit, dass USB-Sticks (siehe :cite:`usbstickmovie`) mit Hollywood Spielfilmen
-beworben und verkauft werden.
+aufgezeichnet und verwaltet. Das Aufkommen der digitalen HDTV--Sender` und das
+große Angebot an Pay---TV--Sendern hat dem Trend der letzten Jahre nochmal
+frischen Auftrieb verpasst. Und hat man mal einen Spielfilm verpasst, so kann
+dieser bequem über einen der vielen Online Videorecorder--Dienste nachträglich
+bezogen werden. Es geht sogar soweit, dass USB-Sticks (siehe
+:cite:`usbstickmovie`) mit Hollywood Spielfilmen beworben und verkauft werden.
 
-Zeichnet man viele Filme auf oder digitalisiert seine Filmesammlung, so muss
-man sich mit dem Pflegen der inhaltsbezogenen :term:`Metadaten` auseinander setzen.
+Zeichnet man viele Filme auf oder digitalisiert seine Filmsammlung, so muss
+man sich mit dem Pflegen der inhaltsbezogen :term:`Metadaten` auseinander setzen.
 Das sind Metadaten, wie sie auf jeder DVD/BD--Hülle enthalten sind. Wo noch
 im DVD/BD--Regal diese auf der DVD/BD--Hülle zu finden waren, sind
 sie nun nach dem digitalisieren nicht vorhanden und müssen vom Benutzer
@@ -33,7 +33,7 @@ Jahr, Inhaltsbeschreibung, Cover und Genre.  Diese Metadaten sind bei Filmen im
 unterschied zur Musik essentiell, da hierüber die Entscheidung getroffen wird ob
 ein Film geschaut wird oder nicht.
 
-Die Metadaten werden in der Regel über Onlineportale wie beispielsweise die
+Die Metadaten werden in der Regel über Onlinequellen wie beispielsweise die
 Internet Movie Database (IMDb, siehe :cite:`imdb`) bezogen. Die Anzahl der
 möglichen Onlinedienste die Metadaten bereitstellen, ist hier praktisch
 *ungebrenzt*. Viele Abspiel--Anwendungen wie das Windows Media Center oder das
@@ -41,63 +41,52 @@ Xbox Media Center (XBMC, siehe :cite:`xbmc`') können ihre Metadaten automatisch
 aus dem Internet beziehen. Je nach Anwendung kann es hier im Hintergrund eine
 oder mehrere Bezugsquellen für Metadaten geben.
 
-Ein Problem bei der Pflege der Metadaten im Videobereich ist, dass es hier
+Ein Problem bei der Pflege der Metadaten im Filmbereich ist, dass es hier
 keinen Standard gibt der sich durchgesetzt hat. Es gibt einerseits die
-Möglichkeit bestimmte Metadaten in bestimmte Containerformate (siehe
+Möglichkeit bestimmte Metadaten in bestimmte Container--Formate (siehe
 :cite:`containerformate` zu integrieren, andererseits werden diese in separaten
 Dateien oder Datenbanken der jeweiligen Abspiel--/Verwaltungssoftware gepflegt.
 
-Ein weiteres Problem das hinzukommt, sind die verschiedenen Onlinequellen von
+Ein weiteres Problem ist die *große* Anzahl verschiedener Onlinequellen von
 denen die Metadaten bezogen werden. Hier werden von Anwendung zu Anwendung
-unterschiedliche Quellen verwendet, die je nach Filmesammlung gut oder weniger
-gut geeignet sind.
+unterschiedliche Quellen verwendet, die je nach Filmsammlung gut oder weniger
+gut geeignet sind. Die Onlinequellen unterscheiden stark in der Qualität, Umfang
+und Art der angebotenen Metadaten. Zusätzlich kommt noch das Problem der
+Internationalisierung hinzu.
 
-Ein weiteres Problem beim Bezug von Film--Metadaten ist, dass sich die
-Onlinequellen stark in der Qualität, Umfang und Art der angebotenen Metadaten
-unterscheiden. Hier gibt es Quellen die einerseits gute hochauflösende Cover
-anbieten, aber keine Inhaltsbeschreibung oder Dienste die ausführliche
-Inhaltsbeschreibungen liefern, jedoch keine Bilddaten wie Cover oder Fanart. Oft
-kommt hier noch das Problem der Lokalisierung hinzu.
-
-Daraus resultierend sind über die Jahre sog. *Movie Manager* entstanden, die
-einen bei der Pflege der Filmesammlung unterstützen sollen. Auch hier gibt es
-nicht das *Tool der Wahl*, die Problematik ist weiterhin vorhanden. Es gibt
-wieder verschiedene Tools, die nur bestimmte Metadaten Export-Formate verstehen,
-nur bestimmte Online Metadatenquellen ansprechen können oder auch nur unter
-bestimmten Betriebssystemen verfügbar sind.
+Daraus resultierend sind über die Jahre sogenannte *Movie Manager* entstanden,
+die den Benutzer bei der Pflege der Filmsammlung unterstützen sollen. Auch hier
+gibt es nicht das *Tool der Wahl*, die Problematik ist weiterhin vorhanden. Es
+gibt wieder verschiedene Tools, die nur bestimmte Metadaten--Exportformate
+verstehen, nur bestimmte Onlinequellen ansprechen können oder auch nur
+unter bestimmten Betriebssystemen verfügbar sind. Die unter Linux vorhandenen
+und getesteten *Movie Manager* funktionieren bis auf wenige Ausnahmen
+unbefriedigend oder gar nicht, was die Hauptmotivation diese Arbeit ist.
 
 Projektziel
 ===========
 
-Das Ziel dieser Arbeit ist es ein plugin basiertes System zu entwerfen, das die
-verschiedenen Metadaten--Exportformate und Metadaten--Bezugsquellen
-zusammenführt und über eine *einheitliche Schnittstelle* anbietet.
+Das Ziel dieser Arbeit ist es eine andere Herangehensweise zu zeigen und ein
+offenes pluginbasiertes System zu entwerfen, das die verschiedenen
+Metadaten--Exportformate und Metadaten--Bezugsquellen zusammenführt und über
+eine *einheitliche Schnittstelle* anbietet. Neben der Funktionalität der
+Metadatenbeschaffung, soll es die Möglichkeit der Metadatenaufbereitung (Säubern
+von ungewünschten Sonderzeichen, automatische Extraktion von Schlüsselwörtern
+aus Inhaltsbeschreibung, etc.) geben.
 
-Der modulare Aufbau und eine freie Lizenz sollen eine Entwicklung durch die
-Community gewährleisten, so dass sich das System jederzeit um neue Plugins
-erweitern lässt.
+Die aktuellen Tools zur Metadatenverwaltung verfolgen einen eher *statischen*
+Ansatz.  Im Gegensatz dazu soll das System nach dem Baukastenprinzip erweiterbar
+sein und durch schreiben neuer Plugins an verschiedene Anforderungen des
+Benutzers anpassbar sein.
 
-Des weiteren soll ein *Analyse--Teil* entstehen, der die Möglichkeit bietet bereits
-vorhandene Datenbanken zu importieren, zu analisieren und fehlerhafte oder
-fehlende Daten *automatisiert* zu korrigieren bzw. zu ergänzen.
+Im Unterschied zu den bereits vorhandenen Tools die hauptsächliche durch
+manuelle Interaktion des Benutzers gesteuert werden, soll das System auf eine
+automatisierte Verarbeitung ausgelegt sein. Hier liegt das Augenmerk auf der
+Pflege *großer* Filmsammlungen.
 
-*Anders* als bei den vorhandenen Media Managern, soll hier der Analyse--Teil
-der Library erweiterbar sein. Zusätzlich soll es hier, über die Datenbeschaffung
-hinweg und im Unterschied zu den bereits vorhanden Lösungen, Möglichkeiten zur
-Metadatenaufbereitung (Säubern von ungewünschten Sonderzeichen, automatische
-Extraktion von Schlüsselwörtern aus Inhaltsbeschreibung) geben.
+Der modulare Aufbau und eine freie Lizenz sollen eine Weiterentwicklung durch
+die Community gewährleisten und eine ganz neue Art von Funktionalität bieten.
 
-Zusammengefasst soll das System gut an die jeweilige *Umgebung* und
-*Bedürfnisse* des Benutzers anpassbar sein.  Im Gegensatz zu den bereits
-vorhandenen *Movie Management--Tools*, bei denen fehlende Metadaten manuell vom
-Benutzer explizit nachgepflegt werden müssen, soll das System mehr auf
-automatisierte Verarbeitung ohne zutun des Benutzers ausgelegt sein.
-
-Die aktuellen Tools zur Video Metadatenverwaltung verfolgen einen eher
-*statischen* Ansatz. Ziel der Arbeit ist es ein dynamisches und modulares System
-zu entwickeln, das sich an die jeweiligen Bedürfnisse anpassen lässt. Dieses
-Konzept soll, über die reine Datenerhebung hinaus, um Werkzeuge zur
-Metadatenanalyse erweitert werden.
 
 Projektlizenz und Namensgebung
 ==============================
@@ -105,19 +94,17 @@ Projektlizenz und Namensgebung
 Lizenz
 ------
 
-Es soll ein System entwickelt werden, welches von der Community stätig erweitert
-werden kann. Um dies zu gewährleisten und damit auch ,,Verbesserungen'' an das
-Projekt zurückfließen wird er unter der GPLv3 Lizenz (siehe :cite:`gpl`)
-entwickelt.
+Um eine communitybasierte Weiterentwicklung zu gewährleisten und damit auch
+,,Verbesserungen" an das Projekt zurückfließen zu lassen, wird das System unter
+der GPLv3 Lizenz (siehe :cite:`gpl`) entwickelt.
 
 Namensgebung und Logo
 ---------------------
 
-Um dem freie Software Projekt ein ,,Gesicht'' zu geben und den
-Wiedererkennungwert zu steigern, wird das Projekt auf den Namen ,,libhugin''
-getauft und ein Logo entwickelt (siehe Abbildung :num:`fig-libhugin`), welches
-einen Raben in Pixelgrafik und ein Stück Filmrolle zeigt. Der Name Hugin aus der
-nordischen Mythologie:
+Um dem Projekt ein ,,Gesicht" zu geben und den Wiedererkennungwert zu steigern,
+wird das Projekt auf den Namen ,,libhugin" getauft und ein Logo entwickelt
+(siehe Abbildung :num:`fig-huginlogo`), welches einen Raben in Pixelgrafik und
+ein Stück Filmrolle zeigt. Der Name Hugin kommt aus der nordischen Mythologie:
 
 .. epigraph::
 
@@ -126,9 +113,10 @@ nordischen Mythologie:
    *Hugin, der mit dem altnordischen Schlussartikel –in gebildet wurde. Hugin*
    *bedeutet folglich „der Gedanke“.*
 
-                    -- http://de.wikipedia.org/wiki/Hugin_and_Munin :cite:`hugin`
+                                -- http://de.wikipedia.org/wiki/Hugin_and_Munin
 
-.. _fig-libhugin
+
+.. _fig-huginlogo:
 
 .. figure:: fig/hugin.png
     :alt: libhugin Logo.
@@ -136,7 +124,6 @@ nordischen Mythologie:
     :align: center
 
     libhugin Logo.
-
 
 .. http://www.vodprofessional.com/features/introduction-to-video-metadata/
 .. https://www.videouniversity.com/articles/metadata-for-video/

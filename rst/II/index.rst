@@ -3,7 +3,7 @@ Begriffsdefinitionen
 ####################
 
 Im Folgenden werden Fachbegriffe und Begriffe, die im Kontext von *libhugin*
-anders bestzt sind, definiert:
+anders besetzt sind, definiert:
 
 Fachbegriffe
 ------------
@@ -25,20 +25,15 @@ Fachbegriffe
 
      Bezeichnung für einen Fernseher mit Computerfunktion der Internetfähig ist.
 
-    API
+    Json
 
-     Application Programming Interface, bezeichnet eine Programmierschnittstelle
-     die eine Anbindung an ein Softwaresystem bereit stellt.
+     JavaScript Object Notation, eine Auszeichnungssprache ähnlich wie XML mit
+     dem Ziel von Mensch und Maschine einfacher lesbar zu sein.
 
     XML
 
      Extensible Markup Language, eine Auszeichnungssprache zur strukturierten
      Darstellung von Daten in Form von Textdateien.
-
-    Json
-
-     JavaScript Object Notation, eine Auszeichnungssprache ähnlich wie XML mit
-     dem Ziel von Mensch und Maschine einfacher lesbar zu sein.
 
 Kontextspezifische Fachbegriffe
 -------------------------------
