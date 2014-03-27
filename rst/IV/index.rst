@@ -5,24 +5,31 @@ Softwarespezifikation
 Anforderungen an die Library
 ============================
 
-*Die Anforderungen werden aus den Schwierigkeiten der Momentan vorhandenen
-Lösungen abgeleitet.*
+Die Anforderungen werden aus den Schwierigkeiten der Momentan vorhandenen
+Lösungen abgeleitet, gute Ideen werden hier übernommen. Grundsätzlich ist die
+Idee aber eine andere Herangehensweise an die Problematik zu erarbeiten.
 
 Anforderungen an die Suche von Metadaten
 ----------------------------------------
 
 **Modulares Provider--System**
 
-Die Onlinedienste die verwendet werden, sollen austauschbar sein. Der Benutzer
-hat die Möglichkeit durch schreiben eines *Plugins* seine bevorzugte Plattform
-als Metadatenanbieter zu implementieren. Diese Grundprinzip wird bereits bei der
-freien Musik--Metadatensuchlibrary  glyr (siehe :cite:`glyr`) verwendet.
+Die Onlinequellen die verwendet werden, sollen austauschbar sein. Der Benutzer
+hat die Möglichkeit durch schreiben eines *Plugins* seine bevorzugte
+Onlinequelle als Metadatenanbieter zu implementieren. Diese Grundprinzip wird
+bereits bei der freien Musik--Metadatensuchlibrary  glyr (siehe :cite:`glyr`)
+sowie auch im Ansatz beim XBMC verwendet.
+
+Um nicht direkt einen ,,Standardprovider" festlegen zu müssen werden bei den
+Providern Prioritäten von 0-100 vergeben. Provider mit höheren Prioritäten
+werden werden beim verarbeiten der Suchergebnisse bevorzugt.
+
 
 **Modulares Postprocessing--System**
 
-Die Möglichkeiten der *Datenaufbereitung* sollen erweiterbar sein. Der Benutzer
-hat die Möglichkeit das Postprocessing System durch schreiben eines neuen
-Plugins zu erweitern.
+Die Möglichkeiten der *Datenaufbereitung* beim Herunterladen von Metadaten
+sollen erweiterbar sein. Der Benutzer hat die Möglichkeit das Postprocessing
+System durch schreiben eines von Plugins zu erweitern.
 
 **Modulares Output--Converter--System**
 
@@ -31,19 +38,33 @@ Benutzer durch schreiben eines *Plugins* erweitern.
 
 **Suche von Metadaten**
 
-Die Suche von Metadaten soll sich für das Projekt auf Filmmetadaten und Personen
-Metadaten beschränken. Für TV-Serien soll jedoch eine Schnittstelle geboten
-werden.
+Die Suche von Metadaten soll sich für das Projekt auf Film--Metadaten und
+Personen--Metadaten beschränken. Für TV-Serien--Metadaten soll jedoch auch eine
+Schnittstelle geboten werden.
 
-Die Film--Metadaten--Suche soll *feingranular* konfigurierbar sein, d.h. die
-zu verwendeten Onlineanbieter, die Anzahl der Ergebnisse und die Art der
-Metadaten soll bei einer Suchanfrage konfigurierbar sein.
+Die Film--Metadatensuche soll *feingranular* konfigurierbar sein, d.h. die
+zu verwendeten Onlinequellen, die Anzahl der Ergebnisse und die Art der
+Metadaten soll bei einer Suchanfrage konfigurierbar sein. Die Unterscheidung der
+Art soll sich auf textuelle und grafische Metadaten beschränken.
 
-Des weiteren soll nach Möglichkeit eine *Anbieterübergreifende* Suche über die
-*IMDb-ID* ermöglicht werden, welche exakte Suchergebnisse liefert.
+Eine *onlinequellenübergreifende* Suche über die IMDB--ID, welche exakte
+Ergebnisse liefert, ist wünschenswert.
 
-Das Suchverhalten bei mehreren Metadatenanbietern soll folgende zwei
-Suchstrategien bieten:
+
+Beim Suchverhalten über mehreren Onlinequellen soll es zwei verschiedene
+,,Suchstrategien" geben. Bevor die Suchergebnisse an den Benutzer zurückgegeben
+werden, werden diese nach Provider Priorität gruppiert. Die Gruppierten
+Ergebnisse je Provider werden nach Übereinstimmung mit der Suche sortiert.
+
+Nun sollen die zwei Strategien zum Einsatz kommen, nach welcher die Ergebnisse
+zurück gegeben werden. Die ,,flat'' Strategie, hierbei wird aus jeder Gruppe
+jeweils zuerst die höchstpriorisierten Ergebnisse ausgewählt, bis das gewünschte
+Ergebnislimit erreicht ist. Die ,,deep'' Strategie, hierbei  wird zuerst der
+Provider mit der höchsten Priorität ausgeschöpft, im Anschluss der
+nächstniedrigere.
+
+Mit folgendem Beispiel sollen die zwei Strategien des Suchverhaltens anschaulich
+erläutert werden:
 
 .. figtable::
     :label: table-searchstrategy
@@ -63,25 +84,23 @@ Suchstrategien bieten:
     +-------------------+---------------------+-----------------+-------------------+
 
 Die Tabelle :num:`table-searchstrategy` zeigt die Suchanfrage nach dem Film
-,,Sin'' mit der Begrenzung auf vier Ergebnisse. Jeder Metadatenanbieter hat
+,,Sin'' mit der Begrenzung auf vier Ergebnisse. Jeder Provider (A, B und C) hat
 eine *Priorität* gepflegt. Die Anbieter sind nach *Priorität* sortiert. A hat
 die höchste Priorität. Die Ergebnisse pro Anbieter sind nach der Übereinstimmung
 zum Suchstring sortiert.
 
-Hier soll eine *deep--strategy* und eine eine *flat--strategy* ermöglicht
-werden, nach der die Ergebnisse verarbeitet werden. Folgende Ergebnisse werden
-bei jeweiliger Strategie und der Begrenzung auf drei Ergebnisse an den Aufrufer gegeben:
+Folgende Ergebnisse werden bei jeweiliger Strategie und der Begrenzung auf vier
+Ergebnisse an den Aufrufer gegeben:
 
-    * *deep-strategy*: Sin (2003) A, Sin Nombre (2009) A, Original Sin (2001) A, Sin (2003) B
-    * *flat-strategy*: Sin (2003) A, Sin (2003) B, Sin (2003) C, Sin Nombre (2009) A
+    * *flat*: Sin (2003) A, Sin (2003) B, Sin (2003) C, Sin Nombre (2009) A
+    * *deep*: Sin (2003) A, Sin Nombre (2009) A, Original Sin (2001) A, Sin (2003) B
 
 **Unschärfesuche**
 
-Die Suche nach Filmen soll eine gewissen *unschärfe* erlauben. Der Benutzer soll
-auch Ergebnisse erhalten wenn im Suchstring Tippfehler enthalten sind. Der
-Suchstring ,,The Marix'' soll *metadatenanbieterübergreifend* den Film ,,The
-Matrix (1999)'' liefern. Eine Providerübergreifende Suche wäre hier
-wünschenswert.
+Der Benutzer soll auch Ergebnisse erhalten wenn im Suchstring Tippfehler
+enthalten sind. Der Suchstring ,,The Marix'' soll
+*metadatenanbieterübergreifend* den Film ,,The Matrix (1999)'' liefern. Eine
+Providerübergreifende Suche wäre hier wünschenswert.
 
 **IMDB-ID Suche**
 
@@ -90,34 +109,42 @@ Providerübergreifende Suche wäre hier wünschenswert.
 
 **Genre ,,Normalisierung''**
 
-Eine *Genre--Normalisierung* soll implementiert werden, damit die
-Genreinformationen zwischen den Providern austauschbar sind.
+Um Redundanzen zu vermeiden soll eine Art ,,Genre--Normalisierung''
+implementiert werden. Hierdurch soll es möglich sein Genre--Informationen von
+mehreren Providern zusammenzuführen oder zwischen den Providern austauschbar zu
+machen.
 
 
 Anforderungen an die Analyse von Metadaten
 ------------------------------------------
 
-*Die Analyse von Metadaten soll auf bereits existierende Metadaten anwendbar
-sein, mit dem Ziel die Qualität dieser zu verbessern.*
-Die Analyse von Metadaten soll mit folgenden **Pluginarten** umgesetzt werden:
+Die Analyse von Metadaten soll auf bereits existierende Metadaten anwendbar
+ein, mit dem Ziel die Qualität dieser zu verbessern. Hier soll neben der
+reinen Analyse die Möglichkeit der Modifikation von Metadaten geben. Ein
+weiterer experimentieller Teil soll auch die Vergleichbarkeit von Metadaten für
+statistische Zwecke ermöglichen.
+
+Aufgrund der genannten Anforderungen sollen folgende unterschiedliche
+*Pluginarten*  umgesetzt werden:
 
 **Modifier Plugins**
 
 Über diese Art von Plugins lassen sich die Metadaten direkt modifizieren. Ein
-Beispiel hier wäre z.B. das entfernen von unerwünschten Sonderzeichen aus der
+Beispiel hier wäre das entfernen von unerwünschten Sonderzeichen aus der
 Inhaltsbeschreibung.
 
 **Analyzer Plugins**
 
 Diese Art von Plugins erlaubt es dem Benutzer die vorliegenden Metadaten zu
 analysieren um neue Erkenntnisse zu gewinnen oder Defizite zu identifizieren.
-
+Ein Beispiel hier wäre die Erkennung der verwendeten Sprache der
+Inhaltsbeschreibung.
 
 **Comperator Plugins**
 
 Diese Art von *Plugin* ist experimentell. Sie ist für statistische Auswertungen
 bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht. Mit den
-hier entwickelten *Plugins* soll erforscht werden ob und wie gut sich Filme
+hier entwickelten Plugins soll erforscht werden ob und wie gut sich Filme
 anhand von Metadaten vergleichen lassen, um so in Zukunft neben der bereits
 erwähnten Funktionalität zusätzlich noch Empfehlungen für andere Filme
 aussprechen zu können.
@@ -128,68 +155,70 @@ Allgemeine Anforderungen
 
 **Asynchrone Library**
 
-Die Bibliothek soll asynchrone Ausführung von Suchanfragen implementieren. Das
-herunterladen von Metadaten verschiedener Metadatenanbieter soll parallel
+Die Bibliothek soll eine asynchrone Ausführung von Suchanfragen implementieren.
+Das herunterladen von Metadaten verschiedener Metadatenanbieter soll parallel
 geschehen. Durch paralleles Herunterladen soll die Wartezeit der Suchanfrage
 reduziert werden.
 
 **Lokaler Cache**
 
 Es soll ein lokaler Cache implementiert werden um valide Ergebnisse der
-Suchanfragen zu puffern um so die Geschwindigkeit zu erhöhen und
-Netzwerkressourcen zu schonen.
+Suchanfragen zu puffern um so die Geschwindigkeit zu erhöhen und das
+Netzwerk bzw. die Onlinequellen zu entlasten.
 
 
 **Implementierung eines Test CLI-Client**
 
-Es soll zum Testen der Library ein CLI-Client entwickelt werden der auch zur
-Demonstration und für *Scripting--Tasks* verwenden werden kann.
+Es soll zum Testen der Bibliothek ein Konsolen-Client entwickelt werden der auch
+zur Demonstration und für *Scripting--Tasks* verwenden werden kann.
 
 **Grundlegende Konfiguration des Downloadagenten**
 
-Für das Herunterladen sollen die folgenden Parameter konfigurierbar sein:
+Für das Herunterladen der Metadaten sollen die folgenden Parameter
+konfigurierbar sein:
 
     * User--Agent
     * Cache--Pfad
     * Timeout in Sekunden
-    * Anzahl paralleler *Downloads--Threads*
-    * Anzahl der verwendeten *Job--Threads*
+    * Anzahl paralleler Downloads--Threads
+    * Anzahl der verwendeten Job--Threads
 
 **Konfigurationsmöglichkeiten für eine Suchanfrage**
 
-Hier sollen folgende Parameter sollen bei einer Suchanfrage konfigurierbar sein:
+Folgende Parameter sollen bei einer Suchanfrage konfigurierbar sein:
 
     * Filmtitel, Jahr, IMDB-ID oder Personenname (je nach Metadatenart)
-    * Metadatenart
-    * Sprache in der Metadaten gesucht werden sollen
+    * Metadatenart (Film, Person)
+    * Sprache in der Metadaten gesucht werden sollen (providerabhängig)
     * Cache verwenden (ja/nein)
     * Anzahl der Downloadversuche
     * Anzahl der gewünschten Suchergebnisse
-    * Suchstrategie (tief/flach)
+    * Suchstrategie (deep/flat)
     * Zu verwendete Metadatenanbieter
     * Unschärfesuche verwenden (ja/nein)
     * Provider übergreifende IMDb--ID--Suche aktivieren (ja/nein)
-    * Suchtyp (textuelle Daten, Bilder)
+    * Suchtyp (textuelle Daten, grafische Daten)
+
 
 Optionale Anforderungen
 -----------------------
 
-Die Library soll in ein bestehendes Open Source Projekt intigriert werden.  Hier
-wäre beispielsweise die Integration als *Plugin* in das Xbox Media Center
-Möglich.
+Die Bibliothek soll in ein bestehendes Open Source Projekt intigriert werden.
+Hier wäre beispielsweise die Integration als Plugin in das Xbox Media Center
+denkbar.
 
 Demonstration weiterer *Einsatzmöglichkeiten*.
 
 Nicht--Anforderungen
 --------------------
 
-**Metadatensuche**
+**Andere Metadaten**
 
 Die Suche von Musikmetadaten oder anderen Metadatentypen ist nicht Bestandteil
 des Projekts.
 
-**Management Tool**
+**Movie Metadaten Manager**
 
-Die Implementierung eines *neuen* Video Metadaten Management Tools ist nicht
-Bestandteil des Projekts. Das Projekt will gerade diesen Ansatz vermeiden und
-eine *andere* Herangehensweise aufzeigen.
+Die Implementierung eines *neuen* Movie Metadaten Managers ist nicht Bestandteil
+des Projekts. Das Projekt will gerade diesen Ansatz vermeiden und eine *andere*
+Herangehensweise aufzeigen.

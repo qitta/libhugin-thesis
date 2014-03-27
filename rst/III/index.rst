@@ -231,8 +231,10 @@ Problematik, Auszüge von Metadaten der drei Onlinequellen IMDb, TMDb und OFDb.
 
 Wir gehen von der Annahme aus, dass die Inhaltsbeschreibung und das
 Genre zu den *wichtigsten* Kriterien bei der Filmauswahl gehören und diese somit
-*sauber* gepflegt sein müssen und dass wir die folgenden drei Filme in unserer
-Filmsammlung mit Metadaten versorgen wollen:
+*sauber* gepflegt sein müssen.
+
+In unserem Beispiel befinden sich folgenden drei Filme in der Filmsammlung, die
+mit Metadaten versorgt werden sollen:
 
     1) ,,After.Life (2010)'', US-amerikanischer Spielfilm, Agnieszka Wojtowicz-Vosloo
     2) ,,Feuchtgebiete (2013)'', deutsche Romanverfilmung, Charlotte Roche
@@ -240,12 +242,14 @@ Filmsammlung mit Metadaten versorgen wollen:
     4) ,,RoboCop (2014)'', US-amerikanischer Spielfilm, José Padilha
 
 
-Die Inhaltsbeschreibung ist in der Regel Problemlos austauschbar, jedoch
+Die Inhaltsbeschreibung ist in der Regel problemlos austauschbar, jedoch
 unterscheidet sie sich auch je nach Quelle in der Formatierung/Art. Nicht alle
-Inhaltsbeschreibung haben beispielsweise hinter dem Rollennamen immer den Namen
-des Schauspielers in Klammern.
+Inhaltsbeschreibungen haben beispielsweise hinter dem Rollennamen immer den
+Namen des Schauspielers in Klammern.
 
-**After.Life (2010)**
+After.Life (2010)
+"""""""""""""""""
+
 
 .. figtable::
     :label: table-afterlife
@@ -270,8 +274,8 @@ niedrigauflösendes Cover und keine Hintergrundbilder (siehe Tabelle
 
 **Genre:** austauschbar, unterschiedlich ,,feingranular'' gepflegt
 
-
-**Feuchtgebiete (2013)**
+Feuchtgebiete (2013)
+""""""""""""""""""""
 
 .. figtable::
     :label: table-feuchtgebiete
@@ -294,8 +298,8 @@ Daseinsberechtigung.
 
 **Genre:** total divergent, Problem der Internationalisierung
 
-
-**Nymphomaniac (2013)**
+Nymphomaniac (2013)
+"""""""""""""""""""
 
 .. figtable::
     :label: table-nymphomaniac
@@ -320,7 +324,8 @@ Tabelle :num:`table-nymphomaniac`).
 
 **Genre:** divergent, unterschiedlich ,,feingranular" gepflegt
 
-**RoboCop (2014)**
+RoboCop (2014)
+""""""""""""""
 
 .. figtable::
     :label: table-robocop
