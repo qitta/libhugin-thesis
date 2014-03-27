@@ -103,11 +103,11 @@ einer oder mehrerer Onlinequellen beziehen. Sie bieten dem Benutzer jedoch
 i.d.R. nicht die Möglichkeit Korrekturen durchzuführen und sind somit nur bedingt
 zum ,,pflegen" von großen Filmsammlungen geeignet.
 
-Movie Management Tools
-----------------------
+Metadata Manager
+----------------
 
 Neben den Media Center Lösungen gibt es spezielle Tools für die Pflege und
-Korrektur von Film--Metadaten, sog.  *Movie--Management--Tools*. Ein
+Korrektur von Film--Metadaten, sog.  *Movie--Metadata--Manager*. Ein
 Movie--Management--Tool, welches es unter *unixoden* Betriebssystemen
 gibt ist beispielsweise MediaElch (Abb.  :num:`fig-mediaelch`, siehe auch
 :cite:`mediaelch`). Hier gibt es unter Linux noch weitere Tools, siehe
@@ -153,11 +153,11 @@ Datenbank und schreibt diese beim Exportieren in XML--Dateien [#f0]_, das sog.
 nfo-Format raus (siehe :cite:`xbmcnfo`). Nutzt man eine andere Abspielsoftware
 wie das Windows Media Center, so werden die Metadaten im dvdxml-Format, auch ein
 *XML* basiertes Format, abgespeichert (siehe :cite:`dvdxml`). Hier gibt es noch
-zahlreiche andere Formate, auch bei den Movie--Management--Tools, auf die nicht
+zahlreiche andere Formate, auch bei den Movie Managern, auf die nicht
 weiter eingegangen wird.
 
 Dieser Umstand erschwert das Pflegen der Film--Metadaten zusätzlich. Für die
-beiden genannten Formate, bieten Movie--Management--Tools oft import/export
+beiden genannten Formate, bieten Movie Metadata Manager oft import/export
 Möglichkeiten an. Jedoch können andere Player oder auch Standalone Lösungen hier
 wiederum ganz andere Formate verwenden, die von der Metadaten--Pflegesoftware
 nicht unterstützt wird.
@@ -165,8 +165,8 @@ nicht unterstützt wird.
 Probleme bei der Metadatenpflege
 ================================
 
-Metadaten Grundproblematik
---------------------------
+Metadatenerhebung Grundprobleme
+-------------------------------
 
 Unbekannte und ausländische Filme
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -350,8 +350,8 @@ nach seinen Vorlieben aussuchen. Durch die Redundanzen ist eine eindeutige
 Gruppierung nicht mehr möglich, es herrscht in der Datenbank ein mehr oder
 minder chaotischer Zustand.
 
-Software und Metadatensuche
----------------------------
+Probleme bei der Metadatensuche
+-------------------------------
 
 Grundlegende Probleme
 ~~~~~~~~~~~~~~~~~~~~~
@@ -364,18 +364,21 @@ gefunden (siehe Tabelle).
 oft nicht möglich, obwohl diese von manchen Onlineanbietern unterstützt wird
 (siehe Tabelle).
 
-Probleme bei Metadata--Tools
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Probleme bei Movie Metadata Managern
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Es wurden neben der Abspielsoftware XBMC und dem Movie--Metadaten--Manager
 MediaElch, die bereits genannten Movie--Metadaten--Manager (siehe
 :cite:`moviemanager`) GCstar, vMovieDB, Griffith und Tellico angeschaut. Die
-Resultate hier waren eher ,,ernüchternd'' (siehe Tabelle). Bei den beiden Media Manager GCstar
-und vMoviedB hat die Metadatensuche nicht funktioniert, hier wurde nichts
-gefunden. Das Verhalten wurde auf zwei Systemen nachgeprüft.  Beim XBMC wurden
-die Plugins für die Onlinequellen TMDb und Videobuster angeschaut. Für die
-Unschärfesuche wurde nach "Sin Sity" und nach ,,The Marix" gesucht. Die nicht
-funktionierenden Movie Manager GCStar und vMovieDB wurde nicht mit augenommen.
+Resultate hier waren eher ,,ernüchternd'' (siehe Tabelle). Bei den beiden Media
+Manager GCstar und vMovieDB hat die Metadatensuche nicht funktioniert, hier
+wurde nichts gefunden. Das Verhalten wurde auf zwei Systemen nachgeprüft.  Beim
+XBMC wurden die Plugins für die Onlinequellen TMDb und Videobuster angeschaut.
+Für die Unschärfesuche wurde nach "Sin Sity" und nach ,,The Marix" gesucht. Die
+nicht funktionierenden Movie Manager GCstar und vMovieDB wurde nicht mit
+aufgenommen. Das Tool Griffith wurde auch aus der Tabelle genommen, das hier von
+den 40 Onlinequellen nur vereinzelt Quellen funktioniert haben. IMDb hat nicht
+funktioniert.
 
 
 .. figtable::
@@ -383,32 +386,33 @@ funktionierenden Movie Manager GCStar und vMovieDB wurde nicht mit augenommen.
     :caption: Übersicht Movie Metadaten Manager und Funktionalität
     :alt: Übersicht Movie Metadaten Manager und Funktionalität
 
-    +------------------------+-------------------------+-------------------------------------------+---------------------------------+---------------------------------------------+
-    |                        | XBMC                    | MediaElch                                 | Tellico                         |  Griffith                                   |
-    +========================+=========================+===========================================+=================================+=============================================+
-    | IMDB--ID Suche         | nein                    | nur über IMDb u. TMDb                     | nein                            |  nein                                       |
-    +------------------------+-------------------------+-------------------------------------------+---------------------------------+---------------------------------------------+
-    | Unschärfesuche         | nein                    | nein                                      | nur IMDb, teilweise             |  nein                                       |
-    +------------------------+-------------------------+-------------------------------------------+---------------------------------+---------------------------------------------+
-    | Onlinequellen          | verschiedene (plugin)   | verschiedene (6)                          | wenige (3)                      |  viele (40)                                 |
-    +------------------------+-------------------------+-------------------------------------------+---------------------------------+---------------------------------------------+
-    | Schnittstellen         | -                       | nur XBMC                                  | ja, aber keine Metadatenformate | ja, beschränkt                              |
-    +------------------------+-------------------------+-------------------------------------------+---------------------------------+---------------------------------------------+
-    | Datenkorrektur möglich | -                       | ja, manuell                               | ja, manuell                     | ja, manuell                                 |
-    +------------------------+-------------------------+-------------------------------------------+---------------------------------+---------------------------------------------+
-    | Bemerkungen            | -                       | -                                         |                                 | Onlineprovider funktionieren nur vereinzelt |
-    +------------------------+-------------------------+-------------------------------------------+---------------------------------+---------------------------------------------+
-    | Besonderheiten         | pluginsbasierte Scraper | Kombination von Onlineplattformen möglich | -                               | -                                           |
-    +------------------------+-------------------------+-------------------------------------------+---------------------------------+---------------------------------------------+
-
+    +------------------+------------------------+----------------------------+-------------------------+
+    |                  | XBMC                   | MediaElch                  | Tellico                 |
+    +==================+========================+============================+=========================+
+    | IMDB--ID Suche   | nein                   | nur über IMDb u. TMDb      | nein                    |
+    +------------------+------------------------+----------------------------+-------------------------+
+    | Unschärfesuche   | nein                   | nein                       | nur IMDb, teilweise     |
+    +------------------+------------------------+----------------------------+-------------------------+
+    | Onlinequellen    | verschiedene (plugin)  | verschiedene (6)           | wenige (3)              |
+    +------------------+------------------------+----------------------------+-------------------------+
+    | Metadatenformate | x                      | nur XBMC                   | nein                    |
+    +------------------+------------------------+----------------------------+-------------------------+
+    | Datenkorrektur   | x                      | ja, manuell                | ja, manuell             |
+    +------------------+------------------------+----------------------------+-------------------------+
+    | Bemerkungen      | pluginbasierte Scraper | Onlinequellen kombinierbar | x                       |
+    +------------------+------------------------+----------------------------+-------------------------+
+    | Typ              | Medien Player          | Movie Metadaten Manager    | Movie Metadaten Manager |
+    +------------------+------------------------+----------------------------+-------------------------+
 
 
 Erkentnisse und Anforderungen an das Projekt
 ============================================
 
-*Vielen der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur und dem
-aktuellen Kombination aus Abspielsoftware und Management Tools nicht oder nur
-mit manuellen Eingriff durch den Benutzer beheben beheben.*
+Vielen der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur und dem
+aktuellen Kombination aus Abspielsoftware und Movie Manager nicht oder nur mit
+manuellen Eingriff durch den Benutzer beheben beheben. Bei *großen*
+Filmsammlungen ist dies jedoch mit keinem vernünftigen Aufwand umsetzbar.
+
 
 Idee
 ====
@@ -416,20 +420,18 @@ Idee
 Die Idee ist es eine andere Herangehensweise umzusetzen mit dem Ziel die
 genannten Probleme abzumildern oder zu beheben.
 
-Es soll *kein neues* Metadaten Management Tool entwickelt werden. Die Idee ist
-es dem Entwickler bzw. Endbenutzer einen ,,Werkzeugbaukasten'' in Form einer
-Bibliothek über eine einheitliche Schnittstelle bereitzustellen, welcher an die
-persönlichen Bedürfnisse anpassbar mit der zusätzlichen Funktionalität der
-Datenanalyse basierend auf Data-Mining Algorithmen. Abbildung X zeigt den
-konzeptuellen Ansatz.
+Es soll *kein neuer* Movie Metadaten Manager entwickelt werden. Die Idee ist
+es dem Entwickler bzw. Endbenutzer einen *modularen Werkzeugbaukasten* in Form
+einer pluginbasierten Bibliothek über eine einheitliche Schnittstelle bereitzustellen, welcher
+an die persönlichen Bedürfnisse anpassbar ist.
 
-Das Hauptaugenmerk hier liegt, im Gegensatz zu den bisherigen Metadaten
-Management Tools, auf der *automatisierten* Verarbeitung großer Datenmengen.
-
+Des Weiteren soll die zusätzliche Funktionalität der Datenanalyse,
+beispielsweise basierend auf Data-Mining Algorithmen, möglich sein. Das
+Hauptaugenmerk des System liegt, im Gegensatz zu den bisherigen Movie Metadaten
+Managern, auf der *automatisierten* Verarbeitung großer Datenmengen.
 
 .. rubric:: Footnotes
 
 .. [#f0] Extensible Markup Language (XML), ist eine Auszeichnungssprache zur hierarchisch strukturierten Darstellung von Daten in Textdateien.
 .. [#f1] Bezeichnung für Filme, die von Produktionsfirmen finanziert werden,
          welche nicht zu den großen US Studios gehören.
-

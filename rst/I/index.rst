@@ -102,7 +102,7 @@ Namensgebung und Logo
 ---------------------
 
 Um dem Projekt ein ,,Gesicht" zu geben und den Wiedererkennungwert zu steigern,
-wird das Projekt auf den Namen ,,libhugin" getauft und ein Logo entwickelt
+wird das Projekt auf den Namen *libhugin* getauft und ein Logo entwickelt
 (siehe Abbildung :num:`fig-huginlogo`), welches einen Raben in Pixelgrafik und
 ein Stück Filmrolle zeigt. Der Name Hugin kommt aus der nordischen Mythologie:
 
