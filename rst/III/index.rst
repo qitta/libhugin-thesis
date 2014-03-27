@@ -363,11 +363,11 @@ Grundlegende Probleme
 
 **Exakte Suchstrings:** Viele Metadaten-Tools erwarten exakte Suchbegriffe.
 Falsch geschriebene Filme wie ,,The Marix" oder ,,Sin Sity'' werden oft nicht
-gefunden (siehe Tabelle).
+gefunden (siehe Tabelle :num:`table-movietools`).
 
 **Suche nach IMDB-ID:** Die Suche nach der IMDb--ID ist bei den getesteten Tools
 oft nicht möglich, obwohl diese von manchen Onlineanbietern unterstützt wird
-(siehe Tabelle).
+(siehe Tabelle :num:`table-movietools`).
 
 Probleme bei Movie Metadata Managern
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

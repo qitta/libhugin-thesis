@@ -9,13 +9,17 @@ Die Anforderungen werden aus den Schwierigkeiten der Momentan vorhandenen
 Lösungen abgeleitet, gute Ideen werden hier übernommen. Grundsätzlich ist die
 Idee aber eine andere Herangehensweise an die Problematik zu erarbeiten.
 
-Anforderungen an die Suche von Metadaten
-----------------------------------------
+Anforderungen an die Datenbeschaffung
+-------------------------------------
 
-**Modulares Provider--System**
+Die Datenbeschaffung soll modular aufgebaut sein. Die Erweiterbarkeit soll durch
+schreiben von Plugins erreicht werden. Folgende Pluginarten sollen bei der
+Datenbeschaffung umgesetzt werden:
+
+**Provider Plugins**
 
 Die Onlinequellen die verwendet werden, sollen austauschbar sein. Der Benutzer
-hat die Möglichkeit durch schreiben eines *Plugins* seine bevorzugte
+hat die Möglichkeit durch schreiben eines Plugins seine bevorzugte
 Onlinequelle als Metadatenanbieter zu implementieren. Diese Grundprinzip wird
 bereits bei der freien Musik--Metadatensuchlibrary  glyr (siehe :cite:`glyr`)
 sowie auch im Ansatz beim XBMC verwendet.
@@ -25,16 +29,16 @@ Providern Prioritäten von 0-100 vergeben. Provider mit höheren Prioritäten
 werden werden beim verarbeiten der Suchergebnisse bevorzugt.
 
 
-**Modulares Postprocessing--System**
+**Postprocessing Plugins**
 
 Die Möglichkeiten der *Datenaufbereitung* beim Herunterladen von Metadaten
 sollen erweiterbar sein. Der Benutzer hat die Möglichkeit das Postprocessing
 System durch schreiben eines von Plugins zu erweitern.
 
-**Modulares Output--Converter--System**
+**Output--Converter Plugins**
 
 Das Format für die Speicherung der Metadaten verwendet wird, lässt sich vom
-Benutzer durch schreiben eines *Plugins* erweitern.
+Benutzer durch schreiben eines Plugins erweitern.
 
 **Suche von Metadaten**
 
@@ -115,8 +119,8 @@ mehreren Providern zusammenzuführen oder zwischen den Providern austauschbar zu
 machen.
 
 
-Anforderungen an die Analyse von Metadaten
-------------------------------------------
+Anforderungen an die Datenanalyse
+---------------------------------
 
 Die Analyse von Metadaten soll auf bereits existierende Metadaten anwendbar
 ein, mit dem Ziel die Qualität dieser zu verbessern. Hier soll neben der
@@ -142,7 +146,7 @@ Inhaltsbeschreibung.
 
 **Comperator Plugins**
 
-Diese Art von *Plugin* ist experimentell. Sie ist für statistische Auswertungen
+Diese Art von Plugin ist experimentell. Sie ist für statistische Auswertungen
 bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht. Mit den
 hier entwickelten Plugins soll erforscht werden ob und wie gut sich Filme
 anhand von Metadaten vergleichen lassen, um so in Zukunft neben der bereits
