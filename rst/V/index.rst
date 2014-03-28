@@ -2,9 +2,9 @@
 Entwurf
 #######
 
-*Im folgenden wird der systematische Entwurf der Software dargestellt. Die
-verwendetetn Algorithmen, Probleme, sowie Möglichgeiten der technischen
-Umsetzung werden in der Bachelorarbeit genauer beleuchtet und diskutiert.*
+Im Folgenden wird der systematische Entwurf der Software dargestellt. Die
+verwendeten Algorithmen, Probleme, sowie Möglichkeiten der technischen
+Umsetzung werden in der Bachelorarbeit genauer beleuchtet und diskutiert.
 
 Grundüberlegungen
 =================
@@ -12,12 +12,9 @@ Grundüberlegungen
 Grundprinzip -- Beschaffung der Metadaten
 -----------------------------------------
 
-*Im folgenden wird das Grundprinzip der Metadatenbeschaffung erläutert und daraus
-ableitend die Schnittstellen--Spezifikation für die Plugins definiert.*
-
-Metadaten werden über verschiedene Webplattformen bezogen. Hier wird
-grundsätzlich zwischen Anbietern mit API und Anbietern ohne API unterschieden.
-Anbieter mit API bieten dem Entwickler direkt eine Schnittstelle über die, die
+Metadaten werden über verschiedene Onlinequellen bezogen. Hier wird
+grundsätzlich zwischen Onlinequellen mit API und ohne API unterschieden.
+Onlinequellen mit API bieten dem Entwickler direkt eine Schnittstelle über die, die
 interne Datenbank des Metadatenanbieters abgefragt werden kann.
 
 Folgendes Bash--Snippet demonstriert einen Zugriff mit dem Webtransfer--Tool
@@ -28,6 +25,8 @@ Matrix'' gesucht:
 .. code-block:: bash
 
    $ curl http://www.omdbapi.com/?t=The+Matrix
+
+   # Ausgabe gekürzt
    {"Title":"The Matrix",
    "Year":"1999",
    "Runtime":"136 min",
@@ -44,26 +43,28 @@ Matrix'' gesucht:
    "Response":"True"
    }%
 
-Der *Such--URL* bekommt den Titel  als Queryparameter (``t=The+Matrix``)
+Der *Such--URL* bekommt den Titel als Query--Parameter (``t=The+Matrix``)
 übergeben, zurück bekommt man ein in *Json* formatiertes Response. Dieses kann
 nun vom Aufrufer der API nach belieben verarbeitet werden.
 
-Bietet ein Webseite wie beispielsweise ,,filmstars.de'' (siehe
-:cite:`filmstars`) keine API an, so muss der ,,normale Weg'' wie über den
-Webbrowser erfolgen. Hierzu muss man herausfinden wie sich die *Such--URL*
-aussieht die im Hintergrund an den Webserver geschickt wird sobald man den
-,,Suche''--Button auf der Webseite betätigt hat. Bei ,,filmstars.de`` setzt sich
+Bietet eine Webseite wie beispielsweise ,,filmstarts.de'' (siehe
+:cite:`filmstarts`) keine API an, so muss der ,,normale Weg'' wie über den
+Webbrowser erfolgen. Hierzu muss man herausfinden aus welchen Parametern sich
+die *Such--URL* zusammensetzt, die im Hintergrund an den Webserver geschickt
+wird sobald die Suchanfrage losgeschickt wird. Bei ,,filmstarts.de`` setzt sich
 die ,,Such--URL'' wie folgt zusammen:
 
     ``http://www.filmstarts.de/suche/?q={Filmtitel}``
 
 Rufen wir nun *cURL* mit der Url und unseren Film als Query--Parameter auf so
-erhalten wir die HTML--Dokument als ,,HTTP--Response'' das auch der Webbrowser
-erhalten würde. Folgendes Bash--Snippet demonstriert den aufruf:
+erhalten wir als Response ein HTML--Dokument, welches auch der Webbrowser
+erhalten würde. Folgendes Bash--Snippet demonstriert den Aufruf:
 
 .. code-block:: bash
 
    $ curl  http://www.filmstarts.de/suche/?q=The+Matrix
+
+   # Ausgabe gekürzt
    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#"
    xmlns:fb="http://www.facebook.com/2008/fbml"
    xml:lang="de" lang="de">
@@ -74,35 +75,35 @@ erhalten würde. Folgendes Bash--Snippet demonstriert den aufruf:
    [...]
    </html>
 
-Die Ausgabe wurde gekürzt. Man bekommt als Aufrufer der Url die Webseite
-zurückgeliefert und muss nun die Daten aus dem Dokument extrahieren, was in der
-Regel mühsamer ist, wie über eine API, die die Daten sauber im *Json*-- oder
-*XML*--Format zurückliefert.
+Man bekommt als Aufrufer der URL die Webseite zurückgeliefert und muss nun die
+Daten aus dem Dokument extrahieren. Dies ist in der Regel mühsamer ist, wie der
+Zugriff über eine API, die die Daten sauber im *Json*-- oder *XML*--Format
+zurückliefert.
 
 
 Pluginsystem
 ------------
 
-Ein Ziel bei der Entwicklung der Pluginspezifikation ist, den Aufwand für das
-implementieren eines Plugins so gering wie möglich zu halten, um Softwarebugs
+Ein Ziel bei der Entwicklung der Plugin--Spezifikation ist, den Aufwand für das
+implementieren eines Plugins so gering wie möglich zu halten, um Programmfehler
 bzw. Fehlverhalten durch Plugins zu minimieren, aber auch um Entwickler zu
-*motivieren* Plugins zu schreiben.
+motivieren Plugins zu schreiben.
 
 Übertragung vom Grundprinzip auf das Pluginssytem
 -------------------------------------------------
 
-Der das Prinzip beim Beschaffen von Metadaten ist immer gleich lässt sich somit
-gut auf Provider--Plugins übertragen. Die Provider--Plugins müssen im Prinzip
-*nur* folgendes zwei Punkte können:
+Der das Prinzip beim Beschaffen von Metadaten ist immer gleich und lässt sich
+somit gut auf das Pluginsystem übertragen. Die Provider--Plugins müssen im
+Prinzip *nur* folgendes zwei Punkte können:
 
     * aus den Suchparametern die *Such--Url* zusammenbauen
     * extrahieren der Daten aus dem zurückgelieferten *HTTP--Response*
 
 Um den Download selbst muss sich der Provider bei diesem Ansatz nicht kümmern,
-das ,,entlastet'' den Pluginentwickler und übergibt libhugin die Kontrolle über
+das ,,entlastet" den Pluginentwickler und übergibt *libhugin* die Kontrolle über
 das Downloadmanagement.
 
-.. _fig-provider-concept
+.. _fig-provider-concept:
 
 .. figure:: fig/provider-concept-svg.pdf
     :alt: Grundprinzip Provider--Plugins
@@ -114,50 +115,20 @@ das Downloadmanagement.
 
 Damit der Provider weiß, welche ,,Roh--Daten'' er zurückliefern soll, muss
 hierfür noch eine Struktur mit Attributen festgelegt werden, an welche sich alle
-Provider--Plugins halten müssen.
-
-.. **Grundprinzip Postprocessing--Plugins und Converter--Plugins**
-..
-.. Hier wird davon ausgegangen das ein Plugin eine bestimmte Operation auf einem
-.. definierten ,,Ergebnisobjekt'' durchführt. Das Prinzip ist trivial, ein
-.. ,,Ergebnisobjekt'' wird an das Plugin gegeben und das Plugin führt die gewünschte
-.. Operation auf diesem durch oder gibt ein neues definiertes Ergebnis zurück.
-..
-.. **Normalisierung vom Genre**
-..
-.. Das Genre ist ein wichtiges Attribut unter den Film--Metadaten. Da hier das
-.. Problem der Normalisierung besteht, wird für den libhugin Prototypen eine
-.. globale Genreliste definiert. Provider--Plugins haben nun die Möglichkeit eine
-.. Normalisierung des Genre durchzuführen indem sie eine Liste mit Abbildungen
-.. bereitstellen. Die Abbildungen bilden ein oder mehrere Provider--Genre auf genau
-.. einem globalen Genre ab.
-..
-.. .. code-block:: bash
-..
-..     lokale Genre (Provider)                                    globales Genre
-..     -----------------------                                   ---------------
-..     Provider A, Genre SciFi        -- wird abgebildet auf --> Science Fiction
-..     Provider A, Genre Horrorfilm   -- wird abgebildet auf --> Horror
-..
-..     Provider B, Genre Sci-Fi       -- wird abgebildet auf --> Science Fiction
-..     Provider B, Genre Splatter     -- wird abgebildet auf --> Horror
-..
-..     Provider C, Genre Zukunftsfilm -- wird abgebildet auf --> Science Fiction
-..     Provider C, Genre Horror       -- wird abgebildet auf --> Horror
-..
-..
-.. Weitere Informationen, Probleme und Ansätze zur Genre Normalisierung werden in
-.. der Bachelorarbeit diskutiert.
+Provider--Plugins halten müssen. Für den Prototypen richten sich die möglichen
+Attribute an der TMDb Onlinequelle (siehe hierzu auch libhugin API:
+:cite:`movieprovider`).
 
 Libhugin Architektur Überblick
 ==============================
 
-Die Library soll über die Metadatenbeschaffung hinaus Werkzeuge zur
+Die Bibliothek soll über die Metadatenbeschaffung hinaus Werkzeuge zur
 Metadatenanalyse bereitstellen. Um eine saubere Trennung zwischen
-Metadatenbeschaffung und Metadatenanalyse zu schaffen, wird die Library in die
-zwei Teile *libhugin harvest* und *libhugin analyze* aufgeteilt.
+Metadatenbeschaffung und Metadatenanalyse zu schaffen, wird die Bibliothek in
+die zwei Teile *libhugin harvest* und *libhugin analyze* aufgeteilt.
 
-**libhugin harvest**
+libhugin harvest
+----------------
 
 Dieser Teil (siehe Abbildung :num:`fig-harvest-arch`) soll für die
 Metadatenbeschaffung zuständig sein und Schnittstellen für die folgenden
@@ -167,7 +138,7 @@ Pluginarten bereitstellen:
     * Postprocessing--Plugins
     * Output--Converter--Plugins
 
-.. _fig-harvest-arch
+.. _fig-harvest-arch:
 
 .. figure:: fig/arch-overview-svg.pdf
     :alt: Architekturübersich libhugin
@@ -176,9 +147,10 @@ Pluginarten bereitstellen:
 
     Architekturübersicht libhugin.
 
-**libhugin analyze**
+libhugin analyze
+----------------
 
-Dieser Teil (Abbildung :num:`fig-analyze-arch`) soll für nachträgliche
+Dieser Teil (siehe Abbildung :num:`fig-harvest-arch`) soll für nachträgliche
 Metadatenanalyse zuständig sein und Schnittstellen für folgende Pluginarten
 bereitstellen.
 
@@ -186,9 +158,9 @@ bereitstellen.
     * Analyzer--Plugins
     * Comperator--Plugins
 
-Der Analyze Teil der library soll eine interne Datenbank besitzen, in welche
+Der Analyze Teil der Bibliothek soll eine interne Datenbank besitzen, in welche
 externe Metadaten zur Analyse importiert werden. So können alle Plugins auf
-einem ,,definiertem'' Zustand arbeiten.
+einem ,,definiertem" Zustand arbeiten.
 
 
 Klassen-- und Schnittstellenübersicht
@@ -196,11 +168,14 @@ Klassen-- und Schnittstellenübersicht
 
 Die Architektur von libhugin ist objektorientiert. Aus der Architektur und den
 Anforderungen an das System wurden folgende Klassen und Schnittstellen
-abgeleitet, Abbildung X zeigt eine Klassenübersicht samt interaktion mit den
-Schnittstellen. Im folgenden werden die Grundlegenden Objekte und Schnittstellen
+abgeleitet, Abbildung :num:`fig-klassenuebersicht-harvest` zeigt eine
+Klassenübersicht von libhugin harvest Teil samt Interaktion mit den
+Schnittstellen.
+
+Im folgenden werden die Grundlegenden Objekte und Schnittstellen
 erläutert.
 
-.. _fig-klassenuebersicht-harvest
+.. _fig-klassenuebersicht-harvest:
 
 .. figure:: fig/klassenuebersicht-harvest-svg.pdf
     :alt: Libhugin harvest Klassenübersicht und Interaktion.
@@ -216,30 +191,33 @@ Session
 ~~~~~~~
 
 Diese Klasse bildet den Grundstein für libhugin harvest. Über eine Sitzung
-konfiguriert der Benutzer das ,,System'' und hat Zugriff auf die verschiedenen
+konfiguriert der Benutzer das System und hat Zugriff auf die verschiedenen
 Plugins. Von der Session werden folgende Methoden bereit gestellt:
 
 ``create_query(**kwargs)``: Schnittstelle zur Konfiguration der Suchanfrage. Die
-Methode gibt ein Query--Objekt zurück, das eine Python Dictionary entspricht.
-Diese Methode dient als ,,Hilfestellung'' für den Benutzer der API. Theoretisch
-kann der Benutzer die Query auch manuell zusammenbauen.
+Methode gibt ein Query--Objekt zurück, das einem Python Dictionary entspricht.
+Diese Methode dient als ,,Hilfestellung" für den Benutzer der API. Theoretisch
+kann der Benutzer die Query auch manuell zusammenbauen. Für weitere
+Informationen und Konfigurationsparameter siehe libhugin API :cite:`queryapi`.
 
-``submit(query)``: Schnittstelle um eine Suchanfrage ,,loszuschicken''. Die
-Methode gibt eine Liste mit gefundenen Metadaten als ,,Result--Objekte'' zurück.
-Die Methode holt eine Downloadqueue und einen Cache, falls dieser vom Benutzer
-über die Query nicht deaktiviert wurde. Anschließendund generiert für jeden Provider eine
-sog. `Job--Struktur`. Diese `Job--Struktur` kapselt jeweils einen Provider, die
-Suchanfrage und die ,,Zwisschenergebnisse'' die während des Submit--Aufrufs
-generiert werden.
 
-Zur Übersicht eine Job--Struktur in Python Dictionary Notation:
+``submit(query)``: Schnittstelle um eine Suchanfrage zu starten. Die Methode
+gibt eine Liste mit gefundenen Metadaten als ,,Result--Objekte" zurück.
+
+Die Methode holt sich eine Downloadqueue und einen Cache, falls dieser vom
+Benutzer über die Query nicht deaktiviert wurde. Anschließend generiert sie für
+jeden Provider eine sogenannte `Job--Struktur`. Diese `Job--Struktur` kapselt
+jeweils einen Provider, die Suchanfrage und die ,,Zwischenergebnisse" die
+während der Suchanfrage generiert werden.
+
+Zur Veranschaulichung eine Job--Struktur in Python Dictionary Notation:
 
 .. code-block:: python
 
     job_structure = {
         'url': None,          # Url die als nächstes von Downloadqueue geladen werden soll
         'provider': None,     # Referenz auf Provider--Plugin
-        'future': None,       # Referenz auf Future Objekt bei async.  Ausführung
+        'future': None,       # Referenz auf Future Objekt bei async. Ausführung
         'response': None,     # Ergebnis des Downloads, Http Response
         'return_code': None,  # Return Code der Http Anfrage
         'retries_left': None, # Anzahl der noch übrigen Versuche
@@ -247,105 +225,108 @@ Zur Übersicht eine Job--Struktur in Python Dictionary Notation:
         'result': None        # Ergebnis der Suchanfrage
     }
 
-Nachdem ein Job fertiggestellt wurde, wird er in ein Result--Objekt gekapselt.
-Am Ende der ``submit``--Methode wird eine Liste mit Result--Objekten an den
-Aufrufen zurückgegeben.
+Nachdem ein Job fertiggestellt wurde, wird er in ein ,,Result--Objekt" gekapselt.
+Am Ende der ``submit(query)``--Methode wird eine Liste mit ,,Result--Objekten''
+an den Aufrufen zurückgegeben.
 
 
-``submit_async()``: Methode für eine asynchrone Nutzung der API.
-
+``submit_async()``: Methode für eine asynchrone Nutzung der API. Diese führt
 ``submit(query)`` asynchron aus und gibt ein Python Future Objekt zurück,
-welches die Anfrage kapselt. Durch Aufrufen der ``done()`` Methode auf dem
+welches die Anfrage kapselt. Durch Aufrufen der ``done()``--Methode auf dem
 Future--Objekt, kann festgestellt werden ob die Suchanfrage bereits fertig ist.
 Ein Aufruf der ``result()``--Methode auf dem Future--Objekt liefert das
-eigentliche Result--Objekt zurück. Für mehr Informationen siehe Python API
-[lin,].
+eigentliche ,,Result--Objekt" zurück.
+
+Für mehr Informationen siehe Python API :cite:`futures`.
 
 ``provider_plugins(pluginname=None)``: Diese Methode gibt eine Liste mit den
-Provider--Plugins zurück oder bei Angabe eines Pluginnamen, dieses direkt.
+Provider--Plugins zurück oder bei Angabe eines Plugins, dieses direkt.
 
 ``postprocessing_plugins(pluginname)``: Analog zu ``provider_plugins(pluginname=None)``.
 
 ``converter_plugins(pluginname)``: Analog zu ``provider_plugins(pluginname=None)``.
 
-``cancel()``: Diese Methode dient zum abbrechen eine asynchronen Suchanfrage.
-Hier sollte folgend noch die ``clean_up()``--Methode aufgerufen werden um alle
-Ressourcen wieder freizugeben.
+``cancel()``: Diese Methode dient zum Abbrechen einer asynchronen Suchanfrage.
+Hier sollte anschließend noch die ``clean_up()``--Methode aufgerufen werden um
+alle Ressourcen wieder freizugeben.
 
-``clean_up()``: Methode zum *aufräumen* nach dem Abbrechen einer asynchronen
-Anfrage. Die Methode blockt solange noch nicht alle Ressourcen freigegeben
+``clean_up()``: Methode zum aufräumen nach dem Abbrechen einer asynchronen
+Suchanfrage. Die Methode blockt solange noch nicht alle Ressourcen freigegeben
 wurden.
 
 Queue
 ~~~~~
 
 Die Queue kapselt die Parameter der Suchanfrage. Sie wird direkt mit den
-Parametern der Suchanfrage *instanziiert*, hierbei werden bestimmte Werte die
-übergebenen Werte validiert und *Standardwerte* gesetzt.
+Parametern der Suchanfrage instantiiert, hierbei werden bestimmte Werte die
+übergebenen werden, validiert und *Standardwerte* gesetzt.
 
 Cache
 ~~~~~
 
-Der Cache wird intern verwendet um erfolgreiche Ergebnisse von Suchanfragen
-persistent zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus
-dem Cache geladen werden. Dadurch gewinnt man Performance und der
-Metadatenanbieter wird entlastet. Zum persistenten speichern wird ein Python
-Shelve verwendet.
+Der Cache wird intern verwendet um erfolgreiche Suchanfragen persistent
+zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus dem Cache
+geladen werden. Dadurch gewinnt man Geschwindigkeit und der Metadatenanbieter wird
+entlastet. Zum persistenten speichern wird ein Python Shelve (siehe
+:cite:`shelve`) verwendet.
 
-``open(path, cache_name)``: Öffne den übergebenen Cache.
+``open(path, cache_name)``: Öffnet den übergebenen Cache.
 
-``read(key)``: Liest Element an Position ``key`` aus dem Cache.
+``read(key)``: Liest Element an Position *key* aus dem Cache.
 
-``write(key, value)``: Schreibt das Element ``value`` an Position ``key`` in den Cache.
+``write(key, value)``: Schreibt das Element *value* an Position *key* in den
+Cache.
 
-``close()``: Schließe den Cache.
+``close()``: Schließt den Cache.
 
 
 Downloadqueue
 ~~~~~~~~~~~~~
 
 Die Downloadqueue ist für den eigentlichen Download der Daten zuständig. Sie
-arbeitet mit Job-Strukturen. Die Provider--Plugins müssen so keine
-eigene Downloadqueue implementieren. Durch eine zentrale Downloadqueue bleibt
-die Kontrolle über den Download der Daten bei libhugin selbst und nicht bei den
+arbeitet mit o.g. Job-Strukturen. Die Provider--Plugins müssen so keine eigene
+Downloadqueue implementieren. Durch eine zentrale Downloadqueue bleibt die
+Kontrolle über den Download der Daten bei libhugin selbst und nicht bei den
 Plugins.
 
-**pop()**: Fügt einen *Job* der *Downloadqueue* hinzu.
+``push(job)``: Fügt einen `Job` der Downloadqueue hinzu.
 
-**push()**: Holt den nächsten fertigen *Job* aus der *Downloadqueue*.
+``pop()``: Holt den nächsten fertigen `Job` aus der Downloadqueue.
 
-**running_jobs()**: Gibt die Anzahl der *Jobs* die in Verarbeitung sind.
+``running_jobs()``: Gibt die Anzahl der `Jobs` die in Verarbeitung sind.
 
 GenreNormalize
 ~~~~~~~~~~~~~~
 
 GenreNormalize kann von den Provider--Plugins verwendet werden um das Genre zu
-normalisieren.
+normalisieren. Hierzu müssen die Provider eine Genre--Mapping--Datei erstellen.
+Für mehr Informationen siehe API :cite:`movieprovider`.
 
-**normalize_genre(genre)**: Normalisiert ein Genre Anhand einer festgelegten
-Lookup--Table. Weitere Informationen hierzu in der Bachelorarbeit.
+``normalize_genre(genre)``: Normalisiert ein Genre Anhand einer festgelegten
+Lookup--Table.
 
-**normalize_genre_list(genrelist)**: Normalisiert eine Liste aus Genres wie
-**normalize_genre()**.
+``normalize_genre_list(genrelist)``: Normalisiert eine Liste aus Genres wie
+``normalize_genre()``.
 
 PluginHandler
 ~~~~~~~~~~~~~
 
-Das Pluginsystem wurde mit Hilfe der Yapsy--Library umgesetzt. Es bietet
-folgende Schnittstellen nach außen:
+Das Pluginsystem wurde mit Hilfe der Yapsy--Library (siehe :cite:`yapsy`)
+umgesetzt. Es bietet folgende Schnittstellen nach außen:
 
-**activate_plugin_by_category(category)**: Aktiviert *Plugins* einer bestimmten
-Kategorie. Bei libhugin harvest gibt es die Kategorien  *Provider*,
-*Postprocessing* und *Converter*.
+``activate_plugin_by_category(category)``: Aktiviert Plugins einer bestimmten
+Kategorie. Bei libhugin harvest gibt es die Kategorien  Provider,
+Postprocessing und Converter.
 
-**deactivate_plugin_by_category(category)**: Deaktiviert *Plugins* einer bestimmten
+``deactivate_plugin_by_category(category)``: Deaktiviert Plugins einer bestimmten
 Kategorie.
 
-**get_plugins_from_category(category)**: Liefert Plugins einer bestimmten Kategorie
-zurück.
+``get_plugins_from_category(category)``: Liefert Plugins einer bestimmten
+Kategorie zurück.
 
-**is_activated(category)**: Gibt ``True`` zurück wenn eine Kategorie bereits aktiviert
+``is_activated(category)``: Gibt ``True`` zurück wenn eine Kategorie bereits aktiviert
 ist ansonsten ``False``.
+
 
 
 libhugin harvest Plugininterface
@@ -354,7 +335,7 @@ libhugin harvest Plugininterface
 Libhugin harvest bietet für jeden Plugintyp eine bestimmte Schnittstellen an,
 die vom jeweiligen Plugintyp implementiert werden müssen.
 
-.. _fig-harvest-plulgin-interface
+.. _fig-harvest-plulgin-interface:
 
 .. figure:: fig/harvest-plugin-interface.pdf
     :alt: libhugin harvest plugins interface
@@ -420,7 +401,7 @@ die Stringrepräsentation von diesem in einem spezifischen Format wieder.
 Libhugin analyze
 ----------------
 
-.. _fig-klassenuebersicht-analyze
+.. _fig-klassenuebersicht-analyze:
 
 .. figure:: fig/klassenuebersicht-analyze-svg.pdf
     :alt: Libhugin analyze Klassenübersicht und Interaktion.
@@ -537,7 +518,7 @@ libhugin analyze Plugininterface
 Libhugin analyze bietet für jeden Plugintyp eine bestimmte Schnittstellen an,
 die vom jeweiligen Plugintyp implementiert werden müssen.
 
-.. _fig-analyze-plulgin-interface
+.. _fig-analyze-plulgin-interface:
 
 .. figure:: fig/analyze-plugin-interface.pdf
     :alt: libhugin analyzeplugins interface
