@@ -35,6 +35,12 @@ Fachbegriffe
      Extensible Markup Language, eine Auszeichnungssprache zur strukturierten
      Darstellung von Daten in Form von Textdateien.
 
+    Hashmap
+
+     Eine spezielle Indexstruktur, bei welcher Daten jeweils einem eindeutigen
+     Index zugeordnet sind.
+
+
 Kontextspezifische Fachbegriffe
 -------------------------------
 

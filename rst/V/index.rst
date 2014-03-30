@@ -18,8 +18,8 @@ Onlinequellen mit API bieten dem Entwickler direkt eine Schnittstelle über die,
 interne Datenbank des Metadatenanbieters abgefragt werden kann.
 
 Folgendes Bash--Snippet demonstriert einen Zugriff mit dem Webtransfer--Tool
-*cULR* (siehe :cite:`curl`) auf die API des ,,The Open Movie
-Database"--Webdienstes (siehe :cite:`omdb`), es wird nach dem Film ,,The
+*cULR* (siehe :cite:`curl`) auf die API der ,,The Open Movie
+Database"--Onlinequelle (siehe :cite:`omdb`), es wird nach dem Film ,,The
 Matrix'' gesucht:
 
 .. code-block:: bash
@@ -56,7 +56,7 @@ die ,,Such--URL'' wie folgt zusammen:
 
     ``http://www.filmstarts.de/suche/?q={Filmtitel}``
 
-Rufen wir nun *cURL* mit der Url und unseren Film als Query--Parameter auf so
+Rufen wir nun *cURL* mit der URL und unseren Film als Query--Parameter auf so
 erhalten wir als Response ein HTML--Dokument, welches auch der Webbrowser
 erhalten würde. Folgendes Bash--Snippet demonstriert den Aufruf:
 
@@ -96,7 +96,7 @@ Der das Prinzip beim Beschaffen von Metadaten ist immer gleich und lässt sich
 somit gut auf das Pluginsystem übertragen. Die Provider--Plugins müssen im
 Prinzip *nur* folgendes zwei Punkte können:
 
-    * aus den Suchparametern die *Such--Url* zusammenbauen
+    * aus den Suchparametern die *Such--URL* zusammenbauen
     * extrahieren der Daten aus dem zurückgelieferten *HTTP--Response*
 
 Um den Download selbst muss sich der Provider bei diesem Ansatz nicht kümmern,
@@ -135,7 +135,7 @@ Metadatenbeschaffung zuständig sein und Schnittstellen für die folgenden
 Pluginarten bereitstellen:
 
     * Provider--Plugins
-    * Postprocessing--Plugins
+    * Postprocessing--Plugins # TODO: Postprocessor
     * Output--Converter--Plugins
 
 .. _fig-harvest-arch:
@@ -184,7 +184,7 @@ erläutert.
 
     Libhugin harvest Klassenübersicht und Interaktion.
 
-Libhugin harvest
+libhugin harvest
 ----------------
 
 Session
@@ -215,7 +215,7 @@ Zur Veranschaulichung eine Job--Struktur in Python Dictionary Notation:
 .. code-block:: python
 
     job_structure = {
-        'url': None,          # Url die als nächstes von Downloadqueue geladen werden soll
+        'url': None,          # URL die als nächstes von Downloadqueue geladen werden soll
         'provider': None,     # Referenz auf Provider--Plugin
         'future': None,       # Referenz auf Future Objekt bei async. Ausführung
         'response': None,     # Ergebnis des Downloads, Http Response
@@ -284,10 +284,8 @@ Downloadqueue
 ~~~~~~~~~~~~~
 
 Die Downloadqueue ist für den eigentlichen Download der Daten zuständig. Sie
-arbeitet mit o.g. Job-Strukturen. Die Provider--Plugins müssen so keine eigene
-Downloadqueue implementieren. Durch eine zentrale Downloadqueue bleibt die
-Kontrolle über den Download der Daten bei libhugin selbst und nicht bei den
-Plugins.
+arbeitet mit den oben genannten Job-Strukturen. Die Provider--Plugins müssen so
+keine eigene Downloadqueue implementieren.
 
 ``push(job)``: Fügt einen `Job` der Downloadqueue hinzu.
 
@@ -298,20 +296,23 @@ Plugins.
 GenreNormalize
 ~~~~~~~~~~~~~~
 
+
 GenreNormalize kann von den Provider--Plugins verwendet werden um das Genre zu
 normalisieren. Hierzu müssen die Provider eine Genre--Mapping--Datei erstellen.
-Für mehr Informationen siehe API :cite:`movieprovider`.
+Für mehr Informationen siehe auch API :cite:`movieprovider`.
 
-``normalize_genre(genre)``: Normalisiert ein Genre Anhand einer festgelegten
+``normalize_genre(genre)``: Normalisiert ein Genre anhand einer festgelegten
 Lookup--Table.
 
 ``normalize_genre_list(genrelist)``: Normalisiert eine Liste aus Genres wie
 ``normalize_genre()``.
 
+Die Problematik der Genre--Normalisierung ist Bestandteil der Bachelorarbeit.
+
 PluginHandler
 ~~~~~~~~~~~~~
 
-Das Pluginsystem wurde mit Hilfe der Yapsy--Library (siehe :cite:`yapsy`)
+Das Pluginsystem wurde mit Hilfe der Yapsy--Bibliothek (siehe :cite:`yapsy`)
 umgesetzt. Es bietet folgende Schnittstellen nach außen:
 
 ``activate_plugin_by_category(category)``: Aktiviert Plugins einer bestimmten
@@ -328,12 +329,11 @@ Kategorie zurück.
 ist ansonsten ``False``.
 
 
-
 libhugin harvest Plugininterface
 --------------------------------
 
-Libhugin harvest bietet für jeden Plugintyp eine bestimmte Schnittstellen an,
-die vom jeweiligen Plugintyp implementiert werden müssen.
+Libhugin harvest bietet für jeden Plugintyp eine bestimmte Schnittstelle an,
+die vom jeweiligen Plugintyp implementiert werden muss.
 
 .. _fig-harvest-plulgin-interface:
 
@@ -344,10 +344,12 @@ die vom jeweiligen Plugintyp implementiert werden müssen.
 
     libhugin harvest plugins interface
 
+
 Provider--Plugins
 ~~~~~~~~~~~~~~~~~
 
-Diese Plugins haben die Möglichkeiten von den folgenden Oberklassen abzuleiten:
+Diese Plugins haben die Möglichkeiten von den folgenden Oberklassen abzuleiten,
+Mehrfachableitung ist unter Python möglich:
 
 **IMovieProvider**: Plugins die textuelle Metadaten für Filme beschaffen.
 
@@ -358,28 +360,28 @@ Diese Plugins haben die Möglichkeiten von den folgenden Oberklassen abzuleiten:
 **IPersonPictureProvider**: Plugins die grafische Metadaten für Personen
 beschaffen.
 
-**ITVShowProvider**:Plugins die textuelle Metadaten für Serien beschaffen.
+**ITVShowProvider**: Plugins die textuelle Metadaten für Serien beschaffen.
 
 **ITVShowPictureProvider**:Plugins die textuelle Metadaten für Serien
 beschaffen.
 
 Jedes konkrete Provider--Plugin muss folgende Methoden implementieren:
 
-``build_url(search_params)``: Diese Methode bekommt die Suchparamenter übergeben
-und baut aus diesen die Such--URL zusammen.
+``build_url(search_params)``: Diese Methode bekommt die Such--Parameter
+übergeben und baut aus diesen die Such--URL zusammen.
+Für weitere Informationen siehe auch API :cite:`buildurl`.
 
 ``parse_response(response, search_params)``: Diese Methode bekommt die
-HTTP-Response zu der vorher von ``build_url(search_params)`` erstellten Anfrage--URL. Die
-Methode ist für das *parsen* der Response zuständig. Sie gibt entweder eine neue
-URL zurück die angefordert werden soll, oder befüllt das *result_dictionary* und
-gibt dieses zurück.
+HTTP-Response zu der vorher von ``build_url(search_params)`` erstellten
+Anfrage--URL. Die Methode ist für das extrahieren der Attribute aus dem Response
+zuständig. Sie gibt entweder eine neue URL zurück die angefordert werden soll,
+oder befüllt das *result_dictionary* und gibt dieses zurück. Weitere
+Für weitere Informationen siehe auch API :cite:`parseresponse`.
 
 ``supported_attrs()``
 Diese Methode gibt eine Liste mit Attributen zurück die vom Provider befüllt
 werden.
 
-Für weitere Informationen zur Schnittstellenspezifikation des Plugin--Providers
-siehe libhugin Dokumentation.
 
 Postprocessing-- und Converter--Plugins
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -395,10 +397,11 @@ manipuliert dieses nach bestimmten Kriterien oder gibt eine neue Liste mit
 **IPostProcesssing**: Plugins die als OutputConverter--Plugins fungieren.
 
 ``convert()``: Diese Methode bekommt ein ,,Result--Objekt'' übergeben und gibt
-die Stringrepräsentation von diesem in einem spezifischen Format wieder.
+die String--Repräsentation von diesem in einem spezifischen Metadatenformat
+wieder.
 
 
-Libhugin analyze
+libhugin analyze
 ----------------
 
 .. _fig-klassenuebersicht-analyze:
@@ -420,10 +423,8 @@ libhugin harvest Session die API bereit.
 
 ``add(metadata_file, helper)``: Diese Methode dient zum *importieren* externer
 Metadaten. Sie erwartet eine Datei mit Metadaten und als Callback--Funktion eine
-*Helferfunktion* welche weiss wie die Metadaten zu extrahieren sind.
-
-``analyze_raw(plugin, attr, data)``: Wrapper Methode, welche es erlaubt die
-Analyzerplugins auf *externen* Daten auszuführen.
+*Helferfunktion* (siehe :ref:`helperfunc`) welche weiß wie die Metadaten zu
+extrahieren sind.
 
 ``analyzer_plugins(pluginname=None)``: Liefert eine Liste mit den vorhandenen
 Analyzer--Plugins zurück. Bei Angabe eines bestimmten Pluginnamen, wird dieses
@@ -435,8 +436,11 @@ Plugin direkt zurückgeliefert.
 ``comperator_plugins(pluginname=None)``: Analog zu
 ``analyzer_plugins(pluginname=None)``.
 
-Folgende weitere Methoden erlauben es die Plugins vom Analyzer auf *externen*
-Daten auszuführen:
+Folgende weitere Methoden erlauben es die libhugin analyze Plugins vom *externe*
+Daten anzuwenden:
+
+``analyze_raw(plugin, attr, data)``: Wrapper Methode, welche es erlaubt die
+Analyzer--Plugins auf *externen* Daten auszuführen.
 
 ``modify_raw(plugin, attr, data)``: Analog zu ``analyze_raw(plugin, attr, data)``.
 
@@ -444,11 +448,16 @@ Daten auszuführen:
 
 ``get_database()``: Liefert die interne Datenbank (Python Dictionary) zurück.
 
-Für die interne Datenbank der Session:
+
+Für das Öffnen und Schließen der interne Datenbank der Session gibt es folgende
+zwei Methoden:
 
 ``databse_open(databasename)``: Lädt die angegebene Datenbank.
 ``databse_close()``: Schließt und schreibt die aktuelle Datenbank persistent auf
 die Festplatte.
+
+
+.. _helperfunc:
 
 **Helferfunktion**
 
@@ -459,8 +468,9 @@ Die Helferfunktion hat folgende Schnittstelle:
 Der ``attr_mask`` Parameter gibt die Abbildungen der Attribute zwischen der
 *externen* und *internen* Datenbank an.
 
-Wir nehmen an unsere Metadaten sind im *Json--Format* gespeichert, bei einlesen
-der *Json--Datei* wird diese zu einer Hashmap konvertiert die wie folgt aussieht.
+Wir nehmen an unsere Metadaten sind im *Json--Format* gespeichert, beim Einlesen
+der *Json--Datei* wird diese zu einer :term:`Hashmap` konvertiert die wie folgt
+aussieht.
 
 .. code-block:: bash
 
@@ -484,7 +494,7 @@ verdeutlicht:
         # title = Attributname unter dem der Titel
         # in der internen Datenbank abgelegt werden soll
         #
-        # folgenden zwei Attribute analog hierzu
+        # folgenden zwei Attribute analog zum Filmtitel
 
         'Erscheinungsjahr' = 'year',
         'Inhaltsbeschreibung': 'plot'
@@ -502,10 +512,10 @@ verdeutlicht:
 Movie
 ~~~~~
 
-Die Movie Klasse repräsentiert ein Metadatenobjekt welches in der internen
+Die Movie Klasse repräsentiert ein ,,Metadaten--Objekt" welches in der internen
 Datenbank zur Analyze gespeichert wird. Es enthält folgende Attribute:
 
-    * ,,key'', über den die Metadaten eindeutig zugeordnet werden können
+    * ,,key", über den die Metadaten eindeutig zugeordnet werden können
     * Pfad zur Metadatendatei
     * Hashmap mit den Metadaten
     * Hashmap mit Analyzer--Analysedaten
