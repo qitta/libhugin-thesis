@@ -515,7 +515,7 @@ Movie
 Die Movie Klasse repräsentiert ein ,,Metadaten--Objekt" welches in der internen
 Datenbank zur Analyze gespeichert wird. Es enthält folgende Attribute:
 
-    * ,,key", über den die Metadaten eindeutig zugeordnet werden können
+    * Schlüssel, über den die Metadaten eindeutig zugeordnet werden können
     * Pfad zur Metadatendatei
     * Hashmap mit den Metadaten
     * Hashmap mit Analyzer--Analysedaten
@@ -525,8 +525,8 @@ Datenbank zur Analyze gespeichert wird. Es enthält folgende Attribute:
 libhugin analyze Plugininterface
 --------------------------------
 
-Libhugin analyze bietet für jeden Plugintyp eine bestimmte Schnittstellen an,
-die vom jeweiligen Plugintyp implementiert werden müssen.
+Libhugin analyze bietet für jeden Plugintyp eine bestimmte Schnittstelle an,
+die vom jeweiligen Plugintyp implementiert werden muss.
 
 .. _fig-analyze-plulgin-interface:
 
@@ -538,12 +538,55 @@ die vom jeweiligen Plugintyp implementiert werden müssen.
     libhugin analyze plugins interface
 
 
+Modifier--Plugins
+~~~~~~~~~~~~~~~~~
+
+Diese Plugins haben die Möglichkeiten von den folgenden Oberklassen abzuleiten,
+Mehrfachableitung ist unter Python möglich:
+
+**IModifier**: Plugins die die Metadaten direkt modifizieren.
+
+
+    modify(self, movie, kwargs):
+    modify_all(self, database, kwargs):
+    parameters(self):
+
+**IAnalyzer**: Plugins die für die Analyse der Metadaten zuständig sind. Diese
+Plugins schreiben ihre Analysedaten in das ,,Analyzerdata" Attribut des
+Movie--Objekts.
+
+    analyze(self, movie, kwargs)
+
+**IComparator**: Plugins die Daten beispielsweise vergleichen können für
+statistische Zwecke.
+
+
+
+
+    analyze_all(self, database, kwargs)
+    parameters(self)
+
+
+
+    def compare(self, movie_a, movie_b, kwargs):
+        pass
+
+    def compare_all(self, database, kwargs):
+        pass
+
+    def parameters(self):
+        return {}
+
+**IMovieProvider**: Plugins die textuelle Metadaten für Filme beschaffen.
+
+**IMoviePictureProvider**: Plugins die grafische Metadaten für Filme beschaffen.
+
 Library Dateistruktur
 =====================
 
-Die folgende Auflistung zeigt die die Ordnerstruktur des Projektes.
-Normalerweise enthält unter Python jeder Ordner eine *__init__.py--Datei* welche
-diesen Ordner dann als ,,Modul'' erscheinen lässt. Diese wurden wegen der
+Die folgende Auflistung zeigt die die Ordnerstruktur Bibliothek.
+Normalerweise enthält unter Python jeder Ordner eine `__init__.py--Datei` welche
+diesen Ordner dann als ,,Modul" erscheinen lässt. Diese wurden wegen der
 Übersichtlichkeit weggelassen.
 
 .. code-block:: python
