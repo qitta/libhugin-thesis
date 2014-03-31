@@ -1,4 +1,4 @@
-Bachelor Thesis for libmunin
+Bachelor Thesis for libhugin
 ============================
 
 Based on a (quite heavily) modified version of *sphinxtr*:
@@ -7,21 +7,6 @@ Based on a (quite heavily) modified version of *sphinxtr*:
 
 More details there.
 
-Output
-======
-
-Projektarbeit
--------------
-
-HTML
-~~~~
-
-http://sahib.github.com/libmunin-thesis/projekt/html/rst/index.html
-
-PDF
-~~~
-
-https://dl.dropboxusercontent.com/u/12859833/projektarbeit.pdf
 
 Installation
 ============
@@ -48,3 +33,12 @@ For configuring name, title and stuff, look into these files:
 - ``conf.py`` (Projectname, Author, Language (currently ``ngerman``))
 - ``rst/index.rst`` (HTML Entydocument)
 - ``rst/index_tex.rst`` (LaTeX Entrydocument)
+
+Autobuild
+=========
+
+To do a autobuild on every save just run the convenience script:
+
+.. code-block:: bash
+
+   $ ./autobuild.sh
