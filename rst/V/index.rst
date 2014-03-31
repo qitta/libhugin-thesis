@@ -546,40 +546,42 @@ Mehrfachableitung ist unter Python möglich:
 
 **IModifier**: Plugins die die Metadaten direkt modifizieren.
 
+``modify(self, movie, kwargs)``: Die Standardmethode für Modifierplugins. Die
+Methode bekommt ein Movie Objekt und optional Keyword--Argumente übergeben. Die
+nötigen Keyword--Argumente können über die ``parameters()``--Methode erfragt
+werden.
 
-    modify(self, movie, kwargs):
-    modify_all(self, database, kwargs):
-    parameters(self):
+``modify_all(self, database, kwargs)``: Analog zur ``modify(movie,
+kwagrs)``--Methode. Diese Methode arbeitet jedoch nicht mit nur einem Movie
+Objekt sondern mit der ganzen ,,Datenbank".
+
+``parameters(self)``: Die Methode listet die Keyword--Argumente für ein
+Modifierplugin.
 
 **IAnalyzer**: Plugins die für die Analyse der Metadaten zuständig sind. Diese
 Plugins schreiben ihre Analysedaten in das ,,Analyzerdata" Attribut des
 Movie--Objekts.
 
-    analyze(self, movie, kwargs)
+``analyze(self, movie, kwargs)``: Die Standardmethode für Analyzerplugins. Die
+Anwendung hier ist analog den Modifierplugins.
+
+``analyze_all(self, database, kwargs)``: Analog Modifierplugins.
+
+``parameters(self)``: Analog Modifierplugins.
 
 **IComparator**: Plugins die Daten beispielsweise vergleichen können für
 statistische Zwecke.
 
+``compare(self, movie_a, movie_b, kwargs)``: Die Standardmethode für
+Comperatorplugins. Diese erwartet als Parameter zwei Movie Objekte die
+vergleichen werden sollen. Die Keyword--Argumente können analog den Modifier--
+und Analyzerplugins verwendet werden.
 
+``compare_all(self, database, kwargs)``: Diese Methode vergleicht alle Movie
+Objekt Kombinationen aus der Datenbank.
 
+``parameters(self)``: Analog Modifier-- und Analyzerplugins.
 
-    analyze_all(self, database, kwargs)
-    parameters(self)
-
-
-
-    def compare(self, movie_a, movie_b, kwargs):
-        pass
-
-    def compare_all(self, database, kwargs):
-        pass
-
-    def parameters(self):
-        return {}
-
-**IMovieProvider**: Plugins die textuelle Metadaten für Filme beschaffen.
-
-**IMoviePictureProvider**: Plugins die grafische Metadaten für Filme beschaffen.
 
 Library Dateistruktur
 =====================
