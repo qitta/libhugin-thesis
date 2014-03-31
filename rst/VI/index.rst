@@ -2,15 +2,15 @@
 Implementierung
 ###############
 
-Im folgenden soll die API und die implementierten Plugins vorgestellt werden.
+Im Folgenden soll die API und die implementierten Plugins vorgestellt werden.
 
 libhugin harvest API
 ====================
 
 Die API wurde sehr einfach gehalten und ermöglicht dadurch dem Benutzer ein
-schnelles Einarbeiten. Folgendes Beispiel, in der interaktiven Python--Shell
-,zeigt die typische BenuSuccess!  Wrote 50 pagestzung der API
-Success!  Wrote 50 pages
+schnelles Einarbeiten. Folgendes Beispiel, in der interaktiven Python--Shell,
+zeigt die typische Benutzung der API:
+
 .. code-block:: python
 
    >>> from hugin.harvest.session import Session
@@ -23,8 +23,7 @@ Success!  Wrote 50 pages
    <OFDBMovie <movie> :  Prometheus - Dunkle Zeichen (2012)>,
    <OMDBMovie <movie> : Prometheus (2012)>]
 
-Für weitere Beispiele siehe Angang X. Eine ausführliche API Dokumentation zum
-Projekt ist Online unter http://libhugin.rtfd.org zu finden.
+Für weitere Beispiele siehe offizielle libhugin harvest API :cite:`huginapi`.
 
 Libhugin harvest Plugins
 ------------------------
@@ -32,89 +31,73 @@ Libhugin harvest Plugins
 Provider--Plugins
 ~~~~~~~~~~~~~~~~~
 
-The Movie Database
-""""""""""""""""""
+Libhugin harvest hat aktuell verschiedene Provider implementiert, siehe Tabelle
+:num:`table-provideroverview`. Ein paar der Provider, wie Filmstarts.de,
+Videobuster.de lassen sich noch weiter ausbauen, diese unterstützen momentan nur
+textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
 
-Die TMDb ist im Moment der bevorzugte Metadaten--Provider. Für diesen wurde ein
-Movie und ein Person Plugin implementiert. Er unterstützt neben der textuellen
-Suche auch die Suche nach Bildmaterial. Der Provider wird über die offizielle
-API (siehe Angang X) angesprochen.
+.. figtable::
+    :label: table-provideroverview
+    :caption: Übersicht implementierte Provider und Funktionalität.
+    :alt: Übersicht implementierte Provider und Funktionalität.
 
-    * **TMDBMovie**, Metadaten: textuell, grafisch, multilingual
-    * **TMDBPerson**, Metadaten: textuell, grafisch, multilingual
-
-Open Movie Database
-"""""""""""""""""""
-
-Die Open Movie Database API (siehe OMDB) bietet hauptsächlich textuelle
-englischsprache Metadaten. Hier wurde auch ein Film und Personen Provider
-implementiert.
-
-    * **OMDBMovie**, Metadaten: textuell, englischsprachig
-    * **OMDBPerson**, Metadaten: textutell, englischsprachig
-
-Online Filmdatenbank
-""""""""""""""""""""
-
-Die Online Filmdatenbank ist eine deutschsprachige Plattform die ebenso eine API
-anbietet. Hier wurde ein Movie Provider implementiert.
-
-    * **OFBDMovie**, Metadaten: textuell, deutschsprachig
-
-Videobuster.de
-""""""""""""""
-
-Videobuster ist eine deutschsprachige BluRay und DVD Verleihplattform. Sie
-bietet leider keine API. Der hier implementierte Provider muss die Daten manuell
-extrahieren. Die Plattform eignet sich gut um seine digitalisierte
-BluRay/DVD--Sammlung mit Metadaten zu versorgen. Hier wurde ein Movie Provider
-implementiert.
-
-    * **VIDEOBUSTERMovie**, Metadaten: textuell, deutschsprachig
-
-Filmstarts.de
-"""""""""""""
-
-Filmstarts ist eine *gute* deutsprachige Filmeplattform mit Review, Kritiken und
-allgemeinen Filminformationen.  Die Seite bietet wie Videobuster keine API. Hier
-wurde ein Movie Provider implementiert.
-
-    * **FILMSTARTSMovie**, Metadaten: textuell, deutschsprachig
-
-
-*Die beiden Plattformen Filmstarts und Videobuster bieten auch Personen Metadaten
-und grafische Metadaten an, diese müssen jedoch noch implementiert werden.*
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    |                             | TMDb               | OFDb          | Videobuster.de | Filmstarts.de | OMDb     |
+    +=============================+====================+===============+================+===============+==========+
+    | Priorität                   | 90                 | 80            | 70             | 65            | 65       |
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    | Providerart                 | movie, person      | movie, person | movie          | movie         | movie    |
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    | Metadaten                   | textuell, grafisch | textuell      | textuell       | textuell      | textuell |
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    | Sprache                     | multilingual       | deutsch       | deutsch        | deutsch       | englisch |
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    | Unschärfesuche Onlinequelle | nein               | nein          | nein           | nein          | nein     |
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    | Unschärfesuche libhugin     | ja                 | ja            | ja             | ja            | ja       |
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    | IMDB--Suche Onlinequelle    | ja                 | ja            | nein           | nein          | ja       |
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    | IMDB--Suche über libhugin   | ja                 | ja            | ja             | ja            | ja       |
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    | API verfügbar               | ja                 | ja            | nein           | nein          | ja       |
+    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
 
 
 Postprocessing Plugins
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Die Postprocessing Plugins beim libgugin harvest Teil sind für die direkte
-,,Nachbearbeitung'' der Daten gedacht. Über diese sollen sich beispielsweise
-,,Provider--Kombinationen'' realisieren lassen oder eine bestimmte
-Foarmatierung/Encoding bestimmt werden.
+,,Nachbearbeitung" der Daten gedacht.
 
 Composer
 """"""""
 
-Das Composer Plugin ist das momentane Kernstück der Postprocessing Metadaten. Es
+Das Composer Plugin ist das momentane Kernstück der Postprocessing Plugins. Es
 erlaubt dem Benutzer sich ein nach seinen wünschen zusammengesetztes Ergebnis zu
-,,kompoinieren''. Der Benutzer kann über das angeben eine ,,Pofilemaske''
+,,komponieren". Der Benutzer kann über das Angeben eine ,,Pofilmaske"
 bestimmten wie sich die Metadaten zusammensetzen sollen. Hier kann er
 beispielsweise angeben dass er den Filmtitel, Jahr, Cover vom Provider TMDb
 möchte, die Inhaltsbeschreibung jedoch immer vom Filmstarts Provider. Hier
-besteht auch die Möglichkeit eines ,,Fallbacks'', falls Filmstarts keine
+besteht auch die Möglichkeit eines ,,Fallbacks", falls Filmstarts keine
 Inhaltsbeschreibung hat, dann kann auch auf andere Provider zurückgegriffen
-werden. Die Beispiele im Angang YYY sowie die Beispiele der Demoanwendung Geri
-(YYY2) zeigen den Einsatz des Plugins.
+werden.
+
+Beispiel für eine Profilmaske die TMDb als Standardprovider nimmt und die
+Inhaltsbeschreibung vom OMDb Provider nimmt, falls OMDb Inhaltsbeschreibung
+forhanden dann erfolgt ein ,,Fallback" auf den OMDb Provider.
+
+.. code-block:: bash
+
+    $ echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie', 'omdbmovie']}" > profilemask
 
 ResultTrimmer
 """""""""""""
 
-Der Resulttrimmer ist vergleichsweise eine einfaches Plugin, welches dafür
+Der Resulttrimmer ist vergleichsweise ein einfaches Plugin, welches dafür
 zuständig ist vorangehende und nachziehende Leerzeichen bei den Metadaten zu
-entfernen. Das Plugin fürht so gesehen nur eine ,,Säuberung'' durch, diese muss
-nicht vom Provider Plugin durchgeführt werden.
+entfernen. Das Plugin führt eine ,,Säuberung'' durch, diese muss nicht vom
+Provider Plugin durchgeführt werden.
 
 
 OutputConverter Plugins
