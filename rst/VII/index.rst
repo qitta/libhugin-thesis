@@ -477,8 +477,8 @@ libhugin--Proxy
 
 Da die direkte Integration in das XBMC aufgrund der begrenzten Zeit der
 Projektarbeit nicht möglich ist, wurde hier der Ansatz eines ,,Proxy--Dienstes"
-angewandt. Für Libhugin wurde mittels dem Microwebframework Flask ein
-*minimalier* :term:`RESTful` Webservice geschrieben (siehe
+angewandt. Für Libhugin wurde mittels dem Microwebframework Flask (siehe
+:cite:`flask`) ein *minimalier* :term:`RESTful` Webservice geschrieben (siehe
 :ref:`ref-flaskproxy`), welcher über eine eigens definierte API (siehe
 :ref:`ref-apidef`) Metadaten an das XBMC liefert.
 
