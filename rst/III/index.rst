@@ -149,7 +149,7 @@ Hier wird je nach Abspiel- oder Verwaltungssoftware jeweils ein anderes Format
 verwendet.
 
 Das Xbox Media Center speichert seine Metadaten beispielsweise intern in einer
-Datenbank und schreibt diese beim Exportieren in XML--Dateien [#f0]_, das sog.
+Datenbank und schreibt diese beim Exportieren in :term:`XML`--Dateien, das sog.
 nfo-Format raus (siehe :cite:`xbmcnfo`). Nutzt man eine andere Abspielsoftware
 wie das Windows Media Center, so werden die Metadaten im dvdxml-Format, auch ein
 *XML* basiertes Format, abgespeichert (siehe :cite:`dvdxml`). Hier gibt es noch
@@ -354,6 +354,8 @@ nach seinen Vorlieben aussuchen. Durch die Redundanzen ist eine eindeutige
 Gruppierung nicht mehr möglich, es herrscht in der Datenbank ein mehr oder
 minder chaotischer Zustand.
 
+.. _ref-probleme-metadatensuche:
+
 Probleme bei der Metadatensuche
 -------------------------------
 
@@ -426,8 +428,8 @@ genannten Probleme abzumildern oder zu beheben.
 
 Es soll *kein neuer* Movie Metadaten Manager entwickelt werden. Die Idee ist
 es dem Entwickler bzw. Endbenutzer einen *modularen Werkzeugbaukasten* in Form
-einer pluginbasierten Bibliothek über eine einheitliche Schnittstelle bereitzustellen, welcher
-an die persönlichen Bedürfnisse anpassbar ist.
+einer pluginbasierten Bibliothek über eine einheitliche Schnittstelle
+bereitzustellen, welcher an die persönlichen Bedürfnisse anpassbar ist.
 
 Des Weiteren soll die zusätzliche Funktionalität der Datenanalyse,
 beispielsweise basierend auf Data-Mining Algorithmen, möglich sein. Das
@@ -436,6 +438,5 @@ Managern, auf der *automatisierten* Verarbeitung großer Datenmengen.
 
 .. rubric:: Footnotes
 
-.. [#f0] Extensible Markup Language (XML), ist eine Auszeichnungssprache zur hierarchisch strukturierten Darstellung von Daten in Textdateien.
 .. [#f1] Bezeichnung für Filme, die von Produktionsfirmen finanziert werden,
          welche nicht zu den großen US Studios gehören.

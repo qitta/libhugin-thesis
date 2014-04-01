@@ -2,25 +2,22 @@
 Libhugin Einsatzmöglichkeiten in der Praxis
 ###########################################
 
-Im Folgenden werden die beiden CLI--Demoanwendungen Geri und Freki vorgestellt,
-sowie weitere Einsatzmöglichkeiten.
-
 
 *Das vorgestellten CLI-Tools stellen nur einen kleinen Ausschnit der Fähigkeiten
-der Library dar, die Library selbst ist um jede denkbare Funktionalität
-erweiterbar.*
+der Bibliothek dar, die Bibliothek selbst ist um fast jede denkbare
+Funktionalität erweiterbar.*
 
 Geri
 ====
 
 Geri ist eine CLI--Anwendung die zu Demozwecken aber auch als Testwerkzeug für
-die libhugin harvest Library verwendet werden kann.
+die libhugin harvest Bibliothek verwendet werden kann.
 
 Übersicht der Optionen
 ----------------------
 
-Ein Überblick über die Funktionalität und Möglichen Optionen zeigt die Hilfe des
-Tools:
+Ein Überblick über die Funktionalität und die möglichen Optionen zeigt die Hilfe
+des Tools:
 
 .. code-block:: bash
 
@@ -57,25 +54,25 @@ Tools:
       -h, --help                        Show this screen.
 
 
-Das Tool eignet sich neben dem Einsatz als Testwerkzeug für Library und Plugins
+Das Tool eignet sich neben dem Einsatz als Testwerkzeug für Bibliothek
 auch gut für Scripte und somit für automatische Verarbeitung *großer*
-Datenmengen.
+Datenmengen, siehe auch *Scripting Tasks* :ref:`ref-scripting-tasks`.
 
 
 Filmsuche
 ---------
 
-Ein Film kann über den Titel oder über die IMDBid gesucht werden. Hier gibt es
-die Möglichkeit auch bestimmten Provider, Converter, Sprache und Postproxessing
+Ein Film kann über den Titel oder über die *IMDB ID* gesucht werden. Hier gibt es
+die Möglichkeit auch bestimmten Provider, Converter, Sprache und Postprocessing
 Plugins anzugeben.
 
-Um das ,,Ausgabeformat'' zu konfigurieren gibt es im Geri--Ordner eine
-,,movie.mask'' und ,,person.mask'' Datei. Über diese Datei kann die Ausgabe
-formatiert werden. Die Syntax ist simpel, einfach das gewünschte Attribut in
-geschweiften klammern. Das ,,num''--Attribut gibt Geri noch die Möglichkeit die
-Resultate durch zu nummerieren.
+Um das Ausgabeformat zu konfigurieren gibt es im *Geri*--Ordner eine
+movie.mask-- und person.mask--Datei. Über diese Dateien kann das Ausgabeformat
+definiert werden. Die Syntax ist einfach. Um Attribute darzustellen, werden
+diese einfach in geschweifte Klammern geschrieben. Das *num*--Attribut gibt Geri
+noch die Möglichkeit die Resultate durch zu nummerieren.
 
-Definition einer Ausgabemaske für Filme
+Definition des Ausgabeformats für Filme
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
@@ -86,11 +83,11 @@ Definition einer Ausgabemaske für Filme
 Filmsuche
 ~~~~~~~~~
 
-Standard Suche nach Titel mit der Begrenzung auf fünf Ergebnisse:
+Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
 
 .. code-block:: bash
 
-   $geri -t "sin city" -a5
+   $geri -t "sin city" --amount=5
    1) Sin City (2005), IMDBid: tt0401792, Provider: TMDBMovie <picture, movie>
    Inhalt: Basin City, genannt Sin City, ist ein düsteres Metropolis, in dem nichts
    und niemand wirklich sicher ist, in dem die Gewalt allgegenwärtig ist [...]
@@ -111,25 +108,26 @@ Standard Suche nach Titel mit der Begrenzung auf fünf Ergebnisse:
    Inhalt: "Sin City" enthält drei lose verbundene und ineinander verschachtelt
    erzählte Episoden: Los geht es mit Hartigan (Bruce Willis) - einem Cop [...]
 
-Hier die Suche kann wie die Optionen zeigen feingranularer konfiguriert werden,
+Die Suche kann wie die Optionen zeigen feingranularer konfiguriert werden,
 was jedoch hier den Rahmen sprengen würde alle Optionen zu zeigen.
 
 Unschärfesuche
 ~~~~~~~~~~~~~~
 
-Ein nennenswertes Feature ist die Unschärfesuche. Die getesteten Tools haben
-immer ein Problem damit Filme zu finden wenn der Titel nicht exakt geschrieben
-ist. Das trifft auch in der Standardkonfiguration für libhugin zu, weil hier die
-Webservices auf die man zugreift exakte Suchnegriffe erwarten.
+Ein weiteres nennenswertes Feature ist die Unschärfesuche. Die getesteten Tools
+(siehe :ref:`ref-probleme-metadatensuche`) haben ein Problem damit Filme zu
+finden wenn der Titel nicht exakt geschrieben ist. Das trifft auch in der
+Standardkonfiguration für libhugin zu, weil hier die Onlinequellen, auf die
+zugegriffen wird, exakte Suchbegriffe erwarten.
 
 .. code-block:: bash
 
    # Findet keine Ergebnisse, weil hier ,,Matrix'' flasch geschreiben ist
-   gylfie -t "the marix" -a2
+   $ geri -t "the marix" --amount=2
 
    # Mit dem aktivierten ,,Predator-Mode'' findet libhugin providerübergreifend
    # den gesuchten Film
-   gylfie -t "the marix" -a2
+   $ geri -t "the marix" --amount=2
    1) Matrix (1999), IMDBid: tt0133093, Provider: TMDBMovie <movie, picture>
    Inhalt: Der Hacker Neo wird übers Internet von einer geheimnisvollen Untergrund-
    Organisation kontaktiert.  Der Kopf der Gruppe - der gesuchte Terrorist [...]
@@ -138,19 +136,20 @@ Webservices auf die man zugreift exakte Suchnegriffe erwarten.
    Inhalt: Was ist die Matrix?  Diese Frage quält den Hacker Neo seit Jahren.  Er
    führt ein Doppelleben - tagsüber ist er Thomas Anderson und arbeitet in [...]
 
+
 Suche über IMDBid
 ~~~~~~~~~~~~~~~~~
 
-Normalerweise kann nur über die IMDBid gesucht werden wenn es die jeweilige
-Plattform unterstützt. Deswegen funktioniert standardmäßig die Suche bei bei
-Providern wie Filmstarts oder Videobuster nicht.
-
+Normalerweise kann nur über die *IMDB ID* gesucht werden wenn es die jeweilige
+Onlinequelle unterstützt. Deswegen funktioniert standardmäßig die Suche bei bei
+Providern wie Filmstarts oder Videobuster nicht (siehe :num:`table-movietools`).
+libhugin schafft hier Abhilfe mit einer providerübergreifenden *IMDB ID*--Suche.
 
 .. code-block:: bash
 
    # Findet keine Ergebnisse, weil Anbieter die Suche über IMDBid nicht
    # unterstützt
-   $geri -i "tt0133093" -p videobustermovie -a 1
+   $geri -i "tt0133093" -p videobustermovie
 
    # Mit dem ,,Lookup-Mode'' funktioniert auch die Suche über IMDBid bei
    # Anbietern die da normalerweise nicht unterstützen
@@ -161,6 +160,7 @@ Providern wie Filmstarts oder Videobuster nicht.
    geheimnisvollen Untergrund-Organisation kontaktiert.  Der Kopf der [...]
 
    [...]
+
 
 Einsatz von Postprocessing Plugins
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -195,14 +195,14 @@ besitzt die Fähigkeit das normalisierte Genre mehrerer Provider zusammenzuführ
    Inhalt: Die 18jährige Helen (Carla Juri) hat schon seit ihrer Kindheit
    Hämorrhoiden, hat diesen Fakt aber immer verheimlicht, da sie glaubte,
 
-Das dritte Resultat in der Ausgabe wurde vom Provider ,,Composer'' generiert,
-das ist das komponierte Ergebnis. Hier wurde wie über die Profilemaske
-definiert der TMDB--Provider als Standard genommen und die Inahaltsangabe durch
-die Inhaltsangabe des OFDB--Providers ausgetauscht.
+Das dritte Resultat in der Ausgabe wurde vom Provider ,,Composer" generiert,
+das ist das komponierte Ergebnis. Hier wurde als Profilmaske
+der TMDb--Provider als Standard genommen und der Provider für die Inhaltsangabe
+auf OFDb gesetzt.
 
-Des weiteren wurde das normalisierte Genre "verschmolzen". Dieses Feature macht
-das gepflegte Genre in unseren Metadaten feingranularer und lässt vielleicht
-auch besser vermuten ob ein Film für Kinder geeignet ist oder nicht.
+Das normalisierte Genre wurde verschmolzen. Dieses Feature macht das gepflegte
+Genre in unseren Metadaten feingranularer und lässt im Beispiel auch besser
+vermuten ob ein Film für Kinder geeignet ist oder nicht.
 
 
 .. _ref-freki:
@@ -210,18 +210,19 @@ auch besser vermuten ob ein Film für Kinder geeignet ist oder nicht.
 Freki
 =====
 
-Freki ist für Demonstrationszwecke und das Testen der libhugin analyze Library
-entwickelt worden.
+Freki ist für Demonstrationszwecke und das Testen der libhugin analyze
+Bibliothek entwickelt worden.
 
 Übersicht der Optionen
 ----------------------
 
-Folgend zum Überblick der Funktionalität die Hilfe des Kommandozeilentools
-Freki:
+Folgend zum Überblick der Funktionalität die Hilfe des Tools Freki:
 
 .. code-block:: bash
 
-   $python tools/freki
+   $python freki -h
+   Libhugin analyzer commandline testtool.
+
    Usage:
      freki create <database> <datapath>
      freki list <database>
@@ -234,35 +235,38 @@ Freki:
      freki -h | --help
      freki --version
 
-Freki erlaubt dem Benutzer eine ,,Datenbank'' aus externen Metadaten zu
-generieren. Auf dieser Datenbank kann man folgend mit den Analyzern und
-Modifiern die libhugin hier anbietet arbeiten und beispielsweise seine Metadaten
-zu säubern. Ist man mit dem Gesamtergebnis zufrieden so kann die Datenbank
-wieder ,,exportiert'' werden. Es werden die ,,neuen'' Metadaten in die
-entsprechenden Metadatenfiles geschreiben.
+   Options:
+     -v, --version                     Show version.
+     -h, --help                        Show this screen.
 
+
+Freki erlaubt dem Benutzer eine *Datenbank* aus externen Metadaten zu
+generieren. Auf dieser Datenbank kann man folgend mit den Analyzer--, Modifier--
+und Composer--Plugins, die libhugin anbietet, arbeiten um beispielsweise seine
+Metadaten zu säubern. Nach der Bearbeitung kann können die *neuen* Metadaten
+in die externen Metadaten--Dateien exportiert werden.
 
 Folgend eine kurze Demonstration des CLI--Tools.
 
 Erstellen einer Datenbank
 -------------------------
 
-Hierzu wird die Helferfunktion (siehe Anhang)
-verwendet. Im Odner ,,movies'' befinden sich zwei Filme die mit dem Xbox Meda
-Center getaggt wurden.
+Hierzu wird die Helferfunktion (siehe Anhang :ref:`ref-attachment-a`) verwendet.
+Im Ordner *movies* befinden sich zwei Filme die mit dem Xbox Media Center
+mit Metadaten versorgt wurden.
 
 .. code-block:: bash
 
     $freki create mydb.db ./movies
 
 
-
 Datenbank anzeigen
 ------------------
 
-Listen des Inhalts der erstellten Datenbank. Der Plot wurde wegen der
-Übersichtlichkeit gekürzt. Wie die Ausgabe zeigt wurden die Attribute title,
-originaltitle, genre, director, year und plot eingelesen.
+Mit *list* kann der Inhalt der Datenbank angezeigt werden. Die
+Inhaltsbeschreibung wurde hier wegen der Übersichtlichkeit gekürzt. Wie die Ausgabe
+zeigt wurden die Attribute title, originaltitle, genre, director, year und plot
+eingelesen.
 
 .. code-block:: bash
 
@@ -286,6 +290,7 @@ originaltitle, genre, director, year und plot eingelesen.
      [...]',
      'title': 'Alien 3',
      'year': '1992'}
+
 
 Analyzer--Data anzeigen
 -----------------------
@@ -335,21 +340,25 @@ Anzeigen der vorhandenen Modifier:
 Anwenden von Analyzern
 ----------------------
 
+Anwendung des *plotlang* Plugins auf der *mydb.db* Datenbank:
+
 .. code-block:: bash
 
-    # Anwenden des plotlang plugins auf der mydb.db Datenbank
     $freki analyze plugin plotlang mydb.db
 
-    # Betrachten der Analyzer-Daten nach der Analyse
-    $python tools/freki list mydb.db analyzerdata
+Betrachten der Analyzerdaten nach der Analyse:
+
+.. code-block:: bash
+    $python freki list mydb.db analyzerdata
     0) All Good Things (2010)
     {'PlotLang': 'es'}
     1) Alien³ (1992)
     {'PlotLang': 'es'}
 
-Wie man nun sieht, wurde hier die verwendete Sprache der Plots analysiert. Das
-Plugin hat sich in das Analyzerdata--Array mit seinem ermittelten Ergebnis
-reingeschreiben.
+Wie man sieht, wurde hier die verwendete Sprache der Plots analysiert. Das
+Plugin hat sich in das Analysedaten--Array mit seinem ermittelten Ergebnis
+eingetragen. In unserem Beispiel *es (espanol)* für eine spanische
+Inhaltsbeschreibung.
 
 
 .. _ref-plotchange-freki:
@@ -357,14 +366,16 @@ reingeschreiben.
 Anwenden von Modifiern
 ----------------------
 
+Anwendung des PlotChange Modifier-Plugins um die Sprache Inhaltsbeschreibung von
+spanisch auf deutsch zu ändern:
+
 .. code-block:: bash
 
-    # Anwenden des PlotChange Modifier-Plugins um
-    # die Sprache des Plots auf deutsch zu ändern
     $freki modify plugin plotchange pluginattrs attr_name='plot',change_to=de mydb.db
 
+Betrachten der Metadaten nach Einsatz des Plugins:
 
-    # Betrachten der Metadaten nach Einsatz des Plugins
+.. code-block:: bash
     $freki list mydb.db
     0) All Good Things (2010)
     {'director': 'Andrew Jarecki',
@@ -384,35 +395,41 @@ Anwenden von Modifiern
      'title': 'Alien 3',
      'year': '1992'}
 
-
-Wie in dem Beispiel zu sehen ist wurde der Plot bei den Filme von der spanischen
-Version auf eine deutsche Version geändert.
+Wie in dem Beispiel zu sehen ist wurde die Inhaltsbeschreibung bei den Filme von
+der spanischen Version auf eine deutsche Version geändert.
 
 Exportieren der Daten
 ---------------------
 
-Die modifzierten Metadaten können nun ins Produktivsystem zurückgespielt werden.
-Dies geht bei Freki über die export Funktion, hier wieder wieder die o.g.
-Helperfunktion verwendet.
+Die modifizierten Metadaten können nun ins Produktivsystem zurück gespielt werden.
+Dies geht bei Freki über die *export* Funktion, hier wird wieder im Hintergrund
+die Helferfunktion (siehe Anhang :ref:`ref-attachment-a`) verwendet.
+
+Betrachten der der Inhaltsbeschreibung der *nfo*-Dateien vor dem export (gekürzt):
 
 .. code-block:: bash
 
-    #Betrachten der des Plots der nfo-Dateien vor dem export (gekürzt)
     $cat movies/All\ Good\ Things\ \(2010\)/movie.nfo | grep plot
     <plot>Historia ambientada en los años 80 y centrada en un heredero de una
     dinastía de Nueva York que se enamora de una chica de otra clase social. [...]</plot>
+
+Export der modifizierten Datenbank:
+
+.. code-block:: bash
 
     $freki export mydb.db
     ./movies/All Good Things (2010)/movie.nfo
     ./movies/Alien³ (1992)/movie.nfo
 
-    #Betrachten der des Plots der nfo-Dateien nach dem export (gekürzt)
+Betrachten der Inhaltsbeschreibung der *nfo*-Dateien nach dem export (gekürzt):
+
+.. code-block:: bash
     $ cat movies/All\ Good\ Things\ \(2010\)/movie.nfo | grep plot
     <plot>David Marks, Sohn einer reichen New Yorker Familie, verliebt sich in
     die junge Katie McCarthy, die nicht zu seinen Kreisen gehört. [...]</plot>
 
-Betrachtet man nun die nfo--Dateien der jeweiligen Filme, so sieht man dass
-hier sich hier die Sprache von spanisch auf deutsch geändert hat.
+Betrachtet man nun die nfo--Dateien der jeweiligen Filme, so sieht man, dass
+sich hier die Sprache von spanisch auf deutsch geändert hat.
 
 
 Xbox Meda Center Plugin Integration
@@ -423,23 +440,24 @@ Xbox Meda Center Plugin Integration
 XBMC Plugin
 -----------
 
-Neben der Kommandozeilentools Geri und Freki wurde *konzeptuell* für das Xbox
-Media Center ein Plugin (siehe Abb.: :num:`fig-xbmcscreenshot-hugin`) geschrieben das
-libhugin als Metadaten--Dienst Nutzen kann.
+Neben den Kommandozeilentools Geri und Freki wurde *konzeptuell* ein Plugin für
+das Xbox Media Center (siehe Abb.: :num:`fig-xbmcscreenshot-hugin`) geschrieben,
+welches libhugin als Metadatenquelle nutzen kann.
 
-Das XBMC erlaubt es sogenannte Scraper zu schreiben. Diese arbeiten vom
-Grundprinzip ähnlich wie die Provider von libhugin. Das ,,Problem'' bei dessen
+Das XBMC erlaubt es sogenannte :term:`Scraper` zu schreiben. Diese arbeiten vom
+Grundprinzip ähnlich wie die Provider von libhugin. Das ,,Problem" bei dessen
 Scrapern ist, dass diese vollständig mittels Regulärer Ausdrücke innerhalb von
-XML--Dateien geschrieben sind. Dies ist nach Meinung des Autors
-fehleranfälliger, aufwändiger und nur schwer lesbar. Des Weiteren sind hier die
-Möglichkeiten des Postprocessing nur begrenzt umsetzbar.
+XML--Dateien geschrieben sind. Dies ist nach Meinung des Autors fehleranfällig,
+aufwändig und nur schwer lesbar. Des Weiteren sind hier die Möglichkeiten des
+Postprocessing nur begrenzt umsetzbar.
 
 Die Referenzimplementierung des offiziellen TMDb--Scrapers hat insgesamt über 600
-lines of code, recht kryptischer regulärer Ausdrücke (siehe X und Y). Die
-Implementierung des libhugin Plugins in das XBMC hat an dieser Stelle nur 23
-lines of code (siehe Z).  Das liegt daran, dass der libhugin Proxy hier dem XBMC
-die Daten bereits im benötigten Format über das nfo OutputConverter--Plugin
-liefern kann.
+*lines of code*, recht kryptischer regulärer Ausdrücke (siehe
+:cite:`tmdbscraper1` und :cite:`tmdbscraper2`).
+Die Implementierung des libhugin Plugins in das XBMC hat an dieser Stelle nur 23
+*lines of code* (siehe :ref:`ref-xbmc-libhugin`). Das liegt daran, dass
+der libhugin Proxy hier dem XBMC die Daten bereits im benötigten Format über das
+nfo OutputConverter Plugin liefern kann.
 
 
 .. _fig-xbmcscreenshot-hugin:
@@ -452,36 +470,45 @@ liefern kann.
     libhugin im XBMC Scraper Meune.
 
 
-
-
 .. _libhuginproxy:
 
 libhugin--Proxy
 ---------------
 
 Da die direkte Integration in das XBMC aufgrund der begrenzten Zeit der
-Projektarbeit nicht möglich ist, wurde hier der Ansatz eines ,,Proxy--Dienstes''
-angewandt. Für Libhugin wurde mittels dem Webframework Flask ein *minimalier*
-Webservice geschreiben (siehe Anhang: hhh), welcher über eine eigens definierte
-API Metadaten an das XBMC liefert.
+Projektarbeit nicht möglich ist, wurde hier der Ansatz eines ,,Proxy--Dienstes"
+angewandt. Für Libhugin wurde mittels dem Microwebframework Flask ein
+*minimalier* :term:`RESTful` Webservice geschrieben (siehe
+:ref:`ref-flaskproxy`), welcher über eine eigens definierte API (siehe
+:ref:`ref-apidef`) Metadaten an das XBMC liefert.
 
-Der Libhugin--Proxy zeigt konzeptuell die Integration von libhugin als
+.. _ref-apidef:
+
+libhugin RESTful API
+~~~~~~~~~~~~~~~~~~~~
+
+Der Libhugin--Proxy zeigt *konzeptuell* die Integration von libhugin als
 Netzwerkdienst, welcher eine RESTful API bereitstellt. Der implementierte
 Test--API bietet die folgenden Schnittstellen:
 
-    * ``/search/<titlename or imdbid>``, Suche nach Film über Titel oder IMDBid
-    * ``/movie/<position>``, Zugriff auf einen bestimmten Film
-    * ``/stats``, Server ,,Statistik'', welche zeigt ob Postprocessing aktiviert ist
-    * ``/toggle_pp``, Postprocessing aktivieren/deaktivieren
-    * ``/shutdown``, Server herunterfahren
+    + ``/search/<titlename or imdbid>:`` Suche nach Film über Titel oder *IMDB ID*.
 
-Die Implementierung des Proxy zeigt, dass es problemlos möglich ist mit relativ
-wenig Aufwand, libhugin als ,,neuen'' Dienst für Multimedia--Anwendungen und
-auch Metadaten Management Tools zu verwenden.
+    + ``/movie/<position>:`` Zugriff auf einen bestimmten Film.
+
+    + ``/stats:`` Server ,,Statistik'', welche zeigt ob Postprocessing aktiviert ist.
+
+    + ``/toggle_pp:`` Postprocessing aktivieren/deaktivieren.
+
+    + ``/shutdown:`` Server herunterfahren.
+
+
+Die Implementierung des Proxy zeigt, dass es mit relativ wenig Aufwand möglich
+ist, libhugin als ,,neuen Dienst" für Multimedia--Anwendungen oder auch Movie
+Metadaten Manager zu verwenden.
 
 Hierbei kommt die Flexibilität und Anpassbarkeit des System den bisherigen Tools
-zu gute. Auf diese Art und Weise lassen sich alle Postprocessing Verfahren und
-Features die libhugin bietet in bereits existierende Tools integrieren.
+zu Gute. Auf diese Art und Weise lassen sich alle Features die libhugin bietet
+in bereits existierende Tools integrieren.
 
 Unterschiede TMDb XBMC und TMDb libhugin
 ----------------------------------------
@@ -489,28 +516,31 @@ Unterschiede TMDb XBMC und TMDb libhugin
 Im Vergleich zum XBMC TMDb--Scraper bietet der libhugin XBMC Scraper (Provider
 zum Testen auch auf nur TMDb konfiguriert) zusätzliche Features.
 
-    * Suche über IMDBid möglich
+    * Suche über *IMDB ID* möglich
     * Unschärfesuche möglich, dadurch auch erhöhte Trefferquote
     * Postprocessing, je nach dazugeschalteten Plugin möglich
 
-Beim Nutzen weiter Provider sowie Plugins wie dem Composer Plugin eröffnen sich
-hier für das XBMC ganz neue Möglichkeiten seine Metadaten nach den eigenen
-Wünschen ,,zusammen zu bauen'' ohne Dabei auf externe Video Metadaten Management
-Tools zugreifen zu müssen.
+Beim Nutzen weiterer Provider sowie Plugins wie dem Composer Plugin eröffnen
+sich hier für das XBMC ganz neue Möglichkeiten seine Metadaten nach den eigenen
+Wünschen zusammen zu bauen, ohne dabei auf externe Movie Manager zugreifen zu
+müssen. Im Prinzip kann libhugin hier das komplette Metadatensystem vom XBMC
+ersetzen.
 
 Weitere Einsatzmöglichkeiten
 ============================
+
+.. _ref-scripting-tasks:
 
 Scripting Tasks
 ---------------
 
 Die Einsatzmöglichkeiten sind je nach Szenario anpassbar. Für einfache
-Anwendungen lassen sich auch Geri und Freki bereits direkt verwenden.
+Anwendungen lassen sich Geri und Freki bereits direkt verwenden.
 
-Ein schönes Beispiel für einen Scripting--Task ist das ,,normalisieren'' der
-Ordnerstruktur/Benennung von großen Filmesammlungen.
+Ein schönes Beispiel für einen Scripting--Task ist das *normalisieren* der
+Ordnerstruktur/Benennung von großen Filmsammlungen.
 
-Hierzu reicht es einfach die ,,movie.mask'' von Geri anzupassen und ein kleines
+Hierzu reicht es einfach die movie.mask von Geri anzupassen und ein kleines
 Bash--Script zu schreiben:
 
 .. code-block:: bash
@@ -518,7 +548,9 @@ Bash--Script zu schreiben:
    # Anpassen unserer movie.mask
    $echo "{title} ({year}), [{imdbid}]" > tools/geri/movie.mask
 
-   # So schaut das minimalistiche rename script aus
+So schaut das minimalistische rename--Script aus:
+
+.. code-block:: bash
    #!/bin/bash
 
    for movie in $1/*; do
@@ -527,8 +559,7 @@ Bash--Script zu schreiben:
        mv -v "$movie" "$1/$new_name";
    done
 
-
-Um eine schlampig gepflegte Filmesammlung zu ,,simulieren'', erstellen wir
+Um eine schlampig gepflegte Filmsammlung zu ,,simulieren", erstellen wir
 einfach ein paar Ordner mit Filmen die falsch geschrieben sind und lassen unser
 Script laufen:
 
@@ -550,30 +581,15 @@ Script laufen:
    ‘movies/teh marix 2’ -> ‘movies/The Matrix Reloaded (2003), [tt0234215]’
 
 
-An diesem Beispiel sieht man wie ,,gut'' die Unschärfesuche funktionieren kann.
+An diesem Beispiel sieht man wie *gut* die Unschärfesuche funktionieren kann.
 Bei diesem kleinem Testsample haben wir eine Trefferwahrscheinlichkeit von 100%.
 
 
 D--Bus
 ------
 
-
-Eine weitere Möglichkeit neben dem ,,Proxy--Server--Ansatz'' wäre D--Bus zu
-verwenden. DBus ist ein Framework das unter Linux zur Interprocesskommunikation
+Eine weitere Möglichkeit neben dem ,,Proxyserver--Ansatz'' wäre D--Bus zu
+verwenden. D--Bus ist ein Framework das unter Linux zur Interprozesskommunikation
 verwendet wird. Man kann hier beispielsweise libhugin als D--Bus--Service laufen
 lassen und jede andere beliebige Anwendung hätte die Möglichkeit
 programmiersprachenunabhängig mit libhugin zu kommunizieren.
-
-
-libnotify
----------
-
-Ein weiterer Ansatz libhugin zu nutzen wäre über *libnotify* denkbar. Das ist
-eine Library die Änderungen am Dateisystem erkennt. Man kann hier z.B. einen
-bestimmten Ordner "monitoren" indem man ,,inofitywatch'' auf diesem Ordner
-,,lauschen'' lässt. Hier wäre z.B. ein Szenario denkbar, dass sobald man eine
-Videodatei in einen bestimmten Ordner kopiert hat bzw. diese nach dem
-Aufzeichnet beispielsweise mit einem VDR in einen bestimmten Ordner
-verschoben wurde, man dann einfach über libnotifywatch ein Script ,,triggert''
-welches einen Ordner anlegt, die Datei und Ordner umbenennt und die
-entsprechenden Metadaten für den Film sucht und im Ordner ablegt.

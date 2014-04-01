@@ -40,6 +40,18 @@ Fachbegriffe
      Eine spezielle Indexstruktur, bei welcher Daten jeweils einem eindeutigen
      Index zugeordnet sind.
 
+    Scraper
+
+     Auch Webscraper genannt, werden Anwendungen genannt die in der Lage sind
+     Informationen aus Webseiten zu extrahieren.
+
+    RESTful
+
+     Eine Form einer Webapi bei der mithilfe von Standard HTTP--Verben
+     und speziellen, menschenlesbaren URLs bestimmte Aktionen getriggert werden
+     können. So kann man sich beispielsweise mit einer GET Operation
+     Informationen von einem Service beschaffen.
+
 
 Kontextspezifische Fachbegriffe
 -------------------------------

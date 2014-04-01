@@ -409,8 +409,8 @@ verwendetet externen Abhängigkeiten für die Libhugin--Bibliothek.
 Projektumfang
 -------------
 
-Der Projektumfang beträgt ~3500 *lines of code*,  hier kommt noch zusätzlich die
-Onlinedokumentation hinzu.
+Der Projektumfang beträgt ca. 3500 *lines of code*,  hier kommt noch zusätzlich
+die Onlinedokumentation hinzu.
 
 .. code-block:: bash
 
