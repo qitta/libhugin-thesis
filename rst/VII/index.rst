@@ -205,6 +205,8 @@ das gepflegte Genre in unseren Metadaten feingranularer und lässt vielleicht
 auch besser vermuten ob ein Film für Kinder geeignet ist oder nicht.
 
 
+.. _ref-freki:
+
 Freki
 =====
 
@@ -328,6 +330,8 @@ Anzeigen der vorhandenen Modifier:
     Parameters:     {'attr_name': <class 'str'>}
 
 
+.. _ref-plotlang-freki:
+
 Anwenden von Analyzern
 ----------------------
 
@@ -346,6 +350,9 @@ Anwenden von Analyzern
 Wie man nun sieht, wurde hier die verwendete Sprache der Plots analysiert. Das
 Plugin hat sich in das Analyzerdata--Array mit seinem ermittelten Ergebnis
 reingeschreiben.
+
+
+.. _ref-plotchange-freki:
 
 Anwenden von Modifiern
 ----------------------
@@ -411,6 +418,8 @@ hier sich hier die Sprache von spanisch auf deutsch geändert hat.
 Xbox Meda Center Plugin Integration
 ===================================
 
+.. _xbmcplugin:
+
 XBMC Plugin
 -----------
 
@@ -442,6 +451,10 @@ liefern kann.
 
     libhugin im XBMC Scraper Meune.
 
+
+
+
+.. _libhuginproxy:
 
 libhugin--Proxy
 ---------------

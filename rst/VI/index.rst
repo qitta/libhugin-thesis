@@ -73,15 +73,18 @@ Die Postprocessing Plugins beim libgugin harvest Teil sind für die direkte
 Composer
 """"""""
 
-Das Composer Plugin ist das momentane Kernstück der Postprocessing Plugins. Es
-erlaubt dem Benutzer sich ein nach seinen wünschen zusammengesetztes Ergebnis zu
-,,komponieren". Der Benutzer kann über das Angeben eine ,,Pofilmaske"
-bestimmten wie sich die Metadaten zusammensetzen sollen. Hier kann er
-beispielsweise angeben dass er den Filmtitel, Jahr, Cover vom Provider TMDb
-möchte, die Inhaltsbeschreibung jedoch immer vom Filmstarts Provider. Hier
-besteht auch die Möglichkeit eines ,,Fallbacks", falls Filmstarts keine
-Inhaltsbeschreibung hat, dann kann auch auf andere Provider zurückgegriffen
-werden.
+Das Composer Plugin ist das momentane Kernstück der Postprocessing Plugins. Das
+Plugin Gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und
+bietet dem Benutzer dadurch folgende Möglichkeiten:
+
+**Ergebnis Komponieren:** Es erlaubt dem Benutzer sich ein nach seinen wünschen
+zusammengesetztes Ergebnis zu komponieren. Der Benutzer kann über das Angeben
+eine Profilmaske bestimmten wie sich die Metadaten zusammensetzen sollen.
+Hier kann er beispielsweise angeben dass er den Filmtitel, Jahr, Cover vom
+Provider TMDb möchte, die Inhaltsbeschreibung jedoch immer vom Filmstarts
+Provider. Hier besteht auch die Möglichkeit eines ,,Fallbacks", falls Filmstarts
+keine Inhaltsbeschreibung hat, dann kann auch auf andere Provider
+zurückgegriffen werden.
 
 Beispiel für eine Profilmaske die TMDb als Standardprovider nimmt und die
 Inhaltsbeschreibung vom OMDb Provider nimmt, falls OMDb Inhaltsbeschreibung
@@ -91,13 +94,28 @@ forhanden dann erfolgt ein ,,Fallback" auf den OMDb Provider.
 
     $ echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie', 'omdbmovie']}" > profilemask
 
+Wird keine Profilmaske angegeben so werden fehlende Attribute nach Provider
+Priorität aufgefüllt.
+
+**Genre Zusammenführung:** Dieses Feature erlaubt dem Benutzer divergente Genres
+beim gleichen Film zu verschmelzen. Das macht das Genre feingranularer und
+behebt die Problematik (siehe Tabelle :num:`table-feuchtgebiete` ) divergenter
+Genres bei verschiedenen Onlinequellen. Beim Beispiel in Tabelle
+:num:`table-feuchtgebiete` wird aus dem normalisierten Genre der drei
+unterschiedlichen Anbieter ein Genre erstellt.
+
+.. code-block:: bash
+
+   # Drei Genre der Unterschiedlichen Provider      # Zusammengeführtes Genre
+   [Comedy, Drama], [Komödie, Drama], [Erotik] ---> [Komödie, Drama, Erotik]
+
 ResultTrimmer
 """""""""""""
 
 Der Resulttrimmer ist vergleichsweise ein einfaches Plugin, welches dafür
 zuständig ist vorangehende und nachziehende Leerzeichen bei den Metadaten zu
-entfernen. Das Plugin führt eine ,,Säuberung'' durch, diese muss nicht vom
-Provider Plugin durchgeführt werden.
+entfernen. Das Plugin führt eine ,,Säuberung'' durch, diese muss so nicht vom
+Provider Plugin explizit durchgeführt werden.
 
 
 OutputConverter Plugins
@@ -106,18 +124,20 @@ OutputConverter Plugins
 Bei den OutputConverter Plugins wurde zu Demozwecken ein HTML--OutputConverter
 und ein Json--OutputConverter implementiert.
 
-Des weiteren wurde für den ,,Produktiveinsatz'' ein XBMC-NFO-Fileconverter
-implementiert, dieser wird von der Demoanwendung ,,libhugin proxy'' (siehe SDA)
-verwendet um den XBMC--libhugin--Plugin die Metadaten im richtigen Format zu
-liefern.
+Des Weiteren wurde für den Produktiveinsatz ein XBMC--NFO--OutputConverter
+implementiert, dieser wird von der Demoanwendung libhugin proxy (siehe
+:ref:`libhuginproxy`) verwendet um den XBMC--libhugin Plugin (siehe
+:ref:`xbmcplugin`) die Metadaten im richtigen Format zu liefern.
 
+
+.. _analyzeapiexample:
 
 libhugin analyze API
 ====================
 
 Die API von libhugin analyze ist vom Grundaufbau ähnlich zu der libhugin harvest
-API. Folgendes Beispielsnippet zeigt die Anwendung des ,,Plotcleaner''--Plugins
-auf 'Rohdaten'.
+API. Folgendes Beispiel--Snippet zeigt die Anwendung des Plotcleaner--Plugins
+auf 'Rohdaten', welche nicht aus der internen Datenbank stammen.
 
 
 .. code-block:: python
@@ -135,9 +155,9 @@ auf 'Rohdaten'.
     Aus diesem Text wird die Klammer samt Inhalt entfernt!
 
 
-Ein weiteres ausführliches Beispiel findet sich im Anhang S. Desweiteren
-demonstriert die Demoanwendung Freki den Einsatz des Analyzeteils der Library.
-Die offizielle API Beschreibung ist unter http://libhugin.rtfd.org zu finden.
+Für weitere Informationen siehe libhugin API :cite:`huginapi`. Des Weiteren
+zeigt die Demoanwendung Freki den Einsatz von libhugin analyze, siehe hier
+zu :ref:`ref-freki`.
 
 
 Libhugin analyze Plugins
@@ -150,25 +170,36 @@ plotclean
 """""""""
 
 Das PlotClean Plugin ist für nachträgliche Manipulation der
-Filminhaltsbeschreibung gedacht. In Fall vom PlotClean Plugin werden alle
-Klammern samt Inhalt aus der Beschreibung entfernt. Das ,,vereinheitlich'' die
-Inhaltbeschreibungen in dem Sinne dass alle Schauspieler oder Informationen in
-Klammern aus der Beschreibung entfernt werden.
+Inhaltsbeschreibung gedacht. Im Fall vom PlotClean Plugin werden alle
+Klammern samt Inhalt aus der Beschreibung entfernt. Das vereinheitlicht die
+Inhaltsbeschreibung in dem Sinne, dass alle Schauspieler oder Informationen in
+Klammern aus der Beschreibung entfernt werden. Für ein Beispiel siehe
+:ref:`analyzeapiexample`.
 
 plotchange
 """"""""""
 
-Das PlotChange Plugin ist für das nachträgliche ändern der Inhaltsbeschreibung
-zuständig. Im Moment hat es die Option die Sprache des Plots zu ändern.
+Das PlotChange Plugin ist für das nachträgliche Ändern der Inhaltsbeschreibung
+zuständig. Im Moment hat es die Option die Sprache des Plots zu ändern, für
+ein Beispiel siehe Demoanwendung :ref:`ref-plotchange-freki`.
 
 Analyzer Plugins
 ~~~~~~~~~~~~~~~~
 
+keywordextractor
+""""""""""""""""
+
+Diese Plugin extrahiert aus einem Text, bei Filmen meist die
+Inhaltsbeschreibung, relevante Schlüsselwörter die den Text bzw. die Thematik
+repräsentieren.
+
+Weiteres hierzu in der Bachelorarbeit.
+
 filetype analyzer
 """""""""""""""""
 
-Der Filetype--Analyzer arbeitet mit den Videodaten selbst. Er ist für die
-extraktion der Datei--Metadaten zuständig. Momentan extrahiert er
+Das Filetype--Analyzer Plugin arbeitet mit den Videodaten selbst. Er ist für die
+Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es
 
     * Auflösung
     * Seitenverhältnis
@@ -179,17 +210,19 @@ plotlang
 """"""""
 
 Der Plotlang--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
-die Information in das Analyzerdata Array.
+die Information zu den Analysedaten. Für ein Beispiel siehe Demoanwendung
+:ref:`ref-plotlang-freki`.
 
 
 Comperator Plugins
 ~~~~~~~~~~~~~~~~~~
 
-Dieser Plugintyp ist experimentiell, er ist für statistische Zwecke und
-*Forschungsarbeiten* bzgl. der Vergleichbareit von Filmen anhand Metadaten
-gedacht. Weiteres hierzu wird in der Bachelorarbeit behandelt.
+Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
+Analysen bzgl. der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
 
-Die Plugins die man hier findet sind:
+Weiteres hierzu wird in der Bachelorarbeit behandelt.
+
+Folgende Comperator Plugins wurden konzeptuell implementiert:
 
 genrecmp
 """"""""
@@ -209,11 +242,13 @@ Testverfahren
 -------------
 
 Für das Testen der Software wird das Python Unittest Framework verwendet. Bisher
-wurden Tests für die wichtigsten Grundklassen und das Provider Plugins
-subsustem um ein valides Verhalten der Provider Plugins zu gewährleisten.
+wurden Tests für die wichtigsten Grundklassen und das Provider--Pluginsystem
+erstellt, um ein valides Verhalten der Provider Plugins zu gewährleisten.
 
-Die Unittests können direkt in der ,,Main'' der jeweiligen Klasse untergebracht
-werden. Diese werden dann beim Ausführen der Python--Datei ausgeführt.
+Die Unittests wurden direkt in der ,,Main" der jeweiligen Klasse untergebracht
+werden. Diese werden dann beim Ausführen der Python--Datei gestartet.
+
+Folgendes Beispiel zeigt die Funktionsweise:
 
 .. code-block:: python
 
@@ -240,9 +275,9 @@ Das Ausführen des Beispielcodes würde folgende Ausgabe produzieren:
 
     OK
 
-Alle geschrieben Tests werden bei jedem ,,Einspielen'' der Änderungen in das
-verwendete Quellcode--Versionsverwaltungssystem automatisiert über einen
-externen Dienst ausgeführt (siehe Entwicklungumgebung).
+Alle geschrieben Tests werden bei jedem ,,Einspielen" der Änderungen in das
+verwendete Quellcode--Versionsverwaltungssystem (siehe :ref:`github`)
+automatisiert über einen externen Dienst ausgeführt (siehe :ref:`travisci`).
 
 Entwicklungumgebung
 -------------------
@@ -250,77 +285,93 @@ Entwicklungumgebung
 Programmiersprache
 ~~~~~~~~~~~~~~~~~~
 
-Für die Entwicklung der Library wurde bewusst die Programmiersprache Python 3.3
-aus folgenden Gründen gewählt:
+Für die Entwicklung der Bibliothek wurde bewusst die Programmiersprache Python
+in der Version 3.3 gewählt. Python als Programmiersprache wurde aus folgenden
+Gründen gewählt:
 
     * **Rapid Prototyping Language**, wichtig bei einem Projekt dieser Größe mit
       begrenztem Zeitraum
-    * **Plattformunabhängigkeit**, Plattformunabhängigkeit ist ein Sekundäres
+    * **Plattformunabhängigkeit**, Plattformunabhängigkeit ist ein sekundäres
       Ziel des Projekts
-    * **Einfach erlernbar (siehe Tauben)**, Programmiersprache ,,leicht''
-      menschenlesbar (Plugin--Entwickler)
-    * **Scriptsprache**, Gängige Scriptsprache bei vielen free Software
-      Projekten
-    * **Optimierungsmöglichkeiten**,  Cython, C/C++--Languagebindings
+    * **Einfach erlernbar**, Wichtig für Pluginentwickler
+    * **Verbreitnungsgrad**, Gängige Scriptsprache bei vielen Free Software Projekten
+    * **Optimierungsmöglichkeiten**,  Cython (siehe :cite:`cython`)
 
-Entwicklung
-~~~~~~~~~~~
+Entwicklungssytem
+~~~~~~~~~~~~~~~~~
 
-Die Library wird unter *Archlinux* entwickelt. Für die Entwicklung wird der
+Die Bibliothek wird unter *Archlinux* entwickelt. Für die Entwicklung wird der
 Editor *gVim* mit entsprechenden Python--Plugins zur Validierung der Python PEP
-Stilrichtlinien verwendet. Des weiteren wird die interaktive Python Shell
-*IPython* eingesetzt.
+Stilrichtlinien (siehe :cite:`pep`) verwendet. Des Weiteren wird die interaktive
+Python Shell *IPython* eingesetzt.
+
+Quellcodeverwaltung
+~~~~~~~~~~~~~~~~~~~
 
 Für die Quellcodeverwaltung wird das Versionsverwaltungssystem *git*
-eingesetzt. Der Quellcode selbst wird auf Hosting--Dienst für
-Software--Entwicklungsprojekte github.com (LINK!) gelagert.
+eingesetzt. Der Quellcode selbst wird auf dem Hosting--Dienst für
+Software--Entwicklungsprojekte *github* (siehe :cite:`github`) gelagert.
 
-Die o.g. Softwaretests werden von *TravisCI*, einem sog. ,,continuous integration
-service'', bei jedem hochladen der Änderungen auf github, ausgeführt. Dieser
-Dienst wurde über github aktiviert. Ein Logo (Abb.: s) auf der Projektseite Teil dem
-Entwickler und Besuchern der Seite mit ob das Projekt alle geschreibenen Tests
-,,besteht''.
+Automatisches Testen
+~~~~~~~~~~~~~~~~~~~~
+
+Die oben genannten Softwaretests werden von *TravisCI* (siehe :cite:`travisci`),
+einem sogenanntem ,,continuous integration service" automatisch ausgeführt. Dies
+passiert bei jedem hochladen von Quellcodeänderungen auf github. Github hat hier
+eine Schnittstelle zu TravisCI, welche aktiviert wurde.
+
+Ein Logo (siehe Abbildung: :num:`fig-build`) auf der libhugin
+Github--Projektseite teil so dem Besuchern der Seite den aktuellen
+,,Projektstatus" mit.
 
 .. _fig-build
 
 .. figure:: fig/build.png
     :alt: TravisCI Build png
-    :width: 80%
+    :width: 60%
     :align: center
 
-    Logo die den aktuellen ,,Build Status'' des Projekts grafisch visualisiert.
+    Logo das den aktuellen ,,Build Status" des Projekts grafisch visualisiert.
 
-Dokumentation
-~~~~~~~~~~~~~
 
-Das Projekt wird nach den Regeln der ,,literalten Programmierung'', wie nach
-Donald E. Knuth empfohlen, entwickelet. Hierbei liegen Quelltext und
-Dokumentation des Programmes in der gleichen Datei.
+
+Projektdokumentation
+~~~~~~~~~~~~~~~~~~~~
+
+Das Projekt wird nach den Regeln der ,,literalten Programmierung", wie nach
+Donald E. Knuth (siehe :cite:`knuth`) empfohlen, entwickelt. Hierbei liegen
+Quelltext und Dokumentation des Programms in der gleichen Datei.
+
+Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge generiert
+werden. Unter Python wird hier das Softwaredokumentationswerkzeug *Sphinx*
+(siehe :cite:`sphinxdoc`) verwendet. Dieses kann eine Dokumentation in
+verschiedenen Formaten generieren, auch diese Projektarbeit wurde in
+*reStructuredText* (siehe :cite:`rst`) geschrieben und mit *Sphinx* generiert.
+
+Des Weiteren wird dem Entwickler bei Nutzung der Bibliothek in der interaktiven
+Python--Shell eine zusätzliche Hilfestellung geboten, siehe :num:`fig-knuth`.
 
 .. _fig-knuth
 
 .. figure:: fig/knuth.png
     :alt: API Dokumentation in interaktiver Shell
-    :width: 80%
+    :width: 60%
     :align: center
 
     API--Dokumentation als Hilfestellung in interaktivier Python--Shell.
 
-Die Dokumentation kann so über spezielle Softwaredokumentations--Tools generiert
-werden. Unter Python wird hier das Softwaredokumentationswerkzeug *Sphinx*
-verwendet. Dieses kann die Dokumentation in verschiedenen Formaten generieren.
-Diese Projektarbeit wurde auch *reStructuredText* und *Sphinx* generiert.
+|
+|
+|
 
+Externe Bibliotheken
+--------------------
 
-Abhängigkeiten
---------------
-
-Die folgende Tabelle (Tabelle :num:`table-abhängigkeiten`) listet alle Momentan
-verwendetet externen Abhängigkeiten für die Libhugin--Library.
-
+Die Tabelle :num:`table-libs` listet alle momentan
+verwendetet externen Abhängigkeiten für die Libhugin--Bibliothek.
 
 .. figtable::
-    :label: table-abhängigkeiten
+    :label: table-libs
     :caption: Übersicht externe Abhängigkeiten
     :alt: Übersicht externe Abhängigkeiten
 
@@ -358,7 +409,7 @@ verwendetet externen Abhängigkeiten für die Libhugin--Library.
 Projektumfang
 -------------
 
-Der Projektumfang beträgt ~3500 *lines of code*,  hier kommt noch die
+Der Projektumfang beträgt ~3500 *lines of code*,  hier kommt noch zusätzlich die
 Onlinedokumentation hinzu.
 
 .. code-block:: bash
