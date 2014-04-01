@@ -250,6 +250,13 @@ Namen des Schauspielers in Klammern.
 After.Life (2010)
 """""""""""""""""
 
+Die Daten bei TMDb werden in verschiedenen Sprachen gepflegt und sind i.d.R.
+*qualitativ hochwertig*. Unser erster Film wurde bei TMDb gut eingepflegt, die
+Inhaltsbeschreibung ist deutschsprachig, das Genre feingranular gepflegt. Des
+weiteren bietet uns TMDb auch gleich hochauflösende grafische Metadaten. Bei
+OFDb ist das Genre ,,Mystery'' nicht gepflegt und zudem gibt es nur ein
+niedrigauflösendes Cover und keine Hintergrundbilder (siehe Tabelle
+:num:`table-afterlife`).
 
 .. figtable::
     :label: table-afterlife
@@ -264,18 +271,16 @@ After.Life (2010)
     | Genre | Drama, Horror, Mystery | Drama, Horror, Mystery, Thriller | Drama, Horror, Thriller |
     +-------+------------------------+----------------------------------+-------------------------+
 
-Die Daten bei TMDb werden in verschiedenen Sprachen gepflegt und sind i.d.R.
-*qualitativ hochwertig*. Unser erster Film wurde bei TMDb gut eingepflegt, die
-Inhaltsbeschreibung ist deutschsprachig, das Genre feingranular gepflegt. Des
-weiteren bietet uns TMDb auch gleich hochauflösende grafische Metadaten. Bei
-OFDb ist das Genre ,,Mystery'' nicht gepflegt und zudem gibt es nur ein
-niedrigauflösendes Cover und keine Hintergrundbilder (siehe Tabelle
-:num:`table-afterlife`).
-
 **Genre:** austauschbar, unterschiedlich ,,feingranular'' gepflegt
 
 Feuchtgebiete (2013)
 """"""""""""""""""""
+
+Unser zweiter Film ist bei TMDb und OFDb gut gepflegt. Was hier jedoch auffällt
+ist, dass das gepflegte Genre bei diesen beiden Anbietern keinen Schnittpunkt
+hat. Liest man sich zu dem Film den Wikipedia Artikel (siehe
+:cite:`feuchtgebiete`) durch, so hat auch das bei OFDb gepflegte Genre seine
+Daseinsberechtigung.
 
 .. figtable::
     :label: table-feuchtgebiete
@@ -290,16 +295,18 @@ Feuchtgebiete (2013)
     | Genre | Drama, Comedy    | Drama, Komödie  | Erotik          |
     +-------+------------------+-----------------+-----------------+
 
-Unser zweiter Film ist bei TMDb und OFDb gut gepflegt. Was hier jedoch auffällt
-ist, dass das gepflegte Genre bei diesen beiden Anbietern keinen Schnittpunkt
-hat. Liest man sich zu dem Film den Wikipedia Artikel (siehe
-:cite:`feuchtgebiete`) durch, so hat auch das bei OFDb gepflegte Genre seine
-Daseinsberechtigung.
-
 **Genre:** total divergent, Problem der Internationalisierung
 
 Nymphomaniac (2013)
 """""""""""""""""""
+
+Hier ist bei TMDb die Inhaltsbeschreibung in deutsch nicht vorhanden. Der Film
+ist im Vergleich zu ,,Hollywood''-Blockbuster in deutsch relativ schlecht
+gepflegt. Bei OFDb ist wie auch beim ersten Film, eine deutschsprachige
+Inhaltsangabe vorhanden. Zur großen Überraschung ist hier das Genre im Vergleich
+zu den beiden anderen Onlinequellen feingranularer gepflegt -- was laut
+Wikipedia (siehe :cite:`nymphomaniac`) auch besser zum Film passen würde (siehe
+Tabelle :num:`table-nymphomaniac`).
 
 .. figtable::
     :label: table-nymphomaniac
@@ -314,18 +321,13 @@ Nymphomaniac (2013)
     | Genre | Drama            | Drama            | Drama, Erotik, Sex |
     +-------+------------------+------------------+--------------------+
 
-Hier ist bei TMDb die Inhaltsbeschreibung in deutsch nicht vorhanden. Der Film
-ist im Vergleich zu ,,Hollywood''-Blockbuster in deutsch relativ schlecht
-gepflegt. Bei OFDb ist wie auch beim ersten Film, eine deutschsprachige
-Inhaltsangabe vorhanden. Zur großen Überraschung ist hier das Genre im Vergleich
-zu den beiden anderen Onlinequellen feingranularer gepflegt -- was laut
-Wikipedia (siehe :cite:`nymphomaniac`) auch besser zum Film passen würde (siehe
-Tabelle :num:`table-nymphomaniac`).
-
 **Genre:** divergent, unterschiedlich ,,feingranular" gepflegt
 
 RoboCop (2014)
 """"""""""""""
+
+Der vierte Film, eine Hollywood Remake--Produktion ist hier bei allen drei
+Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`)
 
 .. figtable::
     :label: table-robocop
@@ -339,9 +341,6 @@ RoboCop (2014)
     +-------+-----------------------+--------------------------------+------------------------------------------+
     | Genre | Action, Crime, Sci-Fi | Action, Science Fiction, Krimi | Action, Krimi, Science-Fiction, Thriller |
     +-------+-----------------------+--------------------------------+------------------------------------------+
-
-Der vierte Film, eine Hollywood Remake--Produktion ist hier bei allen drei
-Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`)
 
 **Genre:** unterschiedliche Schreibweise, divergent, Problem der
 Internationalisierung, unterschiedlich ,,feingranular" gepflegt
