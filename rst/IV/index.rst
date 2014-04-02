@@ -2,6 +2,9 @@
 Softwarespezifikation
 #####################
 
+
+.. _ref-requirements:
+
 Anforderungen an die Library
 ============================
 
@@ -22,7 +25,7 @@ Die Onlinequellen die verwendet werden, sollen austauschbar sein. Der Benutzer
 hat die Möglichkeit durch schreiben eines Plugins seine bevorzugte
 Onlinequelle als Metadatenanbieter zu implementieren. Diese Grundprinzip wird
 bereits bei der freien Musik--Metadatensuchlibrary  glyr (siehe :cite:`glyr`)
-sowie auch im Ansatz beim XBMC verwendet.
+sowie auch im Ansatz beim XBMC (siehe :cite:`xbmcscraper`) verwendet.
 
 Um nicht direkt einen ,,Standardprovider" festlegen zu müssen werden bei den
 Providern Prioritäten von 0-100 vergeben. Provider mit höheren Prioritäten
@@ -218,8 +221,8 @@ Nicht--Anforderungen
 
 **Andere Metadaten**
 
-Die Suche von Musikmetadaten oder anderen Metadatentypen ist nicht Bestandteil
-des Projekts.
+Die Suche und Analyse von Musikmetadaten oder anderen Metadatentypen ist nicht
+Bestandteil des Projekts.
 
 **Movie Metadaten Manager**
 

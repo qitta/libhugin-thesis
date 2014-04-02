@@ -26,10 +26,10 @@ zeigt die typische Benutzung der API:
 Für weitere Beispiele siehe offizielle libhugin harvest API :cite:`huginapi`.
 
 Libhugin harvest Plugins
-------------------------
+========================
 
 Provider--Plugins
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Libhugin harvest hat aktuell verschiedene Provider implementiert, siehe Tabelle
 :num:`table-provideroverview`. Ein paar der Provider, wie Filmstarts.de,
@@ -63,21 +63,20 @@ textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
     | API verfügbar               | ja                 | ja            | nein           | nein          | ja       |
     +-----------------------------+--------------------+---------------+----------------+---------------+----------+
 
-
 Postprocessing Plugins
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 Die Postprocessing Plugins beim libgugin harvest Teil sind für die direkte
 ,,Nachbearbeitung" der Daten gedacht.
 
-Composer
-""""""""
+**Composer:** Das Composer Plugin ist das momentane Kernstück der Postprocessing
+Plugins. Das Plugin Gruppiert die Ergebnisse verschiedener Onlinequellen nach
+Film und bietet dem Benutzer dadurch folgende Möglichkeiten:
 
-Das Composer Plugin ist das momentane Kernstück der Postprocessing Plugins. Das
-Plugin Gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und
-bietet dem Benutzer dadurch folgende Möglichkeiten:
+    1.) Ergebnis Komponieren
+    2.) Genre Zusammenführung
 
-**Ergebnis Komponieren:** Es erlaubt dem Benutzer sich ein nach seinen wünschen
+**Zu 1.):** Es erlaubt dem Benutzer sich ein nach seinen wünschen
 zusammengesetztes Ergebnis zu komponieren. Der Benutzer kann über das Angeben
 eine Profilmaske bestimmten wie sich die Metadaten zusammensetzen sollen.
 Hier kann er beispielsweise angeben dass er den Filmtitel, Jahr, Cover vom
@@ -97,7 +96,7 @@ forhanden dann erfolgt ein ,,Fallback" auf den OMDb Provider.
 Wird keine Profilmaske angegeben so werden fehlende Attribute nach Provider
 Priorität aufgefüllt.
 
-**Genre Zusammenführung:** Dieses Feature erlaubt dem Benutzer divergente Genres
+**Zu 2.):** Dieses Feature erlaubt dem Benutzer divergente Genres
 beim gleichen Film zu verschmelzen. Das macht das Genre feingranularer und
 behebt die Problematik (siehe Tabelle :num:`table-feuchtgebiete` ) divergenter
 Genres bei verschiedenen Onlinequellen. Beim Beispiel in Tabelle
@@ -109,17 +108,14 @@ unterschiedlichen Anbieter ein Genre erstellt.
    # Drei Genre der Unterschiedlichen Provider      # Zusammengeführtes Genre
    [Comedy, Drama], [Komödie, Drama], [Erotik] ---> [Komödie, Drama, Erotik]
 
-ResultTrimmer
-"""""""""""""
 
-Der Resulttrimmer ist vergleichsweise ein einfaches Plugin, welches dafür
-zuständig ist vorangehende und nachziehende Leerzeichen bei den Metadaten zu
-entfernen. Das Plugin führt eine ,,Säuberung'' durch, diese muss so nicht vom
-Provider Plugin explizit durchgeführt werden.
-
+**ResultTrimmer:** Der Resulttrimmer ist vergleichsweise ein einfaches Plugin,
+welches dafür zuständig ist vorangehende und nachziehende Leerzeichen bei den
+Metadaten zu entfernen. Das Plugin führt eine ,,Säuberung'' durch, diese muss so
+nicht vom Provider Plugin explizit durchgeführt werden.
 
 OutputConverter Plugins
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 Bei den OutputConverter Plugins wurde zu Demozwecken ein HTML--OutputConverter
 und ein Json--OutputConverter implementiert.
@@ -159,80 +155,59 @@ Für weitere Informationen siehe libhugin API :cite:`huginapi`. Des Weiteren
 zeigt die Demoanwendung Freki den Einsatz von libhugin analyze, siehe hier
 zu :ref:`ref-freki`.
 
-
 Libhugin analyze Plugins
-------------------------
+========================
 
 Modifier Plugins
-~~~~~~~~~~~~~~~~
+----------------
 
-plotclean
-"""""""""
-
-Das PlotClean Plugin ist für nachträgliche Manipulation der
-Inhaltsbeschreibung gedacht. Im Fall vom PlotClean Plugin werden alle
-Klammern samt Inhalt aus der Beschreibung entfernt. Das vereinheitlicht die
+**plotclean:** Das PlotClean Plugin ist für nachträgliche Manipulation der
+Inhaltsbeschreibung gedacht. Im Fall vom PlotClean Plugin werden alle Klammern
+samt Inhalt aus der Beschreibung entfernt. Das vereinheitlicht die
 Inhaltsbeschreibung in dem Sinne, dass alle Schauspieler oder Informationen in
 Klammern aus der Beschreibung entfernt werden. Für ein Beispiel siehe
 :ref:`analyzeapiexample`.
 
-plotchange
-""""""""""
-
-Das PlotChange Plugin ist für das nachträgliche Ändern der Inhaltsbeschreibung
-zuständig. Im Moment hat es die Option die Sprache des Plots zu ändern, für
-ein Beispiel siehe Demoanwendung :ref:`ref-plotchange-freki`.
+**plotchange:** Das PlotChange Plugin ist für das nachträgliche Ändern der
+Inhaltsbeschreibung zuständig. Im Moment hat es die Option die Sprache des Plots
+zu ändern, für ein Beispiel siehe Demoanwendung :ref:`ref-plotchange-freki`.
 
 Analyzer Plugins
-~~~~~~~~~~~~~~~~
+----------------
 
-keywordextractor
-""""""""""""""""
-
-Diese Plugin extrahiert aus einem Text, bei Filmen meist die
-Inhaltsbeschreibung, relevante Schlüsselwörter die den Text bzw. die Thematik
-repräsentieren.
+**keywordextractor:** Diese Plugin extrahiert aus einem Text, bei Filmen meist
+die Inhaltsbeschreibung, relevante Schlüsselwörter die den Text bzw. die
+Thematik repräsentieren.
 
 Weiteres hierzu in der Bachelorarbeit.
 
-filetype analyzer
-"""""""""""""""""
-
-Das Filetype--Analyzer Plugin arbeitet mit den Videodaten selbst. Er ist für die
-Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es
+**filetypeanalyzer:** Das Filetypeanalyzer Plugin arbeitet mit den Videodaten
+selbst. Er ist für die Extraktion der Datei--Metadaten zuständig. Momentan
+extrahiert es
 
     * Auflösung
     * Seitenverhältnis
     * Videocodec
     * Audiocodec, Anzahl der Audiokanäle, Sprache
 
-plotlang
-""""""""
-
-Der Plotlang--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
-die Information zu den Analysedaten. Für ein Beispiel siehe Demoanwendung
-:ref:`ref-plotlang-freki`.
-
+**plotlang:** Der Plotlang--Analyzer erkennt die Sprache des verwendeten Plots
+und schreibt die Information zu den Analysedaten. Für ein Beispiel siehe
+Demoanwendung :ref:`ref-plotlang-freki`.
 
 Comperator Plugins
-~~~~~~~~~~~~~~~~~~
+------------------
 
 Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
 Analysen bzgl. der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
-
 Weiteres hierzu wird in der Bachelorarbeit behandelt.
 
 Folgende Comperator Plugins wurden konzeptuell implementiert:
 
-genrecmp
-""""""""
+**genrecmp:** Ein Plugin, das die Genres verschiedener Filme miteinander
+vergleicht.
 
-Ein Plugin, das die Genres verschiedener Filme miteinander vergleicht.
-
-keywordcmp
-""""""""""
-
-Ein Plugin, das die Schlüsselwörter verschiedener Filme miteinander vergleicht.
+**keywordcmp:** Ein Plugin, das die Schlüsselwörter verschiedener Filme
+miteinander vergleicht.
 
 
 Verschiedenes

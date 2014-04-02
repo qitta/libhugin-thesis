@@ -70,14 +70,9 @@ Anhang A
     for movie in metadata_dict:
         attr_export_func(movie)
 
-Anhang B
-========
-
-Hello World.
-
 .. _ref-xbmc-libhugin:
 
-Anhang C
+Anhang B
 ========
 
 .. code-block:: xml
@@ -109,7 +104,7 @@ Anhang C
 
 .. _ref-flaskproxy:
 
-Anhand D
+Anhand C
 ========
 
 .. code-block:: python

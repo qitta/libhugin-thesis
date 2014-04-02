@@ -1,6 +1,6 @@
-#############################
-Metadatenquellen und Software
-#############################
+##########################################
+Metadatenquellen, Software und Problematik
+##########################################
 
 Die vorgestellten Plattformen, Player und Tools zeigen nur einen Ausschnitt,
 alle bekannten Plattformen, Player und Tools aufzulisten ist aufgrund der
@@ -25,21 +25,18 @@ Erscheinungsjahr, Genre, Inhaltsbeschreibung, Cover, u.a.
 Metadatenquellen
 ----------------
 
-**Bezug von Metadaten**
-
-Zum Bezug der Metadaten werden verschiedene Onlinequellen genutzt. Im
-Prinzip eignet sich *jede* Seite die Filminformationen pflegt als
-Metadatenquelle. Zu den oft genutzten Metadatenquellen --- neben zahlreichen
-anderen Quellen --- zählen:
+**Bezug von Metadaten:** Zum Bezug der Metadaten werden verschiedene
+Onlinequellen genutzt. Im Prinzip eignet sich *jede* Seite die Filminformationen
+pflegt als Metadatenquelle. Zu den oft genutzten Metadatenquellen --- neben
+zahlreichen anderen Quellen --- zählen:
 
  * Internet Movie Database (IMDb), englischsprachig
  * The Movie Database (TMDb), multilingual, Community gepflegt
  * Online Filmdatenbank (OFDb), deutschsprachig, Community gepflegt
 
-**Unterschiede zwischen den Metadatenquellen**
-
-Alle drei genannten Metadatenquellen unterscheiden sich in Art, Umfang und
-Qualität der angebotenen Metadaten.
+**Unterschiede zwischen den Metadatenquellen:** Alle drei genannten
+Metadatenquellen unterscheiden sich in Art, Umfang und Qualität der angebotenen
+Metadaten.
 
 **IMDb** ist mehr oder weniger der ,,Platzhirsch'' unter den Metadatenquellen. Sie
 ist eine Art ,,Quasistandard--Bezugsplattform". Über die bei der IMDb für jeden
@@ -103,8 +100,8 @@ einer oder mehrerer Onlinequellen beziehen. Sie bieten dem Benutzer jedoch
 i.d.R. nicht die Möglichkeit Korrekturen durchzuführen und sind somit nur bedingt
 zum ,,pflegen" von großen Filmsammlungen geeignet.
 
-Metadata Manager
-----------------
+Movie Metadaten Manager
+-----------------------
 
 Neben den Media Center Lösungen gibt es spezielle Tools für die Pflege und
 Korrektur von Film--Metadaten, sog.  *Movie--Metadata--Manager*. Ein
@@ -165,11 +162,8 @@ nicht unterstützt wird.
 Probleme bei der Metadatenpflege
 ================================
 
-Metadatenerhebung Grundprobleme
--------------------------------
-
 Unbekannte und ausländische Filme
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 In den meisten Fällen werden bei den oben beispielhaft genannten Anwendungen die
 richtigen Metadaten für die ,,bekannten" Hollywood Filme gefunden. Hat man aber
@@ -184,47 +178,34 @@ Onlinequelle nicht gefunden, so gibt es oft die Möglichkeit eine andere
 Onlinequelle zu verwenden. Hierbei entstehen oft jedoch neue ,,Probleme", die
 nun folgend betrachtet werden.
 
-Datenredundanzen
-~~~~~~~~~~~~~~~~
+Redundante Metadaten
+--------------------
 
-**Grundlegende Problematik**
+**Grundlegende Problematik:** Redundanzen treten in der Regal auf wenn bei einer
+Filmsammlung die Daten aus unterschiedlichen Quellen stammen. Für das Attribut
+Genre gibt es keine einheitlich festgelegten Schreibweisen. Neben dem Genre sind
+auch weitere Attribute von der Redundanz--Problematik betroffen, jedoch ist das
+Genre, neben der Inhaltsbeschreibung, laut Meinung des Autors, eins der
+wichtigsten Attribute, da es maßgeblich in die Entscheidung der Filmauswahl
+einfließt.
 
-Redundanzen treten in der Regal auf wenn bei einer Filmsammlung die Daten aus
-unterschiedlichen Quellen stammen. Für das Attribut Genre gibt es keine
-einheitlich festgelegten Schreibweisen. Neben dem Genre sind auch weitere
-Attribute von der Redundanz--Problematik betroffen, jedoch ist das Genre, neben
-der Inhaltsbeschreibung, laut Meinung des Autors, eins der wichtigsten
-Attribute, da es maßgeblich in die Entscheidung der Filmauswahl einfließt.
+**Schreibweise der Genres:** Die Schreibweise der gepflegten Genres unterscheidet
+sich (siehe :num:`table-robocop`). Hier ist bei TMDb das Genre ,,Science
+Fiction'' und bei OFDb ,,Science-Fiction'' gepflegt.
 
-**Schreibweise der Genres**
+**Internationalisierung:** Je nach Onlinequelle ist das Genre in einer
+unterschiedlichen Sprache gepflegt. IMDb listet hier das Genre ,,Comedy'' (siehe
+Tabelle :num:`table-feuchtgebiete`), TMDb die deutsche Bezeichnung ,,Komödie''.
 
-Die Schreibweise der gepflegten Genres unterscheidet sich (siehe
-:num:`table-robocop`). Hier ist bei TMDb das Genre ,,Science Fiction'' und bei
-OFDb ,,Science-Fiction'' gepflegt.
+Divergente Metadaten
+--------------------
 
-**Internationalisierung**
-
-Je nach Onlinequelle ist das Genre in einer unterschiedlichen Sprache
-gepflegt. IMDb listet hier das Genre ,,Comedy'' (siehe Tabelle
-:num:`table-feuchtgebiete`), TMDb die deutsche Bezeichnung ,,Komödie''.
-
-Divergente Daten
-~~~~~~~~~~~~~~~~
-
-**Divergente Genres**
-
-Die OFDb--Quelle liefert das Genre ,,Erotik", dieses Genre existiert bei IMDb
-(siehe :cite:`imdbgenre`) und bei TMDb :cite:`tmdbgenre` gar nicht.
-
-
-Beim Bezug von drei Filmen wird deutlich welche *Probleme* bei der Beschaffung
-der Metadaten enstehen können. Diese Probleme werden beim *aktuellen Stand der
-Technik* durch den Benutzer mühsam manuell gepflegt. Bei kleinen Filmesammlungen
-ist der Aufwand der manuellen *nachpflege* noch vertretbar, nicht jedoch bei
-*größeren* Sammlungen von mehreren hundert Filmen.
+**Divergente Genres:** Die OFDb--Quelle liefert für den Film ,,Feuchtgebiete
+(2013)" das Genre ,,Erotik", dieses Genre existiert bei IMDb (siehe
+:cite:`imdbgenre`) und bei TMDb :cite:`tmdbgenre` gar nicht.
 
 Dateninhomogenität Praxisbeispiel
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 Um das Problem zu veranschaulichen, betrachten wir, parallel zur oben genannten
 Problematik, Auszüge von Metadaten der drei Onlinequellen IMDb, TMDb und OFDb.
@@ -233,7 +214,7 @@ Wir gehen von der Annahme aus, dass die Inhaltsbeschreibung und das
 Genre zu den *wichtigsten* Kriterien bei der Filmauswahl gehören und diese somit
 *sauber* gepflegt sein müssen.
 
-In unserem Beispiel befinden sich folgenden drei Filme in der Filmsammlung, die
+In unserem Beispiel befinden sich folgende drei Filme in der Filmsammlung, die
 mit Metadaten versorgt werden sollen:
 
     1) ,,After.Life (2010)'', US-amerikanischer Spielfilm, Agnieszka Wojtowicz-Vosloo
@@ -247,16 +228,13 @@ unterscheidet sie sich auch je nach Quelle in der Formatierung/Art. Nicht alle
 Inhaltsbeschreibungen haben beispielsweise hinter dem Rollennamen immer den
 Namen des Schauspielers in Klammern.
 
-After.Life (2010)
-"""""""""""""""""
-
-Die Daten bei TMDb werden in verschiedenen Sprachen gepflegt und sind i.d.R.
-*qualitativ hochwertig*. Unser erster Film wurde bei TMDb gut eingepflegt, die
-Inhaltsbeschreibung ist deutschsprachig, das Genre feingranular gepflegt. Des
-weiteren bietet uns TMDb auch gleich hochauflösende grafische Metadaten. Bei
-OFDb ist das Genre ,,Mystery'' nicht gepflegt und zudem gibt es nur ein
-niedrigauflösendes Cover und keine Hintergrundbilder (siehe Tabelle
-:num:`table-afterlife`).
+**After.Life (2010):** Die Daten bei TMDb werden in verschiedenen Sprachen
+gepflegt und sind i.d.R.  *qualitativ hochwertig*. Unser erster Film wurde bei
+TMDb gut eingepflegt, die Inhaltsbeschreibung ist deutschsprachig, das Genre
+feingranular gepflegt. Des weiteren bietet uns TMDb auch gleich hochauflösende
+grafische Metadaten. Bei OFDb ist das Genre ,,Mystery'' nicht gepflegt und zudem
+gibt es nur ein niedrigauflösendes Cover und keine Hintergrundbilder (siehe
+Tabelle :num:`table-afterlife`).
 
 .. figtable::
     :label: table-afterlife
@@ -271,16 +249,13 @@ niedrigauflösendes Cover und keine Hintergrundbilder (siehe Tabelle
     | Genre | Drama, Horror, Mystery | Drama, Horror, Mystery, Thriller | Drama, Horror, Thriller |
     +-------+------------------------+----------------------------------+-------------------------+
 
-**Genre:** austauschbar, unterschiedlich ,,feingranular'' gepflegt
+*Zusammenfassung Genre:* austauschbar, unterschiedlich ,,feingranular'' gepflegt
 
-Feuchtgebiete (2013)
-""""""""""""""""""""
-
-Unser zweiter Film ist bei TMDb und OFDb gut gepflegt. Was hier jedoch auffällt
-ist, dass das gepflegte Genre bei diesen beiden Anbietern keinen Schnittpunkt
-hat. Liest man sich zu dem Film den Wikipedia Artikel (siehe
-:cite:`feuchtgebiete`) durch, so hat auch das bei OFDb gepflegte Genre seine
-Daseinsberechtigung.
+**Feuchtgebiete (2013):** Unser zweiter Film ist bei TMDb und OFDb gut gepflegt.
+Was hier jedoch auffällt ist, dass das gepflegte Genre bei diesen beiden
+Anbietern keinen Schnittpunkt hat. Liest man sich zu dem Film den Wikipedia
+Artikel (siehe :cite:`feuchtgebiete`) durch, so hat auch das bei OFDb gepflegte
+Genre seine Daseinsberechtigung.
 
 .. figtable::
     :label: table-feuchtgebiete
@@ -295,18 +270,16 @@ Daseinsberechtigung.
     | Genre | Drama, Comedy    | Drama, Komödie  | Erotik          |
     +-------+------------------+-----------------+-----------------+
 
-**Genre:** total divergent, Problem der Internationalisierung
+*Zusammenfassung Genre:* total divergent, Problem der Internationalisierung
 
-Nymphomaniac (2013)
-"""""""""""""""""""
 
-Hier ist bei TMDb die Inhaltsbeschreibung in deutsch nicht vorhanden. Der Film
-ist im Vergleich zu ,,Hollywood''-Blockbuster in deutsch relativ schlecht
-gepflegt. Bei OFDb ist wie auch beim ersten Film, eine deutschsprachige
-Inhaltsangabe vorhanden. Zur großen Überraschung ist hier das Genre im Vergleich
-zu den beiden anderen Onlinequellen feingranularer gepflegt -- was laut
-Wikipedia (siehe :cite:`nymphomaniac`) auch besser zum Film passen würde (siehe
-Tabelle :num:`table-nymphomaniac`).
+**Nymphomaniac (2013):** Hier ist bei TMDb die Inhaltsbeschreibung in deutsch
+nicht vorhanden. Der Film ist im Vergleich zu ,,Hollywood''-Blockbuster in
+deutsch relativ schlecht gepflegt. Bei OFDb ist wie auch beim ersten Film, eine
+deutschsprachige Inhaltsangabe vorhanden. Zur großen Überraschung ist hier das
+Genre im Vergleich zu den beiden anderen Onlinequellen feingranularer gepflegt
+-- was laut Wikipedia (siehe :cite:`nymphomaniac`) auch besser zum Film passen
+würde (siehe Tabelle :num:`table-nymphomaniac`).
 
 .. figtable::
     :label: table-nymphomaniac
@@ -321,13 +294,10 @@ Tabelle :num:`table-nymphomaniac`).
     | Genre | Drama            | Drama            | Drama, Erotik, Sex |
     +-------+------------------+------------------+--------------------+
 
-**Genre:** divergent, unterschiedlich ,,feingranular" gepflegt
+*Zusammenfassung Genre:* divergent, unterschiedlich ,,feingranular" gepflegt
 
-RoboCop (2014)
-""""""""""""""
-
-Der vierte Film, eine Hollywood Remake--Produktion ist hier bei allen drei
-Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`)
+**RoboCop (2014):** Der vierte Film, eine Hollywood Remake--Produktion ist hier
+bei allen drei Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`)
 
 .. figtable::
     :label: table-robocop
@@ -342,11 +312,19 @@ Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`)
     | Genre | Action, Crime, Sci-Fi | Action, Science Fiction, Krimi | Action, Krimi, Science-Fiction, Thriller |
     +-------+-----------------------+--------------------------------+------------------------------------------+
 
-**Genre:** unterschiedliche Schreibweise, divergent, Problem der
+*Zusammenfassung Genre:* unterschiedliche Schreibweise, divergent, Problem der
 Internationalisierung, unterschiedlich ,,feingranular" gepflegt
 
+
+Beim Bezug von drei Filmen wird deutlich welche *Probleme* bei der Beschaffung
+der Metadaten enstehen können. Diese Probleme werden beim *aktuellen Stand der
+Technik* durch den Benutzer mühsam manuell gepflegt. Bei kleinen Filmsammlungen
+ist der Aufwand der manuellen Nachpflege noch vertretbar, nicht jedoch bei
+*größeren* Sammlungen von mehreren hundert Filmen.
+
+
 Auswirkungen
-~~~~~~~~~~~~
+------------
 
 Abspielsoftware wie das XBMC erlaubt es dem Benutzer die Filme nach Genre zu
 gruppieren und zu filtern. Durch dieses Feature kann der Benutzer einen Film
@@ -357,10 +335,10 @@ minder chaotischer Zustand.
 .. _ref-probleme-metadatensuche:
 
 Probleme bei der Metadatensuche
--------------------------------
+===============================
 
 Grundlegende Probleme
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 **Exakte Suchstrings:** Viele Metadaten-Tools erwarten exakte Suchbegriffe.
 Falsch geschriebene Filme wie ,,The Marix" oder ,,Sin Sity'' werden oft nicht
@@ -371,7 +349,7 @@ oft nicht möglich, obwohl diese von manchen Onlineanbietern unterstützt wird
 (siehe Tabelle :num:`table-movietools`).
 
 Probleme bei Movie Metadata Managern
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------
 
 Es wurden neben der Abspielsoftware XBMC und dem Movie--Metadaten--Manager
 MediaElch, die bereits genannten Movie--Metadaten--Manager (siehe
@@ -419,9 +397,8 @@ aktuellen Kombination aus Abspielsoftware und Movie Manager nicht oder nur mit
 manuellen Eingriff durch den Benutzer beheben beheben. Bei *großen*
 Filmsammlungen ist dies jedoch mit keinem vernünftigen Aufwand umsetzbar.
 
-
-Idee
-====
+Idee --- modulare Herangehensweise
+==================================
 
 Die Idee ist es eine andere Herangehensweise umzusetzen mit dem Ziel die
 genannten Probleme abzumildern oder zu beheben.

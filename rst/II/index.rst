@@ -58,16 +58,16 @@ Kontextspezifische Fachbegriffe
 
 .. glossary::
 
+    OutputConverter
+
+     Im Kontext von *libhugin* ist ein OutputConverter ein Plugin das für das
+     konvertieren eines Ergebnisses in ein bestimmtes Metadatenformat wie
+     beispielsweise XBMC nfo-Format (XML) zuständig ist.
+
     Provider
 
-      Im Kontext von *libhugin* ist ein Provider eine Art ,,Vermittler''
-      zwischen der entwickelten Bibliothek und einem Online Webservice der
-      Metadaten anbietet. Der Provider ist Bestandteil der Bibliothek und wird
-      als Plugin implementiert.
-
-   OutputConverter
-
-      Im Kontext von *libhugin* ist ein OutputConverter ein Plugin das für das
-      konvertieren eines Ergebnisses in ein bestimmtes Metadatenformat wie
-      beispielsweise XBMC nfo-Format (XML) zuständig ist.
+     Im Kontext von *libhugin* ist ein Provider eine Art ,,Vermittler''
+     zwischen der entwickelten Bibliothek und einem Online Webservice der
+     Metadaten anbietet. Der Provider ist Bestandteil der Bibliothek und wird
+     als Plugin implementiert.
 
