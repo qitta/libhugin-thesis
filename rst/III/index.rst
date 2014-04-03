@@ -4,7 +4,7 @@ Metadatenquellen, Software und Problematik
 
 Die vorgestellten Plattformen, Player und Tools zeigen nur einen Ausschnitt,
 alle bekannten Plattformen, Player und Tools aufzulisten ist aufgrund der
-Vielfalt bzw.  Komplexität nicht möglich.
+Vielfalt beziehungsweise Komplexität nicht möglich.
 
 Metadatenarten und Quellen
 ==========================
@@ -49,7 +49,7 @@ Qualität.
 
 **TMDb** ist eine hauptsächlich Community gepflegte Datenbank. Die hier gepflegten
 Filme enthalten neben den ,,Standard Metadaten'' auch hochauflösende Cover und
-Hintergrundbilder (sog. Backdrops, Fanart). Die Datenbank wird oft von Open
+Hintergrundbilder (sogenannte Backdrops, Fanart). Die Datenbank wird oft von Open
 Source Projekten wie auch dem Xbox Media Center verwendet.
 
 **OFDb** ist eine im deutschen Raum bekannte Filmdatenbank, welche deutschsprachige
@@ -63,10 +63,8 @@ deutsche Inhaltsbeschreibung auf den vier Film--Plattformen *cinefacts.de*
 (siehe :cite:`cinefacts-paddg`), *filmstarts.de* (siehe :cite:`filmstars-paddg`),
 *OFDb.de* (siehe :cite:`ofdb-paddg`) und *TMDb* (siehe :cite:`tmdb-paddg`) an, so
 wird man feststellen, dass jede dieser Plattformen eine andere deutsche
-Inhaltsbeschreibung gepflegt hat.
-
-Je nach persönlichen Präferenzen, möchte man nur eine bestimmte Art von
-Inhaltsbeschreibung einpflegen.
+Inhaltsbeschreibung gepflegt hat. Je nach persönlichen Präferenzen, möchte man
+nur eine bestimmte Art von Inhaltsbeschreibung einpflegen.
 
 
 Software und Metadatenformate
@@ -76,7 +74,7 @@ Abspielsoftware
 ---------------
 
 Die Darstellung einer mit Metadaten gepflegten Filmsammlung erfolgt in den
-meisten Fällen über sog.  ,,Media Center''--Software, die für den
+meisten Fällen über sogenannte ,,Media Center''--Software, die für den
 ,,Home--Theater--PC Betrieb" im Wohnzimmer angepasst ist.
 
 Beispiele hierfür wären das Windows Media Center oder auch das freie Xbox Media
@@ -89,22 +87,22 @@ zahlreiche Standalone--Lösungen wie beispielsweise Popcorn Hour (siehe
 .. _fig-xbmcscreenshot:
 
 .. figure:: fig/xbmc-screenshot.png
-    :alt: In XBMC gepflegte Filmesammlung
+    :alt: Screenshot einer im Xbox Media Center gefpegten Filmesammlung.
     :width: 90%
     :align: center
 
     Screenshot einer im Xbox Media Center gefpegten Filmesammlung.
 
-Die Media Center Software kann ihre Metadaten i.d.R. je nach Applikation von
-einer oder mehrerer Onlinequellen beziehen. Sie bieten dem Benutzer jedoch
-i.d.R. nicht die Möglichkeit Korrekturen durchzuführen und sind somit nur bedingt
-zum ,,pflegen" von großen Filmsammlungen geeignet.
+Die Media Center Software kann ihre Metadaten in der Regal je nach Applikation
+von einer oder mehrerer Onlinequellen beziehen. Sie bieten dem Benutzer jedoch
+in der Regal nicht die Möglichkeit Korrekturen durchzuführen und sind somit nur
+bedingt zum ,,pflegen" von großen Filmsammlungen geeignet.
 
 Movie Metadaten Manager
 -----------------------
 
 Neben den Media Center Lösungen gibt es spezielle Tools für die Pflege und
-Korrektur von Film--Metadaten, sog.  *Movie--Metadata--Manager*. Ein
+Korrektur von Film--Metadaten, sogenannte *Movie--Metadata--Manager*. Ein
 Movie--Management--Tool, welches es unter *unixoden* Betriebssystemen
 gibt ist beispielsweise MediaElch (Abb.  :num:`fig-mediaelch`, siehe auch
 :cite:`mediaelch`). Hier gibt es unter Linux noch weitere Tools, siehe
@@ -128,11 +126,11 @@ pflegt. Je nach Anwendung wird dies aber nicht immer unterstützt.
 .. _fig-mediaelch:
 
 .. figure:: fig/mediaelch.png
-    :alt: Übersicht MediaElch Video Management Tool.
+    :alt: Screenshot vom Movie Metadata Manager MediaElch.
     :width: 90%
     :align: center
 
-    Screenshot Video Management Tool MediaElch.
+    Screenshot vom Movie Metadata Manager MediaElch.
 
 
 .. _ref-metadatenformate:
@@ -146,12 +144,12 @@ Hier wird je nach Abspiel- oder Verwaltungssoftware jeweils ein anderes Format
 verwendet.
 
 Das Xbox Media Center speichert seine Metadaten beispielsweise intern in einer
-Datenbank und schreibt diese beim Exportieren in :term:`XML`--Dateien, das sog.
-nfo-Format raus (siehe :cite:`xbmcnfo`). Nutzt man eine andere Abspielsoftware
-wie das Windows Media Center, so werden die Metadaten im dvdxml-Format, auch ein
-*XML* basiertes Format, abgespeichert (siehe :cite:`dvdxml`). Hier gibt es noch
-zahlreiche andere Formate, auch bei den Movie Managern, auf die nicht
-weiter eingegangen wird.
+Datenbank und schreibt diese beim Exportieren in :term:`XML`--Dateien, das
+sogenannte nfo-Format raus (siehe :cite:`xbmcnfo`). Nutzt man eine andere
+Abspielsoftware wie das Windows Media Center, so werden die Metadaten im
+dvdxml-Format, auch ein *XML* basiertes Format, abgespeichert (siehe
+:cite:`dvdxml`). Hier gibt es noch zahlreiche andere Formate, auch bei den Movie
+Managern, auf die nicht weiter eingegangen wird.
 
 Dieser Umstand erschwert das Pflegen der Film--Metadaten zusätzlich. Für die
 beiden genannten Formate, bieten Movie Metadata Manager oft import/export
@@ -182,12 +180,12 @@ Redundante Metadaten
 --------------------
 
 **Grundlegende Problematik:** Redundanzen treten in der Regal auf wenn bei einer
-Filmsammlung die Daten aus unterschiedlichen Quellen stammen. Für das Attribut
-Genre gibt es keine einheitlich festgelegten Schreibweisen. Neben dem Genre sind
-auch weitere Attribute von der Redundanz--Problematik betroffen, jedoch ist das
-Genre, neben der Inhaltsbeschreibung, laut Meinung des Autors, eins der
-wichtigsten Attribute, da es maßgeblich in die Entscheidung der Filmauswahl
-einfließt.
+Filmsammlung die Daten aus unterschiedlichen Quellen stammen. ?REDUNDANZEN?
+Quellen Für das Attribut Genre gibt es keine einheitlich festgelegten
+Schreibweisen. Neben dem Genre sind auch weitere Attribute von der
+Redundanz--Problematik betroffen, jedoch ist das Genre, neben der
+Inhaltsbeschreibung, laut Meinung des Autors, eins der wichtigsten Attribute, da
+es maßgeblich in die Entscheidung der Filmauswahl einfließt.
 
 **Schreibweise der Genres:** Die Schreibweise der gepflegten Genres unterscheidet
 sich (siehe :num:`table-robocop`). Hier ist bei TMDb das Genre ,,Science
@@ -214,7 +212,7 @@ Wir gehen von der Annahme aus, dass die Inhaltsbeschreibung und das
 Genre zu den *wichtigsten* Kriterien bei der Filmauswahl gehören und diese somit
 *sauber* gepflegt sein müssen.
 
-In unserem Beispiel befinden sich folgende drei Filme in der Filmsammlung, die
+In unserem Beispiel befinden sich folgende vier Filme in der Filmsammlung, die
 mit Metadaten versorgt werden sollen:
 
     1) ,,After.Life (2010)'', US-amerikanischer Spielfilm, Agnieszka Wojtowicz-Vosloo
@@ -224,16 +222,16 @@ mit Metadaten versorgt werden sollen:
 
 
 Die Inhaltsbeschreibung ist in der Regel problemlos austauschbar, jedoch
-unterscheidet sie sich auch je nach Quelle in der Formatierung/Art. Nicht alle
-Inhaltsbeschreibungen haben beispielsweise hinter dem Rollennamen immer den
-Namen des Schauspielers in Klammern.
+unterscheidet sie sich auch je nach Quelle in der Formatierung, Ausführlichkeit
+und Sprachstil.  Nicht alle Inhaltsbeschreibung haben beispielsweise hinter
+dem Rollennamen immer den Namen des Schauspielers in Klammern.
 
 **After.Life (2010):** Die Daten bei TMDb werden in verschiedenen Sprachen
-gepflegt und sind i.d.R.  *qualitativ hochwertig*. Unser erster Film wurde bei
-TMDb gut eingepflegt, die Inhaltsbeschreibung ist deutschsprachig, das Genre
+gepflegt und sind in der Regel *qualitativ hochwertig*. Unser erster Film wurde
+bei TMDb gut eingepflegt, die Inhaltsbeschreibung ist deutschsprachig, das Genre
 feingranular gepflegt. Des weiteren bietet uns TMDb auch gleich hochauflösende
 grafische Metadaten. Bei OFDb ist das Genre ,,Mystery'' nicht gepflegt und zudem
-gibt es nur ein niedrigauflösendes Cover und keine Hintergrundbilder (siehe
+gibt es nur ein niedrig auflösendes Cover und keine Hintergrundbilder (siehe
 Tabelle :num:`table-afterlife`).
 
 .. figtable::
@@ -316,7 +314,7 @@ bei allen drei Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`)
 Internationalisierung, unterschiedlich ,,feingranular" gepflegt
 
 
-Beim Bezug von drei Filmen wird deutlich welche *Probleme* bei der Beschaffung
+Beim Bezug von vier Filmen wird deutlich welche *Probleme* bei der Beschaffung
 der Metadaten enstehen können. Diese Probleme werden beim *aktuellen Stand der
 Technik* durch den Benutzer mühsam manuell gepflegt. Bei kleinen Filmsammlungen
 ist der Aufwand der manuellen Nachpflege noch vertretbar, nicht jedoch bei
@@ -404,9 +402,10 @@ Die Idee ist es eine andere Herangehensweise umzusetzen mit dem Ziel die
 genannten Probleme abzumildern oder zu beheben.
 
 Es soll *kein neuer* Movie Metadaten Manager entwickelt werden. Die Idee ist
-es dem Entwickler bzw. Endbenutzer einen *modularen Werkzeugbaukasten* in Form
-einer pluginbasierten Bibliothek über eine einheitliche Schnittstelle
-bereitzustellen, welcher an die persönlichen Bedürfnisse anpassbar ist.
+es dem Entwickler beziehungsweise Endbenutzer einen *modularen
+Werkzeugbaukasten* in Form einer pluginbasierten Bibliothek über eine
+einheitliche Schnittstelle bereitzustellen, welcher an die persönlichen
+Bedürfnisse anpassbar ist.
 
 Des Weiteren soll die zusätzliche Funktionalität der Datenanalyse,
 beispielsweise basierend auf Data-Mining Algorithmen, möglich sein. Das

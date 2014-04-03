@@ -4,8 +4,12 @@
 
 .. _ref-attachment-a:
 
-Anhang A
-========
+Helferfunktion für NFO-Dateien A
+================================
+
+Folgender Anhang zeigt die import/export-Helferfunktion die von libhugin analyze
+als Schnittstelle zu den Xbox Media Center Metadaten verwendet wird:
+
 
 .. code-block:: python
 
@@ -72,8 +76,12 @@ Anhang A
 
 .. _ref-xbmc-libhugin:
 
-Anhang B
-========
+Xbox Media Center  Scraper Plugin B
+===================================
+
+Folgender Quelltext zeigt die Implementierung des Xbox Media Center Plugins. Als
+externe Schnittstelle wird hier der libhugin proxy (siehe
+:cite:`ref-flaskproxy`) verwendet.
 
 .. code-block:: xml
 
@@ -104,8 +112,11 @@ Anhang B
 
 .. _ref-flaskproxy:
 
-Anhand C
-========
+Libhugin Xbox Media Center Proxy C
+==================================
+
+Folgender Quelltext zeigt die Implementierung des libhugin Proxy--Servers,
+welcher das Xbox Media Center Plugin mit Daten versorgt.
 
 .. code-block:: python
 

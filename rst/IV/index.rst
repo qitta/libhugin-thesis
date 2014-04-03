@@ -171,7 +171,7 @@ reduziert werden.
 
 Es soll ein lokaler Cache implementiert werden um valide Ergebnisse der
 Suchanfragen zu puffern um so die Geschwindigkeit zu erhöhen und das
-Netzwerk bzw. die Onlinequellen zu entlasten.
+Netzwerk beziehungsweise die Onlinequellen zu entlasten.
 
 
 **Implementierung eines Test CLI-Client**

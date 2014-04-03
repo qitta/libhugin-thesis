@@ -1,10 +1,10 @@
-########################
-Libhugin Demoanwendungen
-########################
+###############
+Demoanwendungen
+###############
 
 *Das vorgestellten CLI-Tools stellen nur einen kleinen Ausschnit der Fähigkeiten
 der Bibliothek dar, die Bibliothek selbst ist um fast jede denkbare
-Funktionalität erweiterbar.*
+Funktionalität der Metadatenaufbereitung erweiterbar.*
 
 Der libhugin harvest CLI-Client Geri
 ====================================
@@ -375,7 +375,7 @@ Betrachten der der Inhaltsbeschreibung der *nfo*-Dateien vor dem export (gekürz
 
 .. code-block:: bash
 
-    $cat movies/All\ Good\ Things\ \(2010\)/movie.nfo | grep plot
+    $ cat "movies/All Good Things (2010)/movie.nfo" | grep plot
     <plot>Historia ambientada en los años 80 y centrada en un heredero de una
     dinastía de Nueva York que se enamora de una chica de otra clase social. [...]</plot>
 
@@ -390,7 +390,7 @@ Export der modifizierten Datenbank:
 Betrachten der Inhaltsbeschreibung der *nfo*-Dateien nach dem export (gekürzt):
 
 .. code-block:: bash
-    $ cat movies/All\ Good\ Things\ \(2010\)/movie.nfo | grep plot
+    $ cat "movies/All Good Things (2010)/movie.nfo" | grep plot
     <plot>David Marks, Sohn einer reichen New Yorker Familie, verliebt sich in
     die junge Katie McCarthy, die nicht zu seinen Kreisen gehört. [...]</plot>
 
@@ -429,11 +429,11 @@ nfo OutputConverter Plugin liefern kann.
 .. _fig-xbmcscreenshot-hugin:
 
 .. figure:: fig/hugin_xbmc.png
-    :alt: Libhugin im XBMC als Plugin
+    :alt: Libhugin Scraper Plugin im Xbox Media Center Scraper Menü.
     :width: 70%
     :align: center
 
-    libhugin im XBMC Scraper Meune.
+    Libhugin Scraper Plugin im Xbox Media Center Scraper Menü.
 
 
 .. _libhuginproxy:

@@ -4,7 +4,7 @@ Implementierung
 
 Im Folgenden soll die API und die implementierten Plugins vorgestellt werden.
 
-libhugin harvest API
+Libhugin harvest API
 ====================
 
 Die API wurde sehr einfach gehalten und ermöglicht dadurch dem Benutzer ein
@@ -111,7 +111,7 @@ unterschiedlichen Anbieter ein Genre erstellt.
 
 **ResultTrimmer:** Der Resulttrimmer ist vergleichsweise ein einfaches Plugin,
 welches dafür zuständig ist vorangehende und nachziehende Leerzeichen bei den
-Metadaten zu entfernen. Das Plugin führt eine ,,Säuberung'' durch, diese muss so
+Metadaten zu entfernen. Das Plugin führt eine ,,Säuberung" durch, diese muss so
 nicht vom Provider Plugin explizit durchgeführt werden.
 
 OutputConverter Plugins
@@ -128,7 +128,7 @@ implementiert, dieser wird von der Demoanwendung libhugin proxy (siehe
 
 .. _analyzeapiexample:
 
-libhugin analyze API
+Libhugin analyze API
 ====================
 
 Die API von libhugin analyze ist vom Grundaufbau ähnlich zu der libhugin harvest
@@ -176,8 +176,8 @@ Analyzer Plugins
 ----------------
 
 **keywordextractor:** Diese Plugin extrahiert aus einem Text, bei Filmen meist
-die Inhaltsbeschreibung, relevante Schlüsselwörter die den Text bzw. die
-Thematik repräsentieren.
+die Inhaltsbeschreibung, relevante Schlüsselwörter die den Text beziehungsweise
+die Thematik repräsentieren.
 
 Weiteres hierzu in der Bachelorarbeit.
 
@@ -265,12 +265,13 @@ in der Version 3.3 gewählt. Python als Programmiersprache wurde aus folgenden
 Gründen gewählt:
 
     * **Rapid Prototyping Language**, wichtig bei einem Projekt dieser Größe mit
-      begrenztem Zeitraum
+      begrenztem Zeitraum (vgl. :cite:`lutz2013learning`)
     * **Plattformunabhängigkeit**, Plattformunabhängigkeit ist ein sekundäres
       Ziel des Projekts
     * **Einfach erlernbar**, Wichtig für Pluginentwickler
     * **Verbreitnungsgrad**, Gängige Scriptsprache bei vielen Free Software Projekten
-    * **Optimierungsmöglichkeiten**,  Cython (siehe :cite:`cython`)
+    * **Optimierungsmöglichkeiten**,  Cython (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`)
+
 
 Entwicklungssytem
 ~~~~~~~~~~~~~~~~~
@@ -302,11 +303,11 @@ Github--Projektseite teil so dem Besuchern der Seite den aktuellen
 .. _fig-build
 
 .. figure:: fig/build.png
-    :alt: TravisCI Build png
+    :alt: Logo das den aktuellen ,,Build Status" der github--Projektseite.
     :width: 60%
     :align: center
 
-    Logo das den aktuellen ,,Build Status" des Projekts grafisch visualisiert.
+    Logo das den aktuellen ,,Build Status" der github--Projektseite.
 
 
 
@@ -329,11 +330,11 @@ Python--Shell eine zusätzliche Hilfestellung geboten, siehe :num:`fig-knuth`.
 .. _fig-knuth
 
 .. figure:: fig/knuth.png
-    :alt: API Dokumentation in interaktiver Shell
+    :alt: API--Dokumentation als Hilfestellung in der interaktivier Python--Shell bpython.
     :width: 60%
     :align: center
 
-    API--Dokumentation als Hilfestellung in interaktivier Python--Shell.
+    API--Dokumentation als Hilfestellung in der interaktivier Python--Shell bpython.
 
 |
 |
@@ -404,3 +405,46 @@ die Onlinedokumentation hinzu.
     -------------------------------------------------------------------------------
     SUM:                            56           1230           1284           3607
     -------------------------------------------------------------------------------
+
+
+
+Projektlizenz
+-------------
+
+Um eine communitybasierte Weiterentwicklung zu angestrebt wird und somit auch
+,,Verbesserungen" an das Projekt zurückfließen sollen, wird das System unter
+der GPLv3 Lizenz (siehe :cite:`gpl`) entwickelt. Alle erstellten Grafiken sind
+unter Creative Commons Licence gestellt.
+
+
+Namensgebung
+------------
+
+**Namensgebung und Logo:** Um dem Projekt ein ,,Gesicht" zu geben und den
+Wiedererkennungwert zu steigern, wird das Projekt auf den Namen *libhugin*
+getauft und ein Logo entwickelt (siehe Abbildung :num:`fig-huginlogo`), welches
+einen Raben in Pixelgrafik und ein Stück Filmrolle zeigt. Der Name Hugin kommt
+aus der nordischen Mythologie:
+
+.. epigraph::
+
+   *Hugin gehört zum altnordischen Verb huga „denken“, das hierzu zu stellende*
+   *Substantiv hugi „Gedanke, Sinn“ ist seinerseits die Grundlage für den Namen*
+   *Hugin, der mit dem altnordischen Schlussartikel –in gebildet wurde. Hugin*
+   *bedeutet folglich „der Gedanke“.*
+
+                                -- http://de.wikipedia.org/wiki/Hugin_and_Munin
+
+
+.. _fig-huginlogo:
+
+.. figure:: fig/hugin.png
+    :alt: Libhugin Logo, das einen Pixelraben und ein abgerissenes Stück Filmrolle zeigt.
+    :width: 30%
+    :align: center
+
+    Libhugin Logo, das einen Pixelraben und ein abgerissenes Stück Filmrolle zeigt.
+
+
+Die beiden CLI-Clients, Geri und Freki, wurden nach den beiden Wölfen die Odin
+begleiten benannt (siehe :cite:`gerifreki`).

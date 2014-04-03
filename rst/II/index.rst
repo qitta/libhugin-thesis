@@ -18,7 +18,7 @@ Fachbegriffe
     Home--Theatre--PC
 
      Ein auf PC Komponenten basierendes Gerät zur Wiedergabe multimedialer
-     Inhalte, dieser wird oft mit sog. Media Center Software wie dem Xbox
+     Inhalte, dieser wird oft mit sogenannte Media Center Software wie dem Xbox
      Media Center betrieben.
 
     Smart--TV
@@ -37,7 +37,7 @@ Fachbegriffe
 
     Hashmap
 
-     Eine spezielle Indexstruktur, bei welcher Daten jeweils einem eindeutigen
+     Eine spezielle Datenstruktur, bei welcher Daten jeweils einem eindeutigen
      Index zugeordnet sind.
 
     Scraper
@@ -66,7 +66,7 @@ Kontextspezifische Fachbegriffe
 
     Provider
 
-     Im Kontext von *libhugin* ist ein Provider eine Art ,,Vermittler''
+     Im Kontext von *libhugin* ist ein Provider eine Art ,,Vermittler"
      zwischen der entwickelten Bibliothek und einem Online Webservice der
      Metadaten anbietet. Der Provider ist Bestandteil der Bibliothek und wird
      als Plugin implementiert.

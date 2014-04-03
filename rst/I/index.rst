@@ -72,7 +72,7 @@ Metadaten--Exportformate und Metadaten--Bezugsquellen zusammenführt und über
 eine *einheitliche Schnittstelle* anbietet. Neben der Funktionalität der
 Metadatenbeschaffung, soll es die Möglichkeit der Metadatenaufbereitung (Säubern
 von ungewünschten Sonderzeichen, automatische Extraktion von Schlüsselwörtern
-aus Inhaltsbeschreibung, etc.) geben.
+aus Inhaltsbeschreibung mittels Data Mining Algorithmen, et cetera.) geben.
 
 Die aktuellen Tools zur Metadatenverwaltung verfolgen einen eher *statischen*
 Ansatz.  Im Gegensatz dazu soll das System nach dem Baukastenprinzip erweiterbar
@@ -81,49 +81,10 @@ Benutzers anpassbar sein.
 
 Im Unterschied zu den bereits vorhandenen Tools die hauptsächliche durch
 manuelle Interaktion des Benutzers gesteuert werden, soll das System auf eine
-automatisierte Verarbeitung ausgelegt sein. Hier liegt das Augenmerk auf der
+automatisierte Verarbeitung ausgelegt sein. Hier liegt das Hauptaugenmerk auf der
 Pflege *großer* Filmsammlungen.
 
 Der modulare Aufbau und eine freie Lizenz sollen eine Weiterentwicklung durch
-die Community gewährleisten und eine ganz neue Art von Funktionalität bieten.
+die Community ermöglichen und zusätzlichen Spielraum für neue Ideen schaffen.
 
 
-Projektlizenz und Namensgebung
-==============================
-
-Lizenz
-------
-
-Um eine communitybasierte Weiterentwicklung zu gewährleisten und damit auch
-,,Verbesserungen" an das Projekt zurückfließen zu lassen, wird das System unter
-der GPLv3 Lizenz (siehe :cite:`gpl`) entwickelt.
-
-Namensgebung und Logo
----------------------
-
-Um dem Projekt ein ,,Gesicht" zu geben und den Wiedererkennungwert zu steigern,
-wird das Projekt auf den Namen *libhugin* getauft und ein Logo entwickelt
-(siehe Abbildung :num:`fig-huginlogo`), welches einen Raben in Pixelgrafik und
-ein Stück Filmrolle zeigt. Der Name Hugin kommt aus der nordischen Mythologie:
-
-.. epigraph::
-
-   *Hugin gehört zum altnordischen Verb huga „denken“, das hierzu zu stellende*
-   *Substantiv hugi „Gedanke, Sinn“ ist seinerseits die Grundlage für den Namen*
-   *Hugin, der mit dem altnordischen Schlussartikel –in gebildet wurde. Hugin*
-   *bedeutet folglich „der Gedanke“.*
-
-                                -- http://de.wikipedia.org/wiki/Hugin_and_Munin
-
-
-.. _fig-huginlogo:
-
-.. figure:: fig/hugin.png
-    :alt: libhugin Logo.
-    :width: 30%
-    :align: center
-
-    libhugin Logo.
-
-.. http://www.vodprofessional.com/features/introduction-to-video-metadata/
-.. https://www.videouniversity.com/articles/metadata-for-video/

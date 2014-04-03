@@ -14,11 +14,13 @@ Grundprinzip -- Beschaffung der Metadaten
 
 Metadaten werden über verschiedene Onlinequellen bezogen. Hier wird
 grundsätzlich zwischen Onlinequellen mit API und ohne API unterschieden.
-Onlinequellen mit API bieten dem Entwickler direkt eine Schnittstelle über die, die
-interne Datenbank des Metadatenanbieters abgefragt werden kann.
+Onlinequellen mit API bieten dem Entwickler direkt eine Schnittstelle über die,
+die interne Datenbank des Metadatenanbieters abgefragt werden kann. Die
+Onlinequellen mit API unterteilen sich in die zwei Technologien RESTful (vgl.
+:cite:`fielding2000architectural`) und SOAP (vgl. :cite:`snell2002webservice`).
 
 Folgendes Bash--Snippet demonstriert einen Zugriff mit dem Webtransfer--Tool
-*cULR* (siehe :cite:`curl`) auf die API der ,,The Open Movie
+*cURL* (siehe :cite:`curl`) auf die API der ,,The Open Movie
 Database"--Onlinequelle (siehe :cite:`omdb`), es wird nach dem Film ,,The
 Matrix'' gesucht:
 
@@ -87,12 +89,12 @@ zurückliefert.
 
 Ein Ziel bei der Entwicklung der Plugin--Spezifikation ist, den Aufwand für das
 implementieren eines Plugins so gering wie möglich zu halten, um Programmfehler
-bzw. Fehlverhalten durch Plugins zu minimieren, aber auch um Entwickler zu
-motivieren Plugins zu schreiben.
+beziehungsweise Fehlverhalten durch Plugins zu minimieren, aber auch um
+Entwickler zu motivieren Plugins zu schreiben.
 
-Das o.g. Prinzip beim Beschaffen von Metadaten ist immer gleich und lässt sich
-somit gut auf das Pluginsystem übertragen. Die Provider--Plugins müssen im
-Prinzip *nur* folgendes zwei Punkte können:
+Das oben genannte Prinzip beim Beschaffen von Metadaten ist immer gleich und
+lässt sich somit gut auf das Pluginsystem übertragen. Die Provider--Plugins
+müssen im Prinzip *nur* folgendes zwei Punkte können:
 
     * aus den Suchparametern die *Such--URL* zusammenbauen
     * extrahieren der Daten aus dem zurückgelieferten *HTTP--Response*
@@ -104,11 +106,11 @@ das Downloadmanagement.
 .. _fig-provider-concept:
 
 .. figure:: fig/provider-concept-svg.pdf
-    :alt: Grundprinzip Provider--Plugins
+    :alt: Grundprinzip Kommunikationsablauf mit Provider Plugin.
     :width: 80%
     :align: center
 
-    Grundprinzip der Provider--Plugins.
+    Grundprinzip Kommunikationsablauf mit Provider Plugin.
 
 
 Damit der Provider weiß, welche ,,Roh--Daten'' er zurückliefern soll, muss
@@ -168,11 +170,11 @@ erläutert.
 .. _fig-klassenuebersicht-harvest:
 
 .. figure:: fig/klassenuebersicht-harvest-svg.pdf
-    :alt: Libhugin harvest Klassenübersicht und Interaktion.
+    :alt: Libhugin harvest Klassenübersicht mit Klasseninteraktion.
     :width: 80%
     :align: center
 
-    Libhugin harvest Klassenübersicht und Interaktion.
+    Libhugin harvest Klassenübersicht mit Klasseninteraktion.
 
 
 **Session:** Diese Klasse bildet den Grundstein für libhugin harvest. Über eine
@@ -308,11 +310,11 @@ die vom jeweiligen Plugintyp implementiert werden muss.
 .. _fig-harvest-plulgin-interface:
 
 .. figure:: fig/harvest-plugin-interface.pdf
-    :alt: libhugin harvest plugins interface
+    :alt: Libhugin harvest Plugin Schnittstellenbeschreibung.
     :width: 80%
     :align: center
 
-    libhugin harvest plugins interface
+    Libhugin harvest Plugin Schnittstellenbeschreibung.
 
 
 Diese libhugin harvest Plugins haben die Möglichkeiten von den folgenden
@@ -378,7 +380,7 @@ Klassenübersicht libhugin analyze
     :width: 80%
     :align: center
 
-    Libhugin analyze Klassenübersicht und Interaktion.
+    Libhugin analyze Klassenübersicht mit Klasseninteraktion.
 
 
 
@@ -492,11 +494,11 @@ die vom jeweiligen Plugintyp implementiert werden muss.
 .. _fig-analyze-plulgin-interface:
 
 .. figure:: fig/analyze-plugin-interface.pdf
-    :alt: libhugin analyzeplugins interface
+    :alt: Libhugin analyze Plugin Schnitstellenbeschreibung.
     :width: 80%
     :align: center
 
-    libhugin analyze plugins interface
+    Libhugin analyze Plugin Schnitstellenbeschreibung.
 
 
 Die libhugin analyze Plugins haben die Möglichkeiten von den folgenden
