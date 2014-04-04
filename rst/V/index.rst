@@ -362,9 +362,9 @@ manipuliert dieses nach bestimmten Kriterien oder gibt eine neue Liste mit
 ,,Result--Objekten'' zurück.
 
 
-**OutputConverter Plugins Schnittstellen:**
+**Converter Plugins Schnittstellen:**
 
-**IOutputConverter**: Plugins die als OutputConverter--Plugins fungieren.
+**IConverter**: Plugins die als Converter--Plugins fungieren.
 
 ``convert()``: Diese Methode bekommt ein ,,Result--Objekt'' übergeben und gibt
 die String--Repräsentation von diesem in einem spezifischen Metadatenformat wieder.

@@ -58,9 +58,9 @@ Kontextspezifische Fachbegriffe
 
 .. glossary::
 
-    OutputConverter
+    Converter
 
-     Im Kontext von *libhugin* ist ein OutputConverter ein Plugin das für das
+     Im Kontext von *libhugin* ist ein Converter ein Plugin das für das
      konvertieren eines Ergebnisses in ein bestimmtes Metadatenformat wie
      beispielsweise XBMC nfo-Format (XML) zuständig ist.
 

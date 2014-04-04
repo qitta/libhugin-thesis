@@ -52,7 +52,7 @@ Das ,,Stimmung"--Attribut könnte man beispielsweise als ,,tag"--Attribut sogar
 in die XBMC Metadatenstruktur aufnehmen und hier zusätzlich die Filme nicht nur
 nach Genre sondern auch nach ,,Stimmung" gruppieren und auswählen.
 
-**Postprocessor und OutputConverter Plugins:** Hier wäre es wünschenswert
+**Postprocessor und Converter Plugins:** Hier wäre es wünschenswert
 allgemein bekannte Converter Plugins wie beispielsweise für das Windows Media
 Center zu implementieren.
 

@@ -423,7 +423,7 @@ Die Referenzimplementierung des offiziellen TMDb--Scrapers hat insgesamt über 6
 Die Implementierung des libhugin Plugins in das XBMC hat an dieser Stelle nur 23
 *lines of code* (siehe :ref:`ref-xbmc-libhugin`). Das liegt daran, dass
 der libhugin Proxy hier dem XBMC die Daten bereits im benötigten Format über das
-nfo OutputConverter Plugin liefern kann.
+nfo Converter Plugin liefern kann.
 
 
 .. _fig-xbmcscreenshot-hugin:

@@ -114,13 +114,13 @@ welches dafür zuständig ist vorangehende und nachziehende Leerzeichen bei den
 Metadaten zu entfernen. Das Plugin führt eine ,,Säuberung" durch, diese muss so
 nicht vom Provider Plugin explizit durchgeführt werden.
 
-OutputConverter Plugins
+Converter Plugins
 -----------------------
 
-Bei den OutputConverter Plugins wurde zu Demozwecken ein HTML--OutputConverter
-und ein Json--OutputConverter implementiert.
+Bei den Converter Plugins wurde zu Demozwecken ein HTML--Converter
+und ein Json--Converter implementiert.
 
-Des Weiteren wurde für den Produktiveinsatz ein XBMC--NFO--OutputConverter
+Des Weiteren wurde für den Produktiveinsatz ein XBMC--NFO--Converter
 implementiert, dieser wird von der Demoanwendung libhugin proxy (siehe
 :ref:`libhuginproxy`) verwendet um den XBMC--libhugin Plugin (siehe
 :ref:`xbmcplugin`) die Metadaten im richtigen Format zu liefern.
