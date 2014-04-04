@@ -185,7 +185,7 @@ welcher das Xbox Media Center Plugin mit Daten versorgt.
 
     @app.route('/stats')
     def stats():
-        response = 'Postprocessing enabled: {}\nResults in queue: {}'.format(
+        response = 'Postprocessor enabled: {}\nResults in queue: {}'.format(
             POSTPROCESSING,
             len(CACHE)
         )
@@ -199,7 +199,7 @@ welcher das Xbox Media Center Plugin mit Daten versorgt.
             POSTPROCESSING = not POSTPROCESSING
         except Exception as e:
             print(e)
-        return 'Postprocessing enabled: {}'.format(POSTPROCESSING)
+        return 'Postprocessor enabled: {}'.format(POSTPROCESSING)
 
 
     @app.route('/shutdown')

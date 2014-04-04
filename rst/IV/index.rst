@@ -32,10 +32,10 @@ Providern Prioritäten von 0-100 vergeben. Provider mit höheren Prioritäten
 werden werden beim verarbeiten der Suchergebnisse bevorzugt.
 
 
-**Postprocessing Plugins**
+**Postprocessor Plugins**
 
 Die Möglichkeiten der *Datenaufbereitung* beim Herunterladen von Metadaten
-sollen erweiterbar sein. Der Benutzer hat die Möglichkeit das Postprocessing
+sollen erweiterbar sein. Der Benutzer hat die Möglichkeit das Postprocessor
 System durch schreiben eines von Plugins zu erweitern.
 
 **Output--Converter Plugins**

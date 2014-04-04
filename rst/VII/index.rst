@@ -29,7 +29,7 @@ möglichen Optionen zeigt die Hilfe des Tools:
      geri (-n <name>) [--items <num>] [-p <providers>...] [-c <converter>] [-o <path>]
      geri list-provider
      geri list-converter
-     geri list-postprocessing
+     geri list-postprocessor
      geri -h | --help
      geri --version
 
@@ -58,7 +58,7 @@ Datenmengen, siehe auch *Scripting Tasks* :ref:`ref-scripting-tasks`.
 
 **Filmsuche:** Ein Film kann über den Titel oder über die *IMDB ID* gesucht
 werden. Hier gibt es die Möglichkeit auch bestimmten Provider, Converter,
-Sprache und Postprocessing Plugins anzugeben.
+Sprache und Postprocessor Plugins anzugeben.
 
 Um das Ausgabeformat zu konfigurieren gibt es im *Geri*--Ordner eine
 movie.mask-- und person.mask--Datei. Über diese Dateien kann das Ausgabeformat
@@ -148,7 +148,7 @@ providerübergreifenden *IMDB ID*--Suche.
    [...]
 
 
-**Einsatz von Postprocessing Plugins:** Ein noch nennenswertes Feature ist der
+**Einsatz von Postprocessor Plugins:** Ein noch nennenswertes Feature ist der
 Einsatz vom Composer Plugin. Dies ermöglicht dem Benutzer das Ergebnis nach
 seinen Bedürfnissen zu komponieren und besitzt die Fähigkeit das normalisierte
 Genre mehrerer Provider zusammenzuführen.

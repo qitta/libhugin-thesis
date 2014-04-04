@@ -132,7 +132,7 @@ für die Metadatenbeschaffung zuständig sein und Schnittstellen für die folgen
 Pluginarten bereitstellen:
 
     * Provider--Plugins
-    * Postprocessing--Plugins # TODO: Postprocessor
+    * Postprocessor--Plugins # TODO: Postprocessor
     * Output--Converter--Plugins
 
 .. _fig-harvest-arch:
@@ -229,7 +229,7 @@ Für mehr Informationen siehe Python API :cite:`futures`.
 ``provider_plugins(pluginname=None)``: Diese Methode gibt eine Liste mit den
 Provider--Plugins zurück oder bei Angabe eines Plugins, dieses direkt.
 
-``postprocessing_plugins(pluginname)``: Analog zu ``provider_plugins(pluginname=None)``.
+``postprocessor_plugins(pluginname)``: Analog zu ``provider_plugins(pluginname=None)``.
 
 ``converter_plugins(pluginname)``: Analog zu ``provider_plugins(pluginname=None)``.
 
@@ -290,7 +290,7 @@ Die Problematik der Genre--Normalisierung ist Bestandteil der Bachelorarbeit.
 
 ``activate_plugin_by_category(category)``: Aktiviert Plugins einer bestimmten
 Kategorie. Bei libhugin harvest gibt es die Kategorien  Provider,
-Postprocessing und Converter.
+Postprocessor und Converter.
 
 ``deactivate_plugin_by_category(category)``: Deaktiviert Plugins einer bestimmten
 Kategorie.
@@ -353,9 +353,9 @@ Diese Methode gibt eine Liste mit Attributen zurück die vom Provider befüllt
 werden.
 
 
-**Postprocessing Plugins Schnittstellen:**
+**Postprocessor Plugins Schnittstellen:**
 
-**IPostProcesssing**: Plugins die als Postprocessing--Plugins fungieren.
+**IPostProcesssing**: Plugins die als Postprocessor--Plugins fungieren.
 
 ``process()``: Diese Methode bekommt ein Liste mit Result--Objekten übergeben und
 manipuliert dieses nach bestimmten Kriterien oder gibt eine neue Liste mit
@@ -569,7 +569,7 @@ diesen Ordner dann als ,,Modul" erscheinen lässt. Diese wurden wegen der
     |   |-- pluginhandler.py               #              -- || --
     |   |
     |   |-- converter/                      # Ordner für Converter Plugins
-    |   |-- postprocessing/                 # Ordner für Postprocessing Plugins
+    |   |-- postprocessor/                 # Ordner für Postprocessor Plugins
     |   |-- provider/                       # Ordner für Provider Plugins
     |   |   |-- genrefiles/                 # Genre Dateien für ,,Normalisierung''
     |   |   |   |-- normalized_genre.dat    # Globale Normalisierungstabelle Genre

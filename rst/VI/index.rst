@@ -63,13 +63,13 @@ textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
     | API verfügbar               | ja                 | ja            | nein           | nein          | ja       |
     +-----------------------------+--------------------+---------------+----------------+---------------+----------+
 
-Postprocessing Plugins
+Postprocessor Plugins
 ----------------------
 
-Die Postprocessing Plugins beim libgugin harvest Teil sind für die direkte
+Die Postprocessor Plugins beim libgugin harvest Teil sind für die direkte
 ,,Nachbearbeitung" der Daten gedacht.
 
-**Composer:** Das Composer Plugin ist das momentane Kernstück der Postprocessing
+**Composer:** Das Composer Plugin ist das momentane Kernstück der Postprocessor
 Plugins. Das Plugin Gruppiert die Ergebnisse verschiedener Onlinequellen nach
 Film und bietet dem Benutzer dadurch folgende Möglichkeiten:
 
