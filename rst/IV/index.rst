@@ -211,7 +211,7 @@ Optionale Anforderungen
 -----------------------
 
 Die Bibliothek soll in ein bestehendes Open Source Projekt intigriert werden.
-Hier wäre beispielsweise die Integration als Plugin in das Xbox Media Center
+Hier wäre beispielsweise die Integration als Plugin in das Xbox--Media--Center
 denkbar.
 
 Demonstration weiterer *Einsatzmöglichkeiten*.

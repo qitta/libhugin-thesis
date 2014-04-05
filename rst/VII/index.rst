@@ -232,7 +232,7 @@ Folgend eine kurze Demonstration des CLI--Tools.
 
 **Erstellen einer Datenbank:** Hierzu wird die Helferfunktion (siehe Anhang
 :ref:`ref-attachment-a`) verwendet.  Im Ordner *movies* befinden sich zwei Filme
-die mit dem Xbox Media Center mit Metadaten versorgt wurden.
+die mit dem Xbox--Media--Center mit Metadaten versorgt wurden.
 
 .. code-block:: bash
 
@@ -398,7 +398,7 @@ Betrachtet man nun die nfo--Dateien der jeweiligen Filme, so sieht man, dass
 sich hier die Sprache von spanisch auf deutsch geändert hat.
 
 
-Xbox Meda Center Plugin Integration
+Xbox--Media--Center Plugin Integration
 ===================================
 
 .. _xbmcplugin:
@@ -407,7 +407,7 @@ XBMC Plugin
 -----------
 
 Neben den Kommandozeilentools Geri und Freki wurde *konzeptuell* ein Plugin für
-das Xbox Media Center (siehe Abb.: :num:`fig-xbmcscreenshot-hugin`) geschrieben,
+das Xbox--Media--Center (siehe Abb.: :num:`fig-xbmcscreenshot-hugin`) geschrieben,
 welches libhugin als Metadatenquelle nutzen kann.
 
 Das XBMC erlaubt es sogenannte :term:`Scraper` zu schreiben. Diese arbeiten vom
@@ -429,11 +429,11 @@ nfo Converter Plugin liefern kann.
 .. _fig-xbmcscreenshot-hugin:
 
 .. figure:: fig/hugin_xbmc.png
-    :alt: Libhugin Scraper Plugin im Xbox Media Center Scraper Menü.
+    :alt: Libhugin Scraper Plugin im Xbox--Media--Center Scraper Menü.
     :width: 70%
     :align: center
 
-    Libhugin Scraper Plugin im Xbox Media Center Scraper Menü.
+    Libhugin Scraper Plugin im Xbox--Media--Center Scraper Menü.
 
 
 .. _libhuginproxy:

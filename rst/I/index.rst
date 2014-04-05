@@ -37,7 +37,7 @@ Die Metadaten werden in der Regel über Onlinequellen wie beispielsweise die
 Internet Movie Database (IMDb, siehe :cite:`imdb`) bezogen. Die Anzahl der
 möglichen Onlinedienste die Metadaten bereitstellen, ist hier praktisch
 *ungebrenzt*. Viele Abspiel--Anwendungen wie das Windows Media Center oder das
-Xbox Media Center (XBMC, siehe :cite:`xbmc`') können ihre Metadaten automatisch
+Xbox--Media--Center (XBMC, siehe :cite:`xbmc`') können ihre Metadaten automatisch
 aus dem Internet beziehen. Je nach Anwendung kann es hier im Hintergrund eine
 oder mehrere Bezugsquellen für Metadaten geben.
 
