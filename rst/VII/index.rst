@@ -6,12 +6,12 @@ Demoanwendungen
 der Bibliothek dar, die Bibliothek selbst ist um fast jede denkbare
 Funktionalität der Metadatenaufbereitung erweiterbar.*
 
-Der libhugin harvest CLI-Client Geri
+Der libhugin--harvest CLI-Client Geri
 ====================================
 
 
 Geri ist eine CLI--Anwendung die zu Demozwecken aber auch als Testwerkzeug für
-die libhugin harvest Bibliothek verwendet werden kann.
+die libhugin--harvest Bibliothek verwendet werden kann.
 
 **Übersicht der Optionen:** Ein Überblick über die Funktionalität und die
 möglichen Optionen zeigt die Hilfe des Tools:
@@ -191,10 +191,10 @@ vermuten ob ein Film für Kinder geeignet ist oder nicht.
 
 .. _ref-freki:
 
-Der libhugin analyze CLI-Client Freki
+Der libhugin--analyze CLI-Client Freki
 =====================================
 
-Freki ist für Demonstrationszwecke und das Testen der libhugin analyze
+Freki ist für Demonstrationszwecke und das Testen der libhugin--analyze
 Bibliothek entwickelt worden.
 
 **Übersicht der Optionen:** Folgend zum Überblick der Funktionalität die Hilfe
@@ -203,7 +203,7 @@ des Tools Freki:
 .. code-block:: bash
 
    $python freki -h
-   Libhugin analyzer commandline testtool.
+   Libhugin--analyzer commandline testtool.
 
    Usage:
      freki create <database> <datapath>

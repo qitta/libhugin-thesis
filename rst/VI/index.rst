@@ -4,7 +4,7 @@ Implementierung
 
 Im Folgenden soll die API und die implementierten Plugins vorgestellt werden.
 
-Libhugin harvest API
+Libhugin--harvest API
 ====================
 
 Die API wurde sehr einfach gehalten und ermöglicht dadurch dem Benutzer ein
@@ -23,15 +23,15 @@ zeigt die typische Benutzung der API:
    <OFDBMovie <movie> :  Prometheus - Dunkle Zeichen (2012)>,
    <OMDBMovie <movie> : Prometheus (2012)>]
 
-Für weitere Beispiele siehe offizielle libhugin harvest API :cite:`huginapi`.
+Für weitere Beispiele siehe offizielle libhugin--harvest API :cite:`huginapi`.
 
-Libhugin harvest Plugins
+Libhugin--harvest Plugins
 ========================
 
 Provider--Plugins
 -----------------
 
-Libhugin harvest hat aktuell verschiedene Provider implementiert, siehe Tabelle
+Libhugin--harvest hat aktuell verschiedene Provider implementiert, siehe Tabelle
 :num:`table-provideroverview`. Ein paar der Provider, wie Filmstarts.de,
 Videobuster.de lassen sich noch weiter ausbauen, diese unterstützen momentan nur
 textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
@@ -128,10 +128,10 @@ implementiert, dieser wird von der Demoanwendung libhugin proxy (siehe
 
 .. _analyzeapiexample:
 
-Libhugin analyze API
+Libhugin--analyze API
 ====================
 
-Die API von libhugin analyze ist vom Grundaufbau ähnlich zu der libhugin harvest
+Die API von libhugin--analyze ist vom Grundaufbau ähnlich zu der libhugin--harvest
 API. Folgendes Beispiel--Snippet zeigt die Anwendung des Plotcleaner--Plugins
 auf 'Rohdaten', welche nicht aus der internen Datenbank stammen.
 
@@ -152,10 +152,10 @@ auf 'Rohdaten', welche nicht aus der internen Datenbank stammen.
 
 
 Für weitere Informationen siehe libhugin API :cite:`huginapi`. Des Weiteren
-zeigt die Demoanwendung Freki den Einsatz von libhugin analyze, siehe hier
+zeigt die Demoanwendung Freki den Einsatz von libhugin--analyze, siehe hier
 zu :ref:`ref-freki`.
 
-Libhugin analyze Plugins
+Libhugin--analyze Plugins
 ========================
 
 Modifier Plugins

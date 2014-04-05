@@ -7,7 +7,7 @@
 Helferfunktion für NFO-Dateien A
 ================================
 
-Folgender Anhang zeigt die import/export-Helferfunktion die von libhugin analyze
+Folgender Anhang zeigt die import/export-Helferfunktion die von libhugin--analyze
 als Schnittstelle zu den Xbox--Media--Center Metadaten verwendet wird:
 
 
