@@ -35,7 +35,7 @@ Erweiterung des aktuellen Pluginsystems
 
 **Provider--Plugins:** Momentan ist ein multilingualer, ein englischsprachiger
 und drei deutschsprachige Provider implementiert (siehe
-:ref:`ref-providerplugins` ). Betrachtet man die Möglichkeiten und Anzahl der
+:ref:`ref-providerplugins`). Betrachtet man die Möglichkeiten und Anzahl der
 Plattformen, ist es wünschenswert weitere Provider zu implementieren.
 
 Die aktuelle Attributstruktur die von den Provider befüllt wird ist aktuell
