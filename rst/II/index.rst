@@ -38,16 +38,19 @@ Fachbegriffe
     Hashmap
 
      Eine spezielle Datenstruktur, bei welcher Daten jeweils einem eindeutigen
-     Index zugeordnet sind.
+     Index zugeordnet sind. Der Zugriff auf die Daten erfolgt mit konstantem
+     Aufwand.
 
     Scraper
 
      Auch Webscraper genannt, werden Anwendungen genannt die in der Lage sind
-     Informationen aus Webseiten zu extrahieren.
+     Informationen aus Webseiten zu extrahieren. Ein Scraper gibt sich einer
+     Webseite gegenüber wie ein normaler Webbrowser aus. So wird eine
+     maschinelle Verarbeitung der Informationen auf dieser Webseite möglich.
 
     RESTful
 
-     Eine Form einer Webapi bei der mithilfe von Standard HTTP--Verben
+     Eine Form einer Web--API, bei der mithilfe von Standard HTTP--Verben
      und speziellen, menschenlesbaren URLs bestimmte Aktionen getriggert werden
      können. So kann man sich beispielsweise mit einer GET Operation
      Informationen von einem Service beschaffen.
@@ -60,14 +63,14 @@ Kontextspezifische Fachbegriffe
 
     Converter
 
-     Im Kontext von *libhugin* ist ein Converter ein Plugin das für das
-     konvertieren eines Ergebnisses in ein bestimmtes Metadatenformat wie
-     beispielsweise XBMC nfo-Format (XML) zuständig ist.
+     Im Kontext von libhugin ist ein Converter ein Plugin das für das
+     Konvertieren eines Ergebnisses in ein bestimmtes Metadatenformat wie
+     beispielsweise das XBMC nfo-Format zuständig ist.
 
     Provider
 
-     Im Kontext von *libhugin* ist ein Provider eine Art ,,Vermittler"
-     zwischen der entwickelten Bibliothek und einem Online Webservice der
+     Im Kontext von libhugin ist ein Provider eine Art ,,Vermittler"
+     zwischen der entwickelten Bibliothek und einem Online--Webservice der
      Metadaten anbietet. Der Provider ist Bestandteil der Bibliothek und wird
-     als Plugin implementiert.
+     als Plugin in dieser implementiert.
 
