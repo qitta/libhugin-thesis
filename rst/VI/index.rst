@@ -14,26 +14,26 @@ zeigt die typische Benutzung der API:
 .. code-block:: python
 
    >>> from hugin.harvest.session import Session
-
    >>> session = Session()
    >>> query = session.create_query(title='Prometheus')
    >>> results = session.submit(query)
-   >>> print(results))
+   >>> print(results)
    [<TMDBMovie <picture, movie> : Prometheus (2012)>,
    <OFDBMovie <movie> :  Prometheus - Dunkle Zeichen (2012)>,
    <OMDBMovie <movie> : Prometheus (2012)>]
 
 Für weitere Beispiele siehe offizielle libhugin--harvest API :cite:`huginapi`.
 
+
 Libhugin--harvest Plugins
-========================
+=========================
 
 Provider--Plugins
 -----------------
 
 Libhugin--harvest hat aktuell verschiedene Provider implementiert, siehe Tabelle
-:num:`table-provideroverview`. Ein paar der Provider, wie Filmstarts.de,
-Videobuster.de lassen sich noch weiter ausbauen, diese unterstützen momentan nur
+:num:`table-provideroverview`. Ein paar der Provider, wie *Filmstarts.de*,
+*Videobuster.de* lassen sich noch weiter ausbauen, diese unterstützen momentan nur
 textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
 
 .. figtable::
@@ -70,31 +70,31 @@ Die Postprocessor Plugins beim libgugin harvest Teil sind für die direkte
 ,,Nachbearbeitung" der Daten gedacht.
 
 **Composer:** Das Composer Plugin ist das momentane Kernstück der Postprocessor
-Plugins. Das Plugin Gruppiert die Ergebnisse verschiedener Onlinequellen nach
+Plugins. Das Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach
 Film und bietet dem Benutzer dadurch folgende Möglichkeiten:
 
-    1.) Ergebnis Komponieren
-    2.) Genre Zusammenführung
+    1) Ergebnis Komponieren
+    2) Genre Zusammenführen
 
-**Zu 1.):** Es erlaubt dem Benutzer sich ein nach seinen wünschen
+**Zu 1.):** Es erlaubt dem Benutzer sich ein nach seinen Wünschen
 zusammengesetztes Ergebnis zu komponieren. Der Benutzer kann über das Angeben
-eine Profilmaske bestimmten wie sich die Metadaten zusammensetzen sollen.
-Hier kann er beispielsweise angeben dass er den Filmtitel, Jahr, Cover vom
-Provider TMDb möchte, die Inhaltsbeschreibung jedoch immer vom Filmstarts
+eine *Profilmaske* bestimmen wie sich die Metadaten zusammensetzen sollen.
+Hier kann er beispielsweise angeben, dass er den Filmtitel, Jahr und Cover vom
+Provider *TMDb* möchte, die Inhaltsbeschreibung jedoch immer vom *Filmstarts*
 Provider. Hier besteht auch die Möglichkeit eines ,,Fallbacks", falls Filmstarts
 keine Inhaltsbeschreibung hat, dann kann auch auf andere Provider
 zurückgegriffen werden.
 
-Beispiel für eine Profilmaske die TMDb als Standardprovider nimmt und die
+Beispiel für eine Profilmaske, die TMDb als Standardprovider nimmt und die
 Inhaltsbeschreibung vom OMDb Provider nimmt, falls OMDb Inhaltsbeschreibung
-forhanden dann erfolgt ein ,,Fallback" auf den OMDb Provider.
+vorhanden dann erfolgt ein ,,Fallback" auf den OMDb Provider.
 
 .. code-block:: bash
 
     $ echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie', 'omdbmovie']}" > profilemask
 
-Wird keine Profilmaske angegeben so werden fehlende Attribute nach Provider
-Priorität aufgefüllt.
+Wird keine Profilmaske angegeben so werden fehlende Attribute nach
+Provider--Priorität aufgefüllt.
 
 **Zu 2.):** Dieses Feature erlaubt dem Benutzer divergente Genres
 beim gleichen Film zu verschmelzen. Das macht das Genre feingranularer und
@@ -109,18 +109,18 @@ unterschiedlichen Anbieter ein Genre erstellt.
    [Comedy, Drama], [Komödie, Drama], [Erotik] ---> [Komödie, Drama, Erotik]
 
 
-**ResultTrimmer:** Der Resulttrimmer ist vergleichsweise ein einfaches Plugin,
-welches dafür zuständig ist vorangehende und nachziehende Leerzeichen bei den
-Metadaten zu entfernen. Das Plugin führt eine ,,Säuberung" durch, diese muss so
-nicht vom Provider Plugin explizit durchgeführt werden.
+**ResultTrimmer:** Dies ist vergleichsweise ein einfaches Plugin, welches dafür
+zuständig ist vorangehende und nachziehende Leerzeichen bei den Metadaten zu
+entfernen. Das Plugin führt eine ,,Bereinigung" durch, diese muss so nicht vom
+Provider--Plugin explizit durchgeführt werden.
 
 Converter Plugins
 -----------------------
 
-Bei den Converter Plugins wurde zu Demozwecken ein HTML--Converter
-und ein Json--Converter implementiert.
+Bei den Converter Plugins wurde zu Demozwecken ein *HTML*--Converter
+und ein *JSON*--Converter implementiert.
 
-Des Weiteren wurde für den Produktiveinsatz ein XBMC--NFO--Converter
+Des Weiteren wurde für den Produktiveinsatz ein XBMC--Nfo--Converter
 implementiert, dieser wird von der Demoanwendung libhugin proxy (siehe
 :ref:`libhuginproxy`) verwendet um den XBMC--libhugin Plugin (siehe
 :ref:`xbmcplugin`) die Metadaten im richtigen Format zu liefern.
@@ -133,18 +133,16 @@ Libhugin--analyze API
 
 Die API von libhugin--analyze ist vom Grundaufbau ähnlich zu der libhugin--harvest
 API. Folgendes Beispiel--Snippet zeigt die Anwendung des Plotcleaner--Plugins
-auf 'Rohdaten', welche nicht aus der internen Datenbank stammen.
+auf *Rohdaten*, welche nicht aus der internen Datenbank stammen.
 
 
 .. code-block:: python
 
     >>> from hugin.analyze.session import Session
-
         # Beispieltext. Erstelle Sitzung mit Dummy DB. Hole PlotClean Plugin.
     >>> example_text = "Aus diesem Text wird die Klammer (welche?) samt Inhalt entfernt!"
     >>> session = session('/tmp/temporary.db')
     >>> plotclean = session.modifier_plugins('plotclean')  # hole das PlotClean Plugin
-
         # Wende Plugin im raw Modus auf Daten an
     >>> result = session.modify_raw(plotclean, 'plot', example_text)
     >>> print(result)
@@ -152,8 +150,9 @@ auf 'Rohdaten', welche nicht aus der internen Datenbank stammen.
 
 
 Für weitere Informationen siehe libhugin API :cite:`huginapi`. Des Weiteren
-zeigt die Demoanwendung Freki den Einsatz von libhugin--analyze, siehe hier
-zu :ref:`ref-freki`.
+zeigt die Demoanwendung Freki den Einsatz von libhugin--analyze, siehe hierzu
+:ref:`ref-freki`.
+
 
 Libhugin--analyze Plugins
 ========================
@@ -161,29 +160,29 @@ Libhugin--analyze Plugins
 Modifier Plugins
 ----------------
 
-**plotclean:** Das PlotClean Plugin ist für nachträgliche Manipulation der
+**plotclean:** Das *PlotClean* Plugin ist für nachträgliche Manipulation der
 Inhaltsbeschreibung gedacht. Im Fall vom PlotClean Plugin werden alle Klammern
 samt Inhalt aus der Beschreibung entfernt. Das vereinheitlicht die
 Inhaltsbeschreibung in dem Sinne, dass alle Schauspieler oder Informationen in
 Klammern aus der Beschreibung entfernt werden. Für ein Beispiel siehe
 :ref:`analyzeapiexample`.
 
-**plotchange:** Das PlotChange Plugin ist für das nachträgliche Ändern der
+**plotchange:** Das *PlotChange* Plugin ist für das nachträgliche Ändern der
 Inhaltsbeschreibung zuständig. Im Moment hat es die Option die Sprache des Plots
 zu ändern, für ein Beispiel siehe Demoanwendung :ref:`ref-plotchange-freki`.
 
 Analyzer Plugins
 ----------------
 
-**keywordextractor:** Diese Plugin extrahiert aus einem Text, bei Filmen meist
-die Inhaltsbeschreibung, relevante Schlüsselwörter die den Text beziehungsweise
+**keywordextractor:** Dieses Plugin extrahiert aus einem Text, bei Filmen meist
+die Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text beziehungsweise
 die Thematik repräsentieren.
 
 Weiteres hierzu in der Bachelorarbeit.
 
-**filetypeanalyzer:** Das Filetypeanalyzer Plugin arbeitet mit den Videodaten
+**filetypeanalyzer:** Das Filetypeanalyzer--Plugin arbeitet mit den Videodaten
 selbst. Er ist für die Extraktion der Datei--Metadaten zuständig. Momentan
-extrahiert es
+extrahiert es:
 
     * Auflösung
     * Seitenverhältnis
@@ -198,7 +197,7 @@ Comperator Plugins
 ------------------
 
 Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
-Analysen bzgl. der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
+Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
 Weiteres hierzu wird in der Bachelorarbeit behandelt.
 
 Folgende Comperator Plugins wurden konzeptuell implementiert:
@@ -216,12 +215,13 @@ Verschiedenes
 Testverfahren
 -------------
 
-Für das Testen der Software wird das Python Unittest Framework verwendet. Bisher
-wurden Tests für die wichtigsten Grundklassen und das Provider--Pluginsystem
-erstellt, um ein valides Verhalten der Provider Plugins zu gewährleisten.
+Für das Testen der Software wird das Python Unittest--Framework verwendet.
+Bisher wurden Tests für die wichtigsten Grundklassen und das
+Provider--Pluginsystem erstellt, um ein valides Verhalten der Provider--Plugins
+zu gewährleisten.
 
-Die Unittests wurden direkt in der ,,Main" der jeweiligen Klasse untergebracht
-werden. Diese werden dann beim Ausführen der Python--Datei gestartet.
+Die Unittests wurden direkt in der ,,Main" der jeweiligen Klasse untergebracht.
+Diese werden dann beim Ausführen der Python--Datei gestartet.
 
 Folgendes Beispiel zeigt die Funktionsweise:
 
@@ -230,10 +230,9 @@ Folgendes Beispiel zeigt die Funktionsweise:
    def add(a, b): return a + b
 
    if __name__ == '__main__':
-
        import unittest
-       class SimpleTest(unittest.TestCase):
 
+       class SimpleTest(unittest.TestCase):
            def test_add_func(self):
                result = add(21, 21)
                self.assertTrue(result == 42)
@@ -243,7 +242,7 @@ Folgendes Beispiel zeigt die Funktionsweise:
 
 Das Ausführen des Beispielcodes würde folgende Ausgabe produzieren:
 
-.. code-black:: bash
+.. code-block:: bash
 
     ----------------------------------------------------------------------
     Ran 1 test in 0.000s
@@ -260,17 +259,17 @@ Entwicklungumgebung
 Programmiersprache
 ~~~~~~~~~~~~~~~~~~
 
-Für die Entwicklung der Bibliothek wurde bewusst die Programmiersprache Python
-in der Version 3.3 gewählt. Python als Programmiersprache wurde aus folgenden
-Gründen gewählt:
+Für die Entwicklung der Bibliothek wurde die Programmiersprache Python, in der
+Version 3.3, aus folgenden Gründen gewählt:
 
-    * **Rapid Prototyping Language**, wichtig bei einem Projekt dieser Größe mit
-      begrenztem Zeitraum (vgl. :cite:`lutz2013learning`)
-    * **Plattformunabhängigkeit**, Plattformunabhängigkeit ist ein sekundäres
-      Ziel des Projekts
-    * **Einfach erlernbar**, Wichtig für Pluginentwickler
-    * **Verbreitnungsgrad**, Gängige Scriptsprache bei vielen Free Software Projekten
-    * **Optimierungsmöglichkeiten**,  Cython (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`)
+    * **Rapid Prototyping Language:**, wichtig bei einem Projekt dieser Größe mit
+      begrenztem Zeitraum (vgl. :cite:`lutz2013learning`).
+    * **Plattformunabhängigkeit:**, Plattformunabhängigkeit ist ein sekundäres
+      Ziel des Projekts.
+    * **Einfach erlernbar:**, Wichtig für Pluginentwickler.
+    * **Verbreitungsgrad:**, Gängige Skriptsprache bei vielen Open Source Projekten
+    * **Optimierungsmöglichkeiten:**, Kompilirung von Pytnon mittels Cython
+      (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`)
 
 
 Entwicklungssytem
@@ -286,55 +285,54 @@ Quellcodeverwaltung
 
 Für die Quellcodeverwaltung wird das Versionsverwaltungssystem *git*
 eingesetzt. Der Quellcode selbst wird auf dem Hosting--Dienst für
-Software--Entwicklungsprojekte *github* (siehe :cite:`github`) gelagert.
+Software--Entwicklungsprojekte *GitHub* (siehe :cite:`github`) gelagert.
 
 Automatisches Testen
 ~~~~~~~~~~~~~~~~~~~~
 
 Die oben genannten Softwaretests werden von *TravisCI* (siehe :cite:`travisci`),
-einem sogenanntem ,,continuous integration service" automatisch ausgeführt. Dies
-passiert bei jedem hochladen von Quellcodeänderungen auf github. Github hat hier
-eine Schnittstelle zu TravisCI, welche aktiviert wurde.
+einem sogenanntem ,,Continuous Integration Service" automatisch ausgeführt. Dies
+passiert bei jedem Hochladen von Quellcodeänderungen auf GitHub. GitHub hat hier
+einen Service--Schnittstelle zu TravisCI, welche aktiviert wurde.
 
 Ein Logo (siehe Abbildung: :num:`fig-build`) auf der libhugin
 Github--Projektseite teil so dem Besuchern der Seite den aktuellen
 ,,Projektstatus" mit.
 
-.. _fig-build
+.. _fig-build:
 
 .. figure:: fig/build.png
     :alt: Logo das den aktuellen ,,Build Status" der github--Projektseite.
     :width: 60%
     :align: center
 
-    Logo das den aktuellen ,,Build Status" der github--Projektseite.
-
+    Logo das den aktuellen ,,Build--Status" der GitHub--Projektseite.
 
 
 Projektdokumentation
 ~~~~~~~~~~~~~~~~~~~~
 
-Das Projekt wird nach den Regeln der ,,literalten Programmierung", wie nach
-Donald E. Knuth (siehe :cite:`knuth`) empfohlen, entwickelt. Hierbei liegen
+Das Projekt wird nach den Regeln der *literalen Programmierung*, wie nach
+*Donald E. Knuth* (siehe :cite:`knuth`) empfohlen, entwickelt. Hierbei liegen
 Quelltext und Dokumentation des Programms in der gleichen Datei.
 
-Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge generiert
-werden. Unter Python wird hier das Softwaredokumentationswerkzeug *Sphinx*
-(siehe :cite:`sphinxdoc`) verwendet. Dieses kann eine Dokumentation in
+Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge
+generiert werden. Unter Python wird hier das Softwaredokumentationswerkzeug
+*Sphinx* (siehe :cite:`sphinxdoc`) verwendet. Dieses kann eine Dokumentation in
 verschiedenen Formaten generieren, auch diese Projektarbeit wurde in
 *reStructuredText* (siehe :cite:`rst`) geschrieben und mit *Sphinx* generiert.
 
 Des Weiteren wird dem Entwickler bei Nutzung der Bibliothek in der interaktiven
-Python--Shell eine zusätzliche Hilfestellung geboten, siehe :num:`fig-knuth`.
+Python--Shell eine zusätzliche Hilfestellung geboten (siehe :num:`fig-knuth`).
 
-.. _fig-knuth
+.. _fig-knuth:
 
 .. figure:: fig/knuth.png
-    :alt: API--Dokumentation als Hilfestellung in der interaktivier Python--Shell bpython.
+    :alt: API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython.
     :width: 60%
     :align: center
 
-    API--Dokumentation als Hilfestellung in der interaktivier Python--Shell bpython.
+    API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython.
 
 |
 |
@@ -343,8 +341,8 @@ Python--Shell eine zusätzliche Hilfestellung geboten, siehe :num:`fig-knuth`.
 Externe Bibliotheken
 --------------------
 
-Die Tabelle :num:`table-libs` listet alle momentan
-verwendetet externen Abhängigkeiten für die Libhugin--Bibliothek.
+Die Tabelle :num:`table-libs` listet alle momentan verwendeten externen
+Abhängigkeiten für die Libhugin--Bibliothek.
 
 .. figtable::
     :label: table-libs
@@ -366,7 +364,7 @@ verwendetet externen Abhängigkeiten für die Libhugin--Bibliothek.
     +-----------------------+----------------+---------------------------------+
     | docopt                | Cli--Tools     | CLI--Optionparser               |
     +-----------------------+----------------+---------------------------------+
-    | Flask                 | Huginproxy     | Webframework, RESTFul interface |
+    | Flask                 | Huginproxy     | Webframework, RESTful interface |
     +-----------------------+----------------+---------------------------------+
     | guess_language-spirit | Plugins        | Spracherkennung                 |
     +-----------------------+----------------+---------------------------------+
@@ -411,8 +409,8 @@ die Onlinedokumentation hinzu.
 Projektlizenz
 -------------
 
-Um eine communitybasierte Weiterentwicklung zu angestrebt wird und somit auch
-,,Verbesserungen" an das Projekt zurückfließen sollen, wird das System unter
+Da eine communitybasierte Weiterentwicklung angestrebt wird und somit auch
+Verbesserungen in das Projekt zurückfließen sollen, wird das System unter
 der GPLv3 Lizenz (siehe :cite:`gpl`) entwickelt. Alle erstellten Grafiken sind
 unter Creative Commons Licence gestellt.
 
