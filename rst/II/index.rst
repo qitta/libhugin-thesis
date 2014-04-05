@@ -74,3 +74,9 @@ Kontextspezifische Fachbegriffe
      Metadaten anbietet. Der Provider ist Bestandteil der Bibliothek und wird
      als Plugin in dieser implementiert.
 
+    Plugin
+
+     Im Kontext von libhugin sind Plugins kleine Module welche zur Laufzeit
+     austauschbar sind. Diese können von Dritten geschreiben werden um das
+     System an die eigenen Bedürfnisse anzupassen.
+
