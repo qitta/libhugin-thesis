@@ -97,7 +97,7 @@ das Downloadmanagement.
 
 .. figure:: fig/provider-concept-svg.pdf
     :alt: Grundprinzip Kommunikationsablauf mit Provider Plugin.
-    :width: 80%
+    :width: 90%
     :align: center
 
     Grundprinzip Kommunikationsablauf mit Provider Plugin.
@@ -105,9 +105,10 @@ das Downloadmanagement.
 
 Damit der Provider weiß, welche *Roh--Daten* er zurückliefern soll, muss
 hierfür noch eine Struktur mit Attributen festgelegt werden, an welche sich alle
-Provider--Plugins halten müssen. Für den Prototypen richten sich die möglichen
-Attribute an der TMDb Onlinequelle (siehe hierzu auch libhugin API:
-:cite:`movieprovider`).
+Provider--Plugins halten müssen.
+
+Für den Prototypen richten sich die möglichen Attribute an der TMDb Onlinequelle
+(siehe *libhugin*--API :cite:`movieprovider`).
 
 Libhugin Architektur Überblick
 ==============================
@@ -132,7 +133,8 @@ Pluginarten bereitstellen:
     :width: 80%
     :align: center
 
-    Architekturübersicht libhugin.
+    Die Grafik zeigt eine Architekturübersicht *libhugin*--Bibliothek welche
+    sich in die zwei Teile *libhugin--harvest* und *libhugin--analyze* aufteilt.
 
 **libhugin--analyze:** Dieser Teil (siehe Abbildung :num:`fig-harvest-arch`) soll
 für nachträgliche Metadatenanalyse zuständig sein und Schnittstellen für
@@ -146,8 +148,8 @@ Der Analyze Teil der Bibliothek soll eine interne Datenbank besitzen, in welche
 externe Metadaten zur Analyse importiert werden. So können alle Plugins auf
 einem *definiertem* Zustand arbeiten.
 
-Klassenübersicht libhugin--harvest
----------------------------------
+Klassenübersicht *libhugin--harvest*
+------------------------------------
 
 Die Architektur von libhugin ist objektorientiert. Aus der Architekturübersicht
 und den Anforderungen an das System wurden folgende Klassen und Schnittstellen
@@ -161,22 +163,24 @@ erläutert.
 
 .. figure:: fig/klassenuebersicht-harvest-svg.pdf
     :alt: Libhugin--harvest Klassenübersicht mit Klasseninteraktion.
-    :width: 80%
+    :width: 100%
     :align: center
 
-    Libhugin--harvest Klassenübersicht mit Klasseninteraktion.
+    *Libhugin--harvest* Klassenübersicht mit Klasseninteraktion.
 
 
-**Session:** Diese Klasse bildet den Grundstein für libhugin--harvest. Über eine
-Sitzung konfiguriert der Benutzer das System und hat Zugriff auf die
-verschiedenen Plugins. Von der Session werden folgende Methoden bereit gestellt:
+**Session**
+
+Diese Klasse bildet den Grundstein für libhugin--harvest. Über eine Sitzung
+konfiguriert der Benutzer das System und hat Zugriff auf die verschiedenen
+Plugins. Von der Session werden folgende Methoden bereit gestellt:
 
 ``create_query(**kwargs)``: Schnittstelle zur Konfiguration der Suchanfrage. Die
 Methode gibt ein Query--Objekt zurück, das einem Python Dictionary (Hashtabelle)
 entspricht.  Diese Methode dient als Hilfestellung für den Benutzer der API.
 Theoretisch kann der Benutzer die Query auch manuell zusammenbauen. ``Kwargs``
 ist eine optionale Liste aus Key--Value--Paaren. Für weitere Informationen und
-Konfigurationsparameter siehe libhugin API :cite:`queryapi`.
+Konfigurationsparameter (siehe *libhugin*--API :cite:`queryapi`).
 
 
 ``submit(query)``: Schnittstelle um eine Suchanfrage zu starten. Die Methode
@@ -184,11 +188,11 @@ gibt eine Liste mit gefundenen Metadaten als *Ergebnisobjekte* zurück.
 
 Die Methode holt sich eine Downloadqueue und einen Zwischenspeicher (Cache),
 falls dieser vom Benutzer über die Query nicht deaktiviert wurde. Anschließend
-generiert sie für jeden Provider eine sogenannte `Job--Struktur`. Diese
-`Job--Struktur` kapselt jeweils einen Provider, die Suchanfrage und die
+generiert sie für jeden Provider eine sogenannte *Job*--Struktur. Diese
+*Job*--Struktur kapselt jeweils einen Provider, die Suchanfrage und die
 Zwischenergebnisse, die während der Suchanfrage generiert werden.
 
-Zur Veranschaulichung, eine leere Job--Struktur in Python--Notation:
+Zur Veranschaulichung, eine leere *Job*--Struktur in Python--Notation:
 
 .. code-block:: python
 
@@ -205,17 +209,22 @@ Zur Veranschaulichung, eine leere Job--Struktur in Python--Notation:
 
 Nachdem ein Job fertiggestellt wurde, wird er in ein *Ergebnisobjekt* gekapselt.
 Am Ende der ``submit()``--Methode wird eine Liste mit *Ergebnisobjekten*
-an den Aufrufer zurückgegeben.
+an den Aufrufer zurückgegeben. Das *Ergebnisobjekt* kapselt die folgenden
+Informationen:
 
+    * Provider, welcher das Ergebnis geliefert hat.
+    * Suchparemeter, welche für die Suchanfrage verwendet wurden.
+    * Metadatenart, Movie oder Person.
+    * Anzahl der Downloadversuche.
+    * Das eigentliche Ergebnis als Hashtabelle.
 
 ``submit_async()``: Methode für eine asynchrone Nutzung der API. Diese führt
 ``submit()`` asynchron aus und gibt ein Python *Future--Objekt* zurück,
 welches die Anfrage kapselt. Durch Aufrufen der ``done()``--Methode auf dem
-Future--Objekt, kann festgestellt werden ob die Suchanfrage bereits fertig ist.
+*Future--Objekt*, kann festgestellt werden ob die Suchanfrage bereits fertig ist.
 Ein Aufruf der ``result()``--Methode auf dem *Future--Objekt* liefert das
-eigentliche *Ergebnisobjekt* zurück.
-
-Für mehr Informationen siehe Python API :cite:`futures`.
+eigentliche *Ergebnisobjekt* zurück. Für mehr Informationen siehe Python API
+:cite:`futures`.
 
 ``provider_plugins(pluginname=None)``: Diese Methode gibt eine Liste mit den
 Provider--Plugins zurück oder bei Angabe eines Plugins, dieses direkt. Das
@@ -233,19 +242,20 @@ alle Ressourcen wieder freizugeben.
 Suchanfrage. Die Methode blockt solange noch nicht alle Ressourcen freigegeben
 wurden.
 
-|
+**Queue**
 
-**Queue:** Die Queue kapselt die Parameter der Suchanfrage. Sie wird direkt mit
+Die Queue kapselt die Parameter der Suchanfrage. Sie wird direkt mit
 den Parametern der Suchanfrage instantiiert, hierbei werden bestimmte Werte, die
 übergeben werden, validiert und *Standardwerte* gesetzt.
 
-|
 
-**Cache:** Der Cache wird intern verwendet um erfolgreiche Suchanfragen
-persistent zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus
-dem Cache geladen werden. Dadurch gewinnt man Geschwindigkeit und der
-Metadatenanbieter wird entlastet. Zum persistenten Speichern wird ein Python
-Shelve (siehe :cite:`shelve`) verwendet.
+**Cache**
+
+Der Cache wird intern verwendet um erfolgreiche Suchanfragen persistent
+zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus dem Cache
+geladen werden. Dadurch gewinnt man Geschwindigkeit und der Metadatenanbieter
+wird entlastet. Zum persistenten Speichern wird ein Python Shelve (siehe
+:cite:`shelve`) verwendet.
 
 ``open(path, cache_name)``: Öffnet den übergebenen Cache.
 
@@ -256,11 +266,12 @@ Cache.
 
 ``close()``: Schließt den Cache.
 
-|
 
-**Downloadqueue:** Die Downloadqueue ist für den eigentlichen Download der Daten
-zuständig. Sie arbeitet mit den oben genannten *Job--Strukturen*. Die
-Provider--Plugins müssen so keine eigene Downloadqueue implementieren.
+**Downloadqueue**
+
+Die Downloadqueue ist für den eigentlichen Download der Daten zuständig. Sie
+arbeitet mit den oben genannten *Job*--Strukturen. Die Provider--Plugins müssen
+so keine eigene Downloadqueue implementieren.
 
 ``push(job)``: Fügt einen `Job` der Downloadqueue hinzu.
 
@@ -268,12 +279,12 @@ Provider--Plugins müssen so keine eigene Downloadqueue implementieren.
 
 ``running_jobs()``: Gibt die Anzahl der `Jobs` die in Verarbeitung sind zurück.
 
-|
 
-**GenreNormalize:** GenreNormalize kann von den Provider--Plugins verwendet
-werden um das Genre zu normalisieren. Hierzu müssen die Provider eine
-Genre--Mapping--Datei erstellen.  Für mehr Informationen siehe auch API
-:cite:`movieprovider`.
+**GenreNormalize**
+
+GenreNormalize kann von den Provider--Plugins verwendet werden um das Genre zu
+normalisieren. Hierzu müssen die Provider eine Genre--Mapping--Datei erstellen.
+Für mehr Informationen siehe auch API :cite:`movieprovider`.
 
 ``normalize_genre(genre)``: Normalisiert ein Genre anhand einer festgelegten
 Abbildungstabelle.
@@ -283,9 +294,11 @@ Abbildungstabelle.
 
 Die Problematik der Genrenormalisierung ist Bestandteil der Bachelorarbeit.
 
-|
 
-**PluginHandler:** Das Pluginsystem wurde mit Hilfe der Yapsy--Bibliothek (siehe
+
+**PluginHandler**
+
+Das Pluginsystem wurde mit Hilfe der Yapsy--Bibliothek (siehe
 :cite:`yapsy`) umgesetzt. Es bietet folgende Schnittstellen nach außen:
 
 ``activate_plugin_by_category(category)``: Aktiviert Plugins einer bestimmten
@@ -300,50 +313,53 @@ Kategorie zurück.
 ``is_activated(category)``: Gibt einen Wahrheitswert zurück, wenn eine Kategorie
 bereits aktiviert ist.
 
+
 Plugininterface libhugin--harvest
---------------------------------
+---------------------------------
 
 Libhugin--harvest bietet für jeden Plugintyp eine bestimmte Schnittstelle an,
-die vom jeweiligen Plugintyp implementiert werden muss.
+die vom jeweiligen Plugintyp implementiert werden muss (siehe :num:`fig-harvest`).
 
-.. _fig-harvest-plulgin-interface:
+.. _fig-harvest:
 
 .. figure:: fig/harvest-plugin-interface.pdf
     :alt: Libhugin--harvest Plugin Schnittstellenbeschreibung.
-    :width: 80%
+    :width: 100%
     :align: center
 
     Libhugin--harvest Plugin Schnittstellenbeschreibung.
 
 
-Diese *libhugin--harvest* Plugins haben die Möglichkeiten von den folgenden
-Oberklassen abzuleiten, Mehrfachableitung ist unter Python möglich:
+Diese *libhugin--harvest* Plugins haben die Möglichkeiten von verschiedenen
+Oberklassen abzuleiten, siehe hierzu Tabelle :num:`table-harvest-plugins`.
+Mehrfachableitung ist unter Python möglich.
 
-**Provider Plugins Schnittstellen:**
+.. figtable::
+    :label: table-harvest-plugins
+    :spec: l|l|l|l
+    :caption: Libhugin Plugininterfaces für die verschiedenen libhugin--harvest Plugins.
+    :alt: Libhugin Plugininterfaces für die verschiedenen libhugin--harvest Plugins.
+
+    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
+    | *Schnittstellenname*     | *textuell*         | *grafisch*         | *Beschreibung*                                            |
+    +==========================+====================+====================+===========================================================+
+    | *IMovieProvider*         | :math:`\checkmark` |                    | Provider--Plugins, die Filmmetadaten liefern.             |
+    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
+    | *IMoviePictureProvider*  |                    | :math:`\checkmark` | Provider--Plugins, die Filmmetadaten liefern.             |
+    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
+    | *IPersonProvider*        | :math:`\checkmark` |                    | Provider--Plugins, die Personenmetadaten liefern.         |
+    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
+    | *IPersonPictureProvider* |                    | :math:`\checkmark` | Provider--Plugins, die Personenmetadaten liefern.         |
+    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
+    | *IPostProcessor*         |                    |                    | Postprocessor--Plugins, für die Metadatennachbearbeitung. |
+    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
+    | *IConverter*             |                    |                    | Converter--Plugins, für verschiedene Metadatenformate.    |
+    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
 
 
-+------+--------------------+----------+--------------+
-| Name | textuell           | grafisch | Beschreibung |
-+------+--------------------+----------+--------------+
-|  P1  | :math:`\checkmark` |          |              |
-+------+--------------------+----------+--------------+
-|      |                    |          |              |
-+------+--------------------+----------+--------------+
-
-**IMovieProvider**: Plugins die textuelle Metadaten für Filme beschaffen.
-
-**IMoviePictureProvider**: Plugins die grafische Metadaten für Filme beschaffen.
-
-**IPersonProvider**: Plugins die textuelle Metadaten für Personen beschaffen.
-
-**IPersonPictureProvider**: Plugins die grafische Metadaten für Personen
-beschaffen.
-
-**ITVShowProvider**: Plugins die textuelle Metadaten für Serien beschaffen.
-
-**ITVShowPictureProvider**:Plugins die textuelle Metadaten für Serien
-beschaffen.
-
+Plugins die für die Metadatenbeschaffung zuständig sind müssen von den
+Providerklassen ableiten (siehe :num:`table-harvest-plugins`).  Desweiteren
+müssen diese Plugins die folgenden Methoden implementieren:
 
 ``build_url(search_params)``: Diese Methode bekommt die *Such--Parameter*
 übergeben und baut aus diesen die *Such--URL* zusammen.
@@ -353,54 +369,65 @@ Für weitere Informationen siehe auch API :cite:`buildurl`.
 HTTP--Response zu der vorher von ``build_url(search_params)`` erstellten
 *Anfrage--URL*. Die Methode ist für das Extrahieren der Attribute aus dem Response
 zuständig. Sie gibt entweder eine neue URL zurück, die angefordert werden soll,
-oder befüllt das *result_dictionary* und gibt dieses zurück. Für weitere
-Informationen siehe auch API :cite:`parseresponse`.
+oder befüllt eine Hashtabelle mit gefundenen Attributen und gibt dieses zurück.
+Für weitere Informationen siehe auch *libhugin*--API :cite:`parseresponse`.
 
 ``supported_attrs()``: Diese Methode gibt eine Liste mit Attributen zurück die
 vom Provider befüllt werden.
 
 
-**Postprocessor Plugins Schnittstellen:**
 
-**IPostProcesssing**: Plugins die als Postprocessor--Plugins fungieren.
+Plugins die für die Metadatennachbearbeitung zuständig sind müssen von
+*IPostProcessor* ableiten (siehe :num:`table-harvest-plugins`).  Desweiteren
+müssen diese Plugins die folgenden Methoden implementieren:
 
-``process()``: Diese Methode bekommt ein Liste mit Ergebnisobjekten übergeben und
+``process(results, **kwargs)``: Diese Methode bekommt ein Liste mit *Ergebnisobjekten* übergeben und
 manipuliert dieses nach bestimmten Kriterien oder gibt eine neue Liste mit
 Ergebnisobjekten zurück.
 
+``parameters(self)``: Die Methode listet die Keyword--Argumente für ein
+Postprocessor--Plugin.
 
-**Converter Plugins Schnittstellen:**
 
-**IConverter**: Plugins die als Converter--Plugins fungieren.
+Plugins die für das Konvertieren der Ergebnisse in bestimmte Metadatenformate
+zuständig sind müssen von *IConverter* ableiten (siehe
+:num:`table-harvest-plugins`).  Desweiteren müssen diese Plugins die folgenden
+Methoden implementieren:
 
-``convert()``: Diese Methode bekommt ein Ergebnisobjekt übergeben und gibt
+``convert(results, **kwargs)``: Diese Methode bekommt ein *Ergebnisobjekt* übergeben und gibt
 die String--Repräsentation von diesem in einem spezifischen Metadatenformat
 wieder.
 
+``parameters(self)``: Die Methode listet die Keyword--Argumente für ein
+Converter--Plugin.
 
-Klassenübersicht libhugin--analyze
----------------------------------
+
+Klassenübersicht *libhugin--analyze*
+------------------------------------
 
 .. _fig-klassenuebersicht-analyze:
 
 .. figure:: fig/klassenuebersicht-analyze-svg.pdf
     :alt: Libhugin--analyze Klassenübersicht und Interaktion.
-    :width: 80%
+    :width: 100%
     :align: center
 
-    Libhugin--analyze Klassenübersicht mit Klasseninteraktion.
+    *Libhugin--analyze* Klassenübersicht mit Klasseninteraktion.
 
 
 
-**Session:** Diese Klasse bildet den Grundstein für libhugin--analyze. Sie stellt
-analog zur *libhugin--harvest* Session die API bereit.
+**Session**
+
+Diese Klasse bildet den Grundstein für libhugin--analyze. Sie stellt analog zur
+*libhugin--harvest* Session die API bereit.
 
 ``add(metadata_file, helper)``: Diese Methode dient zum Importieren externer
-Metadaten. Sie erwartet eine Datei mit Metadaten und als Callback--Funktion eine
-*Helferfunktion* welche weiß wie die Metadaten zu
+Metadaten. Sie erwartet eine Datei mit Metadaten (`metadata_file`) und als
+Callback--Funktion eine *Helferfunktion* welche weiß wie die Metadaten zu
 extrahieren sind.
 
-Die Helferfunktion hat folgende Schnittstelle:
+Kurzer Exkurs zur *Helferfunktion*. Die *Helferfunktion* hat folgende
+Schnittstelle:
 
     ``helper_func(metadata, attr_mask)``
 
@@ -445,6 +472,8 @@ welche die Abbildung von externer Quelle auf interne Datenbank verdeutlicht:
        return internal_repr
 
 
+Weitere Methoden der Session Klasse:
+
 ``analyzer_plugins(pluginname=None)``: Liefert eine Liste mit den vorhandenen
 Analyzer--Plugins zurück. Bei Angabe eines bestimmten Pluginnamen, wird dieses
 Plugin direkt zurückgeliefert.
@@ -476,9 +505,10 @@ zwei Methoden:
 die Festplatte.
 
 
-**Movie:** Die Movie Klasse repräsentiert ein Metadatenobjekt welches in
-der internen Datenbank zur Analyse gespeichert wird. Es enthält folgende
-Attribute:
+**Movie**
+
+Die Movie Klasse repräsentiert ein Metadatenobjekt welches in der internen
+Datenbank zur Analyse gespeichert wird. Es enthält folgende Attribute:
 
     * Schlüssel, über den die Metadaten eindeutig zugeordnet werden können.
     * Pfad zur Metadatendatei.
@@ -487,17 +517,34 @@ Attribute:
     * Hashtabelle mit Comperator--Analysedaten.
 
 
+**PluginHandler**
+
+Die PluginHandler--Klasse hat analog zum *libhugin--harvest* die folgenden
+Schnittstellen:
+
+``activate_plugin_by_category(category)``: Aktiviert Plugins einer bestimmten
+Kategorie.
+
+``deactivate_plugin_by_category(category)``: Deaktiviert Plugins einer bestimmten
+Kategorie.
+
+``get_plugins_from_category(category)``: Liefert Plugins einer bestimmten
+Kategorie zurück.
+
+``is_activated(category)``: Gibt einen Wahrheitswert zurück, wenn eine Kategorie
+bereits aktiviert ist.
+
 Plugininterface libhugin--analyze
 ---------------------------------
 
 Libhugin--analyze bietet für jeden Plugintyp eine bestimmte Schnittstelle an,
-die vom jeweiligen Plugintyp implementiert werden muss.
+die vom jeweiligen Plugintyp implementiert werden muss (siehe :num:`fig-analyze`).
 
-.. _fig-analyze-plulgin-interface:
+.. _fig-analyze:
 
 .. figure:: fig/analyze-plugin-interface.pdf
     :alt: Libhugin--analyze Plugin Schnitstellenbeschreibung.
-    :width: 80%
+    :width: 100%
     :align: center
 
     Libhugin--analyze Plugin Schnitstellenbeschreibung.
@@ -506,9 +553,27 @@ die vom jeweiligen Plugintyp implementiert werden muss.
 Die *libhugin--analyze* Plugins haben die Möglichkeiten von den folgenden
 Oberklassen abzuleiten. Mehrfachableitung ist unter Python möglich:
 
-**Modifier Plugins Schnittstellen:**
+.. figtable::
+    :label: table-analyze-plugins
+    :spec: l|l|
+    :caption: Libhugin Plugininterfaces für die verschiedenen libhugin--analyze Plugins.
+    :alt: Libhugin Plugininterfaces für die verschiedenen libhugin--analyze Plugins.
 
-**IModifier**: Plugins die die Metadaten direkt modifizieren.
+    +----------------------+-------------------------------------------------------------------------+
+    | *Schnittstellenname* | *Beschreibung*                                                          |
+    +======================+=========================================================================+
+    | *IModifier*          | Modifier--Plugins, die Metadaten direkt modifizieren.                   |
+    +----------------------+-------------------------------------------------------------------------+
+    | *IAnalyzer*          | Analyzer--Plugins, die für die Analyze der Metadaten zuständig sind.    |
+    +----------------------+-------------------------------------------------------------------------+
+    | *IComperator*        | Comperator--Plugins, die Metadaten für statistische Zwecke vergleichen. |
+    +----------------------+-------------------------------------------------------------------------+
+
+
+
+Plugins die Metadaten modifizieren, müssen von *IModifier* ableiten (siehe
+:num:`table-analyze-plugins`). Diese Plugins müssen folgende Methoden
+implementieren:
 
 ``modify(self, movie, **kwargs)``: Die Standardmethode für Modifierplugins. Die
 Methode bekommt ein Movie--Objekt und optional Keyword--Argumente übergeben. Die
@@ -522,11 +587,11 @@ Objekt sondern mit der ganzen ,,Datenbank".
 ``parameters(self)``: Die Methode listet die Keyword--Argumente für ein
 Modifierplugin.
 
-**Analyzer Plugins Schnittstellen:**
 
-**IAnalyzer**: Plugins die für die Analyse der Metadaten zuständig sind. Diese
-Plugins schreiben ihre Analysedaten in das ,,Analyzerdata" Attribut des
-Movie--Objekts.
+Plugins die für die Analyse der Metadaten zuständig sind, müssen von *IAnalyzer*
+ableiten (siehe :num:`table-analyze-plugins`). Diese Plugins schreiben ihre
+Analysedaten in das ,,Analyzerdata" Attribut des Movie--Objekts.  Sie müssen
+folgende Methoden implementieren:
 
 ``analyze(self, movie, **kwargs)``: Die Standardmethode für Analyzerplugins. Die
 Anwendung hier ist analog den Modifierplugins.
@@ -535,11 +600,9 @@ Anwendung hier ist analog den Modifierplugins.
 
 ``parameters(self)``: Analog Modifierplugins.
 
-
-**Comperator Plugins Schnittstellen:**
-
-**IComparator**: Plugins die Daten beispielsweise vergleichen können für
-statistische Zwecke.
+Plugins die Metadaten für statistische Zwecke analysieren und vergleichen
+können, müssen von *IComperator* ableiten (siehe :num:`table-analyze-plugins`).
+Des Weiteren müssen diese Plugin folgende Methoden implementieren:
 
 ``compare(self, movie_a, movie_b, **kwargs)``: Die Standardmethode für
 Comperatorplugins. Diese erwartet als Parameter zwei Movie Objekte die
@@ -555,10 +618,10 @@ Objekt Kombinationen aus der Datenbank.
 Bibliothek Dateistruktur
 ========================
 
-Die folgende Auflistung zeigt die die Ordnerstruktur Bibliothek.
-Normalerweise enthält unter Python jeder Ordner eine `__init__.py--Datei` welche
-diesen Ordner dann als ,,Modul" erscheinen lässt. Diese wurden wegen der
-Übersichtlichkeit weggelassen.
+Die folgende Auflistung zeigt die Ordnerstruktur Bibliothek.  Normalerweise
+enthält unter Python jeder Ordner eine `__init__.py--Datei` welche diesen Ordner
+dann als ,,Modul" erscheinen lässt. Diese wurden wegen der Übersichtlichkeit
+weggelassen.
 
 .. code-block:: python
 

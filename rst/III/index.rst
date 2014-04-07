@@ -356,7 +356,7 @@ oft nicht möglich, obwohl diese von manchen Onlineanbietern unterstützt wird
 (siehe Tabelle :num:`table-movietools`).
 
 Probleme bei Movie--Metadaten--Managern
--------------------------------------
+---------------------------------------
 
 Es wurden neben der Abspielsoftware XBMC und dem
 Movie--Metadaten--Manager MediaElch, die bereits genannten
