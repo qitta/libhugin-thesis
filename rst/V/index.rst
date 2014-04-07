@@ -128,7 +128,7 @@ Pluginarten bereitstellen:
 .. _fig-harvest-arch:
 
 .. figure:: fig/arch-overview-svg.pdf
-    :alt: Architekturübersich libhugin
+    :alt: Architekturübersicht libhugin.
     :width: 80%
     :align: center
 

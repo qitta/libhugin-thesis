@@ -38,8 +38,8 @@ textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
 
 .. figtable::
     :label: table-provideroverview
-    :caption: Übersicht implementierte Provider und Funktionalität.
-    :alt: Übersicht implementierte Provider und Funktionalität.
+    :caption: Übersicht implementierter Provider und Funktionalität.
+    :alt: Übersicht implementierter Provider und Funktionalität.
 
     +-----------------------------+--------------------+---------------+----------------+---------------+----------+
     |                             | TMDb               | OFDb          | Videobuster.de | Filmstarts.de | OMDb     |
@@ -403,46 +403,3 @@ die Onlinedokumentation hinzu.
     -------------------------------------------------------------------------------
     SUM:                            56           1230           1284           3607
     -------------------------------------------------------------------------------
-
-
-
-Projektlizenz
--------------
-
-Da eine communitybasierte Weiterentwicklung angestrebt wird und somit auch
-Verbesserungen in das Projekt zurückfließen sollen, wird das System unter
-der GPLv3 Lizenz (siehe :cite:`gpl`) entwickelt. Alle erstellten Grafiken sind
-unter Creative Commons Licence gestellt.
-
-
-Namensgebung
-------------
-
-**Namensgebung und Logo:** Um dem Projekt ein ,,Gesicht" zu geben und den
-Wiedererkennungwert zu steigern, wird das Projekt auf den Namen *libhugin*
-getauft und ein Logo entwickelt (siehe Abbildung :num:`fig-huginlogo`), welches
-einen Raben in Pixelgrafik und ein Stück Filmrolle zeigt. Der Name Hugin kommt
-aus der nordischen Mythologie:
-
-.. epigraph::
-
-   *Hugin gehört zum altnordischen Verb huga „denken“, das hierzu zu stellende*
-   *Substantiv hugi „Gedanke, Sinn“ ist seinerseits die Grundlage für den Namen*
-   *Hugin, der mit dem altnordischen Schlussartikel –in gebildet wurde. Hugin*
-   *bedeutet folglich „der Gedanke“.*
-
-                                -- http://de.wikipedia.org/wiki/Hugin_and_Munin
-
-
-.. _fig-huginlogo:
-
-.. figure:: fig/hugin.png
-    :alt: Libhugin Logo, das einen Pixelraben und ein abgerissenes Stück Filmrolle zeigt.
-    :width: 30%
-    :align: center
-
-    Libhugin Logo, das einen Pixelraben und ein abgerissenes Stück Filmrolle zeigt.
-
-
-Die beiden CLI-Clients, Geri und Freki, wurden nach den beiden Wölfen die Odin
-begleiten benannt (siehe :cite:`gerifreki`).
