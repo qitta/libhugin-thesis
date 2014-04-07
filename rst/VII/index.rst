@@ -370,6 +370,7 @@ Anwendung des *plotlang* Plugins auf der *mydb.db* Datenbank:
 Betrachten der Analyzerdaten nach der Analyse:
 
 .. code-block:: bash
+
     $ freki list mydb.db analyzerdata
     0) All Good Things (2010)
     {'PlotLang': 'es'}
@@ -394,6 +395,7 @@ von spanisch auf deutsch zu ändern:
 Betrachten der Metadaten nach Einsatz des Plugins:
 
 .. code-block:: bash
+
     $ freki list mydb.db
     0) All Good Things (2010)
     {'director': 'Andrew Jarecki',
@@ -443,6 +445,7 @@ Export der modifizierten Datenbank:
 Betrachten der Inhaltsbeschreibung der *nfo*-Dateien nach dem export (gekürzt):
 
 .. code-block:: bash
+
     $ cat "movies/All Good Things (2010)/movie.nfo" | grep plot
     <plot>David Marks, Sohn einer reichen New Yorker Familie, verliebt sich in
     die junge Katie McCarthy, die nicht zu seinen Kreisen gehört. [...]</plot>
@@ -497,8 +500,6 @@ Der *Libhugin*--Proxy zeigt *konzeptuell* die Integration von libhugin als
 Netzwerkdienst, welcher eine RESTful API bereitstellt. Nach dem der
 *libhugin*--Proxy gestartet wurde, ist es möglich über den Webbrwoser auf die
 RESTful API über Port 5000 zuzugreifen.
-
-|
 
 Folgende Bash--Sitzung zeigt den Suche des Films *,,Prometheus (2012)"* über den
 *libhugin*--Proxy. Der Proxy liefert ein für das XBMC formatiertes *XML* zurück.
@@ -581,6 +582,7 @@ Bash--Script zu schreiben. Anpassen der *movie.mask* auf da gewünschte Format:
 So schaut das minimalistische rename--Script aus:
 
 .. code-block:: bash
+
    #!/bin/bash
 
    for movie in $1/*; do
