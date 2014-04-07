@@ -24,19 +24,19 @@ Fachbegriffe
     Smart--TV
 
      Bezeichnung für einen Fernseher der eine Computerfunktion integriert hat
-     und Internetfähig ist.
-
-    JSON
-
-     JavaScript Object Notation, eine Auszeichnungssprache ähnlich wie *XML* mit
-     dem Ziel von Mensch und Maschine einfacher lesbar zu sein.
+     und internetfähig ist.
 
     XML
 
-     Extensible Markup Language, eine Auszeichnungssprache zur strukturierten
-     Darstellung von Daten in Form von Textdateien.
+     Extensible Markup Language, eine Auszeichnungssprache zur baumartig
+     strukturierten Darstellung von Daten in Form von Textdateien.
 
-    Hashmap
+    JSON
+
+     JavaScript--Object--Notation, eine Auszeichnungssprache ähnlich wie *XML*
+     mit dem Ziel von Mensch und Maschine einfacher lesbar als *XML* zu sein.
+
+    Hashtabelle
 
      Eine spezielle Datenstruktur, bei welcher Daten jeweils einem eindeutigen
      Index zugeordnet sind. Der Zugriff auf die Daten erfolgt mit konstantem

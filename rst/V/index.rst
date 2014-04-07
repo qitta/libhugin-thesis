@@ -408,7 +408,7 @@ Der ``attr_mask`` Parameter gibt die Abbildungen der Attribute zwischen der
 *externen* und *internen* Datenbank an.
 
 Wir nehmen an unsere Metadaten sind im *JSON--Format* gespeichert, beim Einlesen
-der *JSON--Datei* wird diese zu einer :term:`Hashmap` konvertiert, die wie folgt
+der *JSON--Datei* wird diese zu einer :term:`Hashtabelle` konvertiert, die wie folgt
 aussieht.
 
 .. code-block:: bash
