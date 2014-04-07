@@ -225,7 +225,7 @@ Nicht--Anforderungen
 Die Suche und Analyse von Musikmetadaten oder anderen Metadatentypen ist nicht
 Bestandteil des Projekts.
 
-**Movie Metadaten Manager**
+**Movie--Metadaten--Manager**
 
 Die Implementierung eines *neuen* Movie--Metadaten--Managers ist nicht
 Bestandteil des Projekts.

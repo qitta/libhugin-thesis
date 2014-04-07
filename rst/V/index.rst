@@ -43,7 +43,7 @@ Folgende Shellsitzung demonstriert einen Zugriff mit dem Webtransfer--Tool
    }
 
 Die *Such--URL* bekommt den Titel als Query--Parameter (``t=The+Matrix``)
-übergeben, zurück bekommt man ein in *Json* formatiertes Response. Dieses kann
+übergeben, zurück bekommt man ein in *JSON* formatiertes Response. Dieses kann
 nun vom Aufrufer der API nach belieben verarbeitet werden.
 
 Bietet eine Webseite wie beispielsweise *filmstarts.de* (siehe
@@ -152,7 +152,7 @@ Klassenübersicht libhugin--harvest
 Die Architektur von libhugin ist objektorientiert. Aus der Architekturübersicht
 und den Anforderungen an das System wurden folgende Klassen und Schnittstellen
 abgeleitet, Abbildung :num:`fig-klassenuebersicht-harvest` zeigt eine
-Klassenübersicht von libhugin--harvest samt Interaktion mit den Schnittstellen.
+Klassenübersicht von *libhugin--harvest* samt Interaktion mit den Schnittstellen.
 
 Im Folgenden werden die grundlegenden Objekte und Schnittstellen
 erläutert.
@@ -316,7 +316,7 @@ die vom jeweiligen Plugintyp implementiert werden muss.
     Libhugin--harvest Plugin Schnittstellenbeschreibung.
 
 
-Diese libhugin--harvest Plugins haben die Möglichkeiten von den folgenden
+Diese *libhugin--harvest* Plugins haben die Möglichkeiten von den folgenden
 Oberklassen abzuleiten, Mehrfachableitung ist unter Python möglich:
 
 **Provider Plugins Schnittstellen:**
@@ -393,7 +393,7 @@ Klassenübersicht libhugin--analyze
 
 
 **Session:** Diese Klasse bildet den Grundstein für libhugin--analyze. Sie stellt
-analog zur libhugin--harvest Session die API bereit.
+analog zur *libhugin--harvest* Session die API bereit.
 
 ``add(metadata_file, helper)``: Diese Methode dient zum Importieren externer
 Metadaten. Sie erwartet eine Datei mit Metadaten und als Callback--Funktion eine
@@ -455,7 +455,7 @@ Plugin direkt zurückgeliefert.
 ``comperator_plugins(pluginname=None)``: Analog zu
 ``analyzer_plugins(pluginname=None)``.
 
-Folgende weitere Methoden erlauben es die libhugin--analyze Plugins auf *externe*
+Folgende weitere Methoden erlauben es die *libhugin--analyze* Plugins auf *externe*
 Daten anzuwenden:
 
 ``analyze_raw(plugin, attr, data)``: Wrapper Methode, welche es erlaubt die
@@ -503,7 +503,7 @@ die vom jeweiligen Plugintyp implementiert werden muss.
     Libhugin--analyze Plugin Schnitstellenbeschreibung.
 
 
-Die libhugin--analyze Plugins haben die Möglichkeiten von den folgenden
+Die *libhugin--analyze* Plugins haben die Möglichkeiten von den folgenden
 Oberklassen abzuleiten. Mehrfachableitung ist unter Python möglich:
 
 **Modifier Plugins Schnittstellen:**
@@ -563,7 +563,7 @@ diesen Ordner dann als ,,Modul" erscheinen lässt. Diese wurden wegen der
 .. code-block:: python
 
     hugin
-    |-- harvest/                           # libhugin--harvest Ordner
+    |-- harvest/                           # *libhugin--harvest* Ordner
     |   |-- session.py                     # Implementierungen der Session
     |   |-- query.py                       # Implementierungen der Query
     |   |-- cache.py                       # Implementierungen vom Cache
@@ -581,7 +581,7 @@ diesen Ordner dann als ,,Modul" erscheinen lässt. Diese wurden wegen der
     |   |-- logutil.py
     |   |-- stringcompare.py
     |
-    |-- analyze/                            # libhugin--analyze Ordner
+    |-- analyze/                            # *libhugin--analyze* Ordner
     |   |-- session.py                      # Implementierungen der o.g. Klassen
     |   |-- movie.py                        # Implementierung des ,,Movie'' Objektes
     |   |-- pluginhandler.py

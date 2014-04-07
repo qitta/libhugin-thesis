@@ -22,7 +22,7 @@ zeigt die typische Benutzung der API:
    <OFDBMovie <movie> :  Prometheus - Dunkle Zeichen (2012)>,
    <OMDBMovie <movie> : Prometheus (2012)>]
 
-Für weitere Beispiele siehe offizielle libhugin--harvest API :cite:`huginapi`.
+Für weitere Beispiele siehe offizielle *libhugin--harvest* API :cite:`huginapi`.
 
 
 Libhugin--harvest Plugins
@@ -97,7 +97,7 @@ Wird keine Profilmaske angegeben so werden fehlende Attribute nach
 Provider--Priorität aufgefüllt.
 
 **Zu 2.):** Dieses Feature erlaubt dem Benutzer divergente Genres
-beim gleichen Film zu verschmelzen. Das macht das Genre feingranularer und
+beim gleichen Film zu verschmelzen. Das macht das Genre *feingranularer* und
 behebt die Problematik (siehe Tabelle :num:`table-feuchtgebiete` ) divergenter
 Genres bei verschiedenen Onlinequellen. Beim Beispiel in Tabelle
 :num:`table-feuchtgebiete` wird aus dem normalisierten Genre der drei
@@ -131,7 +131,7 @@ implementiert, dieser wird von der Demoanwendung libhugin proxy (siehe
 Libhugin--analyze API
 ====================
 
-Die API von libhugin--analyze ist vom Grundaufbau ähnlich zu der libhugin--harvest
+Die API von *libhugin--analyze* ist vom Grundaufbau ähnlich zu der libhugin--harvest
 API. Folgendes Beispiel--Snippet zeigt die Anwendung des Plotcleaner--Plugins
 auf *Rohdaten*, welche nicht aus der internen Datenbank stammen.
 

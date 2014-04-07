@@ -6,11 +6,11 @@ Das vorgestellten CLI--Tools stellen nur einen kleinen Ausschnit der Fähigkeite
 der Bibliothek dar, die Bibliothek selbst ist um fast jede denkbare
 Funktionalität der Metadatenaufbereitung erweiterbar.
 
-Der libhugin--harvest CLI--Tool Geri
+Der *libhugin--harvest* CLI--Tool Geri
 ====================================
 
 Geri ist eine CLI--Anwendung die zu Demozwecken, aber auch als Testwerkzeug für
-die libhugin--harvest Bibliothek verwendet werden kann.
+die *libhugin--harvest* Bibliothek verwendet werden kann.
 
 **Übersicht der Optionen:** Ein Überblick über die Funktionalität und die
 möglichen Optionen zeigt die Hilfe des Tools:
@@ -99,7 +99,7 @@ Ausgabeformat für die ``movie.mask``:
    Inhalt: "Sin City" enthält drei lose verbundene und ineinander verschachtelt
    erzählte Episoden: Los geht es mit Hartigan (Bruce Willis) - einem Cop [...]
 
-Die Suche kann wie die Optionen zeigen feingranularer konfiguriert werden.
+Die Suche kann wie die Optionen zeigen *feingranularer* konfiguriert werden.
 Es würde jedoch den Rahmen sprengen würde alle Optionen zu zeigen.
 
 **Unschärfesuche:** Ein weiteres nennenswertes Feature ist die Unschärfesuche.
@@ -187,13 +187,13 @@ der TMDb--Provider als Standard genommen und der Provider für die
 Inhaltsbeschreibung auf OFDb gesetzt.
 
 Das normalisierte Genre wurde verschmolzen. Dieses Feature macht das gepflegte
-Genre in unseren Metadaten feingranularer und lässt im Beispiel auch besser
+Genre in unseren Metadaten *feingranularer* und lässt im Beispiel auch besser
 vermuten ob ein Film für Kinder geeignet ist oder nicht.
 
 
 .. _ref-freki:
 
-Der libhugin--analyze CLI--Tool Freki
+Der *libhugin--analyze* CLI--Tool Freki
 ======================================
 
 Freki ist für Demonstrationszwecke und das Testen der libhugin--analyze

@@ -16,7 +16,7 @@ Grundsätzlich lassen sich Film--Metadaten in zwei Kategorien
 einordnen. Metadaten, die das Videoformat (Auflösung, Bitrate, ...) beschreiben
 und Metadaten die den Inhalt beschreiben. Metadaten zur Beschreibung des
 Videoformats können je nach Container--Format direkt in in die Datei eingebettet
-werden (siehe auch :cite:`metadatenarten`).
+werden (siehe :cite:`metadatenarten`).
 
 Inhaltsbezogene Metadaten sind Daten die bei der Digitalisierung nachträglich
 gepflegt werden müssen. Typischerweise sind das Attribute wie Titel,
@@ -57,7 +57,7 @@ Inhaltsbeschreibung ist hier sehr vielfältig --- von kurz und knapp bis sehr
 ausführlich. Schaut man sich beispielsweise für den Film *Per Anhalter durch die
 Galaxis (2005)* die deutsche Inhaltsbeschreibung auf den vier Film--Plattformen
 *cinefacts.de* (siehe :cite:`cinefacts-paddg`), *filmstarts.de* (siehe
-:cite:`filmstars-paddg`), *OFDb.de* (siehe :cite:`ofdb-paddg`) und *TMDb* (siehe
+:cite:`filmstarts-paddg`), *OFDb.de* (siehe :cite:`ofdb-paddg`) und *TMDb* (siehe
 :cite:`tmdb-paddg`) an, so wird man feststellen, dass jede dieser Plattformen
 eine andere deutsche Inhaltsbeschreibung gepflegt hat. Je nach persönlichen
 Präferenzen, möchte man nur eine bestimmte Art von Inhaltsbeschreibung
@@ -96,7 +96,7 @@ in der Regal nicht die Möglichkeit Korrekturen durchzuführen und sind somit nu
 bedingt zum pflegen von großen Filmsammlungen geeignet.
 
 
-Movie Metadaten Manager
+Movie--Metadaten--Manager
 -----------------------
 
 Neben den Media--Center--Lösungen gibt es spezielle Tools für die Pflege und
@@ -123,11 +123,11 @@ Anwendung wird dies aber nicht immer unterstützt.
 .. _fig-mediaelch:
 
 .. figure:: fig/mediaelch.png
-    :alt: Screenshot vom Movie Metadata Manager MediaElch.
+    :alt: Screenshot vom Movie--Metadaten--Manager MediaElch.
     :width: 90%
     :align: center
 
-    Screenshot vom Movie Metadata Manager MediaElch.
+    Screenshot vom Movie--Metadaten--Manager MediaElch.
 
 
 .. _ref-metadatenformate:
@@ -218,20 +218,24 @@ Genre zu den *wichtigsten* Kriterien bei der Filmauswahl gehört und dieses somi
 In unserem Beispiel befinden sich folgende vier Filme in der Filmsammlung, die
 mit Metadaten versorgt werden sollen:
 
-    1) *,,After.Life (2010)"*, US-amerikanischer Spielfilm, Agnieszka Wojtowicz-Vosloo
-    2) *,,Feuchtgebiete (2013)"*, deutsche Romanverfilmung, Charlotte Roche
-    3) *,,Nymphomaniac (2013)"*, europäisches Drama, Lars von Trier
-    4) *,,RoboCop (2014)"*, US-amerikanischer Spielfilm, José Padilha
+    1) *,,After.Life (2010)"*, US-amerikanischer Spielfilm, Regie: Agnieszka Wojtowicz-Vosloo
+    2) *,,Feuchtgebiete (2013)"*, deutsche Romanverfilmung, Regie: Charlotte Roche
+    3) *,,Nymphomaniac (2013)"*, europäisches Drama, Regie: Lars von Trier
+    4) *,,RoboCop (2014)"*, US-amerikanischer Spielfilm, Regie: José Padilha
 
 Die Inhaltsbeschreibung ist in der Regel problemlos austauschbar, jedoch
 unterscheidet sie sich auch je nach Quelle in der Formatierung, Ausführlichkeit
 und Sprachstil.  Nicht alle Inhaltsbeschreibungen haben beispielsweise hinter
-dem Rollennamen immer den Namen des Schauspielers in Klammern.
+dem Rollennamen immer den Namen des Schauspielers in Klammern. Sollen die
+Metadaten in deutscher Sprache gepflegt werden, so fällt IMDb raus, da diese
+Onlinequelle nur Metadaten in englischer Sprache anbietet. Die Onlinequelle wird
+aber bezüglich des Genrevergleichs mit in die Tabellen aufgenommen.
+
 
 **After.Life (2010):** Die Daten bei TMDb werden in verschiedenen Sprachen
 gepflegt und sind in der Regel *qualitativ hochwertig*. Unser erster Film wurde
 bei TMDb gut eingepflegt, die Inhaltsbeschreibung ist deutschsprachig, das Genre
-feingranular gepflegt. Des Weiteren bietet TMDb hochauflösende grafische
+*feingranular* gepflegt. Des Weiteren bietet TMDb hochauflösende grafische
 Metadaten (Cover, Hintergrundbilder). Bei OFDb ist das Genre ,,Mystery" nicht
 gepflegt und zudem gibt es nur ein niedrig auflösendes Cover und keine
 Hintergrundbilder (siehe Tabelle :num:`table-afterlife`).
@@ -242,15 +246,15 @@ Hintergrundbilder (siehe Tabelle :num:`table-afterlife`).
     :caption: Übersicht Metadatenquellen für den Film After.Life (2010)
     :alt: Übersicht Metadatenquellen für den Film After.Life (2010)
 
-    +---------+------------------------+----------------------------------+-------------------------+
-    |         | *IMDb*                 | *TMDb*                           | *OFDb*                  |
-    +=========+========================+==================================+=========================+
-    | *Plot*  | englischsprachig       | deutschsprachig                  | deutschsprachig         |
-    +---------+------------------------+----------------------------------+-------------------------+
-    | *Genre* | Drama, Horror, Mystery | Drama, Horror, Mystery, Thriller | Drama, Horror, Thriller |
-    +---------+------------------------+----------------------------------+-------------------------+
+    +----------+------------------------+----------------------------------+-------------------------+
+    | *Quelle* | *IMDb*                 | *TMDb*                           | *OFDb*                  |
+    +==========+========================+==================================+=========================+
+    | *Plot*   | englischsprachig       | deutschsprachig                  | deutschsprachig         |
+    +----------+------------------------+----------------------------------+-------------------------+
+    | *Genre*  | Drama, Horror, Mystery | Drama, Horror, Mystery, Thriller | Drama, Horror, Thriller |
+    +----------+------------------------+----------------------------------+-------------------------+
 
-*Zusammenfassung zum Genre:* austauschbar, unterschiedlich ,,feingranular" gepflegt
+*Zusammenfassung zum Genre:* austauschbar, unterschiedlich *feingranular* gepflegt
 
 **Feuchtgebiete (2013):** Der zweite Film ist bei TMDb und OFDb gut gepflegt.
 Jedoch fällt auf,dass das gepflegte Genre bei diesen beiden Onlinequellen keinen
@@ -264,22 +268,22 @@ Daseinsberechtigung.
     :caption: Übersicht Metadatenquellen für den Film Feuchtgebiete (2013)
     :alt: Übersicht Metadatenquellen für den Film Feuchtgebiete (2013)
 
-    +---------+------------------+-----------------+-----------------+
-    |         | *IMDb*           | *TMDb*          | *OFDb*          |
-    +=========+==================+=================+=================+
-    | *Plot*  | englischsprachig | deutschsprachig | deutschsprachig |
-    +---------+------------------+-----------------+-----------------+
-    | *Genre* | Drama, Comedy    | Drama, Komödie  | Erotik          |
-    +---------+------------------+-----------------+-----------------+
+    +----------+------------------+-----------------+-----------------+
+    | *Quelle* | *IMDb*           | *TMDb*          | *OFDb*          |
+    +==========+==================+=================+=================+
+    | *Plot*   | englischsprachig | deutschsprachig | deutschsprachig |
+    +----------+------------------+-----------------+-----------------+
+    | *Genre*  | Drama, Comedy    | Drama, Komödie  | Erotik          |
+    +----------+------------------+-----------------+-----------------+
 
 *Zusammenfassung zum Genre:* total divergent, Problem der Internationalisierung
 
 
 **Nymphomaniac (2013):** Hier ist bei TMDb die Inhaltsbeschreibung in deutsch
-nicht vorhanden. Der Film ist im Vergleich zu ,,Hollywood"--Blockbuster in
+nicht vorhanden. Der Film ist im Vergleich zu Hollywood--Blockbuster in
 deutsch relativ schlecht gepflegt. Bei OFDb ist wie auch beim ersten Film, eine
 deutschsprachige Inhaltsangabe vorhanden. Zur großen Überraschung ist hier das
-Genre im Vergleich zu den beiden anderen Onlinequellen feingranularer gepflegt
+Genre im Vergleich zu den beiden anderen Onlinequellen *feingranularer* gepflegt
 --- was laut Wikipedia (siehe :cite:`nymphomaniac`) auch besser zum Film passen
 würde (siehe Tabelle :num:`table-nymphomaniac`).
 
@@ -289,15 +293,15 @@ würde (siehe Tabelle :num:`table-nymphomaniac`).
     :caption: Übersicht Metadatenquellen für den Film Nymphomaniac (2013)
     :alt: Übersicht Metadatenquellen für den Film Nymphomaniac (2013)
 
-    +---------+------------------+------------------+--------------------+
-    |         | *IMDb*           | *TMDb*           | *OFDb*             |
-    +=========+==================+==================+====================+
-    | *Plot*  | englischsprachig | englischsprachig | deutschsprachig    |
-    +---------+------------------+------------------+--------------------+
-    | *Genre* | Drama            | Drama            | Drama, Erotik, Sex |
-    +---------+------------------+------------------+--------------------+
+    +----------+------------------+------------------+--------------------+
+    | *Quelle* | *IMDb*           | *TMDb*           | *OFDb*             |
+    +==========+==================+==================+====================+
+    | *Plot*   | englischsprachig | englischsprachig | deutschsprachig    |
+    +----------+------------------+------------------+--------------------+
+    | *Genre*  | Drama            | Drama            | Drama, Erotik, Sex |
+    +----------+------------------+------------------+--------------------+
 
-*Zusammenfassung zum Genre:* divergent, unterschiedlich ,,feingranular" gepflegt
+*Zusammenfassung zum Genre:* divergent, unterschiedlich *feingranular* gepflegt
 
 **RoboCop (2014):** Der vierte Film, eine Hollywood Remake--Produktion ist hier
 bei allen drei Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`).
@@ -308,16 +312,16 @@ bei allen drei Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`).
     :caption: Übersicht Metadatenquellen für den Film RoboCop (2014)
     :alt: Übersicht Metadatenquellen für den Film RoboCop (2014)
 
-    +---------+-----------------------+--------------------------------+------------------------------------------+
-    |         | *IMDb*                | *TMDb*                         | *OFDb*                                   |
-    +=========+=======================+================================+==========================================+
-    | *Plot*  | englischsprachig      | deutschsprachig                | deutschsprachig                          |
-    +---------+-----------------------+--------------------------------+------------------------------------------+
-    | *Genre* | Action, Crime, Sci-Fi | Action, Science Fiction, Krimi | Action, Krimi, Science-Fiction, Thriller |
-    +---------+-----------------------+--------------------------------+------------------------------------------+
+    +----------+-----------------------+--------------------------------+------------------------------------------+
+    | *Quelle* | *IMDb*                | *TMDb*                         | *OFDb*                                   |
+    +==========+=======================+================================+==========================================+
+    | *Plot*   | englischsprachig      | deutschsprachig                | deutschsprachig                          |
+    +----------+-----------------------+--------------------------------+------------------------------------------+
+    | *Genre*  | Action, Crime, Sci-Fi | Action, Science Fiction, Krimi | Action, Krimi, Science-Fiction, Thriller |
+    +----------+-----------------------+--------------------------------+------------------------------------------+
 
 *Zusammenfassung zum Genre:* unterschiedliche Schreibweise, divergent, Problem der
-Internationalisierung, unterschiedlich ,,feingranular" gepflegt
+Internationalisierung, unterschiedlich *feingranular* gepflegt
 
 Beim Bezug von vier Filmen wird deutlich, welche Probleme bei der Beschaffung
 der Metadaten enstehen können. Diese Probleme werden beim *aktuellen Stand der
@@ -351,7 +355,7 @@ gefunden (siehe Tabelle :num:`table-movietools`).
 oft nicht möglich, obwohl diese von manchen Onlineanbietern unterstützt wird
 (siehe Tabelle :num:`table-movietools`).
 
-Probleme bei Movie Metadaten Managern
+Probleme bei Movie--Metadaten--Managern
 -------------------------------------
 
 Es wurden neben der Abspielsoftware XBMC und dem
@@ -371,26 +375,26 @@ einzelne Quellen funktioniert haben --- nicht mal IMDb hat nicht funktioniert.
 .. figtable::
     :label: table-movietools
     :spec: l|l|l|l
-    :caption: Übersicht Movie Metadaten Manager und Funktionalität
-    :alt: Übersicht Movie Metadaten Manager und Funktionalität
+    :caption: Übersicht Movie--Metadaten--Manager und Funktionalität
+    :alt: Übersicht Movie--Metadaten--Manager und Funktionalität
 
-    +--------------------+------------------------+----------------------------+-------------------------+
-    |                    | *XBMC*                 | *MediaElch*                | *Tellico*               |
-    +====================+========================+============================+=========================+
-    | *IMDB ID Suche*    | nein                   | nur über IMDb u. TMDb      | nein                    |
-    +--------------------+------------------------+----------------------------+-------------------------+
-    | *Unschärfesuche*   | nein                   | nein                       | nur IMDb, teilweise     |
-    +--------------------+------------------------+----------------------------+-------------------------+
-    | *Onlinequellen*    | Verschiedene (plugin)  | Verschiedene (6)           | wenige (3)              |
-    +--------------------+------------------------+----------------------------+-------------------------+
-    | *Metadatenformate* |  :math:`\times`        | nur XBMC                   | nein                    |
-    +--------------------+------------------------+----------------------------+-------------------------+
-    | *Datenkorrektur*   | :math:`\times`         | ja, manuell                | ja, manuell             |
-    +--------------------+------------------------+----------------------------+-------------------------+
-    | *Bemerkungen*      | pluginbasierte Scraper | Onlinequellen kombinierbar | :math:`\times`          |
-    +--------------------+------------------------+----------------------------+-------------------------+
-    | *Typ*              | Medien Player          | Movie Metadaten Manager    | Movie Metadaten Manager |
-    +--------------------+------------------------+----------------------------+-------------------------+
+    +--------------------+------------------------+----------------------------+---------------------------+
+    | *Software*         | *XBMC*                 | *MediaElch*                | *Tellico*                 |
+    +====================+========================+============================+===========================+
+    | *IMDB ID Suche*    | nein                   | nur über IMDb u. TMDb      | nein                      |
+    +--------------------+------------------------+----------------------------+---------------------------+
+    | *Unschärfesuche*   | nein                   | nein                       | nur IMDb, teilweise       |
+    +--------------------+------------------------+----------------------------+---------------------------+
+    | *Onlinequellen*    | Verschiedene (plugin)  | Verschiedene (6)           | wenige (3)                |
+    +--------------------+------------------------+----------------------------+---------------------------+
+    | *Metadatenformate* |  :math:`\times`        | nur XBMC                   | nein                      |
+    +--------------------+------------------------+----------------------------+---------------------------+
+    | *Datenkorrektur*   | :math:`\times`         | ja, manuell                | ja, manuell               |
+    +--------------------+------------------------+----------------------------+---------------------------+
+    | *Bemerkungen*      | pluginbasierte Scraper | Onlinequellen kombinierbar | :math:`\times`            |
+    +--------------------+------------------------+----------------------------+---------------------------+
+    | *Typ*              | Medien Player          | Movie--Metadaten--Manager  | Movie--Metadaten--Manager |
+    +--------------------+------------------------+----------------------------+---------------------------+
 
 
 Erkentnisse und Anforderungen an das Projekt
@@ -411,7 +415,7 @@ einheitliche Schnittstelle bereitzustellen, welcher an die persönlichen
 Bedürfnisse anpassbar ist.
 
 Des Weiteren soll die zusätzliche Funktionalität der Datenanalyse,
-beispielsweise basierend auf Datamining Algorithmik, möglich sein. Das
+beispielsweise basierend auf Data--Mining Algorithmik, möglich sein. Das
 Hauptaugenmerk des System liegt, im Gegensatz zu den bisherigen
 Movie--Metadaten--Managern, auf der *automatisierten* Verarbeitung großer
 Datenmengen.

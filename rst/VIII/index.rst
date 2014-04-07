@@ -106,7 +106,7 @@ Diese werden bei TMDb durch die Benutzer der Plattform gepflegt. Oft sind diese
 jedoch gar nicht vorhanden oder sind zum Teil auch recht ungenau oder unpassend
 gepflegt bei manchen Filmen.
 
-Eine Idee wäre hier die Schlüsselwörter über einen Datamining--Algorithmus aus
+Eine Idee wäre hier die Schlüsselwörter über einen Data--Mining--Algorithmus aus
 der vorliegenden Inhaltsbeschreibung zu extrahieren. Dies könnte man aufgrund
 der Architektur von libhugin problemlos automatisiert für die ganze
 Filmsammlung machen und das neu gewonnene ,,Wissen" in die von der Community
@@ -144,7 +144,7 @@ Abschließendes Fazit
 ====================
 
 Das Projekt zeigt einen modularen Prototyp für die Suche und Analyse von Film
-Metadaten, welcher die bisherigen Fähigkeiten der Movie--Manager um Datamining
+Metadaten, welcher die bisherigen Fähigkeiten der Movie--Manager um Data--Mining
 Algorithmen erweitert. Des Weiteren zeigt dieser Ansatz, dass so die Metadaten
 Suche und Analyse sich gut an benutzerspezifische Bedürfnisse anpassen lässt.
 Weitere Verbesserungen (siehe :ref:`ref-normalisierung`, :ref:`ref-priority`,
