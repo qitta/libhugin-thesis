@@ -12,22 +12,23 @@ Fachbegriffe
 
     Metadaten
 
-     Metadaten sind beschreibende Daten, die Informationen über andere Daten
-     enthalten
+     Metadaten sind beschreibende Daten, die Informationen über andere Objekte
+     enthalten.
 
     Home--Theatre--PC
 
-     Ein auf PC Komponenten basierendes Gerät zur Wiedergabe multimedialer
-     Inhalte, dieser wird oft mit sogenannte Media Center Software wie dem Xbox
-     Media Center betrieben.
+     Ein auf PC--Komponenten basierendes Gerät zur Wiedergabe multimedialer
+     Inhalte. Dieser wird oft mit sogenannter Media--Center--Software wie dem
+     XBMC betrieben.
 
     Smart--TV
 
-     Bezeichnung für einen Fernseher mit Computerfunktion der Internetfähig ist.
+     Bezeichnung für einen Fernseher der eine Computerfunktion integriert hat
+     und Internetfähig ist.
 
-    Json
+    JSON
 
-     JavaScript Object Notation, eine Auszeichnungssprache ähnlich wie XML mit
+     JavaScript Object Notation, eine Auszeichnungssprache ähnlich wie *XML* mit
      dem Ziel von Mensch und Maschine einfacher lesbar zu sein.
 
     XML

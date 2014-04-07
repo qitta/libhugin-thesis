@@ -46,7 +46,7 @@ Qualität.
 **TMDb** ist eine hauptsächlich Community gepflegte Onlinequelle. Die hier
 gepflegten Filme enthalten neben den Standardmetadaten auch hochauflösende
 Cover und Hintergrundbilder (sogenannte Backdrops und Fanart). Die Datenbank
-wird oft von Open--Source--Projekten wie auch dem Xbox--Media--Center verwendet.
+wird oft von Open--Source--Projekten wie auch dem XBMC verwendet.
 
 **OFDb** ist eine im deutschen Raum bekannte Filmdatenbank, welche
 deutschsprachige Metadaten pflegt.
@@ -75,7 +75,7 @@ meisten Fällen über sogenannte Media--Center--Software, die für den
 Home--Theater--PC Betrieb im Wohnzimmer angepasst ist.
 
 Beispiele hierfür wären das Windows--Media--Center oder auch das freie
-Xbox--Media--Center (Abb. :num:`fig-xbmcscreenshot`, siehe auch :cite:`xbmc`),
+XBMC (Abb. :num:`fig-xbmcscreenshot`, siehe auch :cite:`xbmc`),
 welches in letzter Zeit noch einmal durch den *Raspberry Pi* (siehe
 :cite:`raspberry`) Bekanntschaft erlangt hat. Neben den PC basierten Lösungen
 gibt es hier auch zahlreiche Standalone--Lösungen wie beispielsweise Popcorn
@@ -84,11 +84,11 @@ Hour (siehe :cite:`popcornhour`).
 .. _fig-xbmcscreenshot:
 
 .. figure:: fig/xbmc-screenshot.png
-    :alt: Screenshot einer im Xbox--Media--Center gepflegten Filmesammlung.
+    :alt: Screenshot einer im XBMC gepflegten Filmesammlung.
     :width: 90%
     :align: center
 
-    Screenshot einer im Xbox--Media--Center gepflegten Filmesammlung.
+    Screenshot einer im XBMC gepflegten Filmesammlung.
 
 Die Media--Center--Software kann ihre Metadaten in der Regal je nach Applikation
 von einer oder mehrerer Onlinequellen beziehen. Sie bieten dem Benutzer jedoch
@@ -139,7 +139,7 @@ Im Gegensatz zum Musikbereich hat sich bei der Pflege von Metadaten im
 Filmbereich kein Standard durchgesetzt. Hier wird je nach Abspiel- oder
 Verwaltungssoftware jeweils ein anderes Format verwendet.
 
-Das Xbox--Media--Center speichert seine Metadaten beispielsweise intern in einer
+Das XBMC speichert seine Metadaten beispielsweise intern in einer
 Datenbank und schreibt diese beim Exportieren in :term:`XML`--Dateien, das
 sogenannte nfo-Format raus (siehe :cite:`xbmcnfo`). Nutzt man eine andere
 Abspielsoftware wie das Windows--Media--Center, so werden die Metadaten im
@@ -354,13 +354,13 @@ oft nicht möglich, obwohl diese von manchen Onlineanbietern unterstützt wird
 Probleme bei Movie Metadaten Managern
 -------------------------------------
 
-Es wurden neben der Abspielsoftware Xbox--Media--Center und dem
+Es wurden neben der Abspielsoftware XBMC und dem
 Movie--Metadaten--Manager MediaElch, die bereits genannten
 Movie--Metadaten--Manager (siehe :cite:`moviemanager`) GCstar, vMovieDB,
 Griffith und Tellico angeschaut. Die Resultate hier waren eher *ernüchternd*
 (siehe Tabelle). Bei den beiden Media Manager GCstar und vMovieDB hat die
 Metadatensuche nicht funktioniert, hier wurde nichts gefunden. Das Verhalten
-wurde auf zwei Systemen nachgeprüft.  Beim Xbox Media Center wurden die Plugins
+wurde auf zwei Systemen nachgeprüft.  Beim XBMC wurden die Plugins
 für die Onlinequellen TMDb und Videobuster getestet. Für die Unschärfesuche
 wurde nach *Sin Sity* und nach *The Marix* gesucht. Die nicht funktionierenden
 Movie Manager GCstar und vMovieDB wurde nicht mit aufgenommen. Das Tool Griffith

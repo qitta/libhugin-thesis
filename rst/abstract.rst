@@ -11,4 +11,4 @@ movie metadata by user needs, making the user less dependent to a specific
 metadata source or metadata tool. In order to demonstrate and test the library
 two command line tools are implemented. By using those command line tools a user
 may test plugins, but also use the library for scripting tasks. There is also a
-RESTful webservice, for usage with Xbox Media Center, implemented.
+RESTful webservice, for usage with XBMC, implemented.
