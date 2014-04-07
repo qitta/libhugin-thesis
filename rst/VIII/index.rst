@@ -14,8 +14,6 @@ Erfüllung der gesetzten Anforderungen
 Die vom Autor gesetzten Anforderungen (siehe :ref:`ref-requirements`) konnten
 direkt über die Bibliothek oder durch Schreiben eines Plugins erfüllt werden.
 
-.. _ref-normalisierung:
-
 Dennoch gibt es bei einigen Ansätzen Problemstellungen die nur schwer ,,gut''
 umsetzbar sind.  Im Fall von *libhugin* wäre das die Normalisierung von Metadaten
 über mehrere Onlinequellen hinweg. Das funktioniert im Moment beim Genre mittels
@@ -31,11 +29,9 @@ Defizite und Verbesserungen
 Erweiterung des aktuellen Pluginsystems
 ---------------------------------------
 
-.. _ref-tags:
-
 **Provider--Plugins:** Momentan ist ein multilingualer, ein englischsprachiger
-und drei deutschsprachige Provider implementiert (siehe
-:ref:`ref-providerplugins`). Betrachtet man die Möglichkeiten und Anzahl der
+und drei deutschsprachige Provider implementiert (siehe Tabelle
+:num:`table-provideroverview`). Betrachtet man die Möglichkeiten und Anzahl der
 Plattformen, ist es wünschenswert weitere Provider zu implementieren.
 
 Die aktuelle Attributstruktur die von den Provider befüllt wird ist aktuell
@@ -58,8 +54,6 @@ Windows--Media--Center zu implementieren.
 
 Verbesserungen am Grundsystem
 -----------------------------
-
-.. _ref-priority:
 
 **Provider Priorität**: Aktuell wird die *Priorität* der Provider per Hand
 gepflegt. Hier wäre ein automatischer Ansatz denkbar und wünschenswert. Eine
@@ -147,5 +141,3 @@ Das Projekt zeigt einen modularen Prototyp für die Suche und Analyse von Film
 Metadaten, welcher die bisherigen Fähigkeiten der Movie--Manager um Data--Mining
 Algorithmen erweitert. Des Weiteren zeigt dieser Ansatz, dass so die Metadaten
 Suche und Analyse sich gut an benutzerspezifische Bedürfnisse anpassen lässt.
-Weitere Verbesserungen (siehe :ref:`ref-normalisierung`, :ref:`ref-priority`,
-:ref:`ref-tags`) sind denkbar und wünschenswert.

@@ -78,7 +78,7 @@ verwendet wird:
 .. _ref-xbmc-libhugin:
 
 XBMC  Scraper Plugin
-===================================
+====================
 
 Folgender Quelltext zeigt die Implementierung des XBMC Plugins. Als
 externe Schnittstelle wird hier der libhugin proxy (siehe
@@ -114,7 +114,7 @@ externe Schnittstelle wird hier der libhugin proxy (siehe
 .. _ref-flaskproxy:
 
 Libhugin XBMC Proxy
-==================================
+===================
 
 Folgender Quelltext zeigt die Implementierung des libhugin Proxy--Servers,
 welcher das XBMC Plugin mit Daten versorgt.
@@ -257,3 +257,29 @@ welcher das XBMC Plugin mit Daten versorgt.
 
     if __name__ == "__main__":
         app.run()
+
+
+.. _ref-cloc:
+
+Projektstatistik (*cloc*)
+========================
+
+Folgend eine Projektstatistik erstellt mit dem Tool *cloc*:
+
+.. code-block:: bash
+
+    $ cloc hugin/ tools/
+         119 text files.
+         117 unique files.
+          87 files ignored.
+
+    http://cloc.sourceforge.net v 1.60  T=0.51 s (109.5 files/s, 11970.3 lines/s)
+    -------------------------------------------------------------------------------
+    Language                     files          blank        comment           code
+    -------------------------------------------------------------------------------
+    Python                          49           1220           1171           3540
+    XML                              5              1              0             57
+    HTML                             2              9            113             10
+    -------------------------------------------------------------------------------
+    SUM:                            56           1230           1284           3607
+    -------------------------------------------------------------------------------

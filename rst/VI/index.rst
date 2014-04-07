@@ -41,29 +41,29 @@ textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
     :caption: Übersicht implementierter Provider und Funktionalität.
     :alt: Übersicht implementierter Provider und Funktionalität.
 
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
-    |                             | TMDb               | OFDb          | Videobuster.de | Filmstarts.de | OMDb     |
-    +=============================+====================+===============+================+===============+==========+
-    | Priorität                   | 90                 | 80            | 70             | 65            | 65       |
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
-    | Providerart                 | movie, person      | movie, person | movie          | movie         | movie    |
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
-    | Metadaten                   | textuell, grafisch | textuell      | textuell       | textuell      | textuell |
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
-    | Sprache                     | multilingual       | deutsch       | deutsch        | deutsch       | englisch |
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
-    | Unschärfesuche Onlinequelle | nein               | nein          | nein           | nein          | nein     |
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
-    | Unschärfesuche libhugin     | ja                 | ja            | ja             | ja            | ja       |
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
-    | IMDB--Suche Onlinequelle    | ja                 | ja            | nein           | nein          | ja       |
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
-    | IMDB--Suche über libhugin   | ja                 | ja            | ja             | ja            | ja       |
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
-    | API verfügbar               | ja                 | ja            | nein           | nein          | ja       |
-    +-----------------------------+--------------------+---------------+----------------+---------------+----------+
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    |                               | *TMDb*             | *OFDb*             | *Videobuster.de*   | *Filmstarts.de*    | *OMDb*             |
+    +===============================+====================+====================+====================+====================+====================+
+    | *Priorität*                   | 90                 | 80                 | 70                 | 65                 | 65                 |
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Providerart*                 | movie, person      | movie, person      | movie              | movie              | movie              |
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Metadaten*                   | textuell, grafisch | textuell           | textuell           | textuell           | textuell           |
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Sprache*                     | multilingual       | deutsch            | deutsch            | deutsch            | englisch           |
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Unschärfesuche Onlinequelle* | :math:`\times`     | :math:`\times`     | :math:`\times`     | :math:`\times`     | :math:`\times`     |
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Unschärfesuche libhugin*     | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` |
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *IMDB--Suche Onlinequelle*    | :math:`\checkmark` | :math:`\checkmark` | :math:`\times`     | :math:`\times`     | :math:`\checkmark` |
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *IMDB--Suche über libhugin*   | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` |
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *API verfügbar*               | :math:`\checkmark` | :math:`\checkmark` | :math:`\times`     | :math:`\times`     | :math:`\checkmark` |
+    +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
 
-Postprocessor Plugins
+Postprocessor--Plugins
 ----------------------
 
 Die Postprocessor Plugins beim libgugin harvest Teil sind für die direkte
@@ -114,8 +114,8 @@ zuständig ist vorangehende und nachziehende Leerzeichen bei den Metadaten zu
 entfernen. Das Plugin führt eine ,,Bereinigung" durch, diese muss so nicht vom
 Provider--Plugin explizit durchgeführt werden.
 
-Converter Plugins
------------------------
+Converter--Plugins
+------------------
 
 Bei den Converter Plugins wurde zu Demozwecken ein *HTML*--Converter
 und ein *JSON*--Converter implementiert.
@@ -129,7 +129,7 @@ implementiert, dieser wird von der Demoanwendung libhugin proxy (siehe
 .. _analyzeapiexample:
 
 Libhugin--analyze API
-====================
+=====================
 
 Die API von *libhugin--analyze* ist vom Grundaufbau ähnlich zu der libhugin--harvest
 API. Folgendes Beispiel--Snippet zeigt die Anwendung des Plotcleaner--Plugins
@@ -155,7 +155,7 @@ zeigt die Demoanwendung Freki den Einsatz von libhugin--analyze, siehe hierzu
 
 
 Libhugin--analyze Plugins
-========================
+=========================
 
 Modifier Plugins
 ----------------
@@ -169,10 +169,10 @@ Klammern aus der Beschreibung entfernt werden. Für ein Beispiel siehe
 
 **plotchange:** Das *PlotChange* Plugin ist für das nachträgliche Ändern der
 Inhaltsbeschreibung zuständig. Im Moment hat es die Option die Sprache des Plots
-zu ändern, für ein Beispiel siehe Demoanwendung :ref:`ref-plotchange-freki`.
+zu ändern, für ein Beispiel siehe Demoanwendung :ref:`ref-freki`.
 
-Analyzer Plugins
-----------------
+Analyzer--Plugins
+-----------------
 
 **keywordextractor:** Dieses Plugin extrahiert aus einem Text, bei Filmen meist
 die Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text beziehungsweise
@@ -191,10 +191,10 @@ extrahiert es:
 
 **plotlang:** Der Plotlang--Analyzer erkennt die Sprache des verwendeten Plots
 und schreibt die Information zu den Analysedaten. Für ein Beispiel siehe
-Demoanwendung :ref:`ref-plotlang-freki`.
+Demoanwendung :ref:`ref-freki`.
 
-Comperator Plugins
-------------------
+Comperator--Plugins
+-------------------
 
 Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
 Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
@@ -250,14 +250,15 @@ Das Ausführen des Beispielcodes würde folgende Ausgabe produzieren:
     OK
 
 Alle geschrieben Tests werden bei jedem ,,Einspielen" der Änderungen in das
-verwendete Quellcode--Versionsverwaltungssystem (siehe :ref:`github`)
-automatisiert über einen externen Dienst ausgeführt (siehe :ref:`travisci`).
+verwendete Quellcode--Versionsverwaltungssystem automatisiert über einen
+externen Dienst ausgeführt (siehe Entwicklungsumgebung :ref:`dev`).
+
+.. _dev:
 
 Entwicklungumgebung
 -------------------
 
-Programmiersprache
-~~~~~~~~~~~~~~~~~~
+**Programmiersprache**
 
 Für die Entwicklung der Bibliothek wurde die Programmiersprache Python, in der
 Version 3.3, aus folgenden Gründen gewählt:
@@ -272,45 +273,41 @@ Version 3.3, aus folgenden Gründen gewählt:
       (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`)
 
 
-Entwicklungssytem
-~~~~~~~~~~~~~~~~~
+**Entwicklungssytem**
 
 Die Bibliothek wird unter *Archlinux* entwickelt. Für die Entwicklung wird der
 Editor *gVim* mit entsprechenden Python--Plugins zur Validierung der Python PEP
 Stilrichtlinien (siehe :cite:`pep`) verwendet. Des Weiteren wird die interaktive
 Python Shell *IPython* eingesetzt.
 
-Quellcodeverwaltung
-~~~~~~~~~~~~~~~~~~~
+**Quellcodeverwaltung**
 
 Für die Quellcodeverwaltung wird das Versionsverwaltungssystem *git*
 eingesetzt. Der Quellcode selbst wird auf dem Hosting--Dienst für
 Software--Entwicklungsprojekte *GitHub* (siehe :cite:`github`) gelagert.
 
-Automatisches Testen
-~~~~~~~~~~~~~~~~~~~~
+**Automatisches Testen**
 
 Die oben genannten Softwaretests werden von *TravisCI* (siehe :cite:`travisci`),
 einem sogenanntem ,,Continuous Integration Service" automatisch ausgeführt. Dies
-passiert bei jedem Hochladen von Quellcodeänderungen auf GitHub. GitHub hat hier
-einen Service--Schnittstelle zu TravisCI, welche aktiviert wurde.
+passiert bei jedem Hochladen von Quellcodeänderungen auf *GitHub*. *GitHub* hat
+hier einen Service--Schnittstelle zu *TravisCI,* welche aktiviert wurde.
 
-Ein Logo (siehe Abbildung: :num:`fig-build`) auf der libhugin
+Ein Logo (siehe :num:`fig-build`) auf der libhugin
 Github--Projektseite teil so dem Besuchern der Seite den aktuellen
 ,,Projektstatus" mit.
 
 .. _fig-build:
 
 .. figure:: fig/build.png
-    :alt: Logo das den aktuellen ,,Build Status" der github--Projektseite.
+    :alt: Logo das den aktuellen ,,Build Status" der GitHub--Projektseite.
     :width: 60%
     :align: center
 
     Logo das den aktuellen ,,Build--Status" der GitHub--Projektseite.
 
 
-Projektdokumentation
-~~~~~~~~~~~~~~~~~~~~
+**Projektdokumentation**
 
 Das Projekt wird nach den Regeln der *literalen Programmierung*, wie nach
 *Donald E. Knuth* (siehe :cite:`knuth`) empfohlen, entwickelt. Hierbei liegen
@@ -323,7 +320,8 @@ verschiedenen Formaten generieren, auch diese Projektarbeit wurde in
 *reStructuredText* (siehe :cite:`rst`) geschrieben und mit *Sphinx* generiert.
 
 Des Weiteren wird dem Entwickler bei Nutzung der Bibliothek in der interaktiven
-Python--Shell eine zusätzliche Hilfestellung geboten (siehe :num:`fig-knuth`).
+Python--Shell eine zusätzliche Hilfestellung geboten (siehe Abbildung
+:num:`fig-knuth`).
 
 .. _fig-knuth:
 
@@ -334,72 +332,57 @@ Python--Shell eine zusätzliche Hilfestellung geboten (siehe :num:`fig-knuth`).
 
     API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython.
 
-|
-|
-|
 
-Externe Bibliotheken
---------------------
+**Projektumfang**
+
+Der Projektumfang beträgt ca. 3500 *lines of code*,  hier kommt noch zusätzlich
+die Onlinedokumentation hinzu. Eine Statistik zum Projekt, welche mit dem Tool
+*cloc* erstellt wurde ist im Anhang unter :ref:`ref-cloc` zu finden.
+
+.. raw:: Latex
+
+   \newpage
+
+**Externe Bibliotheken**
 
 Die Tabelle :num:`table-libs` listet alle momentan verwendeten externen
 Abhängigkeiten für die Libhugin--Bibliothek.
 
 .. figtable::
     :label: table-libs
-    :caption: Übersicht externe Abhängigkeiten
-    :alt: Übersicht externe Abhängigkeiten
+    :spec: l|l|l
+    :alt: Übersicht über externe Abhängigkeiten.
+    :caption: Übersicht über externe Abhängigkeiten.
 
-    +-----------------------+----------------+---------------------------------+
-    | Abhängigkeit          | Verwendung in  | Einsatzzweck                    |
-    +=======================+================+=================================+
-    | yapsy                 | Pluginsystem   | Laden von Plugins               |
-    +-----------------------+----------------+---------------------------------+
-    | charade               | Downloadqueue  | Encodingerkennung               |
-    +-----------------------+----------------+---------------------------------+
-    | parse                 | Plugins        | Parsen von Zeitstrings          |
-    +-----------------------+----------------+---------------------------------+
-    | httplib2              | Downloadqueue  | Content download                |
-    +-----------------------+----------------+---------------------------------+
-    | jinja2                | Plugins        | HTML Template Engine            |
-    +-----------------------+----------------+---------------------------------+
-    | docopt                | Cli--Tools     | CLI--Optionparser               |
-    +-----------------------+----------------+---------------------------------+
-    | Flask                 | Huginproxy     | Webframework, RESTful interface |
-    +-----------------------+----------------+---------------------------------+
-    | guess_language-spirit | Plugins        | Spracherkennung                 |
-    +-----------------------+----------------+---------------------------------+
-    | PyStemmer             | Plugins        | Stemming von Wörtern            |
-    +-----------------------+----------------+---------------------------------+
-    | pyxDamerauLevenshtein | Plugins, Utils | Vergleich von Strings           |
-    +-----------------------+----------------+---------------------------------+
-    | Pyaml                 | Plugins        | Verarbeitung von Yaml Dateien   |
-    +-----------------------+----------------+---------------------------------+
-    | beaufifulsoup4        | Plugins        | Parsen von HTML Seiten          |
-    +-----------------------+----------------+---------------------------------+
-    | xmltodict             | Plugins        | Verarbeitung von XML Dokumenten |
-    +-----------------------+----------------+---------------------------------+
+    +-------------------------+-----------------+---------------------------------+
+    | *Abhängigkeit*          | *Verwendung in* | *Einsatzzweck*                  |
+    +=========================+=================+=================================+
+    | *yapsy*                 | Pluginsystem    | Laden von Plugins               |
+    +-------------------------+-----------------+---------------------------------+
+    | *charade*               | Downloadqueue   | Encodingerkennung               |
+    +-------------------------+-----------------+---------------------------------+
+    | *parse*                 | Plugins         | Parsen von Zeitstrings          |
+    +-------------------------+-----------------+---------------------------------+
+    | *httplib2*              | Downloadqueue   | Content download                |
+    +-------------------------+-----------------+---------------------------------+
+    | *jinja2*                | Plugins         | HTML Template Engine            |
+    +-------------------------+-----------------+---------------------------------+
+    | *docopt*                | Cli--Tools      | CLI--Optionparser               |
+    +-------------------------+-----------------+---------------------------------+
+    | *Flask*                 | Huginproxy      | Webframework, RESTful interface |
+    +-------------------------+-----------------+---------------------------------+
+    | *guess_language-spirit* | Plugins         | Spracherkennung                 |
+    +-------------------------+-----------------+---------------------------------+
+    | *PyStemmer*             | Plugins         | Stemming von Wörtern            |
+    +-------------------------+-----------------+---------------------------------+
+    | *pyxDamerauLevenshtein* | Plugins, Utils  | Vergleich von Strings           |
+    +-------------------------+-----------------+---------------------------------+
+    | *Pyaml*                 | Plugins         | Verarbeitung von Yaml Dateien   |
+    +-------------------------+-----------------+---------------------------------+
+    | *beaufifulsoup4*        | Plugins         | Parsen von HTML Seiten          |
+    +-------------------------+-----------------+---------------------------------+
+    | *xmltodict*             | Plugins         | Verarbeitung von XML Dokumenten |
+    +-------------------------+-----------------+---------------------------------+
 
 
-Projektumfang
--------------
 
-Der Projektumfang beträgt ca. 3500 *lines of code*,  hier kommt noch zusätzlich
-die Onlinedokumentation hinzu.
-
-.. code-block:: bash
-
-    $ cloc hugin/ tools/
-         119 text files.
-         117 unique files.
-          87 files ignored.
-
-    http://cloc.sourceforge.net v 1.60  T=0.51 s (109.5 files/s, 11970.3 lines/s)
-    -------------------------------------------------------------------------------
-    Language                     files          blank        comment           code
-    -------------------------------------------------------------------------------
-    Python                          49           1220           1171           3540
-    XML                              5              1              0             57
-    HTML                             2              9            113             10
-    -------------------------------------------------------------------------------
-    SUM:                            56           1230           1284           3607
-    -------------------------------------------------------------------------------

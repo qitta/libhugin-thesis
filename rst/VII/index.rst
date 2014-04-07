@@ -310,8 +310,6 @@ Anzeigen der vorhandenen Modifier:
     Parameters:     {'attr_name': <class 'str'>}
 
 
-.. _ref-plotlang-freki:
-
 **Anwenden von Analyzern:** Anwendung des *plotlang* Plugins auf der *mydb.db*
 Datenbank:
 
@@ -333,8 +331,6 @@ Plugin hat sich in das Analysedaten--Array mit seinem ermittelten Ergebnis
 eingetragen. In unserem Beispiel *es (espanol)* für eine spanische
 Inhaltsbeschreibung.
 
-
-.. _ref-plotchange-freki
 
 **Anwenden von Modifiern:** Anwendung des PlotChange Modifier--Plugins um die
 Sprache Inhaltsbeschreibung von spanisch auf deutsch zu ändern:
@@ -491,10 +487,10 @@ Wünschen zusammen zu bauen, ohne dabei auf externe Movie--Manager zugreifen zu
 müssen. Im Prinzip kann libhugin hier das komplette Metadatensystem vom XBMC
 ersetzen.
 
+.. _ref-scripting-tasks:
+
 Weitere Einsatzmöglichkeiten
 ============================
-
-.. _ref-scripting-tasks:
 
 **Scripting Tasks:** Die Einsatzmöglichkeiten sind je nach Szenario anpassbar.
 Für einfache Anwendungen lassen sich Geri und Freki bereits direkt verwenden.
