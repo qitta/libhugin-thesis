@@ -24,8 +24,8 @@ Pluginarten sollen bei der Datenbeschaffung umgesetzt werden:
 
 Die Onlinequellen die verwendet werden, sollen austauschbar sein. Der Benutzer
 hat die Möglichkeit durch Schreiben eines Plugins seine bevorzugte
-Onlinequelle als sogenanntes Provder Plugin zu implementieren. Diese
-Grundprinzip wird bereits bei der freien Musik--Metadatensuchmaschine libglyr
+Onlinequelle als sogenanntes Provider Plugin zu implementieren. Dieses
+Grundprinzip wird bereits bei der freien Musik--Metadatensuchmaschine *libglyr*
 (siehe :cite:`glyr`) sowie auch im Ansatz beim XBMC (siehe :cite:`xbmcscraper`)
 verwendet.
 
@@ -65,9 +65,9 @@ werden, werden diese nach Provider--Priorität gruppiert. Die gruppierten
 Ergebnisse je Provider werden nach Übereinstimmung mit der Suche sortiert.
 
 Nun sollen die zwei Strategien zum Einsatz kommen, nach welcher die Ergebnisse
-zurück gegeben werden. Bei der ,,flat" Strategie, werden aus jeder Gruppe
+zurück gegeben werden. Bei der *flat*--Strategie, werden aus jeder Gruppe
 jeweils zuerst die höchstpriorisierten Ergebnisse ausgewählt, bis das gewünschte
-Ergebnislimit erreicht ist. Bei der ,,deep" Strategie, wird zuerst der
+Ergebnislimit erreicht ist. Bei der *deep*--Strategie, wird zuerst der
 Provider mit der höchsten Priorität ausgeschöpft, im Anschluss der
 Nächstniedrigere.
 
@@ -82,15 +82,15 @@ erläutert werden.
     :alt: Abbildung zeigt Metadatenanbieter (A, B, C) und die jeweils
               gelieferten Ergebnisse  pro Anbieter
 
-    +---------------------+-----------------+-------------------+
-    | *Anbieter A*        | *Anbieter B*    | *Anbieter C*      |
-    +=====================+=================+===================+
-    | Sin (2003)          | Sin (2003)      | Sin (2003)        |
-    +---------------------+-----------------+-------------------+
-    | Sin Nombre (2009)   | Sin City (2005) | Sin City (2005)   |
-    +---------------------+-----------------+-------------------+
-    | Original Sin (2001) |                 | Sin Nombre (2009) |
-    +---------------------+-----------------+-------------------+
+    +----------------------------+---------------------+-----------------+-------------------+
+    | *Onlinequelle*             | *A*                 | *B*             | *C*               |
+    +============================+=====================+=================+===================+
+    | *größte Übereinstimmung*   | Sin (2003)          | Sin (2003)      | Sin (2003)        |
+    +----------------------------+---------------------+-----------------+-------------------+
+    |                            | Sin Nombre (2009)   | Sin City (2005) | Sin City (2005)   |
+    +----------------------------+---------------------+-----------------+-------------------+
+    | *kleinste Übereinstimmung* | Original Sin (2001) |                 | Sin Nombre (2009) |
+    +----------------------------+---------------------+-----------------+-------------------+
 
 Die Tabelle :num:`table-searchstrategy` zeigt die Suchanfrage nach dem Film
 ,,Sin" mit der Begrenzung auf drei Ergebnisse. Jeder Provider (A, B und C) hat
@@ -107,14 +107,14 @@ Ergebnisse an den Aufrufer gegeben:
 **Unschärfesuche**
 
 Der Benutzer soll auch Ergebnisse erhalten wenn im Suchstring Tippfehler
-enthalten sind. Der Suchstring ,,The Marix'' soll
-*metadatenanbieterübergreifend* den Film ,,The Matrix (1999)'' liefern. Eine
+enthalten sind. Der Suchstring ,,The Marix" soll
+*metadatenanbieterübergreifend* den Film ,,The Matrix (1999)" liefern. Eine
 Providerübergreifende Suche wäre hier wünschenswert.
 
 **IMDB ID Suche**
 
 Die Suche nach Filmen über die IMDB ID soll möglich sein. Eine
-Providerübergreifende Suche wäre hier wünschenswert.
+providerübergreifende Suche wäre hier wünschenswert.
 
 **Genrenormalisierung**
 
@@ -178,7 +178,7 @@ abmildern kann.
 **Implementierung eines kommandobasierten Frontends**
 
 Dieses soll sowohl zum Testen der Bibliothek entwickelt als auch als
-Demonstrationsanwendung und für *Scripting--Tasks*.
+Demonstrationsanwendung fungieren und für *Scripting--Tasks* geeignet sein.
 
 **Grundlegende Konfiguration des Download--Managers**
 
@@ -213,8 +213,7 @@ Optionale Anforderungen
 -----------------------
 
 Die Bibliothek soll in ein bestehendes Open--Source--Projekt integriert werden.
-Hier wäre beispielsweise die Integration als Plugin in das XBMC
-denkbar.
+Hier wäre beispielsweise die Integration als Plugin in das XBMC denkbar.
 
 
 Nicht--Anforderungen
