@@ -62,22 +62,47 @@ Kontextspezifische Fachbegriffe
 
 .. glossary::
 
-    Converter
-
-     Im Kontext von libhugin ist ein Converter ein Plugin das für das
-     Konvertieren eines Ergebnisses in ein bestimmtes Metadatenformat wie
-     beispielsweise das XBMC nfo-Format zuständig ist.
-
-    Provider
-
-     Im Kontext von libhugin ist ein Provider eine Art ,,Vermittler"
-     zwischen der entwickelten Bibliothek und einem Online--Webservice der
-     Metadaten anbietet. Der Provider ist Bestandteil der Bibliothek und wird
-     als Plugin in dieser implementiert.
-
     Plugin
 
-     Im Kontext von libhugin sind Plugins kleine Module welche zur Laufzeit
+     Im Kontext von *libhugin* sind Plugins kleine Module welche zur Laufzeit
      austauschbar sind. Diese können von Dritten geschreiben werden um das
      System an die eigenen Bedürfnisse anzupassen.
 
+    Provider
+
+     Im Kontext von *libhugin* ist ein Provider eine Art ,,Vermittler" zwischen
+     der entwickelten Bibliothek und einem Online--Webservice der Metadaten
+     anbietet. Der Provider ist Bestandteil der Bibliothek und wird als Plugin
+     in dieser implementiert.
+
+    Postprocessor
+
+     Im Kontenxt von *libhugin* ist ein Postprocessor ein Plugin, welches für
+     die direkte Nachbearbeitung der heruntergeladenen Metadaten verwendet wird.
+
+    Converter
+
+     Im Kontext von *libhugin* ist ein Converter ein Plugin das für das
+     Konvertieren eines Ergebnisses in ein bestimmtes Metadatenformat wie
+     beispielsweise das XBMC nfo--Format zuständig ist.
+
+    Modifier
+
+     Im Kontext von *libhugin* ist ein Modifier ein Plugin, welches für die
+     nachträgliche Bearbeitung von Filmmmetadaten verwendet wird. Das kann
+     beispielsweise das Ändern der Sprache der Inhaltsbeschreibung sein.
+
+    Analyzer
+
+     Im Kontext von *libhugin* ist ein Analyzer ein Plugin, welches für die
+     nachträgliche Analyse von Filmmmetadaten verwendet wird. Dies kann
+     beispielsweise die Erkennung der Sprache der Inhaltsbeschreibung sein.
+
+    Comperator
+
+     Im Kontext von *libhugin* ist ein Comperator ein Plugin, welches für
+     Vergleiche zuständig ist. Mit Hilfe dieser Pluginart soll im späteren
+     Verlauf untersucht werden wie gut sich Filme anhand von Metadaten
+     vergleichen lassen und ob sich beispielsweise Film--Empfehlungen aufgrund
+     der gewonnenen Daten aussprechen lassen. Diese Pluginart ist experimentell
+     und nur konzeptuell in *libhugin* integriert.
