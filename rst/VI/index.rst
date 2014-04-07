@@ -269,7 +269,7 @@ Version 3.3, aus folgenden Gründen gewählt:
       Ziel des Projekts.
     * **Einfach erlernbar:**, Wichtig für Pluginentwickler.
     * **Verbreitungsgrad:**, Gängige Skriptsprache bei vielen Open Source Projekten
-    * **Optimierungsmöglichkeiten:**, Kompilirung von Pytnon mittels Cython
+    * **Optimierungsmöglichkeiten:**, Kompilirung von Python mittels Cython
       (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`)
 
 

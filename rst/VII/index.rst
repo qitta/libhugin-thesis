@@ -2,18 +2,21 @@
 Demoanwendungen
 ###############
 
-Das vorgestellten CLI--Tools stellen nur einen kleinen Ausschnit der Fähigkeiten
-der Bibliothek dar, die Bibliothek selbst ist um fast jede denkbare
+Die vorgestellten CLI--Tools stellen nur einen kleinen Ausschnitt der
+Fähigkeiten der Bibliothek dar, die Bibliothek selbst ist um fast jede denkbare
 Funktionalität der Metadatenaufbereitung erweiterbar.
 
 Der *libhugin--harvest* CLI--Tool Geri
-====================================
+======================================
 
 Geri ist eine CLI--Anwendung die zu Demozwecken, aber auch als Testwerkzeug für
 die *libhugin--harvest* Bibliothek verwendet werden kann.
 
-**Übersicht der Optionen:** Ein Überblick über die Funktionalität und die
-möglichen Optionen zeigt die Hilfe des Tools:
+Übersicht der Optionen
+----------------------
+
+Ein Überblick über die Funktionalität und die möglichen Optionen zeigt die Hilfe
+des Tools:
 
 ::
 
@@ -54,10 +57,12 @@ Das Tool eignet sich neben dem Einsatz als Testwerkzeug für die Bibliothek
 auch gut für Skripte und somit für automatische Verarbeitung *großer*
 Datenmengen, siehe auch *Scripting Tasks* :ref:`ref-scripting-tasks`.
 
+Filmsuche
+---------
 
-**Filmsuche:** Ein Film kann über den Titel oder über die *IMDB ID* gesucht
-werden. Hier gibt es die Möglichkeit *Geri* auch bestimmte Provider, Converter,
-Sprache und Postprocessor Plugins anzugeben.
+Ein Film kann über den Titel oder über die *IMDB ID* gesucht werden. Hier gibt
+es die Möglichkeit *Geri* auch bestimmte Provider, Converter, Sprache und
+Postprocessor Plugins anzugeben.
 
 Um das Ausgabeformat zu konfigurieren gibt es im *Geri*--Ordner eine
 ``movie.mask``-- und ``person.mask``--Datei. Über diese Dateien kann das
@@ -65,16 +70,18 @@ Ausgabeformat definiert werden. Die Syntax ist einfach. Um Attribute
 darzustellen, werden diese einfach in geschweifte Klammern geschrieben. Das
 *num*--Attribut gibt Geri noch die Möglichkeit die Resultate durchzunummerieren.
 
-**Definition des Ausgabeformats für Filme:** Folgend die Definition vom
-Ausgabeformat für die ``movie.mask``:
+**Definition des Ausgabeformats für Filme**
+
+Folgend die Definition vom Ausgabeformat für die ``movie.mask``:
 
 .. code-block:: bash
 
    echo "{num}) {title} ({year}), IMDBid: {imdbid} Provider: {provider}\
    \nInhalt: {plot}" > tools/geri/movie.mask
 
+**Filmsuche**
 
-**Filmsuche:** Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
+Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
 
 .. code-block:: bash
 
@@ -102,22 +109,25 @@ Ausgabeformat für die ``movie.mask``:
 Die Suche kann wie die Optionen zeigen *feingranularer* konfiguriert werden.
 Es würde jedoch den Rahmen sprengen würde alle Optionen zu zeigen.
 
-**Unschärfesuche:** Ein weiteres nennenswertes Feature ist die Unschärfesuche.
-Die getesteten Tools (siehe :ref:`ref-probleme-metadatensuche`) sind nicht in
-der Lage Filme zu finden wenn der Titel nicht exakt geschrieben ist. Das
-trifft auch in der Standardkonfiguration für *libhugin* zu, weil hier die
-Onlinequellen, auf die zugegriffen wird, exakte Suchbegriffe erwarten.
+**Unschärfesuche**
+
+Ein weiteres nennenswertes Feature ist die Unschärfesuche.  Die getesteten Tools
+(siehe Tabelle :num:`table-movietools`) sind nicht in der Lage Filme zu
+finden wenn der Titel nicht exakt geschrieben ist. Das trifft auch in der
+Standardkonfiguration für *libhugin* zu, weil hier die Onlinequellen, auf die
+zugegriffen wird, exakte Suchbegriffe erwarten.
 
 .. code-block:: bash
 
    # Findet keine Ergebnisse, weil hier ,,Matrix" falsch geschrieben ist
-   $ geri -t "the marix" --amount=2
+   $ geri --title "the marix" --amount=2
+
+Mit dem aktivierten *Predator-Mode* findet *Geri* providerübergreifend den
+gesuchten Film.
 
 .. code-block:: bash
 
-   # Mit dem aktivierten ,,Predator-Mode'' findet libhugin providerübergreifend
-   # den gesuchten Film
-   $ geri -t "the marix" --amount=2
+   $ geri --title "the marix" --amount=2
    1) Matrix (1999), IMDBid: tt0133093, Provider: TMDBMovie <movie, picture>
    Inhalt: Der Hacker Neo wird übers Internet von einer geheimnisvollen Untergrund-
    Organisation kontaktiert.  Der Kopf der Gruppe - der gesuchte Terrorist [...]
@@ -127,21 +137,27 @@ Onlinequellen, auf die zugegriffen wird, exakte Suchbegriffe erwarten.
    führt ein Doppelleben - tagsüber ist er Thomas Anderson und arbeitet in [...]
 
 
-**Suche über IMDB ID:** Normalerweise kann nur über die *IMDB ID* gesucht werden
-wenn es die jeweilige Onlinequelle unterstützt. Deswegen funktioniert
-standardmäßig die Suche bei Providern wie *Filmstarts* oder *Videobuster* nicht
-(siehe :num:`table-movietools`).  *Libhugin* schafft hier Abhilfe mit einer
+**Suche über IMDB ID**
+
+Normalerweise kann nur über die *IMDB ID* gesucht werden wenn es die jeweilige
+Onlinequelle unterstützt. Deswegen funktioniert standardmäßig die Suche bei
+Providern wie *Filmstarts* oder *Videobuster* nicht (siehe
+:num:`table-movietools`).  *Libhugin* schafft hier Abhilfe mit einer
 providerübergreifenden *IMDB ID*--Suche.
+
+Im folgenden Beispiel findet der Provider *videobustermovie* keine Ergebnisse,
+weil die Onlinequelle die Suche über IMDB ID nicht unterstützt:
 
 .. code-block:: bash
 
-   # Findet keine Ergebnisse, weil die Onlinequelle die Suche über IMDB ID nicht
-   # unterstützt
-   $geri -i "tt0133093" -p videobustermovie
+   $geri --imdbid "tt0133093" -p videobustermovie
 
-   # Mit dem ,,Lookup-Mode" funktioniert auch die Suche über IMDB ID bei
-   # Onlinequellen, die das normalerweise nicht unterstützen
-   $geri -i "tt0133093" -p videobustermovie --lookup-mode
+Mit dem *Lookup-Mode* funktioniert auch die Suche über IMDB ID bei
+Onlinequellen, die eine Suche über die *IMDB ID* nicht unterstützen:
+
+.. code-block:: bash
+
+   $geri --imdbid "tt0133093" -p videobustermovie --lookup-mode
    1) Matrix (1999), IMDBid: None, Provider: VIDEOBUSTERMovie <movie>
 
    Inhalt: Der Hacker Neo (Keanu Reeves) wird übers Internet von einer
@@ -149,20 +165,41 @@ providerübergreifenden *IMDB ID*--Suche.
 
    [...]
 
+Einsatz von Plugins
+-------------------
 
-**Einsatz von Postprocessor--Plugins:** Ein noch nennenswertes Feature ist der
-Einsatz vom Composer Plugin. Dies ermöglicht dem Benutzer das Ergebnis nach
-seinen Bedürfnissen zu komponieren und besitzt die Fähigkeit das normalisierte
-Genre mehrerer Provider zusammenzuführen.
+**Einsatz von Postprocessor--Plugins**
+
+Ein noch nennenswertes Feature ist der Einsatz vom Composer Plugin. Dies
+ermöglicht dem Benutzer das Ergebnis nach seinen Bedürfnissen zu komponieren und
+besitzt die Fähigkeit das normalisierte Genre mehrerer Provider
+zusammenzuführen.
+
+Zuerst wird die *movie.mask* angepasst, damit das Genre und das normalisierte
+Genre zu sehen ist:
 
 .. code-block:: bash
 
-   # Zuerst passen wir unsere movie.mask an damit wir das Genre und das
-   # normalisierte Genre sehen
    echo "{num}) {title} ({year}), IMDBid: {imdbid}, Provider: {provider}\
    \nGenre: {genre}\nGenre normalisiert: {genre_norm} \nInhalt: {plot}" > movie.mask
 
-   geri -t "feuchtgebiete" -r composer -f userprofile -ptmdbmovie,ofdbmovie -a2
+
+Des Weiteren wird ein benutzerdefiniertes *userprofile* erstellt, welches dem
+*Composer*--Plugin mitteilt wie das Ergebnis zusammengebaut werden soll. In
+unserem Beispiel wird ein Profil erstellt welches standardmäßig den TMDb
+Provider nimmt und die Inhaltsbeschreibung durch die vom OFDb Provider
+austauscht.
+
+.. code-block:: bash
+
+   echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie']}" > userprofile
+
+Suche nach dem Film *,,Feuchgebiete (2013)"* mit Einsatz vom *Composer*--Plugin
+und Beschränkung auf die zwei Provider TMDb und OFDb:
+
+.. code-block:: bash
+
+   geri --title "feuchtgebiete" -r composer -f userprofile -ptmdbmovie,ofdbmovie -a2
    1) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: TMDBMovie <movie, picture>
    Genre: ['Komödie', 'Drama']
    Genre normalisiert: ['Komödie', 'Drama']
@@ -182,25 +219,24 @@ Genre mehrerer Provider zusammenzuführen.
    Hämorrhoiden, hat diesen Fakt aber immer verheimlicht, da sie glaubte [...]
 
 Das dritte Resultat in der Ausgabe wurde vom Provider ,,Composer" generiert,
-das ist das komponierte Ergebnis. Hier wurde als *Profilmaske*
-der TMDb--Provider als Standard genommen und der Provider für die
-Inhaltsbeschreibung auf OFDb gesetzt.
-
-Das normalisierte Genre wurde verschmolzen. Dieses Feature macht das gepflegte
-Genre in unseren Metadaten *feingranularer* und lässt im Beispiel auch besser
-vermuten ob ein Film für Kinder geeignet ist oder nicht.
+das ist das komponierte Ergebnis.  Des Weiteren wurde hier das normalisierte
+Genre verschmolzen. Dieses Feature macht das gepflegte Genre in unseren
+Metadaten *feingranularer* und lässt im Beispiel auch besser vermuten ob ein
+Film für Kinder geeignet ist oder nicht.
 
 
 .. _ref-freki:
 
 Der *libhugin--analyze* CLI--Tool Freki
-======================================
+=======================================
 
 Freki ist für Demonstrationszwecke und das Testen der libhugin--analyze
 Bibliothek entwickelt worden.
 
-**Übersicht der Optionen:** Folgend zum Überblick der Funktionalität die Hilfe
-des Tools Freki:
+Übersicht der Optionen
+----------------------
+
+Folgend zum Überblick der Funktionalität die Hilfe des Tools Freki:
 
 .. code-block:: bash
 
@@ -224,6 +260,9 @@ des Tools Freki:
      -h, --help                        Show this screen.
 
 
+Erstellen einer Datenbank
+-------------------------
+
 Freki erlaubt dem Benutzer eine *Datenbank* aus externen Metadaten zu
 generieren. Auf dieser Datenbank kann man folgend mit den Analyzer--, Modifier--
 und Composer--Plugins, die *libhugin* anbietet, arbeiten um beispielsweise seine
@@ -232,18 +271,22 @@ externen Metadaten--Dateien exportiert werden.
 
 Folgend eine kurze Demonstration des CLI--Tools.
 
-**Erstellen einer Datenbank:** Hierzu wird die Helferfunktion (siehe Anhang
-:ref:`ref-attachment-a`) verwendet.  Im Ordner *movies* befinden sich zwei Filme
-die mit dem XBMC mit Metadaten versorgt wurden.
+**Erstellen einer Datenbank**
+
+Hierzu wird die Helferfunktion (siehe Anhang :ref:`ref-attachment-a`) verwendet.
+Im Ordner *movies* befinden sich zwei Filme die mit dem XBMC mit Metadaten
+versorgt wurden.
 
 .. code-block:: bash
 
     $ freki create mydb.db ./movies
 
 
-**Datenbank anzeigen:** Mit *list* kann der Inhalt der Datenbank angezeigt
-werden. Die Inhaltsbeschreibung wurde hier wegen der Übersichtlichkeit gekürzt.
-Wie die Ausgabe zeigt wurden die Attribute *title*, *originaltitle*, *genre*,
+**Datenbank anzeigen**
+
+Mit *list* kann der Inhalt der Datenbank angezeigt werden. Die
+Inhaltsbeschreibung wurde hier wegen der Übersichtlichkeit gekürzt.  Wie die
+Ausgabe zeigt wurden die Attribute *title*, *originaltitle*, *genre*,
 *director*, *year* und *plot* eingelesen.
 
 .. code-block:: bash
@@ -270,8 +313,9 @@ Wie die Ausgabe zeigt wurden die Attribute *title*, *originaltitle*, *genre*,
      'year': '1992'}
 
 
-**Analyzer--Data anzeigen:** Auflisten der Analysedaten aller sich in der
-Datenbank befindlichen Filme:
+**Analyzer--Data anzeigen**
+
+Auflisten der Analysedaten aller sich in der Datenbank befindlichen Filme:
 
 .. code-block:: bash
 
@@ -283,7 +327,9 @@ Datenbank befindlichen Filme:
 
 Da noch nichts weiter analysiert wurde, sieht man hier nur *leere* Klammern.
 
-**Analyzer und Modifier anzeigen:** Anzeigen der vorhandenen Analyzer:
+**Analyzer und Modifier anzeigen**
+
+Anzeigen der vorhandenen Analyzer:
 
 .. code-block:: bash
 
@@ -310,8 +356,12 @@ Anzeigen der vorhandenen Modifier:
     Parameters:     {'attr_name': <class 'str'>}
 
 
-**Anwenden von Analyzern:** Anwendung des *plotlang* Plugins auf der *mydb.db*
-Datenbank:
+Einsatz von Plugins
+-------------------
+
+**Anwenden von Analyzern**
+
+Anwendung des *plotlang* Plugins auf der *mydb.db* Datenbank:
 
 .. code-block:: bash
 
@@ -332,8 +382,10 @@ eingetragen. In unserem Beispiel *es (espanol)* für eine spanische
 Inhaltsbeschreibung.
 
 
-**Anwenden von Modifiern:** Anwendung des PlotChange Modifier--Plugins um die
-Sprache Inhaltsbeschreibung von spanisch auf deutsch zu ändern:
+**Anwenden von Modifiern**
+
+Anwendung des PlotChange Modifier--Plugins um die Sprache Inhaltsbeschreibung
+von spanisch auf deutsch zu ändern:
 
 .. code-block:: bash
 
@@ -364,10 +416,12 @@ Betrachten der Metadaten nach Einsatz des Plugins:
 Wie in dem Beispiel zu sehen ist wurde die Inhaltsbeschreibung bei den Filmen
 von der spanischen Version auf eine deutsche Version geändert.
 
-**Exportieren der Daten:** Die modifizierten Metadaten können nun ins
-Produktivsystem zurück gespielt werden.  Dies geht bei Freki über die *export*
-Funktion, hier wird wieder im Hintergrund die Helferfunktion (siehe Anhang
-:ref:`ref-attachment-a`) verwendet.
+Exportieren der Daten
+---------------------
+
+Die modifizierten Metadaten können nun ins Produktivsystem zurück gespielt
+werden.  Dies geht bei Freki über die *export* Funktion, hier wird wieder im
+Hintergrund die Helferfunktion (siehe Anhang :ref:`ref-attachment-a`) verwendet.
 
 Betrachten der der Inhaltsbeschreibung der *Nfo*--Dateien vor dem export
 (gekürzt):
@@ -398,7 +452,7 @@ sich hier die Sprache von spanisch auf deutsch geändert hat.
 
 
 XBMC Plugin Integration
-======================================
+=======================
 
 .. _xbmcplugin:
 
@@ -429,7 +483,7 @@ libhugin Proxy hier dem XBMC die Daten bereits im benötigten Format über das
 
 .. figure:: fig/hugin_xbmc.png
     :alt: Libhugin Scraper Plugin im XBMC Scraper Menü.
-    :width: 70%
+    :width: 60%
     :align: center
 
     Libhugin Scraper Plugin im XBMC Scraper Menü.
@@ -444,17 +498,25 @@ Da die direkte Integration in das XBMC aufgrund der begrenzten Zeit der
 Projektarbeit nicht möglich ist, wurde hier der Ansatz eines ,,Proxy--Dienstes"
 angewandt. Für Libhugin wurde mittels dem Microwebframework Flask (siehe
 :cite:`flask`) ein *minimaler* :term:`RESTful` Webservice geschrieben (siehe
-:ref:`ref-flaskproxy`), welcher über eine eigens definierte API (siehe
-:ref:`ref-apidef`) Metadaten an das XBMC liefert.
+:ref:`ref-flaskproxy`), welcher über eine eigens definierte API Metadaten an das
+XBMC liefert.
 
-.. _ref-apidef:
 
-Libhugin RESTful API
-~~~~~~~~~~~~~~~~~~~~
+**Libhugin RESTful API**
 
 Der *Libhugin*--Proxy zeigt *konzeptuell* die Integration von libhugin als
-Netzwerkdienst, welcher eine RESTful API bereitstellt. Die implementierte
-Test--API bietet die folgenden Schnittstellen:
+Netzwerkdienst, welcher eine RESTful API bereitstellt. Nach dem der
+*libhugin*--Proxy gestartet wurde, ist es möglich über den Webbrwoser auf die
+RESTful API über Port 5000 zuzugreifen.
+
+Folgende URL würde eine Suche nach dem Film *,,Only God Fogrives (2013)"*
+starten:
+
+::
+
+    http://localhost:5000/search/Only+god+forgives
+
+Die implementierte Test--API bietet die folgenden Schnittstellen:
 
     + ``/search/<titlename or imdbid>:`` Suche nach Film über Titel oder *IMDB ID*.
     + ``/movie/<position>:`` Zugriff auf einen bestimmten Film im Proxy Cache.
