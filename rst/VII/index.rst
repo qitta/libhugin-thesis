@@ -460,7 +460,7 @@ XBMC Plugin
 -----------
 
 Neben den Kommandozeilentools Geri und Freki wurde *konzeptuell* ein Plugin für
-das XBMC (siehe Abb.: :num:`fig-xbmcscreenshot-hugin`) geschrieben,
+das XBMC (siehe Abbildung: :num:`fig-xbmcscreenshot-hugin`) geschrieben,
 welches *libhugin* als Metadatenquelle nutzen kann.
 
 Das XBMC erlaubt es sogenannte :term:`Scraper` zu schreiben.
@@ -477,17 +477,6 @@ Die Implementierung des *libhugin* Plugins in das XBMC hat an dieser Stelle nur
 23 *lines of code* (siehe :ref:`ref-xbmc-libhugin`). Das liegt daran, dass der
 libhugin Proxy hier dem XBMC die Daten bereits im benötigten Format über das
 *Nfo*--Converter--Plugin liefern kann.
-
-
-.. _fig-xbmcscreenshot-hugin:
-
-.. figure:: fig/hugin_xbmc.png
-    :alt: Libhugin Scraper Plugin im XBMC Scraper Menü.
-    :width: 60%
-    :align: center
-
-    Libhugin Scraper Plugin im XBMC Scraper Menü.
-
 
 .. _libhuginproxy:
 
@@ -509,12 +498,21 @@ Netzwerkdienst, welcher eine RESTful API bereitstellt. Nach dem der
 *libhugin*--Proxy gestartet wurde, ist es möglich über den Webbrwoser auf die
 RESTful API über Port 5000 zuzugreifen.
 
-Folgende URL würde eine Suche nach dem Film *,,Only God Fogrives (2013)"*
-starten:
+|
 
-::
+Folgende Bash--Sitzung zeigt den Suche des Films *,,Prometheus (2012)"* über den
+*libhugin*--Proxy. Der Proxy liefert ein für das XBMC formatiertes *XML* zurück.
 
-    http://localhost:5000/search/Only+god+forgives
+.. code-block:: bash
+
+    $ curl http://127.0.0.1:5000/search/prometheus
+    <?xml version="1.0" encoding="iso-8859-1" standalone="yes"?>
+    <results>
+        <entity>
+        <title>Prometheus - Dunkle Zeichen (2012), [tt1446714], Source: TMDBMovie</title>
+        <url>http://localhost:5000/movie/0</url>
+    </entity>
+    </results>
 
 Die implementierte Test--API bietet die folgenden Schnittstellen:
 
@@ -533,11 +531,22 @@ Hierbei kommt die Flexibilität und Anpassbarkeit des Systems den bisherigen
 Tools zu Gute. Auf diese Art und Weise lassen sich alle Features die *libhugin*
 bietet in bereits existierende Tools integrieren.
 
+
+.. _fig-xbmcscreenshot-hugin:
+
+.. figure:: fig/hugin_xbmc.png
+    :alt: Libhugin Scraper Plugin im XBMC Scraper Menü.
+    :width: 60%
+    :align: center
+
+    Libhugin Scraper Plugin im XBMC Scraper Menü.
+
 Unterschiede TMDb XBMC und TMDb libhugin
 ----------------------------------------
 
-Im Vergleich zum XBMC TMDb--Scraper bietet der libhugin XBMC Scraper (Provider
-zum Testen auch auf nur TMDb konfiguriert) zusätzliche Features.
+Im Vergleich zum XBMC TMDb--Scraper bietet der XBMC *libhugin*--Scraper
+(*libhugin*--Provider wurde zum Testen auf TMDb beschränkt) zusätzliche
+Features.
 
     * Suche über *IMDB ID* möglich.
     * Unschärfesuche möglich, dadurch auch erhöhte Trefferquote.
@@ -554,18 +563,19 @@ ersetzen.
 Weitere Einsatzmöglichkeiten
 ============================
 
-**Scripting Tasks:** Die Einsatzmöglichkeiten sind je nach Szenario anpassbar.
-Für einfache Anwendungen lassen sich Geri und Freki bereits direkt verwenden.
+**Scripting Tasks**
+
+Die Einsatzmöglichkeiten sind je nach Szenario anpassbar. Für einfache
+Anwendungen lassen sich Geri und Freki bereits direkt verwenden.
 
 Ein schönes Beispiel für einen Scripting--Task ist das Normalisieren der
 Ordnerstruktur/Benennung von großen Filmsammlungen.
 
-Hierzu reicht es einfach die ``movie.mask`` von Geri anzupassen und ein kleines
-Bash--Script zu schreiben:
+Hierzu reicht es einfach die *movie.mask* von Geri anzupassen und ein kleines
+Bash--Script zu schreiben. Anpassen der *movie.mask* auf da gewünschte Format:
 
 .. code-block:: bash
 
-   # Anpassen unserer movie.mask
    $ echo "{title} ({year}), [{imdbid}]" > tools/geri/movie.mask
 
 So schaut das minimalistische rename--Script aus:
@@ -588,6 +598,12 @@ Script laufen:
    $ mkdir movies/{"alien1","alien 2","geständnisse","ironman2","iron man3","iron men 1",\
    "jung unt schon","marix","oonly good forgives","teh marix 2"}
 
+
+Anschließen wird das Script auf die ,,schlampig" gepflegte Ordnerstruktur laufen
+gelassen:
+
+.. code-block:: bash
+
    $ ./rename.sh movies
    ‘movies/alien1’ -> ‘movies/Alien (1979), [tt0078748]’
    ‘movies/alien 2’ -> ‘movies/Aliens (1986), [tt0090605]’
@@ -605,8 +621,10 @@ An diesem Beispiel sieht man wie *gut* die Unschärfesuche funktionieren kann.
 Bei diesem kleinem Testsample haben wir eine Trefferwahrscheinlichkeit von 100%.
 
 
-**D--Bus:** Eine weitere Möglichkeit neben dem ,,Proxyserver--Ansatz" wäre
-D--Bus zu verwenden. D--Bus ist ein Framework das unter Linux zur
+**D--Bus**
+
+Eine weitere Möglichkeit neben dem ,,Proxyserver--Ansatz" wäre D--Bus zu
+verwenden. D--Bus ist ein Framework das unter Linux zur
 Interprozesskommunikation verwendet wird. Man kann hier beispielsweise
 *libhugin* als D--Bus--Service laufen lassen und jede andere beliebige Anwendung
 hätte die Möglichkeit programmiersprachenunabhängig mit libhugin zu
