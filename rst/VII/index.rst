@@ -170,7 +170,7 @@ Einsatz von Plugins
 
 **Einsatz von Postprocessor--Plugins**
 
-Ein noch nennenswertes Feature ist der Einsatz vom Composer Plugin. Dies
+Ein noch nennenswertes Feature ist der Einsatz vom Compose Plugin. Dies
 ermöglicht dem Benutzer das Ergebnis nach seinen Bedürfnissen zu komponieren und
 besitzt die Fähigkeit das normalisierte Genre mehrerer Provider
 zusammenzuführen.
@@ -185,7 +185,7 @@ Genre zu sehen ist:
 
 
 Des Weiteren wird ein benutzerdefiniertes *userprofile* erstellt, welches dem
-*Composer*--Plugin mitteilt wie das Ergebnis zusammengebaut werden soll. In
+*Compose*--Plugin mitteilt wie das Ergebnis zusammengebaut werden soll. In
 unserem Beispiel wird ein Profil erstellt welches standardmäßig den TMDb
 Provider nimmt und die Inhaltsbeschreibung durch die vom OFDb Provider
 austauscht.
@@ -194,12 +194,12 @@ austauscht.
 
    echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie']}" > userprofile
 
-Suche nach dem Film *,,Feuchgebiete (2013)"* mit Einsatz vom *Composer*--Plugin
+Suche nach dem Film *,,Feuchgebiete (2013)"* mit Einsatz vom *Compose*--Plugin
 und Beschränkung auf die zwei Provider TMDb und OFDb:
 
 .. code-block:: bash
 
-   geri --title "feuchtgebiete" -r composer -f userprofile -ptmdbmovie,ofdbmovie -a2
+   geri --title "feuchtgebiete" -r compose -f userprofile -ptmdbmovie,ofdbmovie -a2
    1) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: TMDBMovie <movie, picture>
    Genre: ['Komödie', 'Drama']
    Genre normalisiert: ['Komödie', 'Drama']
@@ -212,13 +212,13 @@ und Beschränkung auf die zwei Provider TMDb und OFDb:
    Inhalt: Die 18jährige Helen (Carla Juri) hat schon seit ihrer Kindheit
    Hämorrhoiden, hat diesen Fakt aber immer verheimlicht, da sie glaubte [...]
 
-   3) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: Composer
+   3) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: Compose
    Genre: ['Komödie', 'Drama']
    Genre normalisiert: {'Erotik', 'Drama', 'Komödie'}
    Inhalt: Die 18jährige Helen (Carla Juri) hat schon seit ihrer Kindheit
    Hämorrhoiden, hat diesen Fakt aber immer verheimlicht, da sie glaubte [...]
 
-Das dritte Resultat in der Ausgabe wurde vom Provider ,,Composer" generiert,
+Das dritte Resultat in der Ausgabe wurde vom Provider ,,Compose" generiert,
 das ist das komponierte Ergebnis.  Des Weiteren wurde hier das normalisierte
 Genre verschmolzen. Dieses Feature macht das gepflegte Genre in unseren
 Metadaten *feingranularer* und lässt im Beispiel auch besser vermuten ob ein
@@ -265,7 +265,7 @@ Erstellen einer Datenbank
 
 Freki erlaubt dem Benutzer eine *Datenbank* aus externen Metadaten zu
 generieren. Auf dieser Datenbank kann man folgend mit den Analyzer--, Modifier--
-und Composer--Plugins, die *libhugin* anbietet, arbeiten um beispielsweise seine
+und Compose--Plugins, die *libhugin* anbietet, arbeiten um beispielsweise seine
 Metadaten zu säubern. Nach der Bearbeitung können die *neuen* Metadaten in die
 externen Metadaten--Dateien exportiert werden.
 
@@ -553,7 +553,7 @@ Features.
     * Unschärfesuche möglich, dadurch auch erhöhte Trefferquote.
     * Postprocessing, je nach dazugeschalteten Plugin möglich.
 
-Beim Nutzen weiterer Provider sowie Plugins, wie dem Composer Plugin eröffnen
+Beim Nutzen weiterer Provider sowie Plugins, wie dem Compose Plugin eröffnen
 sich hier für das XBMC ganz neue Möglichkeiten seine Metadaten nach den eigenen
 Wünschen zusammen zu bauen, ohne dabei auf externe Movie--Manager zugreifen zu
 müssen. Im Prinzip kann libhugin hier das komplette Metadatensystem vom XBMC

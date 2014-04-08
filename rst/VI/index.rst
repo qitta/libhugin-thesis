@@ -69,9 +69,9 @@ Postprocessor--Plugins
 Die Postprocessor--Plugins beim libgugin harvest Teil sind für die direkte
 ,,Nachbearbeitung" der Daten gedacht.
 
-**Composer**
+**Compose**
 
-Das Composer Plugin ist das momentane Kernstück der Postprocessor Plugins. Das
+Das Compose Plugin ist das momentane Kernstück der Postprocessor Plugins. Das
 Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und bietet
 dem Benutzer dadurch folgende Möglichkeiten:
 
@@ -111,7 +111,7 @@ unterschiedlichen Anbieter ein Genre erstellt.
    [Comedy, Drama], [Komödie, Drama], [Erotik] ---> [Komödie, Drama, Erotik]
 
 
-**ResultTrimmer**
+**Trim**
 
 Dies ist vergleichsweise ein einfaches Plugin, welches dafür zuständig ist
 vorangehende und nachziehende Leerzeichen bei den Metadaten zu entfernen. Das
