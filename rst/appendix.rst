@@ -237,9 +237,9 @@ welcher das XBMC Plugin mit Daten versorgt.
 
     def postprocess(result):
         """ Postprocess example. """
-        plotcleaner = ANALYZER.modifier_plugins('plot')
+        BracketCleaner = ANALYZER.modifier_plugins('plot')
         result._result_dict['plot'] = ANALYZER.modify_raw(
-            plotcleaner, 'plot', result._result_dict['plot']
+            BracketCleaner, 'plot', result._result_dict['plot']
         )
 
 

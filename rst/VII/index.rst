@@ -102,7 +102,7 @@ Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
    Inhalt: Four tales of crime adapted from Frank Miller's popular comics focusing
    around a muscular brute who's looking for the person responsible for the [...]
 
-   5) Sin City (2005), IMDBid: None, Provider: FILMSTARSMovie <movie>
+   5) Sin City (2005), IMDBid: None, Provider: FILMSTARTSMovie <movie>
    Inhalt: "Sin City" enthält drei lose verbundene und ineinander verschachtelt
    erzählte Episoden: Los geht es mit Hartigan (Bruce Willis) - einem Cop [...]
 
@@ -338,7 +338,7 @@ Anzeigen der vorhandenen Analyzer:
     Description:    Analayze movie files, extract video or audio information.
     Parameters:     {}
 
-    Name:           PlotLang
+    Name:           LangIdentify
     Description:    Analyzes the language of a given plot.
     Parameters:     {'attr_name': <class 'str'>}
 
@@ -347,11 +347,11 @@ Anzeigen der vorhandenen Modifier:
 .. code-block:: bash
 
     $ freki list-modifier
-    Name:           PlotChange
+    Name:           PlotLangChange
     Description:    Allows to exchange plot to given language.
     Parameters:     {'attr_name': <class 'str'>, 'change_to': <class 'str'>}
 
-    Name:           PlotCleaner
+    Name:           BracketCleaner
     Description:    Removes brackets e.g. brakets with actor name from plot.
     Parameters:     {'attr_name': <class 'str'>}
 
@@ -361,11 +361,11 @@ Einsatz von Plugins
 
 **Anwenden von Analyzern**
 
-Anwendung des *plotlang* Plugins auf der *mydb.db* Datenbank:
+Anwendung des *LangIdentify* Plugins auf der *mydb.db* Datenbank:
 
 .. code-block:: bash
 
-    $freki analyze plugin plotlang mydb.db
+    $freki analyze plugin LangIdentify mydb.db
 
 Betrachten der Analyzerdaten nach der Analyse:
 
@@ -373,9 +373,9 @@ Betrachten der Analyzerdaten nach der Analyse:
 
     $ freki list mydb.db analyzerdata
     0) All Good Things (2010)
-    {'PlotLang': 'es'}
+    {'LangIdentify': 'es'}
     1) Alien³ (1992)
-    {'PlotLang': 'es'}
+    {'LangIdentify': 'es'}
 
 Wie man sieht, wurde hier die verwendete Sprache der Plots analysiert. Das
 Plugin hat sich in das Analysedaten--Array mit seinem ermittelten Ergebnis
@@ -385,12 +385,12 @@ Inhaltsbeschreibung.
 
 **Anwenden von Modifiern**
 
-Anwendung des PlotChange Modifier--Plugins um die Sprache Inhaltsbeschreibung
+Anwendung des PlotLangChange Modifier--Plugins um die Sprache Inhaltsbeschreibung
 von spanisch auf deutsch zu ändern:
 
 .. code-block:: bash
 
-    $ freki modify plugin plotchange pluginattrs attr_name='plot',change_to=de mydb.db
+    $ freki modify plugin PlotLangChange pluginattrs attr_name='plot',change_to=de mydb.db
 
 Betrachten der Metadaten nach Einsatz des Plugins:
 

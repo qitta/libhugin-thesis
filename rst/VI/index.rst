@@ -136,19 +136,19 @@ Libhugin--analyze API
 =====================
 
 Die API von *libhugin--analyze* ist vom Grundaufbau ähnlich zu der libhugin--harvest
-API. Folgendes Beispiel--Snippet zeigt die Anwendung des Plotcleaner--Plugins
+API. Folgendes Beispiel--Snippet zeigt die Anwendung des BracketClean--Plugins
 auf *Rohdaten*, welche nicht aus der internen Datenbank stammen.
 
 
 .. code-block:: python
 
     >>> from hugin.analyze.session import Session
-        # Beispieltext. Erstelle Sitzung mit Dummy DB. Hole PlotClean Plugin.
+        # Beispieltext. Erstelle Sitzung mit Dummy DB. Hole BracketClean Plugin.
     >>> example_text = "Aus diesem Text wird die Klammer (welche?) samt Inhalt entfernt!"
     >>> session = session('/tmp/temporary.db')
-    >>> plotclean = session.modifier_plugins('plotclean')  # hole das PlotClean Plugin
+    >>> BracketClean = session.modifier_plugins('BracketClean')  # hole das BracketClean Plugin
         # Wende Plugin im raw Modus auf Daten an
-    >>> result = session.modify_raw(plotclean, 'plot', example_text)
+    >>> result = session.modify_raw(BracketClean, 'plot', example_text)
     >>> print(result)
     Aus diesem Text wird die Klammer samt Inhalt entfernt!
 
@@ -164,33 +164,33 @@ Libhugin--analyze Plugins
 Modifier--Plugins
 -----------------
 
-**plotclean**
+**BracketClean**
 
-Das *PlotClean* Plugin ist für nachträgliche Manipulation der
-Inhaltsbeschreibung gedacht. Im Fall vom PlotClean Plugin werden alle Klammern
+Das *BracketClean* Plugin ist für nachträgliche Manipulation der
+Inhaltsbeschreibung gedacht. Im Fall vom BracketClean Plugin werden alle Klammern
 samt Inhalt aus der Beschreibung entfernt. Das vereinheitlicht die
 Inhaltsbeschreibung in dem Sinne, dass alle Schauspieler oder Informationen in
 Klammern aus der Beschreibung entfernt werden. Für ein Beispiel siehe
 :ref:`analyzeapiexample`.
 
-**plotchange**
+**PlotLangChange**
 
-Das *PlotChange* Plugin ist für das nachträgliche Ändern der Inhaltsbeschreibung
+Das *PlotLangChange* Plugin ist für das nachträgliche Ändern der Inhaltsbeschreibung
 zuständig. Im Moment hat es die Option die Sprache des Plots zu ändern, für ein
 Beispiel siehe Demoanwendung :ref:`ref-freki`.
 
 Analyzer--Plugins
 -----------------
 
-**keywordextractor**
+**KeywordExtract**
 
 Dieses Plugin extrahiert aus einem Text, bei Filmen meist die
 Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text beziehungsweise die
 Thematik repräsentieren.
 
-**filetypeanalyzer**
+**FileTypeAnalyze**
 
-Das Filetypeanalyzer--Plugin arbeitet mit den Videodaten selbst. Er ist für die
+Das FileTypeAnalyze--Plugin arbeitet mit den Videodaten selbst. Er ist für die
 Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
 
     * Auflösung
@@ -198,9 +198,9 @@ Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
     * Videocodec
     * Audiocodec, Anzahl der Audiokanäle, Sprache
 
-**plotlang**
+**LangIdentify**
 
-Der Plotlang--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
+Der LangIdentify--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
 die Information zu den Analysedaten. Für ein Beispiel siehe Demoanwendung
 :ref:`ref-freki`.
 
