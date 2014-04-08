@@ -380,11 +380,7 @@ Movie--Metadaten--Manager (siehe :cite:`moviemanager`) *GCstar*, *vMovieDB*,
 und vMovieDB hat die Metadatensuche nicht funktioniert, hier wurde nichts
 gefunden. Das Verhalten wurde auf zwei Systemen nachgeprüft. Beim XBMC wurden
 die Plugins für die Onlinequellen TMDb und Videobuster getestet. Für die
-Unschärfesuche wurde nach *,,Sin Sity"* und nach *,,The Marix"* gesucht. Die
-nicht funktionierenden Movie--Manager *GCstar* und *vMovieDB* wurde nicht mit
-aufgenommen.  Das Tool Griffith wurde auch aus der Tabelle genommen, da hier
-von den 40 Onlinequellen nur einzelne Quellen funktioniert haben --- IMDb hat
-auch nicht funktioniert.
+Unschärfesuche wurde nach *,,Sin Sity"* und nach *,,The Marix"* gesucht.
 
 
 .. figtable::
@@ -410,6 +406,12 @@ auch nicht funktioniert.
     +--------------------+------------------------+----------------------------+---------------------------+
     | *Typ*              | Medien--Player         | Movie--Metadaten--Manager  | Movie--Metadaten--Manager |
     +--------------------+------------------------+----------------------------+---------------------------+
+
+
+Die nicht funktionierenden Movie--Manager *GCstar* und *vMovieDB* wurde nicht
+mit aufgenommen.  Das Tool Griffith wurde auch aus der Tabelle genommen, da hier
+von den 40 Onlinequellen nur einzelne Quellen funktioniert haben --- IMDb hat
+auch nicht funktioniert.
 
 
 Erkenntnisse und Anforderungen an das Projekt
