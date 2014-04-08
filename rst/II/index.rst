@@ -44,10 +44,10 @@ Fachbegriffe
 
     Scraper
 
-     Auch Webscraper genannt, werden Anwendungen genannt die in der Lage sind
-     Informationen aus Webseiten zu extrahieren. Ein Scraper gibt sich einer
-     Webseite gegenüber wie ein normaler Webbrowser aus. So wird eine
-     maschinelle Verarbeitung der Informationen auf dieser Webseite möglich.
+     Scraper werden Anwendungen genannt, die in der Lage sind Informationen aus
+     Webseiten zu extrahieren. Ein Scraper gibt sich einer Webseite gegenüber
+     wie ein normaler Webbrowser aus. So wird eine maschinelle Verarbeitung der
+     Informationen auf dieser Webseite möglich.
 
     RESTful
 
@@ -64,8 +64,8 @@ Kontextspezifische Fachbegriffe
 
     Plugin
 
-     Im Kontext von *libhugin* sind Plugins kleine Module welche zur Laufzeit
-     austauschbar sind. Diese können von Dritten geschreiben werden um das
+     Im Kontext von *libhugin* sind Plugins kleine Module, welche zur Laufzeit
+     austauschbar sind. Diese können von Dritten geschrieben werden, um das
      System an die eigenen Bedürfnisse anzupassen.
 
     Provider
@@ -82,14 +82,14 @@ Kontextspezifische Fachbegriffe
 
     Converter
 
-     Im Kontext von *libhugin* ist ein Converter ein Plugin das für das
+     Im Kontext von *libhugin* ist ein Converter ein Plugin, das für das
      Konvertieren eines Ergebnisses in ein bestimmtes Metadatenformat wie
      beispielsweise das XBMC nfo--Format zuständig ist.
 
     Modifier
 
      Im Kontext von *libhugin* ist ein Modifier ein Plugin, welches für die
-     nachträgliche Bearbeitung von Filmmmetadaten verwendet wird. Das kann
+     nachträgliche Bearbeitung von Filmmetadaten verwendet wird. Das kann
      beispielsweise das Ändern der Sprache der Inhaltsbeschreibung sein.
 
     Analyzer
@@ -102,7 +102,7 @@ Kontextspezifische Fachbegriffe
 
      Im Kontext von *libhugin* ist ein Comperator ein Plugin, welches für
      Vergleiche zuständig ist. Mit Hilfe dieser Pluginart soll im späteren
-     Verlauf untersucht werden wie gut sich Filme anhand von Metadaten
+     Verlauf untersucht werden, wie gut sich Filme anhand von Metadaten
      vergleichen lassen und ob sich beispielsweise Film--Empfehlungen aufgrund
      der gewonnenen Daten aussprechen lassen. Diese Pluginart ist experimentell
      und nur konzeptuell in *libhugin* integriert.

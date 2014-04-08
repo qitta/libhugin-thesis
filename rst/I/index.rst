@@ -37,7 +37,7 @@ oder mehrere Bezugsquellen für Metadaten geben.
 Ein Problem bei der Pflege der Metadaten im Filmbereich ist, dass es hier
 keinen Standard gibt der sich durchgesetzt hat. Es gibt einerseits die
 Möglichkeit bestimmte Metadaten in bestimmte Container--Formate (siehe
-Streaminfos in Tabelle :cite:`containerformate` zu integrieren, andererseits
+Streaminfos in Tabelle :cite:`containerformate`) zu integrieren, andererseits
 werden diese in separaten Dateien oder Datenbanken der jeweiligen
 Abspiel--/Verwaltungssoftware gepflegt. Ein weiteres Problem ist die *große*
 Anzahl verschiedener Onlinequellen von denen die Metadaten bezogen werden. Hier
@@ -49,12 +49,13 @@ Quelle nur in einer bestimmten Sprache vorhanden sind.
 
 Daraus resultierend sind über die Jahre sogenannte Movie--Metadaten--Manager
 entstanden, die den Benutzer bei der Pflege der Filmsammlung unterstützen
-sollen. Auch hier gibt es nicht das *Tool der Wahl*. Es gibt wieder verschiedene
-Tools, die nur bestimmte Metadaten--Exportformate verstehen, nur bestimmte
+sollen. Auch hier gibt es nicht das *Tool der Wahl*. Es gibt verschiedene
+Tools, die nur bestimmte Metadaten--Exportformate unterstützen, nur bestimmte
 Onlinequellen ansprechen können oder auch nur unter bestimmten Betriebssystemen
 verfügbar sind. Die unter Linux vorhandenen und getesteten
 Movie--Metadaten--Manager funktionieren bis auf wenige Ausnahmen unbefriedigend
-oder gar nicht, was die Hauptmotivation dieser Arbeit ist.
+oder gar nicht. Die Hauptmotivation dieser Arbeit ist, diese Situation zu
+verbessern.
 
 Projektziel
 ===========
@@ -73,7 +74,7 @@ Ansatz.  Im Gegensatz dazu soll das System nach dem Baukastenprinzip erweiterbar
 sein und durch Schreiben neuer Plugins an verschiedene Anforderungen des
 Benutzers anpassbar sein.
 
-Im Unterschied zu den bereits vorhandenen Tools die hauptsächliche durch
+Im Unterschied zu den bereits vorhandenen Tools, die hauptsächlich durch
 manuelle Interaktion des Benutzers gesteuert werden, soll das System auf eine
 automatisierte Verarbeitung ausgelegt sein. Hier liegt das Hauptaugenmerk auf
 der Pflege *großer* Filmsammlungen.
@@ -93,9 +94,9 @@ Namensgebung
 ============
 
 Um dem Projekt ein ,,Gesicht" zu geben und den Wiedererkennungwert zu steigern,
-wird das Projekt auf den Namen *libhugin* getauft und ein Logo entwickelt (siehe
-Abbildung :num:`fig-huginlogo`), welches einen Raben in Pixelgrafik und ein
-Stück Filmrolle zeigt. Der *lib*--Präfix wurde angehängt da es sich bei dem
+wird das Projekt auf den Namen *libhugin* ,,getauft" und ein Logo entwickelt
+(siehe Abbildung :num:`fig-huginlogo`), welches einen Raben in Pixelgrafik und
+ein Stück Filmrolle zeigt. Der *lib*--Präfix wurde angehängt da es sich bei dem
 System um eine Bibliothek (engl. Library) handelt.
 
 |
@@ -115,7 +116,7 @@ Der Name Hugin kommt aus der nordischen Mythologie:
 .. _fig-huginlogo:
 
 .. figure:: fig/hugin.png
-    :alt: Libhugin Logo, das einen Pixelraben und ein abgerissenes Stück Filmrolle zeigt.
+    :alt: Libhugin Logo, das einen Pixelraben und ein Stück Filmrolle zeigt.
     :width: 30%
     :align: center
 
