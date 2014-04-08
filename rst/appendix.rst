@@ -77,8 +77,8 @@ verwendet wird:
 
 .. _ref-xbmc-libhugin:
 
-XBMC  Scraper Plugin
-====================
+XBMC--Scraper--Plugin
+=====================
 
 Folgender Quelltext zeigt die Implementierung des XBMC Plugins. Als
 externe Schnittstelle wird hier der libhugin proxy (siehe
@@ -262,7 +262,7 @@ welcher das XBMC Plugin mit Daten versorgt.
 .. _ref-cloc:
 
 Projektstatistik (*cloc*)
-========================
+=========================
 
 Folgend eine Projektstatistik erstellt mit dem Tool *cloc*:
 

@@ -97,7 +97,7 @@ bedingt zum pflegen von großen Filmsammlungen geeignet.
 
 
 Movie--Metadaten--Manager
------------------------
+-------------------------
 
 Neben den Media--Center--Lösungen gibt es spezielle Tools für die Pflege und
 Korrektur von Film--Metadaten, sogenannte *Movie--Metadata--Manager*. Ein
@@ -205,7 +205,7 @@ Divergente Metadaten
 :cite:`imdbgenre`) und bei TMDb :cite:`tmdbgenre` gar nicht.
 
 Praxisbeispiel für Dateninhomogenität
---------------------------------------
+-------------------------------------
 
 Um das Problem zu veranschaulichen, betrachten wir, parallel zur oben genannten
 Problematik, Auszüge von Metadaten der drei Onlinequellen *IMDb*, *TMDb* und

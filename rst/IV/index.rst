@@ -20,11 +20,11 @@ Anforderungen an die Datenbeschaffung
 Die Erweiterbarkeit soll durch Schreiben von Plugins erreicht werden. Folgende
 Pluginarten sollen bei der Datenbeschaffung umgesetzt werden:
 
-**Provider Plugins**
+**Provider--Plugins**
 
 Die Onlinequellen die verwendet werden, sollen austauschbar sein. Der Benutzer
 hat die Möglichkeit durch Schreiben eines Plugins seine bevorzugte
-Onlinequelle als sogenanntes Provider Plugin zu implementieren. Dieses
+Onlinequelle als sogenanntes Provider--Plugin zu implementieren. Dieses
 Grundprinzip wird bereits bei der freien Musik--Metadatensuchmaschine *libglyr*
 (siehe :cite:`glyr`) sowie auch im Ansatz beim XBMC (siehe :cite:`xbmcscraper`)
 verwendet.
@@ -34,13 +34,13 @@ Providern Prioritäten von 0--100 vergeben. Provider mit höheren Prioritäten
 werden beim Verarbeiten der Suchergebnisse bevorzugt.
 
 
-**Postprocessor Plugins**
+**Postprocessor--Plugins**
 
 Die Möglichkeiten der *Datenaufbereitung* beim Herunterladen von Metadaten
 sollen erweiterbar sein. Der Benutzer hat die Möglichkeit das Postprocessor
 System durch Schreiben eines Plugins zu erweitern.
 
-**Converter Plugins**
+**Converter--Plugins**
 
 Das Format, das für die Speicherung der Metadaten verwendet wird, lässt sich vom
 Benutzer durch Schreiben eines Plugins erweitern.
@@ -136,19 +136,19 @@ statistische Zwecke ermöglichen.
 Aufgrund der genannten Anforderungen sollen folgende unterschiedliche
 *Pluginarten*  umgesetzt werden:
 
-**Modifier Plugins**
+**Modifier--Plugins**
 
 Über diese Art von Plugins lassen sich die Metadaten direkt modifizieren. Ein
 Beispiel hier wäre das Entfernen von unerwünschten Sonderzeichen aus der
 Inhaltsbeschreibung.
 
-**Analyzer Plugins**
+**Analyzer--Plugins**
 
 Diese Art von Plugins erlaubt es dem Benutzer die vorliegenden Metadaten zu
 analysieren, um neue Erkenntnisse zu gewinnen oder Defizite zu identifizieren.
 Ein Beispiel hier wäre die Erkennung der verwendeten Sprache der Inhaltsbeschreibung.
 
-**Comperator Plugins**
+**Comperator--Plugins**
 
 Diese Art von Plugin ist experimentell. Sie ist für statistische Auswertungen
 bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht. Mit den

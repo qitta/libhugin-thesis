@@ -62,7 +62,7 @@ Filmsuche
 
 Ein Film kann über den Titel oder über die *IMDB ID* gesucht werden. Hier gibt
 es die Möglichkeit *Geri* auch bestimmte Provider, Converter, Sprache und
-Postprocessor Plugins anzugeben.
+Postprocessor--Plugins anzugeben.
 
 Um das Ausgabeformat zu konfigurieren gibt es im *Geri*--Ordner eine
 ``movie.mask``-- und ``person.mask``--Datei. Über diese Dateien kann das
@@ -536,11 +536,11 @@ bietet in bereits existierende Tools integrieren.
 .. _fig-xbmcscreenshot-hugin:
 
 .. figure:: fig/hugin_xbmc.png
-    :alt: Libhugin Scraper Plugin im XBMC Scraper Menü.
+    :alt: Libhugin Scraper--Plugin im XBMC Scraper Menü.
     :width: 60%
     :align: center
 
-    Libhugin Scraper Plugin im XBMC Scraper Menü.
+    Libhugin Scraper--Plugin im XBMC Scraper Menü.
 
 Unterschiede TMDb XBMC und TMDb libhugin
 ----------------------------------------

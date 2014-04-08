@@ -5,7 +5,7 @@ Implementierung
 Im Folgenden soll die API und die implementierten Plugins vorgestellt werden.
 
 Libhugin--harvest API
-====================
+=====================
 
 Die API wurde sehr einfach gehalten und ermöglicht dadurch dem Benutzer ein
 schnelles Einarbeiten. Folgendes Beispiel, in der interaktiven Python--Shell,
@@ -66,12 +66,14 @@ textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
 Postprocessor--Plugins
 ----------------------
 
-Die Postprocessor Plugins beim libgugin harvest Teil sind für die direkte
+Die Postprocessor--Plugins beim libgugin harvest Teil sind für die direkte
 ,,Nachbearbeitung" der Daten gedacht.
 
-**Composer:** Das Composer Plugin ist das momentane Kernstück der Postprocessor
-Plugins. Das Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach
-Film und bietet dem Benutzer dadurch folgende Möglichkeiten:
+**Composer**
+
+Das Composer Plugin ist das momentane Kernstück der Postprocessor Plugins. Das
+Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und bietet
+dem Benutzer dadurch folgende Möglichkeiten:
 
     1) Ergebnis Komponieren
     2) Genre Zusammenführen
@@ -109,15 +111,17 @@ unterschiedlichen Anbieter ein Genre erstellt.
    [Comedy, Drama], [Komödie, Drama], [Erotik] ---> [Komödie, Drama, Erotik]
 
 
-**ResultTrimmer:** Dies ist vergleichsweise ein einfaches Plugin, welches dafür
-zuständig ist vorangehende und nachziehende Leerzeichen bei den Metadaten zu
-entfernen. Das Plugin führt eine ,,Bereinigung" durch, diese muss so nicht vom
-Provider--Plugin explizit durchgeführt werden.
+**ResultTrimmer**
+
+Dies ist vergleichsweise ein einfaches Plugin, welches dafür zuständig ist
+vorangehende und nachziehende Leerzeichen bei den Metadaten zu entfernen. Das
+Plugin führt eine ,,Bereinigung" durch, diese muss so nicht vom Provider--Plugin
+explizit durchgeführt werden.
 
 Converter--Plugins
 ------------------
 
-Bei den Converter Plugins wurde zu Demozwecken ein *HTML*--Converter
+Bei den Converter--Plugins wurde zu Demozwecken ein *HTML*--Converter
 und ein *JSON*--Converter implementiert.
 
 Des Weiteren wurde für den Produktiveinsatz ein XBMC--Nfo--Converter
@@ -157,41 +161,48 @@ zeigt die Demoanwendung Freki den Einsatz von libhugin--analyze, siehe hierzu
 Libhugin--analyze Plugins
 =========================
 
-Modifier Plugins
-----------------
+Modifier--Plugins
+-----------------
 
-**plotclean:** Das *PlotClean* Plugin ist für nachträgliche Manipulation der
+**plotclean**
+
+Das *PlotClean* Plugin ist für nachträgliche Manipulation der
 Inhaltsbeschreibung gedacht. Im Fall vom PlotClean Plugin werden alle Klammern
 samt Inhalt aus der Beschreibung entfernt. Das vereinheitlicht die
 Inhaltsbeschreibung in dem Sinne, dass alle Schauspieler oder Informationen in
 Klammern aus der Beschreibung entfernt werden. Für ein Beispiel siehe
 :ref:`analyzeapiexample`.
 
-**plotchange:** Das *PlotChange* Plugin ist für das nachträgliche Ändern der
-Inhaltsbeschreibung zuständig. Im Moment hat es die Option die Sprache des Plots
-zu ändern, für ein Beispiel siehe Demoanwendung :ref:`ref-freki`.
+**plotchange**
+
+Das *PlotChange* Plugin ist für das nachträgliche Ändern der Inhaltsbeschreibung
+zuständig. Im Moment hat es die Option die Sprache des Plots zu ändern, für ein
+Beispiel siehe Demoanwendung :ref:`ref-freki`.
 
 Analyzer--Plugins
 -----------------
 
-**keywordextractor:** Dieses Plugin extrahiert aus einem Text, bei Filmen meist
-die Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text beziehungsweise
-die Thematik repräsentieren.
+**keywordextractor**
 
-Weiteres hierzu in der Bachelorarbeit.
+Dieses Plugin extrahiert aus einem Text, bei Filmen meist die
+Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text beziehungsweise die
+Thematik repräsentieren.
 
-**filetypeanalyzer:** Das Filetypeanalyzer--Plugin arbeitet mit den Videodaten
-selbst. Er ist für die Extraktion der Datei--Metadaten zuständig. Momentan
-extrahiert es:
+**filetypeanalyzer**
+
+Das Filetypeanalyzer--Plugin arbeitet mit den Videodaten selbst. Er ist für die
+Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
 
     * Auflösung
     * Seitenverhältnis
     * Videocodec
     * Audiocodec, Anzahl der Audiokanäle, Sprache
 
-**plotlang:** Der Plotlang--Analyzer erkennt die Sprache des verwendeten Plots
-und schreibt die Information zu den Analysedaten. Für ein Beispiel siehe
-Demoanwendung :ref:`ref-freki`.
+**plotlang**
+
+Der Plotlang--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
+die Information zu den Analysedaten. Für ein Beispiel siehe Demoanwendung
+:ref:`ref-freki`.
 
 Comperator--Plugins
 -------------------
@@ -200,13 +211,15 @@ Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
 Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
 Weiteres hierzu wird in der Bachelorarbeit behandelt.
 
-Folgende Comperator Plugins wurden konzeptuell implementiert:
+Folgende Comperator--Plugins wurden konzeptuell implementiert:
 
-**genrecmp:** Ein Plugin, das die Genres verschiedener Filme miteinander
-vergleicht.
+**genrecmp**
 
-**keywordcmp:** Ein Plugin, das die Schlüsselwörter verschiedener Filme
-miteinander vergleicht.
+Ein Plugin, das die Genres verschiedener Filme miteinander vergleicht.
+
+**keywordcmp**
+
+Ein Plugin, das die Schlüsselwörter verschiedener Filme miteinander vergleicht.
 
 
 Verschiedenes
@@ -263,15 +276,30 @@ Entwicklungumgebung
 Für die Entwicklung der Bibliothek wurde die Programmiersprache Python, in der
 Version 3.3, aus folgenden Gründen gewählt:
 
-    * **Rapid Prototyping Language:**, wichtig bei einem Projekt dieser Größe mit
-      begrenztem Zeitraum (vgl. :cite:`lutz2013learning`).
-    * **Plattformunabhängigkeit:**, Plattformunabhängigkeit ist ein sekundäres
-      Ziel des Projekts.
-    * **Einfach erlernbar:**, Wichtig für Pluginentwickler.
-    * **Verbreitungsgrad:**, Gängige Skriptsprache bei vielen Open Source Projekten
-    * **Optimierungsmöglichkeiten:**, Kompilirung von Python mittels Cython
-      (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`)
+:Rapid Prototyping Language:
 
+    Wichtig bei einem Projekt dieser Größe mit begrenztem Zeitraum (vgl. :cite:`lutz2013learning`).
+
+:Plattformunabhängigkeit:
+
+    Plattformunabhängigkeit ist ein sekundäres Ziel des Projekts.
+
+:Einfach erlernbar:
+
+    Wichtig für Pluginentwickler wegen der kurzen Einarbeitungszeit.
+
+:Verbreitungsgrad:
+
+    Gängige Skriptsprache bei vielen Open Source Projekten.
+
+:Optimierungsmöglichkeiten:
+
+    Möglichkeit der Erweiterung durch C/C++--Code, Optimierung von Python
+    mittels Cython (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`).
+
+.. raw:: Latex
+
+   \newpage
 
 **Entwicklungssytem**
 
@@ -284,7 +312,11 @@ Python Shell *IPython* eingesetzt.
 
 Für die Quellcodeverwaltung wird das Versionsverwaltungssystem *git*
 eingesetzt. Der Quellcode selbst wird auf dem Hosting--Dienst für
-Software--Entwicklungsprojekte *GitHub* (siehe :cite:`github`) gelagert.
+Software--Entwicklungsprojekte *GitHub* (siehe :cite:`github`) gelagert. Das
+Projekt ist auf folgender GitHub Seite zu finden:
+
+
+    * https://github.com/qitta/libhugin
 
 **Automatisches Testen**
 
@@ -315,9 +347,15 @@ Quelltext und Dokumentation des Programms in der gleichen Datei.
 
 Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge
 generiert werden. Unter Python wird hier das Softwaredokumentationswerkzeug
-*Sphinx* (siehe :cite:`sphinxdoc`) verwendet. Dieses kann eine Dokumentation in
-verschiedenen Formaten generieren, auch diese Projektarbeit wurde in
-*reStructuredText* (siehe :cite:`rst`) geschrieben und mit *Sphinx* generiert.
+*Sphinx* (siehe :cite:`sphinxdoc`) verwendet. Die offizielle
+Projektdokumentation ist auf der Plattform *readthedocs* (siehe :cite:`rtfd`) gehostet und unter folgender Adresse zu finden:
+
+
+    * http://libhugin.rtfd.org
+
+Dieses kann eine Dokumentation in verschiedenen Formaten generieren, auch diese
+Projektarbeit wurde in *reStructuredText* (siehe :cite:`rst`) geschrieben und
+mit *Sphinx* generiert.
 
 Des Weiteren wird dem Entwickler bei Nutzung der Bibliothek in der interaktiven
 Python--Shell eine zusätzliche Hilfestellung geboten (siehe Abbildung
@@ -339,9 +377,6 @@ Der Projektumfang beträgt ca. 3500 *lines of code*,  hier kommt noch zusätzlic
 die Onlinedokumentation hinzu. Eine Statistik zum Projekt, welche mit dem Tool
 *cloc* erstellt wurde ist im Anhang unter :ref:`ref-cloc` zu finden.
 
-.. raw:: Latex
-
-   \newpage
 
 **Externe Bibliotheken**
 

@@ -96,11 +96,11 @@ das Downloadmanagement.
 .. _fig-provider-concept:
 
 .. figure:: fig/provider-concept-svg.pdf
-    :alt: Grundprinzip Kommunikationsablauf mit Provider Plugin.
+    :alt: Grundprinzip Kommunikationsablauf mit Provider--Plugin.
     :width: 90%
     :align: center
 
-    Grundprinzip Kommunikationsablauf mit Provider Plugin.
+    Grundprinzip Kommunikationsablauf mit Provider--Plugin.
 
 
 Damit der Provider weiß, welche *Roh--Daten* er zurückliefern soll, muss
@@ -633,9 +633,9 @@ weggelassen.
     |   |-- downloadqueue.py               # Implementierungen der Downloadqueue
     |   |-- pluginhandler.py               # Implementierungen vom PluginHandler
     |   |
-    |   |-- converter/                      # Ordner für Converter Plugins
-    |   |-- postprocessor/                  # Ordner für Postprocessor Plugins
-    |   |-- provider/                       # Ordner für Provider Plugins
+    |   |-- converter/                      # Ordner für Converter--Plugins
+    |   |-- postprocessor/                  # Ordner für Postprocessor--Plugins
+    |   |-- provider/                       # Ordner für Provider--Plugins
     |   |   |-- genrefiles/                 # Genre Dateien für ,,Normalisierung"
     |   |   |   |-- normalized_genre.dat    # Globale Normalisierungstabelle Genre
     |   |   |-- result.py                   # Implementierung ,,ErgebnisObjekt"
@@ -649,7 +649,7 @@ weggelassen.
     |   |-- movie.py                        # Implementierung des ,,Movie'' Objektes
     |   |-- pluginhandler.py
     |   |-- rake.py                         # Implementierung Rake Algorithmus
-    |   |-- analyzer/                       # Ordner für Analyzer Plugins
-    |   |-- comparator/                     # Ordner für Modifier Plugins
-    |   |-- modifier/                       # Ordner für Comperator Plugins
+    |   |-- analyzer/                       # Ordner für Analyzer--Plugins
+    |   |-- comparator/                     # Ordner für Modifier--Plugins
+    |   |-- modifier/                       # Ordner für Comperator--Plugins
     |-- filewalk.py                         # Helferfunktion für Import/Export
