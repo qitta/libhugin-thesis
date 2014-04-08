@@ -186,7 +186,7 @@ Konfigurationsparameter (siehe *libhugin*--API :cite:`queryapi`).
 ``submit(query)``: Schnittstelle um eine Suchanfrage zu starten. Die Methode
 gibt eine Liste mit gefundenen Metadaten als *Ergebnisobjekte* zurück.
 
-Die Methode holt sich eine Downloadqueue und einen Zwischenspeicher (Cache),
+Die Methode initialisiert eine Downloadqueue und einen Zwischenspeicher (Cache),
 falls dieser vom Benutzer über die Query nicht deaktiviert wurde. Anschließend
 generiert sie für jeden Provider eine sogenannte *Job*--Struktur. Diese
 *Job*--Struktur kapselt jeweils einen Provider, die Suchanfrage und die
@@ -217,6 +217,15 @@ Informationen:
     * Metadatenart, Movie oder Person.
     * Anzahl der Downloadversuche.
     * Das eigentliche Ergebnis als Hashtabelle.
+
+.. _fig-submit:
+
+.. figure:: fig/submit.pdf
+    :alt: Konzeptueller Ablauf der Submit Methode.
+    :width: 50%
+    :align: center
+
+    Konzeptueller Ablauf der Submit Methode.
 
 ``submit_async()``: Methode für eine asynchrone Nutzung der API. Diese führt
 ``submit()`` asynchron aus und gibt ein Python *Future--Objekt* zurück,
