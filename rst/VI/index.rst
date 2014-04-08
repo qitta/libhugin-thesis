@@ -32,9 +32,7 @@ Provider--Plugins
 -----------------
 
 Libhugin--harvest hat aktuell verschiedene Provider implementiert, siehe Tabelle
-:num:`table-provideroverview`. Ein paar der Provider, wie *Filmstarts.de*,
-*Videobuster.de* lassen sich noch weiter ausbauen, diese unterstützen momentan nur
-textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
+:num:`table-provideroverview`.
 
 .. figtable::
     :label: table-provideroverview
@@ -63,47 +61,51 @@ textuelle Metadaten würden sich aber um grafische Metadaten erweitern lassen.
     | *API verfügbar*               | :math:`\checkmark` | :math:`\checkmark` | :math:`\times`     | :math:`\times`     | :math:`\checkmark` |
     +-------------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
 
+Ein paar der Provider, wie *Filmstarts.de*, *Videobuster.de* lassen sich noch
+weiter ausbauen. Diese unterstützen momentan nur textuelle Metadaten, würden
+sich aber um grafische Metadaten erweitern lassen.
+
+
 Postprocessor--Plugins
 ----------------------
 
-Die Postprocessor--Plugins beim libgugin harvest Teil sind für die direkte
+Die Postprocessor--Plugins beim *libgugin--harvest* Teil sind für die direkte
 ,,Nachbearbeitung" der Daten gedacht.
 
 **Compose**
 
-Das Compose Plugin ist das momentane Kernstück der Postprocessor Plugins. Das
+Das Compose Plugin ist das momentane Kernstück der Postprocessor--Plugins. Das
 Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und bietet
 dem Benutzer dadurch folgende Möglichkeiten:
 
-    1) Ergebnis Komponieren
-    2) Genre Zusammenführen
+    1) Ergebnis komponieren.
+    2) Genre zusammenführen.
 
 **Zu 1.):** Es erlaubt dem Benutzer sich ein nach seinen Wünschen
 zusammengesetztes Ergebnis zu komponieren. Der Benutzer kann über das Angeben
-eine *Profilmaske* bestimmen wie sich die Metadaten zusammensetzen sollen.
+einer *Profilmaske* bestimmen, wie sich die Metadaten zusammensetzen sollen.
 Hier kann er beispielsweise angeben, dass er den Filmtitel, Jahr und Cover vom
 Provider *TMDb* möchte, die Inhaltsbeschreibung jedoch immer vom *Filmstarts*
-Provider. Hier besteht auch die Möglichkeit eines ,,Fallbacks", falls Filmstarts
+Provider. Hier besteht auch die Möglichkeit eines ,,Fallbacks", falls *Filmstarts*
 keine Inhaltsbeschreibung hat, dann kann auch auf andere Provider
 zurückgegriffen werden.
 
-Beispiel für eine Profilmaske, die TMDb als Standardprovider nimmt und die
-Inhaltsbeschreibung vom OMDb Provider nimmt, falls OMDb Inhaltsbeschreibung
-vorhanden dann erfolgt ein ,,Fallback" auf den OMDb Provider.
+Beispiel für eine *Profilmaske*, die TMDb als Standardprovider nimmt und die
+Inhaltsbeschreibung vom OFDb Provider nimmt. Falls keine OFDb Inhaltsbeschreibung
+vorhanden ist, dann erfolgt ein ,,Fallback" auf den OMDb Provider:
 
 .. code-block:: bash
 
     $ echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie', 'omdbmovie']}" > profilemask
 
-Wird keine Profilmaske angegeben so werden fehlende Attribute nach
+Wird keine *Profilmaske* angegeben so werden fehlende Attribute nach
 Provider--Priorität aufgefüllt.
 
 **Zu 2.):** Dieses Feature erlaubt dem Benutzer divergente Genres
 beim gleichen Film zu verschmelzen. Das macht das Genre *feingranularer* und
 behebt die Problematik (siehe Tabelle :num:`table-feuchtgebiete` ) divergenter
-Genres bei verschiedenen Onlinequellen. Beim Beispiel in Tabelle
-:num:`table-feuchtgebiete` wird aus dem normalisierten Genre der drei
-unterschiedlichen Anbieter ein Genre erstellt.
+Genres bei verschiedenen Onlinequellen. Das Genre wird hier wie folgt
+zusammengesetzt:
 
 .. code-block:: bash
 
@@ -115,29 +117,29 @@ unterschiedlichen Anbieter ein Genre erstellt.
 
 Dies ist vergleichsweise ein einfaches Plugin, welches dafür zuständig ist
 vorangehende und nachziehende Leerzeichen bei den Metadaten zu entfernen. Das
-Plugin führt eine ,,Bereinigung" durch, diese muss so nicht vom Provider--Plugin
-explizit durchgeführt werden.
+Plugin führt eine *Bereinigung* durch, diese muss nicht explizit vom
+Provider--Plugin durchgeführt werden.
 
 Converter--Plugins
 ------------------
 
-Bei den Converter--Plugins wurde zu Demozwecken ein *HTML*--Converter
+Bei den Converter--Plugins wurde zu Demonstrationszwecken ein *HTML*--Converter
 und ein *JSON*--Converter implementiert.
 
 Des Weiteren wurde für den Produktiveinsatz ein XBMC--Nfo--Converter
-implementiert, dieser wird von der Demoanwendung libhugin proxy (siehe
-:ref:`libhuginproxy`) verwendet um den XBMC--libhugin Plugin (siehe
-:ref:`xbmcplugin`) die Metadaten im richtigen Format zu liefern.
-
+implementiert, dieser wird vom *libhugin*--Proxy (siehe :ref:`libhuginproxy`)
+verwendet, um dem XBMC--libhugin Plugin (siehe :ref:`xbmcplugin`) die Metadaten
+im richtigen Format zu liefern.
 
 .. _analyzeapiexample:
 
 Libhugin--analyze API
 =====================
 
-Die API von *libhugin--analyze* ist vom Grundaufbau ähnlich zu der libhugin--harvest
-API. Folgendes Beispiel--Snippet zeigt die Anwendung des BracketClean--Plugins
-auf *Rohdaten*, welche nicht aus der internen Datenbank stammen.
+Die API von *libhugin--analyze* ist vom Grundaufbau ähnlich zu der
+*libhugin--harvest* API. Folgendes Beispiel--Snippet zeigt die Anwendung des
+BracketClean--Plugins auf *Rohdaten*, welche nicht aus der internen Datenbank
+stammen.
 
 
 .. code-block:: python
@@ -154,7 +156,7 @@ auf *Rohdaten*, welche nicht aus der internen Datenbank stammen.
 
 
 Für weitere Informationen siehe libhugin API :cite:`huginapi`. Des Weiteren
-zeigt die Demoanwendung Freki den Einsatz von libhugin--analyze, siehe hierzu
+zeigt die Demoanwendung Freki den Einsatz von *libhugin--analyze*, siehe hierzu
 :ref:`ref-freki`.
 
 
@@ -167,17 +169,16 @@ Modifier--Plugins
 **BracketClean**
 
 Das *BracketClean* Plugin ist für nachträgliche Manipulation der
-Inhaltsbeschreibung gedacht. Im Fall vom BracketClean Plugin werden alle Klammern
-samt Inhalt aus der Beschreibung entfernt. Das vereinheitlicht die
-Inhaltsbeschreibung in dem Sinne, dass alle Schauspieler oder Informationen in
-Klammern aus der Beschreibung entfernt werden. Für ein Beispiel siehe
-:ref:`analyzeapiexample`.
+Inhaltsbeschreibung gedacht. Das Plugin entfernt alle Klammern samt Inhalt aus
+der Beschreibung. Das vereinheitlicht die Inhaltsbeschreibung in dem Sinne, dass
+alle Schauspieler oder Informationen in Klammern aus der Beschreibung entfernt
+werden. Für ein Beispiel siehe :ref:`analyzeapiexample`.
 
 **PlotLangChange**
 
-Das *PlotLangChange* Plugin ist für das nachträgliche Ändern der Inhaltsbeschreibung
-zuständig. Im Moment hat es die Option die Sprache des Plots zu ändern, für ein
-Beispiel siehe Demoanwendung :ref:`ref-freki`.
+Das *PlotLangChange* Plugin ist für das nachträgliche Ändern der
+Inhaltsbeschreibung zuständig. Es hat die Funktion die Sprache des Plots zu
+ändern, für ein Beispiel siehe Demoanwendung :ref:`ref-freki`.
 
 Analyzer--Plugins
 -----------------
@@ -190,13 +191,14 @@ Thematik repräsentieren.
 
 **FileTypeAnalyze**
 
-Das FileTypeAnalyze--Plugin arbeitet mit den Videodaten selbst. Er ist für die
+Das FileTypeAnalyze--Plugin arbeitet mit den Videodaten selbst. Es ist für die
 Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
 
     * Auflösung
     * Seitenverhältnis
     * Videocodec
     * Audiocodec, Anzahl der Audiokanäle, Sprache
+
 
 **LangIdentify**
 
@@ -209,7 +211,6 @@ Comperator--Plugins
 
 Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
 Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
-Weiteres hierzu wird in der Bachelorarbeit behandelt.
 
 Folgende Comperator--Plugins wurden konzeptuell implementiert:
 
@@ -262,7 +263,7 @@ Das Ausführen des Beispielcodes würde folgende Ausgabe produzieren:
 
     OK
 
-Alle geschrieben Tests werden bei jedem ,,Einspielen" der Änderungen in das
+Alle geschriebenen Tests werden bei jedem ,,Einspielen" der Änderungen in das
 verwendete Quellcode--Versionsverwaltungssystem automatisiert über einen
 externen Dienst ausgeführt (siehe Entwicklungsumgebung :ref:`dev`).
 
@@ -315,7 +316,6 @@ eingesetzt. Der Quellcode selbst wird auf dem Hosting--Dienst für
 Software--Entwicklungsprojekte *GitHub* (siehe :cite:`github`) gelagert. Das
 Projekt ist auf folgender GitHub Seite zu finden:
 
-
     * https://github.com/qitta/libhugin
 
 **Automatisches Testen**
@@ -323,20 +323,20 @@ Projekt ist auf folgender GitHub Seite zu finden:
 Die oben genannten Softwaretests werden von *TravisCI* (siehe :cite:`travisci`),
 einem sogenanntem ,,Continuous Integration Service" automatisch ausgeführt. Dies
 passiert bei jedem Hochladen von Quellcodeänderungen auf *GitHub*. *GitHub* hat
-hier einen Service--Schnittstelle zu *TravisCI,* welche aktiviert wurde.
+hier eine Service--Schnittstelle zu *TravisCI,* welche aktiviert wurde.
 
-Ein Logo (siehe :num:`fig-build`) auf der libhugin
-Github--Projektseite teil so dem Besuchern der Seite den aktuellen
+Ein Symbol (siehe Abbildung :num:`fig-build`) auf der *libhugin*
+Github--Projektseite teilt so dem Besuchern der Seite den aktuellen
 ,,Projektstatus" mit.
 
 .. _fig-build:
 
 .. figure:: fig/build.png
-    :alt: Logo das den aktuellen ,,Build Status" der GitHub--Projektseite.
+    :alt: Symbol das den aktuellen ,,Build Status" der GitHub--Projektseite.
     :width: 60%
     :align: center
 
-    Logo das den aktuellen ,,Build--Status" der GitHub--Projektseite.
+    Symbol das den aktuellen ,,Build--Status" der GitHub--Projektseite.
 
 
 **Projektdokumentation**
@@ -348,8 +348,8 @@ Quelltext und Dokumentation des Programms in der gleichen Datei.
 Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge
 generiert werden. Unter Python wird hier das Softwaredokumentationswerkzeug
 *Sphinx* (siehe :cite:`sphinxdoc`) verwendet. Die offizielle
-Projektdokumentation ist auf der Plattform *readthedocs* (siehe :cite:`rtfd`) gehostet und unter folgender Adresse zu finden:
-
+Projektdokumentation ist auf der Plattform *readthedocs* (siehe :cite:`rtfd`)
+gehostet und unter folgender Adresse zu finden:
 
     * http://libhugin.rtfd.org
 
@@ -380,8 +380,8 @@ die Onlinedokumentation hinzu. Eine Statistik zum Projekt, welche mit dem Tool
 
 **Externe Bibliotheken**
 
-Die Tabelle :num:`table-libs` listet alle momentan verwendeten externen
-Abhängigkeiten für die Libhugin--Bibliothek.
+Die Tabelle :num:`table-libs` listet alle verwendeten externen Abhängigkeiten
+für die *Libhugin*--Bibliothek.
 
 .. figtable::
     :label: table-libs
