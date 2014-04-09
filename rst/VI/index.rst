@@ -210,7 +210,7 @@ Comperator--Plugins
 Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
 Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
 
-Folgende Comperator--Plugins wurden konzeptuell implementiert:
+Folgende Comperator--Plugins wurden konzeptionell implementiert:
 
 **GenreCmp**
 

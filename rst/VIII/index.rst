@@ -89,7 +89,7 @@ im Vergleich zum einfachen CLI-Tool erhöhen.
 
 **Libhugin--Proxy**
 
-Der momentan implementierte Proxy zeigt nur einen *konzeptuellen* Ansatz und ist
+Der momentan implementierte Proxy zeigt nur einen *konzeptionellen* Ansatz und ist
 aktuell für den Einsatz des XBMC--Plugins geschrieben. Hier wäre eine generische
 Implementierung als CLI-Tool wünschenswert.
 

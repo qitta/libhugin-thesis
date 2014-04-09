@@ -228,17 +228,17 @@ Informationen:
     * Das eigentliche Ergebnis als Hashtabelle.
 
 
-Der Ablauf der ``submit()``--Methode wird konzeptuell in Abbildung :num:`fig-submit`
-dargestellt.
+Der prinzipielle Ablauf der ``submit()``--Methode wird in Abbildung
+:num:`fig-submit` dargestellt.
 
 .. _fig-submit:
 
 .. figure:: fig/submit.pdf
-    :alt: Konzeptueller Ablauf der Submit Methode.
+    :alt: Prinzipieller Ablauf der Submit Methode.
     :width: 50%
     :align: center
 
-    Konzeptueller Ablauf der Submit Methode.
+    Prinzipieller Ablauf der Submit Methode.
 
 ``submit_async()``: Methode für eine asynchrone Nutzung der API. Diese führt
 ``submit()`` asynchron aus und gibt ein Python *Future--Objekt* zurück,

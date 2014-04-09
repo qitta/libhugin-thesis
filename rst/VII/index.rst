@@ -462,7 +462,7 @@ XBMC Plugin Integration
 XBMC Plugin
 -----------
 
-Neben den Kommandozeilentools Geri und Freki wurde *konzeptuell* ein Plugin für
+Neben den Kommandozeilentools Geri und Freki wurde *konzeptionell* ein Plugin für
 das XBMC (siehe Abbildung: :num:`fig-xbmcscreenshot-hugin`) geschrieben,
 welches *libhugin* als Metadatenquelle nutzen kann.
 
@@ -496,7 +496,7 @@ XBMC liefert.
 
 **Libhugin RESTful--API**
 
-Der *Libhugin*--Proxy zeigt *konzeptuell* die Integration von *libhugin* als
+Der *Libhugin*--Proxy zeigt *konzeptionell* die Integration von *libhugin* als
 Netzwerkdienst, welcher eine RESTful--API bereitstellt. Nach dem der
 *libhugin*--Proxy gestartet wurde, ist es möglich über den Webbrwoser auf die
 RESTful--API über Port 5000 zuzugreifen.
@@ -519,7 +519,7 @@ Die implementierte Test--API bietet die folgenden Schnittstellen:
 
     + ``/search/<titlename or imdbid>:`` Suche nach Film über Titel oder *IMDb ID*.
     + ``/movie/<position>:`` Zugriff auf einen bestimmten Film im Proxy Cache.
-    + ``/stats:`` Server Information, welche zeigt ob Postprocessing aktiviert ist.
+    + ``/into:`` Server Information, welche zeigt ob Postprocessing aktiviert ist.
     + ``/toggle_pp:`` Postprocessing aktivieren oder deaktivieren.
     + ``/shutdown:`` Server herunterfahren.
 

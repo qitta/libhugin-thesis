@@ -9,7 +9,7 @@ Anforderungen an die Bibliothek
 ===============================
 
 Die Anforderungen werden aus den Schwierigkeiten der momentan vorhandenen
-Lösungen abgeleitet. Gute Ideen werden hier übernommen. Der konzeptuelle Entwurf
+Lösungen abgeleitet. Gute Ideen werden hier übernommen. Der konzeptionelle Entwurf
 der Software ist Bestandteil der Projektarbeit, die Internas und Algorithmik
 werden in der Bachelorarbeit behandelt.
 
@@ -199,8 +199,8 @@ konfigurierbar sein:
 
 Folgende Parameter sollen bei einer Suchanfrage konfigurierbar sein:
 
-    * Metadatentyp (Film, Person)
-    * Filmtitel, Jahr, *IMDb ID* oder Personenname (je nach Metadatentyp)
+    * Providerart (Film, Person)
+    * Filmtitel, Jahr, *IMDb ID* oder Personenname (je nach Providerart)
     * Sprache in der Metadaten gesucht werden sollen (abhängig von Onlinequelle)
     * Cache verwenden (ja/nein)
     * Anzahl der maximalen Downloadversuche
@@ -209,7 +209,7 @@ Folgende Parameter sollen bei einer Suchanfrage konfigurierbar sein:
     * Zu verwendende Metadatenanbieter
     * Unschärfesuche (ja/nein)
     * Provider übergreifende IMDb ID--Suche (ja/nein)
-    * Suchart (textuelle Daten, grafische Daten)
+    * Metadatenart (textuelle Daten, grafische Daten)
 
 
 Optionale Anforderungen

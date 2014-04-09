@@ -105,4 +105,4 @@ Kontextspezifische Fachbegriffe
      Verlauf untersucht werden, wie gut sich Filme anhand von Metadaten
      vergleichen lassen und ob sich beispielsweise Film--Empfehlungen aufgrund
      der gewonnenen Daten aussprechen lassen. Diese Pluginart ist experimentell
-     und nur konzeptuell in *libhugin* integriert.
+     und nur konzeptionell in *libhugin* integriert.
