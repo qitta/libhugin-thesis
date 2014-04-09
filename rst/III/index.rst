@@ -368,7 +368,7 @@ wie ,,The Marix" oder ,,Sin Sity'' werden oft nicht gefunden (siehe Abbildung
 
 **Suche nach IMDb ID**
 
-Die Suche nach der IMDb ID ist bei den getesteten Tools häufig nicht möglich,
+Die Suche nach der *IMDb ID* ist bei den getesteten Tools häufig nicht möglich,
 obwohl diese von manchen Onlineanbietern unterstützt wird (siehe Abbildung
 :num:`table-movietools`).
 

@@ -114,7 +114,7 @@ provider--übergreifende Suche wäre hier wünschenswert.
 
 **IMDb ID Suche**
 
-Die Suche nach Filmen über die IMDb ID soll möglich sein. Eine
+Die Suche nach Filmen über die *IMDb ID* soll möglich sein. Eine
 provider--übergreifende Suche wäre hier wünschenswert.
 
 **Genrenormalisierung**
@@ -200,7 +200,7 @@ konfigurierbar sein:
 Folgende Parameter sollen bei einer Suchanfrage konfigurierbar sein:
 
     * Metadatentyp (Film, Person)
-    * Filmtitel, Jahr, IMDb ID oder Personenname (je nach Metadatentyp)
+    * Filmtitel, Jahr, *IMDb ID* oder Personenname (je nach Metadatentyp)
     * Sprache in der Metadaten gesucht werden sollen (abhängig von Onlinequelle)
     * Cache verwenden (ja/nein)
     * Anzahl der maximalen Downloadversuche

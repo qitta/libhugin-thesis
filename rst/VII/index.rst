@@ -146,13 +146,13 @@ Providern wie *Filmstarts* oder *Videobuster* nicht. *Libhugin* schafft hier
 Abhilfe mit einer providerübergreifenden *IMDb ID*--Suche.
 
 Im folgenden Beispiel findet der Provider *videobustermovie* keine Ergebnisse,
-weil die Onlinequelle die Suche über IMDb ID nicht unterstützt:
+weil die Onlinequelle die Suche über *IMDb ID* nicht unterstützt:
 
 .. code-block:: bash
 
    $ geri --imdbid "tt0133093" -p videobustermovie
 
-Mit dem *Lookup-Mode* funktioniert auch die Suche über IMDb ID bei
+Mit dem *Lookup-Mode* funktioniert auch die Suche über *IMDb ID* bei
 Onlinequellen, die eine Suche über die *IMDb ID* nicht unterstützen:
 
 .. code-block:: bash
