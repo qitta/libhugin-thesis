@@ -10,7 +10,7 @@
 
     \thispagestyle{plain}
     \renewcommand{\thepage}{\roman{page}}
-    \setcounter{page}{8} % cough.
+    \setcounter{page}{9} % cough.
     \addcontentsline{toc}{section}{Abk"urzungsverzeichnis}
     {\centering\Huge \textbf{Abk"urzungsverzeichnis}}
 

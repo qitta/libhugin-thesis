@@ -6,7 +6,7 @@ Die vorgestellten CLI--Tools stellen nur einen kleinen Ausschnitt der
 Fähigkeiten der Bibliothek dar, die Bibliothek selbst ist um fast jede denkbare
 Funktionalität der Metadatenaufbereitung erweiterbar.
 
-libhugin--harvest CLI--Tool Geri
+Libhugin--harvest CLI--Tool Geri
 ================================
 
 Geri ist eine CLI--Anwendung die zu Demozwecken, aber auch als Testwerkzeug für
@@ -227,7 +227,7 @@ Kinder geeignet ist oder nicht.
 
 .. _ref-freki:
 
-libhugin--analyze CLI--Tool Freki
+Libhugin--analyze CLI--Tool Freki
 =================================
 
 Freki ist für Demonstrationszwecke und das Testen der *libhugin--analyze*
@@ -483,7 +483,7 @@ Die Implementierung des *libhugin* Plugins in das XBMC hat an dieser Stelle nur
 
 .. _libhuginproxy:
 
-libhugin--Proxy
+Libhugin--Proxy
 ---------------
 
 Da die direkte Integration in das XBMC aufgrund der begrenzten Zeit der
@@ -569,18 +569,18 @@ Weitere Einsatzmöglichkeiten
 Die Einsatzmöglichkeiten sind je nach Szenario anpassbar. Für einfache
 Anwendungen lassen sich Geri und Freki bereits direkt verwenden.
 
-Ein schönes Beispiel für einen Scripting--Task ist das Normalisieren der
+Ein schönes Beispiel für einen *Scripting--Task* ist das Normalisieren der
 Ordnerstruktur/Benennung von großen Filmsammlungen.
 
 Hierzu reicht es einfach, die ``movie.mask`` von Geri anzupassen und ein kleines
-Bash--Script zu schreiben. Anpassen der ``movie.mask`` auf das gewünschte
+Bash--Skript zu schreiben. Anpassen der ``movie.mask`` auf das gewünschte
 Format:
 
 .. code-block:: bash
 
    $ echo "{title} ({year}), [{imdbid}]" > tools/geri/movie.mask
 
-So schaut das minimalistische rename--Script aus:
+So schaut das minimalistische rename--Skript aus:
 
 .. code-block:: bash
 
@@ -601,7 +601,7 @@ Filmen, die falsch geschrieben sind erstellt:
    "jung unt schon","marix","oonly good forgives","teh marix 2"}
 
 
-Anschließend wird das Script auf die ,,schlampig" gepflegte Ordnerstruktur
+Anschließend wird das Skript auf die ,,schlampig" gepflegte Ordnerstruktur
 laufen gelassen:
 
 .. code-block:: bash

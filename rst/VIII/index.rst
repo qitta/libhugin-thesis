@@ -11,9 +11,9 @@ gezeigten Anwendungsfälle des Autors gut funktioniert.
 Erfüllung der gesetzten Anforderungen
 =====================================
 
-Die vom Autor gesetzten Anforderungen (siehe Kapitel :ref:`ref-requirements`)
-konnten direkt über die Bibliothek oder durch Schreiben eines Plugins erfüllt
-werden.
+Die vom Autor gesetzten Anforderungen (siehe Anforderungen an die Bibliothek,
+:ref:`ref-requirements`) konnten direkt über die Bibliothek oder durch Schreiben
+eines Plugins erfüllt werden.
 
 Dennoch gibt es bei einigen Ansätzen Problemstellungen, die nur schwer ,,gut''
 umsetzbar sind.  Im Fall von *libhugin* wäre das die Normalisierung von Metadaten
@@ -150,8 +150,16 @@ Für oft genutzte Sprachen wäre eine Erstellung von Bindings wünschenswert.
 Abschließendes Fazit
 ====================
 
-Das Projekt zeigt einen modularen Prototyp für die Suche und Analyse von Film
-Metadaten, welcher die bisherigen Fähigkeiten der Movie--Metadaten--Manager um
-Fähigkeiten der Metadatenaufbereitung erweitert. Des Weiteren zeigt dieser
-Ansatz, dass so die Metadaten Suche und Analyse sich gut an benutzerspezifische
-Bedürfnisse anpassen lässt.
+Das Projekt zeigt einen Prototyp für die Suche und Analyse von Filmmetadaten.
+Durch das modulare Konzept lässt sich der Prototyp um verschiedene
+Onlinequellen und Möglichkeiten der *Metadatenaufbereitung* erweitern. Der
+Ansatz mit dem Proxy zeigt, wie sich *libhugin* in bereits existierende Lösungen
+integrieren lässt. Die beiden Kommandozeilen Tools, Geri und Freki, eignen sich
+gut für *Scripting Tasks*. Durch den automatisierbaren Ansatz ist es möglich
+*sehr große* Filmsammlungen mit einem vernünftigen Zeitaufwand zu pflegen.
+
+Durch die modulare Erweiterbarkeit lässt sich das System an Bedürfnisse des
+Benutzer anpassen und kann so an zukünftige Anforderungen angepasst werden.
+
+Zusammenfassend kann gesagt werden, dass das Projekt mit dem ,,modularen Ansatz"
+für die vom Autor gestellten Anforderungen erfolgreich war.

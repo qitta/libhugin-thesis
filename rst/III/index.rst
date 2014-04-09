@@ -182,7 +182,7 @@ Redundante Metadaten
 Redundanzen treten in der Regal auf, wenn bei einer Filmsammlung die Daten aus
 unterschiedlichen Quellen stammen. Damit ist gemeint, dass beispielsweise das
 Genre auf unterschiedlichen Plattformen unter einem anderen Namen gepflegt ist.
-Beim Herunterladen von Metadaten aus meheren Quellen, wird beispielsweise das
+Beim Herunterladen von Metadaten aus mehreren Quellen, wird beispielsweise das
 Genre ,,SciFi" von einer Onlinequelle und das Genre ,,Science--Fiction" von
 einer andere Quelle bezogen. Durch diesen Umstand ist das eigentlich eindeutige
 Genre Science Fiction in diesem Fall zweimal in der lokalen Datenbank
@@ -191,7 +191,8 @@ Redundanz--Problematik betroffen, jedoch ist das Genre, neben der
 Inhaltsbeschreibung, laut Meinung des Autors, eins der wichtigsten Attribute, da
 es maßgeblich in die Entscheidung der Filmauswahl einfließt.
 
-Folgende Punkte fürhren im Beispiel zu Redundanzen:
+Folgende Punkte führen konkret im unten genannten Beispiel (siehe Praxisbeispiel
+für Dateninhomogenität, :ref:`ref-beispiel`) zu Redundanzen:
 
 **Schreibweise des Genres**
 
@@ -215,6 +216,8 @@ Die OFDb--Quelle liefert für den Film *Feuchtgebiete (2013)* das Genre *Erotik*
 dieses Genre existiert bei IMDb (siehe :cite:`imdbgenre`) und bei TMDb
 :cite:`tmdbgenre` gar nicht.
 
+.. _ref-beispiel:
+
 Praxisbeispiel für Dateninhomogenität
 -------------------------------------
 
@@ -229,10 +232,10 @@ Genre zu den *wichtigsten* Kriterien bei der Filmauswahl gehören und diese somi
 In unserem Beispiel befinden sich folgende vier Filme in der Filmsammlung, die
 mit Metadaten versorgt werden sollen:
 
-    1) *,,After.Life (2010)"*
-    2) *,,Feuchtgebiete (2013)"*
-    3) *,,Nymphomaniac (2013)"*
-    4) *,,RoboCop (2014)"*
+    1) *,,After.Life (2010)"*, US--amerikanischer Spielfilm
+    2) *,,Feuchtgebiete (2013)"*, deutsche Romanverfilmung
+    3) *,,Nymphomaniac (2013)"*, europäischer Spielfilm
+    4) *,,RoboCop (2014)"*, US-amerikanischer Spielfilm
 
 Die Inhaltsbeschreibung ist in der Regel problemlos austauschbar, jedoch
 unterscheidet sie sich auch je nach Quelle in der Formatierung, Ausführlichkeit
@@ -414,8 +417,8 @@ von den 40 Onlinequellen nur einzelne Quellen funktioniert haben --- IMDb hat
 auch nicht funktioniert.
 
 
-Erkenntnisse und Anforderungen an das Projekt
-=============================================
+Anforderungen an das Projekt
+============================
 
 Viele der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur und der
 aktuellen Kombination aus Abspielsoftware und Movie--Metadaten--Manager nicht

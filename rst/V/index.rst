@@ -180,7 +180,9 @@ erläutert.
 
 Diese Klasse bildet den Grundstein für *libhugin--harvest*. Über eine Sitzung
 konfiguriert der Benutzer das System und hat Zugriff auf die verschiedenen
-Plugins. Von der Session werden folgende Methoden bereitgestellt:
+Plugins.
+
+Von der Session werden folgende Methoden bereitgestellt:
 
 ``create_query(**kwargs):`` Schnittstelle zur Konfiguration der Suchanfrage. Die
 Methode gibt ein Query--Objekt zurück, das einem Python Dictionary (Hashtabelle)
@@ -352,7 +354,7 @@ die vom jeweiligen Plugintyp implementiert werden muss (siehe Abbildung :num:`fi
 
 
 Diese *libhugin--harvest* Plugins haben die Möglichkeiten von verschiedenen
-Oberklassen abzuleiten (siehe hierzu Tabelle :num:`table-harvest-plugins`).
+Oberklassen abzuleiten (siehe Tabelle :num:`table-harvest-plugins`).
 Mehrfachableitung ist unter Python möglich.
 
 .. figtable::
@@ -379,8 +381,8 @@ Mehrfachableitung ist unter Python möglich.
 
 
 Plugins, die für die Metadatenbeschaffung zuständig sind, müssen von den
-Providerklassen ableiten (siehe :num:`table-harvest-plugins`). Desweiteren
-müssen diese Plugins die folgenden Methoden implementieren:
+Providerklassen ableiten (siehe Abbildung :num:`table-harvest-plugins`). Des
+Weiteren müssen diese Plugins die folgenden Methoden implementieren:
 
 ``build_url(search_params)``: Diese Methode bekommt die *Such--Parameter*
 übergeben und baut aus diesen die *Such--URL* zusammen.
@@ -400,7 +402,7 @@ vom Provider befüllt werden.
 
 Plugins, die für die Metadatennachbearbeitung zuständig sind, müssen von
 *IPostProcessor* ableiten (siehe Tabelle :num:`table-harvest-plugins`).
-Desweiteren müssen diese Plugins die folgenden Methoden implementieren:
+Des Weiteren müssen diese Plugins die folgenden Methoden implementieren:
 
 ``process(results, **kwargs)``: Diese Methode bekommt ein Liste mit
 *Ergebnisobjekten* übergeben und manipuliert dieses nach bestimmten Kriterien
@@ -412,7 +414,7 @@ oder gibt eine neue Liste mit *Ergebnisobjekten* zurück.
 
 Plugins, die für das Konvertieren der Ergebnisse in bestimmte Metadatenformate
 zuständig sind, müssen von *IConverter* ableiten (siehe Tabelle
-:num:`table-harvest-plugins`).  Desweiteren müssen diese Plugins die folgenden
+:num:`table-harvest-plugins`).  Des Weiteren müssen diese Plugins die folgenden
 Methoden implementieren:
 
 ``convert(results, **kwargs)``: Diese Methode bekommt ein *Ergebnisobjekt*

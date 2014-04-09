@@ -31,8 +31,8 @@ Libhugin--harvest Plugins
 Provider--Plugins
 -----------------
 
-Libhugin--harvest hat aktuell verschiedene Provider implementiert, siehe Tabelle
-:num:`table-provideroverview`.
+Libhugin--harvest hat aktuell verschiedene Provider implementiert (siehe Tabelle
+:num:`table-provideroverview`).
 
 .. figtable::
     :label: table-provideroverview
@@ -103,9 +103,9 @@ Provider--Priorität aufgefüllt.
 
 **Zu 2.):** Dieses Feature erlaubt dem Benutzer divergente Genres
 beim gleichen Film zu verschmelzen. Das macht das Genre *feingranularer* und
-behebt die Problematik (siehe Tabelle :num:`table-feuchtgebiete` ) divergenter
-Genres bei verschiedenen Onlinequellen. Das Genre wird hier wie folgt
-zusammengesetzt:
+behebt die genannte Problematik (siehe Tabelle :num:`table-feuchtgebiete`)
+divergenter Genres bei verschiedenen Onlinequellen. Das Genre wird hier wie
+folgt zusammengesetzt:
 
 .. code-block:: bash
 
@@ -148,7 +148,7 @@ stammen.
         # Beispieltext. Erstelle Sitzung mit Dummy DB. Hole BracketClean Plugin.
     >>> example_text = "Aus diesem Text wird die Klammer (welche?) samt Inhalt entfernt!"
     >>> session = session('/tmp/temporary.db')
-    >>> BracketClean = session.modifier_plugins('BracketClean')  # hole das BracketClean Plugin
+    >>> BracketClean = session.modifier_plugins('BracketClean')
         # Wende Plugin im raw Modus auf Daten an
     >>> result = session.modify_raw(BracketClean, 'plot', example_text)
     >>> print(result)
@@ -156,8 +156,7 @@ stammen.
 
 
 Für weitere Informationen siehe libhugin API :cite:`huginapi`. Des Weiteren
-zeigt die Demoanwendung Freki den Einsatz von *libhugin--analyze*, siehe hierzu
-:ref:`ref-freki`.
+zeigt die Demoanwendung Freki den Einsatz von *libhugin--analyze* (siehe :ref:`ref-freki`).
 
 
 Libhugin--analyze Plugins
@@ -172,13 +171,13 @@ Das *BracketClean* Plugin ist für nachträgliche Manipulation der
 Inhaltsbeschreibung gedacht. Das Plugin entfernt alle Klammern samt Inhalt aus
 der Beschreibung. Das vereinheitlicht die Inhaltsbeschreibung in dem Sinne, dass
 alle Schauspieler oder Informationen in Klammern aus der Beschreibung entfernt
-werden. Für ein Beispiel siehe :ref:`analyzeapiexample`.
+werden.
 
 **PlotLangChange**
 
 Das *PlotLangChange* Plugin ist für das nachträgliche Ändern der
 Inhaltsbeschreibung zuständig. Es hat die Funktion die Sprache des Plots zu
-ändern, für ein Beispiel siehe Demoanwendung :ref:`ref-freki`.
+ändern.
 
 Analyzer--Plugins
 -----------------
@@ -203,8 +202,7 @@ Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
 **LangIdentify**
 
 Der LangIdentify--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
-die Information zu den Analysedaten. Für ein Beispiel siehe Demoanwendung
-:ref:`ref-freki`.
+die Information zu den Analysedaten.
 
 Comperator--Plugins
 -------------------

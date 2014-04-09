@@ -6,22 +6,22 @@ Motivation
 ==========
 
 Die Digitalisierung der modernen Konsumgesellschaft schreitet immer weiter
-voran. Wo es vor ein paar Jahren noch üblich war die eigene Filmsammlung im
-Regal aufzubewahren, wird sie heute oft nur noch digital auf dem
+voran. Vor ein paar Jahren war es noch üblich, die eigene Filmsammlung im
+Regal aufzubewahren. Heute wird sie häufig nur noch digital auf dem
 :term:`Home--Theatre--PC`, :term:`Smart--TV`, PC oder anderen Endgeräten digital
 aufgezeichnet und verwaltet. Das Aufkommen der digitalen HDTV--Sender und das
-große Angebot an Pay--TV--Sendern hat dem Trend der letzten Jahre nochmal
-frischen Auftrieb verpasst. Und hat man mal einen Spielfilm verpasst, so kann
-dieser bequem über einen der vielen Online--Videorecorder--Dienste nachträglich
-bezogen werden. Es geht sogar soweit, dass USB--Sticks (siehe
-:cite:`usbstickmovie`) mit Hollywood Spielfilmen beworben und verkauft werden.
+große Angebot an Pay--TV--Sendern hat den Trend der letzten Jahre nochmal
+verstärkt. Wurde eine Spielfilm verpasst, so kann dieser bequem über
+einen der vielen Online--Videorecorder--Dienste nachträglich bezogen werden. Es
+geht sogar soweit, dass USB--Sticks (siehe :cite:`usbstickmovie`) mit Hollywood
+Spielfilmen beworben und verkauft werden.
 
-Zeichnet man viele Filme auf oder digitalisiert seine Filmsammlung, so muss
-man sich mit dem Pflegen der inhaltsbezogenen :term:`Metadaten`
-auseinandersetzen.  Das sind Metadaten, wie sie auf jeder DVD--Hülle enthalten
-sind. Wo noch im DVD--Regal diese auf der Hülle zu finden waren, sind sie nun
-nach dem Digitalisieren nicht vorhanden und müssen vom Benutzer nachträglich
-eingepflegt werden. Typische Metadaten bei Filmen sind der Titel, Jahr,
+Zeichnet man viele Filme auf oder digitalisiert seine Filmsammlung, so muss man
+sich mit dem Pflegen der inhaltsbezogenen :term:`Metadaten` auseinandersetzen.
+Das sind Metadaten, wie sie auf jeder DVD--Hülle enthalten sind. Vor ein paar
+Jahren waren diese noch auf den DVD--Hüllen im Regal zu finden, heutzutage
+müssen sie nach dem Digitalisieren erst noch vom Benutzer nachträglich
+eingepflegt werden.  Typische Metadaten bei Filmen sind der Titel, Jahr,
 Inhaltsbeschreibung, Cover und Genre.  Diese Metadaten sind bei Filmen im
 Unterschied zur Musik essentiell, da hierüber die Entscheidung getroffen wird ob
 ein Film geschaut wird oder nicht.
@@ -120,7 +120,7 @@ Der Name Hugin kommt aus der nordischen Mythologie:
     :width: 30%
     :align: center
 
-    Libhugin Logo, das einen Pixelraben und ein abgerissenes Stück Filmrolle zeigt.
+    Libhugin Logo, das einen Pixelraben und ein Stück Filmrolle zeigt.
 
 
 Die beiden CLI-Tools, Geri und Freki, wurden nach den beiden Wölfen die Odin
