@@ -99,6 +99,10 @@ Das aktuelle XBMC--Plugin kann soweit erweitert werden, dass sich sämtliche
 libhugin Optionen direkt über das Plugin selbst im XBMC konfigurieren lassen.
 
 
+.. raw:: Latex
+
+   \newpage
+
 Denkbare Weiterentwicklungen
 ============================
 

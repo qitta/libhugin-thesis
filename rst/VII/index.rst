@@ -282,6 +282,10 @@ versorgt wurden.
     $ freki create mydb.db ./movies
 
 
+.. raw:: Latex
+
+   \newpage
+
 **Datenbank anzeigen**
 
 Mit *list* kann der Inhalt der Datenbank angezeigt werden. Die
@@ -453,6 +457,9 @@ Betrachten der Inhaltsbeschreibung der *nfo*-Dateien nach dem Export (gekürzt):
 Betrachtet man nun die *nfo*--Dateien der jeweiligen Filme, so sieht man, dass
 sich hier die Sprache von Spanisch auf Deutsch geändert hat.
 
+.. raw:: Latex
+
+   \newpage
 
 XBMC Plugin Integration
 =======================
@@ -622,6 +629,9 @@ laufen gelassen:
 An diesem Beispiel sieht man wie *gut* die Unschärfesuche funktionieren kann.
 Bei diesem kleinem *Testsample* haben wir eine Trefferwahrscheinlichkeit von 100%.
 
+.. raw:: Latex
+
+   \newpage
 
 **D--Bus**
 

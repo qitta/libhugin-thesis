@@ -424,9 +424,15 @@ Metadatenformat wieder.
 ``parameters()``: Die Methode listet die Keyword--Argumente für ein
 Converter--Plugin.
 
+.. raw:: Latex
+
+   \newpage
 
 Klassenübersicht *libhugin--analyze*
 ------------------------------------
+
+Dieser Teil der *libhugin*--Bibliothek ist für die nachträgliche Metadatenaufbereitung
+zuständig (siehe Abbildung :num:`fig-klassenuebersicht-analyze`).
 
 .. _fig-klassenuebersicht-analyze:
 
