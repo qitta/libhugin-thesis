@@ -494,12 +494,12 @@ angewandt. Für *libhugin* wurde mittels dem Microwebframework Flask (siehe
 XBMC liefert.
 
 
-**Libhugin RESTful API**
+**Libhugin RESTful--API**
 
-Der *Libhugin*--Proxy zeigt *konzeptuell* die Integration von libhugin als
-Netzwerkdienst, welcher eine RESTful API bereitstellt. Nach dem der
+Der *Libhugin*--Proxy zeigt *konzeptuell* die Integration von *libhugin* als
+Netzwerkdienst, welcher eine RESTful--API bereitstellt. Nach dem der
 *libhugin*--Proxy gestartet wurde, ist es möglich über den Webbrwoser auf die
-RESTful API über Port 5000 zuzugreifen.
+RESTful--API über Port 5000 zuzugreifen.
 
 Folgende Bash--Sitzung zeigt die Suche des Films *,,Prometheus (2012)"* über den
 *libhugin*--Proxy. Der Proxy liefert ein für das XBMC formatiertes *XML* zurück:

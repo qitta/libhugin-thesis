@@ -81,7 +81,7 @@ XBMC--Scraper--Plugin
 =====================
 
 Folgender Quelltext zeigt die Implementierung des XBMC Plugins. Als
-externe Schnittstelle wird hier der libhugin proxy (siehe
+externe Schnittstelle wird hier der *libhugin*--Proxy (siehe
 :ref:`ref-flaskproxy`) verwendet.
 
 .. code-block:: xml
@@ -116,7 +116,7 @@ externe Schnittstelle wird hier der libhugin proxy (siehe
 Libhugin XBMC Proxy
 ===================
 
-Folgender Quelltext zeigt die Implementierung des libhugin Proxy--Servers,
+Folgender Quelltext zeigt die Implementierung des *libhugin*--Proxy--Servers,
 welcher das XBMC Plugin mit Daten versorgt.
 
 .. code-block:: python

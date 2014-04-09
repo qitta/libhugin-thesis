@@ -126,7 +126,7 @@ Converter--Plugins
 Bei den Converter--Plugins wurde zu Demonstrationszwecken ein *HTML*--Converter
 und ein *JSON*--Converter implementiert.
 
-Des Weiteren wurde für den Produktiveinsatz ein XBMC--Nfo--Converter
+Des Weiteren wurde für den Produktiveinsatz ein XBMC *Nfo*--Converter
 implementiert, dieser wird vom *libhugin*--Proxy (siehe :ref:`libhuginproxy`)
 verwendet, um dem XBMC--libhugin Plugin (siehe :ref:`xbmcplugin`) die Metadaten
 im richtigen Format zu liefern.
@@ -155,7 +155,7 @@ stammen.
     Aus diesem Text wird die Klammer samt Inhalt entfernt!
 
 
-Für weitere Informationen siehe libhugin API :cite:`huginapi`. Des Weiteren
+Für weitere Informationen siehe *libhugin*--API :cite:`huginapi`. Des Weiteren
 zeigt die Demoanwendung Freki den Einsatz von *libhugin--analyze* (siehe :ref:`ref-freki`).
 
 
