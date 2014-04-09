@@ -196,14 +196,14 @@ für Dateninhomogenität, :ref:`ref-beispiel`) zu Redundanzen:
 
 **Schreibweise des Genres**
 
-Die Schreibweise der gepflegten Genres unterscheidet sich (siehe Tabelle
+Die Schreibweise der gepflegten Genres unterscheidet sich (siehe Abbildung
 :num:`table-robocop`). Hier ist bei TMDb das Genre ,,Science Fiction'' und bei
 OFDb ,,Science-Fiction'' gepflegt.
 
 **Internationalisierung**
 
 Je nach Onlinequelle ist das Genre in einer unterschiedlichen Sprache gepflegt.
-IMDb listet hier das Genre ,,Comedy" (siehe Tabelle :num:`table-feuchtgebiete`),
+IMDb listet hier das Genre ,,Comedy" (siehe Abbildung :num:`table-feuchtgebiete`),
 TMDb die deutsche Bezeichnung ,,Komödie".
 
 
@@ -252,7 +252,7 @@ bei TMDb gut eingepflegt, die Inhaltsbeschreibung ist deutschsprachig, das Genre
 *feingranular* gepflegt. Des Weiteren bietet TMDb hochauflösende grafische
 Metadaten (Cover, Hintergrundbilder). Bei OFDb ist das Genre ,,Mystery" nicht
 gepflegt und zudem gibt es nur ein niedrig auflösendes Cover und keine
-Hintergrundbilder (siehe Tabelle :num:`table-afterlife`).
+Hintergrundbilder (siehe Abbildung :num:`table-afterlife`).
 
 .. figtable::
     :label: table-afterlife
@@ -299,7 +299,7 @@ Deutsch relativ schlecht gepflegt. Bei OFDb ist wie auch beim ersten Film, eine
 deutschsprachige Inhaltsangabe vorhanden. Zur großen Überraschung ist hier das
 Genre im Vergleich zu den beiden anderen Onlinequellen *feingranularer* gepflegt
 --- was laut Wikipedia (siehe :cite:`nymphomaniac`) den Filminhalt besser
-widerspiegelt (siehe Tabelle :num:`table-nymphomaniac`).
+widerspiegelt (siehe Abbildung :num:`table-nymphomaniac`).
 
 .. figtable::
     :label: table-nymphomaniac
@@ -318,7 +318,7 @@ widerspiegelt (siehe Tabelle :num:`table-nymphomaniac`).
 *Zusammenfassung zum Genre:* divergent, unterschiedlich *feingranular* gepflegt
 
 **RoboCop (2014):** Der vierte Film, eine Hollywood Remake--Produktion ist hier
-bei allen drei Anbietern sehr gut gepflegt (siehe Tabelle :num:`table-robocop`).
+bei allen drei Anbietern sehr gut gepflegt (siehe Abbildung :num:`table-robocop`).
 
 .. figtable::
     :label: table-robocop
@@ -363,13 +363,13 @@ Grundlegende Probleme
 **Exakte Suchstrings**
 
 Viele Metadaten--Tools erwarten exakte Suchbegriffe. Falsch geschriebene Filme
-wie ,,The Marix" oder ,,Sin Sity'' werden oft nicht gefunden (siehe Tabelle
+wie ,,The Marix" oder ,,Sin Sity'' werden oft nicht gefunden (siehe Abbildung
 :num:`table-movietools`).
 
 **Suche nach IMDb ID**
 
 Die Suche nach der IMDb ID ist bei den getesteten Tools häufig nicht möglich,
-obwohl diese von manchen Onlineanbietern unterstützt wird (siehe Tabelle
+obwohl diese von manchen Onlineanbietern unterstützt wird (siehe Abbildung
 :num:`table-movietools`).
 
 Probleme bei Movie--Metadaten--Managern
@@ -379,7 +379,7 @@ Es wurden neben der Abspielsoftware XBMC und dem
 Movie--Metadaten--Manager MediaElch, die bereits genannten
 Movie--Metadaten--Manager (siehe :cite:`moviemanager`) *GCstar*, *vMovieDB*,
 *Griffith* und *Tellico* betrachtet. Die Resultate hier waren eher *ernüchternd*
-(siehe Tabelle :num:`table-movietools`). Bei den beiden Media--Managern GCstar
+(siehe Abbildung :num:`table-movietools`). Bei den beiden Media--Managern GCstar
 und vMovieDB hat die Metadatensuche nicht funktioniert, hier wurde nichts
 gefunden. Das Verhalten wurde auf zwei Systemen nachgeprüft. Beim XBMC wurden
 die Plugins für die Onlinequellen TMDb und Videobuster getestet. Für die

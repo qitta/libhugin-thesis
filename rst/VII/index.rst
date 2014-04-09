@@ -112,7 +112,7 @@ Es würde jedoch den Rahmen sprengen alle Optionen zu zeigen.
 **Unschärfesuche**
 
 Ein weiteres nennenswertes Feature ist die Unschärfesuche.  Die getesteten Tools
-(siehe Tabelle :num:`table-movietools`) sind nicht in der Lage Filme zu
+(siehe Abbildung :num:`table-movietools`) sind nicht in der Lage Filme zu
 finden, wenn der Titel nicht exakt geschrieben ist. Das trifft auch in der
 Standardkonfiguration für *libhugin* zu, weil hier die Onlinequellen, auf die
 zugegriffen wird, exakte Suchbegriffe erwarten.

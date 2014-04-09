@@ -354,7 +354,7 @@ die vom jeweiligen Plugintyp implementiert werden muss (siehe Abbildung :num:`fi
 
 
 Diese *libhugin--harvest* Plugins haben die Möglichkeiten von verschiedenen
-Oberklassen abzuleiten (siehe Tabelle :num:`table-harvest-plugins`).
+Oberklassen abzuleiten (siehe Abbildung :num:`table-harvest-plugins`).
 Mehrfachableitung ist unter Python möglich.
 
 .. figtable::
@@ -401,7 +401,7 @@ vom Provider befüllt werden.
 
 
 Plugins, die für die Metadatennachbearbeitung zuständig sind, müssen von
-*IPostProcessor* ableiten (siehe Tabelle :num:`table-harvest-plugins`).
+*IPostProcessor* ableiten (siehe Abbildung :num:`table-harvest-plugins`).
 Des Weiteren müssen diese Plugins die folgenden Methoden implementieren:
 
 ``process(results, **kwargs)``: Diese Methode bekommt ein Liste mit
@@ -413,7 +413,7 @@ oder gibt eine neue Liste mit *Ergebnisobjekten* zurück.
 
 
 Plugins, die für das Konvertieren der Ergebnisse in bestimmte Metadatenformate
-zuständig sind, müssen von *IConverter* ableiten (siehe Tabelle
+zuständig sind, müssen von *IConverter* ableiten (siehe Abbildung
 :num:`table-harvest-plugins`).  Des Weiteren müssen diese Plugins die folgenden
 Methoden implementieren:
 
@@ -612,7 +612,7 @@ Objekt sondern mit der ganzen ,,Datenbank".
 
 
 Plugins, die für die Analyse der Metadaten zuständig sind, müssen von *IAnalyzer*
-ableiten (siehe Tabelle :num:`table-analyze-plugins`). Diese Plugins schreiben
+ableiten (siehe Abbildung :num:`table-analyze-plugins`). Diese Plugins schreiben
 ihre Analysedaten in das *Analyzerdata*--Attribut des *Movie--Objekts*.  Sie
 müssen folgende Methoden implementieren:
 
@@ -624,7 +624,7 @@ Anwendung hier ist analog den Modifierplugins.
 ``parameters()``: Analog Modifierplugins.
 
 Plugins, die Metadaten für statistische Zwecke analysieren und vergleichen
-können, müssen von *IComperator* ableiten (siehe Tabelle
+können, müssen von *IComperator* ableiten (siehe Abbildung
 :num:`table-analyze-plugins`). Des Weiteren müssen diese Plugins folgende
 Methoden implementieren:
 

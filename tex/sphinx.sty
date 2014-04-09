@@ -189,20 +189,20 @@
 }
 
 % Configure footer and header
-\fancyfoot[C]{%
-    % EasterEgg
-    \ifthenelse{\value{page}=42}{%
-        % Horizontal and vertical flip
-        \reflectbox{\scalebox{1}[-1]{\prettypage}}
-    }{%
-        \ifthenelse{\value{page}=23}{%
-            % Horizontal flip
-            \reflectbox{\prettypage}
-        }{%
-            \prettypage
-        }%
-    }%
-}%
+\fancyfoot[C]{\prettypage}%}
+%    % EasterEgg
+%    \ifthenelse{\value{page}=42}{%
+%        % Horizontal and vertical flip
+%        \reflectbox{\scalebox{1}[-1]{\prettypage}}
+%    }{%
+%        \ifthenelse{\value{page}=23}{%
+%            % Horizontal flip
+%            \reflectbox{\prettypage}
+%        }{%
+%            \prettypage
+%        }%
+%    }%
+%}%
 
 % Remove the header from pages with chapters on them:
 \fancypagestyle{plain}{%

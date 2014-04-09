@@ -33,7 +33,7 @@ Erweiterung des aktuellen Pluginsystems
 **Provider--Plugins**
 
 Momentan ist ein multilingualer, ein englischsprachiger und drei
-deutschsprachige Provider implementiert (siehe Tabelle
+deutschsprachige Provider implementiert (siehe Abbildung
 :num:`table-provideroverview`). Betrachtet man die Möglichkeiten und Anzahl der
 Plattformen, ist es wünschenswert weitere Provider zu implementieren.
 

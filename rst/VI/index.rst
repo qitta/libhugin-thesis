@@ -31,7 +31,7 @@ Libhugin--harvest Plugins
 Provider--Plugins
 -----------------
 
-Libhugin--harvest hat aktuell verschiedene Provider implementiert (siehe Tabelle
+Libhugin--harvest hat aktuell verschiedene Provider implementiert (siehe Abbildung
 :num:`table-provideroverview`).
 
 .. figtable::
@@ -103,7 +103,7 @@ Provider--Priorität aufgefüllt.
 
 **Zu 2.):** Dieses Feature erlaubt dem Benutzer divergente Genres
 beim gleichen Film zu verschmelzen. Das macht das Genre *feingranularer* und
-behebt die genannte Problematik (siehe Tabelle :num:`table-feuchtgebiete`)
+behebt die genannte Problematik (siehe Abbildung :num:`table-feuchtgebiete`)
 divergenter Genres bei verschiedenen Onlinequellen. Das Genre wird hier wie
 folgt zusammengesetzt:
 
@@ -212,11 +212,11 @@ Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht
 
 Folgende Comperator--Plugins wurden konzeptuell implementiert:
 
-**genrecmp**
+**GenreCmp**
 
 Ein Plugin, das die Genres verschiedener Filme miteinander vergleicht.
 
-**keywordcmp**
+**KeywordCmp**
 
 Ein Plugin, das die Schlüsselwörter verschiedener Filme miteinander vergleicht.
 
@@ -295,10 +295,6 @@ Version 3.3, aus folgenden Gründen gewählt:
 
     Möglichkeit der Erweiterung durch C/C++--Code, Optimierung von Python
     mittels Cython (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`).
-
-.. raw:: Latex
-
-   \newpage
 
 **Entwicklungssytem**
 
