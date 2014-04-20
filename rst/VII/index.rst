@@ -3,13 +3,14 @@ Demoanwendungen
 ###############
 
 Die vorgestellten CLI--Tools stellen nur einen kleinen Ausschnitt der
-Fähigkeiten der Bibliothek dar, die Bibliothek selbst ist um fast jede denkbare
-Funktionalität der Metadatenaufbereitung erweiterbar.
+Fähigkeiten der Bibliothek dar. Die Bibliothek selbst ist um fast jede denkbare
+Funktionalität der Metadatenaufbereitung erweiterbar. Die Algorithmik der
+verwendeten Plugins und Funktionen ist Bestandteil der Bachelorarbeit.
 
 Libhugin--harvest CLI--Tool Geri
 ================================
 
-Geri ist eine CLI--Anwendung die zu Demozwecken, aber auch als Testwerkzeug für
+Geri ist eine CLI--Anwendung, die zu Demozwecken, aber auch als Testwerkzeug für
 die *libhugin--harvest* Bibliothek verwendet werden kann.
 
 Übersicht der Optionen
@@ -54,23 +55,21 @@ des Tools:
 
 
 Das Tool eignet sich neben dem Einsatz als Testwerkzeug für die Bibliothek
-auch gut für Skripte und somit für automatische Verarbeitung *großer*
+auch gut für Skripte und somit für automatische Verarbeitung großer
 Datenmengen, siehe auch *Scripting Tasks* :ref:`ref-scripting-tasks`.
 
 Filmsuche
 ---------
 
 Ein Film kann über den Titel oder über die *IMDb ID* gesucht werden. Hier gibt
-es die Möglichkeit *Geri* auch bestimmte Provider, Converter, Sprache und
+es die Möglichkeit, *Geri* auch bestimmte Provider, Converter, Sprache und
 Postprocessor--Plugins anzugeben.
 
 Um das Ausgabeformat zu konfigurieren, gibt es im *Geri*--Ordner eine
 ``movie.mask``-- und ``person.mask``--Datei. Über diese Dateien kann das
 Ausgabeformat definiert werden. Die Syntax ist einfach. Um Attribute
 darzustellen, werden diese einfach in geschweifte Klammern geschrieben. Das
-*num*--Attribut gibt Geri noch die Möglichkeit die Resultate durchzunummerieren.
-
-**Definition des Ausgabeformats für Filme**
+*num*--Attribut gibt Geri noch die Möglichkeit, die Resultate durchzunummerieren.
 
 Folgend die Definition vom Ausgabeformat für die ``movie.mask``:
 
@@ -79,7 +78,6 @@ Folgend die Definition vom Ausgabeformat für die ``movie.mask``:
    echo "{num}) {title} ({year}), IMDBid: {imdbid} Provider: {provider}\
    \nInhalt: {plot}" > tools/geri/movie.mask
 
-**Filmsuche**
 
 Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
 
@@ -106,13 +104,13 @@ Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
    Inhalt: "Sin City" enthält drei lose verbundene und ineinander verschachtelt
    erzählte Episoden: Los geht es mit Hartigan (Bruce Willis) - einem Cop [...]
 
-Die Suche kann wie die Optionen zeigen *feingranularer* konfiguriert werden.
-Es würde jedoch den Rahmen sprengen alle Optionen zu zeigen.
+Die Suche kann, wie die Optionen des Tools zeigen, feingranularer konfiguriert
+werden.  Es würde jedoch den Rahmen sprengen, alle Optionen zu zeigen.
 
 **Unschärfesuche**
 
 Ein weiteres nennenswertes Feature ist die Unschärfesuche.  Die getesteten Tools
-(siehe Abbildung :num:`table-movietools`) sind nicht in der Lage Filme zu
+(siehe Abbildung :num:`table-movietools`) sind nicht in der Lage, Filme zu
 finden, wenn der Titel nicht exakt geschrieben ist. Das trifft auch in der
 Standardkonfiguration für *libhugin* zu, weil hier die Onlinequellen, auf die
 zugegriffen wird, exakte Suchbegriffe erwarten.
@@ -171,9 +169,9 @@ Einsatz von Plugins
 
 **Einsatz von Postprocessor--Plugins**
 
-Das Compose Plugin ermöglicht dem Benutzer das Ergebnis nach seinen Bedürfnissen
-zu komponieren und besitzt die Fähigkeit das normalisierte Genre mehrerer
-Provider zusammenzuführen.
+Das *Compose*--Plugin ermöglicht dem Benutzer, das Ergebnis nach seinen
+Bedürfnissen zu komponieren und besitzt die Fähigkeit, das normalisierte Genre
+mehrerer Provider zusammenzuführen.
 
 Zuerst wird die ``movie.mask`` angepasst, damit das Genre und das normalisierte
 Genre zu sehen ist:
@@ -185,7 +183,7 @@ Genre zu sehen ist:
 
 
 Des Weiteren wird ein benutzerdefiniertes *userprofile* erstellt, welches dem
-*Compose*--Plugin mitteilt wie das Ergebnis zusammengebaut werden soll. In
+*Compose*--Plugin mitteilt, wie das Ergebnis zusammengebaut werden soll. In
 unserem Beispiel wird ein Profil erstellt, welches standardmäßig den TMDb
 Provider nimmt und die Inhaltsbeschreibung durch die vom OFDb Provider
 austauscht.
@@ -219,9 +217,9 @@ und Beschränkung auf die zwei Provider TMDb und OFDb:
    Hämorrhoiden, hat diesen Fakt aber immer verheimlicht, da sie glaubte [...]
 
 Das dritte Resultat in der Ausgabe wurde vom Provider ,,Compose" generiert,
-das ist das komponierte Ergebnis. Hier wurde das normalisierte Genre
+dies ist das komponierte Ergebnis. Hier wurde das normalisierte Genre
 verschmolzen. Dieses Feature macht das gepflegte Genre in den Metadaten
-*feingranularer* und lässt im Beispiel auch besser vermuten, ob ein Film für
+feingranularer und lässt im Beispiel auch besser vermuten, ob ein Film für
 Kinder geeignet ist oder nicht.
 
 
@@ -263,9 +261,9 @@ Folgend zum Überblick der Funktionalität die Hilfe des Tools Freki:
 Erstellen einer Datenbank
 -------------------------
 
-Freki erlaubt dem Benutzer eine *Datenbank* aus externen Metadaten zu
+Freki erlaubt dem Benutzer, eine *Datenbank* aus externen Metadaten zu
 generieren. Auf dieser Datenbank kann man folgend mit den Analyzer-- und
-Modifier--Plugins , die *libhugin* anbietet, arbeiten um beispielsweise seine
+Modifier--Plugins , die *libhugin* anbietet, arbeiten, um beispielsweise seine
 Metadaten zu säubern. Nach der Bearbeitung können die *neuen* Metadaten in die
 externen Metadaten--Dateien exportiert werden.
 
@@ -329,7 +327,7 @@ Auflisten der Analysedaten aller sich in der Datenbank befindlichen Filme:
     1) Alien³ (1992)
     {}
 
-Da noch nichts weiter analysiert wurde, sieht man hier nur *leere* Klammern.
+Da noch nichts weiter analysiert wurde, sieht man hier nur leere Klammern.
 
 **Analyzer und Modifier anzeigen**
 
@@ -429,7 +427,7 @@ Die modifizierten Metadaten können nun ins Produktivsystem zurückgespielt
 werden.  Dies geht bei Freki über die *export*--Funktion, hier wird wieder im
 Hintergrund die *Helferfunktion* (siehe Anhang :ref:`ref-attachment-a`) verwendet.
 
-Betrachten der Inhaltsbeschreibung der *Nfo*--Dateien vor dem Export
+Betrachten der Inhaltsbeschreibung der *nfo*--Dateien vor dem Export
 (gekürzt):
 
 .. code-block:: bash
@@ -469,11 +467,11 @@ XBMC Plugin Integration
 XBMC Plugin
 -----------
 
-Neben den Kommandozeilentools Geri und Freki wurde *konzeptionell* ein Plugin für
+Neben den Kommandozeilentools Geri und Freki wurde konzeptionell ein Plugin für
 das XBMC (siehe Abbildung: :num:`fig-xbmcscreenshot-hugin`) geschrieben,
 welches *libhugin* als Metadatenquelle nutzen kann.
 
-Das XBMC erlaubt es sogenannte :term:`Scraper` zu schreiben.
+Das XBMC erlaubt es, sogenannte :term:`Scraper` zu schreiben.
 Diese arbeiten vom Grundprinzip ähnlich wie die Provider von *libhugin*. Das
 Problem bei dessen Scrapern ist, dass diese vollständig mittels *Regulärer
 Ausdrücke* innerhalb von *XML*--Dateien geschrieben sind. Dies ist nach Meinung
@@ -503,9 +501,9 @@ XBMC liefert.
 
 **Libhugin RESTful--API**
 
-Der *Libhugin*--Proxy zeigt *konzeptionell* die Integration von *libhugin* als
+Der *Libhugin*--Proxy zeigt konzeptionell die Integration von *libhugin* als
 Netzwerkdienst, welcher eine RESTful--API bereitstellt. Nach dem der
-*libhugin*--Proxy gestartet wurde, ist es möglich über den Webbrwoser auf die
+*libhugin*--Proxy gestartet wurde, ist es möglich über den Webbrowser auf die
 RESTful--API über Port 5000 zuzugreifen.
 
 Folgende Bash--Sitzung zeigt die Suche des Films *,,Prometheus (2012)"* über den
@@ -526,7 +524,7 @@ Die implementierte Test--API bietet die folgenden Schnittstellen:
 
     + ``/search/<titlename or imdbid>:`` Suche nach Film über Titel oder *IMDb ID*.
     + ``/movie/<position>:`` Zugriff auf einen bestimmten Film im Proxy Cache.
-    + ``/into:`` Server Information, welche zeigt ob Postprocessing aktiviert ist.
+    + ``/info:`` Server Information, welche zeigt ob Postprocessing aktiviert ist.
     + ``/toggle_pp:`` Postprocessing aktivieren oder deaktivieren.
     + ``/shutdown:`` Server herunterfahren.
 
@@ -536,8 +534,8 @@ ist, *libhugin* als ,,neuen Dienst" für Multimedia--Anwendungen oder auch
 Movie--Metadaten--Manager zu verwenden.
 
 Hierbei kommt die Flexibilität und Anpassbarkeit des Systems den bisherigen
-Tools zu Gute. Auf diese Art und Weise lassen sich alle Features die *libhugin*
-bietet in bereits existierende Tools integrieren.
+Tools zu Gute. Auf diese Art und Weise lassen sich alle Features, die *libhugin*
+bietet, in bereits existierende Tools integrieren.
 
 
 .. _fig-xbmcscreenshot-hugin:
@@ -561,7 +559,7 @@ Features.
     * Postprocessing, je nach dazugeschalteten Plugin möglich.
 
 Beim Nutzen weiterer Provider sowie Plugins, wie dem Compose Plugin eröffnen
-sich hier für das XBMC ganz neue Möglichkeiten seine Metadaten nach den eigenen
+sich hier für das XBMC ganz neue Möglichkeiten, seine Metadaten nach den eigenen
 Wünschen zusammen zu bauen, ohne dabei auf externe Movie--Manager zugreifen zu
 müssen. Im Prinzip kann *libhugin* hier das komplette Metadatensystem vom XBMC
 ersetzen.
@@ -600,7 +598,7 @@ So schaut das minimalistische rename--Skript aus:
    done
 
 Um eine schlampig gepflegte Filmsammlung zu ,,simulieren", werden Ordner mit
-Filmen, die falsch geschrieben sind erstellt:
+Filmen, die falsch geschrieben sind, erstellt:
 
 .. code-block:: bash
 
@@ -608,7 +606,7 @@ Filmen, die falsch geschrieben sind erstellt:
    "jung unt schon","marix","oonly good forgives","teh marix 2"}
 
 
-Anschließend wird das Skript auf die ,,schlampig" gepflegte Ordnerstruktur
+Anschließend wird das Skript auf die schlampig gepflegte Ordnerstruktur
 laufen gelassen:
 
 .. code-block:: bash
@@ -626,7 +624,7 @@ laufen gelassen:
    ‘movies/teh marix 2’ -> ‘movies/The Matrix Reloaded (2003), [tt0234215]’
 
 
-An diesem Beispiel sieht man wie *gut* die Unschärfesuche funktionieren kann.
+An diesem Beispiel sieht man wie gut die Unschärfesuche funktionieren kann.
 Bei diesem kleinem *Testsample* haben wir eine Trefferwahrscheinlichkeit von 100%.
 
 .. raw:: Latex
@@ -635,7 +633,7 @@ Bei diesem kleinem *Testsample* haben wir eine Trefferwahrscheinlichkeit von 100
 
 **D--Bus**
 
-Eine weitere Möglichkeit neben dem ,,Proxyserver--Ansatz" wäre *D--Bus* zu
+Eine weitere Möglichkeit, neben dem ,,Proxyserver--Ansatz", wäre *D--Bus* zu
 verwenden. *D--Bus* ist ein Framework, das unter Linux zur
 Interprozesskommunikation verwendet wird. Man kann hier beispielsweise
 *libhugin* als *D--Bus*--Service laufen lassen und jede andere beliebige
