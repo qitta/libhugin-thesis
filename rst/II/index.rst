@@ -3,7 +3,7 @@ Begriffsdefinitionen
 ####################
 
 Im Folgenden werden Fachbegriffe und Begriffe, die im Kontext von *libhugin*
-anders besetzt sind, definiert:
+anders, im Vergleich zum normalen Sprachgebrauch, besetzt sind, definiert:
 
 Fachbegriffe
 ------------
@@ -23,7 +23,7 @@ Fachbegriffe
 
     Smart--TV
 
-     Bezeichnung für einen Fernseher der eine Computerfunktion integriert hat
+     Bezeichnung für einen Fernseher, der eine Computerfunktion integriert hat
      und internetfähig ist.
 
     XML
@@ -34,7 +34,7 @@ Fachbegriffe
     JSON
 
      JavaScript--Object--Notation, eine Auszeichnungssprache ähnlich wie *XML*
-     mit dem Ziel von Mensch und Maschine einfacher lesbar als *XML* zu sein.
+     mit dem Ziel, von Mensch und Maschine einfacher lesbar als *XML* zu sein.
 
     Hashtabelle
 
@@ -46,7 +46,7 @@ Fachbegriffe
 
      Scraper werden Anwendungen genannt, die in der Lage sind Informationen aus
      Webseiten zu extrahieren. Ein Scraper gibt sich einer Webseite gegenüber
-     wie ein normaler Webbrowser aus. So wird eine maschinelle Verarbeitung der
+     als ein normaler Webbrowser aus. So wird eine maschinelle Verarbeitung der
      Informationen auf dieser Webseite möglich.
 
     RESTful
