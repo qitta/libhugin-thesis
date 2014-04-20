@@ -13,8 +13,8 @@ aufgezeichnet und verwaltet. Das Aufkommen der digitalen HDTV--Sender und das
 große Angebot an Pay--TV--Sendern hat den Trend der letzten Jahre nochmal
 verstärkt. Wurde eine Spielfilm verpasst, so kann dieser bequem über
 einen der vielen Online--Videorecorder--Dienste nachträglich bezogen werden. Es
-geht sogar soweit, dass USB--Sticks (siehe :cite:`usbstickmovie`) mit Hollywood
-Spielfilmen beworben und verkauft werden.
+geht sogar soweit, dass USB--Sticks (siehe :cite:`usbstickmovie`) mit
+Hollywood--Spielfilmen beworben und verkauft werden.
 
 Zeichnet man viele Filme auf oder digitalisiert seine Filmsammlung, so muss man
 sich mit dem Pflegen der inhaltsbezogenen :term:`Metadaten` auseinandersetzen.
@@ -23,24 +23,24 @@ Jahren waren diese noch auf den DVD--Hüllen im Regal zu finden, heutzutage
 müssen sie nach dem Digitalisieren erst noch vom Benutzer nachträglich
 eingepflegt werden.  Typische Metadaten bei Filmen sind der Titel, Jahr,
 Inhaltsbeschreibung, Cover und Genre.  Diese Metadaten sind bei Filmen im
-Unterschied zur Musik essentiell, da hierüber die Entscheidung getroffen wird ob
-ein Film geschaut wird oder nicht.
+Unterschied zur Musik essentiell, da hierüber die Entscheidung getroffen wird,
+ob ein Film geschaut wird oder nicht.
 
 Die Metadaten werden in der Regel über Onlinequellen, wie beispielsweise die
 Internet Movie Database (IMDb, siehe :cite:`imdb`) bezogen. Die Anzahl der
-möglichen Onlinedienste, die Metadaten bereitstellen, ist hier praktisch
-*ungebrenzt*. Viele Abspielanwendungen wie das Windows--Media--Center oder das
-XBMC--Media--Center (siehe :cite:`xbmc`) können ihre Metadaten automatisch
-aus dem Internet beziehen. Je nach Anwendung kann es hier im Hintergrund eine
-oder mehrere Bezugsquellen für Metadaten geben.
+möglichen Onlinedienste, die Metadaten bereitstellen, ist sehr groß.  Viele
+Abspielanwendungen wie das Windows--Media--Center oder das XBMC--Media--Center
+(siehe :cite:`xbmc`) können ihre Metadaten automatisch aus dem Internet
+beziehen. Je nach Anwendung kann es hier im Hintergrund eine oder mehrere
+Bezugsquellen für Metadaten geben.
 
 Ein Problem bei der Pflege der Metadaten im Filmbereich ist, dass es hier
-keinen Standard gibt der sich durchgesetzt hat. Es gibt einerseits die
-Möglichkeit bestimmte Metadaten in bestimmte Container--Formate (siehe
+keinen Standard gibt, der sich durchgesetzt hat. Es gibt einerseits die
+Möglichkeit, bestimmte Metadaten in bestimmte Container--Formate (siehe
 Streaminfos in Tabelle :cite:`containerformate`) zu integrieren, andererseits
 werden diese in separaten Dateien oder Datenbanken der jeweiligen
-Abspiel--/Verwaltungssoftware gepflegt. Ein weiteres Problem ist die *große*
-Anzahl verschiedener Onlinequellen von denen die Metadaten bezogen werden. Hier
+Abspiel--/Verwaltungssoftware gepflegt. Ein weiteres Problem ist die große
+Anzahl verschiedener Onlinequellen, von denen die Metadaten bezogen werden. Hier
 werden von Anwendung zu Anwendung unterschiedliche Quellen verwendet, die je
 nach Filmsammlung gut oder weniger gut geeignet sind. Die Onlinequellen
 unterscheiden sich stark in der Qualität, Umfang und Art der angebotenen
@@ -49,7 +49,7 @@ Quelle nur in einer bestimmten Sprache vorhanden sind.
 
 Daraus resultierend sind über die Jahre sogenannte Movie--Metadaten--Manager
 entstanden, die den Benutzer bei der Pflege der Filmsammlung unterstützen
-sollen. Auch hier gibt es nicht das *Tool der Wahl*. Es gibt verschiedene
+sollen. Auch hier gibt es nicht das Tool der Wahl. Es gibt verschiedene
 Tools, die nur bestimmte Metadaten--Exportformate unterstützen, nur bestimmte
 Onlinequellen ansprechen können oder auch nur unter bestimmten Betriebssystemen
 verfügbar sind. Die unter Linux vorhandenen und getesteten
@@ -60,24 +60,25 @@ verbessern.
 Projektziel
 ===========
 
-Das Ziel dieser Arbeit ist es eine andere Herangehensweise zu zeigen und ein
-modulares pluginbasiertes System zu entwerfen, das die verschiedenen
-Metadaten--Exportformate und Metadaten--Bezugsquellen zusammenführt und über
-eine *einheitliche Schnittstelle* anbietet. Neben der Funktionalität der
-Metadatenbeschaffung, soll es die Möglichkeit der Metadatenaufbereitung geben.
-Hierzu gehören beispielsweise das Säubern der Metadaten von ungewünschten
-Sonderzeichen aber auch die automatische Extraktion von Schlüsselwörtern aus der
-Inhaltsbeschreibung mittels Data--Mining Algorithmen.
+Das Ziel dieser Arbeit ist es, eine andere Herangehensweise im Vergleich zu den
+aktuellen Tools zu zeigen und ein modulares pluginbasiertes System zu entwerfen,
+das die verschiedenen Metadaten--Exportformate und Metadaten--Bezugsquellen
+zusammenführt und über eine *einheitliche Schnittstelle* anbietet. Neben der
+Funktionalität der Metadatenbeschaffung soll es die Möglichkeit der
+Metadatenaufbereitung geben.  Hierzu gehören beispielsweise das Säubern der
+Metadaten von ungewünschten Sonderzeichen, aber auch die automatische Extraktion
+von Schlüsselwörtern aus der Inhaltsbeschreibung mittels
+Data--Mining--Algorithmen.
 
 Die aktuellen Tools zur Metadatenverwaltung verfolgen einen eher *statischen*
-Ansatz.  Im Gegensatz dazu soll das System nach dem Baukastenprinzip erweiterbar
-sein und durch Schreiben neuer Plugins an verschiedene Anforderungen des
-Benutzers anpassbar sein.
+Ansatz.  Im Gegensatz dazu soll das zu entwickelnde System nach dem
+Baukastenprinzip erweiterbar sein und durch Schreiben neuer Plugins an
+verschiedene Anforderungen des Benutzers anpassbar sein.
 
 Im Unterschied zu den bereits vorhandenen Tools, die hauptsächlich durch
 manuelle Interaktion des Benutzers gesteuert werden, soll das System auf eine
 automatisierte Verarbeitung ausgelegt sein. Hier liegt das Hauptaugenmerk auf
-der Pflege *großer* Filmsammlungen.
+der Pflege großer Filmsammlungen mehrerer hunderter Filme.
 
 Der modulare Aufbau und eine freie Lizenz sollen eine Weiterentwicklung durch
 die Community ermöglichen und zusätzlichen Spielraum für neue Ideen schaffen.
