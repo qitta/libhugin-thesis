@@ -50,7 +50,7 @@ Die Suche von Metadaten soll sich für das Projekt auf Film--Metadaten und
 Personen--Metadaten beschränken. Für TV--Serien--Metadaten soll jedoch auch eine
 Schnittstelle geboten werden.
 
-Die Film--Metadatensuche soll *feingranular* konfigurierbar sein, das heißt die
+Die Film--Metadatensuche soll feingranular konfigurierbar sein, das heißt die
 zu verwendenden Onlinequellen, die Anzahl der Ergebnisse und die *Art* der
 Metadaten soll bei einer Suchanfrage einstellbar sein. Die Unterscheidung der
 *Art* soll sich auf textuelle und grafische Metadaten beschränken.
@@ -59,7 +59,12 @@ Eine *onlinequellenübergreifende* Suche über die IMDb ID, welche exakte
 Ergebnisse liefert, ist wünschenswert.
 
 Beim Suchverhalten über mehrere Onlinequellen soll es zwei verschiedene
-,,Suchstrategien" geben. Bevor die Suchergebnisse an den Benutzer zurückgegeben
+,,Suchstrategien" geben. Durch diese Suchstrategien soll dem Benutzer die
+Kontrolle darüber gegeben werden, ob er möglichst genaue Ergebnisse von
+unterschiedlichen Providern erhalten möchte, oder ob er verschiedene Ergebnisse
+eines bevorzugten Providers wünscht.
+
+Bevor die Suchergebnisse an den Benutzer zurückgegeben
 werden, werden diese nach Provider--Priorität gruppiert. Die gruppierten
 Ergebnisse je Provider werden nach Übereinstimmung mit der Suche sortiert.
 
@@ -150,7 +155,7 @@ analysieren, um neue Erkenntnisse zu gewinnen oder Defizite zu identifizieren.
 Ein Beispiel hierfür wäre die Erkennung der verwendeten Sprache der
 Inhaltsbeschreibung.
 
-**Comperator--Plugins**
+**Comparator--Plugins**
 
 Diese Art von Plugins ist experimentell. Sie ist für statistische Auswertungen
 bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht. Mit den

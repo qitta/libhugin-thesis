@@ -98,9 +98,9 @@ Kontextspezifische Fachbegriffe
      nachträgliche Analyse von Filmmmetadaten verwendet wird. Dies kann
      beispielsweise die Erkennung der Sprache der Inhaltsbeschreibung sein.
 
-    Comperator
+    Comparator
 
-     Im Kontext von *libhugin* ist ein Comperator ein Plugin, welches für
+     Im Kontext von *libhugin* ist ein Comparator ein Plugin, welches für
      Vergleiche zuständig ist. Mit Hilfe dieser Pluginart soll im späteren
      Verlauf untersucht werden, wie gut sich Filme anhand von Metadaten
      vergleichen lassen und ob sich beispielsweise Film--Empfehlungen aufgrund

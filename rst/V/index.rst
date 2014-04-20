@@ -149,7 +149,7 @@ Schnittstellen für folgende Pluginarten bereitstellen:
 
     * Modifier
     * Analyzer
-    * Comperator
+    * Comparator
 
 Der Analyze--Teil der Bibliothek soll eine interne Datenbank besitzen, in welche
 externe Metadaten zur Analyse importiert werden. So können alle Plugins auf
@@ -510,7 +510,7 @@ Plugin direkt zurückgeliefert.
 ``modifier_plugins(pluginname=None)``: Analog zu
 ``analyzer_plugins(pluginname=None)``.
 
-``comperator_plugins(pluginname=None)``: Analog zu
+``comparator_plugins(pluginname=None)``: Analog zu
 ``analyzer_plugins(pluginname=None)``.
 
 Folgende weitere Methoden erlauben es, die *libhugin--analyze* Plugins auf *externe*
@@ -544,7 +544,7 @@ Datenbank zur Analyse gespeichert wird. Es enthält folgende Attribute:
     * Pfad zur Metadatendatei.
     * Hashtabelle mit den Metadaten.
     * Hashtabelle mit Analyzer--Analysedaten.
-    * Hashtabelle mit Comperator--Analysedaten.
+    * Hashtabelle mit Comparator--Analysedaten.
 
 
 **PluginHandler**
@@ -596,7 +596,7 @@ Oberklassen abzuleiten. Mehrfachableitung ist unter Python möglich:
     +----------------------+-------------------------------------------------------------------------+
     | *IAnalyzer*          | Analyzer--Plugins, die für die Analyse der Metadaten zuständig sind.    |
     +----------------------+-------------------------------------------------------------------------+
-    | *IComperator*        | Comperator--Plugins, die Metadaten für statistische Zwecke vergleichen. |
+    | *IComparator*        | Comparator--Plugins, die Metadaten für statistische Zwecke vergleichen. |
     +----------------------+-------------------------------------------------------------------------+
 
 
@@ -630,12 +630,12 @@ Anwendung hier ist analog den Modifierplugins.
 ``parameters()``: Analog Modifierplugins.
 
 Plugins, die Metadaten für statistische Zwecke analysieren und vergleichen
-können, müssen von *IComperator* ableiten (siehe Abbildung
+können, müssen von *IComparator* ableiten (siehe Abbildung
 :num:`table-analyze-plugins`). Des Weiteren müssen diese Plugins folgende
 Methoden implementieren:
 
 ``compare(movie_a, movie_b, **kwargs)``: Die Standardmethode für
-Comperatorplugins. Diese erwartet als Parameter zwei *Movie--Objekte*, die
+Comparatorplugins. Diese erwartet als Parameter zwei *Movie--Objekte*, die
 verglichen werden sollen. Die Keyword--Argumente können analog den Modifier--
 und Analyzerplugins verwendet werden.
 
@@ -681,5 +681,5 @@ weggelassen.
     |   |-- rake.py                         # Implementierung Rake Algorithmus
     |   |-- analyzer/                       # Ordner für Analyzer--Plugins
     |   |-- comparator/                     # Ordner für Modifier--Plugins
-    |   |-- modifier/                       # Ordner für Comperator--Plugins
+    |   |-- modifier/                       # Ordner für Comparator--Plugins
     |-- filewalk.py                         # Helferfunktion für Import/Export

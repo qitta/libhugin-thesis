@@ -80,7 +80,7 @@ Weitere mögliche Verbesserungen
 **Geri und Freki**
 
 Die beiden Kommandozeilen--Tools lassen sich noch weiter ausbauen. Das
-Analysetool Freki beherrscht im aktuellen Zustand noch keine Comperator--Plugins.
+Analysetool Freki beherrscht im aktuellen Zustand noch keine Comparator--Plugins.
 Weitere denkbare Entwicklungen bei beiden Tools wären automatisierte Analysen
 der Metadaten und statistische Auswertungen. Des Weiteren wäre ein zusätzliches
 *ncurses*--Interface, wie es beispielsweise auch beim Mail Client *mutt* genutzt
@@ -127,7 +127,7 @@ Statistische Untersuchung der Metadaten
 ---------------------------------------
 
 Der Analyse--Teil der Bibliothek bietet die nicht weiter behandelte
-experimentelle Comperator--Plugin--Schnittstelle. Die Idee hierzu ist es Plugins
+experimentelle Comparator--Plugin--Schnittstelle. Die Idee hierzu ist es Plugins
 zu entwickeln, die Film Metadaten verschiedener Quellen untersuchen und
 miteinander vergleichen. Durch den Vergleich soll die *Qualität* der
 Metadatenquellen statistisch untersucht werden.

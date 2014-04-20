@@ -204,13 +204,13 @@ Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
 Der LangIdentify--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
 die Information zu den Analysedaten.
 
-Comperator--Plugins
+Comparator--Plugins
 -------------------
 
 Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
 Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
 
-Folgende Comperator--Plugins wurden konzeptionell implementiert:
+Folgende Comparator--Plugins wurden konzeptionell implementiert:
 
 **GenreCmp**
 
