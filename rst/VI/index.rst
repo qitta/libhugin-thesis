@@ -83,14 +83,14 @@ dem Benutzer dadurch folgende Möglichkeiten:
 
 **Zu 1.):** Es erlaubt dem Benutzer sich ein nach seinen Wünschen
 zusammengesetztes Ergebnis zu komponieren. Der Benutzer kann über das Angeben
-einer *Profilmaske* bestimmen, wie sich die Metadaten zusammensetzen sollen.
+einer Profilmaske bestimmen, wie sich die Metadaten zusammensetzen sollen.
 Hier kann er beispielsweise angeben, dass er den Filmtitel, Jahr und Cover vom
 Provider *TMDb* möchte, die Inhaltsbeschreibung jedoch immer vom *Filmstarts*
 Provider. Hier besteht auch die Möglichkeit eines ,,Fallbacks", falls *Filmstarts*
 keine Inhaltsbeschreibung hat, dann kann auch auf andere Provider
 zurückgegriffen werden.
 
-Beispiel für eine *Profilmaske*, die TMDb als Standardprovider nimmt und die
+Beispiel für eine Profilmaske, die TMDb als Standardprovider nimmt und die
 Inhaltsbeschreibung vom OFDb Provider nimmt. Falls keine OFDb Inhaltsbeschreibung
 vorhanden ist, dann erfolgt ein ,,Fallback" auf den OMDb Provider:
 
@@ -98,11 +98,11 @@ vorhanden ist, dann erfolgt ein ,,Fallback" auf den OMDb Provider:
 
     $ echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie', 'omdbmovie']}" > profilemask
 
-Wird keine *Profilmaske* angegeben so werden fehlende Attribute nach
+Wird keine Profilmaske angegeben, so werden fehlende Attribute nach
 Provider--Priorität aufgefüllt.
 
 **Zu 2.):** Dieses Feature erlaubt dem Benutzer divergente Genres
-beim gleichen Film zu verschmelzen. Das macht das Genre *feingranularer* und
+beim gleichen Film zu verschmelzen. Das macht das Genre feingranularer und
 behebt die genannte Problematik (siehe Abbildung :num:`table-feuchtgebiete`)
 divergenter Genres bei verschiedenen Onlinequellen. Das Genre wird hier wie
 folgt zusammengesetzt:
@@ -115,9 +115,9 @@ folgt zusammengesetzt:
 
 **Trim**
 
-Dies ist vergleichsweise ein einfaches Plugin, welches dafür zuständig ist
+Dies ist vergleichsweise ein einfaches Plugin, welches dafür zuständig, ist
 vorangehende und nachziehende Leerzeichen bei den Metadaten zu entfernen. Das
-Plugin führt eine *Bereinigung* durch, diese muss nicht explizit vom
+Plugin führt eine Bereinigung durch, diese muss nicht explizit vom
 Provider--Plugin durchgeführt werden.
 
 Converter--Plugins
@@ -176,7 +176,7 @@ werden.
 **PlotLangChange**
 
 Das *PlotLangChange* Plugin ist für das nachträgliche Ändern der
-Inhaltsbeschreibung zuständig. Es hat die Funktion die Sprache des Plots zu
+Inhaltsbeschreibung zuständig. Es hat die Funktion, die Sprache des Plots zu
 ändern.
 
 Analyzer--Plugins
@@ -330,11 +330,12 @@ Github--Projektseite teilt so dem Besuchern der Seite den aktuellen
 .. _fig-build:
 
 .. figure:: fig/build.png
-    :alt: Symbol das den aktuellen ,,Build Status" der GitHub--Projektseite.
+    :alt: Symbol, das den aktuellen ,,Build Status" der GitHub--Projektseite
+          zeigt.
     :width: 60%
     :align: center
 
-    Symbol das den aktuellen ,,Build--Status" der GitHub--Projektseite.
+    Symbol, das den aktuellen ,,Build--Status" der GitHub--Projektseite zeigt.
 
 
 **Projektdokumentation**
@@ -377,13 +378,13 @@ Python--Shell eine zusätzliche Hilfestellung geboten (siehe Abbildung
 
 Der Projektumfang beträgt ca. 3500 *lines of code*,  hier kommt noch zusätzlich
 die Onlinedokumentation hinzu. Eine Statistik zum Projekt, welche mit dem Tool
-*cloc* erstellt wurde ist im Anhang unter :ref:`ref-cloc` zu finden.
+*cloc* erstellt wurde, ist im Anhang unter :ref:`ref-cloc` zu finden.
 
 
 **Externe Bibliotheken**
 
 Die Tabelle :num:`table-libs` listet alle verwendeten externen Abhängigkeiten
-für die *Libhugin*--Bibliothek.
+für die *libhugin*--Bibliothek.
 
 .. figtable::
     :label: table-libs
@@ -419,6 +420,8 @@ für die *Libhugin*--Bibliothek.
     | *beaufifulsoup4*        | Plugins         | Parsen von HTML Seiten          |
     +-------------------------+-----------------+---------------------------------+
     | *xmltodict*             | Plugins         | Verarbeitung von XML Dokumenten |
+    +-------------------------+-----------------+---------------------------------+
+    | *hachoir-metadata*      | Plugins         | Extraktion von Datei--Metadaten |
     +-------------------------+-----------------+---------------------------------+
 
 
