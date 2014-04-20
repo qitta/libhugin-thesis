@@ -1,6 +1,6 @@
-##########################################
-Metadatenquellen, Software und Problematik
-##########################################
+###################################
+Aktueller Stand der Metadatenpflege
+###################################
 
 Die vorgestellten Plattformen, Player und Tools zeigen nur einen Ausschnitt.
 Alle Plattformen, Player und Tools aufzulisten ist aufgrund der Vielfalt
@@ -13,7 +13,7 @@ Metadatenarten
 --------------
 
 Grundsätzlich lassen sich Film--Metadaten in zwei Kategorien
-einordnen. Metadaten, die das Videoformat (Auflösung, Bitrate, ...) beschreiben
+einordnen. Metadaten, die das Videoformat (Auflösung, Bitrate, ...) beschreiben,
 und Metadaten, die den Inhalt beschreiben. Metadaten zur Beschreibung des
 Videoformats können je nach Container--Format direkt in die Datei eingebettet
 werden (siehe :cite:`metadatenarten`).
@@ -25,10 +25,8 @@ Erscheinungsjahr, Genre, Inhaltsbeschreibung, Cover und noch einige weitere.
 Metadatenquellen
 ----------------
 
-**Bezug von Metadaten**
-
 Zum Bezug der Metadaten werden verschiedene Onlinequellen genutzt. Im Prinzip
-eignet sich *jede* Seite, die Filminformationen pflegt als Metadatenquelle. Zu
+eignet sich jede Seite, die Filminformationen pflegt als Metadatenquelle. Zu
 den gängigen Metadatenquellen --- neben zahlreichen anderen Quellen --- zählen:
 
  * *Internet Movie Database (IMDb)*, englischsprachig
@@ -91,9 +89,9 @@ Standalone--Lösungen wie beispielsweise Popcorn Hour (siehe
 
     Screenshot einer im XBMC gepflegten Filmesammlung.
 
-Die Media--Center--Software kann ihre Metadaten in der Regal je nach Applikation
-von einer oder mehreren Onlinequellen beziehen. Sie bieten dem Benutzer jedoch
-in der Regal nicht die Möglichkeit Korrekturen durchzuführen und sind somit nur
+Die Media--Center--Software kann ihre Metadaten in der Regel je nach Applikation
+von einer oder mehreren Onlinequellen beziehen. Sie bietet dem Benutzer jedoch
+in der Regel nicht die Möglichkeit, Korrekturen durchzuführen und ist somit nur
 bedingt zum Pflegen von großen Filmsammlungen geeignet.
 
 
@@ -102,7 +100,7 @@ Movie--Metadaten--Manager
 
 Neben den Media--Center--Lösungen gibt es spezielle Tools für die Pflege und
 Korrektur von Film--Metadaten, sogenannte *Movie--Metadaten--Manager*. Ein
-Movie--Management--Tool, welches es unter *unixoden* Betriebssystemen
+Movie--Management--Tool, welches es unter unixoden Betriebssystemen
 gibt, ist beispielsweise MediaElch (siehe Abbildung :num:`fig-mediaelch`, siehe
 :cite:`mediaelch`). Hier gibt es unter Linux noch weitere Tools (siehe
 :cite:`moviemanager`).
@@ -179,7 +177,7 @@ Redundante Metadaten
 
 **Grundlegende Problematik**
 
-Redundanzen treten in der Regal auf, wenn bei einer Filmsammlung die Daten aus
+Redundanzen treten in der Regel auf, wenn bei einer Filmsammlung die Daten aus
 unterschiedlichen Quellen stammen. Damit ist gemeint, dass beispielsweise das
 Genre auf unterschiedlichen Plattformen unter einem anderen Namen gepflegt ist.
 Beim Herunterladen von Metadaten aus mehreren Quellen, wird beispielsweise das
@@ -227,7 +225,7 @@ Problematik, Auszüge von Metadaten der drei Onlinequellen *IMDb*, *TMDb* und
 
 Ausgehend von der Annahme, dass die Inhaltsbeschreibung (engl. Plot) und das
 Genre zu den *wichtigsten* Kriterien bei der Filmauswahl gehören und diese somit
-*sauber* gepflegt sein müssen, werden diese nachfolgend explizit betrachtet.
+gepflegt sein müssen, werden diese nachfolgend explizit betrachtet.
 
 In unserem Beispiel befinden sich folgende vier Filme in der Filmsammlung, die
 mit Metadaten versorgt werden sollen:
@@ -268,7 +266,7 @@ Hintergrundbilder (siehe Abbildung :num:`table-afterlife`).
     | *Genre*  | Drama, Horror, Mystery | Drama, Horror, Mystery, Thriller | Drama, Horror, Thriller |
     +----------+------------------------+----------------------------------+-------------------------+
 
-*Zusammenfassung zum Genre:* austauschbar, unterschiedlich *feingranular* gepflegt
+*Zusammenfassung zum Genre:* austauschbar, unterschiedlich feingranular gepflegt
 
 **Feuchtgebiete (2013):** Der zweite Film ist bei TMDb und OFDb gut gepflegt.
 Jedoch fällt auf, dass das gepflegte Genre bei diesen beiden Onlinequellen keinen
@@ -297,7 +295,7 @@ auch seine Daseinsberechtigung hat.
 nicht vorhanden. Der Film ist im Vergleich zu Hollywood--Blockbuster in
 Deutsch relativ schlecht gepflegt. Bei OFDb ist wie auch beim ersten Film, eine
 deutschsprachige Inhaltsangabe vorhanden. Zur großen Überraschung ist hier das
-Genre im Vergleich zu den beiden anderen Onlinequellen *feingranularer* gepflegt
+Genre im Vergleich zu den beiden anderen Onlinequellen feingranularer gepflegt
 --- was laut Wikipedia (siehe :cite:`nymphomaniac`) den Filminhalt besser
 widerspiegelt (siehe Abbildung :num:`table-nymphomaniac`).
 
@@ -315,7 +313,7 @@ widerspiegelt (siehe Abbildung :num:`table-nymphomaniac`).
     | *Genre*  | Drama            | Drama            | Drama, Erotik, Sex |
     +----------+------------------+------------------+--------------------+
 
-*Zusammenfassung zum Genre:* divergent, unterschiedlich *feingranular* gepflegt
+*Zusammenfassung zum Genre:* divergent, unterschiedlich feingranular gepflegt
 
 **RoboCop (2014):** Der vierte Film, eine Hollywood Remake--Produktion ist hier
 bei allen drei Anbietern sehr gut gepflegt (siehe Abbildung :num:`table-robocop`).
@@ -335,7 +333,7 @@ bei allen drei Anbietern sehr gut gepflegt (siehe Abbildung :num:`table-robocop`
     +----------+-----------------------+--------------------------------+------------------------------------------+
 
 *Zusammenfassung zum Genre:* unterschiedliche Schreibweise, divergent, Problem der
-Internationalisierung, unterschiedlich *feingranular* gepflegt
+Internationalisierung, unterschiedlich feingranular gepflegt
 
 Beim Bezug von Metadaten der vier Filme wird deutlich, welche Probleme bei der
 Beschaffung dieser entstehen können. Diese Probleme werden beim *,,aktuellen
@@ -360,13 +358,9 @@ Probleme bei der Metadatensuche
 Grundlegende Probleme
 ---------------------
 
-**Exakte Suchstrings**
-
 Viele Metadaten--Tools erwarten exakte Suchbegriffe. Falsch geschriebene Filme
 wie ,,The Marix" oder ,,Sin Sity'' werden oft nicht gefunden (siehe Abbildung
 :num:`table-movietools`).
-
-**Suche nach IMDb ID**
 
 Die Suche nach der *IMDb ID* ist bei den getesteten Tools häufig nicht möglich,
 obwohl diese von manchen Onlineanbietern unterstützt wird (siehe Abbildung
@@ -378,7 +372,7 @@ Probleme bei Movie--Metadaten--Managern
 Es wurden neben der Abspielsoftware XBMC und dem
 Movie--Metadaten--Manager MediaElch, die bereits genannten
 Movie--Metadaten--Manager (siehe :cite:`moviemanager`) *GCstar*, *vMovieDB*,
-*Griffith* und *Tellico* betrachtet. Die Resultate hier waren eher *ernüchternd*
+*Griffith* und *Tellico* betrachtet. Die Resultate hier waren eher ernüchternd
 (siehe Abbildung :num:`table-movietools`). Bei den beiden Media--Managern GCstar
 und vMovieDB hat die Metadatensuche nicht funktioniert, hier wurde nichts
 gefunden. Das Verhalten wurde auf zwei Systemen nachgeprüft. Beim XBMC wurden
@@ -422,11 +416,9 @@ Anforderungen an das Projekt
 
 Viele der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur und der
 aktuellen Kombination aus Abspielsoftware und Movie--Metadaten--Manager nicht
-oder nur mit manuellen Eingriff durch den Benutzer beheben. Bei *großen*
-Filmsammlungen ist dies jedoch mit keinem vernünftigen Aufwand umsetzbar.
-
-Idee: Modulare Herangehensweise
-===============================
+oder nur mit manuellen Eingriff durch den Benutzer beheben. Bei großen
+Filmsammlungen mehrerer hunderter Filme ist dies jedoch mit keinem
+vernünftigen Aufwand umsetzbar.
 
 Es soll *kein neuer* Movie--Metadaten--Manager entwickelt werden. Die Idee ist
 es, dem Entwickler beziehungsweise Endbenutzer einen *modularen
@@ -435,7 +427,7 @@ einheitliche Schnittstelle bereitzustellen, welcher an die persönlichen
 Bedürfnisse anpassbar ist.
 
 Des Weiteren soll die zusätzliche Funktionalität der Datenanalyse,
-beispielsweise basierend auf Data--Mining Algorithmik, möglich sein. Das
+beispielsweise basierend auf Data--Mining--Algorithmik, möglich sein. Das
 Hauptaugenmerk des Systems liegt, im Gegensatz zu den bisherigen
 Movie--Metadaten--Managern, auf der *automatisierten* Verarbeitung großer
 Datenmengen.
