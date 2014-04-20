@@ -14,7 +14,7 @@ Grundprinzip -- Beschaffung der Metadaten
 
 Metadaten werden über verschiedene Onlinequellen bezogen. Hier wird
 grundsätzlich zwischen Onlinequellen mit API und ohne API unterschieden.
-Onlinequellen mit API bieten dem Entwickler direkt eine Schnittstelle über
+Onlinequellen mit API bieten dem Entwickler direkt eine Schnittstelle, über
 welche die interne Datenbank des Metadatenanbieters abgefragt werden kann. Die
 Onlinequellen mit API unterteilen sich in die zwei Technologien RESTful (vgl.
 :cite:`fielding2000architectural`) und SOAP (vgl. :cite:`snell2002webservice`).
@@ -69,13 +69,13 @@ Webbrowser erhalten würde. Folgende Shellsitzung demonstriert den Aufruf
    </html>
 
 Man bekommt als Aufrufer der URL die Webseite zurückgeliefert und muss nun die
-Daten aus dem Dokument extrahieren. Dies ist in der Regel mühsamer ist, wie der
+Daten aus dem Dokument extrahieren. Dies ist in der Regel mühsamer, wie der
 Zugriff über eine API, welche die Daten sauber im *JSON*-- oder *XML*--Format
 zurückliefert.
 
 
-Übertragung vom Grundprinzip auf das Pluginsytem
-------------------------------------------------
+Übertragung vom Grundprinzip auf das Pluginsystem
+-------------------------------------------------
 
 Ein Ziel bei der Entwicklung der Plugin--Spezifikation ist, den Aufwand für das
 Implementieren eines Plugins so gering wie möglich zu halten, um Programmfehler
@@ -84,7 +84,7 @@ Entwickler zu motivieren, Plugins zu schreiben.
 
 Das oben genannte Prinzip beim Beschaffen von Metadaten ist immer gleich und
 lässt sich somit gut auf das Pluginsystem übertragen. Die Provider--Plugins
-müssen im Prinzip *nur* folgende zwei Punkte können (siehe Abbildung
+müssen im Prinzip nur folgende zwei Punkte können (siehe Abbildung
 :num:`fig-provider-concept`):
 
     * Aus den Suchparametern die *Such--URL* zusammenbauen.
@@ -268,13 +268,13 @@ wurden.
 **Queue**
 
 Die Queue kapselt die Parameter der Suchanfrage. Sie wird direkt mit
-den Parametern der Suchanfrage instantiiert, hierbei werden bestimmte Werte, die
+den Parametern der Suchanfrage instanziiert, hierbei werden bestimmte Werte, die
 übergeben werden, validiert und *Standardwerte* gesetzt.
 
 
 **Cache**
 
-Der Cache wird intern verwendet um erfolgreiche Suchanfragen persistent
+Der Cache wird intern verwendet, um erfolgreiche Suchanfragen persistent
 zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus dem Cache
 geladen werden. Dadurch gewinnt man Geschwindigkeit und der Metadatenanbieter
 wird entlastet. Zum persistenten Speichern wird ein Python Shelve (siehe
@@ -476,7 +476,7 @@ folgt aussieht:
     }
 
 Folgendes Python--Snippet zeigt nun die Funktionalität der *Helferfunktion*,
-welche die Abbildung von externer Quelle auf interne Datenbank verdeutlicht:
+welche die Abbildung von externer Quelle auf die interne Datenbank verdeutlicht:
 
 .. code-block:: python
 
@@ -573,11 +573,11 @@ die vom jeweiligen Plugintyp implementiert werden muss (siehe Abbildung :num:`fi
 .. _fig-analyze:
 
 .. figure:: fig/analyze-plugin-interface.pdf
-    :alt: Libhugin--analyze Plugin Schnitstellenbeschreibung.
+    :alt: Libhugin--analyze Plugin Schnittstellenbeschreibung.
     :width: 100%
     :align: center
 
-    Libhugin--analyze Plugin Schnitstellenbeschreibung.
+    Libhugin--analyze Plugin Schnittstellenbeschreibung.
 
 
 Die *libhugin--analyze* Plugins haben die Möglichkeiten, von den folgenden
@@ -650,7 +650,7 @@ Bibliothek Dateistruktur
 
 Die folgende Auflistung zeigt die Ordnerstruktur der Bibliothek.  Normalerweise
 enthält unter Python jeder Ordner eine `__init__.py--Datei` welche diesen Ordner
-dann als *Modul* erscheinen lässt. Diese wurden wegen der Übersichtlichkeit
+dann als Modul erscheinen lässt. Diese wurden wegen der Übersichtlichkeit
 weggelassen.
 
 .. code-block:: python
@@ -680,6 +680,6 @@ weggelassen.
     |   |-- pluginhandler.py
     |   |-- rake.py                         # Implementierung Rake Algorithmus
     |   |-- analyzer/                       # Ordner für Analyzer--Plugins
-    |   |-- comparator/                     # Ordner für Modifier--Plugins
-    |   |-- modifier/                       # Ordner für Comparator--Plugins
+    |   |-- comparator/                     # Ordner für Comparator--Plugins
+    |   |-- modifier/                       # Ordner für Modifier--Plugins
     |-- filewalk.py                         # Helferfunktion für Import/Export
