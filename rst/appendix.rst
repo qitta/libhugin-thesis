@@ -7,9 +7,8 @@
 Helferfunktion für NFO-Dateien
 ==============================
 
-Folgender Anhang zeigt die import/export-Helferfunktion die von
-*libhugin--analyze* als Schnittstelle zu den XBMC Metadaten
-verwendet wird:
+Folgender Anhang zeigt die import/export-Helferfunktion, die von
+*libhugin--analyze* als Schnittstelle zu den XBMC Metadaten verwendet wird:
 
 
 .. code-block:: python
