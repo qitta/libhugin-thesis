@@ -61,14 +61,14 @@ Projektziel
 ===========
 
 Das Ziel dieser Arbeit ist es, eine andere Herangehensweise im Vergleich zu den
-aktuellen Tools zu zeigen und ein modulares pluginbasiertes System zu entwerfen,
-das die verschiedenen Metadaten--Exportformate und Metadaten--Bezugsquellen
-zusammenführt und über eine *einheitliche Schnittstelle* anbietet. Neben der
-Funktionalität der Metadatenbeschaffung soll es die Möglichkeit der
-Metadatenaufbereitung geben.  Hierzu gehören beispielsweise das Säubern der
-Metadaten von ungewünschten Sonderzeichen, aber auch die automatische Extraktion
-von Schlüsselwörtern aus der Inhaltsbeschreibung mittels
-Data--Mining--Algorithmen.
+aktuell verfügbaren Tools zu zeigen und ein modulares pluginbasiertes System zu
+entwerfen, das die verschiedenen Metadaten--Exportformate und
+Metadaten--Bezugsquellen zusammenführt und über eine *einheitliche
+Schnittstelle* anbietet. Neben der Funktionalität der Metadatenbeschaffung soll
+es die Möglichkeit der Metadatenaufbereitung geben.  Hierzu gehören
+beispielsweise das Säubern der Metadaten von ungewünschten Sonderzeichen, aber
+auch die automatische Extraktion von Schlüsselwörtern aus der
+Inhaltsbeschreibung mittels Data--Mining--Algorithmen.
 
 Die aktuellen Tools zur Metadatenverwaltung verfolgen einen eher *statischen*
 Ansatz.  Im Gegensatz dazu soll das zu entwickelnde System nach dem
@@ -78,7 +78,7 @@ verschiedene Anforderungen des Benutzers anpassbar sein.
 Im Unterschied zu den bereits vorhandenen Tools, die hauptsächlich durch
 manuelle Interaktion des Benutzers gesteuert werden, soll das System auf eine
 automatisierte Verarbeitung ausgelegt sein. Hier liegt das Hauptaugenmerk auf
-der Pflege großer Filmsammlungen mehrerer hunderter Filme.
+der Pflege großer Filmsammlungen mehrerer hundert Filme.
 
 Der modulare Aufbau und eine freie Lizenz sollen eine Weiterentwicklung durch
 die Community ermöglichen und zusätzlichen Spielraum für neue Ideen schaffen.
