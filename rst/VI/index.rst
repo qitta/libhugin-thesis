@@ -75,7 +75,7 @@ Die Postprocessor--Plugins beim *libgugin--harvest* Teil sind für die direkte
 
 **Compose**
 
-Das Compose Plugin ist das momentane Kernstück der Postprocessor--Plugins. Das
+Das Compose--Plugin ist das momentane Kernstück der Postprocessor--Plugins. Das
 Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und bietet
 dem Benutzer dadurch folgende Möglichkeiten:
 
@@ -92,8 +92,8 @@ keine Inhaltsbeschreibung hat, dann kann auch auf andere Provider
 zurückgegriffen werden.
 
 Beispiel für eine Profilmaske, die TMDb als Standardprovider nimmt und die
-Inhaltsbeschreibung vom OFDb Provider nimmt. Falls keine OFDb Inhaltsbeschreibung
-vorhanden ist, dann erfolgt ein ,,Fallback" auf den OMDb Provider:
+Inhaltsbeschreibung vom OFDb Provider nimmt. Falls keine OFDb--Inhaltsbeschreibung
+vorhanden ist, dann erfolgt ein ,,Fallback" auf den OMDb--Provider:
 
 .. code-block:: bash
 
@@ -139,7 +139,7 @@ Libhugin--analyze API
 
 Die API von *libhugin--analyze* ist vom Grundaufbau ähnlich zu der
 *libhugin--harvest* API. Folgendes Beispiel--Snippet zeigt die Anwendung des
-BracketClean--Plugins auf *Rohdaten*, welche nicht aus der internen Datenbank
+``BracketClean``--Plugins auf *Rohdaten*, welche nicht aus der internen Datenbank
 stammen.
 
 
@@ -168,7 +168,7 @@ Modifier--Plugins
 
 **BracketClean**
 
-Das *BracketClean* Plugin ist für nachträgliche Manipulation der
+Das *BracketClean*--Plugin ist für nachträgliche Manipulation der
 Inhaltsbeschreibung gedacht. Das Plugin entfernt alle Klammern samt Inhalt aus
 der Beschreibung. Das vereinheitlicht die Inhaltsbeschreibung in dem Sinne, dass
 alle Schauspieler oder Informationen in Klammern aus der Beschreibung entfernt
@@ -176,7 +176,7 @@ werden.
 
 **PlotLangChange**
 
-Das *PlotLangChange* Plugin ist für das nachträgliche Ändern der
+Das *PlotLangChange*--Plugin ist für das nachträgliche Ändern der
 Inhaltsbeschreibung zuständig. Es hat die Funktion, die Sprache des Plots zu
 ändern.
 
@@ -186,8 +186,8 @@ Analyzer--Plugins
 **KeywordExtract**
 
 Dieses Plugin extrahiert aus einem Text, bei Filmen meist die
-Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text beziehungsweise die
-Thematik repräsentieren.
+Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text, beziehungsweise
+die darin dargestellte Thematik repräsentieren.
 
 **FileTypeAnalyze**
 
@@ -276,6 +276,8 @@ Entwicklungumgebung
 Für die Entwicklung der Bibliothek wurde die Programmiersprache Python, in der
 Version 3.3, aus folgenden Gründen gewählt:
 
+.. hübsch! Hab was neues gelernt.
+
 :Rapid Prototyping Language:
 
     Wichtig bei einem Projekt dieser Größe mit begrenztem Zeitraum (vgl. :cite:`lutz2013learning`).
@@ -290,19 +292,21 @@ Version 3.3, aus folgenden Gründen gewählt:
 
 :Verbreitungsgrad:
 
-    Gängige Skriptsprache bei vielen Open Source Projekten.
+    Gängige Skriptsprache bei vielen Open--Source--Projekten.
 
 :Optimierungsmöglichkeiten:
 
-    Möglichkeit der Erweiterung durch C/C++--Code, Optimierung von Python
-    mittels Cython (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`).
+    Möglichkeit der Erweiterung durch
+    :math:`\mathrm{C/C{\scriptstyle\overset{\!++}{\vphantom{\_}}}}`--Code,
+    Optimierung von Python mittels Cython (siehe :cite:`cython`, vgl.
+    :cite:`lutz2013learning`).
 
 **Entwicklungssytem**
 
 Die Bibliothek wird unter *Archlinux* entwickelt. Für die Entwicklung wird der
-Editor *gVim* mit entsprechenden Python--Plugins zur Validierung der Python PEP
-Stilrichtlinien (siehe :cite:`pep`) verwendet. Des Weiteren wird die interaktive
-Python Shell *IPython* eingesetzt.
+Editor *gVim* mit entsprechenden Python--Plugins zur Validierung der Python
+PEP--Stilrichtlinien (siehe :cite:`pep`) verwendet. Des Weiteren wird die
+interaktive Python Shell *IPython* eingesetzt.
 
 **Quellcodeverwaltung**
 
@@ -336,14 +340,14 @@ Github--Projektseite teilt so dem Besuchern der Seite den aktuellen
 
 **Projektdokumentation**
 
-Das Projekt wird nach den Regeln der *literalen Programmierung*, wie nach
+Das Projekt wird nach dem Prinzip der *literalen Programmierung*, wie von 
 *Donald E. Knuth* (siehe :cite:`knuth`) empfohlen, entwickelt. Hierbei liegen
 Quelltext und Dokumentation des Programms in der gleichen Datei.
 
 Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge
 generiert werden. Unter Python wird hier das Softwaredokumentationswerkzeug
 *Sphinx* (siehe :cite:`sphinxdoc`) verwendet. Die offizielle
-Projektdokumentation ist auf der Plattform *readthedocs* (siehe :cite:`rtfd`)
+Projektdokumentation ist auf der Plattform *ReadTheDocs* (siehe :cite:`rtfd`)
 gehostet und unter folgender Adresse zu finden:
 
     * http://libhugin.rtfd.org
@@ -367,7 +371,7 @@ Python--Shell eine zusätzliche Hilfestellung geboten (siehe Abbildung
 
 **Projektumfang**
 
-Der Projektumfang beträgt ca. 3500 *lines of code*,  hier kommt noch zusätzlich
+Der Projektumfang beträgt ca. 3500 *lines of code*,  hierzu kommt noch 
 die Onlinedokumentation hinzu. Eine Statistik zum Projekt, welche mit dem Tool
 *cloc* erstellt wurde, ist im Anhang unter :ref:`ref-cloc` zu finden.
 
@@ -379,7 +383,7 @@ für die *libhugin*--Bibliothek.
 
 .. figtable::
     :label: table-libs
-    :spec: l|l|l
+    :spec: r|l|l
     :alt: Übersicht über externe Abhängigkeiten
     :caption: Übersicht über externe Abhängigkeiten.
 
