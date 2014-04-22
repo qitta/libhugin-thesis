@@ -386,23 +386,23 @@ Unschärfesuche wurde nach *,,Sin Sity"* und nach *,,The Marix"* gesucht.
     :caption: Übersicht Movie--Metadaten--Manager und Funktionalität
     :alt: Übersicht Movie--Metadaten--Manager und Funktionalität
 
-    +--------------------+------------------------+----------------------------+---------------------------+
-    | *Software*         | *XBMC*                 | *MediaElch*                | *Tellico*                 |
-    +====================+========================+============================+===========================+
-    | *IMDB ID Suche*    | nein                   | nur über IMDb u. TMDb      | nein                      |
-    +--------------------+------------------------+----------------------------+---------------------------+
-    | *Unschärfesuche*   | nein                   | nein                       | nur IMDb, teilweise       |
-    +--------------------+------------------------+----------------------------+---------------------------+
-    | *Onlinequellen*    | verschiedene (plugin)  | verschiedene (6)           | wenige (3)                |
-    +--------------------+------------------------+----------------------------+---------------------------+
-    | *Metadatenformate* |  :math:`\times`        | nur XBMC                   | nein                      |
-    +--------------------+------------------------+----------------------------+---------------------------+
-    | *Datenkorrektur*   | :math:`\times`         | ja, manuell                | ja, manuell               |
-    +--------------------+------------------------+----------------------------+---------------------------+
-    | *Bemerkungen*      | pluginbasierte Scraper | Onlinequellen kombinierbar | :math:`\times`            |
-    +--------------------+------------------------+----------------------------+---------------------------+
-    | *Typ*              | Medien--Player         | Movie--Metadaten--Manager  | Movie--Metadaten--Manager |
-    +--------------------+------------------------+----------------------------+---------------------------+
+    +--------------------+------------------------+----------------------------+---------------------+
+    | *Software*         | *XBMC*                 | *MediaElch*                | *Tellico*           |
+    +====================+========================+============================+=====================+
+    | *IMDB ID Suche*    | :math:`\times`         | nur über IMDb u. TMDb      | :math:`\times`      |
+    +--------------------+------------------------+----------------------------+---------------------+
+    | *Unschärfesuche*   | :math:`\times`         | :math:`\times`             | nur IMDb, teilweise |
+    +--------------------+------------------------+----------------------------+---------------------+
+    | *Onlinequellen*    | verschiedene (plugin)  | verschiedene (6)           | wenige (3)          |
+    +--------------------+------------------------+----------------------------+---------------------+
+    | *Metadatenformate* | :math:`\times`         | nur XBMC                   | :math:`\times`      |
+    +--------------------+------------------------+----------------------------+---------------------+
+    | *Datenkorrektur*   | :math:`\times`         | ja, manuell                | ja, manuell         |
+    +--------------------+------------------------+----------------------------+---------------------+
+    | *Bemerkungen*      | pluginbasierte Scraper | Onlinequellen kombinierbar | :math:`\times`      |
+    +--------------------+------------------------+----------------------------+---------------------+
+    | *Typ*              | Medien--Player         | Metadaten--Manager         |  Metadaten--Manager |
+    +--------------------+------------------------+----------------------------+---------------------+
 
 
 Die nicht funktionierenden Movie--Manager *GCstar* und *vMovieDB* wurde nicht

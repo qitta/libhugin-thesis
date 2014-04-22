@@ -253,9 +253,9 @@ Provider--Plugins zurück oder bei Angabe eines Plugins, dieses direkt. Mit
 ``pluginname=None`` wird der Standardwert gesetzt, falls kein Wert übergeben
 wird.
 
-``postprocessor_plugins(pluginname=None)``: Analog zu ``provider_plugins(pluginname=None)``.
+``postprocessor_plugins(pluginname=None)``: Analog zu ``provider_plugins()``.
 
-``converter_plugins(pluginname=None)``: Analog zu ``provider_plugins(pluginname=None)``.
+``converter_plugins(pluginname=None)``: Analog zu ``provider_plugins()``.
 
 ``cancel()``: Diese Methode dient zum Abbrechen einer asynchronen Suchanfrage.
 Hier sollte anschließend noch die ``clean_up()``--Methode aufgerufen werden um
@@ -312,8 +312,8 @@ Für mehr Informationen siehe auch API :cite:`movieprovider`.
 ``normalize_genre(genre)``: Normalisiert ein Genre anhand einer festgelegten
 Abbildungstabelle.
 
-``normalize_genre_list(genrelist)``: Normalisiert eine Liste aus Genres wie
-``normalize_genre()``.
+``normalize_genre_list(genrelist)``: Normalisiert eine Liste aus Genres jeweils
+mittels der ``normalize_genre()`` Funktion.
 
 Die Problematik der Genrenormalisierung ist Bestandteil der Bachelorarbeit.
 
@@ -363,21 +363,21 @@ Mehrfachableitung ist unter Python möglich.
     :caption: Libhugin Plugininterfaces für die verschiedenen libhugin--harvest Plugins.
     :alt: Libhugin Plugininterfaces für die verschiedenen libhugin--harvest Plugins.
 
-    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
-    | *Schnittstellenname*     | *textuell*         | *grafisch*         | *Beschreibung*                                            |
-    +==========================+====================+====================+===========================================================+
-    | *IMovieProvider*         | :math:`\checkmark` |                    | Provider--Plugins, die Filmmetadaten liefern.             |
-    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
-    | *IMoviePictureProvider*  |                    | :math:`\checkmark` | Provider--Plugins, die Filmmetadaten liefern.             |
-    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
-    | *IPersonProvider*        | :math:`\checkmark` |                    | Provider--Plugins, die Personenmetadaten liefern.         |
-    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
-    | *IPersonPictureProvider* |                    | :math:`\checkmark` | Provider--Plugins, die Personenmetadaten liefern.         |
-    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
-    | *IPostProcessor*         |                    |                    | Postprocessor--Plugins, für die Metadatennachbearbeitung. |
-    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
-    | *IConverter*             |                    |                    | Converter--Plugins, für verschiedene Metadatenformate.    |
-    +--------------------------+--------------------+--------------------+-----------------------------------------------------------+
+    +--------------------------+--------------------+--------------------+------------------------------------------------------+
+    | *Schnittstellenname*     | *text*             | *grafisch*         | *Beschreibung*                                       |
+    +==========================+====================+====================+======================================================+
+    | *IMovieProvider*         | :math:`\checkmark` |                    | Provider--Plugins, liefert Filmmetadaten             |
+    +--------------------------+--------------------+--------------------+------------------------------------------------------+
+    | *IMoviePictureProvider*  |                    | :math:`\checkmark` | Provider--Plugins, liefert Filmmetadaten             |
+    +--------------------------+--------------------+--------------------+------------------------------------------------------+
+    | *IPersonProvider*        | :math:`\checkmark` |                    | Provider--Plugins, liefert Personenmetadaten         |
+    +--------------------------+--------------------+--------------------+------------------------------------------------------+
+    | *IPersonPictureProvider* |                    | :math:`\checkmark` | Provider--Plugins, liefert Personenmetadaten         |
+    +--------------------------+--------------------+--------------------+------------------------------------------------------+
+    | *IPostProcessor*         |                    |                    | Postprocessor--Plugins für Metadatennachbearbeitung  |
+    +--------------------------+--------------------+--------------------+------------------------------------------------------+
+    | *IConverter*             |                    |                    | Converter--Plugins für verschiedene Metadatenformate |
+    +--------------------------+--------------------+--------------------+------------------------------------------------------+
 
 
 Plugins, die für die Metadatenbeschaffung zuständig sind, müssen von den
@@ -508,10 +508,10 @@ Analyzer--Plugins zurück. Bei Angabe eines bestimmten Pluginnamen, wird dieses
 Plugin direkt zurückgeliefert.
 
 ``modifier_plugins(pluginname=None)``: Analog zu
-``analyzer_plugins(pluginname=None)``.
+``analyzer_plugins()``.
 
 ``comparator_plugins(pluginname=None)``: Analog zu
-``analyzer_plugins(pluginname=None)``.
+``analyzer_plugins()``.
 
 Folgende weitere Methoden erlauben es, die *libhugin--analyze* Plugins auf *externe*
 Daten anzuwenden:

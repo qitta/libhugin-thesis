@@ -103,9 +103,6 @@
 % For floating figures in the text.
 \RequirePackage{wrapfig}
 
-% Separate paragraphs by space by default.
-\RequirePackage{parskip}
-
 
 %%%%%%%%%% Extra Packages %%%%%%%%%%%%%%
 
@@ -250,12 +247,12 @@
 
 \renewcommand{\Verbatim}[1][1]{%
   % list starts new par, but we don't want it to be set apart vertically
-  \bgroup\parskip=0pt%
+  \bgroup\KOMAoptions{parskip=no}
   \smallskip%
   % The list environement is needed to control perfectly the vertical
   % space.
   \list{}{%
-  \setlength\parskip{0pt}%
+  % \setlength\parskip{0pt}%
   \setlength\itemsep{0ex}%
   \setlength\topsep{0ex}%
   \setlength\partopsep{0pt}%
@@ -336,7 +333,7 @@
 }
 
 % % Include hyperref last.
-% \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{hyphens}{url}
 \RequirePackage[
     final,
     pdftex,
@@ -360,6 +357,7 @@
     menucolor=OuterLinkColor,urlcolor=OuterLinkColor,
     citecolor=InnerLinkColor
 ]{hyperref}
+
 
 % Fix anchor placement for figures with captions.
 % (Note: we don't use a package option here; instead, we give an explicit
@@ -493,8 +491,9 @@
 \let\OLDthebibliography\thebibliography
 \renewcommand\thebibliography[1]{
   \OLDthebibliography{#1}
-  \setlength{\parskip}{5pt}
+  \KOMAoptions{parskip=half}
   \setlength{\itemsep}{0pt plus 0.5ex}
 }
 
-\addto\captionsngerman{\renewcommand{\bibname}{\textcolor{gray75}{E\hsp|\hsp}Literaturverzeichnis}}
+\addto\captionsngerman{\renewcommand{\bibname}{\textcolor{gray75}{E~|~}Literaturverzeichnis}}
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
