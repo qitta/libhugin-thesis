@@ -15,7 +15,7 @@ Die vom Autor gesetzten Anforderungen (siehe Anforderungen an die Bibliothek,
 :ref:`ref-requirements`) konnten direkt über die Bibliothek oder durch Schreiben
 eines Plugins erfüllt werden.
 
-Dennoch gibt es bei einigen Ansätzen Problemstellungen, die nur schwer ,,gut''
+Dennoch gibt es bei einigen Ansätzen Problemstellungen, die nur schwer ,,gut"
 umsetzbar sind.  Im Fall von *libhugin* wäre das die Normalisierung von Metadaten
 über mehrere Onlinequellen hinweg. Dies funktioniert im Moment beim Genre mittels
 statisch gepflegter Abbildungen. Hier wären andere Ansätze, falls möglich,
