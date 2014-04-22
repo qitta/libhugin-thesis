@@ -11,7 +11,7 @@ Regal aufzubewahren. Heute wird sie häufig nur noch digital auf dem
 :term:`Home--Theatre--PC`, :term:`Smart--TV`, PC oder anderen Endgeräten digital
 aufgezeichnet und verwaltet. Das Aufkommen der digitalen HDTV--Sender und das
 große Angebot an Pay--TV--Sendern hat den Trend der letzten Jahre nochmal
-verstärkt. Wurde eine Spielfilm verpasst, so kann dieser bequem über
+verstärkt. Hat man einen Spielfilm verpasst, so kann dieser bequem über
 einen der vielen Online--Videorecorder--Dienste nachträglich bezogen werden. Es
 geht sogar soweit, dass USB--Sticks (siehe :cite:`usbstickmovie`) mit
 Hollywood--Spielfilmen beworben und verkauft werden.
@@ -23,11 +23,11 @@ Jahren waren diese noch auf den DVD--Hüllen im Regal zu finden, heutzutage
 müssen sie nach dem Digitalisieren erst noch vom Benutzer nachträglich
 eingepflegt werden.  Typische Metadaten bei Filmen sind der Titel, Jahr,
 Inhaltsbeschreibung, Cover und Genre.  Diese Metadaten sind bei Filmen im
-Unterschied zur Musik essentiell, da hierüber die Entscheidung getroffen wird,
+Unterschied zu Musik essentiell, da hierüber die Entscheidung getroffen wird,
 ob ein Film geschaut wird oder nicht.
 
 Die Metadaten werden in der Regel über Onlinequellen, wie beispielsweise die
-Internet Movie Database (IMDb, siehe :cite:`imdb`) bezogen. Die Anzahl der
+Internet--Movie--Database (IMDb, siehe :cite:`imdb`) bezogen. Die Anzahl der
 möglichen Onlinedienste, die Metadaten bereitstellen, ist sehr groß.  Viele
 Abspielanwendungen wie das Windows--Media--Center oder das XBMC--Media--Center
 (siehe :cite:`xbmc`) können ihre Metadaten automatisch aus dem Internet
@@ -39,7 +39,7 @@ keinen Standard gibt, der sich durchgesetzt hat. Es gibt einerseits die
 Möglichkeit, bestimmte Metadaten in bestimmte Container--Formate (siehe
 Streaminfos in Tabelle :cite:`containerformate`) zu integrieren, andererseits
 werden diese in separaten Dateien oder Datenbanken der jeweiligen
-Abspiel--/Verwaltungssoftware gepflegt. Ein weiteres Problem ist die große
+Abspiel-/Verwaltungssoftware gepflegt. Ein weiteres Problem ist die große
 Anzahl verschiedener Onlinequellen, von denen die Metadaten bezogen werden. Hier
 werden von Anwendung zu Anwendung unterschiedliche Quellen verwendet, die je
 nach Filmsammlung gut oder weniger gut geeignet sind. Die Onlinequellen
@@ -70,7 +70,7 @@ beispielsweise das Säubern der Metadaten von ungewünschten Sonderzeichen, aber
 auch die automatische Extraktion von Schlüsselwörtern aus der
 Inhaltsbeschreibung mittels Data--Mining--Algorithmen.
 
-Die aktuellen Tools zur Metadatenverwaltung verfolgen einen eher *statischen*
+Die aktuellen Tools zur Metadatenverwaltung verfolgen einen eher *monolithischen*
 Ansatz.  Im Gegensatz dazu soll das zu entwickelnde System nach dem
 Baukastenprinzip erweiterbar sein und durch Schreiben neuer Plugins an
 verschiedene Anforderungen des Benutzers anpassbar sein.
@@ -88,8 +88,8 @@ Projektlizenz
 
 Da eine community--basierte Weiterentwicklung angestrebt wird und somit auch
 Verbesserungen in das Projekt zurückfließen sollen, wird das System unter
-der GPLv3 Lizenz (siehe :cite:`gpl`) entwickelt. Alle erstellten Grafiken sind
-unter Creative Commons Licence (siehe :cite:`cc`) gestellt.
+der GPLv3--Lizenz (siehe :cite:`gpl`) entwickelt. Alle erstellten Grafiken sind
+unter Creative--Commons--Licence (siehe :cite:`cc`) gestellt.
 
 Namensgebung
 ============
