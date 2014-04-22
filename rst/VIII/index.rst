@@ -126,7 +126,7 @@ experimentelle Comparator--Plugin--Schnittstelle. Die Idee hierzu ist es,
 Plugins zu entwickeln, die Filmmetadaten verschiedener Quellen untersuchen und
 miteinander vergleichen. Durch den Vergleich der Metadaten verschiedener
 Onlinequellen soll die ,,Qualität" der Metadatenquellen statistisch untersucht
-werden. Als geeignetes Qualitätsmaß wäre hier beispielsweise die Anzahl der
+werden. Als geeignetes Qualitätsmaß, wäre hier beispielsweise die Anzahl der
 gefundenen Filme oder die Anzahl, der in deutscher Sprache gepflegten Metadaten,
 für den deutschen Sprachraum, denkbar.
 
@@ -154,7 +154,7 @@ Abschließendes Fazit
 
 Das Projekt zeigt einen Prototyp für die Suche und Analyse von Filmmetadaten.
 Durch das modulare Konzept lässt sich der Prototyp um verschiedene
-Onlinequellen und Möglichkeiten der *Metadatenaufbereitung* erweitern. Der
+Onlinequellen und Möglichkeiten der Metadatenaufbereitung erweitern. Der
 Ansatz mit dem Proxy zeigt, wie sich *libhugin* in bereits existierende Lösungen
 integrieren lässt. Die beiden Kommandozeilen Tools, *Geri* und *Freki*, eignen
 sich gut für *Scripting Tasks*. Durch den automatisierbaren Ansatz ist es
