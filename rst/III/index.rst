@@ -175,8 +175,7 @@ folgend betrachtet werden.
 Redundante Metadaten
 --------------------
 
-**Grundlegende Problematik**
-
+**Grundlegende Problematik:**
 Redundanzen treten in der Regel auf, wenn bei einer Filmsammlung die Daten aus
 unterschiedlichen Quellen stammen. Damit ist gemeint, dass beispielsweise das
 Genre auf unterschiedlichen Plattformen unter einem anderen Namen gepflegt ist.
@@ -192,14 +191,12 @@ es maßgeblich in die Entscheidung der Filmauswahl einfließt.
 Folgende Punkte führen konkret im unten genannten Beispiel (siehe Praxisbeispiel
 für Dateninhomogenität, :ref:`ref-beispiel`) zu Redundanzen:
 
-**Schreibweise des Genres**
-
+**Schreibweise des Genres:**
 Die Schreibweise der gepflegten Genres unterscheidet sich (siehe Abbildung
 :num:`table-robocop`). Hier ist bei TMDb das Genre ,,Science Fiction" und bei
 OFDb ,,Science--Fiction" gepflegt.
 
-**Internationalisierung**
-
+**Internationalisierung:**
 Je nach Onlinequelle ist das Genre in einer unterschiedlichen Sprache gepflegt.
 IMDb listet hier das Genre ,,Comedy" (siehe Abbildung :num:`table-feuchtgebiete`),
 TMDb die deutsche Bezeichnung ,,Komödie".
@@ -208,8 +205,7 @@ TMDb die deutsche Bezeichnung ,,Komödie".
 Divergente Metadaten
 --------------------
 
-**Divergente Genres**
-
+**Divergente Genres:**
 Die OFDb--Quelle liefert für den Film *Feuchtgebiete (2013)* das Genre *Erotik*,
 dieses Genre existiert bei IMDb (siehe :cite:`imdbgenre`) und bei TMDb
 :cite:`tmdbgenre` gar nicht.

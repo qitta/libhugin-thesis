@@ -4,7 +4,7 @@
 
 .. only:: html or singlehtml or singletext
 
-    **Abkürzungsverzeichnis**
+    **Abkürzungsverzeichnis:**
 
 .. raw:: latex
 

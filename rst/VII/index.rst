@@ -109,8 +109,7 @@ Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
 Die Suche kann, wie die Optionen des Tools zeigen, feingranularer konfiguriert
 werden.  Es würde jedoch den Rahmen sprengen alle Optionen zu zeigen.
 
-**Unschärfesuche**
-
+**Unschärfesuche:**
 Ein weiteres nennenswertes Feature ist die Unschärfesuche.  Die getesteten Tools
 (siehe Abbildung :num:`table-movietools`) sind nicht in der Lage, Filme zu
 finden, wenn der Titel nicht exakt geschrieben ist. Das trifft auch in der
@@ -138,8 +137,7 @@ gesuchten Film.
    führt ein Doppelleben - tagsüber ist er Thomas Anderson und arbeitet in [...]
 
 
-**Suche über IMDb--ID**
-
+**Suche über IMDb--ID:**
 Normalerweise kann nur über die *IMDb--ID* gesucht werden, wenn es die jeweilige
 Onlinequelle unterstützt. Deswegen funktioniert standardmäßig die Suche bei
 Providern wie *Filmstarts* oder *Videobuster* nicht. *Libhugin* schafft hier
@@ -169,8 +167,7 @@ Onlinequellen, die eine Suche über die *IMDb--ID* nicht unterstützen:
 Einsatz von Plugins
 -------------------
 
-**Einsatz von Postprocessor--Plugins**
-
+**Einsatz von Postprocessor--Plugins:**
 Das *Compose*--Plugin ermöglicht dem Benutzer, das Ergebnis nach seinen
 Bedürfnissen zu komponieren und besitzt die Fähigkeit, das normalisierte Genre
 mehrerer Provider zusammenzuführen.
@@ -271,8 +268,7 @@ beispielsweise seine Metadaten zu säubern. Nach der Bearbeitung können die
 
 Folgend eine kurze Demonstration des CLI--Tools.
 
-**Erstellen einer Datenbank**
-
+**Erstellen einer Datenbank:**
 Hierzu wird die Helferfunktion (siehe Anhang :ref:`ref-attachment-a`) verwendet.
 Im Ordner *movies* befinden sich zwei Filme, die mit dem XBMC mit Metadaten
 versorgt wurden.
@@ -281,8 +277,7 @@ versorgt wurden.
 
     $ freki create mydb.db ./movies
 
-**Datenbank anzeigen**
-
+**Datenbank anzeigen:**
 Mit *list* kann der Inhalt der Datenbank angezeigt werden. Die
 Inhaltsbeschreibung wurde hier wegen der Übersichtlichkeit gekürzt.  Wie die
 Ausgabe zeigt, wurden die Attribute *title*, *originaltitle*, *genre*,
@@ -312,8 +307,7 @@ Ausgabe zeigt, wurden die Attribute *title*, *originaltitle*, *genre*,
      'year': '1992'}
 
 
-**Analyzer--Data anzeigen**
-
+**Analyzer--Data anzeigen:**
 Auflisten der Analysedaten aller sich in der Datenbank befindlichen Filme:
 
 .. code-block:: bash
@@ -326,8 +320,7 @@ Auflisten der Analysedaten aller sich in der Datenbank befindlichen Filme:
 
 Da noch nichts weiter analysiert wurde, sieht man hier nur leere Klammern.
 
-**Analyzer und Modifier anzeigen**
-
+**Analyzer und Modifier anzeigen:**
 Anzeigen der vorhandenen Analyzer:
 
 .. code-block:: bash
@@ -358,8 +351,7 @@ Anzeigen der vorhandenen Modifier:
 Einsatz von Plugins
 -------------------
 
-**Anwenden von Analyzern**
-
+**Anwenden von Analyzern:**
 Anwendung des *LangIdentify* Plugins auf der *mydb.db*--Datenbank:
 
 .. code-block:: bash
@@ -382,8 +374,7 @@ eingetragen. In unserem Beispiel *es (espanol)* für eine spanische
 Inhaltsbeschreibung.
 
 
-**Anwenden von Modifiern**
-
+**Anwenden von Modifiern:**
 Anwendung des PlotLangChange Modifier--Plugins um die Sprache der
 Inhaltsbeschreibung von Spanisch auf Deutsch zu ändern:
 
@@ -489,8 +480,7 @@ angewandt. Für *libhugin* wurde mittels dem Microwebframework Flask (siehe
 XBMC liefert.
 
 
-**Libhugin RESTful--API**
-
+**Libhugin RESTful--API:**
 Der *Libhugin*--Proxy zeigt konzeptionell die Integration von *libhugin* als
 Netzwerkdienst, welcher eine RESTful--API bereitstellt. Nach dem der
 *libhugin*--Proxy gestartet wurde, ist es möglich über den Webbrowser auf die
@@ -560,8 +550,7 @@ ersetzen.
 Weitere Einsatzmöglichkeiten
 ============================
 
-**Scripting Tasks**
-
+**Scripting Tasks:**
 Die Einsatzmöglichkeiten sind je nach Szenario anpassbar. Für einfache
 Anwendungen lassen sich Geri und Freki bereits direkt verwenden.
 
@@ -618,8 +607,7 @@ laufen gelassen:
 An diesem Beispiel sieht man wie gut die Unschärfesuche funktionieren kann.
 Bei diesem kleinem *Testsample* haben wir eine Trefferwahrscheinlichkeit von 100%.
 
-**D--Bus**
-
+**D--Bus:**
 Eine weitere Möglichkeit, neben dem ,,Proxyserver--Ansatz", wäre *D--Bus* zu
 verwenden. *D--Bus* ist ein Framework, das unter Linux zur
 Interprozesskommunikation verwendet wird. Man kann hier beispielsweise

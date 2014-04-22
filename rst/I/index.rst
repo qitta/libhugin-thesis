@@ -100,8 +100,6 @@ wird das Projekt auf den Namen *libhugin* ,,getauft" und ein Logo entwickelt
 ein Stück Filmrolle zeigt. Der *lib*--Präfix wurde angehängt da es sich bei dem
 System um eine Bibliothek (engl. Library) handelt.
 
-|
-
 Der Name Hugin kommt aus der nordischen Mythologie:
 
 .. epigraph::

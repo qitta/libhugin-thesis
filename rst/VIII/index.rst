@@ -30,8 +30,7 @@ Defizite und Verbesserungen
 Erweiterung des aktuellen Pluginsystems
 ---------------------------------------
 
-**Provider--Plugins**
-
+**Provider--Plugins:**
 Momentan ist ein multilingualer, ein englischsprachiger und drei
 deutschsprachige Provider implementiert (siehe Abbildung
 :num:`table-provideroverview`). Betrachtet man die Möglichkeiten und Anzahl der
@@ -50,16 +49,14 @@ Das ,,Stimmungs"--Attribut könnte man beispielsweise als ,,tag"--Attribut sogar
 in die XBMC Metadatenstruktur aufnehmen und hier zusätzlich die Filme nicht nur
 nach Genre sondern auch nach Stimmung gruppieren und auswählen.
 
-**Postprocessor-- und Converter--Plugins**
-
+**Postprocessor- und Converter--Plugins:**
 Hier wäre es wünschenswert, Converter für allgemein bekannte Metadatenformate,
 wie beispielsweise für das Windows--Media--Center, zu implementieren.
 
 Verbesserungen am Grundsystem
 -----------------------------
 
-**Provider--Priorität**
-
+**Provider--Priorität:**
 Aktuell wird die Priorität der Provider per Hand gepflegt. Hier wäre ein
 automatischer Ansatz denkbar und wünschenswert. Eine Idee wäre es, Fehlversuche
 und Timeouts zu protokollieren und Provider aufgrund dieser zu ,,bestrafen".
@@ -68,8 +65,7 @@ Priorität fallen, da dieser sehr oft nicht erreichbar ist. Über diesen Ansatz
 würde sich zumindest aufgrund der Verfügbarkeit eine Art ,,Qualität" der Provider
 bestimmen lassen.
 
-**Yapsy**
-
+**Yapsy:**
 Die aktuell verwendete Bibliothek für das Laden der Plugins wird nur minimal
 genutzt. Hier wäre es sinnvoll, diese Abhängigkeit komplett aufzulösen und durch
 einen einfacheren Ansatz auszutauschen.
@@ -77,8 +73,7 @@ einen einfacheren Ansatz auszutauschen.
 Weitere mögliche Verbesserungen
 -------------------------------
 
-**Geri und Freki**
-
+**Geri und Freki:**
 Die beiden Kommandozeilen--Tools lassen sich noch weiter ausbauen. Das
 Analysetool Freki beherrscht im aktuellen Zustand noch keine Comparator--Plugins.
 Weitere denkbare Entwicklungen bei beiden Tools wären automatisierte Analysen
@@ -87,14 +82,12 @@ der Metadaten und statistische Auswertungen. Des Weiteren wäre ein zusätzliche
 wird, wünschenswert und würde laut Meinung des Autors die Benutzerfreundlichkeit
 im Vergleich zum einfachen CLI--Tool erhöhen.
 
-**Libhugin--Proxy**
-
+**Libhugin--Proxy:**
 Der momentan implementierte Proxy zeigt nur einen konzeptionellen Ansatz und ist
 aktuell für den Einsatz des XBMC--Plugins geschrieben. Hier wäre eine generische
 Implementierung als CLI--Tool wünschenswert.
 
-**XBMC--Plugin**
-
+**XBMC--Plugin:**
 Das aktuelle XBMC--Plugin kann soweit erweitert werden, dass sich sämtliche
 *libhugin* Optionen direkt über das Plugin selbst im XBMC konfigurieren lassen.
 
@@ -138,15 +131,13 @@ Empfehlungen für ähnliche Filme aussprechen kann.
 Systemintegration
 -----------------
 
-**D--Bus**
-
+**D--Bus:**
 Neben einem generischen Proxy wäre auch die Implementierung eines
 *D--Bus*--Service eine gute Idee, um systemweit über eine
 programmiersprachenunabhängige Schnittstelle auf die Bibliothek zugreifen zu
 können.
 
-**Programmiersprachen--Bindings**
-
+**Programmiersprachen--Bindings:**
 Für oft genutzte Sprachen wäre eine Erstellung von Bindings wünschenswert.
 
 Abschließendes Fazit

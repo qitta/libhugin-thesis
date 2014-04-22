@@ -9,9 +9,6 @@ Umsetzung werden in der Bachelorarbeit genauer beleuchtet und diskutiert.
 Grundüberlegungen
 =================
 
-Grundprinzip -- Beschaffung der Metadaten
------------------------------------------
-
 Metadaten werden über verschiedene Onlinequellen bezogen. Hier wird
 grundsätzlich zwischen Onlinequellen mit API und ohne API unterschieden.
 Onlinequellen mit API bieten dem Entwickler direkt eine Schnittstelle, über
@@ -121,8 +118,7 @@ den beiden zu schaffen, wird die Bibliothek in die zwei Teile
 *libhugin--harvest* und *libhugin--analyze* aufgeteilt (siehe Abbildung
 :num:`fig-harvest-arch`).
 
-**libhugin--harvest**
-
+**libhugin--harvest:**
 Dieser Teil soll für die Metadatenbeschaffung zuständig sein und Schnittstellen
 für die folgenden Pluginarten bereitstellen:
 
@@ -140,8 +136,7 @@ für die folgenden Pluginarten bereitstellen:
     Die Grafik zeigt eine Architekturübersicht der *libhugin*--Bibliothek welche
     sich in die zwei Teile *libhugin--harvest* und *libhugin--analyze* aufteilt.
 
-**libhugin--analyze**
-
+**libhugin--analyze:**
 Dieser Teil soll für die nachträgliche Metadatenanalyse zuständig sein und
 Schnittstellen für folgende Pluginarten bereitstellen:
 
@@ -176,8 +171,7 @@ erläutert.
     *Libhugin--harvest* Klassenübersicht mit Klasseninteraktion.
 
 
-**Session**
-
+**Session:**
 Diese Klasse bildet den Grundstein für *libhugin--harvest*. Über eine Sitzung
 konfiguriert der Benutzer das System und hat Zugriff auf die verschiedenen
 Plugins.
@@ -265,15 +259,13 @@ alle Ressourcen wieder freizugeben.
 Suchanfrage. Die Methode blockt solange noch nicht alle Ressourcen freigegeben
 wurden.
 
-**Queue**
-
+**Queue:**
 Die Queue kapselt die Parameter der Suchanfrage. Sie wird direkt mit
 den Parametern der Suchanfrage instanziiert, hierbei werden bestimmte Werte, die
 übergeben werden, validiert und es werden *Standardwerte* gesetzt.
 
 
-**Cache**
-
+**Cache:**
 Der Cache wird intern verwendet, um erfolgreiche Suchanfragen persistent
 zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus dem Cache
 geladen werden. Dadurch gewinnt man Geschwindigkeit und der Metadatenanbieter
@@ -290,8 +282,7 @@ Cache.
 ``close()``: Schließt den Cache.
 
 
-**Downloadqueue**
-
+**Downloadqueue:**
 Die Downloadqueue ist für den eigentlichen Download der Daten zuständig. Sie
 arbeitet mit den oben genannten *Job*--Strukturen. Die Provider--Plugins müssen
 so keine eigene Downloadqueue implementieren.
@@ -303,8 +294,7 @@ so keine eigene Downloadqueue implementieren.
 ``running_jobs()``: Gibt die Anzahl der ``Jobs`` die in Verarbeitung sind zurück.
 
 
-**GenreNormalize**
-
+**GenreNormalize:**
 GenreNormalize kann von den Provider--Plugins verwendet werden, um das Genre zu
 normalisieren. Hierzu müssen die Provider eine Genre--Mapping--Datei erstellen.
 Für mehr Informationen siehe auch API :cite:`movieprovider`.
@@ -319,8 +309,7 @@ Die Problematik der Genrenormalisierung ist Bestandteil der Bachelorarbeit.
 
 
 
-**PluginHandler**
-
+**PluginHandler:**
 Das Pluginsystem wurde mit Hilfe der *Yapsy*--Bibliothek (siehe
 :cite:`yapsy`) umgesetzt. Es bietet folgende Schnittstellen nach außen:
 
@@ -441,8 +430,7 @@ zuständig (siehe Abbildung :num:`fig-klassenuebersicht-analyze`).
 
 
 
-**Session**
-
+**Session:**
 Diese Klasse bildet den Grundstein für *libhugin--analyze*. Sie stellt analog
 zur *libhugin--harvest* Session die API bereit.
 
@@ -529,8 +517,7 @@ zwei Methoden:
 die Festplatte.
 
 
-**Movie**
-
+**Movie:**
 Die Movie Klasse repräsentiert ein Metadatenobjekt welches in der internen
 Datenbank zur Analyse gespeichert wird. Es enthält folgende Attribute:
 
@@ -541,8 +528,7 @@ Datenbank zur Analyse gespeichert wird. Es enthält folgende Attribute:
     * Hashtabelle mit Comparator--Analysedaten.
 
 
-**PluginHandler**
-
+**PluginHandler:**
 Die PluginHandler--Klasse hat analog zum *libhugin--harvest* die folgenden
 Schnittstellen:
 

@@ -20,8 +20,7 @@ Anforderungen an die Datenbeschaffung
 Die Erweiterbarkeit soll durch Schreiben von Plugins erreicht werden. Folgende
 Pluginarten sollen bei der Datenbeschaffung umgesetzt werden:
 
-**Provider--Plugins**
-
+**Provider--Plugins:**
 Die Onlinequellen, die verwendet werden, sollen austauschbar sein. Der Benutzer
 hat die Möglichkeit, durch Schreiben eines Plugins seine bevorzugte Onlinequelle
 als sogenanntes Provider--Plugin zu implementieren. Dieses Grundprinzip wird
@@ -33,19 +32,16 @@ Um nicht direkt einen ,,Standardprovider" festlegen zu müssen, werden bei den
 Providern Prioritäten von 0--100 vergeben. Provider mit höheren Prioritäten
 werden beim Verarbeiten der Suchergebnisse bevorzugt.
 
-**Postprocessor--Plugins**
-
+**Postprocessor--Plugins:**
 Die Möglichkeit der *Datenaufbereitung* beim Herunterladen von Metadaten
 soll erweiterbar sein. Der Benutzer hat die Möglichkeit das
 Postprocessor--System durch Schreiben eines Plugins zu erweitern.
 
-**Converter--Plugins**
-
+**Converter--Plugins:**
 Die Exportformate, die für die Speicherung der Metadaten verwendet werden,
 lassen sich vom Benutzer durch Schreiben eines Plugins erweitern.
 
-**Suche von Metadaten**
-
+**Suche von Metadaten:**
 Die Suche von Metadaten soll sich für das Projekt auf Film--Metadaten und
 Personen--Metadaten beschränken. Für TV--Serien--Metadaten soll jedoch auch eine
 Schnittstelle geboten werden.
@@ -110,20 +106,17 @@ Ergebnisse an den Aufrufer gegeben:
     * *flat*: Sin (2003) A, Sin (2003) B, Sin (2003) C, Sin Nombre (2009) A
     * *deep*: Sin (2003) A, Sin Nombre (2009) A, Original Sin (2001) A, Sin (2003) B
 
-**Unschärfesuche**
-
+**Unschärfesuche:**
 Der Benutzer soll auch Ergebnisse erhalten, wenn im Suchstring Tippfehler
 enthalten sind. Der Suchstring ,,The Marix" soll
 *metadatenanbieterübergreifend* den Film *,,The Matrix (1999)"* liefern. Eine
 provider--übergreifende Suche wäre hier wünschenswert.
 
-**IMDb--ID Suche**
-
+**IMDb--ID Suche:**
 Die Suche nach Filmen über die *IMDb--ID* soll möglich sein. Eine
 provider--übergreifende Suche wäre hier wünschenswert.
 
-**Genrenormalisierung**
-
+**Genrenormalisierung:**
 Um Redundanzen zu vermeiden, soll eine Genrenormalisierung
 implementiert werden. Hierdurch soll es möglich, sein Genre--Informationen von
 mehreren Providern zusammenzuführen oder zwischen den Providern austauschbar zu
@@ -142,21 +135,18 @@ statistische Zwecke ermöglichen.
 Aufgrund der genannten Anforderungen sollen folgende unterschiedliche
 *Pluginarten*  umgesetzt werden:
 
-**Modifier--Plugins**
-
+**Modifier--Plugins:**
 Über diese Art von Plugins lassen sich die Metadaten direkt modifizieren. Ein
 Beispiel hierfür wäre das Entfernen von unerwünschten Sonderzeichen aus der
 Inhaltsbeschreibung.
 
-**Analyzer--Plugins**
-
+**Analyzer--Plugins:**
 Diese Art von Plugins erlaubt es dem Benutzer die vorliegenden Metadaten zu
 analysieren, um neue Erkenntnisse zu gewinnen oder Defizite zu identifizieren.
 Ein Beispiel hierfür wäre die Erkennung der verwendeten Sprache der
 Inhaltsbeschreibung.
 
-**Comparator--Plugins**
-
+**Comparator--Plugins:**
 Diese Art von Plugins ist experimentell. Sie ist für statistische Auswertungen
 bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht. Mit den
 entwickelten Plugins soll untersucht werden, ob und wie gut sich Filme
@@ -167,15 +157,13 @@ aussprechen zu können.
 Allgemeine Anforderungen an die Bibliothek
 ------------------------------------------
 
-**Asynchrone Bibliothek**
-
+**Asynchrone Bibliothek:**
 Die Bibliothek soll eine asynchrone Ausführung von Suchanfragen implementieren.
 Das Herunterladen von Metadaten verschiedener Metadatenanbieter soll parallel
 geschehen, um die Wartezeit der Suchanfrage zu reduzieren.
 
 
-**Lokaler Zwischenspeicher (Cache)**
-
+**Lokaler Zwischenspeicher (Cache):**
 Es soll ein lokaler Cache implementiert werden, um valide Ergebnisse der
 Suchanfragen zu puffern um so die Geschwindigkeit zu erhöhen und das
 Netzwerk beziehungsweise die Onlinequellen zu entlasten. Manche Onlinequellen
@@ -183,13 +171,11 @@ forcieren eine Volumenbegrenzung, welche man durch den Zwischenspeicher
 abmildern kann.
 
 
-**Implementierung eines kommandobasierten Frontends**
-
+**Implementierung eines kommandobasierten Frontends:**
 Dieses soll sowohl zum Testen der Bibliothek entwickelt als auch für
 Demonstrationszwecke fungieren und für *Scripting--Tasks* geeignet sein.
 
-**Grundlegende Konfiguration des Download--Managers**
-
+**Grundlegende Konfiguration des Download--Managers:**
 Für das Herunterladen der Metadaten sollen die folgenden Parameter
 konfigurierbar sein:
 
@@ -200,8 +186,7 @@ konfigurierbar sein:
 * Anzahl der verwendeten Job--Threads (parallele Suchanfragen)
 
 
-**Konfigurationsmöglichkeiten für eine Suchanfrage**
-
+**Konfigurationsmöglichkeiten für eine Suchanfrage:**
 Folgende Parameter sollen bei einer Suchanfrage konfigurierbar sein:
 
 * Providerart (Film, Person)
@@ -227,12 +212,10 @@ Hier wäre beispielsweise die Integration als Plugin in das XBMC denkbar.
 Nicht--Anforderungen
 --------------------
 
-**Nicht Film--Metadaten**
-
+**Nicht Film--Metadaten:**
 Die Suche und Analyse von Musikmetadaten oder anderen Metadatentypen ist nicht
 Bestandteil des Projekts.
 
-**Movie--Metadaten--Manager**
-
+**Movie--Metadaten--Manager:**
 Die Implementierung eines *neuen* Movie--Metadaten--Managers ist nicht
 Bestandteil des Projekts.

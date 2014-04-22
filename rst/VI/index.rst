@@ -73,8 +73,7 @@ Postprocessor--Plugins
 Die Postprocessor--Plugins beim *libgugin--harvest* Teil sind für die direkte
 ,,Nachbearbeitung" der Daten gedacht.
 
-**Compose**
-
+**Compose::**
 Das Compose--Plugin ist das momentane Kernstück der Postprocessor--Plugins. Das
 Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und bietet
 dem Benutzer dadurch folgende Möglichkeiten:
@@ -114,8 +113,7 @@ folgt zusammengesetzt:
    [Comedy, Drama], [Komödie, Drama], [Erotik] ---> [Komödie, Drama, Erotik]
 
 
-**Trim**
-
+**Trim::**
 Dies ist vergleichsweise ein einfaches Plugin, welches dafür zuständig, ist
 vorangehende und nachziehende Leerzeichen bei den Metadaten zu entfernen. Das
 Plugin führt eine Bereinigung durch, diese muss nicht explizit vom
@@ -142,7 +140,6 @@ Die API von *libhugin--analyze* ist vom Grundaufbau ähnlich zu der
 ``BracketClean``--Plugins auf *Rohdaten*, welche nicht aus der internen Datenbank
 stammen.
 
-
 .. code-block:: python
 
     >>> from hugin.analyze.session import Session
@@ -166,16 +163,14 @@ Libhugin--analyze Plugins
 Modifier--Plugins
 -----------------
 
-**BracketClean**
-
+**BracketClean::**
 Das *BracketClean*--Plugin ist für nachträgliche Manipulation der
 Inhaltsbeschreibung gedacht. Das Plugin entfernt alle Klammern samt Inhalt aus
 der Beschreibung. Das vereinheitlicht die Inhaltsbeschreibung in dem Sinne, dass
 alle Schauspieler oder Informationen in Klammern aus der Beschreibung entfernt
 werden.
 
-**PlotLangChange**
-
+**PlotLangChange:**
 Das *PlotLangChange*--Plugin ist für das nachträgliche Ändern der
 Inhaltsbeschreibung zuständig. Es hat die Funktion, die Sprache des Plots zu
 ändern.
@@ -183,14 +178,12 @@ Inhaltsbeschreibung zuständig. Es hat die Funktion, die Sprache des Plots zu
 Analyzer--Plugins
 -----------------
 
-**KeywordExtract**
-
+**KeywordExtract:**
 Dieses Plugin extrahiert aus einem Text, bei Filmen meist die
 Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text, beziehungsweise
 die darin dargestellte Thematik repräsentieren.
 
-**FileTypeAnalyze**
-
+**FileTypeAnalyze:**
 Das FileTypeAnalyze--Plugin arbeitet mit den Videodaten selbst. Es ist für die
 Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
 
@@ -200,8 +193,7 @@ Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
     * Audiocodec, Anzahl der Audiokanäle, Sprache
 
 
-**LangIdentify**
-
+**LangIdentify:**
 Der LangIdentify--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
 die Information zu den Analysedaten.
 
@@ -213,12 +205,10 @@ Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht
 
 Folgende Comparator--Plugins wurden konzeptionell implementiert:
 
-**GenreCmp**
-
+**GenreCmp:**
 Ein Plugin, das die Genres verschiedener Filme miteinander vergleicht.
 
-**KeywordCmp**
-
+**KeywordCmp:**
 Ein Plugin, das die Schlüsselwörter verschiedener Filme miteinander vergleicht.
 
 
@@ -271,8 +261,7 @@ externen Dienst ausgeführt (siehe Entwicklungsumgebung :ref:`dev`).
 Entwicklungumgebung
 -------------------
 
-**Programmiersprache**
-
+**Programmiersprache:**
 Für die Entwicklung der Bibliothek wurde die Programmiersprache Python, in der
 Version 3.3, aus folgenden Gründen gewählt:
 
@@ -301,15 +290,13 @@ Version 3.3, aus folgenden Gründen gewählt:
     Optimierung von Python mittels Cython (siehe :cite:`cython`, vgl.
     :cite:`lutz2013learning`).
 
-**Entwicklungssytem**
-
+**Entwicklungssytem:**
 Die Bibliothek wird unter *Archlinux* entwickelt. Für die Entwicklung wird der
 Editor *gVim* mit entsprechenden Python--Plugins zur Validierung der Python
 PEP--Stilrichtlinien (siehe :cite:`pep`) verwendet. Des Weiteren wird die
 interaktive Python Shell *IPython* eingesetzt.
 
-**Quellcodeverwaltung**
-
+**Quellcodeverwaltung:**
 Für die Quellcodeverwaltung wird das Versionsverwaltungssystem *git*
 eingesetzt. Der Quellcode selbst wird auf dem Hosting--Dienst für
 Software--Entwicklungsprojekte *GitHub* (siehe :cite:`github`) gelagert. Das
@@ -317,8 +304,7 @@ Projekt ist auf folgender GitHub Seite zu finden:
 
     * https://github.com/qitta/libhugin
 
-**Automatisches Testen**
-
+**Automatisches Testen:**
 Die oben genannten Softwaretests werden von *TravisCI* (siehe :cite:`travisci`),
 einem sogenanntem ,,Continuous Integration Service" automatisch ausgeführt. Dies
 passiert bei jedem Hochladen von Quellcodeänderungen auf *GitHub*. *GitHub* hat
@@ -338,8 +324,7 @@ Github--Projektseite teilt so dem Besuchern der Seite den aktuellen
     Symbol, das den aktuellen ,,Build--Status" der GitHub--Projektseite zeigt.
 
 
-**Projektdokumentation**
-
+**Projektdokumentation:**
 Das Projekt wird nach dem Prinzip der *literalen Programmierung*, wie von 
 *Donald E. Knuth* (siehe :cite:`knuth`) empfohlen, entwickelt. Hierbei liegen
 Quelltext und Dokumentation des Programms in der gleichen Datei.
@@ -369,15 +354,13 @@ Python--Shell eine zusätzliche Hilfestellung geboten (siehe Abbildung
 
     API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython.
 
-**Projektumfang**
-
+**Projektumfang:**
 Der Projektumfang beträgt ca. 3500 *lines of code*,  hierzu kommt noch 
 die Onlinedokumentation hinzu. Eine Statistik zum Projekt, welche mit dem Tool
 *cloc* erstellt wurde, ist im Anhang unter :ref:`ref-cloc` zu finden.
 
 
-**Externe Bibliotheken**
-
+**Externe Bibliotheken:**
 Die Tabelle :num:`table-libs` listet alle verwendeten externen Abhängigkeiten
 für die *libhugin*--Bibliothek.
 
@@ -418,6 +401,3 @@ für die *libhugin*--Bibliothek.
     +-------------------------+-----------------+---------------------------------+
     | *hachoir-metadata*      | Plugins         | Extraktion von Datei--Metadaten |
     +-------------------------+-----------------+---------------------------------+
-
-
-
