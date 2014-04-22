@@ -37,6 +37,7 @@ Libhugin--harvest hat aktuell verschiedene Provider implementiert (siehe Abbildu
 .. figtable::
     :label: table-provideroverview
     :caption: Übersicht implementierter Provider und Funktionalität.
+    :spec: r|l|l|l|l|l
     :alt: Übersicht implementierter Provider und Funktionalität.
 
     +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
