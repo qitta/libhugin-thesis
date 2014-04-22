@@ -55,7 +55,7 @@ zu verwendenden Onlinequellen, die Anzahl der Ergebnisse und die *Art* der
 Metadaten soll bei einer Suchanfrage einstellbar sein. Die Unterscheidung der
 *Art* soll sich auf textuelle und grafische Metadaten beschränken.
 
-Eine *onlinequellenübergreifende* Suche über die IMDb ID, welche exakte
+Eine *onlinequellen--übergreifende* Suche über die IMDb--ID, welche exakte
 Ergebnisse liefert, ist wünschenswert.
 
 Beim Suchverhalten über mehrere Onlinequellen soll es zwei verschiedene
@@ -117,9 +117,9 @@ enthalten sind. Der Suchstring ,,The Marix" soll
 *metadatenanbieterübergreifend* den Film *,,The Matrix (1999)"* liefern. Eine
 provider--übergreifende Suche wäre hier wünschenswert.
 
-**IMDb ID Suche**
+**IMDb--ID Suche**
 
-Die Suche nach Filmen über die *IMDb ID* soll möglich sein. Eine
+Die Suche nach Filmen über die *IMDb--ID* soll möglich sein. Eine
 provider--übergreifende Suche wäre hier wünschenswert.
 
 **Genrenormalisierung**
@@ -205,7 +205,7 @@ konfigurierbar sein:
 Folgende Parameter sollen bei einer Suchanfrage konfigurierbar sein:
 
     * Providerart (Film, Person)
-    * Filmtitel, Jahr, *IMDb ID* oder Personenname (je nach Providerart)
+    * Filmtitel, Jahr, *IMDb--ID* oder Personenname (je nach Providerart)
     * Sprache in der Metadaten gesucht werden sollen (abhängig von Onlinequelle)
     * Cache verwenden (ja/nein)
     * Anzahl der maximalen Downloadversuche
@@ -213,7 +213,7 @@ Folgende Parameter sollen bei einer Suchanfrage konfigurierbar sein:
     * Suchstrategie (*deep/flat*)
     * Zu verwendende Metadatenanbieter
     * Unschärfesuche (ja/nein)
-    * Provider übergreifende IMDb ID--Suche (ja/nein)
+    * Provider übergreifende IMDb--ID--Suche (ja/nein)
     * Metadatenart (textuelle Daten, grafische Daten)
 
 

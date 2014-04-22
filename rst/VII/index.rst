@@ -61,7 +61,7 @@ Datenmengen, siehe auch *Scripting Tasks* :ref:`ref-scripting-tasks`.
 Filmsuche
 ---------
 
-Ein Film kann über den Titel oder über die *IMDb ID* gesucht werden. Hier gibt
+Ein Film kann über den Titel oder über die *IMDb--ID* gesucht werden. Hier gibt
 es die Möglichkeit, *Geri* auch bestimmte Provider, Converter, Sprache und
 Postprocessor--Plugins anzugeben.
 
@@ -136,22 +136,22 @@ gesuchten Film.
    führt ein Doppelleben - tagsüber ist er Thomas Anderson und arbeitet in [...]
 
 
-**Suche über IMDb ID**
+**Suche über IMDb--ID**
 
-Normalerweise kann nur über die *IMDb ID* gesucht werden, wenn es die jeweilige
+Normalerweise kann nur über die *IMDb--ID* gesucht werden, wenn es die jeweilige
 Onlinequelle unterstützt. Deswegen funktioniert standardmäßig die Suche bei
 Providern wie *Filmstarts* oder *Videobuster* nicht. *Libhugin* schafft hier
-Abhilfe mit einer providerübergreifenden *IMDb ID*--Suche.
+Abhilfe mit einer providerübergreifenden *IMDb--ID*--Suche.
 
 Im folgenden Beispiel findet der Provider *videobustermovie* keine Ergebnisse,
-weil die Onlinequelle die Suche über *IMDb ID* nicht unterstützt:
+weil die Onlinequelle die Suche über *IMDb--ID* nicht unterstützt:
 
 .. code-block:: bash
 
    $ geri --imdbid "tt0133093" -p videobustermovie
 
-Mit dem *Lookup--Mode* funktioniert auch die Suche über *IMDb ID* bei
-Onlinequellen, die eine Suche über die *IMDb ID* nicht unterstützen:
+Mit dem *Lookup--Mode* funktioniert auch die Suche über *IMDb--ID* bei
+Onlinequellen, die eine Suche über die *IMDb--ID* nicht unterstützen:
 
 .. code-block:: bash
 
@@ -513,7 +513,7 @@ Folgende Bash--Sitzung zeigt die Suche des Films *,,Prometheus (2012)"* über de
 
 Die implementierte Test--API bietet die folgenden Schnittstellen:
 
-    + ``/search/<titlename or imdbid>:`` Suche nach Film über Titel oder *IMDb ID*.
+    + ``/search/<titlename or imdbid>:`` Suche nach Film über Titel oder *IMDb--ID*.
     + ``/movie/<position>:`` Zugriff auf einen bestimmten Film im Proxy Cache.
     + ``/info:`` Server Information, welche zeigt ob Postprocessing aktiviert ist.
     + ``/toggle_pp:`` Postprocessing aktivieren oder deaktivieren.
@@ -545,7 +545,7 @@ Im Vergleich zum XBMC TMDb--Scraper bietet der XBMC *libhugin*--Scraper
 (*libhugin*--Provider wurde zum Testen auf TMDb beschränkt) zusätzliche
 Features.
 
-    * Suche über *IMDb ID* möglich.
+    * Suche über *IMDb--ID* möglich.
     * Unschärfesuche möglich, dadurch auch erhöhte Trefferquote.
     * Postprocessing, je nach dazugeschalteten Plugin möglich.
 

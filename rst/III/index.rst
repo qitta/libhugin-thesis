@@ -35,7 +35,7 @@ den gängigen Metadatenquellen --- neben zahlreichen anderen Quellen --- zählen
 
 **IMDb** ist mehr oder weniger der ,,Platzhirsch" unter den Metadatenquellen.
 Für viele ist Sie die Standardbezugsplattform. Über die bei der IMDb für
-jeden Film gepflegte *IMDb ID* kann ein Film genau identifiziert werden. Da
+jeden Film gepflegte *IMDb--ID* kann ein Film genau identifiziert werden. Da
 diese ID eindeutig ist, wird sie oft auch von anderen Onlinequellen mit erfasst
 und gepflegt, um auch über diese eine Suche zu ermöglichen. Leider bietet IMDb
 keine deutschsprachigen Daten an. Auch die grafischen Daten wie Cover und
@@ -389,7 +389,7 @@ Unschärfesuche wurde nach *,,Sin Sity"* und nach *,,The Marix"* gesucht.
     +--------------------+------------------------+----------------------------+---------------------+
     | *Software*         | *XBMC*                 | *MediaElch*                | *Tellico*           |
     +====================+========================+============================+=====================+
-    | *IMDB ID Suche*    | :math:`\times`         | nur über IMDb u. TMDb      | :math:`\times`      |
+    | *IMDb--ID Suche*   | :math:`\times`         | nur über IMDb u. TMDb      | :math:`\times`      |
     +--------------------+------------------------+----------------------------+---------------------+
     | *Unschärfesuche*   | :math:`\times`         | :math:`\times`             | nur IMDb, teilweise |
     +--------------------+------------------------+----------------------------+---------------------+
