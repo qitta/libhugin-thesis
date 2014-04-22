@@ -25,6 +25,8 @@
     **HDTV**                 *High Definition Television*
     **LoC**                  *Lines of Code*
     **XML**                  *Extensible Markup Language*
+    **URL**                  *Uniform Resource Locator*
+    **ID**                   *Identifier*
     =======================  ==================================
 
 .. raw:: latex
