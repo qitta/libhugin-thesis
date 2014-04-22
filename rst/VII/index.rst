@@ -7,6 +7,8 @@ Fähigkeiten der Bibliothek dar. Die Bibliothek selbst ist um fast jede denkbare
 Funktionalität der Metadatenaufbereitung erweiterbar. Die Algorithmik der
 verwendeten Plugins und Funktionen ist Bestandteil der Bachelorarbeit.
 
+.. Jaja, Kaffeekochen.
+
 Libhugin--harvest CLI--Tool Geri
 ================================
 
@@ -69,13 +71,13 @@ Um das Ausgabeformat zu konfigurieren, gibt es im *Geri*--Ordner eine
 ``movie.mask``-- und ``person.mask``--Datei. Über diese Dateien kann das
 Ausgabeformat definiert werden. Die Syntax ist einfach. Um Attribute
 darzustellen, werden diese einfach in geschweifte Klammern geschrieben. Das
-*num*--Attribut gibt Geri noch die Möglichkeit, die Resultate durchzunummerieren.
+*num*--Attribut gibt Geri die Möglichkeit, die Resultate durchzunummerieren.
 
 Folgend die Definition vom Ausgabeformat für die ``movie.mask``:
 
 .. code-block:: bash
 
-   echo "{num}) {title} ({year}), IMDBid: {imdbid} Provider: {provider}\
+   $ echo "{num}) {title} ({year}), IMDBid: {imdbid} Provider: {provider} \
    \nInhalt: {plot}" > tools/geri/movie.mask
 
 
@@ -105,7 +107,7 @@ Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
    erzählte Episoden: Los geht es mit Hartigan (Bruce Willis) - einem Cop [...]
 
 Die Suche kann, wie die Optionen des Tools zeigen, feingranularer konfiguriert
-werden.  Es würde jedoch den Rahmen sprengen, alle Optionen zu zeigen.
+werden.  Es würde jedoch den Rahmen sprengen alle Optionen zu zeigen.
 
 **Unschärfesuche**
 
@@ -115,7 +117,7 @@ finden, wenn der Titel nicht exakt geschrieben ist. Das trifft auch in der
 Standardkonfiguration für *libhugin* zu, weil hier die Onlinequellen, auf die
 zugegriffen wird, exakte Suchbegriffe erwarten.
 
-Findet keine Ergebnisse, weil hier ,,Matrix" falsch geschrieben ist:
+Folgendes findet keine Ergebnisse, weil hier ,,Matrix" falsch geschrieben ist:
 
 .. code-block:: bash
 
@@ -262,10 +264,10 @@ Erstellen einer Datenbank
 -------------------------
 
 Freki erlaubt dem Benutzer, eine *Datenbank* aus externen Metadaten zu
-generieren. Auf dieser Datenbank kann man folgend mit den Analyzer-- und
-Modifier--Plugins , die *libhugin* anbietet, arbeiten, um beispielsweise seine
-Metadaten zu säubern. Nach der Bearbeitung können die *neuen* Metadaten in die
-externen Metadaten--Dateien exportiert werden.
+generieren. Auf dieser Datenbank kann man folgend mit den Analyzer- und
+Modifier--Plugins , die *libhugin--analyze* anbietet, arbeiten, um
+beispielsweise seine Metadaten zu säubern. Nach der Bearbeitung können die
+*neuen* Metadaten in die externen Metadaten--Dateien exportiert werden.
 
 Folgend eine kurze Demonstration des CLI--Tools.
 
@@ -358,11 +360,11 @@ Einsatz von Plugins
 
 **Anwenden von Analyzern**
 
-Anwendung des *LangIdentify* Plugins auf der *mydb.db* Datenbank:
+Anwendung des *LangIdentify* Plugins auf der *mydb.db*--Datenbank:
 
 .. code-block:: bash
 
-    $freki analyze plugin LangIdentify mydb.db
+    $ freki analyze plugin LangIdentify mydb.db
 
 Betrachten der Analyzerdaten nach der Analyse:
 
@@ -423,11 +425,11 @@ werden.  Dies geht bei Freki über die *export*--Funktion, hier wird wieder im
 Hintergrund die *Helferfunktion* (siehe Anhang :ref:`ref-attachment-a`) verwendet.
 
 Betrachten der Inhaltsbeschreibung der *nfo*--Dateien vor dem Export
-(gekürzt):
+(Ausgabe gekürzt):
 
 .. code-block:: bash
 
-    $ cat "movies/All Good Things (2010)/movie.nfo" | grep plot
+    $ cat "movies/All Good Things (2010)/movie.nfo" | grep 'plot'
     <plot>Historia ambientada en los años 80 y centrada en un heredero de una
     dinastía de Nueva York que se enamora de una chica de otra clase social. [...]</plot>
 
@@ -443,20 +445,17 @@ Betrachten der Inhaltsbeschreibung der *nfo*-Dateien nach dem Export (gekürzt):
 
 .. code-block:: bash
 
-    $ cat "movies/All Good Things (2010)/movie.nfo" | grep plot
+    $ cat "movies/All Good Things (2010)/movie.nfo" | grep 'plot'
     <plot>David Marks, Sohn einer reichen New Yorker Familie, verliebt sich in
     die junge Katie McCarthy, die nicht zu seinen Kreisen gehört. [...]</plot>
 
 Betrachtet man nun die *nfo*--Dateien der jeweiligen Filme, so sieht man, dass
 sich hier die Sprache von Spanisch auf Deutsch geändert hat.
 
-XBMC Plugin Integration
-=======================
-
 .. _xbmcplugin:
 
-XBMC Plugin
------------
+XBMC Plugin Integration
+=======================
 
 Neben den Kommandozeilentools Geri und Freki wurde konzeptionell ein Plugin für
 das XBMC (siehe Abbildung: :num:`fig-xbmcscreenshot-hugin`) geschrieben,
@@ -506,9 +505,11 @@ Folgende Bash--Sitzung zeigt die Suche des Films *,,Prometheus (2012)"* über de
     <?xml version="1.0" encoding="iso-8859-1" standalone="yes"?>
     <results>
         <entity>
-        <title>Prometheus - Dunkle Zeichen (2012), [tt1446714], Source: TMDBMovie</title>
-        <url>http://localhost:5000/movie/0</url>
-    </entity>
+            <title>
+                Prometheus - Dunkle Zeichen (2012), [tt1446714], Source: TMDBMovie
+            </title>
+            <url>http://localhost:5000/movie/0</url>
+        </entity>
     </results>
 
 Die implementierte Test--API bietet die folgenden Schnittstellen:
@@ -528,7 +529,6 @@ Hierbei kommt die Flexibilität und Anpassbarkeit des Systems den bisherigen
 Tools zu Gute. Auf diese Art und Weise lassen sich alle Features, die *libhugin*
 bietet, in bereits existierende Tools integrieren.
 
-
 .. _fig-xbmcscreenshot-hugin:
 
 .. figure:: fig/hugin_xbmc.png
@@ -536,7 +536,7 @@ bietet, in bereits existierende Tools integrieren.
     :width: 60%
     :align: center
 
-    Libhugin Scraper--Plugin im XBMC Scraper Menü.
+    Libhugin Scraper--Plugin im XBMC--Scraper--Menü.
 
 Unterschiede TMDb XBMC und TMDb libhugin
 ----------------------------------------
