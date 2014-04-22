@@ -150,7 +150,7 @@ weil die Onlinequelle die Suche über *IMDb ID* nicht unterstützt:
 
    $ geri --imdbid "tt0133093" -p videobustermovie
 
-Mit dem *Lookup-Mode* funktioniert auch die Suche über *IMDb ID* bei
+Mit dem *Lookup--Mode* funktioniert auch die Suche über *IMDb ID* bei
 Onlinequellen, die eine Suche über die *IMDb ID* nicht unterstützen:
 
 .. code-block:: bash
@@ -159,7 +159,7 @@ Onlinequellen, die eine Suche über die *IMDb ID* nicht unterstützen:
    1) Matrix (1999), IMDBid: None, Provider: VIDEOBUSTERMovie <movie>
 
    Inhalt: Der Hacker Neo (Keanu Reeves) wird übers Internet von einer
-   geheimnisvollen Untergrund-Organisation kontaktiert.  Der Kopf der [...]
+   geheimnisvollen Untergrund--Organisation kontaktiert.  Der Kopf der [...]
 
    [...]
 

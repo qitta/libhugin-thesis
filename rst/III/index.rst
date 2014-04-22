@@ -196,7 +196,7 @@ für Dateninhomogenität, :ref:`ref-beispiel`) zu Redundanzen:
 
 Die Schreibweise der gepflegten Genres unterscheidet sich (siehe Abbildung
 :num:`table-robocop`). Hier ist bei TMDb das Genre ,,Science Fiction'' und bei
-OFDb ,,Science-Fiction'' gepflegt.
+OFDb ,,Science--Fiction'' gepflegt.
 
 **Internationalisierung**
 
@@ -324,13 +324,13 @@ bei allen drei Anbietern sehr gut gepflegt (siehe Abbildung :num:`table-robocop`
     :caption: Übersicht Metadatenquellen für den Film RoboCop (2014)
     :alt: Übersicht Metadatenquellen für den Film RoboCop (2014)
 
-    +----------+-----------------------+--------------------------------+------------------------------------------+
-    | *Quelle* | *IMDb*                | *TMDb*                         | *OFDb*                                   |
-    +==========+=======================+================================+==========================================+
-    | *Plot*   | englischsprachig      | deutschsprachig                | deutschsprachig                          |
-    +----------+-----------------------+--------------------------------+------------------------------------------+
-    | *Genre*  | Action, Crime, Sci-Fi | Action, Science Fiction, Krimi | Action, Krimi, Science-Fiction, Thriller |
-    +----------+-----------------------+--------------------------------+------------------------------------------+
+    +----------+------------------------+--------------------------------+-------------------------------------------+
+    | *Quelle* | *IMDb*                 | *TMDb*                         | *OFDb*                                    |
+    +==========+========================+================================+===========================================+
+    | *Plot*   | englischsprachig       | deutschsprachig                | deutschsprachig                           |
+    +----------+------------------------+--------------------------------+-------------------------------------------+
+    | *Genre*  | Action, Crime, Sci--Fi | Action, Science Fiction, Krimi | Action, Krimi, Science--Fiction, Thriller |
+    +----------+------------------------+--------------------------------+-------------------------------------------+
 
 *Zusammenfassung zum Genre:* unterschiedliche Schreibweise, divergent, Problem der
 Internationalisierung, unterschiedlich feingranular gepflegt

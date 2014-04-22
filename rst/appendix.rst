@@ -4,10 +4,10 @@
 
 .. _ref-attachment-a:
 
-Helferfunktion für NFO-Dateien
-==============================
+Helferfunktion für NFO--Dateien
+===============================
 
-Folgender Anhang zeigt die import/export-Helferfunktion, die von
+Folgender Anhang zeigt die import/export--Helferfunktion, die von
 *libhugin--analyze* als Schnittstelle zu den XBMC Metadaten verwendet wird:
 
 

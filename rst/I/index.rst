@@ -124,5 +124,5 @@ Der Name Hugin kommt aus der nordischen Mythologie:
     Libhugin Logo, das einen Pixelraben und ein Stück Filmrolle zeigt.
 
 
-Die beiden CLI-Tools, Geri und Freki, wurden nach den beiden Wölfen die Odin
+Die beiden CLI--Tools, Geri und Freki, wurden nach den beiden Wölfen die Odin
 begleiten benannt (siehe :cite:`gerifreki`).
