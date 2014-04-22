@@ -124,7 +124,7 @@ provider--übergreifende Suche wäre hier wünschenswert.
 
 **Genrenormalisierung**
 
-Um Redundanzen zu vermeiden, soll eine Art Genrenormalisierung
+Um Redundanzen zu vermeiden, soll eine Genrenormalisierung
 implementiert werden. Hierdurch soll es möglich, sein Genre--Informationen von
 mehreren Providern zusammenzuführen oder zwischen den Providern austauschbar zu
 machen.
@@ -193,28 +193,28 @@ Demonstrationszwecke fungieren und für *Scripting--Tasks* geeignet sein.
 Für das Herunterladen der Metadaten sollen die folgenden Parameter
 konfigurierbar sein:
 
-    * User--Agent
-    * Cache--Pfad
-    * Timeout in Sekunden
-    * Anzahl paralleler Download--Threads (paralleles Herunterladen)
-    * Anzahl der verwendeten Job--Threads (parallele Suchanfragen)
+* User--Agent
+* Cache--Pfad
+* Timeout in Sekunden
+* Anzahl paralleler Download--Threads (paralleles Herunterladen)
+* Anzahl der verwendeten Job--Threads (parallele Suchanfragen)
 
 
 **Konfigurationsmöglichkeiten für eine Suchanfrage**
 
 Folgende Parameter sollen bei einer Suchanfrage konfigurierbar sein:
 
-    * Providerart (Film, Person)
-    * Filmtitel, Jahr, *IMDb--ID* oder Personenname (je nach Providerart)
-    * Sprache in der Metadaten gesucht werden sollen (abhängig von Onlinequelle)
-    * Cache verwenden (ja/nein)
-    * Anzahl der maximalen Downloadversuche
-    * Anzahl der maximalen gewünschten Suchergebnisse
-    * Suchstrategie (*deep/flat*)
-    * Zu verwendende Metadatenanbieter
-    * Unschärfesuche (ja/nein)
-    * Provider übergreifende IMDb--ID--Suche (ja/nein)
-    * Metadatenart (textuelle Daten, grafische Daten)
+* Providerart (Film, Person)
+* Filmtitel, Jahr, *IMDb--ID* oder Personenname (je nach Providerart)
+* Sprache in der Metadaten gesucht werden sollen (abhängig von Onlinequelle)
+* Cache verwenden (ja/nein)
+* Anzahl der maximalen Downloadversuche
+* Anzahl der maximalen gewünschten Suchergebnisse
+* Suchstrategie (*deep/flat*)
+* Zu verwendende Metadatenanbieter
+* Unschärfesuche (ja/nein)
+* Provider übergreifende IMDb--ID--Suche (ja/nein)
+* Metadatenart (textuelle Daten, grafische Daten)
 
 
 Optionale Anforderungen
