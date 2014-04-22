@@ -169,7 +169,6 @@ welcher das XBMC Plugin mit Daten versorgt.
             template.format(results=_build_search_results(results)),
             mimetype='text/xml')
 
-
     @app.route('/movie/<num>')
     def get_movie(num):
         """ Get movie with a specific number. """
@@ -182,7 +181,6 @@ welcher das XBMC Plugin mit Daten versorgt.
             return Response(nfo_file, mimetype='text/xml')
         return Response('Cache is empty.', mimetype='text')
 
-
     @app.route('/stats')
     def stats():
         response = 'Postprocessor enabled: {}\nResults in queue: {}'.format(
@@ -190,7 +188,6 @@ welcher das XBMC Plugin mit Daten versorgt.
             len(CACHE)
         )
         return Response(response, mimetype='text')
-
 
     @app.route('/toggle_pp')
     def toggle_pp():
@@ -201,7 +198,6 @@ welcher das XBMC Plugin mit Daten versorgt.
             print(e)
         return 'Postprocessor enabled: {}'.format(POSTPROCESSING)
 
-
     @app.route('/shutdown')
     def shutdown():
         print('Shutting down hugin...')
@@ -210,7 +206,6 @@ welcher das XBMC Plugin mit Daten versorgt.
         ANALYZER.database_shutdown()
         print('Shutting down server...')
         shutdown_server()
-
 
     ##############################################################################
     # -------------------------- helper functions --------------------------------
@@ -233,7 +228,6 @@ welcher das XBMC Plugin mit Daten versorgt.
             CACHE[num] = result
         return ''.join(enities)
 
-
     def postprocess(result):
         """ Postprocess example. """
         BracketCleaner = ANALYZER.modifier_plugins('plot')
@@ -241,12 +235,10 @@ welcher das XBMC Plugin mit Daten versorgt.
             BracketCleaner, 'plot', result._result_dict['plot']
         )
 
-
     def _read_template(template):
         """ Helper for reading templates. """
         with open(template, 'r') as file:
             return file.read()
-
 
     def shutdown_server():
         func = request.environ.get('werkzeug.server.shutdown')

@@ -296,10 +296,6 @@ Version 3.3, aus folgenden Gründen gewählt:
     Möglichkeit der Erweiterung durch C/C++--Code, Optimierung von Python
     mittels Cython (siehe :cite:`cython`, vgl. :cite:`lutz2013learning`).
 
-.. raw:: Latex
-
-   \newpage
-
 **Entwicklungssytem**
 
 Die Bibliothek wird unter *Archlinux* entwickelt. Für die Entwicklung wird der
@@ -368,11 +364,6 @@ Python--Shell eine zusätzliche Hilfestellung geboten (siehe Abbildung
     :align: center
 
     API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython.
-
-
-.. raw:: Latex
-
-   \newpage
 
 **Projektumfang**
 

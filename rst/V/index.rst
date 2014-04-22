@@ -424,10 +424,6 @@ Metadatenformat wieder.
 ``parameters()``: Die Methode listet die Keyword--Argumente für ein
 Converter--Plugin.
 
-.. raw:: Latex
-
-   \newpage
-
 Klassenübersicht *libhugin--analyze*
 ------------------------------------
 
