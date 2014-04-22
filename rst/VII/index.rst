@@ -532,7 +532,7 @@ bietet, in bereits existierende Tools integrieren.
 .. _fig-xbmcscreenshot-hugin:
 
 .. figure:: fig/hugin_xbmc.png
-    :alt: Libhugin Scraper--Plugin im XBMC Scraper Menü.
+    :alt: Libhugin Scraper--Plugin im XBMC Scraper Menü
     :width: 60%
     :align: center
 

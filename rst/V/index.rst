@@ -97,7 +97,7 @@ Kontrolle über das Downloadmanagement.
 .. _fig-provider-concept:
 
 .. figure:: fig/provider-concept-svg.pdf
-    :alt: Grundprinzip Kommunikationsablauf mit Provider--Plugin.
+    :alt: Grundprinzip Kommunikationsablauf mit Provider--Plugin
     :width: 90%
     :align: center
 
@@ -133,9 +133,7 @@ für die folgenden Pluginarten bereitstellen:
 .. _fig-harvest-arch:
 
 .. figure:: fig/arch-overview-svg.pdf
-    :alt: Die Grafik zeigt eine Architekturübersicht der *libhugin*--Bibliothek
-          welche sich in die zwei Teile *libhugin--harvest* und
-          *libhugin--analyze* aufteilt.
+    :alt: Architekturübersicht von libhugin
     :width: 80%
     :align: center
 
@@ -169,7 +167,7 @@ erläutert.
 .. _fig-klassenuebersicht-harvest:
 
 .. figure:: fig/klassenuebersicht-harvest-svg.pdf
-    :alt: Libhugin--harvest Klassenübersicht mit Klasseninteraktion.
+    :alt: Libhugin--harvest Klassenübersicht mit Klasseninteraktion
     :width: 100%
     :align: center
 
@@ -234,7 +232,7 @@ Der prinzipielle Ablauf der ``submit()``--Methode wird in Abbildung
 .. _fig-submit:
 
 .. figure:: fig/submit.pdf
-    :alt: Prinzipieller Ablauf der Submit Methode.
+    :alt: Prinzipieller Ablauf der Submit Methode
     :width: 50%
     :align: center
 
@@ -346,7 +344,7 @@ die vom jeweiligen Plugintyp implementiert werden muss (siehe Abbildung :num:`fi
 .. _fig-harvest:
 
 .. figure:: fig/harvest-plugin-interface.pdf
-    :alt: Libhugin--harvest Plugin Schnittstellenbeschreibung.
+    :alt: Libhugin--harvest Plugin Schnittstellenbeschreibung
     :width: 100%
     :align: center
 
@@ -361,7 +359,7 @@ Mehrfachableitung ist unter Python möglich.
     :label: table-harvest-plugins
     :spec: l|l|l|l
     :caption: Libhugin Plugininterfaces für die verschiedenen libhugin--harvest Plugins.
-    :alt: Libhugin Plugininterfaces für die verschiedenen libhugin--harvest Plugins.
+    :alt: Libhugin Plugininterfaces für die verschiedenen libhugin--harvest Plugins
 
     +--------------------------+--------------------+--------------------+------------------------------------------------------+
     | *Schnittstellenname*     | *text*             | *grafisch*         | *Beschreibung*                                       |
@@ -433,7 +431,7 @@ zuständig (siehe Abbildung :num:`fig-klassenuebersicht-analyze`).
 .. _fig-klassenuebersicht-analyze:
 
 .. figure:: fig/klassenuebersicht-analyze-svg.pdf
-    :alt: Libhugin--analyze Klassenübersicht und Interaktion.
+    :alt: Libhugin--analyze Klassenübersicht und Interaktion
     :width: 100%
     :align: center
 
@@ -569,7 +567,7 @@ die vom jeweiligen Plugintyp implementiert werden muss (siehe Abbildung :num:`fi
 .. _fig-analyze:
 
 .. figure:: fig/analyze-plugin-interface.pdf
-    :alt: Libhugin--analyze Plugin Schnittstellenbeschreibung.
+    :alt: Libhugin--analyze Plugin Schnittstellenbeschreibung
     :width: 100%
     :align: center
 
@@ -583,7 +581,7 @@ Oberklassen abzuleiten. Mehrfachableitung ist unter Python möglich:
     :label: table-analyze-plugins
     :spec: l|l|
     :caption: Libhugin Plugininterfaces für die verschiedenen libhugin--analyze Plugins.
-    :alt: Libhugin Plugininterfaces für die verschiedenen libhugin--analyze Plugins.
+    :alt: Libhugin Plugininterfaces für die verschiedenen libhugin--analyze Plugins
 
     +----------------------+-------------------------------------------------------------------------+
     | *Schnittstellenname* | *Beschreibung*                                                          |

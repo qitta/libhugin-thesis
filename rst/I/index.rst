@@ -117,7 +117,7 @@ Der Name Hugin kommt aus der nordischen Mythologie:
 .. _fig-huginlogo:
 
 .. figure:: fig/hugin.png
-    :alt: Libhugin Logo, das einen Pixelraben und ein Stück Filmrolle zeigt.
+    :alt: Libhugin Logo, das einen Pixelraben und ein Stück Filmrolle zeigt
     :width: 30%
     :align: center
 

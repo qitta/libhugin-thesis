@@ -82,7 +82,7 @@ erläutert werden.
     :label: table-searchstrategy
     :spec: c|l|l|l
     :caption: Abbildung zeigt Metadatenanbieter (A, B, C) und die jeweils
-              gelieferten Ergebnisse  pro Anbieter
+              gelieferten Ergebnisse 
     :alt: Abbildung zeigt Metadatenanbieter (A, B, C) und die jeweils
               gelieferten Ergebnisse  pro Anbieter
 

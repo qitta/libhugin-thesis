@@ -122,7 +122,7 @@ Anwendung wird dies aber nicht immer unterstützt.
 .. _fig-mediaelch:
 
 .. figure:: fig/mediaelch.png
-    :alt: Screenshot vom Movie--Metadaten--Manager MediaElch.
+    :alt: Screenshot vom Movie--Metadaten--Manager MediaElch
     :width: 90%
     :align: center
 

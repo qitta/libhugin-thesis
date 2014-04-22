@@ -38,7 +38,7 @@ Libhugin--harvest hat aktuell verschiedene Provider implementiert (siehe Abbildu
     :label: table-provideroverview
     :caption: Übersicht implementierter Provider und Funktionalität.
     :spec: r|l|l|l|l|l
-    :alt: Übersicht implementierter Provider und Funktionalität.
+    :alt: Übersicht implementierter Provider und Funktionalität
 
     +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
     |                           | *TMDb*             | *OFDb*             | *Videobuster*      | *Filmstarts*       | *OMDb*             |
@@ -327,8 +327,7 @@ Github--Projektseite teilt so dem Besuchern der Seite den aktuellen
 .. _fig-build:
 
 .. figure:: fig/build.png
-    :alt: Symbol, das den aktuellen ,,Build Status" der GitHub--Projektseite
-          zeigt.
+    :alt: Symbol, das den aktuellen ,,Build Status" der GitHub--Projektseite zeigt
     :width: 60%
     :align: center
 
@@ -360,7 +359,7 @@ Python--Shell eine zusätzliche Hilfestellung geboten (siehe Abbildung
 .. _fig-knuth:
 
 .. figure:: fig/knuth.png
-    :alt: API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython.
+    :alt: API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython
     :width: 60%
     :align: center
 
@@ -381,7 +380,7 @@ für die *libhugin*--Bibliothek.
 .. figtable::
     :label: table-libs
     :spec: l|l|l
-    :alt: Übersicht über externe Abhängigkeiten.
+    :alt: Übersicht über externe Abhängigkeiten
     :caption: Übersicht über externe Abhängigkeiten.
 
     +-------------------------+-----------------+---------------------------------+
