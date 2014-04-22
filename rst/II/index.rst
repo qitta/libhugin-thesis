@@ -3,7 +3,7 @@ Begriffsdefinitionen
 ####################
 
 Im Folgenden werden Fachbegriffe und Begriffe, die im Kontext von *libhugin*
-anders, im Vergleich zum normalen Sprachgebrauch, besetzt sind, definiert:
+anders als im normalen Sprachgebrauch besetzt sind, definiert:
 
 Fachbegriffe
 ------------
@@ -53,7 +53,7 @@ Fachbegriffe
 
      Eine Form einer Web--API, bei der mithilfe von Standard HTTP--Verben
      und speziellen, menschenlesbaren URLs bestimmte Aktionen getriggert werden
-     können. So kann man sich beispielsweise mit einer GET Operation
+     können. So kann man sich beispielsweise mit einer GET--Operation
      Informationen von einem Service beschaffen.
 
 
