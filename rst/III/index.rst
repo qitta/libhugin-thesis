@@ -1,6 +1,6 @@
-###################################
-Aktueller Stand der Metadatenpflege
-###################################
+#########################
+Stand der Metadatenpflege
+#########################
 
 Die vorgestellten Plattformen, Player und Tools zeigen nur einen Ausschnitt.
 Alle Plattformen, Player und Tools aufzulisten ist aufgrund der Vielfalt

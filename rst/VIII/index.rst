@@ -132,7 +132,7 @@ Plugins zu entwickeln, die Filmmetadaten verschiedener Quellen untersuchen und
 miteinander vergleichen. Durch den Vergleich der Metadaten verschiedener
 Onlinequellen soll die ,,Qualität" der Metadatenquellen statistisch untersucht
 werden. Als geeignetes Qualitätsmaß wäre hier beispielsweise die Anzahl der
-gefundenen Filme oder die Anzahl der in deutscher Sprache gepflegten Metadaten,
+gefundenen Filme oder die Anzahl, der in deutscher Sprache gepflegten Metadaten,
 für den deutschen Sprachraum, denkbar.
 
 Des Weiteren kann untersucht werden, wie gut sich Filme anhand bestimmter
@@ -163,7 +163,7 @@ Onlinequellen und Möglichkeiten der *Metadatenaufbereitung* erweitern. Der
 Ansatz mit dem Proxy zeigt, wie sich *libhugin* in bereits existierende Lösungen
 integrieren lässt. Die beiden Kommandozeilen Tools, *Geri* und *Freki*, eignen
 sich gut für *Scripting Tasks*. Durch den automatisierbaren Ansatz ist es
-möglich, sehr große Filmsammlungen von mehreren tausend Filmen mit einem
+möglich, sehr große Filmsammlungen von mehreren tausend Filmen in einem
 vernünftigen Zeitaufwand zu pflegen.
 
 Durch die modulare Erweiterbarkeit lässt sich das System an Bedürfnisse des

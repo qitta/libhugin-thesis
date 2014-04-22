@@ -80,7 +80,7 @@ erläutert werden.
 
 .. figtable::
     :label: table-searchstrategy
-    :spec: l|l|l|l
+    :spec: c|l|l|l
     :caption: Abbildung zeigt Metadatenanbieter (A, B, C) und die jeweils
               gelieferten Ergebnisse  pro Anbieter
     :alt: Abbildung zeigt Metadatenanbieter (A, B, C) und die jeweils
@@ -91,9 +91,9 @@ erläutert werden.
     +============================+=====================+=================+=====================+
     | *größte Übereinstimmung*   | Sin (2003)          | Sin (2003)      | Sin (2003)          |
     +----------------------------+---------------------+-----------------+---------------------+
-    |                            | Sin Nombre (2009)   | Sin City (2005) | Sin City (2005)     |
+    | :math:`\uparrow`           | Sin Nombre (2009)   | Sin City (2005) | Sin City (2005)     |
     +----------------------------+---------------------+-----------------+---------------------+
-    |                            | Original Sin (2001) |                 | Sin Nombre (2009)   |
+    | :math:`\downarrow`         | Original Sin (2001) |                 | Sin Nombre (2009)   |
     +----------------------------+---------------------+-----------------+---------------------+
     | *kleinste Übereinstimmung* |                     |                 | Original Sin (2001) |
     +----------------------------+---------------------+-----------------+---------------------+
