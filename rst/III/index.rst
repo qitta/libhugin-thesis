@@ -77,7 +77,7 @@ Beispiele hierfür wären das Windows--Media--Center oder auch das freie
 XBMC (siehe Abbildung :num:`fig-xbmcscreenshot`), welches in letzter Zeit noch
 einmal durch den *Raspberry Pi* (siehe :cite:`raspberry`) Bekanntschaft erlangt
 hat. Neben den PC--basierten Lösungen gibt es hier auch zahlreiche
-Standalone--Lösungen wie beispielsweise Popcorn Hour (siehe
+Standalone--Lösungen wie beispielsweise Popcorn--Hour (siehe
 :cite:`popcornhour`).
 
 .. _fig-xbmcscreenshot:
@@ -140,7 +140,7 @@ Verwaltungssoftware jeweils ein anderes Format verwendet.
 
 Das XBMC speichert seine Metadaten beispielsweise intern in einer
 Datenbank und schreibt diese beim Exportieren in :term:`XML`--Dateien, das
-sogenannte *nfo*--Format raus (siehe :cite:`xbmcnfo`). Nutzt man eine andere
+sogenannte *nfo*--Format, heraus (siehe :cite:`xbmcnfo`). Nutzt man eine andere
 Abspielsoftware wie das Windows--Media--Center, so werden die Metadaten im
 *dvdxml*--Format, auch ein *XML* basiertes Format, abgespeichert (siehe
 :cite:`dvdxml`). Hier gibt es noch zahlreiche andere Formate, auch bei den
@@ -161,7 +161,7 @@ Unbekannte und ausländische Filme
 
 In den meisten Fällen werden bei den oben beispielhaft genannten Anwendungen die
 richtigen Metadaten für die *bekannten* Hollywood Filme gefunden. Hat man aber
-eine Filmsammlung, die viele *Independent Filme* [#f1]_ oder nicht amerikanische
+eine Filmsammlung, die viele *Independent Filme* [#f1]_ oder nicht--amerikanische
 Verfilmungen enthält, so kommt es immer wieder zu Problemen. Die grundlegenden
 Probleme hier sind, dass ein Film entweder gar nicht gefunden wird, nur ein Teil
 der Metadaten gefunden wird oder diese eben nur in einer bestimmten Sprache
@@ -186,7 +186,7 @@ einer andere Quelle bezogen. Durch diesen Umstand ist das eigentlich eindeutige
 Genre Science Fiction in diesem Fall zweimal in der lokalen Datenbank
 vorhanden. Neben dem Genre sind auch weitere Attribute von der
 Redundanz--Problematik betroffen, jedoch ist das Genre, neben der
-Inhaltsbeschreibung, laut Meinung des Autors, eins der wichtigsten Attribute, da
+Inhaltsbeschreibung, nach Meinung des Autors, eins der wichtigsten Attribute, da
 es maßgeblich in die Entscheidung der Filmauswahl einfließt.
 
 Folgende Punkte führen konkret im unten genannten Beispiel (siehe Praxisbeispiel
@@ -195,8 +195,8 @@ für Dateninhomogenität, :ref:`ref-beispiel`) zu Redundanzen:
 **Schreibweise des Genres**
 
 Die Schreibweise der gepflegten Genres unterscheidet sich (siehe Abbildung
-:num:`table-robocop`). Hier ist bei TMDb das Genre ,,Science Fiction'' und bei
-OFDb ,,Science--Fiction'' gepflegt.
+:num:`table-robocop`). Hier ist bei TMDb das Genre ,,Science Fiction" und bei
+OFDb ,,Science--Fiction" gepflegt.
 
 **Internationalisierung**
 
@@ -269,7 +269,7 @@ Hintergrundbilder (siehe Abbildung :num:`table-afterlife`).
 *Zusammenfassung zum Genre:* austauschbar, unterschiedlich feingranular gepflegt
 
 **Feuchtgebiete (2013):** Der zweite Film ist bei TMDb und OFDb gut gepflegt.
-Jedoch fällt auf, dass das gepflegte Genre bei diesen beiden Onlinequellen keinen
+Jedoch fällt auf, dass das gepflegte Genre bei diesen beiden Onlinequellen keine
 Schnittmenge aufweist. Beim betrachten des Wikipedia--Artikels (siehe
 :cite:`feuchtgebiete`) zum Film wird klar, dass das bei OFDb gepflegte Genre
 auch seine Daseinsberechtigung hat.
@@ -359,10 +359,10 @@ Grundlegende Probleme
 ---------------------
 
 Viele Metadaten--Tools erwarten exakte Suchbegriffe. Falsch geschriebene Filme
-wie ,,The Marix" oder ,,Sin Sity'' werden oft nicht gefunden (siehe Abbildung
+wie ,,The Marix" oder ,,Sin Sity" werden oft nicht gefunden (siehe Abbildung
 :num:`table-movietools`).
 
-Die Suche nach der *IMDb ID* ist bei den getesteten Tools häufig nicht möglich,
+Die Suche nach der *IMDb--ID* ist bei den getesteten Tools häufig nicht möglich,
 obwohl diese von manchen Onlineanbietern unterstützt wird (siehe Abbildung
 :num:`table-movietools`).
 

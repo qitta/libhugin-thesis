@@ -21,7 +21,7 @@ Onlinequellen mit API unterteilen sich in die zwei Technologien RESTful (vgl.
 
 Folgende Shellsitzung demonstriert einen Zugriff mit dem Webtransfer--Tool
 *cURL* (siehe :cite:`curl`) auf die API der OMDb--Onlinequelle (siehe
-:cite:`omdb`), es wird nach dem Film ,,The Matrix'' gesucht (Ausgabe gekürzt):
+:cite:`omdb`), es wird nach dem Film ,,The Matrix" gesucht (Ausgabe gekürzt):
 
 .. code-block:: bash
 
@@ -670,7 +670,7 @@ weggelassen.
     |
     |-- analyze/                            # *libhugin--analyze* Ordner
     |   |-- session.py                      # Implementierungen der o.g. Klassen
-    |   |-- movie.py                        # Implementierung des ,,Movie'' Objektes
+    |   |-- movie.py                        # Implementierung des ,,Movie" Objektes
     |   |-- pluginhandler.py
     |   |-- rake.py                         # Implementierung Rake Algorithmus
     |   |-- analyzer/                       # Ordner für Analyzer--Plugins
