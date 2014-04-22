@@ -20,13 +20,13 @@
     =======================  ==================================
     Abkürzung                Bedeutung
     =======================  ==================================
-    **API**                  *Application Programming Interface*
-    **CLI**                  *Command Line Interface*
-    **HDTV**                 *High Definition Television*
-    **LoC**                  *Lines of Code*
-    **XML**                  *Extensible Markup Language*
-    **URL**                  *Uniform Resource Locator*
-    **ID**                   *Identifier*
+    API                      *Application Programming Interface*
+    CLI                      *Command Line Interface*
+    HDTV                     *High Definition Television*
+    LoC                      *Lines of Code*
+    XML                      *Extensible Markup Language*
+    URL                      *Uniform Resource Locator*
+    ID                       *Identifier*
     =======================  ==================================
 
 .. raw:: latex
