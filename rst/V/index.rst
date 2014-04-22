@@ -50,7 +50,7 @@ Bietet eine Webseite wie beispielsweise *filmstarts.de* (siehe
 :cite:`filmstarts`) keine API an, so muss der ,,normale Weg" wie über den
 Webbrowser erfolgen. Hierzu muss man herausfinden, aus welchen Parametern sich
 die *Such--URL* zusammensetzt, die im Hintergrund an den Webserver geschickt
-wird sobald die Suchanfrage losgeschickt wird. Bei *filmstarts.de* setzt sich
+wird, sobald die Suchanfrage losgeschickt wird. Bei *filmstarts.de* setzt sich
 die *Such*--URL wie folgt zusammen:
 
     ``http://www.filmstarts.de/suche/?q=Filmtitel``
@@ -60,12 +60,12 @@ aufgerufen, so kommt als Antwort ein HTML--Dokument zurück, welches auch der
 Webbrowser erhalten würde. Folgende Shellsitzung demonstriert den Aufruf
 (Ausgabe gekürzt):
 
-.. code-block:: bash
+.. code-block:: html
 
    $ curl  http://www.filmstarts.de/suche/?q=The+Matrix
    <html>
-       <head><title>The Matrix – Suchen auf FILMSTARTS.de</title>
-       [content ... ]
+       <head><title>The Matrix – Suchen auf FILMSTARTS.de</title></head>
+       <body><!-- Weiterer Content --></body>
    </html>
 
 Man bekommt als Aufrufer der URL die Webseite zurückgeliefert und muss nun die
@@ -78,9 +78,9 @@ zurückliefert.
 -------------------------------------------------
 
 Ein Ziel bei der Entwicklung der Plugin--Spezifikation ist, den Aufwand für das
-Implementieren eines Plugins so gering wie möglich zu halten, um Programmfehler
-beziehungsweise Fehlverhalten durch Plugins zu minimieren, aber auch um
-Entwickler zu motivieren, Plugins zu schreiben.
+Implementieren eines Plugins so gering wie möglich zu halten, um
+Programmierfehler beziehungsweise Fehlverhalten durch Plugins zu minimieren,
+aber auch um Entwickler zu motivieren, Plugins zu schreiben.
 
 Das oben genannte Prinzip beim Beschaffen von Metadaten ist immer gleich und
 lässt sich somit gut auf das Pluginsystem übertragen. Die Provider--Plugins
@@ -91,7 +91,7 @@ müssen im Prinzip nur folgende zwei Punkte können (siehe Abbildung
     * Extrahieren der Daten aus dem zurückgelieferten *HTTP--Response*.
 
 Um den Download selbst muss sich das Provider--Plugin bei diesem Ansatz nicht
-kümmern, das entlastet den Pluginentwickler und übergibt *libhugin* die
+kümmern. Das entlastet den Pluginentwickler und gibt *libhugin* die
 Kontrolle über das Downloadmanagement.
 
 .. _fig-provider-concept:
@@ -112,8 +112,8 @@ Für den Prototypen richten sich die möglichen Attribute nach der
 TMDb--Onlinequelle (siehe *libhugin*--API :cite:`movieprovider`).
 
 
-Libhugin Architektur Überblick
-==============================
+Libhugin Architektur--Überblick
+===============================
 
 Die Bibliothek soll über die Metadatenbeschaffung hinaus Werkzeuge zur
 Metadatenanalyse bereitstellen. Um eine saubere Trennung zwischen
@@ -151,15 +151,17 @@ Schnittstellen für folgende Pluginarten bereitstellen:
 
 Der Analyze--Teil der Bibliothek soll eine interne Datenbank besitzen, in welche
 externe Metadaten zur Analyse importiert werden. So können alle Plugins auf
-einem *definierten* Zustand arbeiten.
+einem definierten Zustand arbeiten.
 
-Klassenübersicht *libhugin--harvest*
-------------------------------------
+.. "definiert" war in undefinierter Weise kursiviert :-)
+
+Klassenübersicht von *libhugin--harvest*
+----------------------------------------
 
 Die Architektur von *libhugin* ist objektorientiert. Aus der Architekturübersicht
 und den Anforderungen an das System wurden folgende Klassen und Schnittstellen
-abgeleitet, Abbildung :num:`fig-klassenuebersicht-harvest` zeigt eine
-Klassenübersicht von *libhugin--harvest* samt Interaktion mit den Schnittstellen.
+abgeleitet. Abbildung :num:`fig-klassenuebersicht-harvest` zeigt eine
+Klassenübersicht von *libhugin--harvest*, samt Interaktion mit den Schnittstellen.
 
 Im Folgenden werden die grundlegenden Objekte und Schnittstellen
 erläutert.
@@ -179,11 +181,10 @@ erläutert.
 Diese Klasse bildet den Grundstein für *libhugin--harvest*. Über eine Sitzung
 konfiguriert der Benutzer das System und hat Zugriff auf die verschiedenen
 Plugins.
-
 Von der Session werden folgende Methoden bereitgestellt:
 
 ``create_query(**kwargs):`` Schnittstelle zur Konfiguration der Suchanfrage. Die
-Methode gibt ein Query--Objekt zurück, das einem Python Dictionary (Hashtabelle)
+Methode gibt ein Query--Objekt zurück, das einem Python--Dictionary (Hashtabelle)
 entspricht.  Diese Methode dient als Hilfestellung für den Benutzer der API.
 Theoretisch kann der Benutzer die Query auch manuell zusammenbauen. ``Kwargs``
 ist eine optionale Liste aus Key--Value--Paaren. Für weitere Informationen und
@@ -199,7 +200,8 @@ generiert sie für jeden Provider eine sogenannte *Job*--Struktur. Diese
 *Job*--Struktur kapselt jeweils einen Provider, die Suchanfrage und die
 Zwischenergebnisse, die während der Suchanfrage generiert werden.
 
-Zur Veranschaulichung, eine leere *Job*--Struktur in Python--Notation:
+Zur Veranschaulichung wird eine leere *Job*--Struktur in Python--Notation
+gezeigt:
 
 .. code-block:: python
 
@@ -239,7 +241,7 @@ Der prinzipielle Ablauf der ``submit()``--Methode wird in Abbildung
     Prinzipieller Ablauf der Submit Methode.
 
 ``submit_async()``: Methode für eine asynchrone Nutzung der API. Diese führt
-``submit()`` asynchron aus und gibt ein Python *Future--Objekt* zurück,
+``submit()`` asynchron aus und gibt ein Python--*Future--Objekt* zurück,
 welches die Anfrage kapselt. Durch Aufrufen der ``done()``--Methode auf dem
 *Future--Objekt*, kann festgestellt werden ob die Suchanfrage bereits fertig ist.
 Ein Aufruf der ``result()``--Methode auf dem *Future--Objekt* liefert das
@@ -267,7 +269,7 @@ wurden.
 
 Die Queue kapselt die Parameter der Suchanfrage. Sie wird direkt mit
 den Parametern der Suchanfrage instanziiert, hierbei werden bestimmte Werte, die
-übergeben werden, validiert und *Standardwerte* gesetzt.
+übergeben werden, validiert und es werden *Standardwerte* gesetzt.
 
 
 **Cache**
@@ -275,14 +277,14 @@ den Parametern der Suchanfrage instanziiert, hierbei werden bestimmte Werte, die
 Der Cache wird intern verwendet, um erfolgreiche Suchanfragen persistent
 zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus dem Cache
 geladen werden. Dadurch gewinnt man Geschwindigkeit und der Metadatenanbieter
-wird entlastet. Zum persistenten Speichern wird ein Python Shelve (siehe
+wird entlastet. Zum persistenten Speichern wird ein Python--Shelve (siehe
 :cite:`shelve`) verwendet.
 
 ``open(path, cache_name)``: Öffnet den übergebenen Cache.
 
 ``read(key)``: Liest Element an Position *key* aus dem Cache.
 
-``write(key, value)``: Schreibt das Element *value* an Position *key* in den
+``write(key, value)``: Schreibt das Element ``value`` an Position ``key`` in den
 Cache.
 
 ``close()``: Schließt den Cache.
@@ -294,11 +296,11 @@ Die Downloadqueue ist für den eigentlichen Download der Daten zuständig. Sie
 arbeitet mit den oben genannten *Job*--Strukturen. Die Provider--Plugins müssen
 so keine eigene Downloadqueue implementieren.
 
-``push(job)``: Fügt einen `Job` der Downloadqueue hinzu.
+``push(job)``: Fügt einen ``Job`` der Downloadqueue hinzu.
 
-``pop()``: Holt den nächsten fertigen `Job` aus der Downloadqueue.
+``pop()``: Holt den nächsten fertigen ``Job`` aus der Downloadqueue.
 
-``running_jobs()``: Gibt die Anzahl der `Jobs` die in Verarbeitung sind zurück.
+``running_jobs()``: Gibt die Anzahl der ``Jobs`` die in Verarbeitung sind zurück.
 
 
 **GenreNormalize**
@@ -353,7 +355,7 @@ die vom jeweiligen Plugintyp implementiert werden muss (siehe Abbildung :num:`fi
 
 Diese *libhugin--harvest* Plugins haben die Möglichkeiten von verschiedenen
 Oberklassen abzuleiten (siehe Abbildung :num:`table-harvest-plugins`).
-Mehrfachableitung ist unter Python möglich.
+Mehrfachvererbung ist unter Python möglich.
 
 .. figtable::
     :label: table-harvest-plugins
@@ -445,7 +447,7 @@ Diese Klasse bildet den Grundstein für *libhugin--analyze*. Sie stellt analog
 zur *libhugin--harvest* Session die API bereit.
 
 ``add(metadata_file, helper)``: Diese Methode dient zum Importieren externer
-Metadaten. Sie erwartet eine Datei mit Metadaten (`metadata_file`) und als
+Metadaten. Sie erwartet eine Datei mit Metadaten (``metadata_file``) und als
 Callback--Funktion eine *Helferfunktion* welche weiß, wie die Metadaten zu
 extrahieren sind.
 
@@ -495,17 +497,15 @@ welche die Abbildung von externer Quelle auf die interne Datenbank verdeutlicht:
        return internal_repr
 
 
-Weitere Methoden der Session Klasse:
+Weitere Methoden der Session--Klasse:
 
 ``analyzer_plugins(pluginname=None)``: Liefert eine Liste mit den vorhandenen
 Analyzer--Plugins zurück. Bei Angabe eines bestimmten Pluginnamen, wird dieses
 Plugin direkt zurückgeliefert.
 
-``modifier_plugins(pluginname=None)``: Analog zu
-``analyzer_plugins()``.
+``modifier_plugins(pluginname=None)``: Analog zu ``analyzer_plugins()``.
 
-``comparator_plugins(pluginname=None)``: Analog zu
-``analyzer_plugins()``.
+``comparator_plugins(pluginname=None)``: Analog zu ``analyzer_plugins()``.
 
 Folgende weitere Methoden erlauben es, die *libhugin--analyze* Plugins auf *externe*
 Daten anzuwenden:
@@ -517,7 +517,7 @@ Analyzer--Plugins auf *externen* Daten auszuführen.
 
 ``compare_raw(plugin, attr, data)``: Analog zu ``analyze_raw(plugin, attr, data)``.
 
-``get_database()``: Liefert die interne Datenbank (Python Dictionary) zurück.
+``get_database()``: Liefert die interne Datenbank (Python--Dictionary) zurück.
 
 
 Für das Öffnen und Schließen der internen Datenbank der Session gibt es folgende
@@ -575,11 +575,11 @@ die vom jeweiligen Plugintyp implementiert werden muss (siehe Abbildung :num:`fi
 
 
 Die *libhugin--analyze* Plugins haben die Möglichkeiten, von den folgenden
-Oberklassen abzuleiten. Mehrfachableitung ist unter Python möglich:
+Oberklassen abzuleiten:
 
 .. figtable::
     :label: table-analyze-plugins
-    :spec: l|l|
+    :spec: l|l
     :caption: Libhugin Plugininterfaces für die verschiedenen libhugin--analyze Plugins.
     :alt: Libhugin Plugininterfaces für die verschiedenen libhugin--analyze Plugins
 
@@ -601,7 +601,7 @@ implementieren:
 
 ``modify(movie, **kwargs)``: Die Standardmethode für Modifierplugins. Die
 Methode bekommt ein *Movie--Objekt* und optional Keyword--Argumente übergeben.
-Die nötigen Keyword--Argumente können über die ``parameters()``--Methode erfragt
+Die nötigen Keyword--Argumente können über die ``parameters()``--Methode abgefragt
 werden.
 
 ``modify_all(database, **kwargs)``: Analog zur ``modify(movie,
@@ -621,7 +621,7 @@ Anwendung hier ist analog den Modifierplugins.
 
 ``analyze_all(database, **kwargs)``: Analog Modifierplugins.
 
-``parameters()``: Analog Modifierplugins.
+``parameters()``: Analog zu Modifierplugins.
 
 Plugins, die Metadaten für statistische Zwecke analysieren und vergleichen
 können, müssen von *IComparator* ableiten (siehe Abbildung
@@ -636,7 +636,7 @@ und Analyzerplugins verwendet werden.
 ``compare_all(database, **kwargs)``: Diese Methode vergleicht alle
 *Movie--Objekt* Kombinationen aus der Datenbank.
 
-``parameters()``: Analog Modifier-- und Analyzerplugins.
+``parameters()``: Analog zu Modifier- und Analyzerplugins.
 
 
 Bibliothek Dateistruktur
@@ -650,7 +650,7 @@ weggelassen.
 .. code-block:: python
 
     hugin
-    |-- harvest/                           # *libhugin--harvest* Ordner
+    |-- harvest/                           # libhugin--harvest Ordner
     |   |-- session.py                     # Implementierungen der Session
     |   |-- query.py                       # Implementierungen der Query
     |   |-- cache.py                       # Implementierungen vom Cache
@@ -668,7 +668,7 @@ weggelassen.
     |   |-- logutil.py
     |   |-- stringcompare.py
     |
-    |-- analyze/                            # *libhugin--analyze* Ordner
+    |-- analyze/                            # libhugin--analyze Ordner
     |   |-- session.py                      # Implementierungen der o.g. Klassen
     |   |-- movie.py                        # Implementierung des ,,Movie" Objektes
     |   |-- pluginhandler.py
