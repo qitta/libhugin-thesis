@@ -582,7 +582,7 @@ Oberklassen abzuleiten:
 
 
 Plugins, die Metadaten modifizieren, müssen von *IModifier* ableiten (siehe
-Tabelle :num:`table-analyze-plugins`). Diese Plugins müssen folgende Methoden
+Abbildung :num:`table-analyze-plugins`). Diese Plugins müssen folgende Methoden
 implementieren:
 
 ``modify(movie, **kwargs)``: Die Standardmethode für Modifierplugins. Die

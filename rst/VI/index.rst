@@ -62,7 +62,7 @@ Libhugin--harvest hat aktuell verschiedene Provider implementiert (siehe Abbildu
     | *API verfügbar*           | :math:`\checkmark` | :math:`\checkmark` | :math:`\times`     | :math:`\times`     | :math:`\checkmark` |
     +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
 
-Ein paar der Provider, wie *Filmstarts.de*, *Videobuster.de* lassen sich noch
+Ein paar der Provider, wie ``Filmstarts``, ``Videobuster`` lassen sich noch
 weiter ausbauen. Diese unterstützen momentan nur textuelle Metadaten, würden
 sich aber um grafische Metadaten erweitern lassen.
 
@@ -73,8 +73,8 @@ Postprocessor--Plugins
 Die Postprocessor--Plugins beim *libgugin--harvest* Teil sind für die direkte
 ,,Nachbearbeitung" der Daten gedacht.
 
-**Compose::**
-Das Compose--Plugin ist das momentane Kernstück der Postprocessor--Plugins. Das
+**Compose:**
+Das ``Compose``--Plugin ist das momentane Kernstück der Postprocessor--Plugins. Das
 Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und bietet
 dem Benutzer dadurch folgende Möglichkeiten:
 
@@ -113,7 +113,7 @@ folgt zusammengesetzt:
    [Comedy, Drama], [Komödie, Drama], [Erotik] ---> [Komödie, Drama, Erotik]
 
 
-**Trim::**
+**Trim:**
 Dies ist vergleichsweise ein einfaches Plugin, welches dafür zuständig, ist
 vorangehende und nachziehende Leerzeichen bei den Metadaten zu entfernen. Das
 Plugin führt eine Bereinigung durch, diese muss nicht explizit vom
@@ -126,9 +126,9 @@ Bei den Converter--Plugins wurde zu Demonstrationszwecken ein *HTML*--Converter
 und ein *JSON*--Converter implementiert.
 
 Des Weiteren wurde für den Produktiveinsatz ein XBMC *Nfo*--Converter
-implementiert, dieser wird vom *libhugin*--Proxy (siehe :ref:`libhuginproxy`)
-verwendet, um dem XBMC--libhugin Plugin (siehe :ref:`xbmcplugin`) die Metadaten
-im richtigen Format zu liefern.
+implementiert, dieser wird vom *libhugin*--Proxy (siehe Libhugin--Proxy,
+:ref:`libhuginproxy`) verwendet, um dem XBMC--libhugin Plugin (siehe XBMC Plugin
+Integration, :ref:`xbmcplugin`) die Metadaten im richtigen Format zu liefern.
 
 .. _analyzeapiexample:
 
@@ -163,15 +163,15 @@ Libhugin--analyze Plugins
 Modifier--Plugins
 -----------------
 
-**BracketClean::**
-Das *BracketClean*--Plugin ist für nachträgliche Manipulation der
+**BracketClean:**
+Das ``BracketClean``--Plugin ist für nachträgliche Manipulation der
 Inhaltsbeschreibung gedacht. Das Plugin entfernt alle Klammern samt Inhalt aus
 der Beschreibung. Das vereinheitlicht die Inhaltsbeschreibung in dem Sinne, dass
 alle Schauspieler oder Informationen in Klammern aus der Beschreibung entfernt
 werden.
 
 **PlotLangChange:**
-Das *PlotLangChange*--Plugin ist für das nachträgliche Ändern der
+Das ``PlotLangChange``--Plugin ist für das nachträgliche Ändern der
 Inhaltsbeschreibung zuständig. Es hat die Funktion, die Sprache des Plots zu
 ändern.
 
@@ -184,7 +184,7 @@ Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text, beziehungsweise
 die darin dargestellte Thematik repräsentieren.
 
 **FileTypeAnalyze:**
-Das FileTypeAnalyze--Plugin arbeitet mit den Videodaten selbst. Es ist für die
+Das ``FileTypeAnalyze``--Plugin arbeitet mit den Videodaten selbst. Es ist für die
 Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
 
     * Auflösung
@@ -194,7 +194,7 @@ Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
 
 
 **LangIdentify:**
-Der LangIdentify--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
+Der ``LangIdentify``--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
 die Information zu den Analysedaten.
 
 Comparator--Plugins
@@ -211,6 +211,9 @@ Ein Plugin, das die Genres verschiedener Filme miteinander vergleicht.
 **KeywordCmp:**
 Ein Plugin, das die Schlüsselwörter verschiedener Filme miteinander vergleicht.
 
+.. raw:: Latex
+
+   \newpage
 
 Verschiedenes
 =============
@@ -247,14 +250,19 @@ Das Ausführen des Beispielcodes würde folgende Ausgabe produzieren:
 
 .. code-block:: bash
 
-    ----------------------------------------------------------------------
     Ran 1 test in 0.000s
 
     OK
 
 Alle geschriebenen Tests werden bei jedem ,,Einspielen" der Änderungen in das
 verwendete Quellcode--Versionsverwaltungssystem automatisiert über einen
-externen Dienst ausgeführt (siehe Entwicklungsumgebung :ref:`dev`).
+externen Dienst ausgeführt (siehe Entwicklungsumgebung, :ref:`dev`).
+
+
+.. raw:: Latex
+
+   \newpage
+
 
 .. _dev:
 
@@ -325,7 +333,7 @@ Github--Projektseite teilt so dem Besuchern der Seite den aktuellen
 
 
 **Projektdokumentation:**
-Das Projekt wird nach dem Prinzip der *literalen Programmierung*, wie von 
+Das Projekt wird nach dem Prinzip der *literalen Programmierung*, wie von
 *Donald E. Knuth* (siehe :cite:`knuth`) empfohlen, entwickelt. Hierbei liegen
 Quelltext und Dokumentation des Programms in der gleichen Datei.
 
@@ -341,21 +349,21 @@ Dieses kann eine Dokumentation in verschiedenen Formaten generieren, auch diese
 Projektarbeit wurde in *reStructuredText* (siehe :cite:`rst`) geschrieben und
 mit *Sphinx* generiert.
 
-Des Weiteren wird dem Entwickler bei Nutzung der Bibliothek in der interaktiven
-Python--Shell eine zusätzliche Hilfestellung geboten (siehe Abbildung
-:num:`fig-knuth`).
+Des Weiteren wird dem Entwickler bei Nutzung der
+Bibliothek in der interaktiven Python--Shell eine zusätzliche Hilfestellung
+geboten (siehe Abbildung :num:`fig-knuth`).
 
 .. _fig-knuth:
 
 .. figure:: fig/knuth.png
     :alt: API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython
-    :width: 60%
+    :width: 80%
     :align: center
 
     API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython.
 
 **Projektumfang:**
-Der Projektumfang beträgt ca. 3500 *lines of code*,  hierzu kommt noch 
+Der Projektumfang beträgt ca. 3500 *lines of code*,  hierzu kommt noch
 die Onlinedokumentation hinzu. Eine Statistik zum Projekt, welche mit dem Tool
 *cloc* erstellt wurde, ist im Anhang unter :ref:`ref-cloc` zu finden.
 

@@ -33,7 +33,7 @@ Providern Prioritäten von 0--100 vergeben. Provider mit höheren Prioritäten
 werden beim Verarbeiten der Suchergebnisse bevorzugt.
 
 **Postprocessor--Plugins:**
-Die Möglichkeit der *Datenaufbereitung* beim Herunterladen von Metadaten
+Die Möglichkeit der Datenaufbereitung beim Herunterladen von Metadaten
 soll erweiterbar sein. Der Benutzer hat die Möglichkeit das
 Postprocessor--System durch Schreiben eines Plugins zu erweitern.
 
@@ -51,7 +51,7 @@ zu verwendenden Onlinequellen, die Anzahl der Ergebnisse und die *Art* der
 Metadaten soll bei einer Suchanfrage einstellbar sein. Die Unterscheidung der
 *Art* soll sich auf textuelle und grafische Metadaten beschränken.
 
-Eine *onlinequellen--übergreifende* Suche über die IMDb--ID, welche exakte
+Eine onlinequellen--übergreifende Suche über die IMDb--ID, welche exakte
 Ergebnisse liefert, ist wünschenswert.
 
 Beim Suchverhalten über mehrere Onlinequellen soll es zwei verschiedene
@@ -80,7 +80,7 @@ erläutert werden.
     :caption: Abbildung zeigt Metadatenanbieter (A, B, C) und die jeweils
               gelieferten Ergebnisse pro Anbieter.
     :alt: Abbildung zeigt Metadatenanbieter (A, B, C) und die jeweils
-              gelieferten Ergebnisse  
+              gelieferten Ergebnisse
 
     +----------------------------+---------------------+-----------------+---------------------+
     | *Onlinequelle*             | *A*                 | *B*             | *C*                 |

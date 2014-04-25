@@ -462,6 +462,7 @@ hier die Möglichkeiten des Postprocessings nur begrenzt umsetzbar.
 Die Referenzimplementierung des offiziellen XBMC TMDb--Scrapers hat insgesamt
 über 600 *lines of code*, recht kryptischer regulärer Ausdrücke (siehe
 :cite:`tmdbscraper1` und :cite:`tmdbscraper2`).
+
 Die Implementierung des *libhugin* Plugins in das XBMC hat an dieser Stelle nur
 23 *lines of code* (siehe :ref:`ref-xbmc-libhugin`). Das liegt daran, dass der
 *libhugin*--Proxy hier dem XBMC die Daten bereits im benötigten Format über das
@@ -475,7 +476,7 @@ Libhugin--Proxy
 Da die direkte Integration in das XBMC aufgrund der begrenzten Zeit der
 Projektarbeit nicht möglich ist, wurde hier der Ansatz eines ,,Proxy--Dienstes"
 angewandt. Für *libhugin* wurde mittels dem Microwebframework Flask (siehe
-:cite:`flask`) ein *minimaler* :term:`RESTful` Webservice geschrieben (siehe
+:cite:`flask`) ein minimaler :term:`RESTful` Webservice geschrieben (siehe
 :ref:`ref-flaskproxy`), welcher über eine eigens definierte API Metadaten an das
 XBMC liefert.
 

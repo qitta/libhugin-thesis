@@ -208,7 +208,7 @@ Divergente Metadaten
 **Divergente Genres:**
 Die OFDb--Quelle liefert für den Film *Feuchtgebiete (2013)* das Genre *Erotik*,
 dieses Genre existiert bei IMDb (siehe :cite:`imdbgenre`) und bei TMDb
-:cite:`tmdbgenre` gar nicht.
+(siehe :cite:`tmdbgenre`) gar nicht.
 
 .. _ref-beispiel:
 
@@ -263,6 +263,10 @@ Hintergrundbilder (siehe Abbildung :num:`table-afterlife`).
     +----------+------------------------+----------------------------------+-------------------------+
 
 *Zusammenfassung zum Genre:* austauschbar, unterschiedlich feingranular gepflegt
+
+.. raw:: Latex
+
+   \newpage
 
 **Feuchtgebiete (2013):** Der zweite Film ist bei TMDb und OFDb gut gepflegt.
 Jedoch fällt auf, dass das gepflegte Genre bei diesen beiden Onlinequellen keine
