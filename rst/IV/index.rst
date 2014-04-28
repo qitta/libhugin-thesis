@@ -25,8 +25,7 @@ Die Onlinequellen, die verwendet werden, sollen austauschbar sein. Der Benutzer
 hat die Möglichkeit, durch Schreiben eines Plugins seine bevorzugte Onlinequelle
 als sogenanntes Provider--Plugin zu implementieren. Dieses Grundprinzip wird
 bereits bei der freien Musik--Metadatensuchmaschine *libglyr* (siehe
-:cite:`glyr`) sowie auch im Ansatz beim XBMC (siehe :cite:`xbmcscraper`)
-verwendet.
+:cite:`glyr`) sowie im Ansatz beim XBMC (siehe :cite:`xbmcscraper`) verwendet.
 
 Um nicht direkt einen ,,Standardprovider" festlegen zu müssen, werden bei den
 Providern Prioritäten von 0--100 vergeben. Provider mit höheren Prioritäten

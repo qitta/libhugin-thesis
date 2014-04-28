@@ -383,8 +383,8 @@ Unschärfesuche wurde nach *,,Sin Sity"* und nach *,,The Marix"* gesucht.
 .. figtable::
     :label: table-movietools
     :spec: l|l|l|l
-    :caption: Übersicht Movie--Metadaten--Manager und Funktionalität
-    :alt: Übersicht Movie--Metadaten--Manager und Funktionalität
+    :caption: Übersicht Movie--Metadaten--Manager und ihre Funktionalität
+    :alt: Übersicht Movie--Metadaten--Manager und ihre Funktionalität
 
     +--------------------+------------------------+----------------------------+---------------------+
     | *Software*         | *XBMC*                 | *MediaElch*                | *Tellico*           |
