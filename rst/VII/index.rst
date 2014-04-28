@@ -188,7 +188,7 @@ Genre zu sehen ist:
 Des Weiteren wird ein benutzerdefiniertes *userprofile* erstellt, welches dem
 *Compose*--Plugin mitteilt, wie das Ergebnis zusammengebaut werden soll. In
 unserem Beispiel wird ein Profil erstellt, welches standardmäßig den TMDb
-Provider nimmt und die Inhaltsbeschreibung durch die vom OFDb Provider
+Provider nimmt und die Inhaltsbeschreibung durch die vom OFDb--Provider
 austauscht.
 
 .. code-block:: bash

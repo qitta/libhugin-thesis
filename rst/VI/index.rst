@@ -91,7 +91,7 @@ keine Inhaltsbeschreibung hat, dann kann auch auf andere Provider
 zurückgegriffen werden.
 
 Beispiel für eine Profilmaske, die TMDb als Standardprovider nimmt und die
-Inhaltsbeschreibung vom OFDb Provider nimmt. Falls keine OFDb--Inhaltsbeschreibung
+Inhaltsbeschreibung vom OFDb--Provider nimmt. Falls keine OFDb--Inhaltsbeschreibung
 vorhanden ist, dann erfolgt ein ,,Fallback" auf den OMDb--Provider:
 
 .. code-block:: bash

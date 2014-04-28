@@ -228,11 +228,11 @@ Der prinzipielle Ablauf der ``submit()``--Methode wird in Abbildung
 .. _fig-submit:
 
 .. figure:: fig/submit.pdf
-    :alt: Prinzipieller Ablauf der Submit Methode
+    :alt: Prinzipieller Ablauf der Submit--Methode
     :width: 50%
     :align: center
 
-    Prinzipieller Ablauf der Submit Methode.
+    Prinzipieller Ablauf der Submit--Methode.
 
 ``submit_async()``: Methode für eine asynchrone Nutzung der API. Diese führt
 ``submit()`` asynchron aus und gibt ein Python--*Future--Objekt* zurück,
@@ -624,6 +624,9 @@ und Analyzerplugins verwendet werden.
 
 ``parameters()``: Analog zu Modifier- und Analyzerplugins.
 
+.. raw:: Latex
+
+   \newpage
 
 Bibliothek Dateistruktur
 ========================
