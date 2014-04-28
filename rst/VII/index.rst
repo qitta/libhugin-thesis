@@ -99,8 +99,8 @@ Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
    die mit den gebrochenen Herzen.  Einer von ihnen ist Marv [...]
 
    4) Sin City (2005), IMDBid: tt0401792, Provider: OMDBMovie <movie>
-   Inhalt: Four tales of crime adapted from Frank Miller's popular comics focusing
-   around a muscular brute who's looking for the person responsible for the [...]
+   Inhalt: Four tales of crime adapted from Frank Millers popular comics focusing
+   around a muscular brute whos looking for the person responsible for the [...]
 
    5) Sin City (2005), IMDBid: None, Provider: FILMSTARTSMovie <movie>
    Inhalt: "Sin City" enthält drei lose verbundene und ineinander verschachtelt
@@ -588,7 +588,7 @@ Filmen, die falsch geschrieben sind, erstellt:
 
 
 Anschließend wird das Skript auf die schlampig gepflegte Ordnerstruktur
-laufen gelassen:
+angewandt:
 
 .. code-block:: bash
 
@@ -605,7 +605,7 @@ laufen gelassen:
    ‘movies/teh marix 2’ -> ‘movies/The Matrix Reloaded (2003), [tt0234215]’
 
 
-An diesem Beispiel sieht man wie gut die Unschärfesuche funktionieren kann.
+An diesem Beispiel sieht man, wie gut die Unschärfesuche funktionieren kann.
 Bei diesem kleinem *Testsample* haben wir eine Trefferwahrscheinlichkeit von 100%.
 
 **D--Bus:**
