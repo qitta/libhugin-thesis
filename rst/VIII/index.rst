@@ -31,10 +31,10 @@ Erweiterung des aktuellen Pluginsystems
 ---------------------------------------
 
 **Provider--Plugins:**
-Momentan ist ein multilingualer, ein englischsprachiger und drei
+Momentan sind ein multilingualer, ein englischsprachiger und drei
 deutschsprachige Provider implementiert (siehe Abbildung
 :num:`table-provideroverview`). Betrachtet man die Möglichkeiten und Anzahl der
-Plattformen, ist es wünschenswert, weitere Provider zu implementieren.
+Plattformen, ist es wünschenswert weitere Provider zu implementieren.
 
 Die aktuelle Attributstruktur, die von den Providern befüllt wird, richtet sich
 aktuell an der TMDb--Onlinequelle. Erweiterungen dieser Struktur um neue
@@ -43,15 +43,15 @@ Attribute sind wünschenswert.
 Ein Attribut, das in erster Linie einen Mehrgewinn bringen würde, wäre die
 ,,Stimmung". Die Onlinequelle *jinni.com* (siehe :cite:`jinni`) hat ein Attribut
 ,,Mood" und noch weitere interessante Attribute wie ,,Style", die nach
-Meinung des Autors, einen Mehrgewinn für eine Filmsammlung bringen würden.
+Meinung des Autors einen Mehrgewinn für eine Filmsammlung bringen würden.
 
 Das ,,Stimmungs"--Attribut könnte man beispielsweise als ,,tag"--Attribut sogar
 in die XBMC Metadatenstruktur aufnehmen und hier zusätzlich die Filme nicht nur
-nach Genre sondern auch nach Stimmung gruppieren und auswählen.
+nach Genre, sondern auch nach Stimmung gruppieren und auswählen.
 
 **Postprocessor- und Converter--Plugins:**
-Hier wäre es wünschenswert, Converter für allgemein bekannte Metadatenformate,
-wie beispielsweise für das Windows--Media--Center, zu implementieren.
+Hier wäre es wünschenswert Converter für allgemein bekannte Metadatenformate zu
+implementieren, wie beispielsweise für das Windows--Media--Center.
 
 Verbesserungen am Grundsystem
 -----------------------------
@@ -78,9 +78,9 @@ Die beiden Kommandozeilen--Tools lassen sich noch weiter ausbauen. Das
 Analysetool Freki beherrscht im aktuellen Zustand noch keine Comparator--Plugins.
 Weitere denkbare Entwicklungen bei beiden Tools wären automatisierte Analysen
 der Metadaten und statistische Auswertungen. Des Weiteren wäre ein zusätzliches
-*ncurses*--Interface, wie es beispielsweise auch beim Mail Client *mutt* genutzt
-wird, wünschenswert und würde laut Meinung des Autors die Benutzerfreundlichkeit
-im Vergleich zum einfachen CLI--Tool erhöhen.
+*ncurses*--Interface wünschenswert, wie es beispielsweise auch beim Mail Client
+*mutt* genutzt. Das würde laut Meinung des Autors die Benutzerfreundlichkeit im
+Vergleich zum einfachen CLI--Tool erhöhen.
 
 **Libhugin--Proxy:**
 Der momentan implementierte Proxy zeigt nur einen konzeptionellen Ansatz und ist
@@ -119,9 +119,9 @@ experimentelle Comparator--Plugin--Schnittstelle. Die Idee hierzu ist es,
 Plugins zu entwickeln, die Filmmetadaten verschiedener Quellen untersuchen und
 miteinander vergleichen. Durch den Vergleich der Metadaten verschiedener
 Onlinequellen soll die ,,Qualität" der Metadatenquellen statistisch untersucht
-werden. Als geeignetes Qualitätsmaß, wäre hier beispielsweise die Anzahl der
-gefundenen Filme oder die Anzahl, der in deutscher Sprache gepflegten Metadaten,
-für den deutschen Sprachraum, denkbar.
+werden. Als geeignetes Qualitätsmaß wäre hier beispielsweise die Anzahl der
+gefundenen Filme oder die Anzahl der in deutscher Sprache gepflegten Metadaten
+denkbar.
 
 Des Weiteren kann untersucht werden, wie gut sich Filme anhand bestimmter
 Metadaten mit einander vergleichen lassen und ob man aufgrund von Metadaten
