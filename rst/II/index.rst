@@ -34,7 +34,7 @@ Fachbegriffe
     JSON
 
      JavaScript--Object--Notation, eine Auszeichnungssprache ähnlich wie *XML*
-     mit dem Ziel, von Mensch und Maschine einfacher lesbar als *XML* zu sein.
+     mit dem Ziel, von Mensch und Maschine einfacher lesbar zu sein als *XML*.
 
     Hashtabelle
 
@@ -77,7 +77,7 @@ Kontextspezifische Fachbegriffe
 
     Postprocessor
 
-     Im Kontenxt von *libhugin* ist ein Postprocessor ein Plugin, welches für
+     Im Kontext von *libhugin* ist ein Postprocessor ein Plugin, welches für
      die direkte Nachbearbeitung der heruntergeladenen Metadaten verwendet wird.
 
     Converter
@@ -95,7 +95,7 @@ Kontextspezifische Fachbegriffe
     Analyzer
 
      Im Kontext von *libhugin* ist ein Analyzer ein Plugin, welches für die
-     nachträgliche Analyse von Filmmmetadaten verwendet wird. Dies kann
+     nachträgliche Analyse von Filmmetadaten verwendet wird. Dies kann
      beispielsweise die Erkennung der Sprache der Inhaltsbeschreibung sein.
 
     Comparator
