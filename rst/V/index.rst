@@ -66,7 +66,7 @@ Webbrowser erhalten würde. Folgende Shellsitzung demonstriert den Aufruf
    </html>
 
 Man bekommt als Aufrufer der URL die Webseite zurückgeliefert und muss nun die
-Daten aus dem Dokument extrahieren. Dies ist in der Regel mühsamer, wie der
+Daten aus dem Dokument extrahieren. Dies ist in der Regel mühsamer als der
 Zugriff über eine API, welche die Daten sauber im *JSON*-- oder *XML*--Format
 zurückliefert.
 
@@ -144,7 +144,7 @@ Schnittstellen für folgende Pluginarten bereitstellen:
     * Analyzer
     * Comparator
 
-Der Analyze--Teil der Bibliothek soll eine interne Datenbank besitzen, in welche
+Der Analyze--Teil der Bibliothek soll über eine interne Datenbank verfügen, in welche
 externe Metadaten zur Analyse importiert werden. So können alle Plugins auf
 einem definierten Zustand arbeiten.
 
@@ -154,7 +154,7 @@ Klassenübersicht von *libhugin--harvest*
 ----------------------------------------
 
 Die Architektur von *libhugin* ist objektorientiert. Aus der Architekturübersicht
-und den Anforderungen an das System wurden folgende Klassen und Schnittstellen
+und den Anforderungen an das System wurden die folgenden Klassen und Schnittstellen
 abgeleitet. Abbildung :num:`fig-klassenuebersicht-harvest` zeigt eine
 Klassenübersicht von *libhugin--harvest*, samt Interaktion mit den Schnittstellen.
 
