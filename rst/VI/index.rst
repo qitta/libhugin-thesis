@@ -180,7 +180,7 @@ Analyzer--Plugins
 
 **KeywordExtract:**
 Dieses Plugin extrahiert aus einem Text, bei Filmen meist die
-Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text, beziehungsweise
+Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text beziehungsweise
 die darin dargestellte Thematik repräsentieren.
 
 **FileTypeAnalyze:**
@@ -333,9 +333,9 @@ Github--Projektseite teilt so dem Besuchern der Seite den aktuellen
 
 
 **Projektdokumentation:**
-Das Projekt wird nach dem Prinzip der *literalen Programmierung*, wie von
-*Donald E. Knuth* (siehe :cite:`knuth`) empfohlen, entwickelt. Hierbei liegen
-Quelltext und Dokumentation des Programms in der gleichen Datei.
+Das Projekt wird nach dem Prinzip der *literalen Programmierung* entwickelt, wie
+von *Donald E. Knuth* (siehe :cite:`knuth`) empfohlen. Hierbei liegen Quelltext
+und Dokumentation des Programms in der gleichen Datei.
 
 Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge
 generiert werden. Unter Python wird hier das Softwaredokumentationswerkzeug
@@ -363,8 +363,8 @@ geboten (siehe Abbildung :num:`fig-knuth`).
     API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython.
 
 **Projektumfang:**
-Der Projektumfang beträgt ca. 3500 *lines of code*,  hierzu kommt noch
-die Onlinedokumentation hinzu. Eine Statistik zum Projekt, welche mit dem Tool
+Der Projektumfang beträgt ca. 3500 *lines of code*,  hinzu kommt noch
+die Onlinedokumentation. Eine Statistik zum Projekt, welche mit dem Tool
 *cloc* erstellt wurde, ist im Anhang unter :ref:`ref-cloc` zu finden.
 
 
