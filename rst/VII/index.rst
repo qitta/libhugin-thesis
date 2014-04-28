@@ -566,6 +566,10 @@ Format:
 
    $ echo "{title} ({year}), [{imdbid}]" > tools/geri/movie.mask
 
+.. raw:: Latex
+
+   \newpage
+
 So schaut das minimalistische rename--Skript aus:
 
 .. code-block:: bash
