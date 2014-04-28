@@ -26,7 +26,7 @@ Metadatenquellen
 ----------------
 
 Zum Bezug der Metadaten werden verschiedene Onlinequellen genutzt. Im Prinzip
-eignet sich jede Seite, die Filminformationen pflegt als Metadatenquelle. Zu
+eignet sich jede Seite, die Filminformationen pflegt, als Metadatenquelle. Zu
 den gängigen Metadatenquellen --- neben zahlreichen anderen Quellen --- zählen:
 
  * *Internet Movie Database (IMDb)*, englischsprachig
@@ -51,7 +51,7 @@ wird oft von Open--Source--Projekten wie auch dem XBMC verwendet.
 deutschsprachige Metadaten pflegt.
 
 Die Metadaten, die von den jeweiligen Plattformen bezogen werden unterscheiden
-sich stark in ihrer Qualität, Art und Umfang.  Insbesondere die
+sich stark in Qualität, Art und Umfang.  Insbesondere die
 Inhaltsbeschreibung ist hier sehr vielfältig --- von kurz und knapp bis sehr
 ausführlich. Schaut man sich beispielsweise für den Film *,,Per Anhalter durch die
 Galaxis (2005)"* die deutsche Inhaltsbeschreibung auf den vier Film--Plattformen
@@ -114,7 +114,7 @@ Da die Programme nur für die Pflege von Metadaten gedacht sind, gibt es hier
 immer Import- und Exportschnittstellen, welche wiederum auf bestimmte Formate
 (siehe Metadatenformate, :ref:`ref-metadatenformate`) begrenzt sind.
 
-Bestimmte Onlinequellen wie die IMDb, bieten ihre Metadaten nur in englischer
+Bestimmte Onlinequellen wie die IMDb bieten ihre Metadaten nur in englischer
 Sprache an. Möchte man eine deutsche Inhaltsbeschreibung haben, so muss man auf
 eine Onlinequelle zugreifen, die diese in deutscher Sprache pflegt. Je nach
 Anwendung wird dies aber nicht immer unterstützt.
@@ -215,8 +215,8 @@ dieses Genre existiert bei IMDb (siehe :cite:`imdbgenre`) und bei TMDb
 Praxisbeispiel für Dateninhomogenität
 -------------------------------------
 
-Um das Problem zu veranschaulichen, betrachten wir, parallel zur oben genannten
-Problematik, Auszüge von Metadaten der drei Onlinequellen *IMDb*, *TMDb* und
+Um das Problem zu veranschaulichen betrachten wir parallel zur oben genannten
+Problematik Auszüge von Metadaten der drei Onlinequellen *IMDb*, *TMDb* und
 *OFDb*.
 
 Ausgehend von der Annahme, dass die Inhaltsbeschreibung (engl. Plot) und das
@@ -232,7 +232,7 @@ mit Metadaten versorgt werden sollen:
     4) *,,RoboCop (2014)"*, US-amerikanischer Spielfilm
 
 Die Inhaltsbeschreibung ist in der Regel problemlos austauschbar, jedoch
-unterscheidet sie sich auch je nach Quelle in der Formatierung, Ausführlichkeit
+unterscheidet sie sich auch je nach Quelle in Formatierung, Ausführlichkeit
 und Sprachstil.  Nicht alle Inhaltsbeschreibungen haben beispielsweise hinter
 dem Rollennamen immer den Namen des Schauspielers in Klammern. Sollen die
 Metadaten in deutscher Sprache gepflegt werden, so fällt IMDb raus, da diese
@@ -270,7 +270,7 @@ Hintergrundbilder (siehe Abbildung :num:`table-afterlife`).
 
 **Feuchtgebiete (2013):** Der zweite Film ist bei TMDb und OFDb gut gepflegt.
 Jedoch fällt auf, dass das gepflegte Genre bei diesen beiden Onlinequellen keine
-Schnittmenge aufweist. Beim betrachten des Wikipedia--Artikels (siehe
+Schnittmenge aufweist. Beim Betrachten des Wikipedia--Artikels (siehe
 :cite:`feuchtgebiete`) zum Film wird klar, dass das bei OFDb gepflegte Genre
 auch seine Daseinsberechtigung hat.
 
@@ -417,7 +417,7 @@ Anforderungen an das Projekt
 Viele der genannten Schwierigkeiten lassen sich aufgrund ihrer Natur und der
 aktuellen Kombination aus Abspielsoftware und Movie--Metadaten--Manager nicht
 oder nur mit manuellen Eingriff durch den Benutzer beheben. Bei großen
-Filmsammlungen mehrerer hunderter Filme ist dies jedoch mit keinem
+Filmsammlungen mehrerer hundert Filme ist dies jedoch mit keinem
 vernünftigen Aufwand umsetzbar.
 
 Es soll *kein neuer* Movie--Metadaten--Manager entwickelt werden. Die Idee ist
