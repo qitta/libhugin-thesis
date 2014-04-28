@@ -150,6 +150,10 @@ weil die Onlinequelle die Suche über *IMDb--ID* nicht unterstützt:
 
    $ geri --imdbid "tt0133093" -p videobustermovie
 
+.. raw:: Latex
+
+   \newpage
+
 Mit dem *Lookup--Mode* funktioniert auch die Suche über *IMDb--ID* bei
 Onlinequellen, die eine Suche über die *IMDb--ID* nicht unterstützen:
 

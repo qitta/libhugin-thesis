@@ -5,7 +5,7 @@ Zusammenfassung
 Aktueller Stand
 ===============
 
-Die aktuelle Implementierung zeigt einen modularen Prototypen, der soweit für
+Die aktuelle Implementierung zeigt einen modularen Prototypen, der für
 die gezeigten Anwendungsfälle des Autors gut funktioniert.
 
 Erfüllung der gesetzten Anforderungen
@@ -79,8 +79,8 @@ Analysetool Freki beherrscht im aktuellen Zustand noch keine Comparator--Plugins
 Weitere denkbare Entwicklungen bei beiden Tools wären automatisierte Analysen
 der Metadaten und statistische Auswertungen. Des Weiteren wäre ein zusätzliches
 *ncurses*--Interface wünschenswert, wie es beispielsweise auch beim Mail Client
-*mutt* genutzt. Das würde laut Meinung des Autors die Benutzerfreundlichkeit im
-Vergleich zum einfachen CLI--Tool erhöhen.
+*mutt* genutzt wird. Das würde laut Meinung des Autors die
+Benutzerfreundlichkeit im Vergleich zum einfachen CLI--Tool erhöhen.
 
 **Libhugin--Proxy:**
 Der momentan implementierte Proxy zeigt nur einen konzeptionellen Ansatz und ist

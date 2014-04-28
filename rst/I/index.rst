@@ -109,7 +109,7 @@ Der Name Hugin kommt aus der nordischen Mythologie:
     *Hugin, der mit dem altnordischen Schlussartikel –in gebildet wurde. Hugin*
     *bedeutet folglich „der Gedanke“.*
 
-    -- http://de.wikipedia.org/wiki/Hugin_and_Munin :cite:`huginmunin`
+    -- http://de.wikipedia.org/wiki/Hugin_und_Munin :cite:`huginmunin`
 
 
 .. _fig-huginlogo:
