@@ -495,6 +495,10 @@ Plugin direkt zurückgeliefert.
 
 ``comparator_plugins(pluginname=None)``: Analog zu ``analyzer_plugins()``.
 
+.. raw:: Latex
+
+   \newpage
+
 Folgende weitere Methoden erlauben es, die *libhugin--analyze* Plugins auf *externe*
 Daten anzuwenden:
 

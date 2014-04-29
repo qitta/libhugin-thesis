@@ -64,7 +64,9 @@ Libhugin--harvest hat aktuell verschiedene Provider implementiert (siehe Abbildu
 
 Ein paar der Provider, wie ``Filmstarts``, ``Videobuster`` lassen sich noch
 weiter ausbauen. Diese unterstützen momentan nur textuelle Metadaten, würden
-sich aber um grafische Metadaten erweitern lassen.
+sich aber um grafische Metadaten erweitern lassen. Die in der Tabelle
+festgelegten Prioritäten wurden hier willkürlich für Testzwecke vergeben. Diese
+können jederzeit an die eigenen Bedürfnisse angepasst werden.
 
 
 Postprocessor--Plugins
@@ -153,8 +155,8 @@ stammen.
     Aus diesem Text wird die Klammer samt Inhalt entfernt!
 
 
-Für weitere Informationen siehe *libhugin*--API :cite:`huginapi`. Des Weiteren
-zeigt die Demoanwendung Freki den Einsatz von *libhugin--analyze* (siehe :ref:`ref-freki`).
+Weitere Beispiele bezüglich Einsatz von *libhugin--analyze* siehe Demoanwendung
+Freki  (siehe :ref:`ref-freki`).
 
 
 Libhugin--analyze Plugins
@@ -211,9 +213,6 @@ Ein Plugin, das die Genres verschiedener Filme miteinander vergleicht.
 **KeywordCmp:**
 Ein Plugin, das die Schlüsselwörter verschiedener Filme miteinander vergleicht.
 
-.. raw:: Latex
-
-   \newpage
 
 Verschiedenes
 =============
@@ -340,8 +339,9 @@ und Dokumentation des Programms in der gleichen Datei.
 Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge
 generiert werden. Unter Python wird hier das Softwaredokumentationswerkzeug
 *Sphinx* (siehe :cite:`sphinxdoc`) verwendet. Die offizielle
-Projektdokumentation ist auf der Plattform *ReadTheDocs* (siehe :cite:`rtfd`)
-gehostet und unter folgender Adresse zu finden:
+Projektdokumentation, aktuell hauptsächlich der *libhugin-harvest* Teil, ist auf
+der Plattform *ReadTheDocs* (siehe :cite:`rtfd`) gehostet und unter folgender
+Adresse zu finden:
 
     * http://libhugin.rtfd.org
 
