@@ -3,7 +3,7 @@
 .. _doc-title:
 
 #############################
-libmunin: |br| Bachelorarbeit
+libhugin: |br| Bachelorarbeit
 #############################
 
 .. only:: not singlehtml
