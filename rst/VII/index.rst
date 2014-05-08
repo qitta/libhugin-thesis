@@ -181,7 +181,7 @@ Genre zu sehen ist:
 
 .. code-block:: bash
 
-   echo "{num}) {title} ({year}), IMDBid: {imdbid}, Provider: {provider}\
+   $ echo "{num}) {title} ({year}), IMDBid: {imdbid}, Provider: {provider}\
    \nGenre: {genre}\nGenre normalisiert: {genre_norm} \nInhalt: {plot}" > movie.mask
 
 
@@ -193,14 +193,14 @@ austauscht.
 
 .. code-block:: bash
 
-   echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie']}" > userprofile
+   $ echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie']}" > userprofile
 
 Suche nach dem Film *,,Feuchgebiete (2013)"* mit Einsatz vom *Compose*--Plugin
 und Beschränkung auf die zwei Provider TMDb und OFDb:
 
 .. code-block:: bash
 
-   geri --title "feuchtgebiete" -r compose -f userprofile -p tmdbmovie,ofdbmovie -a2
+   $ geri --title "feuchtgebiete" -r compose -f userprofile -p tmdbmovie,ofdbmovie -a2
    1) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: TMDBMovie <movie, picture>
    Genre: ['Komödie', 'Drama']
    Genre normalisiert: ['Komödie', 'Drama']
@@ -239,9 +239,9 @@ Bibliothek entwickelt worden.
 
 Folgend zum Überblick der Funktionalität die Hilfe des Tools Freki:
 
-.. code-block:: bash
+::
 
-   $python freki -h
+   $ freki -h
    Libhugin--analyzer commandline testtool.
 
    Usage:
@@ -430,7 +430,7 @@ Betrachten der Inhaltsbeschreibung der *nfo*--Dateien vor dem Export
 
 Export der modifizierten Datenbank:
 
-.. code-block:: bash
+::
 
     $ freki export mydb.db
     ./movies/All Good Things (2010)/movie.nfo
