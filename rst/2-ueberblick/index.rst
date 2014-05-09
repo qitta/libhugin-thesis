@@ -1,8 +1,32 @@
-.. _ch-refs:
+##########################
+Allgemeines zur Bibliothek
+##########################
 
-************************
-References and Citations
-************************
+Die zu evaluierende Bibliothek *libhugin*, die vom Autor entworfen wurde, lässt
+sich über die Metadatenbeschaffung hinweg auch um Plugins mit der Funktionalität
+der Metadatenaufbereitung erweitern. Die Bibliothek wurde in die zwei Teile
+*libhugin--harvest* (Metadatenbeschaffung) und *libhugin--analyze*
+(Metadatenaufbereitung) aufgeteilt.
+
+**Libhugin--harvest:** Dieser Teil der Bibliothek unterstützt die folgenden
+Pluginarten:
+
+**Provider--Plugins**
+
+Plugins, welche den Zugriff auf die Onlinequellen ermöglichen.
+
+**Postprocessor--Plugins**
+
+Plugins, welche für die direkte Bearbeitung der Metadaten nach dem Herunterladen
+verwendet werden.
+
+**Converter--Plugins**
+
+Plugins, welche bestimmte Metadaten Export--Formate unterstützen.
+
+
+**libhugin--analyze:** Dieser Teil der Bibliothek unterstützt die folgenden
+Pluginarten:
 
 
 .. epigraph::
