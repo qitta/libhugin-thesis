@@ -93,8 +93,64 @@ Auswahlkriterien bei Filmen zählt, wurde hier bei *libhugin* ein statisches
 Konzept der Normalisierung umgesetzt.
 
 Die Normalisierung bei *libhugin* bildet hierzu jedes Genre einer Onlinequelle
-auf einem Globalen Genre ab.
+auf einem Globalen Genre ab. Die Normalisierung erfolgt über eine statische
+Genre--Tabelle, welche der Autor eines Provider--Plugins (Plugin um eine
+bestimmte Onlinequellen anzusprechen) bereitstellen muss. Der Nachteil dieser
+Variante ist, dass das Genre--Spektrum der Onlinequelle bekannt sein muss.
 
+Das Provider Genre wird über einen Index auf einem globalen Genre abgebildet.
+Folgendes Beispiel zeigt ausschnittsweise den Abbildungsansatz:
+
+::
+
+    Globale Genre Tabelle           Provider Tabelle mit Mapping
+    =====================           ============================
+
+    1, Science Fiction              21, Sex
+    2, Komödie                      22, 3D-Animation
+    3, Actionfilm                   2, Comedy
+    [...]                           20, Drama
+    20, Drama                       1, Sci-Fi
+    21, Erotik
+    22, Animation
+
+Die Abbildung erfolgt anhand des Indizes:
+
+::
+
+    Sex             --- wird zu --->    Erotik
+    3D-Animation    --- wird zu --->    Animation
+    Comedy          --- wird zu --->    Komödie
+    Drama           --- wird zu --->    Drama
+    Sci-Fi          --- wird zu --->    Science Fiction
+
+Wird keine ,,Genremapping--Tabelle" bereitgestellt, so kann das Genre nicht
+normalisiert werden. In diesem Fall kann es zu der oben genannten Problematik
+kommen. Das Genremapping muss pro Sprache gepflegt werden, der Prototyp besitzt
+im aktuellen Zustand eine globale Genre--Tabelle für die deutsche und die
+englische Sprache.
+
+Ein weiterer Ansatz bei der Genrenormalisierung war die automatische Erkennung
+des Genres Anhand der Wortähnlichkeit. Dies erwies sich jedoch als nicht
+praxistauglich. Eine automatische Genreerkennung benötigt eine Wortschatz aus
+Referenz--Genres, mit welchen das ,,unbekannte" Provider--Genre verglichen werden
+muss. Bei Genres wie Science Fiction, Drama oder Thriller funktioniert das
+System noch relativ gut, komme aber seltene oder unbekannte Genrenamen wie
+,,Mondo" oder ,,Suspense" hinzu, kann je nach Referenz--Wortschatz keine
+Übereinstimmung mehr erfolgen. Hier wäre noch eine semiautomatischer Ansatz
+denkbar, welcher automatisiert Genres erkennt und im Fall eines Unbekannten
+Genres dieses in eine Liste aus nicht zugeordneten Genres hinzufügt, welche dann
+vom Benutzer ,,korrigiert" werden kann. Dies ist jedoch bei einer
+Software--Bibliothek wie sie durch *libhugin* bereitgestellt wird, weniger
+praktikabel.
+
+** semi auto difflib example**
+
+Ein weiteres Problem das hier jedoch hinzu kommt ist, dass das ,,Genre" an sich
+in keiner Form standardisiert ist. Je nach Onlinequelle gibt es
+Genrebezeichnungen wie Animationsfilm oder Kinderfilm, welche jedoch im engeren
+Sinne aber nicht zum ,,Filmgenre"--Begriff gezählt werden dürften. Des Weiteren
+kommt hinzu, dass über die Jahre immer wieder neue Genre entstanden sind.
 
 
 
