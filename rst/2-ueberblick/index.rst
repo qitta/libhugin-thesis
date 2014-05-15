@@ -39,6 +39,32 @@ Pluginarten zu implementieren:
 
 Die Bibliothek wurde in der Programmiersprache Python (Version 3.3) entworfen.
 
+Filmsuche Algorithmik
+=====================
+
+Bei der Suchanfrage über den Filmtitel wird von den Onlinequellen in der Regel
+eine Liste mit mehreren Möglichkeiten geliefert. Das Provider--Plugin muss
+anschließend die Filmtitel mit der größten Übereinstimmung herausfinden. Für die
+Ähnlichkeit bei der Suche nach übereinstimmenden Zeichenketten, wurde ein
+Ähnlichkeitsmaß definiert welches von 0.0 (keine Ähnlichkeit) bis 1.0
+(Übereinstimmung) geht.
+
+Der Vergleich der Zeichenketten sollte möglichst fehlertolerant sein und
+Zeichenketten mit der höhten Übereinstimmung liefern.
+
+Der simple Vergleich
+
+::
+
+    "The Matrix" ==  "The Matrix"
+
+würde hier nur bei exakt den gleichen Zeichenketten funktionieren. Für den
+Vergleich von Zeichenketten bietet die Python Standard--Bibliothek das
+*difflib*--Modul. Das Modul erlaubt es zwei Sequenzen zu vergleichen. Es
+arbeitet mit dem Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von
+:math:`O(n^{3})` im *worst case* und eine erwartete Komplexität von O(n^2). Der
+Algorithmus basiert auf
+
 
 Asynchrone Ausführung
 =====================
@@ -118,11 +144,11 @@ Die Abbildung erfolgt anhand des Indizes:
 
 ::
 
-    Sex             --- wird zu --->    Erotik
     3D-Animation    --- wird zu --->    Animation
     Comedy          --- wird zu --->    Komödie
     Drama           --- wird zu --->    Drama
     Sci-Fi          --- wird zu --->    Science Fiction
+    Sex             --- wird zu --->    Erotik
 
 Wird keine ,,Genremapping--Tabelle" bereitgestellt, so kann das Genre nicht
 normalisiert werden. In diesem Fall kann es zu der oben genannten Problematik
@@ -151,44 +177,4 @@ in keiner Form standardisiert ist. Je nach Onlinequelle gibt es
 Genrebezeichnungen wie Animationsfilm oder Kinderfilm, welche jedoch im engeren
 Sinne aber nicht zum ,,Filmgenre"--Begriff gezählt werden dürften. Des Weiteren
 kommt hinzu, dass über die Jahre immer wieder neue Genre entstanden sind.
-
-
-
-.. epigraph::
-
-   | |apostart| *Human beings, who are almost unique in having the ability to learn from the*
-   | |apopar|  *experience of others, are also remarkable for their apparent disinclination to do so.* |apoend|
-
-   -- *Douglas Adams, ,,Last Chance to See''*
-
-You can reference a section by its label. This chapter is
-Chapter |nbsp| :ref:`ch-refs`.
-
-.. _sec-refs-sub1:
-
-Subsection
-==========
-
-This subsection is Section |nbsp| :ref:`sec-refs-sub1`.
-
-Citations
-=========
-
-COLLADA |nbsp| :cite:`collada` is a cool 3D file format. I wrote a paper about
-3D stuff |nbsp| :cite:`icmepaper`. The website we built is running |nbsp|
-:cite:`open3dhub`. The bibliography is in bibtex format.
-
-Footnotes
-=========
-
-Reference a footnote |nbsp| [#foot-something]_.
-
-External Links
-==============
-
-You can link to a `website <http://google.com/>`_.
-
-.. rubric:: Footnotes
-
-.. [#foot-something] This is a footnote at the end of the page or document.
 
