@@ -62,8 +62,68 @@ würde hier nur bei exakt den gleichen Zeichenketten funktionieren. Für den
 Vergleich von Zeichenketten bietet die Python Standard--Bibliothek das
 *difflib*--Modul. Das Modul erlaubt es zwei Sequenzen zu vergleichen. Es
 arbeitet mit dem Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von
-:math:`O(n^{3})` im *worst case* und eine erwartete Komplexität von O(n^2). Der
-Algorithmus basiert auf
+:math:`O(n^{3})` im *worst case* und eine erwartete Komplexität von
+:math:`O(n^{2})`. Der Algorithmus basiert auf der Idee, die Sequenzen der
+übereinstimmenden Zeichen zu und durch die Anzahl alle Zeichen der beiden
+Strings zu teilen.
+
+Ein weiterer Algorithmus der für Zeichenkettenvergleiche eingesetzt wird ist der
+Levenshtein--Algorithmus (Levenshtein--Distanz). Der Algorithmus hat eine
+Laufzeit von :math:`O(nm)`. Die Levenshtein--Distanz basiert auf der Idee, der
+minimalen Editiervorgänge (Einfügen, Löschen, Ersetzen) um von einer
+Zeichenkette auf eine andere zu kommen. Die normalisierte Levenshtein--Distanz
+bewegt sich zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
+
+Eine Erweiterung der Levenshtein--Distanz ist die Damerau--Levenshtein--Distanz.
+Diese wurde um die Funktionalität erweitert, vertauschte Zeichen zu erkennen.
+Um die Zeichenkette *,,The Matrix"* nach *,,Teh Matrix"* zu überführen, sind bei
+der Levenshtein--Distanz zwei Operationen nötig, die
+Damerau--Levenshtein--Distanz hingegen benötigt nur eine Operation.
+
+Da es bei der Filmsuche zu vielen Zeichenkettenvergleichen kommt, und auch nicht
+abgesehen werden kann um beispielsweise welche Data--Mining--Plugins *libhugin*
+in Zukunft erweitert wird, sollte der Algorithmus, zum Vergleich von
+Zeichenketten, eine gute Laufzeit bieten. Um die jeweiligen Algorithmen
+beziehungsweise die Implementierungen dieser, bezüglich der Performance, zu
+überprüfen wurde eine Messung mit den folgenden zwei unter Python verfügbaren
+Implementierungen durchgeführt:
+
+    * difflib, Modul aus der Python--Standard--Bibliothek  (Ratcliff-Obershelp)
+    * pyxDamerauLevenshtein, auf Cython basierte der Damerau--Levenshtein--Implementierung
+
+
+.. _fig-stringcompare:
+
+.. figure:: fig/fig.png
+    :alt: String comparsion algorithms.
+    :width: 100%
+    :align: center
+
+    String comparsion algorithms performance anlysis.
+
+
+Während der Entwicklung ist aufgefallen, dass der Online--Provider *OFDb* den
+Film *,,The East (2013)"* nicht finden konnte. Nach längerer Recherche und
+Ausweitung der gewünschten Ergebnisanzahl auf 100, wurde festgestellt, dass der
+Film auf dem letzten Platz der Suchergebnisse (Platz 48) zu finden war.
+
+Dies liegt daran liegt, dass der Film auf dieser Online--Plattform mit der
+Schreibweise *,,East, The"* gepflegt ist. Dies ist eine valide und nicht
+unübliche Schreibweise um Filme alphabetisch schneller zu finden.
+
+Betrachtet man die Ähnlichkeit der beiden Zeichenketten, so stellt man fest,
+dass bei dieser Schreibweise, je nach Algorithmus, eine geringe bis gar keine
+Ähnlichkeit vorhanden ist, wie folgende *IPython* Sitzung zeigt:
+
+.. code-block:: python
+
+    In [1]: import difflib
+    In [2]: from pyxdameraulevenshtein import normalized_damerau_levenshtein_distance
+    In [3]: difflib.SequenceMatcher(None, "The East", "East, The").ratio()
+    Out[3]: 0.47058823529411764
+    In [4]: 1 - normalized_damerau_levenshtein_distance("The East", "East, The")
+    Out[4]: 0.0
+
 
 
 Asynchrone Ausführung
