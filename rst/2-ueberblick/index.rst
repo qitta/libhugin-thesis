@@ -91,7 +91,6 @@ Implementierungen durchgeführt:
     * difflib, Modul aus der Python--Standard--Bibliothek  (Ratcliff-Obershelp)
     * pyxDamerauLevenshtein, auf Cython basierte der Damerau--Levenshtein--Implementierung
 
-
 .. _fig-stringcompare:
 
 .. figure:: fig/fig.png
@@ -101,9 +100,44 @@ Implementierungen durchgeführt:
 
     String comparsion algorithms performance anlysis.
 
+Je nach Algorithmus variiert das Ergebnis leicht, das liegt daran dass die
+Algorithmen eine unterschiedliche Idee verfolgen.
 
-Während der Entwicklung ist aufgefallen, dass der Online--Provider *OFDb* den
-Film *,,The East (2013)"* nicht finden konnte. Nach längerer Recherche und
+Folgende interaktive Python--Sitzung zeigt das Ergebnisverhalten von difflib und
+pyxDamerauLevenshtein, da das Ähnlichkeitsmaß beim der zu letzt genannten
+Implementierung umgekehrt ist, wird das Ergebnis von der eins abgezogen um das
+Verhalten zu vergleichen:
+
+.. code-block:: python
+
+    >>> difflib.SequenceMatcher(None, "Katze", "Fratze").ratio()
+    0.7272727272727273
+    >>> 1 - normalized_damerau_levenshtein_distance("Katze", "Fratze")
+    0.6666666666666667
+
+Weitere Werte für die um die unterschiedliche Wertung der beiden Algorithmen zu
+zeigen finden sich in der Tabelle (siehe Abbildung).
+
+Da der Vergleich case sensitive ist fällt die Ähnlichkeit der Titel *,,Sin"*
+und *,,sin"*, wie folgende Python Sitzung zeigt, unterschiedlich aus:
+
+.. code-block:: python
+
+    >>> 1 - normalized_damerau_levenshtein_distance("sin", "Sin")
+    0.6666666666666667
+
+Um dieses Problem zu beheben wird die gesuchte Zeichenkette vor dem Vergleich
+normalisiert. Dies geschieht indem alle Zeichen der Zeichenkette in Klein--
+beziehungsweise Großbuchstaben umgewandelt werden. Folgendes Beispiel zeigt die
+Normalisierung mittels der in Python integrierten ``lower()``--Funktion:
+
+.. code-block:: python
+
+    >>> 1 - normalized_damerau_levenshtein_distance("sin".lower(), "Sin".lower())
+    1.0
+
+Während der Entwicklung ist aufgefallen, dass der implementierte OFDb--Provider
+den Film *,,The East (2013)"* nicht finden konnte. Nach längerer Recherche und
 Ausweitung der gewünschten Ergebnisanzahl auf 100, wurde festgestellt, dass der
 Film auf dem letzten Platz der Suchergebnisse (Platz 48) zu finden war.
 
@@ -117,13 +151,53 @@ dass bei dieser Schreibweise, je nach Algorithmus, eine geringe bis gar keine
 
 .. code-block:: python
 
-    In [1]: import difflib
-    In [2]: from pyxdameraulevenshtein import normalized_damerau_levenshtein_distance
-    In [3]: difflib.SequenceMatcher(None, "The East", "East, The").ratio()
-    Out[3]: 0.47058823529411764
-    In [4]: 1 - normalized_damerau_levenshtein_distance("The East", "East, The")
-    Out[4]: 0.0
+    >>> import difflib
+    >>> from pyxdameraulevenshtein import normalized_damerau_levenshtein_distance
+    >>> difflib.SequenceMatcher(None, "The East", "East, The").ratio()
+    0.47058823529411764
+    >>> 1 - normalized_damerau_levenshtein_distance("The East", "East, The")
+    0.0
 
+Um dieses Problem zu Umgehen, müssen die Filmtitel auf ein bestimmtes Schema
+normalisiert werden. Um dieses Problem zu beheben wäre ein möglicher Ansatz den
+Artikel zu entfernen. Dies würde jedoch das Problem mit sich bringen, dass Filme
+wie *,,Drive (2011)"* und *"The Drive (1996)"* fälschlicherweise als identisch
+erkannt werden würden. Ein weiteres Problem, welches hinzu kommt ist, dass der
+Artikel--Ansatz sprachabhängig wäre.
+
+Ein anderer Ansatz hier wäre, Satztrennungszeichen zu entfernen und den
+einzelnen Wörter des Titels alphabetisch zu sortieren.
+
+Aus *,,East, The"* und *,,The East"* wird nach der Normalisierung also *,,east
+the"*. Der Vergleich der Zeichenkette würde eine Ähnlichkeit von 1.0 liefern.
+
+Anhand des Beispieltitels *,,East, The"* wird wie folgt die Normalisierung
+erläutert:
+
+    1. Titel auf Kleinschreibung runterbrechen →  ``'east, the'``
+    2. Satztrennungszeichen wie ,,,", ,,-" und ,,:" werden entfernt → ``'east the'``
+    3. Titel anhand der Leerzeichen aufbrechen und in Liste umgewandeln → [``'east '``, ``'the'``]
+    4. Führende und nachfolgende Leerzeichen entfernen → [``'east'``, ``'the'``]
+    5. Liste alphabetisch sortieren und in Zeichenkette umwandeln → ``'east the'``
+
+Wendet man diesen Ansatz auf ,,The East" und ,,East, The" an so erhält man in
+beiden Fällen die Zeichenkette "east the". Die Umsetzung des Algorithmus bei der
+Titelsuche löst das Problem beim OFDb--Provider. Der eben genannte Film wird
+durch die Normalisierung gefunden und erscheint an der ersten Position.
+
+Diese Vorgehensweise Normalisiert ebenso die Personensuche. Hier wird
+beispielsweise der Name *,,Emma Stone"* und *,,Stone, Emma"* in beiden Fällen zu
+der Zeichenkette ``'emma stone'``.
+
+Unschärfesuche
+==============
+
+text.
+
+IMDB--ID Suche
+==============
+
+text.
 
 
 Asynchrone Ausführung
