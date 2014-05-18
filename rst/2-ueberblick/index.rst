@@ -171,12 +171,12 @@ einzelnen Wörter des Titels alphabetisch zu sortieren.
 Aus *,,East, The"* und *,,The East"* wird nach der Normalisierung also *,,east
 the"*. Der Vergleich der Zeichenkette würde eine Ähnlichkeit von 1.0 liefern.
 
-Anhand des Beispieltitels *,,East, The"* wird wie folgt die Normalisierung
+Anhand des Beispieltitel *,,East, The"* wird wie folgt die Normalisierung
 erläutert:
 
-    1. Titel auf Kleinschreibung runterbrechen →  ``'east, the'``
+    1. Titel auf Kleinschreibung runter brechen →  ``'east, the'``
     2. Satztrennungszeichen wie ,,,", ,,-" und ,,:" werden entfernt → ``'east the'``
-    3. Titel anhand der Leerzeichen aufbrechen und in Liste umgewandeln → [``'east '``, ``'the'``]
+    3. Titel anhand der Leerzeichen aufbrechen und in Liste umwandeln → [``'east '``, ``'the'``]
     4. Führende und nachfolgende Leerzeichen entfernen → [``'east'``, ``'the'``]
     5. Liste alphabetisch sortieren und in Zeichenkette umwandeln → ``'east the'``
 
@@ -192,12 +192,32 @@ der Zeichenkette ``'emma stone'``.
 Unschärfesuche
 ==============
 
-text.
+Die Onlinequellen der implementierten Provider benötigen
 
-IMDB--ID Suche
+IMDb--ID Suche
 ==============
 
-text.
+Ob die Suche nach der IMDb--ID möglich ist hängt von der jeweiligen Onlinequelle
+ab. Onlinequellen wie TMDb, OFDb oder auch OMDb unterstützen direkt die Suche
+über die IMDB--ID. Andere Onlinequellen wie das filmstarts-- oder
+Videobuster--Portal unterstützen keine Suche über IMDb--ID. Es ist prinzipiell
+nur eine Suche über IMDb--ID möglich wenn diese von der jeweiligen Onlinequelle
+direkt angeboten wird.
+
+Um dieses Problem abzumildern und eine onlinequellenübergreifende Möglichkeit
+über die IMDb--ID zu ermöglichen bietet die *libhugin--harvest*--Bibliothek die
+Möglichkeit den sogenannten ,,Lookup--Mode" zu aktivieren.
+
+Hierbei wird intern vor der Metadatensuche ein sogenannter *Lookup* durchgeführt
+um zu der gesuchten IMDB--ID den passenden Filmtitel zu ermitteln. Prinzipiell
+gibt es hier die Möglichkeit über eine Suche auf *IMDb.com* den Entsprechenden
+Titel zu ermitteln. Die Filme auf der Seite sind jeweils unter der jeweiligen
+IMDb--ID eingepflegt. Eine URL für den Film mit der IMDb--ID tt1602613 für den
+Film *,,Only god forgives (2013)"* ist wie folgt aufgebaut:
+
+    * http://www.imdb.com/title/tt1602613
+
+
 
 
 Asynchrone Ausführung
