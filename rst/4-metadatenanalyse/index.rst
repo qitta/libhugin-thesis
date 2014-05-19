@@ -1,11 +1,8 @@
-***************
-Zusammenfassung
-***************
+################
+Metadatenanalyse
+################
 
-Ausblick
-========
+Wow - metadata!
+===============
 
-War alles super. Unverbesserbar.
-
-Fazit
-=====
+Muss gepflegt werden.

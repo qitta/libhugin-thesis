@@ -1,204 +1,351 @@
-*********
-Hauptteil
-*********
+###########
+Algorithmik
+###########
 
-Implementierung
-===============
 
-Sehr komplizierter Code:
+Filmsuche Algorithmik
+=====================
+
+Bei der Suchanfrage über den Filmtitel wird von den Onlinequellen in der Regel
+eine Liste mit mehreren Möglichkeiten geliefert. Das Provider--Plugin muss
+anschließend die Filmtitel mit der größten Übereinstimmung herausfinden. Für die
+Ähnlichkeit bei der Suche nach übereinstimmenden Zeichenketten, wurde ein
+Ähnlichkeitsmaß definiert welches von 0.0 (keine Ähnlichkeit) bis 1.0
+(Übereinstimmung) geht.
+
+Der Vergleich der Zeichenketten sollte möglichst fehlertolerant sein und
+Zeichenketten mit der höhten Übereinstimmung liefern.
+
+Der simple Vergleich
+
+::
+
+    "The Matrix" ==  "The Matrix"
+
+würde hier nur bei exakt den gleichen Zeichenketten funktionieren. Für den
+Vergleich von Zeichenketten bietet die Python Standard--Bibliothek das
+*difflib*--Modul. Das Modul erlaubt es zwei Sequenzen zu vergleichen. Es
+arbeitet mit dem Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von
+:math:`O(n^{3})` im *worst case* und eine erwartete Komplexität von
+:math:`O(n^{2})`. Der Algorithmus basiert auf der Idee, die Sequenzen der
+übereinstimmenden Zeichen zu und durch die Anzahl alle Zeichen der beiden
+Strings zu teilen.
+
+Ein weiterer Algorithmus der für Zeichenkettenvergleiche eingesetzt wird ist der
+Levenshtein--Algorithmus (Levenshtein--Distanz). Der Algorithmus hat eine
+Laufzeit von :math:`O(nm)`. Die Levenshtein--Distanz basiert auf der Idee, der
+minimalen Editiervorgänge (Einfügen, Löschen, Ersetzen) um von einer
+Zeichenkette auf eine andere zu kommen. Die normalisierte Levenshtein--Distanz
+bewegt sich zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
+
+Eine Erweiterung der Levenshtein--Distanz ist die Damerau--Levenshtein--Distanz.
+Diese wurde um die Funktionalität erweitert, vertauschte Zeichen zu erkennen.
+Um die Zeichenkette *,,The Matrix"* nach *,,Teh Matrix"* zu überführen, sind bei
+der Levenshtein--Distanz zwei Operationen nötig, die
+Damerau--Levenshtein--Distanz hingegen benötigt nur eine Operation.
+
+Da es bei der Filmsuche zu vielen Zeichenkettenvergleichen kommt, und auch nicht
+abgesehen werden kann um beispielsweise welche Data--Mining--Plugins *libhugin*
+in Zukunft erweitert wird, sollte der Algorithmus, zum Vergleich von
+Zeichenketten, eine gute Laufzeit bieten. Um die jeweiligen Algorithmen
+beziehungsweise die Implementierungen dieser, bezüglich der Performance, zu
+überprüfen wurde eine Messung mit den folgenden zwei unter Python verfügbaren
+Implementierungen durchgeführt:
+
+    * difflib, Modul aus der Python--Standard--Bibliothek  (Ratcliff-Obershelp)
+    * pyxDamerauLevenshtein, auf Cython basierte der Damerau--Levenshtein--Implementierung
+
+.. _fig-stringcompare:
+
+.. figure:: fig/fig.png
+    :alt: String comparsion algorithms.
+    :width: 100%
+    :align: center
+
+    String comparsion algorithms performance anlysis.
+
+Je nach Algorithmus variiert das Ergebnis leicht, das liegt daran dass die
+Algorithmen eine unterschiedliche Idee verfolgen.
+
+Folgende interaktive Python--Sitzung zeigt das Ergebnisverhalten von difflib und
+pyxDamerauLevenshtein, da das Ähnlichkeitsmaß beim der zu letzt genannten
+Implementierung umgekehrt ist, wird das Ergebnis von der eins abgezogen um das
+Verhalten zu vergleichen:
 
 .. code-block:: python
 
-    def hello(world):
-        print(world)
+    >>> difflib.SequenceMatcher(None, "Katze", "Fratze").ratio()
+    0.7272727272727273
+    >>> 1 - normalized_damerau_levenshtein_distance("Katze", "Fratze")
+    0.6666666666666667
+
+Weitere Werte für die um die unterschiedliche Wertung der beiden Algorithmen zu
+zeigen finden sich in der Tabelle (siehe Abbildung).
+
+Da der Vergleich case sensitive ist fällt die Ähnlichkeit der Titel *,,Sin"*
+und *,,sin"*, wie folgende Python Sitzung zeigt, unterschiedlich aus:
+
+.. code-block:: python
+
+    >>> 1 - normalized_damerau_levenshtein_distance("sin", "Sin")
+    0.6666666666666667
+
+Um dieses Problem zu beheben wird die gesuchte Zeichenkette vor dem Vergleich
+normalisiert. Dies geschieht indem alle Zeichen der Zeichenkette in Klein--
+beziehungsweise Großbuchstaben umgewandelt werden. Folgendes Beispiel zeigt die
+Normalisierung mittels der in Python integrierten ``lower()``--Funktion:
+
+.. code-block:: python
+
+    >>> 1 - normalized_damerau_levenshtein_distance("sin".lower(), "Sin".lower())
+    1.0
+
+Während der Entwicklung ist aufgefallen, dass der implementierte OFDb--Provider
+den Film *,,The East (2013)"* nicht finden konnte. Nach längerer Recherche und
+Ausweitung der gewünschten Ergebnisanzahl auf 100, wurde festgestellt, dass der
+Film auf dem letzten Platz der Suchergebnisse (Platz 48) zu finden war.
+
+Dies liegt daran liegt, dass der Film auf dieser Online--Plattform mit der
+Schreibweise *,,East, The"* gepflegt ist. Dies ist eine valide und nicht
+unübliche Schreibweise um Filme alphabetisch schneller zu finden.
+
+Betrachtet man die Ähnlichkeit der beiden Zeichenketten, so stellt man fest,
+dass bei dieser Schreibweise, je nach Algorithmus, eine geringe bis gar keine
+Ähnlichkeit vorhanden ist, wie folgende *IPython* Sitzung zeigt:
+
+.. code-block:: python
+
+    >>> import difflib
+    >>> from pyxdameraulevenshtein import normalized_damerau_levenshtein_distance
+    >>> difflib.SequenceMatcher(None, "The East", "East, The").ratio()
+    0.47058823529411764
+    >>> 1 - normalized_damerau_levenshtein_distance("The East", "East, The")
+    0.0
+
+Um dieses Problem zu Umgehen, müssen die Filmtitel auf ein bestimmtes Schema
+normalisiert werden. Um dieses Problem zu beheben wäre ein möglicher Ansatz den
+Artikel zu entfernen. Dies würde jedoch das Problem mit sich bringen, dass Filme
+wie *,,Drive (2011)"* und *"The Drive (1996)"* fälschlicherweise als identisch
+erkannt werden würden. Ein weiteres Problem, welches hinzu kommt ist, dass der
+Artikel--Ansatz sprachabhängig wäre.
+
+Ein anderer Ansatz hier wäre, Satztrennungszeichen zu entfernen und den
+einzelnen Wörter des Titels alphabetisch zu sortieren.
+
+Aus *,,East, The"* und *,,The East"* wird nach der Normalisierung also *,,east
+the"*. Der Vergleich der Zeichenkette würde eine Ähnlichkeit von 1.0 liefern.
+
+Anhand des Beispieltitel *,,East, The"* wird wie folgt die Normalisierung
+erläutert:
+
+    1. Titel auf Kleinschreibung runter brechen →  ``'east, the'``
+    2. Satztrennungszeichen wie ,,,", ,,-" und ,,:" werden entfernt → ``'east the'``
+    3. Titel anhand der Leerzeichen aufbrechen und in Liste umwandeln → [``'east '``, ``'the'``]
+    4. Führende und nachfolgende Leerzeichen entfernen → [``'east'``, ``'the'``]
+    5. Liste alphabetisch sortieren und in Zeichenkette umwandeln → ``'east the'``
+
+Wendet man diesen Ansatz auf ,,The East" und ,,East, The" an so erhält man in
+beiden Fällen die Zeichenkette "east the". Die Umsetzung des Algorithmus bei der
+Titelsuche löst das Problem beim OFDb--Provider. Der eben genannte Film wird
+durch die Normalisierung gefunden und erscheint an der ersten Position.
+
+Diese Vorgehensweise Normalisiert ebenso die Personensuche. Hier wird
+beispielsweise der Name *,,Emma Stone"* und *,,Stone, Emma"* in beiden Fällen zu
+der Zeichenkette ``'emma stone'``.
 
 
-Tabellen und Figures
-====================
+IMDb--ID Suche
+==============
 
-.. _ch-figs:
+Ob die Suche nach der IMDb--ID möglich ist hängt von der jeweiligen Onlinequelle
+ab. Onlinequellen wie TMDb, OFDb oder auch OMDb unterstützen direkt die Suche
+über die IMDB--ID. Andere Onlinequellen wie das filmstarts-- oder
+Videobuster--Portal unterstützen keine Suche über IMDb--ID. Es ist prinzipiell
+nur eine Suche über IMDb--ID möglich wenn diese von der jeweiligen Onlinequelle
+direkt angeboten wird.
 
-Vector SVG Figures
-==================
+Um dieses Problem abzumildern und eine onlinequellenübergreifende Möglichkeit
+über die IMDb--ID zu ermöglichen bietet die *libhugin--harvest*--Bibliothek die
+Möglichkeit den sogenannten ,,Lookup--Mode" zu aktivieren.
 
-Vector figures are nicely supported. You should have a PDF file and an SVG
-file. The PDF will be used for the latex output and the SVG for the HTML
-output. The HTML output has a nice zoom feature using Colorbox.
+Hierbei wird intern vor der Metadatensuche ein sogenannter *Lookup* durchgeführt
+um zu der gesuchten IMDB--ID den passenden Filmtitel zu ermitteln. Prinzipiell
+gibt es hier die Möglichkeit über eine Suche auf *IMDb.com* den Entsprechenden
+Titel zu ermitteln. Die Filme auf der Seite sind jeweils unter der jeweiligen
+IMDb--ID eingepflegt. Eine URL für den Film mit der IMDb--ID ``tt1602613`` für
+den Film *,,Only god forgives (2013)"* ist wie folgt aufgebaut:
 
-.. _fig-sirikata-overview:
+    * http://www.imdb.com/title/tt1602613
 
-.. figure:: figs/overview.*
-    :alt: Sirikata System Overview
-    :width: 60%
-    :align: center
-    
-    The Sirikata metaverse platform architecture.
+Wenn also der *Lookup--Mode* aktiviert wird, wird vor dem eigentlichen
+Herunterladen über die Provider ein *Loockup* über ``http://imdb.com``
+getriggert. Hierbei wird die URL aus der zu suchenden ID zusammengesetzt und
+ein IMDb Anfrage darüber gestartet. Anschließend wird auf den zurückgelieferten
+Inhalt ein Regulärer Ausdruck ausgeführt, welcher die Zeichenketten bestehend
+aus "<Titelname> <(4-stellige Jahreszahl)>", extrahiert.
 
-See an example in Figure |nbsp| :num:`fig-sirikata-overview`. I suggest making
-figures in something like Inkscape. If you have only a vector PDF, you can use
-pdf2svg to convert (``brew install pdf2svg`` or ``apt-get install pdf2svg``).
+Der algorithmische Ansatz schaut unter Python wie folgt aus:
 
-Image Figures
-=============
+.. code-block:: python
 
-Regular rasterized images work fine too.
-
-.. _fig-open3dhub-icons:
-
-.. figure:: figs/icons.png
-    :alt: Open3DHub Browsing Interface
-    :width: 86.05%
-    :align: center
-    
-    The Open3DHub website allows browsing of 3D meshes.
-
-A PNG example is shown in Figure |nbsp| :num:`fig-open3dhub-icons`.
-
-Subfigures
-==========
-
-The subfigure directives allow you to place multiple figures side-by-side in
-the document. Here's an example:
-
-.. subfigstart::
-
-.. _fig-cc-teddy-base:
-
-.. figure:: figs/teddy_0_128.png
-    :alt: Base Mesh + 128x128 Texture (334 KB)
-    :width: 90%
-    :align: center
-    
-    Base Mesh + 128x128 Texture (334 KB)
+   >>> imdbid = "tt1602613"  # id for only god forgives
+   >>> request = requests.get('http://www.imdb.com/title/{}'.format(imdbid))
+   >>> title, year = re.search('\>(.+?)\s*\((\d{4})', request.text).groups()
+   >>> print(title, year)
+   'Only God Forgives 2013'
 
 
-.. _fig-cc-teddy-25:
+Unschärfesuche
+==============
 
-.. figure:: figs/teddy_25_256.png
-    :alt: Base Mesh + 25% Stream + 256x256 Texture (568 KB)
-    :width: 90%
-    :align: center
-    
-    Base Mesh + 25% Stream + 256x256 Texture (568 KB)
+Die Onlinequellen der implementierten Provider, TMDb, IMDb, OFDb, OMdb,
+Filmstarts und Videobuster benötigen exakte Suchanfragen. Bei einem Tippfehler
+wie *,,Only good forgives"* (Originaltitel: Only god forgives), wird der Film
+von den genannten Online--Plattformen nicht gefunden. Diesen Fehler clientseitig
+zu beheben ist schwierig, man müsste eine große Datenbank an Filmtitel pflegen
+und aktuell halten, und könnte so mit Hilfe dieser den Fehler vom Benutzer
+korrigieren indem alternativ die ähnlichste Zeichenkette aus der Datenbank
+nehmen würde. Mit der normalisierten Damerau--Levenshtein Ähnlichkeit die
+*libhugin* zum Zeichenkettenvergleich anbietet hätte die falsche Anfrage eine
+Ähnlichkeit von 0.94.
+
+Eine lokale beziehungsweise zentrale Datenbank aufzubauen wäre möglich, da die
+Informationen beziehungsweise Metadaten Online auf vielen Plattformen verfügbar
+sind. Diese Datenbank aktuell zu halten ist jedoch schwierig, da nicht bekannt
+ist auf welchen Plattformen ein Film überhaupt gepflegt ist beziehungsweise wie
+aktuell die gepflegten Informationen sind.
+
+Um dieses Problem trotz der genannten Schwierigkeiten zu lösen bedient sich
+*libhugin* eines anderen Ansatzes. *Libhugin* delegiert die Information, wie es
+ein Mensch auch machen würde, an eine Suchmaschine. In konkreten Fall wird ein
+hierbei ein *Lookup* über die Suchmaschine von Google getriggert.
+
+Über die *,,I'm Feeling Lucky"*--Funktionalität erlaubt es Google über Parameter
+die Suchanfrage so zu konfigurieren, dass als Antwort keine Liste mit
+Suchergebnissen zurückgeliefert wird, sondern die Seite mit der höchsten
+Übereinstimmung zum Suchergebnis. Hierzu muss die Suchanfrage die Option
+``btnI=1`` als URL--Queryparameter enthalten. Folgendes Beispiel zeigt die
+Suchanfrage zum Wikipedia--Artikel ,,Hauskatze" mit Parameter für die *,,I'm
+Feeling Lucky"*--Funktionalität:
+
+    * http://www.google.com/search?hl=de&q=Hauskatze&btnI=1
+
+Gibt man diese URL direkt im Browser ein, so wird direkt der Wikipedia--Artikel
+(``http://de.wikipedia.org/wiki/Hauskatze ``) zur Hauskatze angezeigt.
 
 
-.. _fig-cc-teddy-50:
-
-.. figure:: figs/teddy_50_512.png
-    :alt: Base Mesh + 50% Stream + 512x512 Texture (923 KB)
-    :width: 90%
-    :align: center
-    
-    Base Mesh + 50% Stream + 512x512 Texture (923 KB)
 
 
-.. _fig-cc-teddy-75:
 
-.. figure:: figs/teddy_75_1024.png
-    :alt: Base Mesh + 75% Stream + 1024x1024 Texture (1755 KB)
-    :width: 90%
-    :align: center
-    
-    Base Mesh + 75% Stream + 1024x1024 Texture (1755 KB)
+Asynchrone Ausführung
+=====================
 
-.. _fig-cc-teddy-100:
+Bestimmte Teile von *libhugin* wurden multithreaded entwickelt. Hierzu zählen
+die Downloadqueue so wie die Möglichkeit die Suchanfrage asynchron
+loszuschicken.
 
-.. figure:: figs/teddy_100_2048.png
-    :alt: Base Mesh + 100% Stream + 2048x2048 Texture (4385 KB)
-    :width: 90%
-    :align: center
-    
-    Base Mesh + 100% Stream + 2048x2048 Texture (4385 KB)
+Da der Zugriff auf Onlinequellen je nach Serverauslastung und Internetanbindung
+in der Performance stark variiert, wurde das Herunterladen der Metadaten
+parallelisiert. Das parallele Herunterladen zeigt deutliche
+Geschwindigkeitsvorteile im Vergleich zur seriellen Verarbeitung (siehe
+Abbildung :num:`fig-threaded-download`).
 
 
-.. _fig-cc-teddy-original:
 
-.. figure:: figs/teddy_orig.png
-    :alt: Original Mesh (913 KB)
-    :width: 90%
-    :align: center
-    
-    Original Mesh (913 KB)
 
-.. subfigend::
-    :width: 0.30
-    :alt: Example Model Resolutions
-    :label: fig-cc-teddy
-    
-    Example of a teddy bear model at different resolutions of the
-    progressive format (1 draw call) and its original format (16 draw
-    calls). The size in KB assumes downloading progressively, |eg|
-    :num:`fig-cc-teddy-100`'s size includes lower-resolution textures.
+Normalisierung der Metadaten
+============================
 
-You can reference the entire Figure |nbsp| :num:`fig-cc-teddy` or one of its
-subfigures, |eg| Figure |nbsp| :num:`fig-cc-teddy-original`.
+Die Normalisierung der Metadaten aus unterschiedlichen Quellen ist sehr
+schwierig, da es bei den Filmmetadaten keinen einheitlichen Standard gibt. Um
+fehlerhafte oder fehlende Metadaten über unterschiedliche Quellen zu ergänzen,
+müssen die Metadaten normalisiert werden. Dieses Problem wird nun Anhand vom
+Genre Attribut, welches in der internen Metadaten--Datenbank des XBMC abgelegt
+wurde, beispielhaft erklärt.
 
-Table
-=====
+Wird beispielsweise der Spielfilm ,,The Matrix (1999)" über drei verschiedene
+Onlinequellen bezogen, so erhält man, falls das Genre ,,Science Fiction" bei den
+jeweiligen Quellen gepflegt wurde, oft eine unterschiedliche Schreibweise.
 
-Tables can be put inside the figtable directive which automatically numbers
-them, adds a caption, and adds a label.
+    * TMDb (www.themoviedb.org): Science Fiction
+    * IMDb (www.imdb.com): Sci--Fi
+    * OFDb (www.ofdb.de): Science--Fiction
 
-.. figtable::
-    :label: table-cc-file-size
-    :caption: Mean size of progressive format as a fraction of the
-              original across all test models, shown as a function of the
-              progressive stream downloaded and texture resolution.
-    :alt: Mean Size of Progressive Format
-    :spec: r r r r r r r
+Wird nun der Film ,,The Matrix (1999)" über TMDb bezogen und der Film ,,Matrix
+Revolutions (2003)" über IMDb, weil er beispielsweise bei TMDb nicht gepflegt
+ist, so wird in diesem Fall das Genre mit den zwei unterschiedlichen
+Schreibweisen ,,Science Fiction" und ,,Sci--Fi" bezogen.
 
-    ===========  ====  ====  ====  ====  ====
-    Progressive  128   256   512   1024  2048
-    ===========  ====  ====  ====  ====  ====
-             0%  0.53  0.63  0.81  1.03  1.35
-            25%  0.65  0.75  0.97  1.16  1.45
-            50%  0.74  0.85  1.02  1.26  1.58
-            75%  0.79  0.95  1.11  1.34  1.70
-           100%  0.88  0.99  1.20  1.44  1.82
-    ===========  ====  ====  ====  ====  ====
+Durch diesen Umstand haben wir eine Genreinformation redundant in unserem
+XBMC--Center gepflegt. Es ist also nicht mehr möglich dieses Filmgenre eindeutig
+zu identifizieren. Es ist somit weder eine Gruppierung nach diesem Genre noch
+eindeutige eindeutige Filterung möglich.
 
-Table |nbsp| :num:`table-cc-file-size` has all right-aligned columns.
+Dieses Problem betrifft grundsätzlich alle Filmmetadaten Attribute, jedoch
+lassen sich andere Attribute wie die Inhaltsbeschreibung problemlos austauschen,
+diese von Natur aus individuell und sich somit nicht normalisieren lässt.
 
-.. figtable::
-    :label: table-mixed-align
-    :caption: This table has mixed alignment
-    :alt: Mixed Alignment Table
-    :spec: l r
+Da das Filmgenre, neben der Inhaltsbeschreibung, zu den wichtigsten
+Auswahlkriterien bei Filmen zählt, wurde hier bei *libhugin* ein statisches
+Konzept der Normalisierung umgesetzt.
 
-    =======================  =========================
-    Left Align               Right Align
-    =======================  =========================
-    Some text is left align  Followed by right-aligned
-    Some more text here      And more text here
-    And even more text       Also even more text here
-    =======================  =========================
+Die Normalisierung bei *libhugin* bildet hierzu jedes Genre einer Onlinequelle
+auf einem Globalen Genre ab. Die Normalisierung erfolgt über eine statische
+Genre--Tabelle, welche der Autor eines Provider--Plugins (Plugin um eine
+bestimmte Onlinequellen anzusprechen) bereitstellen muss. Der Nachteil dieser
+Variante ist, dass das Genre--Spektrum der Onlinequelle bekannt sein muss.
 
-Table |nbsp| :num:`table-mixed-align` has one column left-aligned and one
-column right-aligned.
+Das Provider Genre wird über einen Index auf einem globalen Genre abgebildet.
+Folgendes Beispiel zeigt ausschnittsweise den Abbildungsansatz:
 
-Text Wrapping Table
-===================
+::
 
-Text wrapping in tables work if you specify the width and either raggedleft or
-raggedright.
+    Globale Genre Tabelle           Provider Tabelle mit Mapping
+    =====================           ============================
 
-.. figtable::
-    :label: fig-open3dhub-cfs
-    :caption: A list of Open3DHub's Cassandra column families and their descriptions
-    :alt: Open3DHub Cassandra Column Families
-    :spec: >{\raggedleft\arraybackslash}p{0.25\linewidth} p{0.65\linewidth}
+    1, Science Fiction              21, Sex
+    2, Komödie                      22, 3D-Animation
+    3, Actionfilm                   2, Comedy
+    [...]                           20, Drama
+    20, Drama                       1, Sci-Fi
+    21, Erotik
+    22, Animation
 
-    ============================== ==============================================================================================================================
-    Column Family                  Description
-    ============================== ==============================================================================================================================
-    **Users**                      Stores a list of users who have authenticated with OpenID.
-    **Names**                      Stores a list of the 3D models in the database with their associated metadata.
-    **TempFiles**                  Temporarily stores the binary file data of uploaded files until they have been processed.
-    **Files**                      Stores the binary file data for uploaded and verified files.
-    **Sessions**                   Stores HTTP session information used by the Django framework to look up session state associated with a user's browser cookie.
-    **OpenIdAssocs, OpenIdNonces** Stores OpenID authentication information for users.
-    **CeleryResults**              Stores the result of application processing tasks (see Section something).
-    **APIConsumers**               Stores a list of consumers of the API for use with the OAuth protocol.
-    ============================== ==============================================================================================================================
+Die Abbildung erfolgt anhand des Indizes:
 
-A text wrapping table example is shown in Figure |nbsp| :num:`fig-open3dhub-cfs`.
+::
+
+    3D-Animation    --- wird zu --->    Animation
+    Comedy          --- wird zu --->    Komödie
+    Drama           --- wird zu --->    Drama
+    Sci-Fi          --- wird zu --->    Science Fiction
+    Sex             --- wird zu --->    Erotik
+
+Wird keine ,,Genremapping--Tabelle" bereitgestellt, so kann das Genre nicht
+normalisiert werden. In diesem Fall kann es zu der oben genannten Problematik
+kommen. Das Genremapping muss pro Sprache gepflegt werden, der Prototyp besitzt
+im aktuellen Zustand eine globale Genre--Tabelle für die deutsche und die
+englische Sprache.
+
+Ein weiterer Ansatz bei der Genrenormalisierung war die automatische Erkennung
+des Genres Anhand der Wortähnlichkeit. Dies erwies sich jedoch als nicht
+praxistauglich. Eine automatische Genreerkennung benötigt eine Wortschatz aus
+Referenz--Genres, mit welchen das ,,unbekannte" Provider--Genre verglichen werden
+muss. Bei Genres wie Science Fiction, Drama oder Thriller funktioniert das
+System noch relativ gut, komme aber seltene oder unbekannte Genrenamen wie
+,,Mondo" oder ,,Suspense" hinzu, kann je nach Referenz--Wortschatz keine
+Übereinstimmung mehr erfolgen. Hier wäre noch eine semiautomatischer Ansatz
+denkbar, welcher automatisiert Genres erkennt und im Fall eines Unbekannten
+Genres dieses in eine Liste aus nicht zugeordneten Genres hinzufügt, welche dann
+vom Benutzer ,,korrigiert" werden kann. Dies ist jedoch bei einer
+Software--Bibliothek wie sie durch *libhugin* bereitgestellt wird, weniger
+praktikabel.
+
+** semi auto difflib example**
+
+Ein weiteres Problem das hier jedoch hinzu kommt ist, dass das ,,Genre" an sich
+in keiner Form standardisiert ist. Je nach Onlinequelle gibt es
+Genrebezeichnungen wie Animationsfilm oder Kinderfilm, welche jedoch im engeren
+Sinne aber nicht zum ,,Filmgenre"--Begriff gezählt werden dürften. Des Weiteren
+kommt hinzu, dass über die Jahre immer wieder neue Genre entstanden sind.
+

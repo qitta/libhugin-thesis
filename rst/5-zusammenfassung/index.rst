@@ -1,18 +1,5 @@
-**********
-Einleitung
-**********
+###############
+Zusammenfassung
+###############
 
-Motivation
-==========
-
-Keine. :cite:`XAJ`.
-
-Ziele
-=====
-
-Alle.
-
-Zielgruppe
-==========
-
-Alle.
+Everything works.
