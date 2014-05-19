@@ -189,10 +189,6 @@ Diese Vorgehensweise Normalisiert ebenso die Personensuche. Hier wird
 beispielsweise der Name *,,Emma Stone"* und *,,Stone, Emma"* in beiden Fällen zu
 der Zeichenkette ``'emma stone'``.
 
-Unschärfesuche
-==============
-
-Die Onlinequellen der implementierten Provider benötigen
 
 IMDb--ID Suche
 ==============
@@ -212,11 +208,57 @@ Hierbei wird intern vor der Metadatensuche ein sogenannter *Lookup* durchgeführ
 um zu der gesuchten IMDB--ID den passenden Filmtitel zu ermitteln. Prinzipiell
 gibt es hier die Möglichkeit über eine Suche auf *IMDb.com* den Entsprechenden
 Titel zu ermitteln. Die Filme auf der Seite sind jeweils unter der jeweiligen
-IMDb--ID eingepflegt. Eine URL für den Film mit der IMDb--ID tt1602613 für den
-Film *,,Only god forgives (2013)"* ist wie folgt aufgebaut:
+IMDb--ID eingepflegt. Eine URL für den Film mit der IMDb--ID ``tt1602613`` für
+den Film *,,Only god forgives (2013)"* ist wie folgt aufgebaut:
 
     * http://www.imdb.com/title/tt1602613
 
+Wenn also der *Lookup--Mode* aktiviert wird, wird vor dem eigentlichen
+Herunterladen über die Provider ein *Loockup* über ``http://imdb.com``
+getriggert. Hierbei wird die URL aus der zu suchenden ID zusammengesetzt und
+ein IMDb Anfrage darüber gestartet. Anschließend wird auf den zurückgelieferten
+Inhalt ein Regulärer Ausdruck ausgeführt, welcher die Zeichenketten bestehend
+aus "<Titelname> <(4-stellige Jahreszahl)>", extrahiert.
+
+Der algorithmische Ansatz schaut unter Python wie folgt aus:
+
+.. code-block:: python
+
+   >>> imdbid = "tt1602613"  # id for only god forgives
+   >>> request = requests.get('http://www.imdb.com/title/{}'.format(imdbid))
+   >>> title, year = re.search('\>(.+?)\s*\((\d{4})', request.text).groups()
+   >>> print(title, year)
+   'Only God Forgives 2013'
+
+
+Unschärfesuche
+==============
+
+Die Onlinequellen der implementierten Provider, TMDb, IMDb, OFDb, OMdb,
+Filmstarts und Videobuster benötigen exakte Suchanfragen. Bei einem Tippfehler
+wie *,,Only good forgives"* (Originaltitel: Only god forgives), wird der Film
+von den genannten Online--Plattformen nicht gefunden. Diesen Fehler clientseitig
+zu beheben ist schwierig, man müsste eine große Datenbank an Filmtitel pflegen
+und aktuell halten, und könnte so mit Hilfe dieser den Fehler vom Benutzer
+korrigieren indem alternativ die ähnlichste Zeichenkette aus der Datenbank
+nehmen würde. Mit der normalisierten Damerau--Levenshtein Ähnlichkeit die
+*libhugin* zum Zeichenkettenvergleich anbietet hätte die falsche Anfrage eine
+Ähnlichkeit von 0.94.
+
+Eine lokale beziehungsweise zentrale Datenbank aufzubauen wäre möglich, da die
+Informationen beziehungsweise Metadaten Online auf vielen Plattformen verfügbar
+sind. Diese Datenbank aktuell zu halten ist jedoch schwierig, da nicht bekannt
+ist auf welchen Plattformen ein Film überhaupt gepflegt ist beziehungsweise wie
+aktuell die gepflegten Informationen sind.
+
+Um dieses Problem trotz der genannten Schwierigkeiten zu lösen bedient sich
+*libhugin* eines anderen Ansatzes. *Libhugin* delegiert die Information, wie es
+ein Mensch auch machen würde, an eine Suchmaschine. In konkreten Fall wird ein
+hierbei ein *Lookup* über die Suchmaschine von Google getriggert.
+
+Google erlaubt es über Parameter die Suchanfrage so zu konfigurieren, dass als
+Antwort keine Liste mit Suchergebnissen zurückgeliefert wird, sondern die Seite
+mit der höchsten Übereinstimmung zum Suchergebnis.
 
 
 
