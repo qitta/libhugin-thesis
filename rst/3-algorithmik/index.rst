@@ -35,14 +35,26 @@ Ein weiterer Algorithmus der für Zeichenkettenvergleiche eingesetzt wird ist de
 Levenshtein--Algorithmus (Levenshtein--Distanz). Der Algorithmus hat eine
 Laufzeit von :math:`O(nm)`. Die Levenshtein--Distanz basiert auf der Idee, der
 minimalen Editiervorgänge (Einfügen, Löschen, Ersetzen) um von einer
-Zeichenkette auf eine andere zu kommen. Die normalisierte Levenshtein--Distanz
-bewegt sich zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
+Zeichenkette auf eine andere zu kommen (vgl :cite:`atallah2010algorithms`). Die
+normalisierte Levenshtein--Distanz bewegt sich zwischen 0.0 (Übereinstimmung)
+und 1.0 (keine Ähnlichkeit).
 
 Eine Erweiterung der Levenshtein--Distanz ist die Damerau--Levenshtein--Distanz.
 Diese wurde um die Funktionalität erweitert, vertauschte Zeichen zu erkennen.
 Um die Zeichenkette *,,The Matrix"* nach *,,Teh Matrix"* zu überführen, sind bei
 der Levenshtein--Distanz zwei Operationen nötig, die
-Damerau--Levenshtein--Distanz hingegen benötigt nur eine Operation.
+Damerau--Levenshtein--Distanz hingegen benötigt nur eine Operation wie die
+folgende *IPython*--Sitzung zeigt:
+
+.. code-block:: python
+
+    >>> from pyxdameraulevenshtein import damerau_levenshtein_distance
+    >>> from distance import levenshtein as levenshtein_distance
+    >>> levenshtein_distance("the matrix", "teh matrix")
+    >>> 2
+    >>> damerau_levenshtein_distance("the matrix", "teh matrix")
+    >>> 1
+
 
 Da es bei der Filmsuche zu vielen Zeichenkettenvergleichen kommt, und auch nicht
 abgesehen werden kann um beispielsweise welche Data--Mining--Plugins *libhugin*
@@ -54,10 +66,11 @@ Implementierungen durchgeführt:
 
     * difflib, Modul aus der Python--Standard--Bibliothek  (Ratcliff-Obershelp)
     * pyxDamerauLevenshtein, auf Cython basierte der Damerau--Levenshtein--Implementierung
+    * distance, externes Modul für Vergleich von Zeichenketten mit Levenshtein--Implementierung
 
 .. _fig-stringcompare:
 
-.. figure:: fig/fig.png
+.. figure:: fig/algo_compare.pdf
     :alt: String comparsion algorithms.
     :width: 100%
     :align: center
@@ -92,8 +105,9 @@ und *,,sin"*, wie folgende Python Sitzung zeigt, unterschiedlich aus:
 
 Um dieses Problem zu beheben wird die gesuchte Zeichenkette vor dem Vergleich
 normalisiert. Dies geschieht indem alle Zeichen der Zeichenkette in Klein--
-beziehungsweise Großbuchstaben umgewandelt werden. Folgendes Beispiel zeigt die
-Normalisierung mittels der in Python integrierten ``lower()``--Funktion:
+beziehungsweise alternative in Großbuchstaben umgewandelt werden. Folgendes
+Beispiel zeigt die Normalisierung mittels der in Python integrierten
+``lower()``--Funktion:
 
 .. code-block:: python
 
@@ -127,10 +141,10 @@ normalisiert werden. Um dieses Problem zu beheben wäre ein möglicher Ansatz de
 Artikel zu entfernen. Dies würde jedoch das Problem mit sich bringen, dass Filme
 wie *,,Drive (2011)"* und *"The Drive (1996)"* fälschlicherweise als identisch
 erkannt werden würden. Ein weiteres Problem, welches hinzu kommt ist, dass der
-Artikel--Ansatz sprachabhängig wäre.
+Artikel--Ansatz sprachabhängig ist.
 
-Ein anderer Ansatz hier wäre, Satztrennungszeichen zu entfernen und den
-einzelnen Wörter des Titels alphabetisch zu sortieren.
+Ein anderer Ansatz ist, Satztrennungszeichen zu entfernen und die einzelnen
+Wörter des Titels alphabetisch zu sortieren.
 
 Aus *,,East, The"* und *,,The East"* wird nach der Normalisierung also *,,east
 the"*. Der Vergleich der Zeichenkette würde eine Ähnlichkeit von 1.0 liefern.
@@ -140,9 +154,8 @@ erläutert:
 
     1. Titel auf Kleinschreibung runter brechen →  ``'east, the'``
     2. Satztrennungszeichen wie ,,,", ,,-" und ,,:" werden entfernt → ``'east the'``
-    3. Titel anhand der Leerzeichen aufbrechen und in Liste umwandeln → [``'east '``, ``'the'``]
-    4. Führende und nachfolgende Leerzeichen entfernen → [``'east'``, ``'the'``]
-    5. Liste alphabetisch sortieren und in Zeichenkette umwandeln → ``'east the'``
+    3. Titel anhand der Leerzeichen aufbrechen und in Liste umwandeln → [``'east'``, ``'the'``]
+    4. Liste alphabetisch sortieren und in Zeichenkette umwandeln → ``'east the'``
 
 Wendet man diesen Ansatz auf ,,The East" und ,,East, The" an so erhält man in
 beiden Fällen die Zeichenkette "east the". Die Umsetzung des Algorithmus bei der
@@ -153,6 +166,23 @@ Diese Vorgehensweise Normalisiert ebenso die Personensuche. Hier wird
 beispielsweise der Name *,,Emma Stone"* und *,,Stone, Emma"* in beiden Fällen zu
 der Zeichenkette ``'emma stone'``.
 
+Die Anpassungen beim Zeichenkettenvergleich wirken sich auf die Performance aus.
+Abbildung :num:`fig-finalstringcompare` zeigt den Performanceunterschied zum
+ursprünglichen Algorithmus und im Vergleich zum Jaccard Algorithmus, welcher
+auch Zeichenketten in Token zerlegt.
+
+.. _fig-finalstringcompare:
+
+.. figure:: fig/adjusted_algo_compare.pdf
+    :alt: String comparsion algorithms.
+    :width: 100%
+    :align: center
+
+    Angepasster Damerau-Levenshtein Algorithmus
+
+.. raw:: Latex
+
+   \newpage
 
 IMDb--ID Suche
 ==============
@@ -231,10 +261,27 @@ Feeling Lucky"*--Funktionalität:
     * http://www.google.com/search?hl=de&q=Hauskatze&btnI=1
 
 Gibt man diese URL direkt im Browser ein, so wird direkt der Wikipedia--Artikel
-(``http://de.wikipedia.org/wiki/Hauskatze ``) zur Hauskatze angezeigt.
+(``http://de.wikipedia.org/wiki/Hauskatze``) zur Hauskatze angezeigt.
+
+*Libhugin* bedient sich dieser Funktionalität und führt einen *Lookup* mit den
+Parametern *Filmtitel*, *Erscheinungsjahr*, *imdb* und *movie*. Anschließend
+wird die zurückgegebene URL betrachtet, und aus dieser die IMDb--ID extrahiert.
+
+Folgende *IPython*--Sitzung zeigt den Ansatz:
+
+.. code-block:: python
 
 
+    >>> fmt = 'http://www.google.com/search?hl=de&q={title}+{year}+imdb+movie&btnI=1'
+    >>> url = requests.get(fmt.format(title='Drive', year='2011'))).url
+    >>> imdbid = re.findall('\/tt\d*/', url)
+    >>> imdbid.pop().strip('/')
+    'tt0780504'
 
+Hier wurde der Ansatz gewählt die IMDb--ID aus der URL mit einem Regulärem
+Ausdruck zu parsen. Dies erspart das parsen des kompletten Dokuments.
+Anschließen wird die Suche mit der IMDb--ID normal fortgesetzt. Alternativ wäre
+hier der Ansatz über dem Filmtitel, wie beim IMDb--ID zu Titel *Lookup* möglich.
 
 
 Asynchrone Ausführung
@@ -243,6 +290,17 @@ Asynchrone Ausführung
 Bestimmte Teile von *libhugin* wurden multithreaded entwickelt. Hierzu zählen
 die Downloadqueue so wie die Möglichkeit die Suchanfrage asynchron
 loszuschicken.
+
+Auf den exzessiven Einsatz von Multithreading wurde verzichtet, da
+parallele Verarbeitung unter Python aufgrund vom *GIL* (Global Inetpreter Lock)
+nur eingeschränkt möglich ist. Der *GIL* ist ein Mutex, welcher verhindert dass
+mehrere native Threads Python Bytecode gleichzeitig ausführen können. Die
+Parallelisierung beispielsweise von Funktionen kann sogar zu Performanceeinbußen
+im Vergleich zur Singlethreaded Ausführung führen.
+
+Diese Einschränkung gilt jedoch nicht für lange laufende oder blockierende
+Operationen wie beispielsweise der Zugriff auf die Festplatte (vgl
+:cite:`hellmann2011python`).
 
 Da der Zugriff auf Onlinequellen je nach Serverauslastung und Internetanbindung
 in der Performance stark variiert, wurde das Herunterladen der Metadaten
