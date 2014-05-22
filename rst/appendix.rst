@@ -5,14 +5,9 @@
 Anhang A
 ========
 
-Source-Beispiele, Bilder und so.
+Das folgende Code--Snippet wurden zum benchmarken von unterschiedlichen
+Zeichenkettenvergleichsalgorithmen verwendet.
 
-Anhang B
-========
-
-Hello World.
-
-Anhang C
-========
-
-Bye cruel world.
+.. literalinclude:: ./3-algorithmik/strcmp_benchmark.py
+   :language: python
+   :linenos:
