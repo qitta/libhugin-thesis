@@ -59,14 +59,19 @@ folgende *IPython*--Sitzung zeigt:
 Da es bei der Filmsuche zu vielen Zeichenkettenvergleichen kommt, und auch nicht
 abgesehen werden kann um beispielsweise welche Data--Mining--Plugins *libhugin*
 in Zukunft erweitert wird, sollte der Algorithmus, zum Vergleich von
-Zeichenketten, eine gute Laufzeit bieten. Um die jeweiligen Algorithmen
-beziehungsweise die Implementierungen dieser, bezüglich der Performance, zu
-überprüfen wurde eine Messung mit den folgenden zwei unter Python verfügbaren
-Implementierungen durchgeführt:
+Zeichenketten, eine gute Laufzeit bieten.
+
+Da der Raspberry Pi als Zielplattform nicht ausgeschlossen ist, sollte die
+Implementierung des Algorithmus zum Vergleich von Zeichenketten möglichst
+performant sein.
+
+Um die jeweiligen Algorithmen, beziehungsweise die Implementierungen dieser,
+bezüglich der Performance, zu überprüfen wurde eine Messung mit den folgenden
+unter Python verfügbaren Implementierungen durchgeführt:
 
     * difflib, Modul aus der Python--Standard--Bibliothek  (Ratcliff-Obershelp)
     * pyxDamerauLevenshtein, auf Cython basierte der Damerau--Levenshtein--Implementierung
-    * distance, externes Modul für Vergleich von Zeichenketten mit Levenshtein--Implementierung
+    * distance, externes Modul mit Levenshtein--Implementierung in Python und C
 
 .. _fig-stringcompare:
 
@@ -168,8 +173,7 @@ der Zeichenkette ``'emma stone'``.
 
 Die Anpassungen beim Zeichenkettenvergleich wirken sich auf die Performance aus.
 Abbildung :num:`fig-finalstringcompare` zeigt den Performanceunterschied zum
-ursprünglichen Algorithmus und im Vergleich zum Jaccard Algorithmus, welcher
-auch Zeichenketten in Token zerlegt.
+ursprünglichen Algorithmus.
 
 .. _fig-finalstringcompare:
 
@@ -228,7 +232,7 @@ Der algorithmische Ansatz schaut unter Python wie folgt aus:
 Unschärfesuche
 ==============
 
-Die Onlinequellen der implementierten Provider, TMDb, IMDb, OFDb, OMdb,
+Die Onlinequellen der implementierten Provider, TMDb, IMDb, OFDb, OMDb,
 Filmstarts und Videobuster benötigen exakte Suchanfragen. Bei einem Tippfehler
 wie *,,Only good forgives"* (Originaltitel: Only god forgives), wird der Film
 von den genannten Online--Plattformen nicht gefunden. Diesen Fehler clientseitig
@@ -261,7 +265,7 @@ Feeling Lucky"*--Funktionalität:
     * http://www.google.com/search?hl=de&q=Hauskatze&btnI=1
 
 Gibt man diese URL direkt im Browser ein, so wird direkt der Wikipedia--Artikel
-(``http://de.wikipedia.org/wiki/Hauskatze``) zur Hauskatze angezeigt.
+zur Hauskatze [#f1]_ angezeigt.
 
 *Libhugin* bedient sich dieser Funktionalität und führt einen *Lookup* mit den
 Parametern *Filmtitel*, *Erscheinungsjahr*, *imdb* und *movie*. Anschließend
@@ -407,3 +411,6 @@ Genrebezeichnungen wie Animationsfilm oder Kinderfilm, welche jedoch im engeren
 Sinne aber nicht zum ,,Filmgenre"--Begriff gezählt werden dürften. Des Weiteren
 kommt hinzu, dass über die Jahre immer wieder neue Genre entstanden sind.
 
+.. rubric:: Footnotes
+
+.. [#f1] http://de.wikipedia.org/wiki/Hauskatze
