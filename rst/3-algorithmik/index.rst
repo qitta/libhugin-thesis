@@ -98,9 +98,27 @@ Verhalten zu vergleichen:
     0.6666666666666667
 
 Weitere Werte für die um die unterschiedliche Wertung der beiden Algorithmen zu
-zeigen finden sich in der Tabelle (siehe Abbildung).
+zeigen finden sich in der Tabelle Abbildung :num:`fig-comparsion-diff`.
 
-Da der Vergleich case sensitive ist fällt die Ähnlichkeit der Titel *,,Sin"*
+
+.. figtable::
+    :label: fig-comparsion-diff
+    :caption: Ähnlichkeitswerte Ratcliff-Obershelp (links unten) und Damerau-Levenshtein (rechts oben)
+    :alt: Ähnlichkeitswerte Ratcliff-Obershelp (links unten) und Damerau-Levenshtein (rechts oben)
+
+    +---------------+--------------+------------+--------------+---------------+
+    |               | **Superman** | **Batman** | **Iron-Man** | **Spiderman** |
+    +===============+==============+============+==============+===============+
+    | **Superman**  | 1.0          | 0.38       | 0.25         | 0.67          |
+    +---------------+--------------+------------+--------------+---------------+
+    | **Batman**    | 0.43         | 1.0        | 0.25         | 0.33          |
+    +---------------+--------------+------------+--------------+---------------+
+    | **Iron-Man**  | 0.38         | 0.29       | 1.0          | 0.22          |
+    +---------------+--------------+------------+--------------+---------------+
+    | **Spiderman** | 0.82         | 0.4        | 0.35         | 1.0           |
+    +---------------+--------------+------------+--------------+---------------+
+
+Da der Vergleich case sensitive ist, fällt die Ähnlichkeit der Titel *,,Sin"*
 und *,,sin"*, wie folgende Python Sitzung zeigt, unterschiedlich aus:
 
 .. code-block:: python
@@ -186,7 +204,42 @@ ursprünglichen Algorithmus.
 
 .. raw:: Latex
 
-   \newpage
+
+Ein weiterer Punkt der bei der Suche von Filmen mit angegeben werden kann ist
+das Erscheinungsjahr. Dieses wird verwendet um Suchergebnisse genauer zu
+filtern. Wird der Titel und ein Erscheinungsjahr bei der Suche angegeben, so
+kann der ,,richtige" Film näherungsweise durch das Erscheinungsjahr ermittelt
+werden. Beispielsweise der Film ,,Drive (1997)", wenn hier zusätzlich das Jahr
+,,2000" bei der Suche angegeben wird, für einen Film der vor ca. 10 Jahren
+erschienen ist. Wird an erster Stelle jedoch der Film *,,Drive (2011)"*
+erscheinen, da hier der Zeichenkettenunterschied geringer ist im Vergleich zur
+Zeichenkette ,,1997". Folgende Python--Sitzung zeigt die Problematik:
+
+.. code-block:: python
+
+   >>> 1 - normalized_damerau_levenshtein_distance("Drive 2000", "Drive 2011")
+   0.8
+   >>> 1 - normalized_damerau_levenshtein_distance("Drive 2000", "Drive 1997")
+   0.6
+
+Bei separaten Betrachtung der Zeichenkette für das Jahr würde die Differenz noch
+größer ausfallen, da die beiden Zeichenketten ,,1997" und "2000" keine
+Ähnlichkeit aufweisen, die Zeichenketten ,,2000" und ,,2011" eine Ähnlichkeit
+von 0.5 aufweisen würden.
+
+Logisch betrachtet ist das Jahr ,,1997" jedoch viel näher an dem Gesuchten
+Erscheinungsjahr. Was in Beispiel darauf hindeuten würde dass der Benutzer das
+Exakte Jahr nicht mehr wusste, jedoch den Zeitraum mit einer Abweichung von drei
+Jahren angeben konnte.
+
+Die genannte Problematik äußert sich beispielsweise auch bei Film--Remakes oder
+Filmen die beispielsweise mit einer Ungenauigkeit von +/- 1 Jahr auf einer
+Plattform eingepflegt wurden. Dies passiert, laut Beobachtung des Autors,
+manchmal wenn ein Film national Erfolg hatte und im Folgejahr dann International
+public wird. Hier kam es in der Vergangenheit zu Differenzen die bei der Pflege
+der Metadaten aufgefallen sind. Ob dieser Umstand weiterhin präsent ist, müsste
+eine Auswertung von Metadaten mehrerer Onlinequellen zeigen.
+
 
 IMDb--ID Suche
 ==============
