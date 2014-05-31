@@ -1,10 +1,40 @@
-###########
-Algorithmik
-###########
+#######################
+Algorithmik Grundsystem
+#######################
 
-
-Filmsuche Algorithmik
+Asynchrone Ausführung
 =====================
+
+Bestimmte Teile von *libhugin* wurden multithreaded entwickelt. Hierzu zählen
+die Downloadqueue so wie die Möglichkeit die Suchanfrage asynchron
+loszuschicken.
+
+Auf weiteren Einsatz von Multithreading wurde verzichtet, da parallele
+Verarbeitung unter Python aufgrund vom *GIL* (Global Inetpreter Lock) nur
+eingeschränkt möglich ist. Der *GIL* ist ein Mutex, welcher verhindert dass
+mehrere native Threads Python Bytecode gleichzeitig ausführen können. Die
+Parallelisierung beispielsweise von Funktionen kann sogar zu Performanceeinbußen
+im Vergleich zur Singlethreaded--Ausführung führen.
+
+Diese Einschränkung gilt jedoch nicht für lange laufende oder blockierende
+Operationen wie beispielsweise der Zugriff auf die Festplatte (vgl
+:cite:`hellmann2011python`).
+
+Da der Zugriff auf Onlinequellen je nach Serverauslastung und Internetanbindung
+in der Performance stark variiert, wurde das Herunterladen der Metadaten
+parallelisiert. Das parallele Herunterladen zeigt deutliche
+Geschwindigkeitsvorteile im Vergleich zur seriellen Verarbeitung (siehe
+Abbildung :num:`fig-threaded-download`).
+
+
+
+#####################
+Algorithmik Filmsuche
+#####################
+
+
+Standardsuche
+=============
 
 Bei der Suchanfrage über den Filmtitel wird von den Onlinequellen in der Regel
 eine Liste mit mehreren Möglichkeiten geliefert. Das Provider--Plugin muss
@@ -339,32 +369,6 @@ Hier wurde der Ansatz gewählt die IMDb--ID aus der URL mit einem Regulärem
 Ausdruck zu parsen. Dies erspart das parsen des kompletten Dokuments.
 Anschließen wird die Suche mit der IMDb--ID normal fortgesetzt. Alternativ wäre
 hier der Ansatz über dem Filmtitel, wie beim IMDb--ID zu Titel *Lookup* möglich.
-
-
-Asynchrone Ausführung
-=====================
-
-Bestimmte Teile von *libhugin* wurden multithreaded entwickelt. Hierzu zählen
-die Downloadqueue so wie die Möglichkeit die Suchanfrage asynchron
-loszuschicken.
-
-Auf den exzessiven Einsatz von Multithreading wurde verzichtet, da
-parallele Verarbeitung unter Python aufgrund vom *GIL* (Global Inetpreter Lock)
-nur eingeschränkt möglich ist. Der *GIL* ist ein Mutex, welcher verhindert dass
-mehrere native Threads Python Bytecode gleichzeitig ausführen können. Die
-Parallelisierung beispielsweise von Funktionen kann sogar zu Performanceeinbußen
-im Vergleich zur Singlethreaded Ausführung führen.
-
-Diese Einschränkung gilt jedoch nicht für lange laufende oder blockierende
-Operationen wie beispielsweise der Zugriff auf die Festplatte (vgl
-:cite:`hellmann2011python`).
-
-Da der Zugriff auf Onlinequellen je nach Serverauslastung und Internetanbindung
-in der Performance stark variiert, wurde das Herunterladen der Metadaten
-parallelisiert. Das parallele Herunterladen zeigt deutliche
-Geschwindigkeitsvorteile im Vergleich zur seriellen Verarbeitung (siehe
-Abbildung :num:`fig-threaded-download`).
-
 
 
 

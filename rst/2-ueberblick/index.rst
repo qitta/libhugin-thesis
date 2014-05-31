@@ -7,12 +7,48 @@ Allgemeines zum System
 
 Die zu evaluierende Bibliothek *libhugin* wurde entworfen, weil es mit den
 aktuellen Applikationen zur Metadaten Beschaffung und Pflege immer wieder zu
-Probleme kommt. Oft werden beispielsweise ausländische Filme nicht gefunden, die
-Inhaltsbeschreibung liegt nur in einer bestimmten Sprache vor oder es kommt zu
-Redundanzen bei den Metadaten, wenn auf mehrere Onlinequellen parallel
-zugegriffen wird (vgl. :cite:`cpiechula`). Zu den bekannten Applikationen
-(Abspielsoftware), sogenannte Media--Center, gehören beispielsweise das
-XBMC--Media--Center oder das Windows--Media--Center.
+folgenden Problemen kommt:
+
+    * Filmmetadaten werden nicht gefunden.
+    * Filmmetadaten sind unvollständig.
+    * Filmmetadaten nur in bestimmter Sprache vorhanden.
+    * Einsatz von mehreren Onlinequellen schwer oder nicht möglich.
+
+Je nach Abspielsoftware werden nur bestimmte Onlinequellen für die Beschaffung
+der Metadaten verwendend. Dies hat zufolge das beispielsweise ausländische Filme
+nicht gefunden, die Inhaltsbeschreibung liegt nur in einer bestimmten Sprache
+vor oder es kommt zu Redundanzen bei den Metadaten, wenn auf mehrere
+Onlinequellen parallel zugegriffen wird.
+
+Redundanzen in der Datenbank der Abspielsoftware entstehen beispielsweise wenn
+mehrere Filme von unterschiedlichen Onlinequellen bezogen werden.
+
+    * Film A, Metadatenquelle X, Genre: Sci--Fi, Drama
+    * Film B, Metadatenquelle Y, Genre: Science Fiction, Drama
+    * Film C, Metadatenquelle Z, Genre: Science--Fiction, Familienfilm
+
+Im Beispiel ist das Genre ,,Science Fiction" bei den drei unterschiedlichen
+Onlinequellen in einer unterschiedlichen Schreibweise vorhanden. Müssen
+Metadaten von unterschiedlichen Quellen bezogen werden weil die Daten, für einen
+bestimmten, Film unvollständig oder nicht vorhanden sind, so wird im Beispiel
+das Genre ,,Science Fiction" mit drei verschiedenen Schreibweisen in der
+Datenbank der Abspielsoftware hinterlegt. Dies hat zufolge, dass eine
+Gruppierung oder Filterung der Filme nach diesem Attribut nicht mehr möglich
+ist.
+
+Ein weiteres Problem ist, dass beispielsweise die Genreinformationen
+unterschiedlich feingranular gepflegt sind:
+
+    * Film A, Metadatenanbieter X, Genre: Sci--Fi, Drama, Komödie, Erotik
+    * Film A, Metadatenanbieter Y, Genre: Drama
+    * Film A, Metadatenanbieter Z, Genre: Science--Fiction
+
+
+Zu den bekannten Applikationen (Abspielsoftware), sogenannte Media--Center,
+gehören beispielsweise das XBMC--Media--Center oder das Windows--Media--Center.
+Daneben gibt es die sogenannten Filmmetadaten--Manager, diese sind speziell für
+die Pflege der Filmmetadaten gedacht. Unter *unixoden* Betriebssystemen ist die
+Auswahl an gut funktionierenden Filmmetadaten--Manager
 
 Bei der entwickelten Bibliothek wird eine andere Herangehensweise im Vergleich
 zu den bereits existierenden Applikationen gezeigt. Es wurde ein modulares
