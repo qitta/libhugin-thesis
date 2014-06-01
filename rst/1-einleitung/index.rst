@@ -38,6 +38,9 @@ Projektarbeit implementierten Metadatenanbieter--Plugins zu untersuchen. Die
 Untersuchung der Metadaten soll Aufschluß, über die weitere Vorgehensweise bei
 der Weiterentwicklung der Bibliothek, geben.
 
+Des Weiteren geht es darum die verwendete Algorithmik als Entwicker nochmals zu
+beleuchten und Verbesserungen abzuleiten oder Probleme zu beheben.
+
 Zielgruppe
 ==========
 
