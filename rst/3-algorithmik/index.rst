@@ -1,9 +1,6 @@
-#######################
-Algorithmik Grundsystem
-#######################
-
-Asynchrone Ausführung
-=====================
+############################
+Technische Grundüberlegungen
+############################
 
 Bestimmte Teile von *libhugin* wurden multithreaded entwickelt. Hierzu zählen
 die Downloadqueue so wie die Möglichkeit die Suchanfrage asynchron
@@ -17,7 +14,7 @@ Parallelisierung beispielsweise von Funktionen kann sogar zu Performanceeinbuße
 im Vergleich zur Singlethreaded--Ausführung führen.
 
 Diese Einschränkung gilt jedoch nicht für lange laufende oder blockierende
-Operationen wie beispielsweise der Zugriff auf die Festplatte (vgl
+Operationen wie beispielsweise der Zugriff auf die Festplatte (vgl.
 :cite:`hellmann2011python`).
 
 Da der Zugriff auf Onlinequellen je nach Serverauslastung und Internetanbindung
@@ -25,6 +22,50 @@ in der Performance stark variiert, wurde das Herunterladen der Metadaten
 parallelisiert. Das parallele Herunterladen zeigt deutliche
 Geschwindigkeitsvorteile im Vergleich zur seriellen Verarbeitung (siehe
 Abbildung :num:`fig-threaded-download`).
+
+.. _fig-threaded-download
+
+.. figure:: fig/algo_compare.pdf
+    :alt: Performancevorteil beim Parellisieren von Downloads.
+    :width: 100%
+    :align: center
+
+    Performancevorteil beim Parellisieren von Downloads.
+
+Zum Herunterladen wird auf die Python HTTP--Bibliothek verzichtet, weil diese
+einige HTTP--Standardfeatures, wie beispielsweise Kompression und Caching, nicht
+unterstützt. Anstelle wird die hier auf die freie Implementierung *httplib2*
+zurückgegriffen (vgl. :cite:`pilgrim2010python`).
+
+Kompression und Caching sind insofern wichtig, da sich beide Funktionen auf das
+Downloadverhalten auswirken. Bei aktivierter Kompression, hier ist im
+RFC1950-RFC1952 der *deflate* und *gzip* Algorithmus vorgesehen, wird der Inhalt
+vor dem versenden komprimiert und auf Empfängerseite ,,transparent"
+dekomprimiert. Textdateien lassen sich in der Regel gut komprimieren. Durch die
+Kompression müssen wenigen Daten übertragen werden was sich bei großen
+Datenmengen und einer geringen Bandbreite auf die Performance auswirken kann.
+Folgende Python--Sitzung zeigt wie die Standard HTTP--Bibliothek den
+komprimierten Inhalt enthält, es aber nicht schafft diesen zu dekomprimieren
+weil hier das Feature fehlt:
+
+.. code-block:: python
+
+   from urllib.request import urlopen
+   urlopen('http://httpbin.org/gzip').read()
+   b'\x1f\x8b\x08\x00\xc0\xa5\x8bS\x02\xff5\x8f\xc1n\x830\x10D\xef\xf9\n\xe4s\xec\[...]'
+
+
+Im Gegenzug dazu der Zugriff über die *httplib2*--Bibliothek auf die gleiche
+Ressource:
+
+.. code-block:: python
+
+   from httplib2 import Http
+   Http().request('http://httpbin.org/gzip')
+   b'{\n  "gzipped": true,\n  "headers": {\n    "Accept-Encoding": "gzip, deflate"[...]'
+
+
+
 
 
 
@@ -65,9 +106,9 @@ Ein weiterer Algorithmus der für Zeichenkettenvergleiche eingesetzt wird ist de
 Levenshtein--Algorithmus (Levenshtein--Distanz). Der Algorithmus hat eine
 Laufzeit von :math:`O(nm)`. Die Levenshtein--Distanz basiert auf der Idee, der
 minimalen Editiervorgänge (Einfügen, Löschen, Ersetzen) um von einer
-Zeichenkette auf eine andere zu kommen (vgl :cite:`atallah2010algorithms`). Die
-normalisierte Levenshtein--Distanz bewegt sich zwischen 0.0 (Übereinstimmung)
-und 1.0 (keine Ähnlichkeit).
+Zeichenkette auf eine andere zu kommen (vgl :cite:`atallah2010algorithms`,
+:cite:`navarro2001guided`,). Die normalisierte Levenshtein--Distanz bewegt sich
+zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
 
 Eine Erweiterung der Levenshtein--Distanz ist die Damerau--Levenshtein--Distanz.
 Diese wurde um die Funktionalität erweitert, vertauschte Zeichen zu erkennen.
@@ -317,7 +358,7 @@ Unschärfesuche
 
 Die Onlinequellen der implementierten Provider, TMDb, IMDb, OFDb, OMDb,
 Filmstarts und Videobuster benötigen exakte Suchanfragen. Bei einem Tippfehler
-wie *,,Only good forgives"* (Originaltitel: Only god forgives), wird der Film
+wie *,,Only good forgives"* (Originaltitel: *,,Only god forgives"*), wird der Film
 von den genannten Online--Plattformen nicht gefunden. Diesen Fehler clientseitig
 zu beheben ist schwierig, man müsste eine große Datenbank an Filmtitel pflegen
 und aktuell halten, und könnte so mit Hilfe dieser den Fehler vom Benutzer
@@ -369,7 +410,6 @@ Hier wurde der Ansatz gewählt die IMDb--ID aus der URL mit einem Regulärem
 Ausdruck zu parsen. Dies erspart das parsen des kompletten Dokuments.
 Anschließen wird die Suche mit der IMDb--ID normal fortgesetzt. Alternativ wäre
 hier der Ansatz über dem Filmtitel, wie beim IMDb--ID zu Titel *Lookup* möglich.
-
 
 
 Normalisierung der Metadaten

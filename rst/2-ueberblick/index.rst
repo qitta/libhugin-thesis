@@ -12,13 +12,14 @@ Benutzer manuell nachträglich gepflegt werden.
 
 Die ,,digitale Filmsammlung" wird in der Regel von sogenannter
 Home--Theatre--Software abgespielt und verwaltet. Hierzu gehört beispielsweise
-Software wie das XBMC--Media--Center oder Windows--Media--Center. Diese Software
-kann in der Regel Metadaten für die Digitalisierten Filme beschaffen, ist jedoch
-oft nur auf bestimmte Onlinequellen, die nur eine bestimmte Sprache
+Software wie das XBMC--Media--Center oder Windows--Media--Center. Diese
+Software kann in der Regel Metadaten für die Digitalisierten Filme beschaffen,
+ist jedoch oft nur auf bestimmte Onlinequellen, die nur eine bestimmte Sprache
 unterstützen, beschränkt.  Da es für das Speichern der Metadaten keinen
-durchgesetzten Standard gibt verwenden die beiden genannten ,,Media--Center" ein
-unterschiedliches Format zur Speicherung. Das XBMC--Media--Center verwendet das
-*nfo--Format* und das Windows--Media--Center das *dvdxml--Format*.
+durchgesetzten Standard gibt verwenden die beiden genannten ,,Media--Center"
+ein unterschiedliches Format zur Speicherung. Das XBMC--Media--Center verwendet
+das *nfo--Format* (siehe :cite:`xbmcnfo`) und das Windows--Media--Center das
+*dvdxml--Format* (siehe :cite:`dvdxml`).
 
 Des Weiteren gibt es sogenannte Movie--Metadata--Manager--Software, welche
 primär nur für das Pflegen und verwalten der digitalen Medien zuständig ist.
