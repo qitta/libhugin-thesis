@@ -5,18 +5,27 @@
 Anhang A
 ========
 
-Das folgende Code--Snippet wurde zum benchmarken von unterschiedlichen
-Zeichenkettenvergleichsalgorithmen verwendet.
+Das folgende Code--Snippet wurde zum benchmarken der unterschiedlichen Python
+HTTP--Bibliotheken verwendet.
 
-.. literalinclude:: ./3-algorithmik/strcmp_benchmark.py
+.. literalinclude:: ./attachments/httplib_test.py
    :language: python
 
 Anhang B
 ========
 
 Das folgende Code--Snippet wurde zum benchmarken von unterschiedlichen
+Zeichenkettenvergleichsalgorithmen verwendet.
+
+.. literalinclude:: ./attachments/strcmp_benchmark.py
+   :language: python
+
+Anhang C
+========
+
+Das folgende Code--Snippet wurde zum benchmarken von unterschiedlichen
 Antwortzeiten der Online--Plattformen verwendet.
 
 
-.. literalinclude:: ./4-metadatenanalyse/download_perf_benchmark.py
+.. literalinclude:: ./attachments/download_perf_benchmark.py
    :language: python
