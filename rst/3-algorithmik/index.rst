@@ -23,20 +23,11 @@ parallelisiert. Das parallele Herunterladen zeigt deutliche
 Geschwindigkeitsvorteile im Vergleich zur seriellen Verarbeitung (siehe
 Abbildung :num:`fig-threaded-download`).
 
-.. _fig-threaded-download
-
-.. figure:: fig/algo_compare.pdf
-    :alt: Performancevorteil beim Parellisieren von Downloads.
-    :width: 100%
-    :align: center
-
-    Performancevorteil beim Parellisieren von Downloads.
-
 Zum Herunterladen wird auf die Python HTTP--Bibliothek verzichtet, weil diese
-einige HTTP--Standardfeatures, wie beispielsweise Kompression und Caching, nicht
-unterstützt. Anstelle wird die hier auf die freie Implementierung *httplib2*
-zurückgegriffen (vgl. :cite:`pilgrim2010python`).
-
+grundlegende HTTP--Standards, wie beispielsweise Kompression, nicht
+unterstützt. Zwei weitere HTTP--Bibliotheken unter Python sind beiden freien
+Implementierungen *urllib3* und *httplib2*, auf welche zurückgegriffen werden
+kann.
 Kompression und Caching sind insofern wichtig, da sich beide Funktionen auf das
 Downloadverhalten auswirken. Bei aktivierter Kompression, hier ist im
 RFC1950-RFC1952 der *deflate* und *gzip* Algorithmus vorgesehen, wird der Inhalt
@@ -44,6 +35,7 @@ vor dem versenden komprimiert und auf Empfängerseite ,,transparent"
 dekomprimiert. Textdateien lassen sich in der Regel gut komprimieren. Durch die
 Kompression müssen wenigen Daten übertragen werden was sich bei großen
 Datenmengen und einer geringen Bandbreite auf die Performance auswirken kann.
+
 Folgende Python--Sitzung zeigt wie die Standard HTTP--Bibliothek den
 komprimierten Inhalt enthält, es aber nicht schafft diesen zu dekomprimieren
 weil hier das Feature fehlt:
@@ -55,8 +47,8 @@ weil hier das Feature fehlt:
    b'\x1f\x8b\x08\x00\xc0\xa5\x8bS\x02\xff5\x8f\xc1n\x830\x10D\xef\xf9\n\xe4s\xec\[...]'
 
 
-Im Gegenzug dazu der Zugriff über die *httplib2*--Bibliothek auf die gleiche
-Ressource:
+Im Gegenzug dazu der Zugriff über *urllib3*-- und *httplib2*--Bibliothek auf die
+gleiche Ressource:
 
 .. code-block:: python
 
@@ -64,9 +56,29 @@ Ressource:
    Http().request('http://httpbin.org/gzip')
    b'{\n  "gzipped": true,\n  "headers": {\n    "Accept-Encoding": "gzip, deflate"[...]'
 
+   import urllib3
+   urllib3.PoolManager(1).request(url='http://httpbin.org/gzip', method='GET').data
+   b'{\n  "gzipped": true,\n  "headers": {\n    "Accept-Encoding": "identity",\n [...]'
 
+Ein weiteres Feature der *urllib3*--Bibliothek ist, dass diese im Vergleich zu
+den anderen beiden Bibliotheken Thread--Safe ist. Alternativ kann hier jedoch
+bei den anderen beiden Bibliotheken eine separate Instanz pro Thread gestartet
+werden. Wie und ob sich das auf die Performance auswirkt zeigt der Vergleich der
+drei Bibliotheken beim parallelen Herunterladen (siehe Abbildung
+:num:`fig-threaded-download`). Hier wird der ,,Pooling" Mechanismus der
+*urllib3*--Bibliothek verwendent. Die anderen Bibliotheken werden lokal pro
+Thread gestartet (siehe Anhang ).
 
+.. _fig-threaded-download
 
+.. figure:: fig/threaded_download.png
+    :alt: Performancevorteil beim Parallelisieren von Downloads.
+    :width: 100%
+    :align: center
+
+    Performancevorteil beim Parellisieren von Downloads.
+
+Der Benchmark wurde mit einer *VDSL* 50Mbit--Leitung durchgeführt.
 
 
 #####################
@@ -102,13 +114,20 @@ arbeitet mit dem Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von
 übereinstimmenden Zeichen zu und durch die Anzahl alle Zeichen der beiden
 Strings zu teilen.
 
+Ein weiteres Maß für die Ähnlichkeit von Zeichenketten ist die Hemming--Distanz.
+Diese Distanz arbeitet nach der Idee die ,,Ersetzungen" zu zählen. Der
+Algorithmus hat jedoch die Einschränkung, dass er sich nur auf gleich lange
+Zeichenketten anwenden lässt (vgl. :cite:`navarro2001guided`,
+:cite:`ranka2009ic3`).
+
 Ein weiterer Algorithmus der für Zeichenkettenvergleiche eingesetzt wird ist der
 Levenshtein--Algorithmus (Levenshtein--Distanz). Der Algorithmus hat eine
 Laufzeit von :math:`O(nm)`. Die Levenshtein--Distanz basiert auf der Idee, der
 minimalen Editiervorgänge (Einfügen, Löschen, Ersetzen) um von einer
 Zeichenkette auf eine andere zu kommen (vgl :cite:`atallah2010algorithms`,
-:cite:`navarro2001guided`,). Die normalisierte Levenshtein--Distanz bewegt sich
-zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
+:cite:`navarro2001guided`, :cite:`ranka2009ic3`). Die normalisierte
+Levenshtein--Distanz bewegt sich zwischen 0.0 (Übereinstimmung) und 1.0 (keine
+Ähnlichkeit).
 
 Eine Erweiterung der Levenshtein--Distanz ist die Damerau--Levenshtein--Distanz.
 Diese wurde um die Funktionalität erweitert, vertauschte Zeichen zu erkennen.
@@ -435,8 +454,8 @@ Revolutions (2003)" über IMDb, weil er beispielsweise bei TMDb nicht gepflegt
 ist, so wird in diesem Fall das Genre mit den zwei unterschiedlichen
 Schreibweisen ,,Science Fiction" und ,,Sci--Fi" bezogen.
 
-Durch diesen Umstand haben wir eine Genreinformation redundant in unserem
-XBMC--Center gepflegt. Es ist also nicht mehr möglich dieses Filmgenre eindeutig
+Durch diesen Umstand werden die Genreinformation redundant in der Datenbank
+XBMC--Center abgelegt. Es ist nicht mehr möglich dieses Filmgenre eindeutig
 zu identifizieren. Es ist somit weder eine Gruppierung nach diesem Genre noch
 eindeutige eindeutige Filterung möglich.
 
@@ -455,30 +474,17 @@ bestimmte Onlinequellen anzusprechen) bereitstellen muss. Der Nachteil dieser
 Variante ist, dass das Genre--Spektrum der Onlinequelle bekannt sein muss.
 
 Das Provider Genre wird über einen Index auf einem globalen Genre abgebildet.
-Folgendes Beispiel zeigt ausschnittsweise den Abbildungsansatz:
+Die Abbildung :num:`fig-genrenorm` zeigt konzeptuell die Vorgehensweise beim
+,,Normalisieren" der Genreinformationen am Beispiel von OFDb.
 
-::
+.. _fig-genrenorm
 
-    Globale Genre Tabelle           Provider Tabelle mit Mapping
-    =====================           ============================
+.. figure:: fig/genre_norm.pdf
+    :alt: Normalisierung der Genreinformationen anhand statischer Mapping-Tabellen.
+    :width: 100%
+    :align: center
 
-    1, Science Fiction              21, Sex
-    2, Komödie                      22, 3D-Animation
-    3, Actionfilm                   2, Comedy
-    [...]                           20, Drama
-    20, Drama                       1, Sci-Fi
-    21, Erotik
-    22, Animation
-
-Die Abbildung erfolgt anhand des Indizes:
-
-::
-
-    3D-Animation    --- wird zu --->    Animation
-    Comedy          --- wird zu --->    Komödie
-    Drama           --- wird zu --->    Drama
-    Sci-Fi          --- wird zu --->    Science Fiction
-    Sex             --- wird zu --->    Erotik
+    Normalisierung der Genreinformationen anhand statischer Mapping-Tabellen.
 
 Wird keine ,,Genremapping--Tabelle" bereitgestellt, so kann das Genre nicht
 normalisiert werden. In diesem Fall kann es zu der oben genannten Problematik
@@ -500,13 +506,13 @@ vom Benutzer ,,korrigiert" werden kann. Dies ist jedoch bei einer
 Software--Bibliothek wie sie durch *libhugin* bereitgestellt wird, weniger
 praktikabel.
 
-** semi auto difflib example**
-
 Ein weiteres Problem das hier jedoch hinzu kommt ist, dass das ,,Genre" an sich
 in keiner Form standardisiert ist. Je nach Onlinequelle gibt es
 Genrebezeichnungen wie Animationsfilm oder Kinderfilm, welche jedoch im engeren
 Sinne aber nicht zum ,,Filmgenre"--Begriff gezählt werden dürften. Des Weiteren
-kommt hinzu, dass über die Jahre immer wieder neue Genre entstanden sind.
+kommt hinzu, dass über die Jahre immer wieder neue Genre entstanden sind. Hier
+muss also durch den Endbenutzer sichergestellt werden welches Globale Mapping
+verwendet werden soll.
 
 .. rubric:: Footnotes
 

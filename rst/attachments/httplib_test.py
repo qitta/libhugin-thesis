@@ -52,13 +52,35 @@ if __name__ == '__main__':
         'httplib2': load_url2,
         'urllib3' : load_url3
     }
-    results = defaultdict(list)
+    results = defaultdict(dict)
     for name, func in funcs.items():
-        for thread in range(1, 3+1, 1):
+        run_results = []
+        for thread in range(1, 10+1, 1):
             avg_time = 0
-            for run in range(10):
+            for run in range(1):
                 start = int(round(time.time() * 1000))
                 download(threads=thread, func=func)
                 end = int(round(time.time() * 1000))
                 avg_time += end - start
-            print(thread, name, avg_time/10)
+            run_results.append( (thread, avg_time) )
+        results[name] = run_results
+        run_results = []
+    import pprint
+    pprint.pprint(results)
+
+    from pylab import *
+
+    for lib in funcs.keys():
+        t = [x[0] for x in results[lib]]
+        s = [x[1] for x in results[lib]]
+        plot(t, s, label=lib)
+
+    xlim(1,10)  # decreasing time
+
+    xlabel('number of download threads')
+    ylabel('time in milliseconds')
+    title('performance comparsion threaded download')
+    grid(True)
+    legend()
+
+    show()
