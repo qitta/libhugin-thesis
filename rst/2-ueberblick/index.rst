@@ -89,19 +89,59 @@ Die Bibliothek wurde in die zwei Teile *libhugin--harvest*
 aufgeteilt. Der *libhugin-harvest* Teil der Bibliothek ist um die folgenden drei
 Pluginarten erweiterbar:
 
-    * Provider--Plugins, Zugriff auf Onlinequellen.
-    * Postprocessor--Plugins, Bearbeitung der Metadaten direkt nach dem Herunterladen.
-    * Converter--Plugins, Unterstützung verschiedener Metadaten--Exportformate.
+**Provider--Plugins**: Diese Plugins fungieren als ,,Proxy" zwischen der
+Onlinequelle und *libhugin*. Diese Art von Plugin muss von einer
+Provider--Oberklasse ableiten und die folgenden zwei Methoden implementieren:
+
+    * ``build_url()``--Methode (baut URL für Download zusammen)
+    * ``parse_response()``--Methode (extrahiert Daten aus HTTP--Response)
+
+Abbildung :num:`provider-concept` zeigt die die grundlegende Funktionsweise.
+
+.. _fig-provider-concept
+
+.. figure:: fig/provider-concept.pdf
+    :alt: Provider Konzept für die Beschaffung von Metadaten.
+    :width: 80%
+    :align: center
+
+    Provider Konzept für die Beschaffung von Metadaten.
+
+
+**Postprocessor--Plugins**: Diese Art von Plugins ist für das Nachbearbeiten der
+heruntergeladenen Metadaten zuständig. Diese Plugins müssen eine
+``process()``--Methode implementieren und von der Postprocessor Oberklasse
+ableiten.
+
+
+**Converter--Plugins**: Diese Art von Plugins ist für das Exportieren der
+Metadaten in verschiedene Metadaten--Formate. Sie müssen von der Converter
+Oberklasse ableiten und eine ``convert()``--Methode implementieren.
 
 Der *libhugin-analyze* Teil der Bibliothek dient zur nachträglichen
-Manipulation und Analyse der Metadaten, hier gibt es die Möglichkeit folgende
-Pluginarten zu implementieren:
+Manipulation und Analyse der Metadaten. Es wird dabei nicht direkt auf den
+Metadaten gearbeitet sondern auf einer Internen Kopie. Dazu müssen die Metadaten
+über eine *libhugin--analyze*--Sitzung in die ,,interne Datenbank" importiert
+werden. Nachdem die Metadaten analysiert und modifiziert wurden, können diese
+anschließen wieder ins Produktivsystem übernommen werden. Hier gibt es die
+Möglichkeit folgende Pluginarten zu implementieren.
 
-    * Analyzer--Plugins, Analyse der Metadaten.
-    * Modifier--Plugins, Direkte Modifikation der Metadaten.
-    * Comparator--Plugins, Vergleich der Metadaten verschiedener Filme untereinander.
+**Analyzer--Plugins**: Dienen zum Analysieren der von Metadaten. Die Plugins
+müssen von der Analyze Oberklasse ableiten und eine ``analyze()``--Methode
+implementieren.
+
+**Modifier--Plugins**: Modifier--Plugins können Metadaten direkt manipulieren.
+Diese Plugins müssen von der Modifier Overklasse ableiten und die
+``modify``--Methode implementieren.
+
+**Comparator--Plugins**: Dieses Plugins--Interface sind experimentell, es soll zum
+Vergleich von Filmmetadaten untereinander dienen um so beispielsweise
+statistische Aussagen über die Metadaten machen zu können. Die Plugins müssen
+von der Comparator Oberklasse ableiten und eine ``compare()``--Methode
+implementieren.
 
 Die Bibliothek wurde in der Programmiersprache Python (Version 3.3) entworfen.
+
 Weitere Informationen zu der genannten Problematik oder zum Software Design
 finden sich in der Arbeit zum Projekt *,,Design und Implementierung eines
-modularen Filmmetadaten Such-- und Analysesystems"*.
+modularen Filmmetadaten Such-- und Analysesystems"*, siehe :cite:`cpiechula`.
