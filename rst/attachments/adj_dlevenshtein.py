@@ -24,6 +24,7 @@ def _clean_movie_title(title):
         title = title.lower()
         title = title.replace(',', ' ')
         title = title.replace(':', ' ')
+        title = title.replace(';', ' ')
         title = title.replace('-', ' ')
 
         word_list = title.split()

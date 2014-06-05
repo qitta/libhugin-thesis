@@ -26,6 +26,14 @@ Anhang C
 Das folgende Code--Snippet wurde zum benchmarken von unterschiedlichen
 Antwortzeiten der Online--Plattformen verwendet.
 
-
 .. literalinclude:: ./attachments/download_perf_benchmark.py
    :language: python
+
+Anhang D
+========
+
+Das folgende Code--Snippet wurde zur gewichteten Rating--Ermittlung verwendet:
+
+.. literalinclude:: ./attachments/year_penalty.py
+   :language: python
+
