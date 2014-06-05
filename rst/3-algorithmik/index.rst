@@ -85,6 +85,38 @@ Der Benchmark wurde mit einer *VDSL* 50Mbit--Leitung durchgeführt.
 Algorithmik Filmsuche
 #####################
 
+Für die Suche nach Filmmetadaten gibt es unter *libhugin* mehrere Möglichkeiten.
+Je nach Metadaten--Provider ist eine Suche nach IMDb--ID und Titel möglich.
+
+Folgende Python--Shell Sitzung zeigt wie eine Metadaten Suchanfrage
+funktioniert:
+
+.. code-block:: python
+
+    >>> from hugin.harvest.session import Session
+    >>> s = Session()
+    >>> q = s.create_query(title='The Matrix')
+    >>> r = s.submit(q)
+    print(r)
+    [<tmdbmovie <picture, movie> : The Matrix (1999)>,
+     <ofdbmovie <movie> : Matrix (1999)>,
+     <filmstartsmovie <movie> : Matrix (1999)>]
+
+Beim Erstellen der Sitzung können *libhugin* Konfigurationparameter wie ,,Cache
+Pfad", ,,Anzahl der zu verwendenden Threads", ,,Anzahl paralleler Downloads per
+Thread" so wie noch weitere globale Konfigurationsparameter übergeben werden.
+
+Anschließend muss eine Suchanfrage erstellt werden. Dazu gibt es die Möglichkeit
+die Methode ``create_query()`` zur Hilfe zu nehmen. Hier hat der Benutzer eine
+Vielzahl von Möglichkeiten seine Suchanfrage zu konfigurieren (siehe
+:cite:`cpiechula`).
+
+Der letzte Schritt ist das losschicken der Suchanfrage. Hier gibt es die
+Möglichkeit eine *synchrone* (wie im Beispiel) oder eine *asynchrone* Anfrage
+loszuschicken. Der Hauptunterschied ist, dass die *asynchrone* Anfrage im
+Gegensatz zu der *synchronen* nicht blockt, der Aufrufen kann also in der
+Zwischenzeit andere Sachen ,,erledigen".
+
 
 Standardsuche
 =============
@@ -326,10 +358,53 @@ Die genannte Problematik äußert sich beispielsweise auch bei Film--Remakes ode
 Filmen die beispielsweise mit einer Ungenauigkeit von +/- 1 Jahr auf einer
 Plattform eingepflegt wurden. Dies passiert, laut Beobachtung des Autors,
 manchmal wenn ein Film national Erfolg hatte und im Folgejahr dann International
-public wird. Hier kam es in der Vergangenheit zu Differenzen die bei der Pflege
-der Metadaten aufgefallen sind. Ob dieser Umstand weiterhin präsent ist, müsste
-eine Auswertung von Metadaten mehrerer Onlinequellen zeigen.
+publik wird. Hier kam es in der Vergangenheit zu Differenzen die bei der Pflege
+der Metadaten aufgefallen sind. Dass dieser Umstand weiterhin präsent ist, zeigt
+die Auswertung der der Stichprobe der Metadaten mehrerer Onlinequellen, siehe
+Vergleich Metadaten verschiedener Onlinequellen.
 
+Um das Problem ,,abzumildern" wird beim Selektieren der Ergebnisse das Jahr
+einzeln betrachtet. Hier wird mittels der Fusionierungsfunktion
+
+.. .. math::
+
+..    penalty(year_a, year_b) = 1 - \frac{|year_a - year_b|}{max\left{year_a, year_b\right}
+
+Strafwertung errechnet welche mit dem Raiting der Zeichenkette Multipliziert
+wird. Somit wird eine geringe Jahresdifferenz nach oben oder unten nur sehr
+gering bewertet. Je höher jedoch der Abstand zum angegebenen Jahr, desto höher
+ist die Strafwertung. Das Jahr fließt jedoch nicht so stark in die Wertung ein,
+es wird hier lediglich zur Unterstützung beim Filtern der Ergebnismenge
+verwendet.
+
+
+.. figtable::
+    :label: fig-rating
+    :caption: Vergleich Rating von Suchergebnissen mit und ohne Jahresgewichtung.
+    :alt: Vergleich Rating von Suchergebnissen mit und ohne Jahresgewichtung.
+    :spec: l | l | l
+
+    +------------------+---------------------------+----------------------------+
+    | **Titel**        | **Rating mit Gewichtung** | **Rating ohne Gewichtung** |
+    +==================+===========================+============================+
+    | Matrix 1999      | 1.0                       | 1.0                        |
+    +------------------+---------------------------+----------------------------+
+    | Matrix 2000      | 0.983                     | 0.636                      |
+    +------------------+---------------------------+----------------------------+
+    | Matrix 1997      | 0.967                     | 0.909                      |
+    +------------------+---------------------------+----------------------------+
+    | Matrix 2001      | 0.967                     | 0.636                      |
+    +------------------+---------------------------+----------------------------+
+    | Matrix, The 1999 | 0.7                       | 0.538                      |
+    +------------------+---------------------------+----------------------------+
+    | The Matrix 2013  | 0.467                     | 0.467                      |
+    +------------------+---------------------------+----------------------------+
+    | The East 1999    | 0.438                     | 0.538                      |
+    +------------------+---------------------------+----------------------------+
+
+
+Abbildung :num:`fig-rating` zeigt am Beispiel vom Film *,,Matrix 1999"* , wie
+sich die Gewichtung positiv auf das Filtern der Suchergebnisse auswirkt.
 
 IMDb--ID Suche
 ==============
@@ -513,6 +588,107 @@ Sinne aber nicht zum ,,Filmgenre"--Begriff gezählt werden dürften. Des Weitere
 kommt hinzu, dass über die Jahre immer wieder neue Genre entstanden sind. Hier
 muss also durch den Endbenutzer sichergestellt werden welches Globale Mapping
 verwendet werden soll.
+
+
+
+Suchstrategien
+==============
+
+Der Prototyp der Bibliothek unterstützt zwei verschiedene Suchstrategien. Eine
+*,,deep"*--Strategie und eine *,,flat"*--Strategie. Diese beiden Strategien
+sollen dem Benutzer die Kontrolle über die ,,Suchtrefferart" geben.
+
+Jedes Provider--Plugin hat  eine vom Benutzer vergebene Priorität. Dieses ist im
+Prototypen von *libhugin* manuell vergeben worden. Die Priorität ist ein
+Integer--Wert im Bereich 0-100. Je höher die Priorität desto mehr wird ein
+Provider beim abschließenden Filtern der Ergebnisse berücksichtigt.
+
+Die gefundenen Ergebnisse können einerseits nach Provider--Priorität betrachtet
+oder aber nach ,,Ergebnisqualität" betrachtet werden. Aus diesem Grund wurde die
+*,,deep"*-- und die *,,flat"*--Suchstrategie implementiert.
+
+Die *,,deep"*--Strategie sortiert die Provider nach Priorität und die Ergebnisse
+innerhalb der jeweiligen Provider nach Übereinstimmung mit dem Suchstring.
+Anschließend werden die Ergebnisse angefangen beim Provider mit der höchsten
+Priorität zurückgeliefert bis die gewünschte Anzahl an Ergebnissen zurückgegeben
+wurde.
+
+.. _fig-searchstrategy
+
+.. figure:: fig/searchstrategy.pdf
+    :alt: Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
+    :width: 80%
+    :align: center
+
+    Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
+
+Bei der *,,flat"*--Strategie werden die Provider und Ergebnisse auf die gleiche
+Art wie bei der *,,deep"*--Strategie sortiert. Anschließend werden aber jeweils
+die Ergebnisse mit der größten Übereinstimmung iterativ, angefangen beim
+Provider mit der höchsten Priorität, zurückgeliefert bis die gewünschte Anzahl
+erreicht ist. Abbildung :num:`fig-searchstrategy` visualisiert die
+Vorgehensweise der beiden Strategien.
+
+Plugins
+=======
+
+Die bisher erläuterten Ansätze und Algorithmen werden direkt durch *libhugin*
+realisiert oder als Hilfsfunktionen bereitgestellt. Des weiteren wurden
+Postprocessor--Plugins geschrieben, welche weitere Probleme der
+Metadatenbeschaffung angehen. Ob der Benutzer ein Plugin nutzen möchte
+beziehungsweise welche Plugins der Benutzer nutzen möchte bleibt ihm überlassen.
+Durch die einfach gestalteten Schnittstellen ist es problemlos möglich
+*libhugin* um ein eigenes Plugin mit gewünschter Funktionalität zu erweitern.
+
+Das Postprocessor--Plugin *,,Compose"* ist ein Plugin welches es erlaubt dem
+Benutzer verschiedene Metadatenquellen zusammen zu führen. Dies ist im
+*libhugin* Protoypen auf zwei verschiedene Arten möglich.
+
+Das ,,automatische" Zusammenführen der Daten, hierbei werden die gefundenen
+Suchergebnisse nach IMDb--ID gruppiert. Dies ,,garantiert", dass die Metadaten
+nur zwischen gleichen Ergebnisobjekten ausgetauscht werden.
+
+Findet der höchstpriorisierte Provider Metadaten zu einem Film, fehlt jedoch die
+Inhaltsbeschreibung, so wird diese, durch den nächst niedriger priorisierten
+Provider der eine Inhaltsbeschreibung besitzt, ergänzt. Abbildung :num:`compose`
+zeigt grob das Vorgehen des *Compose*--Plugins. Zuerst wird eine Ergebnis--Kopie
+vom Provider mit der höchsten Priorität erstellt, anschließend werden fehlende
+Attribute durch Attribute der anderen Ergebnisobjekte ergänzt soweit diese
+vorhanden sind. Dabei erfolgt die Suche iterativ, anfangend beim Provider mit
+der nächst niedrigeren Priorität.
+
+.. _fig-compose
+
+.. figure:: fig/compose.pdf
+    :alt: Automatisches ergänzen fehlender Attribute mittels Compose-Plugin.
+    :width: 80%
+    :align: center
+
+    Automatisches ergänzen fehlender Attribute mittels Compose-Plugin.
+
+Nach dem Befüllen der fehlenden Attribute wird das Genre zusammengeschmolzen.
+Dies passiert indem alle normalisierten Genres der verschiedenen Provider zu
+einer Liste aus Genres dieser zusammengeführt werden.
+
+Eine weitere Möglichkeit neben dem automatischen Zusammenführen von Attributen
+verschiedener Provider ist die Angabe eine benutzerdefinierten Profilmaske.
+Diese Profilmaske ist eine Hash--Tabelle mit den jeweiligen Attributen als
+Schlüssel und den gewünschten Providern als Wert. Folgende Python Notation gibt
+an, dass der Standardanbieter TMDb sein soll und die Inhaltsbeschreibung immer
+vom Provider OFDb befüllt, wenn dieser keine besitzt soll der OMDb Provider
+genommen werden.
+
+.. code-block:: python
+
+   profile_mask = {'default':['tmdbmovie'], 'plot': ['ofdbmovie', 'omdbmovie']}
+
+
+
+**Genre Merging**
+
+* RAKE
+
+**Result Empty Gap Refill**
 
 .. rubric:: Footnotes
 
