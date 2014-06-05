@@ -18,3 +18,5 @@ wird hat die Folgenden Movie--Provider implementiert:
     * OFDB, deutschsprachig, Online--Filmdatenbank (API)
     * Filmstarts.de, deutschsprachig, Filme--Plattform, (keine API)
     * Videobuster.de, deutschsprachig, Filme Verleihdienst (keine API)
+
+Desweiteren wurden noch Person--Provider für TMDb und OFDb implementiert.

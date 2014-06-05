@@ -89,7 +89,7 @@ Die Bibliothek wurde in die zwei Teile *libhugin--harvest*
 aufgeteilt. Der *libhugin-harvest* Teil der Bibliothek ist um die folgenden drei
 Pluginarten erweiterbar:
 
-**Provider--Plugins**: Diese Plugins fungieren als ,,Proxy" zwischen der
+**Provider--Plugins**: Diese Plugins fungieren als ,,Vermittler" zwischen der
 Onlinequelle und *libhugin*. Diese Art von Plugin muss von einer
 Provider--Oberklasse ableiten und die folgenden zwei Methoden implementieren:
 
