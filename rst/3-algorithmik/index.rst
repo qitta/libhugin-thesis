@@ -133,11 +133,15 @@ Zeichenketten mit der höhten Übereinstimmung liefern.
 
 Der simple Vergleich
 
-::
+.. code-block:: python
 
-    "The Matrix" ==  "The Matrix"
+    >>> "The Matrix" == "The Matrix"
+    True
+    >>> "The Matrix" == "The matrix"
+    False
 
-würde hier nur bei exakt den gleichen Zeichenketten funktionieren. Für den
+
+funktioniert nur bei exakt den gleichen Zeichenketten funktionieren. Für den
 Vergleich von Zeichenketten bietet die Python Standard--Bibliothek das
 *difflib*--Modul. Das Modul erlaubt es zwei Sequenzen zu vergleichen. Es
 arbeitet mit dem Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von
@@ -629,8 +633,8 @@ Provider mit der höchsten Priorität, zurückgeliefert bis die gewünschte Anza
 erreicht ist. Abbildung :num:`fig-searchstrategy` visualisiert die
 Vorgehensweise der beiden Strategien.
 
-Plugins
-=======
+Libhugin harvest Plugins
+========================
 
 Die bisher erläuterten Ansätze und Algorithmen werden direkt durch *libhugin*
 realisiert oder als Hilfsfunktionen bereitgestellt. Des weiteren wurden
@@ -646,50 +650,188 @@ Benutzer verschiedene Metadatenquellen zusammen zu führen. Dies ist im
 
 Das ,,automatische" Zusammenführen der Daten, hierbei werden die gefundenen
 Suchergebnisse nach IMDb--ID gruppiert. Dies ,,garantiert", dass die Metadaten
-nur zwischen gleichen Ergebnisobjekten ausgetauscht werden.
+nur zwischen gleichen Filmen ausgetauscht werden.
 
 Findet der höchstpriorisierte Provider Metadaten zu einem Film, fehlt jedoch die
 Inhaltsbeschreibung, so wird diese, durch den nächst niedriger priorisierten
 Provider der eine Inhaltsbeschreibung besitzt, ergänzt. Abbildung :num:`compose`
-zeigt grob das Vorgehen des *Compose*--Plugins. Zuerst wird eine Ergebnis--Kopie
-vom Provider mit der höchsten Priorität erstellt, anschließend werden fehlende
-Attribute durch Attribute der anderen Ergebnisobjekte ergänzt soweit diese
-vorhanden sind. Dabei erfolgt die Suche iterativ, anfangend beim Provider mit
-der nächst niedrigeren Priorität.
+zeigt grob das Konzept des *Compose*--Plugins. Zuerst wird eine
+Ergebnisobjekt--Kopie vom Provider mit der höchsten Priorität erstellt,
+anschließend werden fehlende Attribute durch Attribute der anderen
+Ergebnisobjekte ergänzt soweit diese vorhanden sind. Dabei erfolgt die Suche
+*iterativ*, anfangend beim Provider mit der nächst niedrigeren Priorität.
 
 .. _fig-compose
 
 .. figure:: fig/compose.pdf
-    :alt: Automatisches ergänzen fehlender Attribute mittels Compose-Plugin.
+    :alt: Automatisches ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung
     :width: 80%
     :align: center
 
-    Automatisches ergänzen fehlender Attribute mittels Compose-Plugin.
+    Automatisches ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung
 
-Nach dem Befüllen der fehlenden Attribute wird das Genre zusammengeschmolzen.
-Dies passiert indem alle normalisierten Genres der verschiedenen Provider zu
-einer Liste aus Genres dieser zusammengeführt werden.
+Nach dem Befüllen der fehlenden Attribute wird das Genre zusammengeführt.
+Dies passiert indem die normalisierten Genres der verschiedenen
+Provider--Ergebnisse zu einer Liste aus Genres dieser zusammengeführt werden.
 
-Eine weitere Möglichkeit neben dem automatischen Zusammenführen von Attributen
+Eine zweite Möglichkeit neben dem automatischen Zusammenführen von Attributen
 verschiedener Provider ist die Angabe eine benutzerdefinierten Profilmaske.
 Diese Profilmaske ist eine Hash--Tabelle mit den jeweiligen Attributen als
 Schlüssel und den gewünschten Providern als Wert. Folgende Python Notation gibt
 an, dass der Standardanbieter TMDb sein soll und die Inhaltsbeschreibung immer
-vom Provider OFDb befüllt, wenn dieser keine besitzt soll der OMDb Provider
-genommen werden.
+vom Provider OFDb befüllt, wenn dieser keine besitzt soll das Ergebnis des
+OMDb--Provider genommen werden.
 
 .. code-block:: python
 
-   profile_mask = {'default':['tmdbmovie'], 'plot': ['ofdbmovie', 'omdbmovie']}
+   profile_mask = {
+        'default':['tmdbmovie'],            # Grundkopie von TMDb
+        'plot': ['ofdbmovie', 'omdbmovie']  # Plot von ofdb oder omdb
+   }
+
+Um die Postprocessor--Plugins vollständig zu benennen, existiert noch ein
+*,,Trim"*--Plugin. Dieses iteriert über alle Attribute eines Ergebnisobjekts und
+entfernt dabei mittels der Python ``strip()``--Funktion die führenden und
+nachstehenden Leerzeichen.
+
+Auf weitere Algorithmik welche innerhalb der Converter--Plugins realisiert ist
+wird aufgrund ihrer Einfachheit nicht weiter eingegangen. Hier werden jeweils
+nur Formatierungen der Ergebnisobjekte in ein bestimmtes Ausgabeformat wie
+beispielsweise XML, durchgeführt.
+
+Libhugin analyze plugins
+========================
+
+Der *libhugin--analyze* Teil der Bibliothek ist für das nachträgliche bearbeiten
+von Metadaten gedacht. Insbesondere ist dieser Teil der Bibliothek konzipiert
+worden um automatisiert große Filmsammlungen von mehreren hundert Filmen
+möglichst automatisiert mit wenig Aufwand pflegen zu können. Dabei werden die
+Daten mittels eine import/export--Funktion, die vom Benutzer bereitgestellt
+werden muss, in eine interne Datenbank importiert. Auf diesen Metadaten können
+dann Analysen sowie Modifikationen durchgeführt werden. Anschließend werden die
+modifizierten Daten mit Hilfe der vom Benutzer bereitgestellten Funktion wieder
+in das Produktivsystem exportiert.
+
+Die Analyzer--Plugins analysieren die Metadaten und schreiben die neu gewonnenen
+Informationen in eine dafür vorgesehene Liste.
+
+Plattformen wie TMDb bieten neben den eigentlichen Metadaten auch oft
+zusätzliche Informationen zu Filmen. Ein Attribut, welches beim ,,Stöbern" oder
+der Auswahl eines Filmes hilfreich sein kann, sind Schlüsselwörter.
+
+Alternativ zu Providern die Schlüsselwörter für Filme anbieten, gibt es auch die
+Möglichkeit Schlüsselwörter aus Texten automatisiert zu Extrahieren. Hier zu
+gibt es eine verschiedene Algorithmen, jedoch werden hier zur Extraktion der
+Schlüsselwörter meistens sprachabhängige Korpora (Wort--Datenbanken) benötigt
+(vgl. :cite:`steinautomatische`).
+
+Ein weiterer Algorithmus der ohne Korpus auskommt und dabei ähnlich gute
+Ergebnisse wie die korporabasierten Algorithmen liefert, ist der
+RAKE--Algorithmus (Rapid Automatic Keyword Extraction), vgl.
+:cite:`rose2010automatic`, :cite:`berry2010text`.
+
+Hier wurde eine bereits existierende Implementierung in Kooperation mit dem
+Kommilitonen, Christopher Pahl, reimplementiert. Hier wird der Algorithmus zur
+Extraktion von Schlüsselwörtern aus Liedtexten verwendet, vgl :cite:`bacpahl`.
+Der Algorithms wurde um das automatische Laden einer *Stoppwortliste* und einen
+*Stemmer* erweitert.
+
+*Stoppwörter*, sind Wörter die sehr häufig auftreten und somit keine Relevanz
+für die Erfassung des Dokumentinhalts besitzen.  Libhugin verwendet hier die
+Stoppwortlisten verschiedener Sprachen von der Université de Neuchâtel [#f2]_.
+
+*Stemming* ist ein Verfahren im Information Retrieval bei dem die Wörter auf
+ihren gemeinsamen Wortstamm zurückgeführt werden.
+
+Die Funktionsweise des RAKE--Algorithmus, analog zu :cite:`bacpahl`:
+
+1. Aufteilung des Eingabetextes in Sätze anhand von Interpunktionsregeln.
+2. Extrahieren von *Phrasen* aus den jeweiligen Sätzen. Eine *Phrase* ist eine Sequenz aus nicht Stoppwörtern.
+3. Berechnung eines *Scores* für jedes Wort einer *Phrase* aus dem *Degree*
+     und der *Frequency* eines Wortes. :math:`P`  entspricht der Menge aller
+     Phrasen, :math:`\vert p\vert` ist die Anzahl der Wörter einer Phrase.
+
+   .. math::
+
+      degree(word) = \sum_{p \in P} \left\{\begin{array}{cl} \vert p\vert, & \mbox{falls } word \in p\\ 0, & \mbox{sonst} \end{array}\right.
+
+   .. math::
+
+      frequency(word) = \sum_{p \in P} \left\{\begin{array}{cl} 1, & \mbox{falls } word \in p\\ 0, & \mbox{sonst} \end{array}\right.
+
+   .. math::
+
+      score(word) = \frac{degree(word)}{frequency(word)}
 
 
+4. Berechnung des *Scores* für jede Phrase. Dieser definiert sich durch die
+   Summe aller Wörter--*Scores* innerhalb einer Phrase.
 
-**Genre Merging**
 
-* RAKE
+Im Gegensatz zur Extraktion von Schlüsselwörtern aus Liedtexten werden bei der
+Extraktion aus der Film--Inhaltsbeschreibung die Sätzen nur anhand von
+Interpunktionsregeln getrennt, Zeilenumbrüche zählen hier nicht als
+Trennzeichen.
 
-**Result Empty Gap Refill**
+Folgende Inhaltsbeschreibung findet sich für den Film :math:`\pi` (1998) auf
+TMDb:
+
+    *Mathematikgenie Max Cohen steht kurz vor der Entschlüsselung eines numerischen
+    Systems, das die Struktur von Zufall und Chaos aufdecken könnte. Mit diesem Code
+    ließen sich nicht nur die Abläufe des Universums erklären, sondern auch
+    Börsenbewegungen voraussagen. Bald sieht sich Max durch skrupellose
+    Wall-Street-Haie verfolgt, aber auch eine religiöse Sekte und der Geheimdienst
+    sind ihm auf den Fersen. Seine mentale Gesundheit leidet, er schlingert mehr und
+    mehr in den Wahnsinn. Als es ihm gelingt, den 216-stelligen Code zu knacken,
+    macht er eine Entdeckung, für die alle bereit sind, ihn zu töten...*
+
+Tabelle :num:`fig-keywords` zeigt die relevanten (*Score* > 1.0) Schlüsselwörter
+die aus dem oben genannten Text mittels RAKE--Algorithmus extrahiert wurden.
+
+.. figtable::
+    :label: fig-keywords
+    :caption: Extrahierte Schlüsselwörter aus der Inhaltsbeschreibung des Films Pi (1998).
+    :alt: Extrahierte Schlüsselwörter aus der Inhaltsbeschreibung des Films Pi (1998).
+
+    +------------+----------------------------------------------+
+    | **Rating** | **Schlüsselwörter**                          |
+    +============+==============================================+
+    | 14.500     | ('mathematikgenie', 'max', 'cohen', 'steht') |
+    +------------+----------------------------------------------+
+    | 9.000      | ('mentale', 'gesundheit', 'leidet')          |
+    +------------+----------------------------------------------+
+    | 4.000      | ('code', 'ließen')                           |
+    +------------+----------------------------------------------+
+    | 4.000      | ('börsenbewegungen', 'voraussagen')          |
+    +------------+----------------------------------------------+
+    | 4.000      | ('chaos', 'aufdecken')                       |
+    +------------+----------------------------------------------+
+    | 4.000      | ('numerischen', 'systems')                   |
+    +------------+----------------------------------------------+
+    | 4.000      | ('haie', 'verfolgt')                         |
+    +------------+----------------------------------------------+
+    | 4.000      | ('universums', 'erklären')                   |
+    +------------+----------------------------------------------+
+    | 4.000      | ('stelligen', 'code')                        |
+    +------------+----------------------------------------------+
+    | 4.000      | ('religiöse', 'sekte')                       |
+    +------------+----------------------------------------------+
+    | 4.000      | ('skrupellose', 'wall')                      |
+    +------------+----------------------------------------------+
+    | 2.500      | ('max')                                      |
+    +------------+----------------------------------------------+
+
+
+Die Modifier--Plugins modifizieren direkt die Metadaten.
+
+Des weiteren gibt es noch die experimentellen Comparator--Plugins welche für den
+Vergleich von Metadaten untereinander gedacht sind. Dieser Teil ist im
+Prototypen noch nicht endgültig ausgebaut. Ziel ist es hier über verschiedene
+Data--Mining--Algorithmen neue Erkenntnisse beim Vergleich verschiedener Filme
+und Genres untereinander zu gewinnen.
+
 
 .. rubric:: Footnotes
 
 .. [#f1] http://de.wikipedia.org/wiki/Hauskatze
+.. [#f2] http://members.unine.ch/jacques.savoy/clef/index.html
