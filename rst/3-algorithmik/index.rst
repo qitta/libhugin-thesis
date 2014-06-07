@@ -715,9 +715,10 @@ in das Produktivsystem exportiert.
 Die Analyzer--Plugins analysieren die Metadaten und schreiben die neu gewonnenen
 Informationen in eine dafür vorgesehene Liste.
 
-Plattformen wie TMDb bieten neben den eigentlichen Metadaten auch oft
-zusätzliche Informationen zu Filmen. Ein Attribut, welches beim ,,Stöbern" oder
-der Auswahl eines Filmes hilfreich sein kann, sind Schlüsselwörter.
+**Keywordextract--Plugin**: Plattformen wie TMDb bieten neben den eigentlichen
+Metadaten auch oft zusätzliche Informationen zu Filmen. Ein Attribut, welches
+beim ,,Stöbern" oder der Auswahl eines Filmes hilfreich sein kann, sind
+Schlüsselwörter.
 
 Alternativ zu Providern die Schlüsselwörter für Filme anbieten, gibt es auch die
 Möglichkeit Schlüsselwörter aus Texten automatisiert zu Extrahieren. Hier zu
@@ -747,9 +748,10 @@ Die Funktionsweise des RAKE--Algorithmus, analog zu :cite:`bacpahl`:
 
 1. Aufteilung des Eingabetextes in Sätze anhand von Interpunktionsregeln.
 2. Extrahieren von *Phrasen* aus den jeweiligen Sätzen. Eine *Phrase* ist eine Sequenz aus nicht Stoppwörtern.
-3. Berechnung eines *Scores* für jedes Wort einer *Phrase* aus dem *Degree*
-     und der *Frequency* eines Wortes. :math:`P`  entspricht der Menge aller
-     Phrasen, :math:`\vert p\vert` ist die Anzahl der Wörter einer Phrase.
+3. Berechnung eines *Scores* für jedes Wort einer *Phrase* aus dem *Degree* und
+   der *Frequency* eines Wortes. :math:`P`  entspricht der Menge aller Phrasen,
+   :math:`\vert p\vert` ist die Anzahl der Wörter einer Phrase.
+
 
    .. math::
 
@@ -793,33 +795,91 @@ die aus dem oben genannten Text mittels RAKE--Algorithmus extrahiert wurden.
     :caption: Extrahierte Schlüsselwörter aus der Inhaltsbeschreibung des Films Pi (1998).
     :alt: Extrahierte Schlüsselwörter aus der Inhaltsbeschreibung des Films Pi (1998).
 
-    +------------+----------------------------------------------+
-    | **Rating** | **Schlüsselwörter**                          |
-    +============+==============================================+
-    | 14.500     | ('mathematikgenie', 'max', 'cohen', 'steht') |
-    +------------+----------------------------------------------+
-    | 9.000      | ('mentale', 'gesundheit', 'leidet')          |
-    +------------+----------------------------------------------+
-    | 4.000      | ('code', 'ließen')                           |
-    +------------+----------------------------------------------+
-    | 4.000      | ('börsenbewegungen', 'voraussagen')          |
-    +------------+----------------------------------------------+
-    | 4.000      | ('chaos', 'aufdecken')                       |
-    +------------+----------------------------------------------+
-    | 4.000      | ('numerischen', 'systems')                   |
-    +------------+----------------------------------------------+
-    | 4.000      | ('haie', 'verfolgt')                         |
-    +------------+----------------------------------------------+
-    | 4.000      | ('universums', 'erklären')                   |
-    +------------+----------------------------------------------+
-    | 4.000      | ('stelligen', 'code')                        |
-    +------------+----------------------------------------------+
-    | 4.000      | ('religiöse', 'sekte')                       |
-    +------------+----------------------------------------------+
-    | 4.000      | ('skrupellose', 'wall')                      |
-    +------------+----------------------------------------------+
-    | 2.500      | ('max')                                      |
-    +------------+----------------------------------------------+
+    +-----------+----------------------------------------------+
+    | **Score** | **Schlüsselwörter**                          |
+    +===========+==============================================+
+    | 14.500    | ('mathematikgenie', 'max', 'cohen', 'steht') |
+    +-----------+----------------------------------------------+
+    | 9.000     | ('mentale', 'gesundheit', 'leidet')          |
+    +-----------+----------------------------------------------+
+    | 4.000     | ('code', 'ließen')                           |
+    +-----------+----------------------------------------------+
+    | 4.000     | ('börsenbewegungen', 'voraussagen')          |
+    +-----------+----------------------------------------------+
+    | 4.000     | ('chaos', 'aufdecken')                       |
+    +-----------+----------------------------------------------+
+    | 4.000     | ('numerischen', 'systems')                   |
+    +-----------+----------------------------------------------+
+    | 4.000     | ('haie', 'verfolgt')                         |
+    +-----------+----------------------------------------------+
+    | 4.000     | ('universums', 'erklären')                   |
+    +-----------+----------------------------------------------+
+    | 4.000     | ('stelligen', 'code')                        |
+    +-----------+----------------------------------------------+
+    | 4.000     | ('religiöse', 'sekte')                       |
+    +-----------+----------------------------------------------+
+    | 4.000     | ('skrupellose', 'wall')                      |
+    +-----------+----------------------------------------------+
+    | 2.500     | ('max')                                      |
+    +-----------+----------------------------------------------+
+
+Im Vergleich zu den automatisch extrahierten Schlüsselwörtern sind auf der TMDb
+Plattform folgende Schlüsselwörter Sprache gepflegt:
+
+        *hacker, mathematician, helix, headache, chaos theory, migraine, torah, börse,
+        mathematics, insanity, genius*
+
+**Filetypeanalyze--Plugin:** Dieses Plugin dient dazu Datei--Metadaten aus
+Filmdateien zu extrahieren. Da dies ein nicht triviales Problem ist,
+implementiert der *libhugin--analyze* Prototyp diese Funktionalität mit Hilfe
+des Tools hachoir-metadata. Dieses Tool basiert auf der ,,Hachoir"--Bibliothek
+welche verschiedener Metadaten aus Multimedia--Dateien unterstützt. Das
+*Filetypeanalyze*--Plugin führt das ``Hachoir--metadata``--Kommandozeilen Tool
+aus welches folgenden Output liefert:
+
+.. code-block:: bash
+
+    hachoir-metadata --raw Sintel.2010.1080p.mkv
+    Common:
+    - duration: 0:14:48.032000
+    - creation_date: 2011-04-25 12:57:46
+    - producer: mkvmerge v4.0.0 ('The Stars were mine') built on Jun 17 2010 18:47:20
+    - producer: libebml v1.0.0 + libmatroska v1.0.0
+    - mime_type: video/x-matroska
+    - endian: Big endian
+    video[1]:
+    - width: 1920
+    - height: 818
+    - compression: V_MPEG4/ISO/AVC
+    audio[1]:
+    - title: AC3 5.1 @ 640 Kbps
+    - nb_channel: 6
+    - sample_rate: 48000.0
+    - compression: A_AC3
+    subtitle[1]:
+    - language: German
+    - compression: S_TEXT/UTF8
+
+Diese Ausgabe wird vom Plugin extrahiert und die Relevanten Informationen wie
+Auflösung, Laufzeit, et cetera.
+
+**Langidentify--Plugin:** Das Plugin erkennt die Sprache des übergebenen Textes.
+Es ist für die Analyse der Sprache der Inhaltsbeschreibung gedacht. Mittels dem
+Plugin können große Filmsammlungen mit mehreren tausend Filmen analysiert werden
+und nicht vorhandene oder in einer unerwünschten Sprache gepflegte Metadaten in
+wenigen Sekunden identifiziert werden. Das Plugin verwendend die die Python
+Bibliothek ``guess_language-spirit``, welche die Sprache anhand von
+Sprachstatistiken erkennt. Die zusätzliche optionale Bibliothek ``pyEnchant``
+kann von ``guess_language-spirit`` verwendet um Texte mit weniger als 20 Zeichen
+zu erkennen. ``Enchant`` ist eine Bibliothek welche auf verschiedene
+Sprachbibliotheken zugreifen kann.
+
+.. code-block:: python
+
+    guess_language("Der Elfenkauz ist die einzige Art der Eulengattung der Elfenkäuze.")
+    'de'
+
+
 
 
 Die Modifier--Plugins modifizieren direkt die Metadaten.
