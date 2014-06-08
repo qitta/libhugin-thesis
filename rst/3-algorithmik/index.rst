@@ -734,7 +734,7 @@ RAKE--Algorithmus (Rapid Automatic Keyword Extraction), vgl.
 Hier wurde eine bereits existierende Implementierung in Kooperation mit dem
 Kommilitonen, Christopher Pahl, reimplementiert. Hier wird der Algorithmus zur
 Extraktion von Schlüsselwörtern aus Liedtexten verwendet, vgl :cite:`bacpahl`.
-Der Algorithms wurde um das automatische Laden einer *Stoppwortliste* und einen
+Der Algorithmus wurde um das automatische Laden einer *Stoppwortliste* und einen
 *Stemmer* erweitert.
 
 *Stoppwörter*, sind Wörter die sehr häufig auftreten und somit keine Relevanz
@@ -879,16 +879,48 @@ Sprachbibliotheken zugreifen kann.
     guess_language("Der Elfenkauz ist die einzige Art der Eulengattung der Elfenkäuze.")
     'de'
 
+Die Modifier--Plugins modifizieren direkt die Metadaten. Hier wurde ein Plugin
+zum ,,bereinigen" von Inhaltsangaben entwickelt, welches mittels Regulärer
+Ausdrücke (vgl. :cite:`friedl2009regulare`) unerwünschte in Klammern stehende
+Inhalte entfernt. Die genaue Algorithmus hierfür schaut wie folgt aus:
+
+.. code-block:: python
+
+    >>> import re
+    >>> text  = "Die Elfenkäuzin (Micrathene Whitneyi) ist die einzige ihrer Gattung."
+    >>> re.sub('\s+\(.*?\)(\s*)', '\g<1>', text)
+    'Die Elfenkäuzin ist die einzige ihrer Gattung.'
 
 
-
-Die Modifier--Plugins modifizieren direkt die Metadaten.
+Je nach Metadatenquelle finden sich hinter den jeweiligen Rollennamen, die Namen
+der Schauspieler in Klammen.  Der Einsatz dieses Plugins soll eine
+einheitlichere Basis für weitere Untersuchungen der Inhaltsbeschreibung zwischen
+allen Metadatenquellen ermöglichen.
 
 Des weiteren gibt es noch die experimentellen Comparator--Plugins welche für den
 Vergleich von Metadaten untereinander gedacht sind. Dieser Teil ist im
 Prototypen noch nicht endgültig ausgebaut. Ziel ist es hier über verschiedene
-Data--Mining--Algorithmen neue Erkenntnisse beim Vergleich verschiedener Filme
-und Genres untereinander zu gewinnen.
+Data--Mining--Algorithmen neue Erkenntnisse durch den Vergleich von Metadaten
+untereinander zu gewinnen um beispielsweise Empfehlungen für ähnliche Filme
+aussprechen zu können.
+
+Aktuell gibt es ein ``KeywordCompare``--Plugin welches die Schlüsselwörter
+verschiedener Filme vergleicht um eine Ähnlichkeit zu ermitteln.
+Der Ansatz über Schlüsselwörter ähnliche Filme zu finden, hat bisher keine
+nennenswerten Erkenntnisse liefern können.
+
+Das Comparator--Plugin ``GenreCompare`` versucht anhand vom Genre, Ähnlichkeiten
+zwischen Filmen zu ermitteln. Die bisherigen Ergebnisse hier sind je nach
+verwendeter Metadatenquelle unterschiedlich gut. Je feingranularer das Genre bei
+einem Anbieter gepflegt ist, umso *,,ähnlicher"* ist die Grund--Thematik. Ein
+Film der als Genre nur ,,Drama" gepflegt hat, kann zusätzlich in die Richtung
+Horror, Erotik, Thriller oder eine weitere nicht spezifizierte Richtung von der
+Handlung gehen.
+
+Zusammenfassend kann gesagt werden, dass sich der Vergleich über das Genre zum
+aktuellen Zeitpunkt im Prototypen nur für die Eingrenzung der Filmauswahl auf
+ein bestimmtes Genre--Schema eignet.
+
 
 
 .. rubric:: Footnotes
