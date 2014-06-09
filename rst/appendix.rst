@@ -2,6 +2,8 @@
 
    \appendix
 
+.. httplib_benchmark:
+
 Anhang A
 ========
 
@@ -37,3 +39,24 @@ Das folgende Code--Snippet wurde zur gewichteten Rating--Ermittlung verwendet:
 .. literalinclude:: ./attachments/year_penalty.py
    :language: python
 
+
+.. _imdblookup_script:
+
+Anhang E
+========
+
+Das folgende Code--Snippet wurde zum Beschaffen der Metadaten für die Auswertung
+dieser verwendet:
+
+.. literalinclude:: ./attachments/imdblookup.py
+   :language: python
+
+.. _timeout:
+
+Anhang F
+========
+
+Das folgende Code--Snippet wurde für den Timeout--Test verwendet:
+
+.. literalinclude:: ./attachments/timeout.py
+   :language: python
