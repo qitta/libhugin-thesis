@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 
-from matplotlib.pyplot import legend
-import matplotlib.pyplot as plt
-import timeit
 from collections import defaultdict
 from statistics import mean
-import matplotlib.pyplot as plt; plt.rcdefaults()
-import numpy as np
+import time
+import timeit
+import numpy
 import matplotlib.pyplot as plt
-
 
 
 ofdb = {
@@ -45,7 +42,6 @@ tmdb = {
 
 def benchmark(string, **kwargs):
     kwargs['func'] = kwargs['func'].format(title=string)
-    print(kwargs['func'])
     return timeit.timeit(
         kwargs['func'], kwargs['fimport'], number=1
     )
@@ -57,26 +53,26 @@ if __name__ == "__main__":
             'Prometheus', 'Avatar', 'Matrix', 'Shame', 'Juno', 'Drive',
             'Hulk', 'Rio', 'Alien', 'Wrong'
             ]
+
     times = defaultdict(list)
-    for x in range(20):
+    for x in range(10):
         for title in movies:
             for algo in [ofdb, tmdb, videobuster, omdb, filmstarts]:
                 result = benchmark(title, **algo)
                 times[algo['label']].append(result * 1000)
+                time.sleep(0.5)
 
     for k, v in times.items():
-        times[k] = mean(v)
-
-    print(times)
+        times[k] = (min(v), mean(v), max(v))
 
     providers = list(times.keys())
-    y_pos = np.arange(len(providers))
-    response_ms = [p for p in times.values()]
+    y_pos = numpy.arange(len(providers))
 
+    for value, color in [(2, 'r'), (1, 'y'), (0, 'g')]:
+        response_ms = [p[value] for p in times.values()]
+        plt.barh(y_pos, response_ms, align='center', alpha=0.7, color=color)
 
-    plt.barh(y_pos, response_ms, align='center', alpha=0.7, color='r')
     plt.yticks(y_pos, providers)
     plt.xlabel('time in milliseconds')
     plt.title('download performance by online source.')
-
     plt.show()
