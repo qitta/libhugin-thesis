@@ -617,7 +617,24 @@ Anschließend werden die Ergebnisse angefangen beim Provider mit der höchsten
 Priorität zurückgeliefert bis die gewünschte Anzahl an Ergebnissen zurückgegeben
 wurde.
 
-.. _fig-searchstrategy
+Das folgende Beispiel zeigt das tatsächliche Ergebnis der im *libhugin*--Prototyp
+implementierten ,,deep" Strategie:
+
+.. code-block:: python
+
+    >>> from hugin.harvest.session import Session
+    >>> s = Session()
+    >>> q = s.create_query(title="drive", amount=7, strategy='deep')
+    >>> s.submit(q)
+    [<tmdbmovie <movie, picture> : Drive (2011)>,
+     <tmdbmovie <movie, picture> : Drive (1998)>,
+     <tmdbmovie <movie, picture> : Drive (2002)>,
+     <ofdbmovie <movie> : Drive (2011)>,
+     <ofdbmovie <movie> : Drive [Kurzfilm] (2011)>,
+     <ofdbmovie <movie> : Drive (1997)>,
+     <filmstartsmovie <movie> : Drive (2011)>]
+
+.. _fig-searchstrategy:
 
 .. figure:: fig/searchstrategy.pdf
     :alt: Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
@@ -632,6 +649,25 @@ die Ergebnisse mit der größten Übereinstimmung iterativ, angefangen beim
 Provider mit der höchsten Priorität, zurückgeliefert bis die gewünschte Anzahl
 erreicht ist. Abbildung :num:`fig-searchstrategy` visualisiert die
 Vorgehensweise der beiden Strategien.
+
+Das folgende Beispiel zeigt das tatsächliche Ergebnis der im *libhugin*--Prototyp
+implementierten ,,flat" Strategie:
+
+.. code-block:: python
+
+    >>> from hugin.harvest.session import Session
+    >>> s = Session()
+    >>> q = s.create_query(title="drive", amount=7, strategy='flat')
+    >>> s.submit(q)
+    [<tmdbmovie <movie, picture> : Drive (2011)>,
+     <ofdbmovie <movie> : Drive (2011)>,
+     <filmstartsmovie <movie> : Drive (2011)>,
+     <omdbmovie <movie> : Drive (2011)>,
+     <videobustermovie <movie> : Drive (2011)>,
+     <tmdbmovie <movie, picture> : Drive (1998)>,
+     <ofdbmovie <movie> : Drive [Kurzfilm] (2011)>]
+
+
 
 Libhugin harvest Plugins
 ========================
