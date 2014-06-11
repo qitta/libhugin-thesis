@@ -62,3 +62,24 @@ Das folgende Code--Snippet wurde für den Timeout--Test verwendet:
 
 .. literalinclude:: ./attachments/timeout.py
    :language: python
+
+.. _hugin_search_benchmark:
+
+Anhang G
+========
+
+Das folgende Code--Snippet wurde für den Threaded--Search--Benchmark verwendet:
+
+.. literalinclude:: ./attachments/hugin_search_benchmark.py
+   :language: python
+
+
+.. _genre-table:
+
+Anhang H
+========
+
+Das folgende Code--Snippet wurde für Analyse der Genreinformationen verwendet:
+
+.. literalinclude:: ./attachments/analyze.py
+   :language: python

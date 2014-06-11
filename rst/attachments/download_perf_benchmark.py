@@ -54,13 +54,13 @@ if __name__ == "__main__":
             'Hulk', 'Rio', 'Alien', 'Wrong'
             ]
 
+    from pylab import *
     times = defaultdict(list)
     for x in range(10):
         for title in movies:
             for algo in [ofdb, tmdb, videobuster, omdb, filmstarts]:
                 result = benchmark(title, **algo)
                 times[algo['label']].append(result * 1000)
-                time.sleep(0.5)
 
     for k, v in times.items():
         times[k] = (min(v), mean(v), max(v))
@@ -68,11 +68,12 @@ if __name__ == "__main__":
     providers = list(times.keys())
     y_pos = numpy.arange(len(providers))
 
-    for value, color in [(2, 'r'), (1, 'y'), (0, 'g')]:
+    for value, color, label in [(2, 'r', 'max'), (1, 'y', 'avg'), (0, 'g', 'min')]:
         response_ms = [p[value] for p in times.values()]
-        plt.barh(y_pos, response_ms, align='center', alpha=0.7, color=color)
+        plt.barh(y_pos, response_ms, align='center', alpha=0.7, color=color, label=label)
 
     plt.yticks(y_pos, providers)
     plt.xlabel('time in milliseconds')
     plt.title('download performance by online source.')
+    legend()
     plt.show()
