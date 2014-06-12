@@ -445,33 +445,44 @@ zeigt wie detailiert die Genreverteilung je Provider ist.
 Analyse Differenz Erscheinungsjahr
 ==================================
 
-Bei der Entwicklung wurde augrund der persönlichen Erfahrung des Autors die
+Bei der Entwicklung wurde aufgrund der persönlichen Erfahrung des Autors die
 Algorithmik beim Zeichenkettenvergleich so angepasst damit das Erscheinungsjahr
-,,einzeln" betrachet wird. Hier wurde bisher davon ausgegangen, dass es zwischen
+,,einzeln" betrachtet wird. Hier wurde bisher davon ausgegangen, dass es zwischen
 den Plattformen beim Erscheinungsjahr immer wieder zu Differenzen von ein bis
-zwei Jahren bei unterschiiechen Plattformen gibt.
+zwei Jahren bei unterschiedlichen Plattformen gibt.
 
-Die Erhobenen Metadaten wurden dahingehend mit dem Script in XXX analysiert.
-Hier werden für die Betrachtung nur die API--Provider hergenommen, da hier die
-Daten mit höherer wahrscheintlichkeit Augrund der Suche über die IMDb--ID
-korrekt bezogen wurden.
+Die erhobenen Metadaten wurden dahingehend mit dem Script in :ref:`code_yeardiff`
+analysiert.  Hier werden für die Betrachtung die API--Provider und die
+non--API--Provider hergenommen. Da die non--API--Provider Daten nicht über die
+IMDb bezogen wurden, wird hier eine zusätzliche Titelübereinstimmung von 90% als
+Grenze genommen.  Alle Filme die diese Eigenschaft erfüllen, fließen in die
+Jahresdifferenzen Statistik ein.
 
 .. figtable::
     :label: fig-yeardiff
     :caption: Überblick der unterschiedlich gepflegten Erscheinungsjahre.
     :alt: Überblick der unterschiedlich gepflegten Erscheinungsjahre.
 
-        +------------------------+------------+----------+----------+
-        |   **Jahresdifferenz:** |   **TMDb** | **OFDb** | **OMDb** |
-        +------------------------+------------+----------+----------+
-        |   **1 jahr**           |            |          |          |
-        +------------------------+------------+----------+----------+
-        |   **2 jahr**           |            |          |          |
-        +------------------------+------------+----------+----------+
-        |   **3 jahr**           |            |          |          |
-        +------------------------+------------+----------+----------+
+        +------------------------+------------+----------+----------------+-----------------+
+        |   **Jahresdifferenz:** |   **OFDb** | **OMDb** | **Filmstarts** | **Videobuster** |
+        +========================+============+==========+================+=================+
+        |   **0 Jahr**           | 2378       | 2403     | 1844           | 1792            |
+        +------------------------+------------+----------+----------------+-----------------+
+        |   **1 Jahr**           | 109        | 87       | 198            | 118             |
+        +------------------------+------------+----------+----------------+-----------------+
+        |   **2 Jahr**           | 8          | 5        | 13             | 8               |
+        +------------------------+------------+----------+----------------+-----------------+
+        |   **3 Jahr**           | 2          | 2        | 3              | 3               |
+        +------------------------+------------+----------+----------------+-----------------+
+
+Die Videobuster und Filmstarts Ergebnisse wurden manuell auf die
+Übereinstimmung des Regisseurs überprüft. Diese stimmen in 317 von 343 Fällen
+überein. In 13 Fällen war ein Vergleich nicht möglich, in weiteren 13 war der
+Film unterschiedlich.
 
 Vollständigkeit der Metadaten
 =============================
 
 some text goes here.
+
+

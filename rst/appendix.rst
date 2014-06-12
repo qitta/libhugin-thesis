@@ -83,3 +83,14 @@ Das folgende Code--Snippet wurde für Analyse der Genreinformationen verwendet:
 
 .. literalinclude:: ./attachments/analyze.py
    :language: python
+
+.. _code_yeardiff:
+
+Anhang I
+========
+
+Das folgende Code--Snippet wurde für Analyse der Erscheinungsjahr--Differenzen
+genommen:
+
+.. literalinclude:: ./attachments/yeardiff.py
+   :language: python
