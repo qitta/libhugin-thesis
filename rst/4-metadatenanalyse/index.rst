@@ -466,19 +466,27 @@ Jahresdifferenzen Statistik ein.
         +------------------------+------------+----------+----------------+-----------------+
         |   **Jahresdifferenz:** |   **OFDb** | **OMDb** | **Filmstarts** | **Videobuster** |
         +========================+============+==========+================+=================+
-        |   **0 Jahr**           | 2378       | 2403     | 1844           | 1792            |
+        |   **0 Jahre**          | 2378       | 2403     | 1844           | 1792            |
         +------------------------+------------+----------+----------------+-----------------+
-        |   **1 Jahr**           | 109        | 87       | 198            | 118             |
+        |   **1 Jahre**          | 109        | 87       | 198            | 118             |
         +------------------------+------------+----------+----------------+-----------------+
-        |   **2 Jahr**           | 8          | 5        | 13             | 8               |
+        |   **2 Jahre**          | 8          | 5        | 13             | 8               |
         +------------------------+------------+----------+----------------+-----------------+
-        |   **3 Jahr**           | 2          | 2        | 3              | 3               |
+        |   **3 Jahre**          | 2          | 2        | 3              | 3               |
+        +------------------------+------------+----------+----------------+-----------------+
+        |   **> 3 Jahre**        | 0          | 0        | 42             | 36              |
         +------------------------+------------+----------+----------------+-----------------+
 
-Die Videobuster und Filmstarts Ergebnisse wurden manuell auf die
-Übereinstimmung des Regisseurs überprüft. Diese stimmen in 317 von 343 Fällen
-überein. In 13 Fällen war ein Vergleich nicht möglich, in weiteren 13 war der
-Film unterschiedlich.
+Die Videobuster und Filmstarts Ergebnisse wurden manuell auf die Übereinstimmung
+des Regisseurs überprüft. Diese stimmen in 317 von 343 Fällen überein. In 13
+Fällen war ein Vergleich nicht möglich, in weiteren 13 war der Film
+unterschiedlich.
+
+Die restlichen insgesamt 68 Filme die bei der Jahresdifferenz
+:math:`\textgreater` 3 gelistet sind, wurden manuell auf Regisseur
+Übereinstimmung untersucht. Hier gab es nur eine Übereinstimmung, die restlichen
+67 Filme waren ,,Remakes", Filme mit zufälligerweise gleichem Titel und Filme
+ohne gelisteten Regisseur.
 
 Vollständigkeit der Metadaten
 =============================

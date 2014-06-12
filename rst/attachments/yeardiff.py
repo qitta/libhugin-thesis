@@ -27,13 +27,11 @@ def directors_equal(tmdb, nontmdb, threshold=0.95):
 
 def test_print(tmdb, nontmdb):
     global COUNTER
-    print(COUNTER, '-' * 80)
-    print(tmdb['title'])
-    print(nontmdb['title'])
-    print(tmdb['directors'])
-    print(nontmdb['directors'])
-    print('-' * 80)
-    print()
+    fmt = "{})\n{}\n{}\n{}\n{}\n".format(
+        COUNTER, tmdb['title'], nontmdb['title'],
+        tmdb['directors'], nontmdb['directors']
+    )
+    print(fmt)
     COUNTER += 1
 
 def check_similarity(tmdb, nontmdb, threshold=0.90):
@@ -49,7 +47,8 @@ def check_similarity(tmdb, nontmdb, threshold=0.90):
 
     # handle movies with no imdbid
     elif ratio > threshold:
-        if diff > 0 and diff < 4:
+        if diff > 4:
+        #if diff > 0 and diff < 4:
             if not directors_equal(tmdb, nontmdb):
                 test_print(tmdb, nontmdb)
         return diff
