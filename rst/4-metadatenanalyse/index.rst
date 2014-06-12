@@ -199,6 +199,9 @@ Die im Prototypen implementieren Metadatenquellen weisen unterschiedliche
 Eigenschaften auf. Für die Entwicklung des Prototypen wurden bestimmte Annahmen
 getroffen wie beispielsweise, dass sich die Genreverteilung unterscheidet.
 
+Testdatenbeschaffung
+====================
+
 Für die Analyse der Metadaten eine Metadaten--Stichprobe von 2500 Filmen mit
 Hilfe der  *libhugin-harvest*--Bibliothek beschafft. Die Zusammenstellung
 besteht aus möglichst zufällig gewählten Filmen verschiedener Kategorien. Es ist
@@ -251,7 +254,7 @@ Erscheinungsjahre anhand der IMDb--ID bezogen und 2500 Ordner mit der Struktur
 
         ``[Filmtitel;Erscheinungsjahr;Imdbid]``
 
-mittels diesem Script angelegt. Anschließen  wurden die Metadaten mit Hilfe von
+mittels diesem Script angelegt. Anschließend  wurden die Metadaten mit Hilfe von
 *libhugin--harvest* über die fünf genannten Provider bezogen. Hierbei wurden die
 Metadaten bei den  Providern mit IMDb--ID Unterstützung, über diese bezogen.
 Provider die keine IMDb--ID Unterstützung bestitzen, wurden über den über IMDb
@@ -304,6 +307,11 @@ Der Stichprobe nach zu urteilen gibt es hier bei Videobuster und Filmstarts
 Probleme. Bei der Suche nach dem Filmtitel ohne Titelzusatz so werden die Titel
 gefunden, falls vorhanden. Die Stichprobe zeigt auch, dass die nicht gefundenen
 Filme durchaus auf der jeweiligen Plattform gepflegt sein können.
+
+Analyse der Suche über den Lookup--Mode
+=======================================
+
+here goes text.
 
 Analyse Genreinformationen
 ==========================
@@ -399,8 +407,7 @@ Filme.
 Beim TMDb und Videobuster Provider war das Genre Komödie auf jeweils drei Genre
 aufgrund eines fehlerhaften Encoding verteilt. Dieser Umstand wurde per Hand
 korrigiert. Des Weiteren wurden vereinzelt Genres abgekürzt um die Tabelle
-darstellen zu können (f./F. :math:`\hat{=}`
-Film).
+darstellen zu können (f./F. :math:`\hat{=}` Film).
 
 Aus Tabelle :num:`fig-genres` ist nur schwer ersichtlich wie sich die
 Genreinformationen im Schnitt pro Film verteilen beziehungsweise wie
@@ -435,11 +442,36 @@ zeigt wie detailiert die Genreverteilung je Provider ist.
     | **Durchschnittlich** | **2,08** | **2,42** | **2,73** | **1,69**        | **1,89**       |
     +----------------------+----------+----------+----------+-----------------+----------------+
 
+Analyse Differenz Erscheinungsjahr
+==================================
 
-Differenz Metadaten
-===================
+Bei der Entwicklung wurde augrund der persönlichen Erfahrung des Autors die
+Algorithmik beim Zeichenkettenvergleich so angepasst damit das Erscheinungsjahr
+,,einzeln" betrachet wird. Hier wurde bisher davon ausgegangen, dass es zwischen
+den Plattformen beim Erscheinungsjahr immer wieder zu Differenzen von ein bis
+zwei Jahren bei unterschiiechen Plattformen gibt.
 
-Differenzen im Jahr wurden angenommen.
+Die Erhobenen Metadaten wurden dahingehend mit dem Script in XXX analysiert.
+Hier werden für die Betrachtung nur die API--Provider hergenommen, da hier die
+Daten mit höherer wahrscheintlichkeit Augrund der Suche über die IMDb--ID
+korrekt bezogen wurden.
 
-*Um die bezogenen Metadaten weiter zu analysieren wurde der TMDb--Provider als
-Referenz genommen.*
+.. figtable::
+    :label: fig-yeardiff
+    :caption: Überblick der unterschiedlich gepflegten Erscheinungsjahre.
+    :alt: Überblick der unterschiedlich gepflegten Erscheinungsjahre.
+
+        +------------------------+------------+----------+----------+
+        |   **Jahresdifferenz:** |   **TMDb** | **OFDb** | **OMDb** |
+        +------------------------+------------+----------+----------+
+        |   **1 jahr**           |            |          |          |
+        +------------------------+------------+----------+----------+
+        |   **2 jahr**           |            |          |          |
+        +------------------------+------------+----------+----------+
+        |   **3 jahr**           |            |          |          |
+        +------------------------+------------+----------+----------+
+
+Vollständigkeit der Metadaten
+=============================
+
+some text goes here.
