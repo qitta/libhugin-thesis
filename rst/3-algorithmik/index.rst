@@ -8,10 +8,12 @@ loszuschicken.
 
 Auf weiteren Einsatz von Multithreading wurde verzichtet, da parallele
 Verarbeitung unter Python aufgrund vom *GIL* (Global Inetpreter Lock) nur
-eingeschränkt möglich ist. Der *GIL* ist ein Mutex, welcher verhindert dass
-mehrere native Threads Python Bytecode gleichzeitig ausführen können. Die
-Parallelisierung beispielsweise von Funktionen kann sogar zu Performanceeinbußen
-im Vergleich zur Singlethreaded--Ausführung führen.
+eingeschränkt möglich ist.
+
+Der *GIL* ist ein Mutex, welcher verhindert, dass mehrere native Threads Python
+Bytecode gleichzeitig ausführen können. Die Parallelisierung beispielsweise von
+Funktionen kann sogar zu Performanceeinbußen im Vergleich zur
+Singlethreaded--Ausführung führen.
 
 Diese Einschränkung gilt jedoch nicht für lange laufende oder blockierende
 Operationen wie beispielsweise der Zugriff auf die Festplatte (vgl.
@@ -25,20 +27,21 @@ Abbildung :num:`fig-threaded-download`).
 
 Zum Herunterladen wird auf die Python HTTP--Bibliothek verzichtet, weil diese
 grundlegende HTTP--Standards, wie beispielsweise Kompression, nicht
-unterstützt. Zwei weitere HTTP--Bibliotheken unter Python sind beiden freien
-Implementierungen *urllib3* und *httplib2*, auf welche zurückgegriffen werden
-kann.
-Kompression und Caching sind insofern wichtig, da sich beide Funktionen auf das
-Downloadverhalten auswirken. Bei aktivierter Kompression, hier ist im
-RFC1950-RFC1952 der *deflate* und *gzip* Algorithmus vorgesehen, wird der Inhalt
-vor dem versenden komprimiert und auf Empfängerseite ,,transparent"
-dekomprimiert. Textdateien lassen sich in der Regel gut komprimieren. Durch die
-Kompression müssen wenigen Daten übertragen werden was sich bei großen
-Datenmengen und einer geringen Bandbreite auf die Performance auswirken kann.
+unterstützt.
 
-Folgende Python--Sitzung zeigt wie die Standard HTTP--Bibliothek den
-komprimierten Inhalt enthält, es aber nicht schafft diesen zu dekomprimieren
-weil hier das Feature fehlt:
+Zwei weitere HTTP--Bibliotheken unter Python sind beiden freien
+Implementierungen *urllib3* und *httplib2*, auf welche zurückgegriffen werden
+kann. Bei aktivierter Kompression, hier ist im RFC1950-RFC1952 der *deflate*
+und *gzip* Algorithmus vorgesehen, wird der Inhalt vor dem versenden komprimiert
+und auf Empfängerseite transparent dekomprimiert. Textdateien lassen sich in
+der Regel gut komprimieren. Durch die Kompression müssen weniger Daten
+übertragen werden was sich bei großen Datenmengen und einer geringen Bandbreite
+auf die Performance auswirken kann.
+
+Folgende Python--Sitzung zeigt die Standard HTTP--Bibliothek der Python
+HTTP--Standardbibliothek. Diese erhält den komprimierten Inhalt, kann diesen
+jedoch nicht dekomprimieren, da dieses HTTP--Standardfeature nicht beherrscht
+wird:
 
 .. code-block:: python
 
@@ -47,8 +50,8 @@ weil hier das Feature fehlt:
    b'\x1f\x8b\x08\x00\xc0\xa5\x8bS\x02\xff5\x8f\xc1n\x830\x10D\xef\xf9\n\xe4s\xec\[...]'
 
 
-Im Gegenzug dazu der Zugriff über *urllib3*-- und *httplib2*--Bibliothek auf die
-gleiche Ressource:
+Im Gegenzug dazu der Zugriff über *urllib3*-- und die *httplib2*--Bibliothek auf
+die gleiche Ressource (gekürzte Version):
 
 .. code-block:: python
 
@@ -60,16 +63,19 @@ gleiche Ressource:
    urllib3.PoolManager(1).request(url='http://httpbin.org/gzip', method='GET').data
    b'{\n  "gzipped": true,\n  "headers": {\n    "Accept-Encoding": "identity",\n [...]'
 
-Ein weiteres Feature der *urllib3*--Bibliothek ist, dass diese im Vergleich zu
-den anderen beiden Bibliotheken Thread--Safe ist. Alternativ kann hier jedoch
-bei den anderen beiden Bibliotheken eine separate Instanz pro Thread gestartet
-werden. Wie und ob sich das auf die Performance auswirkt zeigt der Vergleich der
-drei Bibliotheken beim parallelen Herunterladen (siehe Abbildung
-:num:`fig-threaded-download`). Hier wird der ,,Pooling" Mechanismus der
-*urllib3*--Bibliothek verwendent. Die anderen Bibliotheken werden lokal pro
-Thread gestartet (siehe Anhang ).
 
-.. _fig-threaded-download
+Aufgrund der genannten Eigenschaften und der vergleichsweise guten Performance
+(siehe :num:`fig-threaded-download`) wurde für *libhugin* die
+*httplib2*--Bibliothek gewählt. Da diese jedoch nicht Thread--Safe ist, wird
+hier der in der Google Developer API genannte Ansatz (siehe :cite:`gdev`), eine
+Instanz pro Thread zu starten, gewählt.
+
+Abbildung :num:`fig-threaded-download` zeigt wie sich das Parallelisieren
+mehrerer Downloads auf die Performance auswirkt. Hier wurden die drei genannten
+HTTP--Bibliotheken mit dem Script in :ref:`http_benchmark` getestet.  Der
+Benchmark wurde mit einer *VDSL* 50Mbit--Leitung durchgeführt.
+
+.. _fig-threaded-download:
 
 .. figure:: fig/threaded_download.png
     :alt: Performancevorteil beim Parallelisieren von Downloads.
@@ -78,8 +84,7 @@ Thread gestartet (siehe Anhang ).
 
     Performancevorteil beim Parellisieren von Downloads.
 
-Der Benchmark wurde mit einer *VDSL* 50Mbit--Leitung durchgeführt.
-
+huh
 
 #####################
 Algorithmik Filmsuche
@@ -102,20 +107,27 @@ funktioniert:
      <ofdbmovie <movie> : Matrix (1999)>,
      <filmstartsmovie <movie> : Matrix (1999)>]
 
-Beim Erstellen der Sitzung können *libhugin* Konfigurationparameter wie ,,Cache
-Pfad", ,,Anzahl der zu verwendenden Threads", ,,Anzahl paralleler Downloads per
-Thread" so wie noch weitere globale Konfigurationsparameter übergeben werden.
+Beim Erstellen der Sitzung können *libhugin* globale Konfigurationsparameter wie
+beispielsweise:
+
+    * Cache Pfad
+    * Anzahl der zu verwendenden Threads
+    * Anzahl paralleler Downloads per Thread
+
+übergeben werden.
 
 Anschließend muss eine Suchanfrage erstellt werden. Dazu gibt es die Möglichkeit
 die Methode ``create_query()`` zur Hilfe zu nehmen. Hier hat der Benutzer eine
-Vielzahl von Möglichkeiten seine Suchanfrage zu konfigurieren (siehe
-:cite:`cpiechula`).
+Vielzahl von Möglichkeiten seine Suchanfrage zu konfigurieren.
 
 Der letzte Schritt ist das losschicken der Suchanfrage. Hier gibt es die
-Möglichkeit eine *synchrone* (wie im Beispiel) oder eine *asynchrone* Anfrage
-loszuschicken. Der Hauptunterschied ist, dass die *asynchrone* Anfrage im
-Gegensatz zu der *synchronen* nicht blockt, der Aufrufen kann also in der
-Zwischenzeit andere Sachen ,,erledigen".
+Möglichkeit eine *synchrone* (``submit()``--Methode) oder eine *asynchrone*
+Anfrage (``submit_async()``--Methode) loszuschicken. Der Hauptunterschied ist,
+dass die *asynchrone* Anfrage im Gegensatz zu der *synchronen* nicht blockt. Der
+Aufrufer der Methode kann also in der Zwischenzeit andere Sachen ,,erledigen".
+
+Für eine vollständige Liste der Konfigurationsparameter der Session und Query,
+siehe :cite:`cpiechula` und *libhugin* API :cite:`rtfd`.
 
 
 Standardsuche
@@ -126,12 +138,12 @@ eine Liste mit mehreren Möglichkeiten geliefert. Das Provider--Plugin muss
 anschließend die Filmtitel mit der größten Übereinstimmung herausfinden. Für die
 Ähnlichkeit bei der Suche nach übereinstimmenden Zeichenketten, wurde ein
 Ähnlichkeitsmaß definiert welches von 0.0 (keine Ähnlichkeit) bis 1.0
-(Übereinstimmung) geht.
+(volle Übereinstimmung) geht.
 
 Der Vergleich der Zeichenketten sollte möglichst fehlertolerant sein und
-Zeichenketten mit der höhten Übereinstimmung liefern.
+Zeichenketten mit der höhsten Übereinstimmung liefern.
 
-Der simple Vergleich
+Ein simpler Vergleich wie beispielsweise
 
 .. code-block:: python
 
@@ -141,14 +153,15 @@ Der simple Vergleich
     False
 
 
-funktioniert nur bei exakt den gleichen Zeichenketten funktionieren. Für den
-Vergleich von Zeichenketten bietet die Python Standard--Bibliothek das
-*difflib*--Modul. Das Modul erlaubt es zwei Sequenzen zu vergleichen. Es
-arbeitet mit dem Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von
-:math:`O(n^{3})` im *worst case* und eine erwartete Komplexität von
-:math:`O(n^{2})`. Der Algorithmus basiert auf der Idee, die Sequenzen der
-übereinstimmenden Zeichen zu und durch die Anzahl alle Zeichen der beiden
-Strings zu teilen.
+funktioniert nur bei exakt den gleichen Zeichenketten. Für den Vergleich von
+Zeichenketten bietet die Python Standard--Bibliothek das *difflib*--Modul. Das
+Modul erlaubt es zwei Sequenzen zu vergleichen. Es arbeitet mit dem
+Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von :math:`O(n^{3})`
+im *worst case* und eine erwartete Komplexität von :math:`O(n^{2})`. Der
+Algorithmus basiert auf der Idee, die Anzahl der Sequenzen mit
+übereinstimmenden Zeichen multipliziert mit zwei, durch die Anzahl durch die
+Anzahl aller Zeichen der beiden Zeichenketten zu teilen (vgl
+:cite:`ratcliffpattern`).
 
 Ein weiteres Maß für die Ähnlichkeit von Zeichenketten ist die Hemming--Distanz.
 Diese Distanz arbeitet nach der Idee die ,,Ersetzungen" zu zählen. Der
@@ -158,10 +171,10 @@ Zeichenketten anwenden lässt (vgl. :cite:`navarro2001guided`,
 
 Ein weiterer Algorithmus der für Zeichenkettenvergleiche eingesetzt wird ist der
 Levenshtein--Algorithmus (Levenshtein--Distanz). Der Algorithmus hat eine
-Laufzeit von :math:`O(nm)`. Die Levenshtein--Distanz basiert auf der Idee, der
-minimalen Editiervorgänge (Einfügen, Löschen, Ersetzen) um von einer
+Laufzeitkomplexität von :math:`O(nm)`. Die Levenshtein--Distanz basiert auf der
+Idee, der minimalen Editiervorgänge (Einfügen, Löschen, Ersetzen) um von einer
 Zeichenkette auf eine andere zu kommen (vgl :cite:`atallah2010algorithms`,
-:cite:`navarro2001guided`, :cite:`ranka2009ic3`). Die normalisierte
+:cite:`navarro2001guided`, :cite:`ranka2009ic3`) zu zählen. Die normalisierte
 Levenshtein--Distanz bewegt sich zwischen 0.0 (Übereinstimmung) und 1.0 (keine
 Ähnlichkeit).
 
@@ -181,18 +194,13 @@ folgende *IPython*--Sitzung zeigt:
     >>> damerau_levenshtein_distance("the matrix", "teh matrix")
     >>> 1
 
-
 Da es bei der Filmsuche zu vielen Zeichenkettenvergleichen kommt, und auch nicht
 abgesehen werden kann um beispielsweise welche Data--Mining--Plugins *libhugin*
 in Zukunft erweitert wird, sollte der Algorithmus, zum Vergleich von
-Zeichenketten, eine gute Laufzeit bieten.
-
-Da der Raspberry Pi als Zielplattform nicht ausgeschlossen ist, sollte die
-Implementierung des Algorithmus zum Vergleich von Zeichenketten möglichst
-performant sein.
+Zeichenketten, performant sein.
 
 Um die jeweiligen Algorithmen, beziehungsweise die Implementierungen dieser,
-bezüglich der Performance, zu überprüfen wurde eine Messung mit den folgenden
+bezüglich der Performance zu überprüfen, wurde eine Messung mit den folgenden
 unter Python verfügbaren Implementierungen durchgeführt:
 
     * difflib, Modul aus der Python--Standard--Bibliothek  (Ratcliff-Obershelp)
@@ -208,13 +216,21 @@ unter Python verfügbaren Implementierungen durchgeführt:
 
     String comparsion algorithms performance anlysis.
 
-Je nach Algorithmus variiert das Ergebnis leicht, das liegt daran dass die
-Algorithmen eine unterschiedliche Idee verfolgen.
+Abbildung :num:`fig-stringcompare` zeigt, dass die Laufzeit--Komplexität bei
+allen drei Algorithmen ähnlich ist. Aufgrund der Tatsache, dass der
+Damerau--Levenshtein vertauschte Zeichen "erkennen" kann, eignet er sich gut für
+die Library. Des Weiteren zeigt Abbildung :num:`fig-stringcompare`, dass die
+beiden in Implementierungen *distance* (C) und *pyxDamerauLevenshtein* (Cython)
+sehr performant, im Vergleich zur *difflib* (Python) Implementierung, arbeitet.
 
-Folgende interaktive Python--Sitzung zeigt das Ergebnisverhalten von difflib und
-pyxDamerauLevenshtein, da das Ähnlichkeitsmaß beim der zu letzt genannten
-Implementierung umgekehrt ist, wird das Ergebnis von der eins abgezogen um das
-Verhalten zu vergleichen:
+Je nach verwendeten Algorithmus variiert das Ergebnis leicht, das liegt daran
+dass die Algorithmen eine unterschiedliche Idee verfolgen.
+
+Folgende interaktive Python--Sitzung zeigt das Ergebnisverhalten von *difflib*
+und *pyxDamerauLevenshtein*, da das Ähnlichkeitsmaß beim der zu letzt genannten
+Implementierung eine ,,Distanz" ist, wird das Ergebnis zu einem Ähnlichkeitsmaß
+modifiziert (durch das Abziehen von einer eins) um das Verhalten besser
+vergleichen zu können:
 
 .. code-block:: python
 
@@ -223,8 +239,8 @@ Verhalten zu vergleichen:
     >>> 1 - normalized_damerau_levenshtein_distance("Katze", "Fratze")
     0.6666666666666667
 
-Weitere Werte für die um die unterschiedliche Wertung der beiden Algorithmen zu
-zeigen finden sich in der Tabelle Abbildung :num:`fig-comparsion-diff`.
+Weitere Werte, um die unterschiedliche Wertung der beiden Algorithmen zu
+demonstrieren, finden sich in der Tabelle :num:`fig-comparsion-diff`.
 
 
 .. figtable::
@@ -252,9 +268,9 @@ und *,,sin"*, wie folgende Python Sitzung zeigt, unterschiedlich aus:
     >>> 1 - normalized_damerau_levenshtein_distance("sin", "Sin")
     0.6666666666666667
 
-Um dieses Problem zu beheben wird die gesuchte Zeichenkette vor dem Vergleich
+Um dieses Problem zu beheben, wird die gesuchte Zeichenkette vor dem Vergleich
 normalisiert. Dies geschieht indem alle Zeichen der Zeichenkette in Klein--
-beziehungsweise alternative in Großbuchstaben umgewandelt werden. Folgendes
+beziehungsweise alternativ in Großbuchstaben umgewandelt werden. Folgendes
 Beispiel zeigt die Normalisierung mittels der in Python integrierten
 ``lower()``--Funktion:
 
@@ -265,12 +281,13 @@ Beispiel zeigt die Normalisierung mittels der in Python integrierten
 
 Während der Entwicklung ist aufgefallen, dass der implementierte OFDb--Provider
 den Film *,,The East (2013)"* nicht finden konnte. Nach längerer Recherche und
-Ausweitung der gewünschten Ergebnisanzahl auf 100, wurde festgestellt, dass der
-Film auf dem letzten Platz der Suchergebnisse (Platz 48) zu finden war.
+Ausweitung der gewünschten Ergebnisanzahl auf 100 Ergebnisse, wurde
+festgestellt, dass der Film auf dem letzten Platz der Suchergebnisse (Platz 48)
+zu finden war.
 
-Dies liegt daran liegt, dass der Film auf dieser Online--Plattform mit der
-Schreibweise *,,East, The"* gepflegt ist. Dies ist eine valide und nicht
-unübliche Schreibweise um Filme alphabetisch schneller zu finden.
+Dies lag daran , dass der Film auf dieser Online--Plattform in der Schreibweise
+*,,East, The"* gepflegt ist. Dies ist eine valide und nicht unübliche
+Schreibweise um Filme alphabetisch schneller zu finden.
 
 Betrachtet man die Ähnlichkeit der beiden Zeichenketten, so stellt man fest,
 dass bei dieser Schreibweise, je nach Algorithmus, eine geringe bis gar keine
@@ -292,54 +309,59 @@ wie *,,Drive (2011)"* und *"The Drive (1996)"* fälschlicherweise als identisch
 erkannt werden würden. Ein weiteres Problem, welches hinzu kommt ist, dass der
 Artikel--Ansatz sprachabhängig ist.
 
-Ein anderer Ansatz ist, Satztrennungszeichen zu entfernen und die einzelnen
-Wörter des Titels alphabetisch zu sortieren.
+Ein anderer Ansatz, der bei *libhugin* gewählt wurde, ist, die
+Satztrennungszeichen zu entfernen und die einzelnen Wörter des Titels
+alphabetisch zu sortieren.
 
-Aus *,,East, The"* und *,,The East"* wird nach der Normalisierung also *,,east
-the"*. Der Vergleich der Zeichenkette würde eine Ähnlichkeit von 1.0 liefern.
+Anhand des Beispieltitel *,,East, The"* wird folgend das Vorgehen erläutert:
 
-Anhand des Beispieltitel *,,East, The"* wird wie folgt die Normalisierung
-erläutert:
-
-    1. Titel auf Kleinschreibung runter brechen →  ``'east, the'``
+    1. Titel auf Kleinschreibung umwandeln →  ``'east, the'``
     2. Satztrennungszeichen wie ,,,", ,,-" und ,,:" werden entfernt → ``'east the'``
     3. Titel anhand der Leerzeichen aufbrechen und in Liste umwandeln → [``'east'``, ``'the'``]
-    4. Liste alphabetisch sortieren und in Zeichenkette umwandeln → ``'east the'``
+    4. Liste alphabetisch sortieren und in Zeichenkette zurückwandeln → ``'east the'``
+    5. Vergleich mittels Damerau--Levenshtein Algorithmus
 
 Wendet man diesen Ansatz auf ,,The East" und ,,East, The" an so erhält man in
 beiden Fällen die Zeichenkette "east the". Die Umsetzung des Algorithmus bei der
 Titelsuche löst das Problem beim OFDb--Provider. Der eben genannte Film wird
 durch die Normalisierung gefunden und erscheint an der ersten Position.
 
-Diese Vorgehensweise Normalisiert ebenso die Personensuche. Hier wird
+Diese Vorgehensweise normalisiert ebenso die Personensuche. Hier wird
 beispielsweise der Name *,,Emma Stone"* und *,,Stone, Emma"* in beiden Fällen zu
 der Zeichenkette ``'emma stone'``.
 
-Die Anpassungen beim Zeichenkettenvergleich wirken sich auf die Performance aus.
-Abbildung :num:`fig-finalstringcompare` zeigt den Performanceunterschied zum
-ursprünglichen Algorithmus.
+Die Anpassungen des Algorithmus für den Zeichenkettenvergleich wirken sich auf
+die Performance aus.  Abbildung :num:`fig-finalstringcompare` zeigt den
+Performanceunterschied zum ursprünglichen Algorithmus.
 
 .. _fig-finalstringcompare:
 
 .. figure:: fig/adjusted_algo_compare.pdf
-    :alt: String comparsion algorithms.
+    :alt: Angepasster Algorithmus auf Basis von Damerau-Levenshtein Algorithmus.
     :width: 100%
     :align: center
 
-    Angepasster Damerau-Levenshtein Algorithmus
+    Angepasster Algorithmus auf Basis von Damerau-Levenshtein Algorithmus.
 
-.. raw:: Latex
+Ein weiteres Attribut das bei der Suche von Filmen angegeben werden kann ist
+das Erscheinungsjahr. Dieses wird verwendet um Suchergebnisse genauer
+einzugrenzen.
 
-
-Ein weiterer Punkt der bei der Suche von Filmen mit angegeben werden kann ist
-das Erscheinungsjahr. Dieses wird verwendet um Suchergebnisse genauer zu
-filtern. Wird der Titel und ein Erscheinungsjahr bei der Suche angegeben, so
+Wird der Titel und ein Erscheinungsjahr bei der Suche angegeben, so
 kann der ,,richtige" Film näherungsweise durch das Erscheinungsjahr ermittelt
-werden. Beispielsweise der Film ,,Drive (1997)", wenn hier zusätzlich das Jahr
-,,2000" bei der Suche angegeben wird, für einen Film der vor ca. 10 Jahren
-erschienen ist. Wird an erster Stelle jedoch der Film *,,Drive (2011)"*
-erscheinen, da hier der Zeichenkettenunterschied geringer ist im Vergleich zur
-Zeichenkette ,,1997". Folgende Python--Sitzung zeigt die Problematik:
+werden.  Beim simplen Verglich des Jahres mittels Damerau--Levenshtein
+Algorithmus ergibt sich hier jedoch ein neues ,,Problem".
+
+Bei zusätzlicher Anwendung des Damerau--Levenshtein Algorithmus auf dem
+Erscheinungsjahr, kann es zu dem Fall kommen, dass das mathematisch gesehen
+,,nähere" Erscheinungsjahr als ,,schlechter" gewertet wird. Das liegt daran,
+dass es Fälle gibt, bei denen der mathematische Jahresunterschied zum Suchstring
+geringer sein kann als der Zeichenkettenunterschied. In diesem Fall würde ein
+Film der den gleichen Titel hat, aber zeitlich gesehen viel weiter vom gesuchten
+Film entfernt ist, als ,,besser" bewertet werden.
+
+
+Folgende Python--Sitzung zeigt die Problematik:
 
 .. code-block:: python
 
@@ -353,34 +375,44 @@ größer ausfallen, da die beiden Zeichenketten ,,1997" und "2000" keine
 Ähnlichkeit aufweisen, die Zeichenketten ,,2000" und ,,2011" eine Ähnlichkeit
 von 0.5 aufweisen würden.
 
-Logisch betrachtet ist das Jahr ,,1997" jedoch viel näher an dem Gesuchten
-Erscheinungsjahr. Was in Beispiel darauf hindeuten würde dass der Benutzer das
-Exakte Jahr nicht mehr wusste, jedoch den Zeitraum mit einer Abweichung von drei
+Mathematisch betrachtet ist das Jahr ,,1997" jedoch viel näher an dem gesuchten
+Erscheinungsjahr. Was im Beispiel darauf hindeuten würde, dass der Benutzer das
+exakte Jahr nicht mehr wusste, jedoch den Zeitraum mit einer Abweichung von drei
 Jahren angeben konnte.
 
 Die genannte Problematik äußert sich beispielsweise auch bei Film--Remakes oder
 Filmen die beispielsweise mit einer Ungenauigkeit von +/- 1 Jahr auf einer
-Plattform eingepflegt wurden. Dies passiert, laut Beobachtung des Autors,
-manchmal wenn ein Film national Erfolg hatte und im Folgejahr dann International
-publik wird. Hier kam es in der Vergangenheit zu Differenzen die bei der Pflege
-der Metadaten aufgefallen sind. Dass dieser Umstand weiterhin präsent ist, zeigt
-die Auswertung der der Stichprobe der Metadaten mehrerer Onlinequellen, siehe
-Vergleich Metadaten verschiedener Onlinequellen.
+Plattform eingepflegt wurden. Laut Beobachtung des Autors, gibt es hier zwischen
+den Onlinequellen manchmal Differenzen beim Erscheinungsjahr für den gleichen
+Film.
+
+Ob dieser Umstand weiterhin präsent ist, beziehungsweise wie oft dieser Fall
+vorkommt, zeigt die Auswertung der Stichprobe der Metadaten mehrerer
+Onlinequellen (siehe Analyse Differenz Erscheinungsjahr :ref:`yeardiff`).
 
 Um das Problem ,,abzumildern" wird beim Selektieren der Ergebnisse das Jahr
-einzeln betrachtet. Hier wird mittels der Fusionierungsfunktion
+einzeln betrachtet. Hier wird mittels folgender Funktion die Ähnlichkeit
+berechnet:
 
-.. .. math::
+ .. math::
 
-..    penalty(year_a, year_b) = 1 - \frac{|year_a - year_b|}{max\left{year_a, year_b\right}
+    year\_similarity(year_a, year_b) = 1 - min \left\{ 1, \frac{\vert year_{a} - year_{b}  \vert}{i} \right\}
 
-Strafwertung errechnet welche mit dem Raiting der Zeichenkette Multipliziert
-wird. Somit wird eine geringe Jahresdifferenz nach oben oder unten nur sehr
-gering bewertet. Je höher jedoch der Abstand zum angegebenen Jahr, desto höher
-ist die Strafwertung. Das Jahr fließt jedoch nicht so stark in die Wertung ein,
-es wird hier lediglich zur Unterstützung beim Filtern der Ergebnismenge
-verwendet.
+:math:`i` ist hierbei die maximale Anzahl von Jahren die betrachtet werden
+sollen.
 
+Anschließend wird das Jahr noch zusätzlich gewichtet um nicht so stark ins
+Gewicht zu fallen:
+
+ .. math::
+
+    similarity(s1, y1, s2, y2) = \frac{((string\_similarity\_ratio(s1, s2) * n) + year\_similarity(y1, y2))}{n + 1}
+
+:math:`n` ist hierbei der Gewichtungsfaktor für den Titel. Durch die Gewichtung
+des Titels fällt ein falsch gepflegtes Erscheinungsjahr nicht so stark ins
+Gewicht wie ein ,,Buchstabendreher" beim Titel. Dies ist ein gewolltes
+Verhalten, da das Jahr nur unterstützend beim Filtern der Ergebnismenge
+verwendet werden soll.
 
 .. figtable::
     :label: fig-rating
@@ -406,9 +438,9 @@ verwendet.
     | The East 1999    | 0.438                     | 0.538                      |
     +------------------+---------------------------+----------------------------+
 
+Abbildung :num:`fig-rating` zeigt das Rating mit einer
+Gewichtung von :math:`n` = 3 für die Zeichenkette ,,Matrix 1999".
 
-Abbildung :num:`fig-rating` zeigt am Beispiel vom Film *,,Matrix 1999"* , wie
-sich die Gewichtung positiv auf das Filtern der Suchergebnisse auswirkt.
 
 IMDb--ID Suche
 ==============

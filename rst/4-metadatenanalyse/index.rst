@@ -444,6 +444,8 @@ zeigt wie detailiert die Genreverteilung je Provider ist.
     | **Durchschnittlich** | **2,08** | **2,42** | **2,73** | **1,69**        | **1,89**       |
     +----------------------+----------+----------+----------+-----------------+----------------+
 
+.. _yeardiff:
+
 Analyse Differenz Erscheinungsjahr
 ==================================
 

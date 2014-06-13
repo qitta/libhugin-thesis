@@ -2,7 +2,8 @@
 
    \appendix
 
-.. httplib_benchmark:
+
+.. _http_benchmark:
 
 Anhang A
 ========
