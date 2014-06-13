@@ -94,3 +94,12 @@ genommen:
 
 .. literalinclude:: ./attachments/yeardiff.py
    :language: python
+
+Anhang J
+========
+
+Das folgende Code--Snippet wurde für die Analyse der Ratingverteilung in der
+Stichprobe verwendet:
+
+.. literalinclude:: ./attachments/rating.py
+   :language: python

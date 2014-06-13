@@ -22,6 +22,8 @@ wird hat die Folgenden Movie--Provider implementiert:
 
 Desweiteren wurden noch Person--Provider für TMDb und OFDb implementiert.
 
+.. _timeoutverhalten:
+
 Timeoutverhalten
 ================
 
@@ -488,9 +490,115 @@ Die restlichen insgesamt 68 Filme die bei der Jahresdifferenz
 67 Filme waren ,,Remakes", Filme mit zufälligerweise gleichem Titel und Filme
 ohne gelisteten Regisseur.
 
-Vollständigkeit der Metadaten
-=============================
+.. raw:: Latex
 
-some text goes here.
+   \newpage
+
+Unvollständigkeit der Metadaten
+===============================
+
+Tabelle :num:`fig-completeness` zeigt die Anzahl der nicht gepflegten Attribute
+je Provider. Die Menge bezieht sich hier auf die pro Provider jeweils gefundene
+Anzahl der Metadaten (siehe :num:`fig-foundmetadata`). Die mit :math:`\times`
+markierten Felder deuten darauf hin, dass das Attribut vom Provider nicht
+ausgefüllt wird.
+
+Auffällig in Tabelle :num:`fig-completeness` ist, dass OMDb--Provider das
+Attribut ,,plot" 2353 mal nicht gepflegt ist. Die manuelle Überprüfung dieses
+Wertes bestätigt, dass es hier bei dem verwendeten API--Mirror, wie bereits
+erwähnt unter :ref:`timeoutverhalten`, auch, entgegen der vorherigen Annahme, zu
+Problemen kommt.
 
 
+.. figtable::
+    :label: fig-completeness
+    :caption: Überblick fehlende Metadaten
+    :alt: Überblick fehlende Metadaten
+
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **Attribute**          | **OFDb**       | **OMDb**       | **TMDb**       | **Videobuster** | **Filmstarts** |
+    +========================+================+================+================+=================+================+
+    | **title**              | 0              | 0              | 0              | 0               | 0              |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **original_title**     | 0              | 0              | 0              | 0               |                |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **plot**               | 2353           | 57             | 81             | 5               | 151            |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **runtime**            | :math:`\times` | 30             | :math:`\times` | :math:`\times`  | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **imdbid**             | 0              | 0              | 0              | :math:`\times`  | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **vote_count**         | 5              | 0              | 101            | :math:`\times`  | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **rating**             | 0              | 0              | 482            | :math:`\times`  | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **alternative_titles** | :math:`\times` | :math:`\times` | 315            | :math:`\times`  | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **directors**          | 0              | 4              | 19             | 8               | 109            |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **writers**            | 2404           | 12             | 1818           | :math:`\times`  | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **year**               | 0              | 1              | 2              | 0               | 5              |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **poster**             | 0              | 82             | 707            | 0               | 1              |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **fanart**             | :math:`\times` | :math:`\times` | 2465           | :math:`\times`  | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **countries**          | 0              | :math:`\times` | 104            | 0               | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **genre**              | 0              | 0              | 25             | 0               | 1              |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **studios**            | :math:`\times` | :math:`\times` | 434            | 0               | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **actors**             | 132            | 6              | 23             | 137             | 442            |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **keywords**           | :math:`\times` | :math:`\times` | 444            | 129             | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    | **tagline**            | :math:`\times` | :math:`\times` | 1833           | 1138            | :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+
+
+Ratingverteilung der Stichprobe
+===============================
+
+Folgend finden sich weitere Auswertungen zu den drei API--basierten Providern.
+
+Um zu untersuchen ob sich die Plattformen in der ,,Filmbewertung"
+unterscheiden, wurden die Daten der drei API--basierten Providern analysiert.
+Hierdurch soll überprüft werden, ob es bei den Plattformen in der Bewertung
+signifikante Unterschiede gibt. Bei allen drei Anbietern bewegt sich das Rating
+auf einer Skala von 1 -- 10.
+
+Tabelle :num:`tab-rating` zeigt, dass das Rating der Stichprobe bei allen drei
+Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
+
+.. figtable::
+    :label: fig-rating
+    :caption: Ratinggrenzen der Stichprobe.
+    :alt: Ratinggrenzen der Stichprobe.
+
+    +-------------------------------------+----------+----------+----------+
+    | **Rating**                          | **OMDb** | **TMDb** | **OFDb** |
+    +=====================================+==========+==========+==========+
+    | **Min. Rating in der Stichprobe**   | 1.9      | 0.2      | 0        |
+    +-------------------------------------+----------+----------+----------+
+    | **Durchsch. Rating der Stichprobe** | 6.57     | 6.36     | 6.46     |
+    +-------------------------------------+----------+----------+----------+
+    | **Max. Rating der Stichprobe**      | 10.0     | 10.0     | 9.0      |
+    +-------------------------------------+----------+----------+----------+
+
+Die Abbildung :num:`rating` zeigt weiterhin die Verteilung des Ratings der drei
+API--Provider.  Hier zeigt sich, dass das ,,Rating" in der Stichprobe bei allen
+drei Anbietern nahezu gleichverteilt ist.
+
+.. _fig-rating:
+
+.. figure:: fig/rating.pdf
+    :alt: Nahezu gleichverteiles Rating der Stichprobe von 2500 Filmen.
+    :width: 90%
+    :align: center
+
+    Nahezu gleichverteiles Rating der Stichprobe von 2500 Filmen.
+
+
+Die vorliegenden Daten wurden mit dem Script in :ref:`rating` analysiert.
