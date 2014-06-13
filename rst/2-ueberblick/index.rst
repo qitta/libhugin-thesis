@@ -2,87 +2,114 @@
 Libhugin Bibliothek
 ###################
 
-Einleitung
-==========
+Einleitung und Motivation
+=========================
 
 Die Filmmetadaten eines Films stehen in der Regel auf der DVD--Hülle oder finden
-sich in der Fernseher--Programmbeschreibung. Nach dem Digitalisieren der eigenen
-DVD--Sammlung oder Aufzeichnen von Sendungen fehlen diesen und müssen vom
-Benutzer manuell nachträglich gepflegt werden.
+sich in der TV--Programmübersicht. Nach dem Digitalisieren der eigenen
+DVD--Sammlung oder dem Aufzeichnen von Sendungen, fehlen diese und müssen vom
+Benutzer nachträglich manuell gepflegt werden.
 
 Die ,,digitale Filmsammlung" wird in der Regel von sogenannter
 Home--Theatre--Software abgespielt und verwaltet. Hierzu gehört beispielsweise
-Software wie das XBMC--Media--Center oder Windows--Media--Center. Diese
-Software kann in der Regel Metadaten für die Digitalisierten Filme beschaffen,
-ist jedoch oft nur auf bestimmte Onlinequellen, die nur eine bestimmte Sprache
-unterstützen, beschränkt.  Da es für das Speichern der Metadaten keinen
-durchgesetzten Standard gibt verwenden die beiden genannten ,,Media--Center"
-ein unterschiedliches Format zur Speicherung. Das XBMC--Media--Center verwendet
-das *nfo--Format* (siehe :cite:`xbmcnfo`) und das Windows--Media--Center das
-*dvdxml--Format* (siehe :cite:`dvdxml`).
+Software wie das XBMC--Media--Center (siehe :cite:`xbmc`) oder
+Windows--Media--Center (siehe :cite:`wmc`). Diese Software kann in der Regel
+Metadaten für die digitalisierten Filme beschaffen, ist jedoch oft nur auf
+bestimmte Onlinequellen, die nur eine bestimmte Sprache unterstützen,
+beschränkt.
 
-Des Weiteren gibt es sogenannte Movie--Metadata--Manager--Software, welche
-primär nur für das Pflegen und verwalten der digitalen Medien zuständig ist.
-Zu dieser Art von Software gehört beispielsweise MediaElch. Die
-Metadaten--Manager unterstützen oft mehrere Onlinequellen. Die Software erlaubt
-es auch oft die gepflegten Metadaten zu exportieren um diese dann in Kombination
-mit einer Home--Theatre--Abspielsoftware nutzen zu können.
+Da es für das Speichern der Metadaten keinen durchgesetzten Standard gibt,
+verwenden die genannten ,,Media--Center" ein unterschiedliches Format zur
+Speicherung der Metadaten. Das XBMC--Media--Center verwendet das *nfo*--Format
+(siehe :cite:`xbmcnfo`) und das Windows--Media--Center das *dvdxml*--Format
+(siehe :cite:`dvdxml`).
+
+Des Weiteren gibt es sogenannte Movie--Metadaten--Manager--Software, welche
+primär nur für das Pflegen und Verwalten der digitalen Medien gedacht ist.  Zu
+dieser Art von Software gehört beispielsweise MediaElch (siehe
+:cite:`mediaelch`). Die Metadaten--Manager unterstützen oft mehrere
+Onlinequellen. Die Software erlaubt es auch oft die gepflegten Metadaten zu
+exportieren, um diese in Kombination mit einer Home--Theater--Abspielsoftware
+nutzen zu können.
 
 Bei der Pflege von Filmsammlungen von mehreren hundert Filmen kommt es immer
-wieder zu Problemen. Es gibt nicht nicht das Werkzeug der Wahl. Jedes hat seine
-Vor-- und Nachteile und die Bedürfnisse der Benutzer sind hier sehr
-unterschiedlich. Zu den generellen Problemen gehören folgende Punkte:
+wieder zu Problemen. Es gibt hier nicht nicht das Werkzeug der Wahl. Jede
+Software hat ihre Vor-- und Nachteile und die Bedürfnisse der Benutzer hier sind
+unterschiedlich.
+
+Zu den generellen Problemen bei der Pflege von Metadaten gehören folgende Punkte:
 
     * Filmmetadaten werden nicht gefunden.
     * Filmmetadaten sind unvollständig.
-    * Filmmetadaten nur in bestimmter Sprache vorhanden.
+    * Filmmetadaten sind nur in bestimmter Sprache vorhanden.
     * Einsatz von mehreren Onlinequellen schwer oder nicht möglich.
 
 Je nach Abspielsoftware werden nur bestimmte Onlinequellen für die Beschaffung
-der Metadaten verwendend. Dies hat zufolge das beispielsweise ausländische Filme
-nicht gefunden, die Inhaltsbeschreibung liegt nur in einer bestimmten Sprache
-vor oder es kommt zu Redundanzen bei den Metadaten, wenn auf mehrere
-Onlinequellen parallel zugegriffen wird.
+der Metadaten verwendet. Dies hat zufolge, dass beispielsweise ausländische
+Filme oder weniger bekannte Filme nicht gefunden, die Inhaltsbeschreibung nur in
+einer bestimmten Sprache vorliegt oder die Metadaten unvollständig sind.
 
-Redundanzen in der Datenbank der Abspielsoftware entstehen beispielsweise beim
-Genre wenn mehrere Filme von unterschiedlichen Onlinequellen bezogen werden.
+Unterstützt die Abspielsoftware beziehungsweise der Metadaten--Manager mehrere
+Onlinequellen, so entstehen oft aufgrund der nicht normalisierten Metadaten
+Probleme beim parallelen Bezug der Metadaten aus mehreren Quellen. Das
+Hauptproblem sind Redundanzen der Metadaten, in der internen Datenbank der
+Abspielsoftware. Diese entstehen beispielsweise beim Genre wenn mehrere Filme
+von unterschiedlichen Onlinequellen bezogen werden.
 
-    * Film **A,** Metadatenquelle **X,** Genre: Sci--Fi, Drama
-    * Film **B,** Metadatenquelle **Y,** Genre: Science Fiction, Drama
-    * Film **C,** Metadatenquelle **Z,** Genre: Science--Fiction, Familienfilm
 
-Im Beispiel ist das Genre ,,Science Fiction" bei den drei unterschiedlichen
-Onlinequellen in einer unterschiedlichen Schreibweise vorhanden. Müssen
-Metadaten von unterschiedlichen Quellen bezogen werden weil die Daten, für einen
-bestimmten, Film unvollständig oder nicht vorhanden sind, so wird im Beispiel
-das Genre ,,Science Fiction" mit drei verschiedenen Schreibweisen in der
-Datenbank der Abspielsoftware hinterlegt. Dies hat zufolge, dass eine
-Gruppierung oder Filterung der Filme nach diesem Attribut nicht mehr möglich
-ist.
+In Abbildung :num:`fig-genre-redundanzen` ist das Genre ,,Science Fiction" bei
+den drei unterschiedlichen Onlinequellen in einer unterschiedlichen Schreibweise
+vorhanden. Müssen Metadaten von unterschiedlichen Quellen bezogen werden weil
+die Daten, für einen bestimmten, Film unvollständig oder nicht vorhanden sind,
+so wird im Beispiel das Genre ,,Science Fiction" mit drei verschiedenen
+Schreibweisen in der Datenbank der Abspielsoftware hinterlegt. Dies hat zufolge,
+dass eine Gruppierung oder Filterung der Filme nach diesem Attribut nicht mehr
+möglich ist.
 
-Ein weiteres Problem ist, dass beispielsweise die Genreinformationen
-unterschiedlich feingranular gepflegt sind:
+.. _fig-genre-redundanzen:
 
-    * Film **A**, Metadatenanbieter **X**, Genre: Sci--Fi, Drama, Komödie, Erotik
-    * Film **A**, Metadatenanbieter **Y**, Genre: Drama
-    * Film **A**, Metadatenanbieter **Z**, Genre: Science--Fiction
+.. figure:: fig/genre-redundanzen.pdf
+    :alt: Reduntante Metadaten beim Bezug von Filmen aus mehreren Onlinequellen.
+    :width: 90%
+    :align: center
 
+    Reduntante Metadaten beim Bezug von Filmen aus mehreren Onlinequellen.
+
+
+Ein weiteres Problem ist zeigt Abbildung :num:`fig-genre-detail`. Hier ist das
+Genre--Attribut unterschiedlich detailiert gepflegt.
+
+.. _fig-genre-detail:
+
+.. figure:: fig/genre-detail.pdf
+    :alt: Unterschiedlicher Detailgrad beim verschiedenen Onlinequellen im Genre.
+    :width: 80%
+    :align: center
+
+    Unterschiedlicher Detailgrad beim verschiedenen Onlinequellen im Genre.
 
 Neben den genannten Problemen kommt hinzu, dass unter *unixoden*
 Betriebssystemen die Auswahl an gut funktionierenden Filmmetadaten--Manager, wie
-in einem Test in der Projektarbeit festgestellt wurde (vgl. ), beschränkt.
+in einem Test in der Projektarbeit festgestellt wurde (vgl. :cite:`cpiechula`),
+beschränkt.
 
 Um die aktuell vorhanden Schwierigkeiten bei der Metadaten--Pflege zu behaben
-oder abzumildern wurde das modulare pluginbasierte System *libhugin* für die
-Filmmetadatenbeschaffung entwickelt. Das System zeigt im Vergleich zu den
-bestehenden Lösungen eine andere Herangehensweise indem es dem Benutzer die
-Möglichkeit gibt das System durch den pluginbasierten Ansatz besser an die
-eigenen Bedürfnisse anzupassen. Zusätzlich wurde das System um das Konzept der
-Metadatenbeschaffung erweitert. Hierdurch soll dem Benutzer die Möglichkeit
-geboten werden *nachträglich* Metadaten automatisiert zu analysieren und Fehler
-zu bereinigen. Hier wurde ebenso ein pluginbasierter Ansatz gewählt, welcher es
-möglich macht große Filmsammlungen von mehreren hundert Filmen automatisiert zu
-pflegen.
+beziehungsweise abzumildern wurde das modulare pluginbasierte System *libhugin*
+entwickelt. Das System fungiert als Bibliothek zur Metadatenbeschaffung und
+zeigt im Vergleich zu den bestehenden Lösungen eine andere Herangehensweise,
+die es dem Benutzer erlaubt das System durch den pluginbasierten Ansatz besser
+an die eigenen Bedürfnisse anzupassen.
+
+Zusätzlich wurde das System um das Konzept der Metadatenaufbereitung erweitert.
+Hierdurch soll dem Benutzer die Möglichkeit geboten werden, nachträglich
+Metadaten automatisiert zu analysieren und Fehler zu bereinigen. Hier wurde
+ebenso ein pluginbasierter Ansatz gewählt.
+
+Das Hauptaugenmerk von *Libhugin* liegt auf der automatisierten Metadatenpflege
+großer Filmsammlungen von mehreren hundert Filmen.
+
+Grundlegende Architektur
+========================
 
 Die Bibliothek wurde in die zwei Teile *libhugin--harvest*
 (Metadatenbeschaffung) und *libhugin--analyze* (Metadatenaufbereitung)
