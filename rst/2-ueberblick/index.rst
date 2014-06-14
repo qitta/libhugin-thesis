@@ -58,7 +58,6 @@ Hauptproblem sind Redundanzen der Metadaten, in der internen Datenbank der
 Abspielsoftware. Diese entstehen beispielsweise beim Genre wenn mehrere Filme
 von unterschiedlichen Onlinequellen bezogen werden.
 
-
 In Abbildung :num:`fig-genre-redundanzen` ist das Genre ,,Science Fiction" bei
 den drei unterschiedlichen Onlinequellen in einer unterschiedlichen Schreibweise
 vorhanden. Müssen Metadaten von unterschiedlichen Quellen bezogen werden weil

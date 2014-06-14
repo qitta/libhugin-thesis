@@ -360,7 +360,6 @@ geringer sein kann als der Zeichenkettenunterschied. In diesem Fall würde ein
 Film der den gleichen Titel hat, aber zeitlich gesehen viel weiter vom gesuchten
 Film entfernt ist, als ,,besser" bewertet werden.
 
-
 Folgende Python--Sitzung zeigt die Problematik:
 
 .. code-block:: python
@@ -414,29 +413,30 @@ Gewicht wie ein ,,Buchstabendreher" beim Titel. Dies ist ein gewolltes
 Verhalten, da das Jahr nur unterstützend beim Filtern der Ergebnismenge
 verwendet werden soll.
 
+
 .. figtable::
     :label: fig-rating
     :caption: Vergleich Rating von Suchergebnissen mit und ohne Jahresgewichtung.
     :alt: Vergleich Rating von Suchergebnissen mit und ohne Jahresgewichtung.
-    :spec: l | l | l
 
-    +------------------+---------------------------+----------------------------+
-    | **Titel**        | **Rating mit Gewichtung** | **Rating ohne Gewichtung** |
-    +==================+===========================+============================+
-    | Matrix 1999      | 1.0                       | 1.0                        |
-    +------------------+---------------------------+----------------------------+
-    | Matrix 2000      | 0.983                     | 0.636                      |
-    +------------------+---------------------------+----------------------------+
-    | Matrix 1997      | 0.967                     | 0.909                      |
-    +------------------+---------------------------+----------------------------+
-    | Matrix 2001      | 0.967                     | 0.636                      |
-    +------------------+---------------------------+----------------------------+
-    | Matrix, The 1999 | 0.7                       | 0.538                      |
-    +------------------+---------------------------+----------------------------+
-    | The Matrix 2013  | 0.467                     | 0.467                      |
-    +------------------+---------------------------+----------------------------+
-    | The East 1999    | 0.438                     | 0.538                      |
-    +------------------+---------------------------+----------------------------+
+    +------------------+--------------------------------+----------------------------+
+    | **Titel**        | **Rating mit Gewichtung, n=3** | **Rating ohne Gewichtung** |
+    +==================+================================+============================+
+    | Matrix 1999      | 1.0                            | 1.0                        |
+    +------------------+--------------------------------+----------------------------+
+    | Matrix 2000      | 0.983                          | 0.636                      |
+    +------------------+--------------------------------+----------------------------+
+    | Matrix 1997      | 0.967                          | 0.909                      |
+    +------------------+--------------------------------+----------------------------+
+    | Matrix 2001      | 0.967                          | 0.636                      |
+    +------------------+--------------------------------+----------------------------+
+    | Matrix, The 1999 | 0.7                            | 0.538                      |
+    +------------------+--------------------------------+----------------------------+
+    | The Matrix 2013  | 0.467                          | 0.467                      |
+    +------------------+--------------------------------+----------------------------+
+    | The East 1999    | 0.438                          | 0.538                      |
+    +------------------+--------------------------------+----------------------------+
+
 
 Abbildung :num:`fig-rating` zeigt das Rating mit einer
 Gewichtung von :math:`n` = 3 für die Zeichenkette ,,Matrix 1999".
@@ -447,30 +447,30 @@ IMDb--ID Suche
 
 Ob die Suche nach der IMDb--ID möglich ist hängt von der jeweiligen Onlinequelle
 ab. Onlinequellen wie TMDb, OFDb oder auch OMDb unterstützen direkt die Suche
-über die IMDB--ID. Andere Onlinequellen wie das filmstarts-- oder
+über die IMDB--ID. Andere Onlinequellen wie das Filmstarts-- oder das
 Videobuster--Portal unterstützen keine Suche über IMDb--ID. Es ist prinzipiell
-nur eine Suche über IMDb--ID möglich wenn diese von der jeweiligen Onlinequelle
+nur eine Suche über IMDb--ID möglich, wenn diese von der jeweiligen Onlinequelle
 direkt angeboten wird.
 
-Um dieses Problem abzumildern und eine onlinequellenübergreifende Möglichkeit
-über die IMDb--ID zu ermöglichen bietet die *libhugin--harvest*--Bibliothek die
-Möglichkeit den sogenannten ,,Lookup--Mode" zu aktivieren.
+Um trotzdem eine onlinequellenübergreifende Suche über die IMDb--ID zu
+ermöglichen bietet die *libhugin--harvest*--Bibliothek den sogenannten
+,,Lookup--Mode".
 
 Hierbei wird intern vor der Metadatensuche ein sogenannter *Lookup* durchgeführt
-um zu der gesuchten IMDB--ID den passenden Filmtitel zu ermitteln. Prinzipiell
-gibt es hier die Möglichkeit über eine Suche auf *IMDb.com* den Entsprechenden
+um zu der gesuchten IMDb--ID den passenden Filmtitel zu ermitteln. Prinzipiell
+gibt es hier die Möglichkeit über eine Suche auf *IMDb.com* den entsprechenden
 Titel zu ermitteln. Die Filme auf der Seite sind jeweils unter der jeweiligen
-IMDb--ID eingepflegt. Eine URL für den Film mit der IMDb--ID ``tt1602613`` für
-den Film *,,Only god forgives (2013)"* ist wie folgt aufgebaut:
+IMDb--ID eingepflegt. Die URL für den Film *,,Only god forgives (2013)"* mit der
+IMDb--ID ``tt1602613`` ist wie folgt aufgebaut:
 
     * http://www.imdb.com/title/tt1602613
 
-Wenn also der *Lookup--Mode* aktiviert wird, wird vor dem eigentlichen
-Herunterladen über die Provider ein *Loockup* über ``http://imdb.com``
-getriggert. Hierbei wird die URL aus der zu suchenden ID zusammengesetzt und
-ein IMDb Anfrage darüber gestartet. Anschließend wird auf den zurückgelieferten
-Inhalt ein Regulärer Ausdruck ausgeführt, welcher die Zeichenketten bestehend
-aus "<Titelname> <(4-stellige Jahreszahl)>", extrahiert.
+Wenn der *Lookup--Mode* aktiviert wird, wird vor der Kommunikation mit den
+Provider--Plugins ein *Loockup* über ``http://imdb.com`` getriggert. Hierbei
+wird die URL aus der zu suchenden ID zusammengesetzt und ein IMDb Anfrage
+gestartet. Anschließend wird auf dem zurückgelieferten HTTP--Response ein
+Regulärer Ausdruck ausgeführt, welcher die Zeichenketten bestehend aus
+``<Titelname> <(4-stellige Jahreszahl)>``, extrahiert.
 
 Der algorithmische Ansatz schaut unter Python wie folgt aus:
 
@@ -482,20 +482,36 @@ Der algorithmische Ansatz schaut unter Python wie folgt aus:
    >>> print(title, year)
    'Only God Forgives 2013'
 
+Nach dem extrahieren der Attribute Titel und Erscheinungsjahr, wird die Query
+mit den Suchparametern, welche an alle Provider--Plugins für die Suche
+weitergegeben wird, mit diesen ergänzt. Die Provider--Plugins die keine IMDb--ID
+unterstützen, können so eine Suchen über den Titel und das Erscheinungsjahr
+durchführen. Für den Benutzer schaut dies nach außen so aus, als würde jeder
+Provider eine IMDb--ID Suche unterstützen.
 
 Unschärfesuche
 ==============
 
 Die Onlinequellen der implementierten Provider, TMDb, IMDb, OFDb, OMDb,
-Filmstarts und Videobuster benötigen exakte Suchanfragen. Bei einem Tippfehler
-wie *,,Only good forgives"* (Originaltitel: *,,Only god forgives"*), wird der Film
-von den genannten Online--Plattformen nicht gefunden. Diesen Fehler clientseitig
-zu beheben ist schwierig, man müsste eine große Datenbank an Filmtitel pflegen
-und aktuell halten, und könnte so mit Hilfe dieser den Fehler vom Benutzer
-korrigieren indem alternativ die ähnlichste Zeichenkette aus der Datenbank
-nehmen würde. Mit der normalisierten Damerau--Levenshtein Ähnlichkeit die
-*libhugin* zum Zeichenkettenvergleich anbietet hätte die falsche Anfrage eine
-Ähnlichkeit von 0.94.
+Filmstarts und Videobuster benötigen in der Regel exakte Suchanfragen. Bei einem
+Tippfehler wie *,,Unly god forgives"* (Originaltitel: *,,Only god forgives"*),
+wird der Film von den genannten Online--Plattformen nicht gefunden.
+
+.. python-code:: python
+
+    >>> from hugin.harvest.session import Session
+    >>> s = Session()
+    >>> q = s.create_query(title='Unly god forgives', fuzzysearch=False)
+    >>> r = s.submit(q)
+    >>> print(r)
+    []
+
+Diesen Fehler clientseitig zu beheben ist schwierig, man müsste eine große
+Datenbank an Filmtiteln pflegen und aktuell halten, und könnte so mit Hilfe
+dieser den Fehler vom Benutzer korrigieren indem man die ähnlichste
+aller Zeichenkette aus der Datenbank nehmen würde. Mit der normalisierten
+Damerau--Levenshtein Ähnlichkeit die *libhugin* zum Zeichenkettenvergleich
+anbietet hätte die falsche Anfrage eine Ähnlichkeit von 0.94.
 
 Eine lokale beziehungsweise zentrale Datenbank aufzubauen wäre möglich, da die
 Informationen beziehungsweise Metadaten Online auf vielen Plattformen verfügbar
@@ -505,7 +521,7 @@ aktuell die gepflegten Informationen sind.
 
 Um dieses Problem trotz der genannten Schwierigkeiten zu lösen bedient sich
 *libhugin* eines anderen Ansatzes. *Libhugin* delegiert die Information, wie es
-ein Mensch auch machen würde, an eine Suchmaschine. In konkreten Fall wird ein
+ein Mensch auch machen würde, an eine Suchmaschine. Im konkreten Fall wird
 hierbei ein *Lookup* über die Suchmaschine von Google getriggert.
 
 Über die *,,I'm Feeling Lucky"*--Funktionalität erlaubt es Google über Parameter
@@ -522,7 +538,7 @@ Gibt man diese URL direkt im Browser ein, so wird direkt der Wikipedia--Artikel
 zur Hauskatze [#f1]_ angezeigt.
 
 *Libhugin* bedient sich dieser Funktionalität und führt einen *Lookup* mit den
-Parametern *Filmtitel*, *Erscheinungsjahr*, *imdb* und *movie*. Anschließend
+Parametern *Filmtitel*, *Erscheinungsjahr*, *imdb* und *movie* aus. Anschließend
 wird die zurückgegebene URL betrachtet, und aus dieser die IMDb--ID extrahiert.
 
 Folgende *IPython*--Sitzung zeigt den Ansatz:
@@ -537,58 +553,51 @@ Folgende *IPython*--Sitzung zeigt den Ansatz:
     'tt0780504'
 
 Hier wurde der Ansatz gewählt die IMDb--ID aus der URL mit einem Regulärem
-Ausdruck zu parsen. Dies erspart das parsen des kompletten Dokuments.
-Anschließen wird die Suche mit der IMDb--ID normal fortgesetzt. Alternativ wäre
-hier der Ansatz über dem Filmtitel, wie beim IMDb--ID zu Titel *Lookup* möglich.
+Ausdruck zu parsen. Dies erspart das parsen der kompletten HTTP--Response, was
+deutlich aufwendiger wäre.
+
+Dies geschieht vor der Kommunikation mit den Provider--Plugins. Anschließend
+wird die Suche mit der IMDb--ID normal fortgesetzt. Alternativ wäre hier der
+Ansatz über den Filmtitel, wie beim IMDb--ID zu Titel *Lookup* möglich. Diese
+Funktionalität lässt sich durch das zusätzliche Aktivieren des
+,,IMDb--Lookup"--Mode realisieren.
 
 
-Normalisierung der Metadaten
-============================
+Normalisierung des Genre
+========================
 
 Die Normalisierung der Metadaten aus unterschiedlichen Quellen ist sehr
 schwierig, da es bei den Filmmetadaten keinen einheitlichen Standard gibt. Um
 fehlerhafte oder fehlende Metadaten über unterschiedliche Quellen zu ergänzen,
-müssen die Metadaten normalisiert werden. Dieses Problem wird nun Anhand vom
-Genre Attribut, welches in der internen Metadaten--Datenbank des XBMC abgelegt
-wurde, beispielhaft erklärt.
+müssen die Metadatenattribute, insbesondere das Genre aufgrund der in
+:ref:`motivation` gelisteten Problematik, normalisiert werden.
 
-Wird beispielsweise der Spielfilm ,,The Matrix (1999)" über drei verschiedene
-Onlinequellen bezogen, so erhält man, falls das Genre ,,Science Fiction" bei den
-jeweiligen Quellen gepflegt wurde, oft eine unterschiedliche Schreibweise.
+Durch den in :ref:`motivation` (siehe Abbildung :num:`fig-genre-redundanzen`,
+Abbildung :num:`fig-genre-detail`) genannten Umstand werden die Genreinformation
+redundant in der Datenbank der Abspielsoftware, wie beispielsweise dem
+XBMC--Media--Center, abgelegt. Es ist nicht mehr möglich ein Filmgenre
+eindeutig zu identifizieren. Es ist somit weder eine Gruppierung nach diesem
+Genre noch eindeutige eindeutige Filterung möglich.
 
-    * TMDb (www.themoviedb.org): Science Fiction
-    * IMDb (www.imdb.com): Sci--Fi
-    * OFDb (www.ofdb.de): Science--Fiction
-
-Wird nun der Film ,,The Matrix (1999)" über TMDb bezogen und der Film ,,Matrix
-Revolutions (2003)" über IMDb, weil er beispielsweise bei TMDb nicht gepflegt
-ist, so wird in diesem Fall das Genre mit den zwei unterschiedlichen
-Schreibweisen ,,Science Fiction" und ,,Sci--Fi" bezogen.
-
-Durch diesen Umstand werden die Genreinformation redundant in der Datenbank
-XBMC--Center abgelegt. Es ist nicht mehr möglich dieses Filmgenre eindeutig
-zu identifizieren. Es ist somit weder eine Gruppierung nach diesem Genre noch
-eindeutige eindeutige Filterung möglich.
-
-Dieses Problem betrifft grundsätzlich alle Filmmetadaten Attribute, jedoch
+Dieses Problem betrifft grundsätzlich alle Filmmetadaten--Attribute, jedoch
 lassen sich andere Attribute wie die Inhaltsbeschreibung problemlos austauschen,
-diese von Natur aus individuell und sich somit nicht normalisieren lässt.
+diese von Natur aus individuell sind und sich somit nicht normalisieren lässt.
 
-Da das Filmgenre, neben der Inhaltsbeschreibung, zu den wichtigsten
-Auswahlkriterien bei Filmen zählt, wurde hier bei *libhugin* ein statisches
-Konzept der Normalisierung umgesetzt.
+Da das Filmgenre, neben der Inhaltsbeschreibung und Filmbewertung, laut Autor,
+zu den wichtigsten Auswahlkriterien bei Filmen zählt, wurde hier bei *libhugin*
+ein statisches Konzept der Normalisierung umgesetzt.
 
 Die Normalisierung bei *libhugin* bildet hierzu jedes Genre einer Onlinequelle
 auf einem Globalen Genre ab. Die Normalisierung erfolgt über eine statische
-Genre--Tabelle, welche der Autor eines Provider--Plugins (Plugin um eine
-bestimmte Onlinequellen anzusprechen) bereitstellen muss. Der Nachteil dieser
-Variante ist, dass das Genre--Spektrum der Onlinequelle bekannt sein muss.
+Genre--Tabelle, welche der Autor eines Provider--Plugins bereitstellen muss. Der
+Nachteil dieser Variante ist, dass das Genre--Spektrum der Onlinequelle bekannt
+sein muss. Das Provider--Genre wird über einen Index auf einem globalen Genre
+abgebildet.
 
-Das Provider Genre wird über einen Index auf einem globalen Genre abgebildet.
-Die Abbildung :num:`fig-genrenorm` zeigt konzeptuell die Vorgehensweise beim
-,,Normalisieren" der Genreinformationen am Beispiel von OFDb.
+Abbildung :num:`fig-genrenorm` zeigt konzeptuell die Vorgehensweise beim
+,,Normalisieren" der Genreinformationen.
 
-.. _fig-genrenorm
+.. _fig-genrenorm:
 
 .. figure:: fig/genre_norm.pdf
     :alt: Normalisierung der Genreinformationen anhand statischer Mapping-Tabellen.
@@ -608,33 +617,32 @@ des Genres Anhand der Wortähnlichkeit. Dies erwies sich jedoch als nicht
 praxistauglich. Eine automatische Genreerkennung benötigt eine Wortschatz aus
 Referenz--Genres, mit welchen das ,,unbekannte" Provider--Genre verglichen werden
 muss. Bei Genres wie Science Fiction, Drama oder Thriller funktioniert das
-System noch relativ gut, komme aber seltene oder unbekannte Genrenamen wie
+System noch relativ gut, kommen aber seltene oder unbekannte Genrenamen wie
 ,,Mondo" oder ,,Suspense" hinzu, kann je nach Referenz--Wortschatz keine
 Übereinstimmung mehr erfolgen. Hier wäre noch eine semiautomatischer Ansatz
-denkbar, welcher automatisiert Genres erkennt und im Fall eines Unbekannten
-Genres dieses in eine Liste aus nicht zugeordneten Genres hinzufügt, welche dann
-vom Benutzer ,,korrigiert" werden kann. Dies ist jedoch bei einer
+denkbar, welcher automatisiert Genres erkennt und im Fall eines unbekannten
+Genre dieses in eine Liste aus nicht zugeordneten Genres hinzufügt, welche dann
+vom Benutzer ,,korrigiert" werden können. Dies ist jedoch bei einer
 Software--Bibliothek wie sie durch *libhugin* bereitgestellt wird, weniger
 praktikabel.
 
 Ein weiteres Problem das hier jedoch hinzu kommt ist, dass das ,,Genre" an sich
 in keiner Form standardisiert ist. Je nach Onlinequelle gibt es
 Genrebezeichnungen wie Animationsfilm oder Kinderfilm, welche jedoch im engeren
-Sinne aber nicht zum ,,Filmgenre"--Begriff gezählt werden dürften. Des Weiteren
-kommt hinzu, dass über die Jahre immer wieder neue Genre entstanden sind. Hier
-muss also durch den Endbenutzer sichergestellt werden welches Globale Mapping
-verwendet werden soll.
-
+Sinne nicht zum ,,Filmgenre"--Begriff gezählt werden dürften (siehe
+:cite:`wikigenre`). Des Weiteren kommt hinzu, dass über die Jahre immer wieder
+neue Genre entstanden sind.
 
 
 Suchstrategien
 ==============
 
-Der Prototyp der Bibliothek unterstützt zwei verschiedene Suchstrategien. Eine
-*,,deep"*--Strategie und eine *,,flat"*--Strategie. Diese beiden Strategien
-sollen dem Benutzer die Kontrolle über die ,,Suchtrefferart" geben.
+Der Prototyp der *libhugin--harvest*--Bibliothek unterstützt zwei verschiedene
+Suchstrategien. Eine *,,deep"*--Strategie und eine *,,flat"*--Strategie. Diese
+beiden Strategien sollen dem Benutzer die Kontrolle über die ,,Suchtrefferart"
+geben.
 
-Jedes Provider--Plugin hat  eine vom Benutzer vergebene Priorität. Dieses ist im
+Jedes Provider--Plugin hat aktuell eine vergebene Priorität. Dieses ist im
 Prototypen von *libhugin* manuell vergeben worden. Die Priorität ist ein
 Integer--Wert im Bereich 0-100. Je höher die Priorität desto mehr wird ein
 Provider beim abschließenden Filtern der Ergebnisse berücksichtigt.
@@ -643,11 +651,22 @@ Die gefundenen Ergebnisse können einerseits nach Provider--Priorität betrachte
 oder aber nach ,,Ergebnisqualität" betrachtet werden. Aus diesem Grund wurde die
 *,,deep"*-- und die *,,flat"*--Suchstrategie implementiert.
 
-Die *,,deep"*--Strategie sortiert die Provider nach Priorität und die Ergebnisse
-innerhalb der jeweiligen Provider nach Übereinstimmung mit dem Suchstring.
-Anschließend werden die Ergebnisse angefangen beim Provider mit der höchsten
-Priorität zurückgeliefert bis die gewünschte Anzahl an Ergebnissen zurückgegeben
-wurde.
+.. _fig-searchstrategy:
+
+.. figure:: fig/searchstrategy.pdf
+    :alt: Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
+    :width: 80%
+    :align: center
+
+    Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
+
+Die *,,deep"*--Strategie werden die Ergebnisobjekte nach Provider (Priorität)
+gruppiert und die Ergebnisse innerhalb jeder Gruppe nach Übereinstimmung mit
+der gesuchten Zeichenkette sortiert.
+
+Anschließend werden die Ergebnisse, angefangen beim Provider mit der höchsten
+Priorität, zurückgeliefert bis die gewünschte Anzahl an Ergebnissen
+zurückgegeben wurde (siehe Abbildung :num:`fig-searchstrategy`).
 
 Das folgende Beispiel zeigt das tatsächliche Ergebnis der im *libhugin*--Prototyp
 implementierten ,,deep" Strategie:
@@ -666,21 +685,11 @@ implementierten ,,deep" Strategie:
      <ofdbmovie <movie> : Drive (1997)>,
      <filmstartsmovie <movie> : Drive (2011)>]
 
-.. _fig-searchstrategy:
-
-.. figure:: fig/searchstrategy.pdf
-    :alt: Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
-    :width: 80%
-    :align: center
-
-    Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
-
 Bei der *,,flat"*--Strategie werden die Provider und Ergebnisse auf die gleiche
-Art wie bei der *,,deep"*--Strategie sortiert. Anschließend werden aber jeweils
-die Ergebnisse mit der größten Übereinstimmung iterativ, angefangen beim
-Provider mit der höchsten Priorität, zurückgeliefert bis die gewünschte Anzahl
-erreicht ist. Abbildung :num:`fig-searchstrategy` visualisiert die
-Vorgehensweise der beiden Strategien.
+Art wie bei der *,,deep"*--Strategie gruppiert und sortiert. Anschließend werden
+aber jeweils die Ergebnisse mit der größten Übereinstimmung iterativ, angefangen
+beim Provider mit der höchsten Priorität, zurückgeliefert bis die gewünschte
+Anzahl erreicht ist.
 
 Das folgende Beispiel zeigt das tatsächliche Ergebnis der im *libhugin*--Prototyp
 implementierten ,,flat" Strategie:
@@ -699,35 +708,48 @@ implementierten ,,flat" Strategie:
      <tmdbmovie <movie, picture> : Drive (1998)>,
      <ofdbmovie <movie> : Drive [Kurzfilm] (2011)>]
 
+Abbildung :num:`fig-searchstrategy` visualisiert die Vorgehensweise der beiden
+Strategien.
 
 
 Libhugin harvest Plugins
 ========================
 
 Die bisher erläuterten Ansätze und Algorithmen werden direkt durch *libhugin*
-realisiert oder als Hilfsfunktionen bereitgestellt. Des weiteren wurden
-Postprocessor--Plugins geschrieben, welche weitere Probleme der
-Metadatenbeschaffung angehen. Ob der Benutzer ein Plugin nutzen möchte
-beziehungsweise welche Plugins der Benutzer nutzen möchte bleibt ihm überlassen.
-Durch die einfach gestalteten Schnittstellen ist es problemlos möglich
-*libhugin* um ein eigenes Plugin mit gewünschter Funktionalität zu erweitern.
+realisiert oder als Hilfsfunktionen bereitgestellt.
+
+Des weiteren wurden für den Prototypen Postprocessor--Plugins geschrieben,
+welche weitere Probleme der Metadatenbeschaffung angehen. Ob der Benutzer ein
+Plugin nutzen möchte, beziehungsweise welche Plugins der Benutzer nutzen möchte,
+bleibt ihm überlassen.
+
+Durch die einfach gestalteten Schnittstellen (vgl :cite:`cpiechula`) ist es
+problemlos möglich *libhugin* um ein eigenes Plugin mit gewünschter
+Funktionalität zu erweitern.
+
+**Postprocessor--Plugins Algorithmik**
 
 Das Postprocessor--Plugin *,,Compose"* ist ein Plugin welches es erlaubt dem
 Benutzer verschiedene Metadatenquellen zusammen zu führen. Dies ist im
-*libhugin* Protoypen auf zwei verschiedene Arten möglich.
+in der aktuellen Version auf zwei verschiedene Arten möglich.
 
-Das ,,automatische" Zusammenführen der Daten, hierbei werden die gefundenen
+1.) Das ,,automatische" Zusammenführen der Daten, hierbei werden die gefundenen
 Suchergebnisse nach IMDb--ID gruppiert. Dies ,,garantiert", dass die Metadaten
 nur zwischen gleichen Filmen ausgetauscht werden.
 
 Findet der höchstpriorisierte Provider Metadaten zu einem Film, fehlt jedoch die
 Inhaltsbeschreibung, so wird diese, durch den nächst niedriger priorisierten
 Provider der eine Inhaltsbeschreibung besitzt, ergänzt. Abbildung :num:`compose`
-zeigt grob das Konzept des *Compose*--Plugins. Zuerst wird eine
+zeigt die Funktionalität des *Compose*--Plugins. Zuerst wird eine
 Ergebnisobjekt--Kopie vom Provider mit der höchsten Priorität erstellt,
 anschließend werden fehlende Attribute durch Attribute der anderen
-Ergebnisobjekte ergänzt soweit diese vorhanden sind. Dabei erfolgt die Suche
-*iterativ*, anfangend beim Provider mit der nächst niedrigeren Priorität.
+Ergebnisobjekte ergänzt,  soweit diese vorhanden sind. Dabei erfolgt das
+Auffüllen der fehlenden Attribute *iterativ*, anfangend beim Provider mit der
+nächst niedrigeren Priorität. Dieser Ansatz funktioniert aktuell nur mit
+Onlinequellen die eine IMDb--ID bereitstellen. Eine Erweiterung um Provider die
+keine IMDb--ID bieten wäre möglich, indem hier zusätzliche alternativ Attribute
+wie beispielsweise der Regiesseur, herangezogen werden um gleiche Filme zu
+gruppieren.
 
 .. _fig-compose
 
@@ -738,17 +760,13 @@ Ergebnisobjekte ergänzt soweit diese vorhanden sind. Dabei erfolgt die Suche
 
     Automatisches ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung
 
-Nach dem Befüllen der fehlenden Attribute wird das Genre zusammengeführt.
-Dies passiert indem die normalisierten Genres der verschiedenen
-Provider--Ergebnisse zu einer Liste aus Genres dieser zusammengeführt werden.
-
-Eine zweite Möglichkeit neben dem automatischen Zusammenführen von Attributen
+2.) Eine weitere Möglichkeit neben dem automatischen Zusammenführen von Attributen
 verschiedener Provider ist die Angabe eine benutzerdefinierten Profilmaske.
 Diese Profilmaske ist eine Hash--Tabelle mit den jeweiligen Attributen als
 Schlüssel und den gewünschten Providern als Wert. Folgende Python Notation gibt
 an, dass der Standardanbieter TMDb sein soll und die Inhaltsbeschreibung immer
-vom Provider OFDb befüllt, wenn dieser keine besitzt soll das Ergebnis des
-OMDb--Provider genommen werden.
+vom Provider OFDb befüllt werden soll, wenn dieser keine besitzt soll das
+Ergebnis des OMDb--Provider genommen werden.
 
 .. code-block:: python
 
@@ -757,10 +775,16 @@ OMDb--Provider genommen werden.
         'plot': ['ofdbmovie', 'omdbmovie']  # Plot von ofdb oder omdb
    }
 
+Nach dem Befüllen der fehlenden Attribute wird das Genre zusammengeführt.
+Dies passiert indem die normalisierten Genres der verschiedenen
+Provider--Ergebnisse zu einer Liste aus Genres dieser zusammengeführt werden.
+
 Um die Postprocessor--Plugins vollständig zu benennen, existiert noch ein
-*,,Trim"*--Plugin. Dieses iteriert über alle Attribute eines Ergebnisobjekts und
-entfernt dabei mittels der Python ``strip()``--Funktion die führenden und
+*,,Trim"*--Plugin. Dieses iteriert über alle Attribute eines Ergebnisobjektes
+und entfernt dabei mittels der Python ``strip()``--Funktion die führenden und
 nachstehenden Leerzeichen.
+
+**Converter--Plugins Algorithmik**
 
 Auf weitere Algorithmik welche innerhalb der Converter--Plugins realisiert ist
 wird aufgrund ihrer Einfachheit nicht weiter eingegangen. Hier werden jeweils
@@ -777,19 +801,23 @@ möglichst automatisiert mit wenig Aufwand pflegen zu können. Dabei werden die
 Daten mittels eine import/export--Funktion, die vom Benutzer bereitgestellt
 werden muss, in eine interne Datenbank importiert. Auf diesen Metadaten können
 dann Analysen sowie Modifikationen durchgeführt werden. Anschließend werden die
-modifizierten Daten mit Hilfe der vom Benutzer bereitgestellten Funktion wieder
-in das Produktivsystem exportiert.
+modifizierten Daten mit Hilfe der vom Benutzer bereitgestellten
+import/export--Funktion wieder in das Produktivsystem exportiert. Für weitere
+Informationen und Anwendungsbeispiele siehe :cite:`cpiechula`.
+
+**Analyzer--Plugins Algorithmik**
 
 Die Analyzer--Plugins analysieren die Metadaten und schreiben die neu gewonnenen
-Informationen in eine dafür vorgesehene Liste.
+Informationen in eine dafür vorgesehene Liste. Die Folgenden Analyzer--Plugins
+wurden im Prototypen implementiert:
 
-**Keywordextract--Plugin**: Plattformen wie TMDb bieten neben den eigentlichen
-Metadaten auch oft zusätzliche Informationen zu Filmen. Ein Attribut, welches
-beim ,,Stöbern" oder der Auswahl eines Filmes hilfreich sein kann, sind
-Schlüsselwörter.
+**Keywordextract--Plugin**: Plattformen wie TMDb bieten neben den grundlegenden
+Metadaten wie Titel, Erscheinungsjahr et cetera auch Zusatzinformationen zu
+Filmen an. Ein Attribut, welches beim ,,Stöbern" oder der Auswahl eines Filmes
+hilfreich sein kann, sind Schlüsselwörter.
 
 Alternativ zu Providern die Schlüsselwörter für Filme anbieten, gibt es auch die
-Möglichkeit Schlüsselwörter aus Texten automatisiert zu Extrahieren. Hier zu
+Möglichkeit Schlüsselwörter aus Texten automatisiert zu Extrahieren. Hierzu
 gibt es eine verschiedene Algorithmen, jedoch werden hier zur Extraktion der
 Schlüsselwörter meistens sprachabhängige Korpora (Wort--Datenbanken) benötigt
 (vgl. :cite:`steinautomatische`).
@@ -800,26 +828,25 @@ RAKE--Algorithmus (Rapid Automatic Keyword Extraction), vgl.
 :cite:`rose2010automatic`, :cite:`berry2010text`.
 
 Hier wurde eine bereits existierende Implementierung in Kooperation mit dem
-Kommilitonen, Christopher Pahl, reimplementiert. Hier wird der Algorithmus zur
-Extraktion von Schlüsselwörtern aus Liedtexten verwendet, vgl :cite:`bacpahl`.
-Der Algorithmus wurde um das automatische Laden einer *Stoppwortliste* und einen
-*Stemmer* erweitert.
+Kommilitonen, Christopher Pahl, reimplementiert. Herr Pahl verwendet den
+Algorithmus zur Extraktion von Schlüsselwörtern aus Liedtexten, vgl
+:cite:`bacpahl`.  Der Algorithmus wurde um das automatische Laden einer
+*Stoppwortliste* und einen *Stemmer* erweitert.
 
 *Stoppwörter*, sind Wörter die sehr häufig auftreten und somit keine Relevanz
 für die Erfassung des Dokumentinhalts besitzen.  Libhugin verwendet hier die
 Stoppwortlisten verschiedener Sprachen von der Université de Neuchâtel [#f2]_.
 
-*Stemming* ist ein Verfahren im Information Retrieval bei dem die Wörter auf
+*Stemming* ist ein Verfahren im Information Retrieval, bei dem die Wörter auf
 ihren gemeinsamen Wortstamm zurückgeführt werden.
 
-Die Funktionsweise des RAKE--Algorithmus, analog zu :cite:`bacpahl`:
+Im Anschluß die Funktionsweise des RAKE--Algorithmus, analog zu :cite:`bacpahl`:
 
 1. Aufteilung des Eingabetextes in Sätze anhand von Interpunktionsregeln.
 2. Extrahieren von *Phrasen* aus den jeweiligen Sätzen. Eine *Phrase* ist eine Sequenz aus nicht Stoppwörtern.
 3. Berechnung eines *Scores* für jedes Wort einer *Phrase* aus dem *Degree* und
    der *Frequency* eines Wortes. :math:`P`  entspricht der Menge aller Phrasen,
    :math:`\vert p\vert` ist die Anzahl der Wörter einer Phrase.
-
 
    .. math::
 
@@ -829,19 +856,18 @@ Die Funktionsweise des RAKE--Algorithmus, analog zu :cite:`bacpahl`:
 
       frequency(word) = \sum_{p \in P} \left\{\begin{array}{cl} 1, & \mbox{falls } word \in p\\ 0, & \mbox{sonst} \end{array}\right.
 
+
+4. Berechnung des *Scores* für jede Phrase. Dieser definiert sich durch die
+   Summe aller Wörter--*Scores* innerhalb einer Phrase.
+
    .. math::
 
       score(word) = \frac{degree(word)}{frequency(word)}
 
 
-4. Berechnung des *Scores* für jede Phrase. Dieser definiert sich durch die
-   Summe aller Wörter--*Scores* innerhalb einer Phrase.
-
-
 Im Gegensatz zur Extraktion von Schlüsselwörtern aus Liedtexten werden bei der
 Extraktion aus der Film--Inhaltsbeschreibung die Sätzen nur anhand von
-Interpunktionsregeln getrennt, Zeilenumbrüche zählen hier nicht als
-Trennzeichen.
+Interpunktionsregeln getrennt, Zeilenumbrüche zählen hier nicht als Trennzeichen.
 
 Folgende Inhaltsbeschreibung findet sich für den Film :math:`\pi` (1998) auf
 TMDb:
@@ -856,7 +882,7 @@ TMDb:
     macht er eine Entdeckung, für die alle bereit sind, ihn zu töten...*
 
 Tabelle :num:`fig-keywords` zeigt die relevanten (*Score* > 1.0) Schlüsselwörter
-die aus dem oben genannten Text mittels RAKE--Algorithmus extrahiert wurden.
+die aus dem oben genannten Text, mittels RAKE--Algorithmus, extrahiert wurden.
 
 .. figtable::
     :label: fig-keywords
@@ -892,18 +918,19 @@ die aus dem oben genannten Text mittels RAKE--Algorithmus extrahiert wurden.
     +-----------+----------------------------------------------+
 
 Im Vergleich zu den automatisch extrahierten Schlüsselwörtern sind auf der TMDb
-Plattform folgende Schlüsselwörter Sprache gepflegt:
+Plattform folgende Schlüsselwörter gepflegt:
 
         *hacker, mathematician, helix, headache, chaos theory, migraine, torah, börse,
         mathematics, insanity, genius*
 
 **Filetypeanalyze--Plugin:** Dieses Plugin dient dazu Datei--Metadaten aus
-Filmdateien zu extrahieren. Da dies ein nicht triviales Problem ist,
-implementiert der *libhugin--analyze* Prototyp diese Funktionalität mit Hilfe
-des Tools hachoir-metadata. Dieses Tool basiert auf der ,,Hachoir"--Bibliothek
-welche verschiedener Metadaten aus Multimedia--Dateien unterstützt. Das
-*Filetypeanalyze*--Plugin führt das ``Hachoir--metadata``--Kommandozeilen Tool
-aus welches folgenden Output liefert:
+Filmdateien zu extrahieren. Da dies, aufgrund der Vielzahl von Containern und
+Codes, ein nicht triviales Problem ist, implementiert der *libhugin--analyze*
+Prototyp diese Funktionalität mit Hilfe des Tools ``hachoir-metadata``. Dieses
+Tool basiert auf der ,,Hachoir"--Bibliothek welche die Extraktion verschiedener
+Metadaten aus Multimedia--Dateien unterstützt. Das *Filetypeanalyze*--Plugin
+führt das ``Hachoir--metadata``--Kommandozeilen Tool aus welches folgenden
+Output liefert:
 
 .. code-block:: bash
 
@@ -928,29 +955,39 @@ aus welches folgenden Output liefert:
     - language: German
     - compression: S_TEXT/UTF8
 
-Diese Ausgabe wird vom Plugin extrahiert und die Relevanten Informationen wie
-Auflösung, Laufzeit, et cetera.
+Diese Ausgabe wird vom Plugin angeschaut und die Relevanten Informationen wie
+Auflösung, Laufzeit, et cetera extrahiert. Die Extraktion hier ist relativ
+einfach, da die ``hachoir--metadata``--Ausgabe ein valides *Json*--Dokument ist
+welches direkt in eine Python Hash--Tabelle umgewandelt werden kann. *Json* ist
+ein schlankes Dateiaustauschformat, ähnlich wie *XML*.
 
-**Langidentify--Plugin:** Das Plugin erkennt die Sprache des übergebenen Textes.
+**Langidentify--Plugin:** Dieses Plugin erkennt die Sprache des übergebenen Textes.
 Es ist für die Analyse der Sprache der Inhaltsbeschreibung gedacht. Mittels dem
-Plugin können große Filmsammlungen mit mehreren tausend Filmen analysiert werden
-und nicht vorhandene oder in einer unerwünschten Sprache gepflegte Metadaten in
-wenigen Sekunden identifiziert werden. Das Plugin verwendend die die Python
-Bibliothek ``guess_language-spirit``, welche die Sprache anhand von
+Plugin können große Filmsammlungen effizient analysiert werden und nicht
+vorhandene oder in einer unerwünschten Sprache gepflegte Inhaltsbeschreibungen
+in wenigen Sekunden identifiziert werden. Das Plugin verwendend die
+Python--Bibliothek ``guess_language-spirit``, welche die Sprache anhand von
 Sprachstatistiken erkennt. Die zusätzliche optionale Bibliothek ``pyEnchant``
 kann von ``guess_language-spirit`` verwendet um Texte mit weniger als 20 Zeichen
 zu erkennen. ``Enchant`` ist eine Bibliothek welche auf verschiedene
 Sprachbibliotheken zugreifen kann.
 
+Die folgende *IPython*--Sitzung zeigt die Funktionalität der Bibliothek:
+
 .. code-block:: python
 
-    guess_language("Der Elfenkauz ist die einzige Art der Eulengattung der Elfenkäuze.")
+    >>> from guess_language import guess_language
+    >>> guess_language("Der Elfenkauz ist die einzige Art der Eulengattung der Elfenkäuze.")
     'de'
+
+**Modifier--Plugins Algorithmik**
 
 Die Modifier--Plugins modifizieren direkt die Metadaten. Hier wurde ein Plugin
 zum ,,bereinigen" von Inhaltsangaben entwickelt, welches mittels Regulärer
 Ausdrücke (vgl. :cite:`friedl2009regulare`) unerwünschte in Klammern stehende
-Inhalte entfernt. Die genaue Algorithmus hierfür schaut wie folgt aus:
+Inhalte entfernt.
+
+Die folgende *IPython*--Sitzung zeigt den Algorithmus im Einsatz:
 
 .. code-block:: python
 
@@ -964,6 +1001,8 @@ Je nach Metadatenquelle finden sich hinter den jeweiligen Rollennamen, die Namen
 der Schauspieler in Klammen.  Der Einsatz dieses Plugins soll eine
 einheitlichere Basis für weitere Untersuchungen der Inhaltsbeschreibung zwischen
 allen Metadatenquellen ermöglichen.
+
+**Comparator--Plugins Algorithmik**
 
 Des weiteren gibt es noch die experimentellen Comparator--Plugins welche für den
 Vergleich von Metadaten untereinander gedacht sind. Dieser Teil ist im
@@ -988,8 +1027,6 @@ Handlung gehen.
 Zusammenfassend kann gesagt werden, dass sich der Vergleich über das Genre zum
 aktuellen Zeitpunkt im Prototypen nur für die Eingrenzung der Filmauswahl auf
 ein bestimmtes Genre--Schema eignet.
-
-
 
 .. rubric:: Footnotes
 
