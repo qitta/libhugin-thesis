@@ -5,8 +5,8 @@
 
 .. _http_benchmark:
 
-Anhang A
-========
+Anhang A (Httplib Benchmark)
+============================
 
 Das folgende Code--Snippet wurde zum benchmarken der unterschiedlichen Python
 HTTP--Bibliotheken verwendet.
@@ -14,8 +14,10 @@ HTTP--Bibliotheken verwendet.
 .. literalinclude:: ./attachments/httplib_test.py
    :language: python
 
-Anhang B
-========
+.. _string_comparsion_algorithms:
+
+Anhang B (Analyse Zeichenkettenvergleich)
+=========================================
 
 Das folgende Code--Snippet wurde zum benchmarken von unterschiedlichen
 Zeichenkettenvergleichsalgorithmen verwendet.
@@ -23,10 +25,10 @@ Zeichenkettenvergleichsalgorithmen verwendet.
 .. literalinclude:: ./attachments/strcmp_benchmark.py
    :language: python
 
-.. _source-response:
+.. _source_response:
 
-Anhang C
-========
+Anhang C (Antwortzeiten Http Metadatenquellen)
+==============================================
 
 Das folgende Code--Snippet wurde zum benchmarken von unterschiedlichen
 Antwortzeiten der Online--Plattformen verwendet.
@@ -34,8 +36,21 @@ Antwortzeiten der Online--Plattformen verwendet.
 .. literalinclude:: ./attachments/download_perf_benchmark.py
    :language: python
 
-Anhang D
-========
+
+.. _libhugin_source_response:
+
+Anhang D (Antwortzeiten Libhugin Metadatenquellen)
+==================================================
+
+Das folgende Code--Snippet wurde zum benchmarken von unterschiedlichen
+Antwortzeiten der Online--Plattformen verwendet.
+
+.. literalinclude:: ./attachments/libhugin_download_pref_benchmark.py
+   :language: python
+
+
+Anhang E (Gewichtetes Rating)
+=============================
 
 Das folgende Code--Snippet wurde zur gewichteten Rating--Ermittlung verwendet:
 
@@ -45,8 +60,8 @@ Das folgende Code--Snippet wurde zur gewichteten Rating--Ermittlung verwendet:
 
 .. _imdblookup_script:
 
-Anhang E
-========
+Anhang F (IMDB Title Lookup)
+============================
 
 Das folgende Code--Snippet wurde zum Beschaffen der Metadaten für die Auswertung
 dieser verwendet:
@@ -54,20 +69,22 @@ dieser verwendet:
 .. literalinclude:: ./attachments/imdblookup.py
    :language: python
 
+
 .. _timeout:
 
-Anhang F
-========
+Anhang G (Timeoutverhalten)
+===========================
 
 Das folgende Code--Snippet wurde für den Timeout--Test verwendet:
 
 .. literalinclude:: ./attachments/timeout.py
    :language: python
 
+
 .. _hugin_search_benchmark:
 
-Anhang G
-========
+Anhang H (Libhugin Threaded Downloadgeschwindigkeit)
+====================================================
 
 Das folgende Code--Snippet wurde für den Threaded--Search--Benchmark verwendet:
 
@@ -77,18 +94,19 @@ Das folgende Code--Snippet wurde für den Threaded--Search--Benchmark verwendet:
 
 .. _genre-table:
 
-Anhang H
-========
+Anhang I (Genre Analyse)
+========================
 
 Das folgende Code--Snippet wurde für Analyse der Genreinformationen verwendet:
 
 .. literalinclude:: ./attachments/analyze.py
    :language: python
 
+
 .. _code_yeardiff:
 
-Anhang I
-========
+Anhang J (Differenz Erscheinungsjahr)
+=====================================
 
 Das folgende Code--Snippet wurde für Analyse der Erscheinungsjahr--Differenzen
 genommen:
@@ -96,11 +114,25 @@ genommen:
 .. literalinclude:: ./attachments/yeardiff.py
    :language: python
 
-Anhang J
-========
+
+.. _rating:
+
+Anhang K (Raing Verteilung)
+===========================
 
 Das folgende Code--Snippet wurde für die Analyse der Ratingverteilung in der
 Stichprobe verwendet:
 
 .. literalinclude:: ./attachments/rating.py
+   :language: python
+
+.. _completness:
+
+Anhang L (Unvollständigkeit Metadaten)
+======================================
+
+Das folgende Code--Snippet wurde für die Analyse der Unvollständigkeit der
+Metadaten verwendet:
+
+.. literalinclude:: ./attachments/completeness.py
    :language: python

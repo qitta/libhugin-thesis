@@ -1,3 +1,5 @@
+.. _tech_grundlagen:
+
 ############################
 Technische Grundüberlegungen
 ############################
@@ -219,9 +221,10 @@ unter Python verfügbaren Implementierungen durchgeführt:
 Abbildung :num:`fig-stringcompare` zeigt, dass die Laufzeit--Komplexität bei
 allen drei Algorithmen ähnlich ist. Aufgrund der Tatsache, dass der
 Damerau--Levenshtein vertauschte Zeichen "erkennen" kann, eignet er sich gut für
-die Library. Des Weiteren zeigt Abbildung :num:`fig-stringcompare`, dass die
-beiden in Implementierungen *distance* (C) und *pyxDamerauLevenshtein* (Cython)
-sehr performant, im Vergleich zur *difflib* (Python) Implementierung, arbeitet.
+die Library. Des Weiteren zeigt Abbildung, dass die beiden in Implementierungen
+*distance* (C) und *pyxDamerauLevenshtein* (Cython) sehr performant, im
+Vergleich zur *difflib* (Python) Implementierung, arbeitet. Der Benchmark wurde
+mit dem Script aus :ref:`string_comparsion_algorithms` durchgeführt.
 
 Je nach verwendeten Algorithmus variiert das Ergebnis leicht, das liegt daran
 dass die Algorithmen eine unterschiedliche Idee verfolgen.
