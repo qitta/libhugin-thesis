@@ -1,9 +1,9 @@
-################
-Libhugin Analyse
-################
+#####################
+Analyse von Libhugin
+#####################
 
-Der *libhugin-harvest* Prototyp der für die Beschaffung der Metadaten verwendet
-wird hat die fünf aktuell Movie--Provider implementiert, siehe Tabelle
+Der *libhugin-harvest* Prototyp, der für die Beschaffung der Metadaten verwendet
+wird, hat aktuell die fünf Movie--Provider implementiert, siehe Tabelle
 :num:`fig-provider`.
 
 .. figtable::
@@ -12,23 +12,23 @@ wird hat die fünf aktuell Movie--Provider implementiert, siehe Tabelle
     :alt: Überblick implementierter Onlinequellen als Provider.
 
     +------------------+---------------+---------------+-------------------+-----------------+-----------------+
-    |                  | **tmdb**      | **ofdb**      | **omdb**          | **videobuster** | **filmstarts**  |
+    |                  | **TMDb**      | **OFDb**      | **OMDb**          | **Videobuster** | **Filmstarts**  |
     +==================+===============+===============+===================+=================+=================+
-    | **Zugriffsart**  | API           | API           | API               | Webzugriff      | Webzugriff      |
+    | **Zugriffsart**  | API           | API           | API               | Scraping        | Scraping        |
     +------------------+---------------+---------------+-------------------+-----------------+-----------------+
     | **Sprache**      | multilingual  | deutsch       | englisch          | deutsch         | deutsch         |
     +------------------+---------------+---------------+-------------------+-----------------+-----------------+
     | **Plattformtyp** | Filmdatenbank | Filmdatenbank | Metadatenanbieter | Verleihdienst   | Allg. Plattform |
     +------------------+---------------+---------------+-------------------+-----------------+-----------------+
 
-Desweiteren wurden noch Person--Provider für TMDb und OFDb implementiert.
+Desweiteren wurden noch Personen--Provider für TMDb und OFDb implementiert.
 
 .. _timeoutverhalten:
 
 Timeoutverhalten
 ================
 
-Bereits während der Entwicklung ist bei der Erhebung der Daten ist aufgefallen,
+Bereits während der Entwicklung, ist bei der Erhebung der Daten aufgefallen,
 dass der OFDb--Provider kaum Metadaten findet. Nach kurzer Recherche war zu
 beobachten, dass hier der Zugriff über die API sehr oft einen Timeout mit der
 Fehlermeldung ``,,Fehler oder Timeout bei OFDB Anfrage"`` liefert.
@@ -37,14 +37,14 @@ Eine genauere Analyse des Timeout--Verhaltens der Provider zeigt, dass die API
 vom OFDb--Provider sehr instabil ist, hierzu wurden Metadaten für 100 Filme je
 Provider gezogen. Tabelle :num:`fig-timeout` zeigt wie oft es zu Fehlern pro
 Provider gekommen ist. Der Test wurde, um gegebenenfalls Server oder
-Leitungsprobleme  auszuschließend, an fünf verschiedenen Tagen durchgeführt. Für
+Leitungsprobleme  auszuschließen, an fünf verschiedenen Tagen durchgeführt. Für
 den Test wurde das Script aus :ref:`timeout` verwendet.
 
 
 .. figtable::
     :label: fig-timeout
-    :caption: Anzahl der ,,retries" beim Herunterladen von metadaten für jeweils 100 filme
-    :alt: Anzahl der ,,retries" beim Herunterladen von metadaten für jeweils 100 filme
+    :caption: Anzahl der ,,retries" beim Herunterladen von Metadaten für jeweils 100 Filme (min/avg/max)
+    :alt: Anzahl der ,,retries" beim Herunterladen von Metadaten für jeweils 100 Filme
 
     +-----------+----------+--------------+----------+-----------------+----------------+
     |           | **tmdb** | **ofdb**     | **omdb** | **videobuster** | **filmstarts** |
@@ -60,29 +60,29 @@ den Test wurde das Script aus :ref:`timeout` verwendet.
     | **Tag 5** | (0/0/0)  | (0/3.56/55)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
     +-----------+----------+--------------+----------+-----------------+----------------+
 
-Der OFDb--Provider verteilt die Anfragen über ein Gateway, siehe :cite:`ofdbgw`.
-Während der Entwicklung hat eine Stichprobe mit 10 Filmen gezeigt, dass Anfragen
-über das ofdbgw zu unvollständigen Ergebnisse führten. Hier hier wurden die
-Filme ohne Inhaltsbeschreibung zurückgeliefert.
+Der OFDb--Provider verteilt die Anfragen über ein Lastverteiler, siehe
+:cite:`ofdbgw`.  Während der Entwicklung hat eine Stichprobe mit 10 Filmen
+gezeigt, dass Anfragen über den Lastverteiler zu unvollständigen Ergebnissen führten.
+Hier wurden die Filme ohne Inhaltsbeschreibung zurückgeliefert.
 
-Ein Testen der einzelnen Mirror ergab, dass ``http://ofdbgw.geeksphere.de`` als
+Ein Testen der einzelnen Server ergab, dass ``http://ofdbgw.geeksphere.de`` als
 einziger Mirror die erwarteten Ergebnisse lieferte. Dieser wurde somit im
-Prototypen direkt als einziger Mirror aktiviert. Weitere Analysen der Metadaten
+Prototypen direkt als einziger Server aktiviert. Weitere Analysen der Metadaten
 sollen Aufschluß darüber geben ob das Problem weiterhin auftritt.
 
 .. raw:: Latex
 
    \newpage
 
-Antwortzeiten Onlinequellen
-===========================
+Antwortzeiten der Onlinequellen
+===============================
 
 Abbildung :num:`fig-sourceresponse` zeigt die Antwortzeiten der jeweiligen
 Plattformen/Metadatenanbieter.
 
 Hier wurde mit dem Script im :ref:`source_response` die Zeit beim Zugriff
 auf die implementierten Online--Plattformen gemessen. Für die Messung wurden die
-in  :ref:`source_response` verwendeten Parameter verwendet. Die Anzahl der
+in  :ref:`source_response` verwendeten Parameter angewandt. Die Anzahl der
 Durchläufe war 10.
 
 .. _fig-sourceresponse:
@@ -92,26 +92,28 @@ Durchläufe war 10.
     :width: 100%
     :align: center
 
-    Antwortzeiten der vom libhugin Prototypen verwendeten Onlineplattformen im Überblick. Min (grün), Avg (geld), Max (rot).
+    Antwortzeiten der vom libhugin Prototypen verwendeten Onlineplattformen im
+    Überblick. Minimum (grün), Durchschnitt (geld), Maximum (rot). Das jeweilige
+    Balkenende repräsentiert den exakten Wert.
 
 
 Der Zugriff in Abbildung :num:`fig-sourceresponse` zeigt hier den
 direkten Zugriff über die HTTP--Bibliothek. Bei *libhugin--harvest* besteht die
-Standardsuche, über Titel, nach Metadaten in der Regal aus mehreren Zugriffen
+Standardsuche, über Titel, nach Metadaten in der Regel aus mehreren Zugriffen
 (siehe Tabelle :num:`num-downloads`). Zusätzlich kommt hier noch der Aufwand für
 das Extrahieren der Metadaten aus den jeweiligen HTTP--Response Objekten hinzu.
 
 
 .. figtable::
     :label: num-downloads
-    :caption: Anzahl der ,,retries" beim Herunterladen von metadaten für jeweils 100 filme
-    :alt: Anzahl der ,,retries" beim Herunterladen von metadaten für jeweils 100 filme
+    :caption: Anzahl der Zugriffe bei der Standardsuche.
+    :alt: Anzahl der Zugriffe bei der Standardsuche.
 
-    +---------------------+----------+----------+----------+-----------------+----------------+
-    |                     | **tmdb** | **ofdb** | **omdb** | **videobuster** | **filmstarts** |
-    +=====================+==========+==========+==========+=================+================+
-    | **Anzahl Zugriffe** | 2        | 2        | 2        | 2               | 3              |
-    +---------------------+----------+----------+----------+-----------------+----------------+
+    +-------------------------+----------+----------+----------+-----------------+----------------+
+    |                         | **TMDb** | **OFDb** | **OMDb** | **Videobuster** | **Filmstarts** |
+    +=========================+==========+==========+==========+=================+================+
+    | **Anzahl der Zugriffe** | 2        | 2        | 2        | 2               | 3              |
+    +-------------------------+----------+----------+----------+-----------------+----------------+
 
 Bei der Suche nach Metadaten für einen Film haben die Provider jeweils einen
 Zugriff für die Suchanfrage und einen weiteren Zugriff für den jeweiligen Film.
@@ -120,7 +122,7 @@ Der Filmstarts Provider benötigt bei Zugriff auf den jeweiligen Film zwei
 Suchanfragen (siehe :num:`num-downloads`), da auf dieser Plattform die
 Schauspieler--Informationen zum Film auf einer separaten Seite zu finden sind.
 
-Folgende Auflistung zeigt die Angesprochenen Seiten des Filmstarts--Providers:
+Folgende Auflistung zeigt die angesprochenen Seiten des Filmstarts--Providers:
 
 Suchanfrage nach Metadaten für Film *,,The Matrix"*:
 
@@ -135,11 +137,11 @@ Zugriff auf Seiten mit Metadaten zum Film *,,The Matrix"*:
 
    \newpage
 
-Antwortzeiten Libhugin--Provider
-================================
+Antwortzeiten der Libhugin--Provider
+====================================
 
 Abbildung  :num:`fig-hugindownload` zeigt die Geschwindigkeit beim Zugriff auf
-Metadaten über die *libhugin--harvest* Bibliothek. Hier wurde
+Metadaten über die *libhugin--harvest*--Bibliothek. Hier wurde
 *libhugin--harvest* so konfiguriert, dass pro Provider einzeln jeweils 10 Filme
 heruntergeladen werden. Das Ergebnis ist jeweils der Durchschnitt aus 10
 Durchläufen. Das Script in :ref:`libhugin_source_response` wurde für diesen
@@ -156,7 +158,7 @@ Auffällig ist hier die fast doppelt so lange Zeit bei den Providern ohne API.
 
     Downloadzeiten pro Provider mit libhugin-harvest.
 
-Eine zweite Auswertung mit den gleichen Daten und aktiviertem Festplatten--Cache
+Eine zweite Auswertung mit den gleichen Daten und aktivierten Festplatten--Cache
 (Metadaten werden von der Festplatte geladen, es findet kein Webzugriff statt)
 zeigt, dass die Provider mit API im Gegensatz zu den Providern ohne API die
 Metadaten in sehr kurzer Zeit verarbeiten.
@@ -170,8 +172,8 @@ Metadaten in sehr kurzer Zeit verarbeiten.
 
     Downloadzeiten pro Provider mit libhugin-harvest mit aktiviertem Cache.
 
-Die auffällige Antwortzeit mit aktiviertem Festplatten--Cache (Abbildung
-:num:`fig-hugindownload-cache`) deutet darauf hin, dass das extrahieren der
+Die auffällige Antwortzeit mit aktivierten Festplatten--Cache (Abbildung
+:num:`fig-hugindownload-cache`) deutet darauf hin, dass das Extrahieren der
 Metadaten mittels der ``Beautiful-Soup``--Bibliothek sehr aufwendig ist. Das
 Aktivieren eines anderen internen Parsers, hat das Ergebnis verschlechtert.
 Der `lxml`--Parser, welcher auch in Abbildung :num:`fig-hugindownload-cache`,
@@ -182,16 +184,16 @@ verwendet wird, ist hier schneller als die Alternativen (siehe :cite:`bs`).
    \newpage
 
 Skalierung der Downloadgeschwindigkeit
-=======================================
+======================================
 
 Abbildung :num:`fig-hugin-search` zeigt das Herunterladen von Metadaten mit
-einer Unterschiedlichen Anzahl von Parallelen Downloads. Hier wurden jeweils
+einer unterschiedlichen Anzahl von parallelen Downloads. Hier wurden jeweils
 separat die API und non--API Provider ausgewertet um genauere Aussagen über die
 Effektivität beim parallelen Herunterladen machen zu können.
 
 Bei den API--Provider ist eine signifikante zeitliche Verbesserung mit
 steigender Download--Thread Anzahl erkennbar. Hier ist die Zeit von ca. 15
-Sekunden auf 4 Sekunden gefallen (siehe auch, :num:`fig-hugin-search-api`).
+Sekunden auf 4 Sekunden gefallen (siehe Abbildung, :num:`fig-hugin-search-api`).
 
 .. _fig-hugin-search:
 
@@ -203,11 +205,11 @@ Sekunden auf 4 Sekunden gefallen (siehe auch, :num:`fig-hugin-search-api`).
     Suche nach dem Film ,,Sin" mit der Beschränkung auf 20 Ergebnisse.
 
 Die non--API Provider bremsen die Performance aufgrund des aufwendigen
-extrahieren mittels ``Beautiful--Soup``--Bibliothek stark aus. Hier bewegt
+Extrahieren mittels ``Beautiful--Soup``--Bibliothek stark aus. Hier bewegt
 sich die Zeit zwischen 45 -- 60 Sekunden für die Beschaffung von 20 Ergebnissen.
 
 Die theoretischen Annahmen über die Skalierung der Downloadgeschwindigkeit aus
-Kapitel :num:`tech_grundlagen` werden mit der Einschränkung auf die Limitierung
+Kapitel :ref:`tech-grundlagen` werden mit der Einschränkung auf die Limitierung
 der non--API Provider bestätigt.
 
 .. _fig-hugin-search-api:
@@ -222,9 +224,9 @@ der non--API Provider bestätigt.
 Die Auswertung der Skalierung der Downloadgeschwindigkeit wurde mit dem Script
 :ref:`hugin_search_benchmark` durchgeführt.
 
-#################
-Metadaten Analyse
-#################
+#####################
+Analyse der Metadaten
+#####################
 
 Die im Prototypen implementieren Metadatenquellen weisen unterschiedliche
 Eigenschaften auf. Allgemein und auch für die Entwicklung des Prototypen wurden
@@ -232,7 +234,7 @@ bestimmte Annahmen getroffen:
 
     * Starke Unterschiede in der Genre--Verteilung zwischen den Quellen.
     * Starke Unterschiede im Genre--Detailgrad zwischen den Quellen.
-    * Erscheinungsjahr--Differenzen bei Filmen zwischen den verschiedenen Quellen.
+    * Erscheinungsjahr--Differenzen bei gleichen Filmen zwischen den verschiedenen Quellen.
     * Unvollständigkeit der Metadaten vieler Filme.
     * Bewertungsverteilung der verschiedenen Quellen variiert stark.
 
@@ -241,10 +243,10 @@ Diese Annahmen sollen folgend anhand einer Stichprobe untersucht werden.
 Testdatenbeschaffung
 ====================
 
-Für die Analyse der Metadaten eine Metadaten--Stichprobe von 2500 Filmen mit
-Hilfe der *libhugin-harvest*--Bibliothek beschafft. Die Zusammenstellung
+Für die Analyse der Metadaten wurde eine Metadaten--Stichprobe von 2500 Filmen
+mit Hilfe der *libhugin-harvest*--Bibliothek beschafft. Die Zusammenstellung
 besteht aus möglichst zufällig gewählten Filmen verschiedener Kategorien. Es ist
-Grundsätzlich schwierig eine ,,optimale" Metadaten--Stichprobe auszusuchen, da
+grundsätzlich schwierig eine ,,optimale" Metadaten--Stichprobe auszusuchen, da
 die Plattformen unterschiedliche Ziele verfolgen.
 
 Abbildung :num:`fig-testdata` zeigt die Verteilung der Filme anhand vom
@@ -283,26 +285,23 @@ Erscheinungsjahr.
     | 2002                 | 74         | 1990                 | 11         |                      |            |
     +----------------------+------------+----------------------+------------+----------------------+------------+
 
-Für die Beschaffung der Metadaten wurden die IMDb--IDs von 2500 in einer Datei
-gesammelt. Anschließend wurden über ein IMDb--Lookup--Script
-(siehe :ref:`imdblookup_script`) alle deutschsprachigen Titel und
-Erscheinungsjahre anhand der IMDb--ID bezogen. Mit diesen Informationen wurden
-2500 Ordner mit der Struktur
-
-        ``[Filmtitel;Erscheinungsjahr;Imdbid]``
-
-angelegt, hierzu wurde das gleiche Script verwendet.
+Für die Beschaffung der Metadaten wurden die IMDb--IDs von 2500 Filmen in einer
+Datei gesammelt. Anschließend wurden über ein IMDb--Lookup--Script (siehe
+:ref:`imdblookup_script`) alle deutschsprachigen Titel und Erscheinungsjahre
+anhand der IMDb--ID bezogen. Mit diesen Informationen wurden 2500 Ordner mit der
+Struktur ``[Filmtitel;Erscheinungsjahr;Imdbid]`` angelegt, hierzu wurde das
+gleiche Script verwendet.
 
 Anschließend  wurden die Metadaten mit Hilfe von *libhugin--harvest* über die
-fünf genannten Provider bezogen. Hierbei wurden die Metadaten bei den  Providern
+fünf genannten Provider bezogen. Hierbei wurden die Metadaten bei den Providern
 mit IMDb--ID Unterstützung, über diese bezogen.  Provider die keine IMDb--ID
-Unterstützung besitzen, wurden über den über IMDb ,,normalisierten" deutschen
-Titel mit Erscheinungsjahr bezogen. Die Metadaten wurden ebenso mit dem Script
-:ref:`imdblookup_script` bezogen. Ein Dump der Testdaten findet sich unter
-:cite:`metadata`.
+Unterstützung besitzen, wurden über den, über IMDb ,,normalisierten" deutschen
+Titel, mit Erscheinungsjahr bezogen. Die Metadaten wurden ebenso mit dem Script
+:ref:`imdblookup_script` bezogen. Ein komprimiertes Archiv mit den Testdaten
+findet sich unter :cite:`metadata`.
 
 Die API basierten Provider haben jeweils 2500 Filme gefunden. Bei den
-Provider ohne API wurden ca. 2-3 :math:`\%` nicht  gefunden, siehe
+Provider ohne API wurden ca. 2-3 :math:`\%` nicht  gefunden, siehe dazu Tabelle
 :num:`fig-foundmetadata`.
 
 .. figtable::
@@ -310,19 +309,19 @@ Provider ohne API wurden ca. 2-3 :math:`\%` nicht  gefunden, siehe
     :caption: Überblick Metadatensuche für 2500 Filme
     :alt: Überblick Metadatensuche für 2500 Filme
 
-    +----------------------------+----------+----------+----------+-----------------+----------------+
-    |                            | **tmdb** | **ofdb** | **omdb** | **videobuster** | **filmstarts** |
-    +============================+==========+==========+==========+=================+================+
-    | **gefundene Filme**        | 2500     | 2500     | 2500     | 2444            | 2427           |
-    +----------------------------+----------+----------+----------+-----------------+----------------+
-    | **Suche über IMDBID**      |  ja      | ja       | ja       | nein            | nein           |
-    +----------------------------+----------+----------+----------+-----------------+----------------+
-    | **Onlinezugriff über API** |  ja      | ja       | ja       | nein            | nein           |
-    +----------------------------+----------+----------+----------+-----------------+----------------+
+    +----------------------------+---------------------+--------------------+--------------------+-----------------+----------------+
+    |                            | **tmdb**            | **ofdb**           | **omdb**           | **videobuster** | **filmstarts** |
+    +============================+=====================+====================+====================+=================+================+
+    | **gefundene Filme**        | 2500                | 2500               | 2500               | 2444            | 2427           |
+    +----------------------------+---------------------+--------------------+--------------------+-----------------+----------------+
+    | **Suche über IMDBID**      |  :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\times`  | :math:`\times` |
+    +----------------------------+---------------------+--------------------+--------------------+-----------------+----------------+
+    | **Onlinezugriff über API** |  :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\times`  | :math:`\times` |
+    +----------------------------+---------------------+--------------------+--------------------+-----------------+----------------+
 
 
 Eine Stichprobe von jeweils fünf nicht gefundenen Filmen von Videobuster und
-Filmstarts genauer betrachtet:
+Filmstarts wurde genauer betrachtet:
 
 **Filmstarts**:
 
@@ -344,7 +343,7 @@ Filmstarts genauer betrachtet:
 einen Titelzusatz. Beispielsweise der Film ,,Secretary (2002)" wurde über IMDb
 auf ,,Secretary -- Womit kann ich dienen? (2002)" normalisiert.
 
-Der Stichprobe nach zu urteilen gibt es hier bei Videobuster und Filmstarts
+Der Stichprobe nach zu urteilen, gibt es hier bei Videobuster und Filmstarts
 Probleme. Bei der Suche nach dem Filmtitel ohne Titelzusatz werden die Titel
 gefunden, falls vorhanden.
 
@@ -352,17 +351,16 @@ Die Stichprobe der 10 Filme zeigt, dass die nicht gefundenen Filme durchaus auf
 der jeweiligen Plattform gepflegt sein können.
 
 
-Analyse Genreinformationen
-==========================
+Analyse der Genreinformationen
+==============================
 
 Das Genre unterscheidet sich oft bei den gepflegten Plattformen. Das
 liegt daran, dass das Genre an sich nicht standardisiert ist und die
-Onlineplattformen teils divergente Genre--Bezeichnungen haben.
+Onlineplattformen teils divergente Genre--Bezeichnungen haben.  Die folgenden
+Auswertungen sollen den Umstand anhand der gewählten Stichprobe, sowie alle
+bisher für die Entwicklung getroffenen Maßnahmen, bestätigen.
 
-Die folgenden Auswertungen sollen den Umstand anhand der gewählten Stichprobe,
-sowie alle bisher für die Entwicklung getroffenen Maßnahmen, bestätigen.
-
-Die Daten in Tabelle :num:`fig-genres` wurden mit dem Script :ref:`genre-table`
+Die Daten in Tabelle :num:`fig-genres` wurden mit dem Script im :ref:`genre-table`
 erhoben und zeigen die Genreverteilung der fünf Provider für die Metadaten der
 2500 Filme. Bei Filmstarts beziehen sich die Genreinformationen lediglich nur
 auf 2427 Filme, bei Videobuster nur auf 2444 Filme.
@@ -449,7 +447,7 @@ korrigiert. Des Weiteren wurden vereinzelt Genres abgekürzt um die Tabelle
 darstellen zu können (f./F. :math:`\hat{=}` Film).
 
 Aus Tabelle :num:`fig-genres` ist nur schwer ersichtlich wie sich die
-Genreinformationen im Schnitt pro Film verteilen beziehungsweise wie
+Genreinformationen im Schnitt pro Film verteilen, beziehungsweise wie
 detailiert die Filme im Schnitt gepflegt sind. Tabelle :num:`fig-genre-detail`
 zeigt wie detailiert die Genreverteilung im Schnitt pro Film ist.
 
@@ -482,21 +480,21 @@ zeigt wie detailiert die Genreverteilung im Schnitt pro Film ist.
     +----------------------+----------+----------+----------+-----------------+----------------+
 
 Die Auswertung bestätigt die bisherigen Annahmen. Die Genreinformationen sind
-hier sehr divergent (siehe :num:`fig-genres`) gefplegt und unterscheiden sich
-auch im Detailgrad  (siehe :num:`fig-genre-detail`).
+hier sehr divergent (siehe Abbildung :num:`fig-genres`) gepflegt und
+unterscheiden sich auch im Detailgrad  (siehe :num:`fig-genre-detail`).
 
 .. _yeardiff:
 
-Analyse Differenz Erscheinungsjahr
-==================================
+Analyse der Erscheinungsjahrdifferenz
+=====================================
 
 Bei der Entwicklung wurde aufgrund der persönlichen Erfahrung des Autors die
 Algorithmik beim Zeichenkettenvergleich so angepasst, damit das Erscheinungsjahr
 ,,einzeln" betrachtet wird. Hier wurde bisher davon ausgegangen, dass es zwischen
 den Plattformen beim Erscheinungsjahr immer wieder zu Differenzen von ein bis
-zwei Jahren gibt.
+zwei Jahren kommen kann.
 
-Die erhobenen Metadaten wurden dahingehend mit dem Script in :ref:`code_yeardiff`
+Die erhobenen Metadaten wurden dahingehend mit dem Skript im :ref:`code_yeardiff`
 analysiert.  Hier werden für die Betrachtung die API--Provider und die
 non--API--Provider hergenommen. Bei den API--Providern wird die Gleichheit des
 Films anhand der IMDb--ID definiert. Bei den non--API--Provider Daten, die keine
@@ -506,8 +504,8 @@ Erscheinungsjahrdifferenz--Auswertung ein (siehe Tabelle :num:`fig-yeardiff`).
 
 .. figtable::
     :label: fig-yeardiff
-    :caption: Überblick der unterschiedlich gepflegten Erscheinungsjahre.
-    :alt: Überblick der unterschiedlich gepflegten Erscheinungsjahre.
+    :caption: Überblick der unterschiedlich gepflegten Erscheinungsjahre gleichen Filmen.
+    :alt: Überblick der unterschiedlich gepflegten Erscheinungsjahre bei gleichen Filmen.
 
         +------------------------+------------+----------+----------------+-----------------+
         |   **Jahresdifferenz:** |   **OFDb** | **OMDb** | **Filmstarts** | **Videobuster** |
@@ -525,11 +523,11 @@ Erscheinungsjahrdifferenz--Auswertung ein (siehe Tabelle :num:`fig-yeardiff`).
 
 Die Videobuster und Filmstarts Ergebnisse wurden zusätzlich manuell auf die Übereinstimmung
 des Regisseurs überprüft. Hier wurde eine Übereinstimmung des Namens von 95%
-gefordert. Dieser stimmt in insgesamt 317 von 343 Fällen überein. Zu den
-restlichen 26 Fällen, in 13 Fällen war ein Vergleich nicht möglich, in weiteren
+gefordert. Dieser stimmt in insgesamt 317 von 343 Fällen überein. In den
+restlichen 26 Fällen, war in 13 Fällen ein Vergleich nicht möglich, in weiteren
 13 war der Film unterschiedlich.
 
-Die restlichen insgesamt 68 Filme die bei der Jahresdifferenz
+Die restlichen, insgesamt 68, Filme, die bei der Jahresdifferenz
 :math:`\textgreater` 3 gelistet sind, wurden manuell auf Regisseur
 Übereinstimmung untersucht. Hier gab es nur eine einzige Übereinstimmung, die
 restlichen 67 Filme waren ,,Remakes", Filme mit zufälligerweise gleichem Titel
@@ -543,7 +541,7 @@ Unvollständigkeit der Metadaten
 ===============================
 
 Tabelle :num:`fig-completeness` zeigt die Anzahl der nicht gepflegten Attribute
-je Provider. Die Menge bezieht sich hier auf die pro Provider jeweils gefundene
+je Provider. Die Menge bezieht sich hier auf die, pro Provider, jeweils gefundene
 Anzahl der Metadaten (siehe :num:`fig-foundmetadata`). Die mit :math:`\times`
 markierten Felder deuten darauf hin, dass das Attribut vom Provider nicht
 ausgefüllt wird.
@@ -552,7 +550,8 @@ Auffällig in Tabelle :num:`fig-completeness` ist, dass der OMDb--Provider das
 Attribut ,,plot" 2353 mal nicht gefunden hat. Die manuelle Überprüfung dieses
 Wertes bestätigt, dass es hier bei dem verwendeten API--Mirror, wie bereits
 erwähnt unter :ref:`timeoutverhalten`, entgegen der vorherigen Annahme,
-weiterhin zu Problemen kommt. Die Daten wurden mit dem Script :num:`completeness` analysiert.
+weiterhin zu Problemen kommt. Die Daten wurden mit dem Skript
+:num:`completeness` analysiert.
 
 
 .. figtable::
@@ -560,53 +559,53 @@ weiterhin zu Problemen kommt. Die Daten wurden mit dem Script :num:`completeness
     :caption: Überblick fehlende Metadaten
     :alt: Überblick fehlende Metadaten
 
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **Attribute**          | **OFDb**       | **OMDb**       | **TMDb**       | **Videobuster** | **Filmstarts** |
-    +========================+================+================+================+=================+================+
-    | **title**              | 0              | 0              | 0              | 0               | 0              |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **original_title**     | 0              | 0              | 0              | 0               |                |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **plot**               | 2353           | 57             | 81             | 5               | 151            |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **runtime**            | :math:`\times` | 30             | :math:`\times` | :math:`\times`  | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **imdbid**             | 0              | 0              | 0              | :math:`\times`  | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **vote_count**         | 5              | 0              | 101            | :math:`\times`  | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **rating**             | 0              | 0              | 482            | :math:`\times`  | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **alternative_titles** | :math:`\times` | :math:`\times` | 315            | :math:`\times`  | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **directors**          | 0              | 4              | 19             | 8               | 109            |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **writers**            | 2404           | 12             | 1818           | :math:`\times`  | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **year**               | 0              | 1              | 2              | 0               | 5              |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **poster**             | 0              | 82             | 707            | 0               | 1              |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **fanart**             | :math:`\times` | :math:`\times` | 2465           | :math:`\times`  | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **countries**          | 0              | :math:`\times` | 104            | 0               | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **genre**              | 0              | 0              | 25             | 0               | 1              |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **studios**            | :math:`\times` | :math:`\times` | 434            | 0               | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **actors**             | 132            | 6              | 23             | 137             | 442            |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **keywords**           | :math:`\times` | :math:`\times` | 444            | 129             | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
-    | **tagline**            | :math:`\times` | :math:`\times` | 1833           | 1138            | :math:`\times` |
-    +------------------------+----------------+----------------+----------------+-----------------+----------------+
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **Attribute**          | **OFDb**       | **OMDb**       | **TMDb**       | **Videobuster** | **Filmstarts**  |
+    +========================+================+================+================+=================+=================+
+    | **title**              | 0              | 0              | 0              | 0               | 0               |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **original_title**     | 0              | 0              | 0              | 0               |  :math:`\times` |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **plot**               | 2353           | 57             | 81             | 5               | 151             |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **runtime**            | :math:`\times` | 30             | :math:`\times` | :math:`\times`  | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **imdbid**             | 0              | 0              | 0              | :math:`\times`  | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **vote_count**         | 5              | 0              | 101            | :math:`\times`  | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **rating**             | 0              | 0              | 482            | :math:`\times`  | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **alternative_titles** | :math:`\times` | :math:`\times` | 315            | :math:`\times`  | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **directors**          | 0              | 4              | 19             | 8               | 109             |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **writers**            | 2404           | 12             | 1818           | :math:`\times`  | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **year**               | 0              | 1              | 2              | 0               | 5               |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **poster**             | 0              | 82             | 707            | 0               | 1               |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **fanart**             | :math:`\times` | :math:`\times` | 2465           | :math:`\times`  | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **countries**          | 0              | :math:`\times` | 104            | 0               | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **genre**              | 0              | 0              | 25             | 0               | 1               |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **studios**            | :math:`\times` | :math:`\times` | 434            | 0               | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **actors**             | 132            | 6              | 23             | 137             | 442             |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **keywords**           | :math:`\times` | :math:`\times` | 444            | 129             | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
+    | **tagline**            | :math:`\times` | :math:`\times` | 1833           | 1138            | :math:`\times`  |
+    +------------------------+----------------+----------------+----------------+-----------------+-----------------+
 
 Die Abbildung :num:`fig-completeness` zeigt, dass je nach Onlinequelle die
-Vollständigkeit der Metadaten nicht gewährleistet werden kann. Es zeigt ebenso
-dass Plattformen wie Videobuster, das Attribut ,,Poster/Cover" vollständig
+Vollständigkeit der Metadaten nicht gewährleistet werden kann. Es zeigt ebenso,
+dass Plattformen, wie Videobuster das Attribut ,,Poster/Cover" vollständig
 gepflegt haben. Bei diesem Anbieter handelt es sich um eine
-Videoverleihplattform, welche anscheinend darauf Wert legt dass jeder
+Videoverleihplattform, welche anscheinend darauf Wert legt, dass jeder
 ausleihbare Film auch ein digitales Cover besitzt.
 
 Ratingverteilung der Stichprobe
@@ -620,25 +619,25 @@ Die Analyse soll darüber Auskunft geben, ob es bei den Plattformen in der Bewer
 signifikante Unterschiede gibt. Bei allen drei Anbietern bewegt sich das Rating
 auf einer Skala von 1 -- 10.
 
-Tabelle :num:`tab-rating` zeigt, dass das Rating der Stichprobe bei allen drei
+Tabelle :num:`rating` zeigt, dass das Rating der Stichprobe bei allen drei
 Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
 
 .. figtable::
-    :label: fig-rating
+    :label: rating
     :caption: Ratinggrenzen der Stichprobe.
     :alt: Ratinggrenzen der Stichprobe.
 
-    +-------------------------------------+----------+----------+----------+
-    | **Rating**                          | **OMDb** | **TMDb** | **OFDb** |
-    +=====================================+==========+==========+==========+
-    | **Min. Rating in der Stichprobe**   | 1.9      | 0.2      | 0        |
-    +-------------------------------------+----------+----------+----------+
-    | **Durchsch. Rating der Stichprobe** | 6.57     | 6.36     | 6.46     |
-    +-------------------------------------+----------+----------+----------+
-    | **Max. Rating der Stichprobe**      | 10.0     | 10.0     | 9.0      |
-    +-------------------------------------+----------+----------+----------+
+    +----------------------------------------------+----------+----------+----------+
+    | **Rating**                                   | **OMDb** | **TMDb** | **OFDb** |
+    +==============================================+==========+==========+==========+
+    | **Minimales Rating in der Stichprobe**       | 1.9      | 0.2      | 0        |
+    +----------------------------------------------+----------+----------+----------+
+    | **Durchschnittliches Rating der Stichprobe** | 6.57     | 6.36     | 6.46     |
+    +----------------------------------------------+----------+----------+----------+
+    | **Maximales Rating der Stichprobe**          | 10.0     | 10.0     | 9.0      |
+    +----------------------------------------------+----------+----------+----------+
 
-Die Abbildung :num:`rating` zeigt weiterhin die Verteilung des Ratings der drei
+Die Abbildung :num:`fig-rating` zeigt weiterhin die Verteilung des Ratings der drei
 API--Provider.  Hier zeigt sich, dass das ,,Rating" in der Stichprobe bei allen
 drei Anbietern nahezu gleichverteilt ist.
 
@@ -661,26 +660,26 @@ Trivia
 Testumgebung
 ============
 
-Die Bibliothek wurde in der Python--Version 3.4 getestet. Die Script Anhang
+Die Bibliothek wurde in der Python--Version 3.4 getestet. Die Skripte im Anhang
 wurden für die jeweiligen Auswertungen verwendet. Hier wurde immer darauf
-geachtet, dass immer der Durchschnitt aus mehreren Durchläufen genommen wurde um
-statistische Ausreißer zu unterdrücken.
+geachtet, dass immer der Durchschnitt aus mehreren Durchläufen genommen wurde,
+um statistische Ausreißer zu unterdrücken.
 
 Als Testumgebung wurde das folgende System verwendet:
 
-    * OS  : Arch Linux, 3.14.6-1-ARCH x86_64 (64 bit)
-    * CPU : Intel Core 2 Quad Q6600  @ 2.40GHz
-    * RAM : 4 GB DDR2 RAM
-    * HDD : Hitachi 120GB, 5400 upm
+    * OS: Arch Linux, 3.14.6-1-ARCH x86_64 (64 bit)
+    * CPU: Intel Core 2 Quad Q6600  @ 2.40GHz
+    * RAM: 4 GB DDR2 RAM
+    * HDD: Hitachi 120GB, 5400 upm
 
 Als Internetanbindung wurde eine VDSL 50 Mbit Leitung der Telekom verwendet.
 Diese hat laut Internet--Messverfahren eine tatsächliche Geschwindigkeit von
-47,9 Mbit/s (upstream) und 7,7 Mbit/s (downstream).
+47,9 Mbit/s (downstream) und 7,7 Mbit/s (upstream).
 
 Statistiken und Plots
 =====================
 
-Für das Analysieren Metadaten wurden eigene Scripte geschreiben. Diese sind im
-jeweiligen Thema genannt und befinden sich im Anhang. Für das Erstellen der
-Grafiken/Plots wurde die Python Matplotlib Bibliothek verwendet (siehe
+Für das Analysieren der Metadaten wurden eigene Skripte geschreiben. Diese sind
+im jeweiligen Thema genannt und befinden sich im Anhang. Für das Erstellen der
+Grafiken/Plots wurde die Python Matplotlib--Bibliothek verwendet (siehe
 :cite:`matplotlib`).
