@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8 Zusammenfassung &mdash; Projektarbeit</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Projektarbeit" href="../../index.html"/>
+        <link rel="next" title="Helferfunktion für NFO–Dateien" href="../appendix.html"/>
+        <link rel="prev" title="7 Demoanwendungen" href="../VII/index.html"/>
+
+<!-- Include all CSS and JS files, let's you use your own theme. -->
+
+<link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+<script type="text/javascript">
+	function endsWith(str, suffix) {
+	    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+	}
+
+    $(document).ready(function() {
+    	var im, imsrc;
+    	$('img').each(function() {
+    		im = $(this);
+    		imsrc = im.attr('src');
+    		imalt = im.attr('alt');
+    		if (endsWith(imsrc, 'svg')) {
+    			im.wrap($('<a>').attr({'href': imsrc, 'title': imalt}).addClass('svglink'));
+    		}
+    	});
+
+    	$('a.svglink').colorbox({
+    		'width': '95%',
+    		'height': '95%',
+    		'photo': true});
+    });
+</script>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> Projektarbeit</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Danksagung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dedication.html">Widmung</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../I/index.html">1 Einleitung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#motivation">1.1 Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#projektziel">1.2 Projektziel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#projektlizenz">1.3 Projektlizenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#namensgebung">1.4 Namensgebung</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../II/index.html">2 Begriffsdefinitionen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../II/index.html#fachbegriffe">2.1 Fachbegriffe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../II/index.html#kontextspezifische-fachbegriffe">2.2 Kontextspezifische Fachbegriffe</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../III/index.html">3 Stand der Metadatenpflege</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#metadatenarten-und-quellen">3.1 Metadatenarten und Quellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#software-und-metadatenformate">3.2 Software und Metadatenformate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#probleme-bei-der-metadatenpflege">3.3 Probleme bei der Metadatenpflege</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#probleme-bei-der-metadatensuche">3.4 Probleme bei der Metadatensuche</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#anforderungen-an-das-projekt">3.5 Anforderungen an das Projekt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../IV/index.html">4 Softwarespezifikation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../IV/index.html#anforderungen-an-die-bibliothek">4.1 Anforderungen an die Bibliothek</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../V/index.html">5 Entwurf</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../V/index.html#grunduberlegungen">5.1 Grundüberlegungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../V/index.html#libhugin-architektur-uberblick">5.2 Libhugin Architektur&ndash;Überblick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../V/index.html#bibliothek-dateistruktur">5.3 Bibliothek Dateistruktur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../VI/index.html">6 Implementierung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#libhugin-harvest-api">6.1 Libhugin&ndash;harvest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#libhugin-harvest-plugins">6.2 Libhugin&ndash;harvest Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#libhugin-analyze-api">6.3 Libhugin&ndash;analyze API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#libhugin-analyze-plugins">6.4 Libhugin&ndash;analyze Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#verschiedenes">6.5 Verschiedenes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../VII/index.html">7 Demoanwendungen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#libhugin-harvest-cli-tool-geri">7.1 Libhugin&ndash;harvest CLI&ndash;Tool Geri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#libhugin-analyze-cli-tool-freki">7.2 Libhugin&ndash;analyze CLI&ndash;Tool Freki</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#xbmc-plugin-integration">7.3 XBMC Plugin Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#weitere-einsatzmoglichkeiten">7.4 Weitere Einsatzmöglichkeiten</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">8 Zusammenfassung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#aktueller-stand">8.1 Aktueller Stand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#erfullung-der-gesetzten-anforderungen">8.2 Erfüllung der gesetzten Anforderungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defizite-und-verbesserungen">8.3 Defizite und Verbesserungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#denkbare-weiterentwicklungen">8.4 Denkbare Weiterentwicklungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#abschlieszendes-fazit">8.5 Abschließendes Fazit</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Helferfunktion für NFO&ndash;Dateien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html#xbmc-scraper-plugin">XBMC&ndash;Scraper&ndash;Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html#libhugin-xbmc-proxy">Libhugin XBMC Proxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html#projektstatistik-cloc">Projektstatistik (<em>cloc</em>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zzz_bibliography.html">Bibliographie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zzz_bibliography.html#weblink-verzeichnis">Weblink Verzeichnis</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Projektarbeit</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>8 Zusammenfassung</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/rst/VIII/index.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="zusammenfassung">
+<h1>8 Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="aktueller-stand">
+<h2>8.1 Aktueller Stand<a class="headerlink" href="#aktueller-stand" title="Permalink to this headline">¶</a></h2>
+<p>Die aktuelle Implementierung zeigt einen modularen Prototypen, der für
+die gezeigten Anwendungsfälle des Autors gut funktioniert.</p>
+</div>
+<div class="section" id="erfullung-der-gesetzten-anforderungen">
+<h2>8.2 Erfüllung der gesetzten Anforderungen<a class="headerlink" href="#erfullung-der-gesetzten-anforderungen" title="Permalink to this headline">¶</a></h2>
+<p>Die vom Autor gesetzten Anforderungen (siehe Anforderungen an die Bibliothek,
+<a class="reference internal" href="../IV/index.html#ref-requirements">4.1</a>) konnten direkt über die Bibliothek oder durch Schreiben
+eines Plugins erfüllt werden.</p>
+<p>Dennoch gibt es bei einigen Ansätzen Problemstellungen, die nur schwer ,,gut&quot;
+umsetzbar sind.  Im Fall von <em>libhugin</em> wäre das die Normalisierung von Metadaten
+über mehrere Onlinequellen hinweg. Dies funktioniert im Moment beim Genre mittels
+statisch gepflegter Abbildungen. Hier wären andere Ansätze, falls möglich,
+wünschenswert.</p>
+<p>Diese Problematik und mögliche andere Ansätze werden in der Bachelorarbeit
+genauer betrachtet.</p>
+</div>
+<div class="section" id="defizite-und-verbesserungen">
+<h2>8.3 Defizite und Verbesserungen<a class="headerlink" href="#defizite-und-verbesserungen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="erweiterung-des-aktuellen-pluginsystems">
+<h3>8.3.1 Erweiterung des aktuellen Pluginsystems<a class="headerlink" href="#erweiterung-des-aktuellen-pluginsystems" title="Permalink to this headline">¶</a></h3>
+<p><strong>Provider&ndash;Plugins:</strong>
+Momentan sind ein multilingualer, ein englischsprachiger und drei
+deutschsprachige Provider implementiert (siehe Abbildung
+<a href="../VI/index.html#table-provideroverview">6.1</a>). Betrachtet man die Möglichkeiten und Anzahl der
+Plattformen, ist es wünschenswert weitere Provider zu implementieren.</p>
+<p>Die aktuelle Attributstruktur, die von den Providern befüllt wird, richtet sich
+aktuell an der TMDb&ndash;Onlinequelle. Erweiterungen dieser Struktur um neue
+Attribute sind wünschenswert.</p>
+<p>Ein Attribut, das in erster Linie einen Mehrgewinn bringen würde, wäre die
+,,Stimmung&quot;. Die Onlinequelle <em>jinni.com</em> (siehe <a class="reference internal" href="../zzz_bibliography.html#jinni" id="id1">[Link&ndash;48]</a>) hat ein Attribut
+,,Mood&quot; und noch weitere interessante Attribute wie ,,Style&quot;, die nach
+Meinung des Autors einen Mehrgewinn für eine Filmsammlung bringen würden.</p>
+<p>Das ,,Stimmungs&quot;&ndash;Attribut könnte man beispielsweise als ,,tag&quot;&ndash;Attribut sogar
+in die XBMC Metadatenstruktur aufnehmen und hier zusätzlich die Filme nicht nur
+nach Genre, sondern auch nach Stimmung gruppieren und auswählen.</p>
+<p><strong>Postprocessor- und Converter&ndash;Plugins:</strong>
+Hier wäre es wünschenswert Converter für allgemein bekannte Metadatenformate zu
+implementieren, wie beispielsweise für das Windows&ndash;Media&ndash;Center.</p>
+</div>
+<div class="section" id="verbesserungen-am-grundsystem">
+<h3>8.3.2 Verbesserungen am Grundsystem<a class="headerlink" href="#verbesserungen-am-grundsystem" title="Permalink to this headline">¶</a></h3>
+<p><strong>Provider&ndash;Priorität:</strong>
+Aktuell wird die Priorität der Provider per Hand gepflegt. Hier wäre ein
+automatischer Ansatz denkbar und wünschenswert. Eine Idee wäre es, Fehlversuche
+und Timeouts zu protokollieren und Provider aufgrund dieser zu ,,bestrafen&quot;.
+Der implementierte OFDb&ndash;Provider würde hier wahrscheinlich recht schnell in der
+Priorität fallen, da dieser sehr oft nicht erreichbar ist. Über diesen Ansatz
+würde sich zumindest aufgrund der Verfügbarkeit eine Art ,,Qualität&quot; der Provider
+bestimmen lassen.</p>
+<p><strong>Yapsy:</strong>
+Die aktuell verwendete Bibliothek für das Laden der Plugins wird nur minimal
+genutzt. Hier wäre es sinnvoll, diese Abhängigkeit komplett aufzulösen und durch
+einen einfacheren Ansatz auszutauschen.</p>
+</div>
+<div class="section" id="weitere-mogliche-verbesserungen">
+<h3>8.3.3 Weitere mögliche Verbesserungen<a class="headerlink" href="#weitere-mogliche-verbesserungen" title="Permalink to this headline">¶</a></h3>
+<p><strong>Geri und Freki:</strong>
+Die beiden Kommandozeilen&ndash;Tools lassen sich noch weiter ausbauen. Das
+Analysetool Freki beherrscht im aktuellen Zustand noch keine Comparator&ndash;Plugins.
+Weitere denkbare Entwicklungen bei beiden Tools wären automatisierte Analysen
+der Metadaten und statistische Auswertungen. Des Weiteren wäre ein zusätzliches
+<em>ncurses</em>&ndash;Interface wünschenswert, wie es beispielsweise auch beim Mail Client
+<em>mutt</em> genutzt wird. Das würde laut Meinung des Autors die
+Benutzerfreundlichkeit im Vergleich zum einfachen CLI&ndash;Tool erhöhen.</p>
+<p><strong>Libhugin&ndash;Proxy:</strong>
+Der momentan implementierte Proxy zeigt nur einen konzeptionellen Ansatz und ist
+aktuell für den Einsatz des XBMC&ndash;Plugins geschrieben. Hier wäre eine generische
+Implementierung als CLI&ndash;Tool wünschenswert.</p>
+<p><strong>XBMC&ndash;Plugin:</strong>
+Das aktuelle XBMC&ndash;Plugin kann soweit erweitert werden, dass sich sämtliche
+<em>libhugin</em> Optionen direkt über das Plugin selbst im XBMC konfigurieren lassen.</p>
+</div>
+</div>
+<div class="section" id="denkbare-weiterentwicklungen">
+<h2>8.4 Denkbare Weiterentwicklungen<a class="headerlink" href="#denkbare-weiterentwicklungen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="onlinequellen-mit-neuem-wissen-anreichern">
+<h3>8.4.1 Onlinequellen mit ,,neuem Wissen&quot; anreichern<a class="headerlink" href="#onlinequellen-mit-neuem-wissen-anreichern" title="Permalink to this headline">¶</a></h3>
+<p>Viele Onlinequellen, wie beispielsweise TMDb, haben Schlüsselwörter gepflegt.
+Diese werden bei TMDb durch die Benutzer der Plattform gepflegt. Oft sind diese
+jedoch gar nicht vorhanden oder sind zum Teil recht ungenau oder unpassend
+gepflegt.</p>
+<p>Eine Idee wäre hier, die Schlüsselwörter über einen Data&ndash;Mining&ndash;Algorithmus aus
+der vorliegenden Inhaltsbeschreibung zu extrahieren. Dies könnte man aufgrund
+der Architektur von <em>libhugin</em> problemlos automatisiert für die ganze
+Filmsammlung machen und das neu gewonnene ,,Wissen&quot; in die von der Community
+gepflegte Plattform zurückfließen lassen.</p>
+<p>Ob dies ein möglicher und vom Betreiber der Plattform wünschenswerter Ansatz
+ist, sollte jedoch vorher mit dem Betreiber der Plattform abgeklärt werden.</p>
+</div>
+<div class="section" id="statistische-untersuchung-der-metadaten">
+<h3>8.4.2 Statistische Untersuchung der Metadaten<a class="headerlink" href="#statistische-untersuchung-der-metadaten" title="Permalink to this headline">¶</a></h3>
+<p>Der Analyse&ndash;Teil der Bibliothek bietet die nicht weiter behandelte
+experimentelle Comparator&ndash;Plugin&ndash;Schnittstelle. Die Idee hierzu ist es,
+Plugins zu entwickeln, die Filmmetadaten verschiedener Quellen untersuchen und
+miteinander vergleichen. Durch den Vergleich der Metadaten verschiedener
+Onlinequellen soll die ,,Qualität&quot; der Metadatenquellen statistisch untersucht
+werden. Als geeignetes Qualitätsmaß wäre hier beispielsweise die Anzahl der
+gefundenen Filme oder die Anzahl der in deutscher Sprache gepflegten Metadaten
+denkbar.</p>
+<p>Des Weiteren kann untersucht werden, wie gut sich Filme anhand bestimmter
+Metadaten mit einander vergleichen lassen und ob man aufgrund von Metadaten
+Empfehlungen für ähnliche Filme aussprechen kann.</p>
+</div>
+<div class="section" id="systemintegration">
+<h3>8.4.3 Systemintegration<a class="headerlink" href="#systemintegration" title="Permalink to this headline">¶</a></h3>
+<p><strong>D&ndash;Bus:</strong>
+Neben einem generischen Proxy wäre auch die Implementierung eines
+<em>D&ndash;Bus</em>&ndash;Service eine gute Idee, um systemweit über eine
+programmiersprachenunabhängige Schnittstelle auf die Bibliothek zugreifen zu
+können.</p>
+<p><strong>Programmiersprachen&ndash;Bindings:</strong>
+Für oft genutzte Sprachen wäre eine Erstellung von Bindings wünschenswert.</p>
+</div>
+</div>
+<div class="section" id="abschlieszendes-fazit">
+<h2>8.5 Abschließendes Fazit<a class="headerlink" href="#abschlieszendes-fazit" title="Permalink to this headline">¶</a></h2>
+<p>Das Projekt zeigt einen Prototyp für die Suche und Analyse von Filmmetadaten.
+Durch das modulare Konzept lässt sich der Prototyp um verschiedene
+Onlinequellen und Möglichkeiten der Metadatenaufbereitung erweitern. Der
+Ansatz mit dem Proxy zeigt, wie sich <em>libhugin</em> in bereits existierende Lösungen
+integrieren lässt. Die beiden Kommandozeilen Tools, <em>Geri</em> und <em>Freki</em>, eignen
+sich gut für <em>Scripting Tasks</em>. Durch den automatisierbaren Ansatz ist es
+möglich, sehr große Filmsammlungen von mehreren tausend Filmen in einem
+vernünftigen Zeitaufwand zu pflegen.</p>
+<p>Durch die modulare Erweiterbarkeit lässt sich das System an Bedürfnisse des
+Benutzers und an zukünftige Anforderungen anpassen.</p>
+<p>Zusammenfassend kann gesagt werden, dass das Projekt mit dem ,,modularen Ansatz&quot;
+für die vom Autor gestellten Anforderungen erfolgreich war.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../appendix.html" class="btn btn-neutral float-right" title="Helferfunktion für NFO–Dateien"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../VII/index.html" class="btn btn-neutral" title="7 Demoanwendungen"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright by Christoph Piechula, 2013-2014..
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

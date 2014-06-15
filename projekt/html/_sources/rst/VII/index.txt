@@ -1,194 +1,625 @@
-***************
-Zusammenfassung
-***************
+###############
+Demoanwendungen
+###############
 
-Aktueller Stand
-===============
+Die vorgestellten CLI--Tools stellen nur einen kleinen Ausschnitt der
+Fähigkeiten der Bibliothek dar. Die Bibliothek selbst ist um fast jede denkbare
+Funktionalität der Metadatenaufbereitung erweiterbar. Die Algorithmik der
+verwendeten Plugins und Funktionen ist Bestandteil der Bachelorarbeit.
 
-:dropcaps:`Es` wurde eine Softwarebibliothek in Python implementiert, die ein
-Musikempfehlungssystem auf Graphen--Basis mit einer flexiblen Schnittstelle
-bietet. Das System lernt dabei vom Nutzer mittels expliziten (Vergeben von
-Ratings) und impliziten (Beobachtung des Endnutzers und Ableitung von
-Assoziationsregeln) Methoden.
+.. Jaja, Kaffeekochen.
 
-Es wurde eine große Anzahl von sogenannten *Providern* zum Normalisieren der
-Eingabedaten, sowie eine entsprechend hohe Anzahl von *Distanzfunktionen*
-implementiert, welche diese Daten vergleichen können.
-Im Vergleich zu bestehenden Systemen ist man nicht von Audiodaten abhängig.
-Durch die freie Lizenz ist ein weitläufiger Einsatz möglich.
+Libhugin--harvest CLI--Tool Geri
+================================
 
-Zusammenhang mit Datamining
-===========================
+Geri ist eine CLI--Anwendung, die zu Demozwecken, aber auch als Testwerkzeug für
+die *libhugin--harvest* Bibliothek verwendet werden kann.
 
-Insgesamt wurden hauptsächlich folgende Techniken aus diesem Gebiet genutzt:
+Übersicht der Optionen
+----------------------
 
-* *Warenkorbanalyse* um *Assoziationsregeln* abzuleiten.
-* Verschiedene *Distanzfunktionen* und *Fusionierungsverfahren*.
-* *Spracherkennung* und *Keyword--Extrahierung*.
-* *Normalisierung* von Eingabedaten.
+Ein Überblick über die Funktionalität und die möglichen Optionen zeigt die Hilfe
+des Tools:
 
-Nicht oder unvollständig erfüllte Anforderungen
-===============================================
+::
 
-Unabhängigkeit von der Programmiersprache
------------------------------------------
+   $ geri -h
+   Libhugin commandline tool.
 
-Momentan ist *libmunin* nur von *Python* aus zu benutzen. Dies ist zum Teil dem
-Format geschuldet in dem die internen Daten abgespeichert werden: Dem
-Python-spezifischen ``pickle`` Format, welches beliebige Python--Objekte
-serialisieren kann, macht es natürlich schwierig Software zu schreiben, die
-eine serialisierte *Session* einlesen kann, ohne dabei auf *libmunin* oder
-*Python* zurückzugreifen. 
+   Usage:
+     geri (-t <title>) [-y <year>] [-a <amount>] [-p <providers>...] [-c <converter>] \
+          [-o <path>] [-l <lang>] [-P <pm>]  [-r <processor>] [-f <pfile>] [-L]
+     geri (-i <imdbid>) [-p <providers>...] [-c <converter>] [-o <path>] [-l <lang>] \
+          [-r <processor>] [-f <pfile>] [-L]
+     geri (-n <name>) [--items <num>] [-p <providers>...] [-c <converter>] [-o <path>]
+     geri list-provider
+     geri list-converter
+     geri list-postprocessor
+     geri -h | --help
+     geri --version
 
-Davon unabhängig ist *libmunin* momentan durch die Implementierung in Python auf
-diese Sprache eingeschränkt. Da viele Musicplayer in anderen Sprachen
-geschrieben sind, kann das durchaus zum Problem werden. Hier gibt es zwei
-bekannte Lösungsansätze. Der erste ist das Schreiben von
-:term:`Languagebindings` für die Zielsprache. Das würde erheblichen Aufwand
-mit sich bringen, wenn mehr als einige wenige Sprachen unterstützt werden
-sollen. Die zweite Möglichkeit ist eine Aufteilung in *Server* (der dann in
-Python geschrieben wäre) und *Client* (der in einer beliebigen
-Programmiersprache geschrieben ist).  Der *Client* könnte dann über ein
-definiertes Protokoll auf die Funktionen des Servers zurückgreifen, was
-beispielsweise die Herangehensweise von MPD ist.
+    Options:
+      -t, --title=<title>               Movie title.
+      -y, --year=<year>                 Year of movie release date.
+      -n, --name=<name>                 Person name.
+      -i, --imdbid=<imdbid>             A imdbid prefixed with tt.
+      -p, --providers=<providers>       Providers to be used.
+      -c, --convert=<converter>         Converter to be used.
+      -r, --postprocess=<processor>     Postprocessor to be used.
+      -o, --output=<path>               Output folder for converter result [default: /tmp].
+      -a, --amount=<amount>             Amount of items to retrieve.
+      -l, --language=<lang>             Language in ISO 639-1 [default: de]
+      -P, --predator-mode               The magic 'fuzzy search' mode.
+      -L, --lookup-mode                 Does a title -> imdbid lookup.
+      -f, --profile-file=<pfile>        User specified profile.
+      -v, --version                     Show version.
+      -h, --help                        Show this screen.
 
-Eine konkrete Umsetzung dieser Idee könnte relativ einfach mit *D-Bus* [#f1]_
-erreicht werden. Der Server würde dabei die API von *libmunin* als
-*D-Bus--Service* implementieren. Der Client könnte eine der in zahlreichen
-Programmiersprachen verfügbaren *DBus--Libraries* nutzen, um im Server Methoden
-aufzurufen. Darüber ließe sich auch ein anderes Randproblem lösen: Momentan ist
-es aus Gründen fehlender Nebenläufigkeit nicht möglich, dass verschiedene
-Programme dies selbe Session nutzen. Der Server könnte hier die Synchronisierung
-übernehmen.
 
-.. rubric:: Footnotes
+Das Tool eignet sich neben dem Einsatz als Testwerkzeug für die Bibliothek
+auch gut für Skripte und somit für automatische Verarbeitung großer
+Datenmengen, siehe auch *Scripting Tasks* :ref:`ref-scripting-tasks`.
 
-.. [#f1] Ein unter Unix sehr weit verbreitetes IPC-Framework und Messagebroker,
-         bei dem Services in einem *Bus* bereitgestellt werden. Clients können
-         dann, ähnlich wie bei RPC, Methoden auf den Services aufrufen.
+Filmsuche
+---------
 
-Einfaches Information Retrieval
--------------------------------
+Ein Film kann über den Titel oder über die *IMDb--ID* gesucht werden. Hier gibt
+es die Möglichkeit, *Geri* auch bestimmte Provider, Converter, Sprache und
+Postprocessor--Plugins anzugeben.
 
-Die Ergebnisse die *libmunin* liefern kann, können nur so gut sein wie die
-Eingabedaten. Sind diese falsch oder unzureichend (durch schlechte *Tags*
-etwa), wird auch eine gute Distanzfunktion nur mittelmäßige Ergebnisse erzielen. 
+Um das Ausgabeformat zu konfigurieren, gibt es im *Geri*--Ordner eine
+``movie.mask``-- und ``person.mask``--Datei. Über diese Dateien kann das
+Ausgabeformat definiert werden. Die Syntax ist einfach. Um Attribute
+darzustellen, werden diese einfach in geschweifte Klammern geschrieben. Das
+*num*--Attribut gibt Geri die Möglichkeit, die Resultate durchzunummerieren.
 
-Momentan bietet *libmunin* bereits dem Nutzer Möglichkeiten an, um fehlende
-Liedtexte und Genre--Tags aus dem Internet zu beschaffen. In der Einleitung
-dieser Arbeit wurden aber schon freie Musikmetadatenbanken wie *MusicBrainz*
-erwähnt, die mittels eines Audiofingerprints die Metadaten eines Stückes
-nachschlagen können. 
+Folgend die Definition vom Ausgabeformat für die ``movie.mask``:
 
-Glücklicherweise steht mit *beets* :cite:`XAJ` bereits ein entsprechendes,
-praktischerweise in Python geschriebenes Tool bereit --- gewissermassen das
-*libhugin* [#f2]_ für Musik.  In Zukunft könnte *beets* zusammen mit *libglyr*
-also den *Information Retrieval* Teil übernehmen, ohne dass *libmunin* das Rad
-dafür neu erfinden muss.
+.. code-block:: bash
 
-.. rubric:: Footnotes
+   $ echo "{num}) {title} ({year}), IMDBid: {imdbid} Provider: {provider} \
+   \nInhalt: {plot}" > tools/geri/movie.mask
 
-.. [#f2] *libhugin* ist das Schwesterprojekt zu *libmunin*. Die Bibliothek dient
-         unter anderem zum Auffinden zahlreicher Arten von Film--Metadaten.
-         :cite:`HGN`
-         
-Implementierungsdefizite
-========================
 
-Vermeidung unnötiger Vergleiche
--------------------------------
+Standardsuche nach Titel mit der Begrenzung auf fünf Ergebnisse:
 
-Der Aufruf von einigen Distanzfunktionen macht nur dann Sinn, wenn bestimmte
-Kriterien erfüllt sind. So macht es beispielsweise meist wenig Sinn die
-``moodbar`` zweier Songs zu vergleichen, wenn sich die Stücklänge um mehr als das
-Doppelte unterscheidet --- die Daten wären einfach zu unterschiedlich.
+.. code-block:: bash
 
-Momentan ist es allerdings noch nicht möglich, für die
-``moodbar``-Distanzfunktion die Länge des Stückes abzufragen --- da sie nur die
-für sie relevanten Daten bekommt, nicht die ganze ``Song``--Instanz.
+   $ geri --title "sin city" --amount=5
+   1) Sin City (2005), IMDBid: tt0401792, Provider: TMDBMovie <picture, movie>
+   Inhalt: Basin City, genannt Sin City, ist ein düsteres Metropolis, in dem nichts
+   und niemand wirklich sicher ist, in dem die Gewalt allgegenwärtig ist [...]
 
-Beschleunigung des Kaltstarts
------------------------------
+   2) Sin City (2005), IMDBid: tt0401792, Provider: OFDBMovie <movie>
+   Inhalt: Basin City, genannt Sin City, ist ein düsteres Metropolis, in dem nichts
+   und niemand wirklich sicher ist, in dem die Gewalt allgegenwärtig ist [...]
 
-Alle Operationen von *libmunin* verlaufen momentan sequentiell. Dabei ließen
-sich zumindest einige Teile des *Kaltstartes* optimieren, indem eine gewisse
-Anzahl von Liedtexten (oder anderem *Information Retrieval*) parallel
-heruntergeladen werden. Auch das Analysieren von Audiodaten könnte beschleunigt
-werden, indem ein (bei normalen Festplatten)  oder mehrere (bei SSDs) *Threads*
-Audiodaten einliest und diese dann an *Workerthreads* weiterleitet, die die
-eigentliche Analyse durchführen.
+   3) Sin City (2005), IMDBid: None, Provider: VIDEOBUSTERMovie <movie>
+   Inhalt: Willkommen in Sin City.  Diese Stadt begrüßt die Harten, die Korrupten,
+   die mit den gebrochenen Herzen.  Einer von ihnen ist Marv [...]
 
-Verbessertes Speicherformat
----------------------------
+   4) Sin City (2005), IMDBid: tt0401792, Provider: OMDBMovie <movie>
+   Inhalt: Four tales of crime adapted from Frank Millers popular comics focusing
+   around a muscular brute whos looking for the person responsible for the [...]
 
-Wie oben erwähnt erfolgt die Speicherung der *Session* mittels Python's
-``pickle`` Modul. Dieses serialisiert *rekursiv* die Objekt--Hierarchie,
-ausgehend vom *Session* Objekt. Da in *libmunin* der Graph allerdings als
-rekursive Datenstruktur implementiert ist, ,,verläuft" sich ``pickle`` darin ---
-zu hohe Rekursionstiefen entstehen bei ausreichend komplexen Graphen. 
+   5) Sin City (2005), IMDBid: None, Provider: FILMSTARTSMovie <movie>
+   Inhalt: "Sin City" enthält drei lose verbundene und ineinander verschachtelt
+   erzählte Episoden: Los geht es mit Hartigan (Bruce Willis) - einem Cop [...]
 
-Python hat ein eingebautes *Rekursionslimit*, welches ein wenig aussagekräftiges
-*Segmentation Fault* verhindern soll --- Abstürze beim Speichern der *Session*
-sind die Folge. Hier ist dringend Abhilfe nötig.
+Die Suche kann, wie die Optionen des Tools zeigen, feingranularer konfiguriert
+werden.  Es würde jedoch den Rahmen sprengen alle Optionen zu zeigen.
 
-Korrekte Berechnung des *BPM-Wertes*
-------------------------------------
+**Unschärfesuche:**
+Ein weiteres nennenswertes Feature ist die Unschärfesuche.  Die getesteten Tools
+(siehe Abbildung :num:`table-movietools`) sind nicht in der Lage, Filme zu
+finden, wenn der Titel nicht exakt geschrieben ist. Das trifft auch in der
+Standardkonfiguration für *libhugin* zu, weil hier die Onlinequellen, auf die
+zugegriffen wird, exakte Suchbegriffe erwarten.
 
-Die Berechnung des *Beats--Per--Minute*-Wertes ist momentan in ein separates Tool
-ausgelagert. Dieses Tool hat das Problem, dass es bei fehlerhaften Dateien oder
-Formaten die es nicht versteht, falsche (beispielsweise Werte *über* 300 bpm)
-Werte zurückgibt. Da dies nicht von *libmunin's* Seite aus gelöst werden kann,
-sollte hierfür eine eigene Lösung implementiert werden.
+Folgendes findet keine Ergebnisse, weil hier ,,Matrix" falsch geschrieben ist:
 
-Denkbare Weiterentwicklungen
+.. code-block:: bash
+
+   $ geri --title "the marix" --amount=2
+
+Mit dem aktivierten *Predator--Mode* findet *Geri* ,,providerübergreifend" den
+gesuchten Film.
+
+.. code-block:: bash
+
+   $ geri --title "the marix" --amount=2 --predator-mode
+   1) Matrix (1999), IMDBid: tt0133093, Provider: TMDBMovie <movie, picture>
+   Inhalt: Der Hacker Neo wird übers Internet von einer geheimnisvollen Untergrund-
+   Organisation kontaktiert.  Der Kopf der Gruppe - der gesuchte Terrorist [...]
+
+   2) Matrix (1999), IMDBid: tt0133093, Provider: OFDBMovie <movie>
+   Inhalt: Was ist die Matrix?  Diese Frage quält den Hacker Neo seit Jahren.  Er
+   führt ein Doppelleben - tagsüber ist er Thomas Anderson und arbeitet in [...]
+
+
+**Suche über IMDb--ID:**
+Normalerweise kann nur über die *IMDb--ID* gesucht werden, wenn es die jeweilige
+Onlinequelle unterstützt. Deswegen funktioniert standardmäßig die Suche bei
+Providern wie *Filmstarts* oder *Videobuster* nicht. *Libhugin* schafft hier
+Abhilfe mit einer providerübergreifenden *IMDb--ID*--Suche.
+
+Im folgenden Beispiel findet der Provider *videobustermovie* keine Ergebnisse,
+weil die Onlinequelle die Suche über *IMDb--ID* nicht unterstützt:
+
+.. code-block:: bash
+
+   $ geri --imdbid "tt0133093" -p videobustermovie
+
+.. raw:: Latex
+
+   \newpage
+
+Mit dem *Lookup--Mode* funktioniert auch die Suche über *IMDb--ID* bei
+Onlinequellen, die eine Suche über die *IMDb--ID* nicht unterstützen:
+
+.. code-block:: bash
+
+   $ geri --imdbid "tt0133093" -p videobustermovie --lookup-mode
+   1) Matrix (1999), IMDBid: None, Provider: VIDEOBUSTERMovie <movie>
+
+   Inhalt: Der Hacker Neo (Keanu Reeves) wird übers Internet von einer
+   geheimnisvollen Untergrund--Organisation kontaktiert.  Der Kopf der [...]
+
+   [...]
+
+
+Einsatz von Plugins
+-------------------
+
+**Einsatz von Postprocessor--Plugins:**
+Das *Compose*--Plugin ermöglicht dem Benutzer, das Ergebnis nach seinen
+Bedürfnissen zu komponieren und besitzt die Fähigkeit, das normalisierte Genre
+mehrerer Provider zusammenzuführen.
+
+Zuerst wird die ``movie.mask`` angepasst, damit das Genre und das normalisierte
+Genre zu sehen ist:
+
+.. code-block:: bash
+
+   $ echo "{num}) {title} ({year}), IMDBid: {imdbid}, Provider: {provider}\
+   \nGenre: {genre}\nGenre normalisiert: {genre_norm} \nInhalt: {plot}" > movie.mask
+
+
+Des Weiteren wird ein benutzerdefiniertes *userprofile* erstellt, welches dem
+*Compose*--Plugin mitteilt, wie das Ergebnis zusammengebaut werden soll. In
+unserem Beispiel wird ein Profil erstellt, welches standardmäßig den TMDb
+Provider nimmt und die Inhaltsbeschreibung durch die vom OFDb--Provider
+austauscht.
+
+.. code-block:: bash
+
+   $ echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie']}" > userprofile
+
+Suche nach dem Film *,,Feuchgebiete (2013)"* mit Einsatz vom *Compose*--Plugin
+und Beschränkung auf die zwei Provider TMDb und OFDb:
+
+.. code-block:: bash
+
+   $ geri --title "feuchtgebiete" -r compose -f userprofile -p tmdbmovie,ofdbmovie -a2
+   1) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: TMDBMovie <movie, picture>
+   Genre: ['Komödie', 'Drama']
+   Genre normalisiert: ['Komödie', 'Drama']
+   Inhalt: Helen ist eine Herausforderung für ihre Mutter und ihren Vater, die
+   getrennt leben und geschieden sind.  Trotzdem wünscht sich Helen nichts [...]
+
+   2) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: OFDBMovie <movie>
+   Genre: ['Erotik']
+   Genre normalisiert: ['Erotik']
+   Inhalt: Die 18jährige Helen (Carla Juri) hat schon seit ihrer Kindheit
+   Hämorrhoiden, hat diesen Fakt aber immer verheimlicht, da sie glaubte [...]
+
+   3) Feuchtgebiete (2013), IMDBid: tt2524674, Provider: Compose
+   Genre: ['Komödie', 'Drama']
+   Genre normalisiert: {'Erotik', 'Drama', 'Komödie'}
+   Inhalt: Die 18jährige Helen (Carla Juri) hat schon seit ihrer Kindheit
+   Hämorrhoiden, hat diesen Fakt aber immer verheimlicht, da sie glaubte [...]
+
+Das dritte Resultat in der Ausgabe wurde vom Provider ,,Compose" generiert,
+dies ist das komponierte Ergebnis. Hier wurde das normalisierte Genre
+verschmolzen. Dieses Feature macht das gepflegte Genre in den Metadaten
+feingranularer und lässt im Beispiel auch besser vermuten, ob ein Film für
+Kinder geeignet ist oder nicht.
+
+
+.. _ref-freki:
+
+Libhugin--analyze CLI--Tool Freki
+=================================
+
+Freki ist für Demonstrationszwecke und das Testen der *libhugin--analyze*
+Bibliothek entwickelt worden.
+
+Übersicht der Optionen
+----------------------
+
+Folgend zum Überblick der Funktionalität die Hilfe des Tools Freki:
+
+::
+
+   $ freki -h
+   Libhugin--analyzer commandline testtool.
+
+   Usage:
+     freki create <database> <datapath>
+     freki list <database>
+     freki list <database> attr <attr>
+     freki list <database> analyzerdata
+     freki list-modifier | list-analyzer
+     freki (analyze | modify) plugin <plugin> <database>
+     freki (analyze | modify) plugin <plugin> pluginattrs <pluginattrs> <database>
+     freki export <database>
+     freki -h | --help
+     freki --version
+
+   Options:
+     -v, --version                     Show version.
+     -h, --help                        Show this screen.
+
+
+Erstellen einer Datenbank
+-------------------------
+
+Freki erlaubt dem Benutzer, eine *Datenbank* aus externen Metadaten zu
+generieren. Auf dieser Datenbank kann man folgend mit den Analyzer- und
+Modifier--Plugins , die *libhugin--analyze* anbietet, arbeiten, um
+beispielsweise seine Metadaten zu säubern. Nach der Bearbeitung können die
+*neuen* Metadaten in die externen Metadaten--Dateien exportiert werden.
+
+Folgend eine kurze Demonstration des CLI--Tools.
+
+**Erstellen einer Datenbank:**
+Hierzu wird die Helferfunktion (siehe Anhang :ref:`ref-attachment-a`) verwendet.
+Im Ordner *movies* befinden sich zwei Filme, die mit dem XBMC mit Metadaten
+versorgt wurden.
+
+.. code-block:: bash
+
+    $ freki create mydb.db ./movies
+
+**Datenbank anzeigen:**
+Mit *list* kann der Inhalt der Datenbank angezeigt werden. Die
+Inhaltsbeschreibung wurde hier wegen der Übersichtlichkeit gekürzt.  Wie die
+Ausgabe zeigt, wurden die Attribute *title*, *originaltitle*, *genre*,
+*director*, *year* und *plot* eingelesen.
+
+.. code-block:: bash
+
+    $ freki list mydb.db
+    0) All Good Things (2010)
+    {'director': 'Andrew Jarecki',
+     'genre': ['Drama', 'Mystery', 'Suspense', 'Thriller'],
+     'originaltitle': 'All Good Things',
+     'plot': 'Historia ambientada en los años 80 y centrada en un heredero de
+     una dinastía de Nueva York que se enamora de una chica de otra clase
+     [..]',
+     'title': 'All Beauty Must Die',
+     'year': '2010'}
+
+    1) Alien³ (1992)
+    {'director': 'David Fincher',
+     'genre': ['Action', 'Horror', 'Science Fiction'],
+     'originaltitle': 'Alien³',
+     'plot': 'Después de huir con Newt y Bishop del planeta Alien, Ripley se
+     estrella con su nave en Fiorina 161, un planeta prisión. Desgraciadamente
+     [...]',
+     'title': 'Alien 3',
+     'year': '1992'}
+
+
+**Analyzer--Data anzeigen:**
+Auflisten der Analysedaten aller sich in der Datenbank befindlichen Filme:
+
+.. code-block:: bash
+
+    $ freki list mydb.db analyzerdata
+    0) All Good Things (2010)
+    {}
+    1) Alien³ (1992)
+    {}
+
+Da noch nichts weiter analysiert wurde, sieht man hier nur leere Klammern.
+
+**Analyzer und Modifier anzeigen:**
+Anzeigen der vorhandenen Analyzer:
+
+.. code-block:: bash
+
+    $ freki list-analyzer
+    Name:           MovieFileAnalyzer
+    Description:    Analayze movie files, extract video or audio information.
+    Parameters:     {}
+
+    Name:           LangIdentify
+    Description:    Analyzes the language of a given plot.
+    Parameters:     {'attr_name': <class 'str'>}
+
+Anzeigen der vorhandenen Modifier:
+
+.. code-block:: bash
+
+    $ freki list-modifier
+    Name:           PlotLangChange
+    Description:    Allows to exchange plot to given language.
+    Parameters:     {'attr_name': <class 'str'>, 'change_to': <class 'str'>}
+
+    Name:           BracketCleaner
+    Description:    Removes brackets e.g. brakets with actor name from plot.
+    Parameters:     {'attr_name': <class 'str'>}
+
+
+Einsatz von Plugins
+-------------------
+
+**Anwenden von Analyzern:**
+Anwendung des *LangIdentify* Plugins auf der *mydb.db*--Datenbank:
+
+.. code-block:: bash
+
+    $ freki analyze plugin LangIdentify mydb.db
+
+Betrachten der Analyzerdaten nach der Analyse:
+
+.. code-block:: bash
+
+    $ freki list mydb.db analyzerdata
+    0) All Good Things (2010)
+    {'LangIdentify': 'es'}
+    1) Alien³ (1992)
+    {'LangIdentify': 'es'}
+
+Wie man sieht, wurde hier die verwendete Sprache der Plots analysiert. Das
+Plugin hat sich in das Analysedaten--Array mit seinem ermittelten Ergebnis
+eingetragen. In unserem Beispiel *es (espanol)* für eine spanische
+Inhaltsbeschreibung.
+
+
+**Anwenden von Modifiern:**
+Anwendung des PlotLangChange Modifier--Plugins um die Sprache der
+Inhaltsbeschreibung von Spanisch auf Deutsch zu ändern:
+
+.. code-block:: bash
+
+    $ freki modify plugin PlotLangChange pluginattrs attr_name='plot',change_to=de mydb.db
+
+Betrachten der Metadaten nach Einsatz des Plugins:
+
+.. code-block:: bash
+
+    $ freki list mydb.db
+    0) All Good Things (2010)
+    {'director': 'Andrew Jarecki',
+     'genre': ['Drama', 'Mystery', 'Suspense', 'Thriller'],
+     'originaltitle': 'All Good Things',
+     'plot': 'David Marks, Sohn einer reichen New Yorker Familie, verliebt sich
+     in die junge Katie McCarthy, die nicht zu seinen Kreisen gehört. Doch dann [...]',
+     'title': 'All Beauty Must Die',
+     'year': '2010'}
+
+    1) Alien³ (1992)
+    {'director': 'David Fincher',
+     'genre': ['Action', 'Horror', 'Science Fiction'],
+     'originaltitle': 'Alien³',
+     'plot': 'Nachdem Ellen Ripley, die kleine Newt, Soldat Hicks und der
+     Android Bishop von LV 426 entkommen sind und sich mit dem Raumschiff USS [...]','
+     'title': 'Alien 3',
+     'year': '1992'}
+
+Wie in dem Beispiel zu sehen ist, wurde die Inhaltsbeschreibung bei den Filmen
+von der spanischen Version auf eine deutsche Version geändert.
+
+Exportieren der Daten
+---------------------
+
+Die modifizierten Metadaten können nun ins Produktivsystem zurückgespielt
+werden.  Dies geht bei Freki über die *export*--Funktion, hier wird wieder im
+Hintergrund die *Helferfunktion* (siehe Anhang :ref:`ref-attachment-a`) verwendet.
+
+Betrachten der Inhaltsbeschreibung der *nfo*--Dateien vor dem Export
+(Ausgabe gekürzt):
+
+.. code-block:: bash
+
+    $ cat "movies/All Good Things (2010)/movie.nfo" | grep 'plot'
+    <plot>Historia ambientada en los años 80 y centrada en un heredero de una
+    dinastía de Nueva York que se enamora de una chica de otra clase social. [...]</plot>
+
+Export der modifizierten Datenbank:
+
+::
+
+    $ freki export mydb.db
+    ./movies/All Good Things (2010)/movie.nfo
+    ./movies/Alien³ (1992)/movie.nfo
+
+Betrachten der Inhaltsbeschreibung der *nfo*-Dateien nach dem Export (gekürzt):
+
+.. code-block:: bash
+
+    $ cat "movies/All Good Things (2010)/movie.nfo" | grep 'plot'
+    <plot>David Marks, Sohn einer reichen New Yorker Familie, verliebt sich in
+    die junge Katie McCarthy, die nicht zu seinen Kreisen gehört. [...]</plot>
+
+Betrachtet man nun die *nfo*--Dateien der jeweiligen Filme, so sieht man, dass
+sich hier die Sprache von Spanisch auf Deutsch geändert hat.
+
+.. _xbmcplugin:
+
+XBMC Plugin Integration
+=======================
+
+Neben den Kommandozeilentools Geri und Freki wurde konzeptionell ein Plugin für
+das XBMC (siehe Abbildung: :num:`fig-xbmcscreenshot-hugin`) geschrieben,
+welches *libhugin* als Metadatenquelle nutzen kann.
+
+Das XBMC erlaubt es, sogenannte :term:`Scraper` zu schreiben.
+Diese arbeiten vom Grundprinzip ähnlich wie die Provider von *libhugin*. Das
+Problem bei dessen Scrapern ist, dass diese vollständig mittels *Regulärer
+Ausdrücke* innerhalb von *XML*--Dateien geschrieben sind. Dies ist nach Meinung
+des Autors fehleranfällig, aufwändig und nur schwer lesbar. Des Weiteren sind
+hier die Möglichkeiten des Postprocessings nur begrenzt umsetzbar.
+
+Die Referenzimplementierung des offiziellen XBMC TMDb--Scrapers hat insgesamt
+über 600 *lines of code*, recht kryptischer regulärer Ausdrücke (siehe
+:cite:`tmdbscraper1` und :cite:`tmdbscraper2`).
+
+Die Implementierung des *libhugin* Plugins in das XBMC hat an dieser Stelle nur
+23 *lines of code* (siehe :ref:`ref-xbmc-libhugin`). Das liegt daran, dass der
+*libhugin*--Proxy hier dem XBMC die Daten bereits im benötigten Format über das
+*Nfo*--Converter--Plugin liefern kann.
+
+.. _libhuginproxy:
+
+Libhugin--Proxy
+---------------
+
+Da die direkte Integration in das XBMC aufgrund der begrenzten Zeit der
+Projektarbeit nicht möglich ist, wurde hier der Ansatz eines ,,Proxy--Dienstes"
+angewandt. Für *libhugin* wurde mittels dem Microwebframework Flask (siehe
+:cite:`flask`) ein minimaler :term:`RESTful` Webservice geschrieben (siehe
+:ref:`ref-flaskproxy`), welcher über eine eigens definierte API Metadaten an das
+XBMC liefert.
+
+
+**Libhugin RESTful--API:**
+Der *Libhugin*--Proxy zeigt konzeptionell die Integration von *libhugin* als
+Netzwerkdienst, welcher eine RESTful--API bereitstellt. Nach dem der
+*libhugin*--Proxy gestartet wurde, ist es möglich über den Webbrowser auf die
+RESTful--API über Port 5000 zuzugreifen.
+
+Folgende Bash--Sitzung zeigt die Suche des Films *,,Prometheus (2012)"* über den
+*libhugin*--Proxy. Der Proxy liefert ein für das XBMC formatiertes *XML* zurück:
+
+.. code-block:: bash
+
+    $ curl http://127.0.0.1:5000/search/prometheus
+    <?xml version="1.0" encoding="iso-8859-1" standalone="yes"?>
+    <results>
+        <entity>
+            <title>
+                Prometheus - Dunkle Zeichen (2012), [tt1446714], Source: TMDBMovie
+            </title>
+            <url>http://localhost:5000/movie/0</url>
+        </entity>
+    </results>
+
+Die implementierte Test--API bietet die folgenden Schnittstellen:
+
+    + ``/search/<titlename or imdbid>:`` Suche nach Film über Titel oder *IMDb--ID*.
+    + ``/movie/<position>:`` Zugriff auf einen bestimmten Film im Proxy Cache.
+    + ``/info:`` Server Information, welche zeigt ob Postprocessing aktiviert ist.
+    + ``/toggle_pp:`` Postprocessing aktivieren oder deaktivieren.
+    + ``/shutdown:`` Server herunterfahren.
+
+
+Die Implementierung des Proxy zeigt, dass es mit relativ wenig Aufwand möglich
+ist, *libhugin* als ,,neuen Dienst" für Multimedia--Anwendungen oder auch
+Movie--Metadaten--Manager zu verwenden.
+
+Hierbei kommt die Flexibilität und Anpassbarkeit des Systems den bisherigen
+Tools zu Gute. Auf diese Art und Weise lassen sich alle Features, die *libhugin*
+bietet, in bereits existierende Tools integrieren.
+
+.. _fig-xbmcscreenshot-hugin:
+
+.. figure:: fig/hugin_xbmc.png
+    :alt: Libhugin Scraper--Plugin im XBMC Scraper Menü
+    :width: 60%
+    :align: center
+
+    Libhugin Scraper--Plugin im XBMC--Scraper--Menü.
+
+Unterschiede TMDb XBMC und TMDb libhugin
+----------------------------------------
+
+Im Vergleich zum XBMC TMDb--Scraper bietet der XBMC *libhugin*--Scraper
+(*libhugin*--Provider wurde zum Testen auf TMDb beschränkt) zusätzliche
+Features.
+
+    * Suche über *IMDb--ID* möglich.
+    * Unschärfesuche möglich, dadurch auch erhöhte Trefferquote.
+    * Postprocessing, je nach dazugeschalteten Plugin möglich.
+
+Beim Nutzen weiterer Provider sowie Plugins, wie dem Compose Plugin eröffnen
+sich hier für das XBMC ganz neue Möglichkeiten, seine Metadaten nach den eigenen
+Wünschen zusammen zu bauen, ohne dabei auf externe Movie--Manager zugreifen zu
+müssen. Im Prinzip kann *libhugin* hier das komplette Metadatensystem vom XBMC
+ersetzen.
+
+.. _ref-scripting-tasks:
+
+Weitere Einsatzmöglichkeiten
 ============================
 
-Abgesehen von den obigen *,,Defiziten"* hier noch einige stichpunktartige
-Richtungen in denen die Implementierung verbessert werden kann:
+**Scripting Tasks:**
+Die Einsatzmöglichkeiten sind je nach Szenario anpassbar. Für einfache
+Anwendungen lassen sich Geri und Freki bereits direkt verwenden.
 
-- Verläufe: Manchmal ist es wünschenswert, dass die dynamisch erstellte Playlist
-  einem gewissen Verlauf folgt. Man denke an eine Party bei der erst schnelle,
-  fröhliche Musik gespielt wird, zum Ende hin dann langsame, ruhigere Musik.
-- Weitere Empfehlungsstrategien, wie  rein Genrebasierte
-  Empfehlungen. Die Auswahl eines repräsentativen Seedsongs ist hier momentan
-  das Problem. 
-- Justierbarkeit der Gewichtungen während der Laufzeit: Momentan erfordert die
-  Justierung der Gewichtung jeweils eine teure ``rebuild``-Operation.
-  Technisch möglich ist das allerdings bereits, durch die Speicherung der
-  Unterdistanzen. Spätere Versionen könnten sogar versuchen die Justierung, nach
-  Beobachtung des Nutzers, automatisch vorzunehmen.
-- ,,Echte" Audio/Mood--Analyse mittels *aubio* :cite:`0FN` oder *MARSYAS* :cite:`HJ7`.
-- Optionaler *,,Aufsatz"* auf *libmunin*, der *Social-based music recommendation*
-  ermöglicht, beispielsweise um die Ähnlichkeit von zwei Künstlern durch
-  Amazon--Reviews zu bestimmen. Sind diese in der Review--Datenbank nicht
-  vertreten wird die Ähnlichkeit, wie jetzt bereits, automatisch bestimmt.
-- Portierbarkeit auf andere Plattformen. Die Software wurde momentan nur auf dem
-  Betriebssystem des Autors getestet *(Arch Linux)*.
+Ein schönes Beispiel für einen *Scripting--Task* ist das Normalisieren der
+Ordnerstruktur/Benennung von großen Filmsammlungen.
 
-Abschließendes Fazit
-====================
+Hierzu reicht es einfach, die ``movie.mask`` von Geri anzupassen und ein kleines
+Bash--Skript zu schreiben. Anpassen der ``movie.mask`` auf das gewünschte
+Format:
 
-*libmunin* ist ein solides Fundament für weitere Entwicklungen und so
-flexibel, dass mit entsprechenden *Providern* und *Distanzfunktionen* sogar
-Empfehlungssysteme für andere *Dokumente* wie Videos, Bücher oder anderen
-Artikeln möglich wären.
+.. code-block:: bash
 
-Noch ist der Einsatz relativ kompliziert (momentan nur über MPD möglich) und
-erfordert, auch für kundige Entwickler, einiges an Einarbeitungszeit --- zuviel
-für etwas das eigentlich *still* im Hintergrund arbeiten sollte. Auch die
-erstellten Empfehlungen sind, subjektiv gesehen, noch teilweise
-verbesserungswürdig.  Besonders die momentane Audioanalyse ist sehr primitiver
-Natur und bietet einiges an Potenzial an Verbesserungen. Es wird momentan mehr
-auf *Masse* statt auf *Klasse* gesetzt und oft ist einiges an
-*,,Kaffeesatzleserei"* enthalten.  Zudem entsprechen manche Funktionsweisen dem
-Geschmack und Gewohnheiten des Autors (wie dem Vergeben von Ratings, was nicht
-jeder macht) -- diese müssen nicht allgemein gültig sein.
+   $ echo "{title} ({year}), [{imdbid}]" > tools/geri/movie.mask
 
-Da das Projekt auch nach Abschluss dieser Arbeit, im Rahmen von *Moosecat*
-weiter entwickelt werden soll, hofft der Autor mit der Zeit mehr Richtung
-*Klasse* zu gehen. Nach einem öffentlichen Release in einschlägigen Foren,
-können dann auch erste Resonanzen gesammelt werden. Vor allem ist es
-interessant zu sehen, ob *libmunin* dann tatsächlich für andere Entwickler
-einsetzbar ist. Zumindest Interesse scheint vorhanden zu sein: Selbst ohne
-Veröffentlichung, haben etwa 50 Entwickler die Projektseite auf *GitHub*
-,,gestarred" (vergleichbar mit einem *Like* auf anderen Seiten).
+.. raw:: Latex
+
+   \newpage
+
+So schaut das minimalistische rename--Skript aus:
+
+.. code-block:: bash
+
+   #!/bin/bash
+
+   for movie in $1/*; do
+       old_name=$(basename "$movie")
+       new_name=$(geri -t "$old_name" -P --language=en --amount 1 -providers tmdbmovie);
+       mv -v "$movie" "$1/$new_name";
+   done
+
+Um eine schlampig gepflegte Filmsammlung zu ,,simulieren", werden Ordner mit
+Filmen, die falsch geschrieben sind, erstellt:
+
+.. code-block:: bash
+
+   $ mkdir movies/{"alien1","alien 2","geständnisse","ironman2","iron man3","iron men 1",\
+   "jung unt schon","marix","oonly good forgives","teh marix 2"}
+
+
+Anschließend wird das Skript auf die schlampig gepflegte Ordnerstruktur
+angewandt:
+
+.. code-block:: bash
+
+   $ ./rename.sh movies
+   ‘movies/alien1’ -> ‘movies/Alien (1979), [tt0078748]’
+   ‘movies/alien 2’ -> ‘movies/Aliens (1986), [tt0090605]’
+   ‘movies/geständnisse’ -> ‘movies/Confessions (2010), [tt1590089]’
+   ‘movies/ironman2’ -> ‘movies/Iron Man 2 (2010), [tt1228705]’
+   ‘movies/iron man3’ -> ‘movies/Iron Man 3 (2013), [tt1300854]’
+   ‘movies/iron men 1’ -> ‘movies/Iron Man (2008), [tt0371746]’
+   ‘movies/jung unt schon’ -> ‘movies/Young & Beautiful (2013), [tt2752200]’
+   ‘movies/marix’ -> ‘movies/The Matrix (1999), [tt0133093]’
+   ‘movies/oonly good forgives’ -> ‘movies/Only God Forgives (2013), [tt1602613]’
+   ‘movies/teh marix 2’ -> ‘movies/The Matrix Reloaded (2003), [tt0234215]’
+
+
+An diesem Beispiel sieht man, wie gut die Unschärfesuche funktionieren kann.
+Bei diesem kleinem *Testsample* haben wir eine Trefferwahrscheinlichkeit von 100%.
+
+**D--Bus:**
+Eine weitere Möglichkeit, neben dem ,,Proxyserver--Ansatz", wäre *D--Bus* zu
+verwenden. *D--Bus* ist ein Framework, das unter Linux zur
+Interprozesskommunikation verwendet wird. Man kann hier beispielsweise
+*libhugin* als *D--Bus*--Service laufen lassen und jede andere beliebige
+Anwendung hätte die Möglichkeit, programmiersprachenunabhängig mit *libhugin* zu
+kommunizieren.

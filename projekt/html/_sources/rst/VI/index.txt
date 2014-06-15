@@ -1,241 +1,411 @@
-***********************
-Demonstrationsanwendung
-***********************
+###############
+Implementierung
+###############
 
-Intro
-=====
+Im Folgenden soll die API und die implementierten Plugins vorgestellt werden.
 
-:dropcaps:`Abseits` der Bibliothek wurde eine, auf dem freien
-Oberflächen--Framework :math:`\text{GTK+-}3.0` basierende, GUI-Anwendung
-entwickelt.  Wie eingangs erwähnt, dient diese nicht nur zum *Showoff*, sondern
-auch zur gezielten Fehlersuche.
+Libhugin--harvest API
+=====================
 
-Die Anwendung, die den ebenfalls nordischen Namen *Naglfar* erhielt, stellt
-einen MPD-Client bereit. Im Hintergrund werkelt dabei *Moosecat*.  Vor der
-ersten Benutzung muss gemäß Abb. :num:`fig-startup` eine Session aufgebaut
-werden. Dies erledigt das Skript ``coldstart.py`` (siehe
-:ref:`coldstart-example` im *Angang C*). Dies kann durch das Ziehen der
-Liedtexte und der Audioanalyse beim ersten Lauf sehr lange dauern --- bis zu
-zwei Stunden. Danach sind allerdings die Liedtexte zwischengelagert und der
-zweite Lauf dauert dann nur noch wenige Minuten. 
+Die API wurde sehr einfach gehalten und ermöglicht dadurch dem Benutzer ein
+schnelles Einarbeiten. Folgendes Beispiel, in der interaktiven Python--Shell,
+zeigt die typische Benutzung der API:
 
-Nach dem ``coldstart.py`` die *Session* auf die Platte geschrieben hat, kann die
-eigentliche Anwendung gestartet werden. Diese verbindet sich zuallererst mit
-einem MPD-Server der auf *localhost* unter Port *6601* lauscht. Dort  beschafft
-sich die Anwendung alle Metadaten, um die *Playlist* und *Database*-Ansicht zu
-befüllen.  Danach wird besagte *Session* geladen. Nach der Initialisierung der
-*GUI* ist die Anwendung nun bereit benutzt zu werden.
+.. code-block:: python
 
-Damit zwischen den von *libmunin* herausgegebenen Empfehlungen und den internen
-Songs unterschieden werden kann, generiert ``coldstart.py`` eine Hashtabelle, die
-zwischen den *ID* von *libmunin's* Songs und den Dateipfaden innerhalb der
-Musikdatenbank eine Beziehung herstellt. Diese Hashtabelle wird in der Session
-gespeichert. Die Musikdatenbank selbst besteht dabei aus *666* ausgewählten
-Liedern aus der privaten Musiksammlung des Autors.
+   >>> from hugin.harvest.session import Session
+   >>> session = Session()
+   >>> query = session.create_query(title='Prometheus')
+   >>> results = session.submit(query)
+   >>> print(results)
+   [<TMDBMovie <picture, movie> : Prometheus (2012)>,
+   <OFDBMovie <movie> :  Prometheus - Dunkle Zeichen (2012)>,
+   <OMDBMovie <movie> : Prometheus (2012)>]
 
-Anwendungsübersicht
-===================
+Für weitere Beispiele siehe offizielle *libhugin--harvest* API :cite:`huginapi`.
 
-In Abb. :num:`fig-demo-overview` wird eine Übersicht über die GUI der Anwendung
-gegeben. Detailliertere Ansichten werden unter :ref:`demo-pics` gezeigt.  Im
-Folgenden wird nun eine textuelle Übersicht über die *Features* der Anwendung
-gegeben.
 
-Ansichten
----------
+Libhugin--harvest Plugins
+=========================
 
-Die Anwendung ist in unterschiedliche *Ansichten* (englisch *Views*) aufteilt,
-die jeweils in unterschiedlichen Reitern stecken. Im Folgenden wird eine Übersicht
-über alle *Views* gegeben:
+Provider--Plugins
+-----------------
 
-* **Database:** Siehe Abb. :num:`fig-demo-database`.
-   
-  Anzeige der gesamten Musikdatenbank durch die Spalten ``Artist``, ``Album``,
-  ``Titel``, ``Datum`` und ``Genre``. Jede Zeile entspricht dabei einem Song. 
-  Ein Rechtsklickmenü auf einen beliebigen Song fördert ein Kontextmenü zu Tage
-  (siehe Abb. :num:`fig-demo-context-menu`), dass mehrere Möglichkeiten
-  bietet, um die Playlist mit Empfehlungen zu befüllen (entsprechend Kapitel
-  :ref:`list-of-recom-strategies`).  Im Folgenden ist :math:`N` die Anzahl
-  der gewünschten Empfehlungen, die im Empfehlungszähler (siehe
-  Nr. 5 in Abb. :num:`fig-demo-overview`) eingestellt ist.
-  
-  * **Ausgewählten Song als Seedsong nehmen:** Erstellt :math:`N`
-    Empfehlungen basierend auf dem selektierten Song und reiht sie in die Playlist
-    ein. 
-  
-  * **Playlist säubern und ausgewählten Song als Seedsong nehmen:** Wie oben,
-    leert aber vor dem Einreihen die Playlist.
-  
-  * **Suche einen Seedsong mit einem bestimmten Attribut:** Sucht einen
-    Seedsong nach bestimmten Kriterien, die der Nutzer im Eingabefeld oben
-    rechts angeben kann. Dort kann ein *Suchbegriff* in der folgenden Form
-    angegeben werden::
-    
-        <attribut>: <wert>[, <attribut>: <wert>, ...]
-    
-    Folgendes Beispiel findet alle Songs mit dem Künstler *,,Billy Talent"* **und**
-    dem Genre *,,Rock"*::
-    
-        genre: rock, artist: Billy Talent
-    
-    Werden mehrere Suchergebnisse gefunden, so werden alle als Seedsongs
-    genutzt, um in die Playlist :math:`N` neue Songs einzureihen.
-    
-    Diese Funktionalität ist momentan relativ eingeschränkt, da nur exakte
-    Treffer funktionieren. Ist das *Genre* also als *,,rock / pop"* getaggt, so
-    wird die Suche erfolglos verlaufen.
-  
-  * **Lasse libmunin einen Seedsong auswählen:** *libmunin* wählt automatisch
-    einen Seedsong nach folgenden Kriterien (gemäß Kapitel
-    :ref:`list-of-recom-strategies`):
-    
-    1. Nutze die Seedsongs, die in der am besten bewertesten Regel vorkommen.
-    2. Falls keine Regel vorhanden, nutze den meist abgespielten Song als
-       Seedsong.
-    3. Schlägt auch das fehl wird ein zufälliger Song ausgewählt.
-    
-    In allen Fällen werden dann :math:`N` Empfehlungen in die Playlist
-    eingereiht.
-  
-  * **Erstelle eine komplett zufällige Playlist:** Reiht :math:`N` neue,
-    komplett zufällig aus der Datenbank gewählte, Songs in die Playlist ein.
-    Nützlich um die komplett zufällige Playlist mit einer von *libmunin* erstellten
-    Playlist zu vergleichen. Der Seed für die ``random()``-Funktion ist dabei immer
-    gleich, daher erstellt dies nach einem Neustart stets dieselbe Liste.
-  
-  .. _fig-demo-context-menu:
-  
-  .. figure:: figs/demo_context_menu.png
-      :alt: Das Kontextmenu in der Playlist und Database Ansicht
-      :width: 30%
-      :align: center
-  
-      Die Einträge des Kontextmenüs in der Playlist und Database Ansicht 
+Libhugin--harvest hat aktuell verschiedene Provider implementiert (siehe Abbildung
+:num:`table-provideroverview`).
 
-**Playlist:** Siehe Abb. :num:`fig-demo-playlist`.
+.. figtable::
+    :label: table-provideroverview
+    :caption: Übersicht implementierter Provider und Funktionalität.
+    :spec: r|l|l|l|l|l
+    :alt: Übersicht implementierter Provider und Funktionalität
 
-Wie die *Database--Ansicht*, zeigt aber lediglich die Songs an, die empfohlen
-wurden. Sonst ist diese Ansicht funktionsidentisch mit der *Database--Ansicht*.
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    |                           | *TMDb*             | *OFDb*             | *Videobuster*      | *Filmstarts*       | *OMDb*             |
+    +===========================+====================+====================+====================+====================+====================+
+    | *Priorität*               | 90                 | 80                 | 70                 | 65                 | 65                 |
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Providerart*             | movie/person       | movie/person       | movie              | movie              | movie              |
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Metadaten*               | textuell/grafisch  | textuell           | textuell           | textuell           | textuell           |
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Sprache*                 | multilingual       | deutsch            | deutsch            | deutsch            | englisch           |
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Unschärfesuche Online*   | :math:`\times`     | :math:`\times`     | :math:`\times`     | :math:`\times`     | :math:`\times`     |
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *Unschärfesuche libhugin* | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` |
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *IMDB--Suche Online*      | :math:`\checkmark` | :math:`\checkmark` | :math:`\times`     | :math:`\times`     | :math:`\checkmark` |
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *IMDB--Suche  libhugin*   | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` | :math:`\checkmark` |
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    | *API verfügbar*           | :math:`\checkmark` | :math:`\checkmark` | :math:`\times`     | :math:`\times`     | :math:`\checkmark` |
+    +---------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
 
-**Graph:** Siehe Abb. :num:`fig-demo-graph`.
+Ein paar der Provider, wie ``Filmstarts``, ``Videobuster`` lassen sich noch
+weiter ausbauen. Diese unterstützen momentan nur textuelle Metadaten, würden
+sich aber um grafische Metadaten erweitern lassen. Die in der Tabelle
+festgelegten Prioritäten wurden hier willkürlich für Testzwecke vergeben. Diese
+können jederzeit an die eigenen Bedürfnisse angepasst werden.
 
-In der *Graphenansicht* kann ein Plot von *libmunin's* Graphen begutachtet werden.
-Dies ist oft nützlich, um nachzuvollziehen welche Empfehlungen aus welchen Grund
-gegeben wurden, da man im Graphen die Nachbarn eines Seedsongs betrachten
-kann.
 
-**Rules:** Siehe Abb. :num:`fig-demo-rules`.
+Postprocessor--Plugins
+----------------------
 
-In einer Liste werden alle bekannten Assoziationsregel
-angezeigt. Dabei wird neben beiden Seiten der Regel auch der *Supportcount*
-und das *Rating* der Regel angezeigt. Beide werden hier nicht näher erklärt.
+Die Postprocessor--Plugins beim *libgugin--harvest* Teil sind für die direkte
+,,Nachbearbeitung" der Daten gedacht.
 
-**Examine:** Siehe Abb. :num:`fig-demo-examine`.
+**Compose:**
+Das ``Compose``--Plugin ist das momentane Kernstück der Postprocessor--Plugins. Das
+Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und bietet
+dem Benutzer dadurch folgende Möglichkeiten:
 
-Hier werden alle Attribute des momentan spielenden Songs angezeigt.  Es wird die
-von *libmunin* normalisierte Form angezeigt, als auch, falls verfügbar, der
-Originalwert.  Zudem wird die ``moodbar`` (falls vorhanden) oben im Fenster
-geplottet.
+    1) Ergebnis komponieren.
+    2) Genre zusammenführen.
 
-**History:** Siehe Abb. :num:`fig-demo-history`.
+**Zu 1.):** Es erlaubt dem Benutzer sich ein nach seinen Wünschen
+zusammengesetztes Ergebnis zu komponieren. Der Benutzer kann über das Angeben
+einer Profilmaske bestimmen, wie sich die Metadaten zusammensetzen sollen.
+Hier kann er beispielsweise angeben, dass er den Filmtitel, Jahr und Cover vom
+Provider *TMDb* möchte, die Inhaltsbeschreibung jedoch immer vom *Filmstarts*
+Provider. Hier besteht auch die Möglichkeit eines ,,Fallbacks", falls *Filmstarts*
+keine Inhaltsbeschreibung hat, dann kann auch auf andere Provider
+zurückgegriffen werden.
 
-Neben einer chronologischen Auflistung aller Songs die in letzter Zeit
-gehört wurden (Begrenzung auf 1000 Stück), werden hier auch die zuletzt 
-ausgestellten Empfehlungen (Begrenzung auf 10 Stück) angezeigt.
-Letzteres ist für das Debugging der Filterfunktion nützlich.
+Beispiel für eine Profilmaske, die TMDb als Standardprovider nimmt und die
+Inhaltsbeschreibung vom OFDb--Provider nimmt. Falls keine OFDb--Inhaltsbeschreibung
+vorhanden ist, dann erfolgt ein ,,Fallback" auf den OMDb--Provider:
 
-Weitere Steuerlemente
----------------------
+.. code-block:: bash
 
-Aus Gründen der Vollständigkeit werden hier, die unter Abb.
-:num:`fig-demo-overview` gezeigten Elemente noch erklärt.
+    $ echo "{'default':['tmdbmovie'], 'plot':['ofdbmovie', 'omdbmovie']}" > profilemask
 
-2. **Seedsong:** Zeigt mit einem roten Kreis den zuletzt ausgewählten
-   Seedsong an.  Falls es mehrere Seedsongs gab, wird nur der erste
-   markiert.
+Wird keine Profilmaske angegeben, so werden fehlende Attribute nach
+Provider--Priorität aufgefüllt.
 
-3. **Current Song:** Ein dreieckiges Icon, das den aktuell spielenden (oder
-   pausierten) Song anzeigt.
+**Zu 2.):** Dieses Feature erlaubt dem Benutzer divergente Genres
+beim gleichen Film zu verschmelzen. Das macht das Genre feingranularer und
+behebt die genannte Problematik (siehe Abbildung :num:`table-feuchtgebiete`)
+divergenter Genres bei verschiedenen Onlinequellen. Das Genre wird hier wie
+folgt zusammengesetzt:
 
-4. **Playlist:** Die Playlist--Ansicht, wie bereits oben gezeigt.
+.. code-block:: bash
 
-5. **Empfehlungszähler:** Die Anzahl an Empfehlungen, die ein Klick im
-   Kontextmenü liefert.
+   # Drei Genre der Unterschiedlichen Provider      # Zusammengeführtes Genre
+   [Comedy, Drama], [Komödie, Drama], [Erotik] ---> [Komödie, Drama, Erotik]
 
-6. **Filter:** Togglebutton (:math:`$,,\sout{a}”$` als Icon) der anzeigt, ob
-   der Filtermodus aktiviert ist.  Ist er aktiv, so darf sich in einer dynamisch
-   erstellten Playlist der Künstler nur alle drei Stücke wiederholen, der selbe
-   Künstler *und* das selbe Album nur alle fünf Stücke.
 
-7. **Mininmaler Höranteil:** Ein Klick auf den Button fördert einen Slider zu
-   Tage auf dem man eine Prozentzahl einstellt. Diese legt fest, welcher Anteil
-   eines Liedes (in Prozent) *mindestens* angehört werden muss, damit er zur
-   Historie hinzugefügt wird.
-   
-   Um diese Funktionalität zu realisieren, musste *Moosecat* um diese
-   Funktionalität erweitert werden.
+**Trim:**
+Dies ist vergleichsweise ein einfaches Plugin, welches dafür zuständig, ist
+vorangehende und nachziehende Leerzeichen bei den Metadaten zu entfernen. Das
+Plugin führt eine Bereinigung durch, diese muss nicht explizit vom
+Provider--Plugin durchgeführt werden.
 
-8. **Attributsuche:** Eingabe einer Folge von Attribut--Werte--Paaren die ein
-   Seedsong bei der Attributsuche  haben sollte.
+Converter--Plugins
+------------------
 
-9. **Rating:** Ein spezielles Steuerelement, in den man das *Rating* des aktuell
-   spielenden Songs setzen kann. Beim Erstellen der *Session* durch
-   ``coldstart.py`` wird ein ungesetztes *Rating* von ,,:math:`0`" angenommen.
-   
-   Zum Setzen klickt man einfach ins Feld, die Seite links vom Cursor wird dann
-   eingefärbt.  Es ist möglich etwas links vom ersten Stern zu klicken, um das
-   Rating auf ,,0" (und damit *ungesetzt*) zurückzusetzen.
-   
-   Ein Ändern des Ratings hat ein Neuzeichnen des Graphen in der Graphen--Ansicht
-   zufolge. Dies liegt daran, dass das Ändern des Ratings mittels der
-   ``modify``--Operation erfolgt. Diese fügt den Song an einer möglicherweise
-   anderen Stelle im Graphen wieder ein.
+Bei den Converter--Plugins wurde zu Demonstrationszwecken ein *HTML*--Converter
+und ein *JSON*--Converter implementiert.
 
-10. **Playcount:** Zeigt an wie oft ein Lied bereits gehört wurde. Ein Lied gilt
-    als nicht gehört, wenn prozentuell nur ein kleiner Teil als der gesetzte
-    minimale Höranteil angehört wurde.
-   
-    Zur optischen Vorhebung ist es mit einer Fortschrittsanzeige hinterlegt.
-    Sobald man 100 mal ein Lied hört, zeigt diese vollen Füllstand an.
+Des Weiteren wurde für den Produktiveinsatz ein XBMC *Nfo*--Converter
+implementiert, dieser wird vom *libhugin*--Proxy (siehe Libhugin--Proxy,
+:ref:`libhuginproxy`) verwendet, um dem XBMC--libhugin Plugin (siehe XBMC Plugin
+Integration, :ref:`xbmcplugin`) die Metadaten im richtigen Format zu liefern.
 
-11. **Volumebar** Regler für die Lautstärke. 
+.. _analyzeapiexample:
 
-12. **Title Label:** Zeigt das aktuell spielende Lied mit Titel, Album und
-    Künstler an.
+Libhugin--analyze API
+=====================
 
-13. **Modebuttons:** Umschalten zwischen *Random* (nächstes Lied ist zufällig),
-    *Single* (höre nach diesem Lied auf zu spielen), *Repeat* (spring zum Anfang
-    der Playlist nach dem letzten Lied) und *Consume* (Lösche das Lied aus der
-    Playlist nach dem Abspielen).
+Die API von *libhugin--analyze* ist vom Grundaufbau ähnlich zu der
+*libhugin--harvest* API. Folgendes Beispiel--Snippet zeigt die Anwendung des
+``BracketClean``--Plugins auf *Rohdaten*, welche nicht aus der internen Datenbank
+stammen.
 
-14. **Seekbar:** Ermöglicht das wahlfreie Hin- und Herspringen innerhalb des
-    aktuellen Liedes.  Übersprungene Abschnitte eines Liedes fließen nicht in
-    den *Höranteil* ein. Doppelt gehörte Parts schon.  Daher sind Werte
-    :math:`\ge 100\%` möglich.
+.. code-block:: python
 
-15. **Playbuttons:** Die ,,üblichen" Kontrollen eines Musicplayers zum
-    *Pausieren/Abspielen* (an momentaner Stelle anhalten/weiterspielen),
-    *Stoppen* (Anhalt und zum Anfang der Playlist springen), *Nächstes* und
-    *Vorheriges* Lied .
+    >>> from hugin.analyze.session import Session
+        # Beispieltext. Erstelle Sitzung mit Dummy DB. Hole BracketClean Plugin.
+    >>> example_text = "Aus diesem Text wird die Klammer (welche?) samt Inhalt entfernt!"
+    >>> session = session('/tmp/temporary.db')
+    >>> BracketClean = session.modifier_plugins('BracketClean')
+        # Wende Plugin im raw Modus auf Daten an
+    >>> result = session.modify_raw(BracketClean, 'plot', example_text)
+    >>> print(result)
+    Aus diesem Text wird die Klammer samt Inhalt entfernt!
 
-16. **Suche:** Erlaubt das Filtern der Playlist oder Datenbank.
-   
-    Suchbegriffe können einfacher Natur wie *,,beat"* (Findet alles das
-    *,,beat"* im Künstler-, Album- oder Titel--Tag beeinhaltet) sein. Oder auch
-    eher komplizierter Natur: *,,(genre:rock + y:2001..2003) | artist:Beat"*
-    (Findet alles das *,,rock"* im Genre hat und in den Jahren *2001* bis
-    einschließlich *2003* released wurde, oder dessen Künstler ein Wort enthält,
-    das mit ,,Beat" beginnt).
-     
-    *Anmerkung:* Die ,,Such--Engine" dahinter ist in *Moosecat* implementiert.
-    Die Suche kann mit :kbd:`Strg-f` oder :kbd:`/` *(Slash)* aktiviert und mit
-    :kbd:`Esc` wieder versteckt werden.
 
-.. _fig-demo-overview:
+Weitere Beispiele bezüglich Einsatz von *libhugin--analyze* siehe Demoanwendung
+Freki  (siehe :ref:`ref-freki`).
 
-.. figure:: figs/demo_overview.*
-    :alt: Übersicht über die Demoanwendung
-    :width: 80% 
+
+Libhugin--analyze Plugins
+=========================
+
+Modifier--Plugins
+-----------------
+
+**BracketClean:**
+Das ``BracketClean``--Plugin ist für nachträgliche Manipulation der
+Inhaltsbeschreibung gedacht. Das Plugin entfernt alle Klammern samt Inhalt aus
+der Beschreibung. Das vereinheitlicht die Inhaltsbeschreibung in dem Sinne, dass
+alle Schauspieler oder Informationen in Klammern aus der Beschreibung entfernt
+werden.
+
+**PlotLangChange:**
+Das ``PlotLangChange``--Plugin ist für das nachträgliche Ändern der
+Inhaltsbeschreibung zuständig. Es hat die Funktion, die Sprache des Plots zu
+ändern.
+
+Analyzer--Plugins
+-----------------
+
+**KeywordExtract:**
+Dieses Plugin extrahiert aus einem Text, bei Filmen meist die
+Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text beziehungsweise
+die darin dargestellte Thematik repräsentieren.
+
+**FileTypeAnalyze:**
+Das ``FileTypeAnalyze``--Plugin arbeitet mit den Videodaten selbst. Es ist für die
+Extraktion der Datei--Metadaten zuständig. Momentan extrahiert es:
+
+    * Auflösung
+    * Seitenverhältnis
+    * Videocodec
+    * Audiocodec, Anzahl der Audiokanäle, Sprache
+
+
+**LangIdentify:**
+Der ``LangIdentify``--Analyzer erkennt die Sprache des verwendeten Plots und schreibt
+die Information zu den Analysedaten.
+
+Comparator--Plugins
+-------------------
+
+Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
+Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.
+
+Folgende Comparator--Plugins wurden konzeptionell implementiert:
+
+**GenreCmp:**
+Ein Plugin, das die Genres verschiedener Filme miteinander vergleicht.
+
+**KeywordCmp:**
+Ein Plugin, das die Schlüsselwörter verschiedener Filme miteinander vergleicht.
+
+
+Verschiedenes
+=============
+
+Testverfahren
+-------------
+
+Für das Testen der Software wird das Python Unittest--Framework verwendet.
+Bisher wurden Tests für die wichtigsten Grundklassen und das
+Provider--Pluginsystem erstellt, um ein valides Verhalten der Provider--Plugins
+zu gewährleisten.
+
+Die Unittests wurden direkt in der ,,Main" der jeweiligen Klasse untergebracht.
+Diese werden dann beim Ausführen der Python--Datei gestartet.
+
+Folgendes Beispiel zeigt die Funktionsweise:
+
+.. code-block:: python
+
+   def add(a, b): return a + b
+
+   if __name__ == '__main__':
+       import unittest
+
+       class SimpleTest(unittest.TestCase):
+           def test_add_func(self):
+               result = add(21, 21)
+               self.assertTrue(result == 42)
+
+       unittest.main()
+
+
+Das Ausführen des Beispielcodes würde folgende Ausgabe produzieren:
+
+.. code-block:: bash
+
+    Ran 1 test in 0.000s
+
+    OK
+
+Alle geschriebenen Tests werden bei jedem ,,Einspielen" der Änderungen in das
+verwendete Quellcode--Versionsverwaltungssystem automatisiert über einen
+externen Dienst ausgeführt (siehe Entwicklungsumgebung, :ref:`dev`).
+
+
+.. raw:: Latex
+
+   \newpage
+
+
+.. _dev:
+
+Entwicklungumgebung
+-------------------
+
+**Programmiersprache:**
+Für die Entwicklung der Bibliothek wurde die Programmiersprache Python, in der
+Version 3.3, aus folgenden Gründen gewählt:
+
+.. hübsch! Hab was neues gelernt.
+
+:Rapid Prototyping Language:
+
+    Wichtig bei einem Projekt dieser Größe mit begrenztem Zeitraum (vgl. :cite:`lutz2013learning`).
+
+:Plattformunabhängigkeit:
+
+    Plattformunabhängigkeit ist ein sekundäres Ziel des Projekts.
+
+:Einfach erlernbar:
+
+    Wichtig für Pluginentwickler wegen der kurzen Einarbeitungszeit.
+
+:Verbreitungsgrad:
+
+    Gängige Skriptsprache bei vielen Open--Source--Projekten.
+
+:Optimierungsmöglichkeiten:
+
+    Möglichkeit der Erweiterung durch
+    :math:`\mathrm{C/C{\scriptstyle\overset{\!++}{\vphantom{\_}}}}`--Code,
+    Optimierung von Python mittels Cython (siehe :cite:`cython`, vgl.
+    :cite:`lutz2013learning`).
+
+**Entwicklungssytem:**
+Die Bibliothek wird unter *Archlinux* entwickelt. Für die Entwicklung wird der
+Editor *gVim* mit entsprechenden Python--Plugins zur Validierung der Python
+PEP--Stilrichtlinien (siehe :cite:`pep`) verwendet. Des Weiteren wird die
+interaktive Python Shell *IPython* eingesetzt.
+
+**Quellcodeverwaltung:**
+Für die Quellcodeverwaltung wird das Versionsverwaltungssystem *git*
+eingesetzt. Der Quellcode selbst wird auf dem Hosting--Dienst für
+Software--Entwicklungsprojekte *GitHub* (siehe :cite:`github`) gelagert. Das
+Projekt ist auf folgender GitHub Seite zu finden:
+
+    * https://github.com/qitta/libhugin
+
+**Automatisches Testen:**
+Die oben genannten Softwaretests werden von *TravisCI* (siehe :cite:`travisci`),
+einem sogenanntem ,,Continuous Integration Service" automatisch ausgeführt. Dies
+passiert bei jedem Hochladen von Quellcodeänderungen auf *GitHub*. *GitHub* hat
+hier eine Service--Schnittstelle zu *TravisCI,* welche aktiviert wurde.
+
+Ein Symbol (siehe Abbildung :num:`fig-build`) auf der *libhugin*
+Github--Projektseite teilt so dem Besuchern der Seite den aktuellen
+,,Projektstatus" mit.
+
+.. _fig-build:
+
+.. figure:: fig/build.png
+    :alt: Symbol, das den aktuellen ,,Build Status" der GitHub--Projektseite zeigt
+    :width: 60%
     :align: center
-    
-    Übersicht über die Demonanwendung.
+
+    Symbol, das den aktuellen ,,Build--Status" der GitHub--Projektseite zeigt.
+
+
+**Projektdokumentation:**
+Das Projekt wird nach dem Prinzip der *literalen Programmierung* entwickelt, wie
+von *Donald E. Knuth* (siehe :cite:`knuth`) empfohlen. Hierbei liegen Quelltext
+und Dokumentation des Programms in der gleichen Datei.
+
+Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge
+generiert werden. Unter Python wird hier das Softwaredokumentationswerkzeug
+*Sphinx* (siehe :cite:`sphinxdoc`) verwendet. Die offizielle
+Projektdokumentation, aktuell hauptsächlich der *libhugin-harvest* Teil, ist auf
+der Plattform *ReadTheDocs* (siehe :cite:`rtfd`) gehostet und unter folgender
+Adresse zu finden:
+
+    * http://libhugin.rtfd.org
+
+Dieses kann eine Dokumentation in verschiedenen Formaten generieren, auch diese
+Projektarbeit wurde in *reStructuredText* (siehe :cite:`rst`) geschrieben und
+mit *Sphinx* generiert.
+
+Des Weiteren wird dem Entwickler bei Nutzung der
+Bibliothek in der interaktiven Python--Shell eine zusätzliche Hilfestellung
+geboten (siehe Abbildung :num:`fig-knuth`).
+
+.. _fig-knuth:
+
+.. figure:: fig/knuth.png
+    :alt: API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython
+    :width: 80%
+    :align: center
+
+    API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython.
+
+**Projektumfang:**
+Der Projektumfang beträgt ca. 3500 *lines of code*,  hinzu kommt noch
+die Onlinedokumentation. Eine Statistik zum Projekt, welche mit dem Tool
+*cloc* erstellt wurde, ist im Anhang unter :ref:`ref-cloc` zu finden.
+
+
+**Externe Bibliotheken:**
+Die Tabelle :num:`table-libs` listet alle verwendeten externen Abhängigkeiten
+für die *libhugin*--Bibliothek.
+
+.. figtable::
+    :label: table-libs
+    :spec: r|l|l
+    :alt: Übersicht über externe Abhängigkeiten
+    :caption: Übersicht über externe Abhängigkeiten.
+
+    +-------------------------+-----------------+---------------------------------+
+    | *Abhängigkeit*          | *Verwendung in* | *Einsatzzweck*                  |
+    +=========================+=================+=================================+
+    | *yapsy*                 | Pluginsystem    | Laden von Plugins               |
+    +-------------------------+-----------------+---------------------------------+
+    | *charade*               | Downloadqueue   | Encodingerkennung               |
+    +-------------------------+-----------------+---------------------------------+
+    | *parse*                 | Plugins         | Parsen von Zeitstrings          |
+    +-------------------------+-----------------+---------------------------------+
+    | *httplib2*              | Downloadqueue   | Content download                |
+    +-------------------------+-----------------+---------------------------------+
+    | *jinja2*                | Plugins         | HTML Template Engine            |
+    +-------------------------+-----------------+---------------------------------+
+    | *docopt*                | Cli--Tools      | CLI--Optionparser               |
+    +-------------------------+-----------------+---------------------------------+
+    | *Flask*                 | Huginproxy      | Webframework, RESTful interface |
+    +-------------------------+-----------------+---------------------------------+
+    | *guess_language-spirit* | Plugins         | Spracherkennung                 |
+    +-------------------------+-----------------+---------------------------------+
+    | *PyStemmer*             | Plugins         | Stemming von Wörtern            |
+    +-------------------------+-----------------+---------------------------------+
+    | *pyxDamerauLevenshtein* | Plugins, Utils  | Vergleich von Strings           |
+    +-------------------------+-----------------+---------------------------------+
+    | *Pyaml*                 | Plugins         | Verarbeitung von Yaml Dateien   |
+    +-------------------------+-----------------+---------------------------------+
+    | *beaufifulsoup4*        | Plugins         | Parsen von HTML Seiten          |
+    +-------------------------+-----------------+---------------------------------+
+    | *xmltodict*             | Plugins         | Verarbeitung von XML Dokumenten |
+    +-------------------------+-----------------+---------------------------------+
+    | *hachoir-metadata*      | Plugins         | Extraktion von Datei--Metadaten |
+    +-------------------------+-----------------+---------------------------------+

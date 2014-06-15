@@ -1,0 +1,63 @@
+Motivation
+
+
+    * Überblick - Digitale Medienwelt
+    * Anforderungen an die Metadatenbeschaffung
+    * Zielsetzung (automatisierte Verarbeitung großer Datenmengen)
+
+Einführung
+
+    * Überblick - Filme und Metadatenverwaltung (grafik webservice -> tools -> outputformate)
+    * Resultierende Probleme
+    * Zielsetzung (grafik webservices -> libhugin -> outputfomrate/post und preprocessing)
+    * Anforderungen an das System (libhugin)
+      + OpenSource um Weiterentwicklung zu gewährleisten
+      + Logo und Namensgebung
+    * Zielgruppe
+
+
+Glossar
+
+    * Fachbegriffe
+    * Kontextspezifische Fachbegriffe
+
+Design
+
+    * Grundüberlegungen
+        * modularer ansatz (pluginsystem)
+        * hugin harvest (provider, converter, postprocessor)
+        * hugin analyze (analyzer, modifier, comparator (experimentiel -> DataMining))
+
+    * Integration in die Umwelt (anpassbar nach baukastenprinzip, grafik umelt ohne libhugin, umwelt mit libhugin)
+    * Spezifikation und Entwurf
+
+Implementierung
+
+    * Kurzüberblick API (hugin harvest)
+    * Grundlegender Ablauf Metadaten Suche
+    * Liste und Beschreibung Provider, Converter, Postprocessor
+
+    * Kurzüberblick API (hugin analyze)
+    * Grundlegender Ablauf Metadaten Analyze
+    * Liste und Beschreibung modifier, analyzer, comparator
+    * Modul und Paketübersicht
+
+Verschiedenes (Entwicklungumgebung & Co.)
+
+    * Codeing Richtilinen
+    * Vim und Ipython
+    * Testumgebung
+
+Demonstration von libhugin in der ,,Praxis''
+
+    * Demoanwendung libhugin
+    * Konzeptionelle Integration von libhugin als Plugin in das OpenSource Projekt XBMC
+    * Weitere Einsatzmöglichkeiten in der Praxis
+
+Ausblick
+
+    * Aktueller Stand libhugin
+    * Erfüllte- und nicht erfüllte Anforderungen
+    * Verbesserungsmöglichkeiten
+    * Ideen Weiterentwicklung
+    * Abschließendes Fazit

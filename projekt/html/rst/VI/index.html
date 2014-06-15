@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6 Demonstrationsanwendung &mdash; Projektarbeit</title>
+  <title>6 Implementierung &mdash; Projektarbeit</title>
   
 
   
@@ -18,21 +18,6 @@
 
   
   
-
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:'../../',
-        VERSION:'0.1',
-        COLLAPSE_INDEX:false,
-        FILE_SUFFIX:'.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
     
 
   
@@ -40,13 +25,12 @@
   
   
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   
     <link rel="top" title="Projektarbeit" href="../../index.html"/>
-        <link rel="next" title="7 Zusammenfassung" href="../VII/index.html"/>
-        <link rel="prev" title="5 Implementierung" href="../V/index.html"/>
+        <link rel="next" title="7 Demoanwendungen" href="../VII/index.html"/>
+        <link rel="prev" title="5 Entwurf" href="../V/index.html"/>
 
 <!-- Include all CSS and JS files, let's you use your own theme. -->
 
@@ -75,26 +59,29 @@
 </script>
 
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="icon icon-home"> Projektarbeit</a>
-        <form class="wy-form" action="../../search.html" method="get">
-  <input type="text" name="q" placeholder="Search docs" />
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
+        <a href="../index.html" class="fa fa-home"> Projektarbeit</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
             <ul>
@@ -103,62 +90,65 @@
 <li class="toctree-l1"><a class="reference internal" href="../dedication.html">Widmung</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../I/index.html">1 Motivation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../I/index.html#stand-der-technik">1.1 Stand der Technik</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../I/index.html#zielsetzung">1.2 Zielsetzung</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../I/index.html#verbesserungsmoglichkeiten">1.3 Verbesserungsmöglichkeiten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../I/index.html">1 Einleitung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#motivation">1.1 Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#projektziel">1.2 Projektziel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#projektlizenz">1.3 Projektlizenz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../I/index.html#namensgebung">1.4 Namensgebung</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../II/index.html">2 Einführung</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#zielsetzung">2.1 Zielsetzung</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#vorhandene-alternativen">2.2 Vorhandene Alternativen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#vorhandene-arbeiten">2.3 Vorhandene Arbeiten</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#id17">2.4 Schlussfolgerungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#anforderungen">2.5 Anforderungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#zielgruppe">2.6 Zielgruppe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../II/index.html">2 Begriffsdefinitionen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../II/index.html#fachbegriffe">2.1 Fachbegriffe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../II/index.html#kontextspezifische-fachbegriffe">2.2 Kontextspezifische Fachbegriffe</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../III/index.html">3 Begriffsklärungen</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../III/index.html#allgemeine-fachbegriffe">3.1 Allgemeine Fachbegriffe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../III/index.html#kontextspezifische-fachbegriffe">3.2 Kontextspezifische Fachbegriffe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../III/index.html">3 Stand der Metadatenpflege</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#metadatenarten-und-quellen">3.1 Metadatenarten und Quellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#software-und-metadatenformate">3.2 Software und Metadatenformate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#probleme-bei-der-metadatenpflege">3.3 Probleme bei der Metadatenpflege</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#probleme-bei-der-metadatensuche">3.4 Probleme bei der Metadatensuche</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#anforderungen-an-das-projekt">3.5 Anforderungen an das Projekt</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../IV/index.html">4 Design</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../IV/index.html#algorithmik">4.1 Algorithmik</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../IV/index.html#integration-von-libmunin-in-die-umwelt">4.2 Integration von <em>libmunin</em> in die Umwelt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../IV/index.html#entwurf-der-software">4.3 Entwurf der Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IV/index.html">4 Softwarespezifikation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../IV/index.html#anforderungen-an-die-bibliothek">4.1 Anforderungen an die Bibliothek</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../V/index.html">5 Implementierung</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../V/index.html#anwendungsbeispiel">5.1 Anwendungsbeispiel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../V/index.html#kurze-implementierungshistorie">5.2 Kurze Implementierungshistorie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../V/index.html#liste-verfugbarer-empfehlungs-strategien">5.3 Liste verfügbarer Empfehlungs&ndash;Strategien</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../V/index.html#liste-der-provider">5.4 Liste der Provider</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../V/index.html#liste-der-distanzfunktionen">5.5 Liste der Distanzfunktionen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../V/index.html#modul-und-paketubersicht">5.6 Modul&ndash; und Paketübersicht</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../V/index.html#trivia">5.7 Trivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../V/index.html">5 Entwurf</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../V/index.html#grunduberlegungen">5.1 Grundüberlegungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../V/index.html#libhugin-architektur-uberblick">5.2 Libhugin Architektur&ndash;Überblick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../V/index.html#bibliothek-dateistruktur">5.3 Bibliothek Dateistruktur</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">6 Demonstrationsanwendung</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#intro">6.1 Intro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#anwendungsubersicht">6.2 Anwendungsübersicht</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">6 Implementierung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#libhugin-harvest-api">6.1 Libhugin&ndash;harvest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libhugin-harvest-plugins">6.2 Libhugin&ndash;harvest Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libhugin-analyze-api">6.3 Libhugin&ndash;analyze API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libhugin-analyze-plugins">6.4 Libhugin&ndash;analyze Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verschiedenes">6.5 Verschiedenes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../VII/index.html">7 Zusammenfassung</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#aktueller-stand">7.1 Aktueller Stand</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#zusammenhang-mit-datamining">7.2 Zusammenhang mit Datamining</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#nicht-oder-unvollstandig-erfullte-anforderungen">7.3 Nicht oder unvollständig erfüllte Anforderungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#implementierungsdefizite">7.4 Implementierungsdefizite</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#denkbare-weiterentwicklungen">7.5 Denkbare Weiterentwicklungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#abschlieszendes-fazit">7.6 Abschließendes Fazit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VII/index.html">7 Demoanwendungen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#libhugin-harvest-cli-tool-geri">7.1 Libhugin&ndash;harvest CLI&ndash;Tool Geri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#libhugin-analyze-cli-tool-freki">7.2 Libhugin&ndash;analyze CLI&ndash;Tool Freki</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#xbmc-plugin-integration">7.3 XBMC Plugin Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#weitere-einsatzmoglichkeiten">7.4 Weitere Einsatzmöglichkeiten</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../VIII/index.html">8 Zusammenfassung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#aktueller-stand">8.1 Aktueller Stand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#erfullung-der-gesetzten-anforderungen">8.2 Erfüllung der gesetzten Anforderungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#defizite-und-verbesserungen">8.3 Defizite und Verbesserungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#denkbare-weiterentwicklungen">8.4 Denkbare Weiterentwicklungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#abschlieszendes-fazit">8.5 Abschließendes Fazit</a></li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../appendix.html"><tt class="docutils literal"><span class="pre">coldstart.py</span></tt></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendix.html#ausfuhrliches-beispiel">Ausführliches Beispiel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendix.html#bilder-der-demoanwendung">Bilder der Demoanwendung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Helferfunktion für NFO&ndash;Dateien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html#xbmc-scraper-plugin">XBMC&ndash;Scraper&ndash;Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html#libhugin-xbmc-proxy">Libhugin XBMC Proxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html#projektstatistik-cloc">Projektstatistik (<em>cloc</em>)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz_bibliography.html">Bibliographie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz_bibliography.html#weblink-verzeichnis">Weblink Verzeichnis</a></li>
 </ul>
@@ -171,256 +161,492 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top">
-        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
-        <a href="/">Projektarbeit</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Projektarbeit</a>
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <ul class="wy-breadcrumbs">
-  <li><a href="../index.html">Docs</a> &raquo;</li>
-  <li><a href="">6 Demonstrationsanwendung</a></li>
-  
-</ul>
-<hr/>
-
-          
-  <div class="section" id="demonstrationsanwendung">
-<h1>6 Demonstrationsanwendung<a class="headerlink" href="#demonstrationsanwendung" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="intro">
-<h2>6.1 Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
-<p>Abseits der Bibliothek wurde eine, auf dem freien
-Oberflächen&ndash;Framework <span class="math">\(\text{GTK+-}3.0\)</span> basierende, GUI-Anwendung
-entwickelt.  Wie eingangs erwähnt, dient diese nicht nur zum <em>Showoff</em>, sondern
-auch zur gezielten Fehlersuche.</p>
-<p>Die Anwendung, die den ebenfalls nordischen Namen <em>Naglfar</em> erhielt, stellt
-einen MPD-Client bereit. Im Hintergrund werkelt dabei <em>Moosecat</em>.  Vor der
-ersten Benutzung muss gemäß Abb. <a href="../IV/index.html#fig-startup">4.2</a> eine Session aufgebaut
-werden. Dies erledigt das Skript <tt class="docutils literal"><span class="pre">coldstart.py</span></tt> (siehe
-<a class="reference internal" href="../appendix.html#coldstart-example"><em>coldstart.py</em></a> im <em>Angang C</em>). Dies kann durch das Ziehen der
-Liedtexte und der Audioanalyse beim ersten Lauf sehr lange dauern &mdash; bis zu
-zwei Stunden. Danach sind allerdings die Liedtexte zwischengelagert und der
-zweite Lauf dauert dann nur noch wenige Minuten.</p>
-<p>Nach dem <tt class="docutils literal"><span class="pre">coldstart.py</span></tt> die <em>Session</em> auf die Platte geschrieben hat, kann die
-eigentliche Anwendung gestartet werden. Diese verbindet sich zuallererst mit
-einem MPD-Server der auf <em>localhost</em> unter Port <em>6601</em> lauscht. Dort  beschafft
-sich die Anwendung alle Metadaten, um die <em>Playlist</em> und <em>Database</em>-Ansicht zu
-befüllen.  Danach wird besagte <em>Session</em> geladen. Nach der Initialisierung der
-<em>GUI</em> ist die Anwendung nun bereit benutzt zu werden.</p>
-<p>Damit zwischen den von <em>libmunin</em> herausgegebenen Empfehlungen und den internen
-Songs unterschieden werden kann, generiert <tt class="docutils literal"><span class="pre">coldstart.py</span></tt> eine Hashtabelle, die
-zwischen den <em>ID</em> von <em>libmunin's</em> Songs und den Dateipfaden innerhalb der
-Musikdatenbank eine Beziehung herstellt. Diese Hashtabelle wird in der Session
-gespeichert. Die Musikdatenbank selbst besteht dabei aus <em>666</em> ausgewählten
-Liedern aus der privaten Musiksammlung des Autors.</p>
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>6 Implementierung</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/rst/VI/index.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
 </div>
-<div class="section" id="anwendungsubersicht">
-<h2>6.2 Anwendungsübersicht<a class="headerlink" href="#anwendungsubersicht" title="Permalink to this headline">¶</a></h2>
-<p>In Abb. <a href="#fig-demo-overview">6.2</a> wird eine Übersicht über die GUI der Anwendung
-gegeben. Detailliertere Ansichten werden unter <a class="reference internal" href="../appendix.html#demo-pics"><em>Bilder der Demoanwendung</em></a> gezeigt.  Im
-Folgenden wird nun eine textuelle Übersicht über die <em>Features</em> der Anwendung
-gegeben.</p>
-<div class="section" id="ansichten">
-<h3>6.2.1 Ansichten<a class="headerlink" href="#ansichten" title="Permalink to this headline">¶</a></h3>
-<p>Die Anwendung ist in unterschiedliche <em>Ansichten</em> (englisch <em>Views</em>) aufteilt,
-die jeweils in unterschiedlichen Reitern stecken. Im Folgenden wird eine Übersicht
-über alle <em>Views</em> gegeben:</p>
-<ul>
-<li><p class="first"><strong>Database:</strong> Siehe Abb. <a href="../appendix.html#fig-demo-database">[broken link :-(]</a>.</p>
-<p>Anzeige der gesamten Musikdatenbank durch die Spalten <tt class="docutils literal"><span class="pre">Artist</span></tt>, <tt class="docutils literal"><span class="pre">Album</span></tt>,
-<tt class="docutils literal"><span class="pre">Titel</span></tt>, <tt class="docutils literal"><span class="pre">Datum</span></tt> und <tt class="docutils literal"><span class="pre">Genre</span></tt>. Jede Zeile entspricht dabei einem Song.
-Ein Rechtsklickmenü auf einen beliebigen Song fördert ein Kontextmenü zu Tage
-(siehe Abb. <a href="#fig-demo-context-menu">6.1</a>), dass mehrere Möglichkeiten
-bietet, um die Playlist mit Empfehlungen zu befüllen (entsprechend Kapitel
-<a class="reference internal" href="../V/index.html#list-of-recom-strategies">5.3</a>).  Im Folgenden ist <span class="math">\(N\)</span> die Anzahl
-der gewünschten Empfehlungen, die im Empfehlungszähler (siehe
-Nr. 5 in Abb. <a href="#fig-demo-overview">6.2</a>) eingestellt ist.</p>
-<ul>
-<li><p class="first"><strong>Ausgewählten Song als Seedsong nehmen:</strong> Erstellt <span class="math">\(N\)</span>
-Empfehlungen basierend auf dem selektierten Song und reiht sie in die Playlist
-ein.</p>
-</li>
-<li><p class="first"><strong>Playlist säubern und ausgewählten Song als Seedsong nehmen:</strong> Wie oben,
-leert aber vor dem Einreihen die Playlist.</p>
-</li>
-<li><p class="first"><strong>Suche einen Seedsong mit einem bestimmten Attribut:</strong> Sucht einen
-Seedsong nach bestimmten Kriterien, die der Nutzer im Eingabefeld oben
-rechts angeben kann. Dort kann ein <em>Suchbegriff</em> in der folgenden Form
-angegeben werden:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;attribut&gt;: &lt;wert&gt;[, &lt;attribut&gt;: &lt;wert&gt;, ...]
+          <div role="main">
+            
+  <div class="section" id="implementierung">
+<h1>6 Implementierung<a class="headerlink" href="#implementierung" title="Permalink to this headline">¶</a></h1>
+<p>Im Folgenden soll die API und die implementierten Plugins vorgestellt werden.</p>
+<div class="section" id="libhugin-harvest-api">
+<h2>6.1 Libhugin&ndash;harvest API<a class="headerlink" href="#libhugin-harvest-api" title="Permalink to this headline">¶</a></h2>
+<p>Die API wurde sehr einfach gehalten und ermöglicht dadurch dem Benutzer ein
+schnelles Einarbeiten. Folgendes Beispiel, in der interaktiven Python&ndash;Shell,
+zeigt die typische Benutzung der API:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hugin.harvest.session</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">query</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">create_query</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#39;Prometheus&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="go">[&lt;TMDBMovie &lt;picture, movie&gt; : Prometheus (2012)&gt;,</span>
+<span class="go">&lt;OFDBMovie &lt;movie&gt; :  Prometheus - Dunkle Zeichen (2012)&gt;,</span>
+<span class="go">&lt;OMDBMovie &lt;movie&gt; : Prometheus (2012)&gt;]</span>
 </pre></div>
 </div>
-<p>Folgendes Beispiel findet alle Songs mit dem Künstler <em>,,Billy Talent&quot;</em> <strong>und</strong>
-dem Genre <em>,,Rock&quot;</em>:</p>
-<div class="highlight-python"><div class="highlight"><pre>genre: rock, artist: Billy Talent
+<p>Für weitere Beispiele siehe offizielle <em>libhugin&ndash;harvest</em> API <a class="reference internal" href="../zzz_bibliography.html#huginapi" id="id1">[Link&ndash;36]</a>.</p>
+</div>
+<div class="section" id="libhugin-harvest-plugins">
+<h2>6.2 Libhugin&ndash;harvest Plugins<a class="headerlink" href="#libhugin-harvest-plugins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="provider-plugins">
+<h3>6.2.1 Provider&ndash;Plugins<a class="headerlink" href="#provider-plugins" title="Permalink to this headline">¶</a></h3>
+<p>Libhugin&ndash;harvest hat aktuell verschiedene Provider implementiert (siehe Abbildung
+<a href="#table-provideroverview">6.1</a>).</p>
+<div class="figure align-center" id="table-provideroverview">
+<center><table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="headalign-center">&nbsp;</th>
+<th class="headalign-center"><em>TMDb</em></th>
+<th class="headalign-center"><em>OFDb</em></th>
+<th class="headalign-center"><em>Videobuster</em></th>
+<th class="headalign-center"><em>Filmstarts</em></th>
+<th class="headalign-center"><em>OMDb</em></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td class="align-center"><em>Priorität</em></td>
+<td class="align-center">90</td>
+<td class="align-center">80</td>
+<td class="align-center">70</td>
+<td class="align-center">65</td>
+<td class="align-center">65</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>Providerart</em></td>
+<td class="align-center">movie/person</td>
+<td class="align-center">movie/person</td>
+<td class="align-center">movie</td>
+<td class="align-center">movie</td>
+<td class="align-center">movie</td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>Metadaten</em></td>
+<td class="align-center">textuell/grafisch</td>
+<td class="align-center">textuell</td>
+<td class="align-center">textuell</td>
+<td class="align-center">textuell</td>
+<td class="align-center">textuell</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>Sprache</em></td>
+<td class="align-center">multilingual</td>
+<td class="align-center">deutsch</td>
+<td class="align-center">deutsch</td>
+<td class="align-center">deutsch</td>
+<td class="align-center">englisch</td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>Unschärfesuche Online</em></td>
+<td class="align-center"><span class="math">\(\times\)</span></td>
+<td class="align-center"><span class="math">\(\times\)</span></td>
+<td class="align-center"><span class="math">\(\times\)</span></td>
+<td class="align-center"><span class="math">\(\times\)</span></td>
+<td class="align-center"><span class="math">\(\times\)</span></td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>Unschärfesuche libhugin</em></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>IMDB&ndash;Suche Online</em></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\times\)</span></td>
+<td class="align-center"><span class="math">\(\times\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>IMDB&ndash;Suche  libhugin</em></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>API verfügbar</em></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<td class="align-center"><span class="math">\(\times\)</span></td>
+<td class="align-center"><span class="math">\(\times\)</span></td>
+<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+</tr>
+</tbody>
+</table>
+<p class="caption"><strong>Figure 6.1:</strong> Übersicht implementierter Provider und Funktionalität.</p>
+</center></div><p id="table-provideroverview">Ein paar der Provider, wie <tt class="docutils literal"><span class="pre">Filmstarts</span></tt>, <tt class="docutils literal"><span class="pre">Videobuster</span></tt> lassen sich noch
+weiter ausbauen. Diese unterstützen momentan nur textuelle Metadaten, würden
+sich aber um grafische Metadaten erweitern lassen. Die in der Tabelle
+festgelegten Prioritäten wurden hier willkürlich für Testzwecke vergeben. Diese
+können jederzeit an die eigenen Bedürfnisse angepasst werden.</p>
+</div>
+<div class="section" id="postprocessor-plugins">
+<h3>6.2.2 Postprocessor&ndash;Plugins<a class="headerlink" href="#postprocessor-plugins" title="Permalink to this headline">¶</a></h3>
+<p>Die Postprocessor&ndash;Plugins beim <em>libgugin&ndash;harvest</em> Teil sind für die direkte
+,,Nachbearbeitung&quot; der Daten gedacht.</p>
+<p><strong>Compose:</strong>
+Das <tt class="docutils literal"><span class="pre">Compose</span></tt>&ndash;Plugin ist das momentane Kernstück der Postprocessor&ndash;Plugins. Das
+Plugin gruppiert die Ergebnisse verschiedener Onlinequellen nach Film und bietet
+dem Benutzer dadurch folgende Möglichkeiten:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Ergebnis komponieren.</li>
+<li>Genre zusammenführen.</li>
+</ol>
+</div></blockquote>
+<p><strong>Zu 1.):</strong> Es erlaubt dem Benutzer sich ein nach seinen Wünschen
+zusammengesetztes Ergebnis zu komponieren. Der Benutzer kann über das Angeben
+einer Profilmaske bestimmen, wie sich die Metadaten zusammensetzen sollen.
+Hier kann er beispielsweise angeben, dass er den Filmtitel, Jahr und Cover vom
+Provider <em>TMDb</em> möchte, die Inhaltsbeschreibung jedoch immer vom <em>Filmstarts</em>
+Provider. Hier besteht auch die Möglichkeit eines ,,Fallbacks&quot;, falls <em>Filmstarts</em>
+keine Inhaltsbeschreibung hat, dann kann auch auf andere Provider
+zurückgegriffen werden.</p>
+<p>Beispiel für eine Profilmaske, die TMDb als Standardprovider nimmt und die
+Inhaltsbeschreibung vom OFDb&ndash;Provider nimmt. Falls keine OFDb&ndash;Inhaltsbeschreibung
+vorhanden ist, dann erfolgt ein ,,Fallback&quot; auf den OMDb&ndash;Provider:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;{&#39;default&#39;:[&#39;tmdbmovie&#39;], &#39;plot&#39;:[&#39;ofdbmovie&#39;, &#39;omdbmovie&#39;]}&quot;</span> &gt; profilemask
 </pre></div>
 </div>
-<p>Werden mehrere Suchergebnisse gefunden, so werden alle als Seedsongs
-genutzt, um in die Playlist <span class="math">\(N\)</span> neue Songs einzureihen.</p>
-<p>Diese Funktionalität ist momentan relativ eingeschränkt, da nur exakte
-Treffer funktionieren. Ist das <em>Genre</em> also als <em>,,rock / pop&quot;</em> getaggt, so
-wird die Suche erfolglos verlaufen.</p>
-</li>
-<li><p class="first"><strong>Lasse libmunin einen Seedsong auswählen:</strong> <em>libmunin</em> wählt automatisch
-einen Seedsong nach folgenden Kriterien (gemäß Kapitel
-<a class="reference internal" href="../V/index.html#list-of-recom-strategies">5.3</a>):</p>
-<ol class="arabic simple">
-<li>Nutze die Seedsongs, die in der am besten bewertesten Regel vorkommen.</li>
-<li>Falls keine Regel vorhanden, nutze den meist abgespielten Song als
-Seedsong.</li>
-<li>Schlägt auch das fehl wird ein zufälliger Song ausgewählt.</li>
-</ol>
-<p>In allen Fällen werden dann <span class="math">\(N\)</span> Empfehlungen in die Playlist
-eingereiht.</p>
-</li>
-<li><p class="first"><strong>Erstelle eine komplett zufällige Playlist:</strong> Reiht <span class="math">\(N\)</span> neue,
-komplett zufällig aus der Datenbank gewählte, Songs in die Playlist ein.
-Nützlich um die komplett zufällige Playlist mit einer von <em>libmunin</em> erstellten
-Playlist zu vergleichen. Der Seed für die <tt class="docutils literal"><span class="pre">random()</span></tt>-Funktion ist dabei immer
-gleich, daher erstellt dies nach einem Neustart stets dieselbe Liste.</p>
-</li>
+<p>Wird keine Profilmaske angegeben, so werden fehlende Attribute nach
+Provider&ndash;Priorität aufgefüllt.</p>
+<p><strong>Zu 2.):</strong> Dieses Feature erlaubt dem Benutzer divergente Genres
+beim gleichen Film zu verschmelzen. Das macht das Genre feingranularer und
+behebt die genannte Problematik (siehe Abbildung <a href="../III/index.html#table-feuchtgebiete">3.4</a>)
+divergenter Genres bei verschiedenen Onlinequellen. Das Genre wird hier wie
+folgt zusammengesetzt:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Drei Genre der Unterschiedlichen Provider      # Zusammengeführtes Genre</span>
+<span class="o">[</span>Comedy, Drama<span class="o">]</span>, <span class="o">[</span>Komödie, Drama<span class="o">]</span>, <span class="o">[</span>Erotik<span class="o">]</span> ---&gt; <span class="o">[</span>Komödie, Drama, Erotik<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>Trim:</strong>
+Dies ist vergleichsweise ein einfaches Plugin, welches dafür zuständig, ist
+vorangehende und nachziehende Leerzeichen bei den Metadaten zu entfernen. Das
+Plugin führt eine Bereinigung durch, diese muss nicht explizit vom
+Provider&ndash;Plugin durchgeführt werden.</p>
+</div>
+<div class="section" id="converter-plugins">
+<h3>6.2.3 Converter&ndash;Plugins<a class="headerlink" href="#converter-plugins" title="Permalink to this headline">¶</a></h3>
+<p>Bei den Converter&ndash;Plugins wurde zu Demonstrationszwecken ein <em>HTML</em>&ndash;Converter
+und ein <em>JSON</em>&ndash;Converter implementiert.</p>
+<p>Des Weiteren wurde für den Produktiveinsatz ein XBMC <em>Nfo</em>&ndash;Converter
+implementiert, dieser wird vom <em>libhugin</em>&ndash;Proxy (siehe Libhugin&ndash;Proxy,
+<a class="reference internal" href="../VII/index.html#libhuginproxy">7.3.1</a>) verwendet, um dem XBMC&ndash;libhugin Plugin (siehe XBMC Plugin
+Integration, <a class="reference internal" href="../VII/index.html#xbmcplugin">7.3</a>) die Metadaten im richtigen Format zu liefern.</p>
+</div>
+</div>
+<div class="section" id="libhugin-analyze-api">
+<span id="analyzeapiexample"></span><h2>6.3 Libhugin&ndash;analyze API<a class="headerlink" href="#libhugin-analyze-api" title="Permalink to this headline">¶</a></h2>
+<p>Die API von <em>libhugin&ndash;analyze</em> ist vom Grundaufbau ähnlich zu der
+<em>libhugin&ndash;harvest</em> API. Folgendes Beispiel&ndash;Snippet zeigt die Anwendung des
+<tt class="docutils literal"><span class="pre">BracketClean</span></tt>&ndash;Plugins auf <em>Rohdaten</em>, welche nicht aus der internen Datenbank
+stammen.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hugin.analyze.session</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="go">    # Beispieltext. Erstelle Sitzung mit Dummy DB. Hole BracketClean Plugin.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">example_text</span> <span class="o">=</span> <span class="s">&quot;Aus diesem Text wird die Klammer (welche?) samt Inhalt entfernt!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">session</span> <span class="o">=</span> <span class="n">session</span><span class="p">(</span><span class="s">&#39;/tmp/temporary.db&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BracketClean</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">modifier_plugins</span><span class="p">(</span><span class="s">&#39;BracketClean&#39;</span><span class="p">)</span>
+<span class="go">    # Wende Plugin im raw Modus auf Daten an</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">modify_raw</span><span class="p">(</span><span class="n">BracketClean</span><span class="p">,</span> <span class="s">&#39;plot&#39;</span><span class="p">,</span> <span class="n">example_text</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="go">Aus diesem Text wird die Klammer samt Inhalt entfernt!</span>
+</pre></div>
+</div>
+<p>Weitere Beispiele bezüglich Einsatz von <em>libhugin&ndash;analyze</em> siehe Demoanwendung
+Freki  (siehe <a class="reference internal" href="../VII/index.html#ref-freki">7.2</a>).</p>
+</div>
+<div class="section" id="libhugin-analyze-plugins">
+<h2>6.4 Libhugin&ndash;analyze Plugins<a class="headerlink" href="#libhugin-analyze-plugins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modifier-plugins">
+<h3>6.4.1 Modifier&ndash;Plugins<a class="headerlink" href="#modifier-plugins" title="Permalink to this headline">¶</a></h3>
+<p><strong>BracketClean:</strong>
+Das <tt class="docutils literal"><span class="pre">BracketClean</span></tt>&ndash;Plugin ist für nachträgliche Manipulation der
+Inhaltsbeschreibung gedacht. Das Plugin entfernt alle Klammern samt Inhalt aus
+der Beschreibung. Das vereinheitlicht die Inhaltsbeschreibung in dem Sinne, dass
+alle Schauspieler oder Informationen in Klammern aus der Beschreibung entfernt
+werden.</p>
+<p><strong>PlotLangChange:</strong>
+Das <tt class="docutils literal"><span class="pre">PlotLangChange</span></tt>&ndash;Plugin ist für das nachträgliche Ändern der
+Inhaltsbeschreibung zuständig. Es hat die Funktion, die Sprache des Plots zu
+ändern.</p>
+</div>
+<div class="section" id="analyzer-plugins">
+<h3>6.4.2 Analyzer&ndash;Plugins<a class="headerlink" href="#analyzer-plugins" title="Permalink to this headline">¶</a></h3>
+<p><strong>KeywordExtract:</strong>
+Dieses Plugin extrahiert aus einem Text, bei Filmen meist die
+Inhaltsbeschreibung, relevante Schlüsselwörter, die den Text beziehungsweise
+die darin dargestellte Thematik repräsentieren.</p>
+<p><strong>FileTypeAnalyze:</strong>
+Das <tt class="docutils literal"><span class="pre">FileTypeAnalyze</span></tt>&ndash;Plugin arbeitet mit den Videodaten selbst. Es ist für die
+Extraktion der Datei&ndash;Metadaten zuständig. Momentan extrahiert es:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Auflösung</li>
+<li>Seitenverhältnis</li>
+<li>Videocodec</li>
+<li>Audiocodec, Anzahl der Audiokanäle, Sprache</li>
 </ul>
-<div class="figure align-center" id="fig-demo-context-menu">
-<a class="reference internal image-reference" href="../../_images/demo_context_menu.png"><img alt="Das Kontextmenu in der Playlist und Database Ansicht" src="../../_images/demo_context_menu.png" style="width: 30%;" /></a>
-<p class="caption"><strong>Figure 6.1:</strong> Die Einträge des Kontextmenüs in der Playlist und Database Ansicht</p>
+</div></blockquote>
+<p><strong>LangIdentify:</strong>
+Der <tt class="docutils literal"><span class="pre">LangIdentify</span></tt>&ndash;Analyzer erkennt die Sprache des verwendeten Plots und schreibt
+die Information zu den Analysedaten.</p>
 </div>
-</li>
+<div class="section" id="comparator-plugins">
+<h3>6.4.3 Comparator&ndash;Plugins<a class="headerlink" href="#comparator-plugins" title="Permalink to this headline">¶</a></h3>
+<p>Dieser Plugintyp ist experimentell, er ist für statistische Zwecke und
+Analysen bezüglich der Vergleichbarkeit von Filmen anhand der Metadaten gedacht.</p>
+<p>Folgende Comparator&ndash;Plugins wurden konzeptionell implementiert:</p>
+<p><strong>GenreCmp:</strong>
+Ein Plugin, das die Genres verschiedener Filme miteinander vergleicht.</p>
+<p><strong>KeywordCmp:</strong>
+Ein Plugin, das die Schlüsselwörter verschiedener Filme miteinander vergleicht.</p>
+</div>
+</div>
+<div class="section" id="verschiedenes">
+<h2>6.5 Verschiedenes<a class="headerlink" href="#verschiedenes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="testverfahren">
+<h3>6.5.1 Testverfahren<a class="headerlink" href="#testverfahren" title="Permalink to this headline">¶</a></h3>
+<p>Für das Testen der Software wird das Python Unittest&ndash;Framework verwendet.
+Bisher wurden Tests für die wichtigsten Grundklassen und das
+Provider&ndash;Pluginsystem erstellt, um ein valides Verhalten der Provider&ndash;Plugins
+zu gewährleisten.</p>
+<p>Die Unittests wurden direkt in der ,,Main&quot; der jeweiligen Klasse untergebracht.
+Diese werden dann beim Ausführen der Python&ndash;Datei gestartet.</p>
+<p>Folgendes Beispiel zeigt die Funktionsweise:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">unittest</span>
+
+    <span class="k">class</span> <span class="nc">SimpleTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">test_add_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Das Ausführen des Beispielcodes würde folgende Ausgabe produzieren:</p>
+<div class="highlight-bash"><div class="highlight"><pre>Ran 1 <span class="nb">test </span>in 0.000s
+
+OK
+</pre></div>
+</div>
+<p>Alle geschriebenen Tests werden bei jedem ,,Einspielen&quot; der Änderungen in das
+verwendete Quellcode&ndash;Versionsverwaltungssystem automatisiert über einen
+externen Dienst ausgeführt (siehe Entwicklungsumgebung, <a class="reference internal" href="#dev">6.5.2</a>).</p>
+</div>
+<div class="section" id="entwicklungumgebung">
+<span id="dev"></span><h3>6.5.2 Entwicklungumgebung<a class="headerlink" href="#entwicklungumgebung" title="Permalink to this headline">¶</a></h3>
+<p><strong>Programmiersprache:</strong>
+Für die Entwicklung der Bibliothek wurde die Programmiersprache Python, in der
+Version 3.3, aus folgenden Gründen gewählt:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Rapid Prototyping Language:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Wichtig bei einem Projekt dieser Größe mit begrenztem Zeitraum (vgl. <a class="reference internal" href="../zzz_bibliography.html#lutz2013learning" id="id2">[2]</a>).</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Plattformunabhängigkeit:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">Plattformunabhängigkeit ist ein sekundäres Ziel des Projekts.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Einfach erlernbar:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Wichtig für Pluginentwickler wegen der kurzen Einarbeitungszeit.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Verbreitungsgrad:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">Gängige Skriptsprache bei vielen Open&ndash;Source&ndash;Projekten.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Optimierungsmöglichkeiten:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Möglichkeit der Erweiterung durch
+<span class="math">\(\mathrm{C/C{\scriptstyle\overset{\!++}{\vphantom{\_}}}}\)</span>&ndash;Code,
+Optimierung von Python mittels Cython (siehe <a class="reference internal" href="../zzz_bibliography.html#cython" id="id3">[Link&ndash;37]</a>, vgl.
+<a class="reference internal" href="../zzz_bibliography.html#lutz2013learning" id="id4">[2]</a>).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Entwicklungssytem:</strong>
+Die Bibliothek wird unter <em>Archlinux</em> entwickelt. Für die Entwicklung wird der
+Editor <em>gVim</em> mit entsprechenden Python&ndash;Plugins zur Validierung der Python
+PEP&ndash;Stilrichtlinien (siehe <a class="reference internal" href="../zzz_bibliography.html#pep" id="id5">[Link&ndash;38]</a>) verwendet. Des Weiteren wird die
+interaktive Python Shell <em>IPython</em> eingesetzt.</p>
+<p><strong>Quellcodeverwaltung:</strong>
+Für die Quellcodeverwaltung wird das Versionsverwaltungssystem <em>git</em>
+eingesetzt. Der Quellcode selbst wird auf dem Hosting&ndash;Dienst für
+Software&ndash;Entwicklungsprojekte <em>GitHub</em> (siehe <a class="reference internal" href="../zzz_bibliography.html#github" id="id6">[Link&ndash;39]</a>) gelagert. Das
+Projekt ist auf folgender GitHub Seite zu finden:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/qitta/libhugin">https://github.com/qitta/libhugin</a></li>
 </ul>
-<p><strong>Playlist:</strong> Siehe Abb. <a href="../appendix.html#fig-demo-playlist">[broken link :-(]</a>.</p>
-<p>Wie die <em>Database&ndash;Ansicht</em>, zeigt aber lediglich die Songs an, die empfohlen
-wurden. Sonst ist diese Ansicht funktionsidentisch mit der <em>Database&ndash;Ansicht</em>.</p>
-<p><strong>Graph:</strong> Siehe Abb. <a href="../appendix.html#fig-demo-graph">[broken link :-(]</a>.</p>
-<p>In der <em>Graphenansicht</em> kann ein Plot von <em>libmunin's</em> Graphen begutachtet werden.
-Dies ist oft nützlich, um nachzuvollziehen welche Empfehlungen aus welchen Grund
-gegeben wurden, da man im Graphen die Nachbarn eines Seedsongs betrachten
-kann.</p>
-<p><strong>Rules:</strong> Siehe Abb. <a href="../appendix.html#fig-demo-rules">[broken link :-(]</a>.</p>
-<p>In einer Liste werden alle bekannten Assoziationsregel
-angezeigt. Dabei wird neben beiden Seiten der Regel auch der <em>Supportcount</em>
-und das <em>Rating</em> der Regel angezeigt. Beide werden hier nicht näher erklärt.</p>
-<p><strong>Examine:</strong> Siehe Abb. <a href="../appendix.html#fig-demo-examine">[broken link :-(]</a>.</p>
-<p>Hier werden alle Attribute des momentan spielenden Songs angezeigt.  Es wird die
-von <em>libmunin</em> normalisierte Form angezeigt, als auch, falls verfügbar, der
-Originalwert.  Zudem wird die <tt class="docutils literal"><span class="pre">moodbar</span></tt> (falls vorhanden) oben im Fenster
-geplottet.</p>
-<p><strong>History:</strong> Siehe Abb. <a href="../appendix.html#fig-demo-history">[broken link :-(]</a>.</p>
-<p>Neben einer chronologischen Auflistung aller Songs die in letzter Zeit
-gehört wurden (Begrenzung auf 1000 Stück), werden hier auch die zuletzt
-ausgestellten Empfehlungen (Begrenzung auf 10 Stück) angezeigt.
-Letzteres ist für das Debugging der Filterfunktion nützlich.</p>
+</div></blockquote>
+<p><strong>Automatisches Testen:</strong>
+Die oben genannten Softwaretests werden von <em>TravisCI</em> (siehe <a class="reference internal" href="../zzz_bibliography.html#travisci" id="id7">[Link&ndash;40]</a>),
+einem sogenanntem ,,Continuous Integration Service&quot; automatisch ausgeführt. Dies
+passiert bei jedem Hochladen von Quellcodeänderungen auf <em>GitHub</em>. <em>GitHub</em> hat
+hier eine Service&ndash;Schnittstelle zu <em>TravisCI,</em> welche aktiviert wurde.</p>
+<p>Ein Symbol (siehe Abbildung <a href="#fig-build">6.2</a>) auf der <em>libhugin</em>
+Github&ndash;Projektseite teilt so dem Besuchern der Seite den aktuellen
+,,Projektstatus&quot; mit.</p>
+<div class="figure align-center" id="fig-build">
+<a class="reference internal image-reference" href="../../_images/build.png"><img alt="Symbol, das den aktuellen ,,Build Status&quot; der GitHub--Projektseite zeigt" src="../../_images/build.png" style="width: 60%;" /></a>
+<p class="caption"><strong>Figure 6.2:</strong> Symbol, das den aktuellen ,,Build&ndash;Status&quot; der GitHub&ndash;Projektseite zeigt.</p>
 </div>
-<div class="section" id="weitere-steuerlemente">
-<h3>6.2.2 Weitere Steuerlemente<a class="headerlink" href="#weitere-steuerlemente" title="Permalink to this headline">¶</a></h3>
-<p>Aus Gründen der Vollständigkeit werden hier, die unter Abb.
-<a href="#fig-demo-overview">6.2</a> gezeigten Elemente noch erklärt.</p>
-<ol class="arabic" start="2">
-<li><p class="first"><strong>Seedsong:</strong> Zeigt mit einem roten Kreis den zuletzt ausgewählten
-Seedsong an.  Falls es mehrere Seedsongs gab, wird nur der erste
-markiert.</p>
-</li>
-<li><p class="first"><strong>Current Song:</strong> Ein dreieckiges Icon, das den aktuell spielenden (oder
-pausierten) Song anzeigt.</p>
-</li>
-<li><p class="first"><strong>Playlist:</strong> Die Playlist&ndash;Ansicht, wie bereits oben gezeigt.</p>
-</li>
-<li><p class="first"><strong>Empfehlungszähler:</strong> Die Anzahl an Empfehlungen, die ein Klick im
-Kontextmenü liefert.</p>
-</li>
-<li><p class="first"><strong>Filter:</strong> Togglebutton (<span class="math">\($,,\sout{a}”$\)</span> als Icon) der anzeigt, ob
-der Filtermodus aktiviert ist.  Ist er aktiv, so darf sich in einer dynamisch
-erstellten Playlist der Künstler nur alle drei Stücke wiederholen, der selbe
-Künstler <em>und</em> das selbe Album nur alle fünf Stücke.</p>
-</li>
-<li><p class="first"><strong>Mininmaler Höranteil:</strong> Ein Klick auf den Button fördert einen Slider zu
-Tage auf dem man eine Prozentzahl einstellt. Diese legt fest, welcher Anteil
-eines Liedes (in Prozent) <em>mindestens</em> angehört werden muss, damit er zur
-Historie hinzugefügt wird.</p>
-<p>Um diese Funktionalität zu realisieren, musste <em>Moosecat</em> um diese
-Funktionalität erweitert werden.</p>
-</li>
-<li><p class="first"><strong>Attributsuche:</strong> Eingabe einer Folge von Attribut&ndash;Werte&ndash;Paaren die ein
-Seedsong bei der Attributsuche  haben sollte.</p>
-</li>
-<li><p class="first"><strong>Rating:</strong> Ein spezielles Steuerelement, in den man das <em>Rating</em> des aktuell
-spielenden Songs setzen kann. Beim Erstellen der <em>Session</em> durch
-<tt class="docutils literal"><span class="pre">coldstart.py</span></tt> wird ein ungesetztes <em>Rating</em> von ,,:math:<cite>0</cite>&quot; angenommen.</p>
-<p>Zum Setzen klickt man einfach ins Feld, die Seite links vom Cursor wird dann
-eingefärbt.  Es ist möglich etwas links vom ersten Stern zu klicken, um das
-Rating auf ,,0&quot; (und damit <em>ungesetzt</em>) zurückzusetzen.</p>
-<p>Ein Ändern des Ratings hat ein Neuzeichnen des Graphen in der Graphen&ndash;Ansicht
-zufolge. Dies liegt daran, dass das Ändern des Ratings mittels der
-<tt class="docutils literal"><span class="pre">modify</span></tt>&ndash;Operation erfolgt. Diese fügt den Song an einer möglicherweise
-anderen Stelle im Graphen wieder ein.</p>
-</li>
-<li><p class="first"><strong>Playcount:</strong> Zeigt an wie oft ein Lied bereits gehört wurde. Ein Lied gilt
-als nicht gehört, wenn prozentuell nur ein kleiner Teil als der gesetzte
-minimale Höranteil angehört wurde.</p>
-<p>Zur optischen Vorhebung ist es mit einer Fortschrittsanzeige hinterlegt.
-Sobald man 100 mal ein Lied hört, zeigt diese vollen Füllstand an.</p>
-</li>
-<li><p class="first"><strong>Volumebar</strong> Regler für die Lautstärke.</p>
-</li>
-<li><p class="first"><strong>Title Label:</strong> Zeigt das aktuell spielende Lied mit Titel, Album und
-Künstler an.</p>
-</li>
-<li><p class="first"><strong>Modebuttons:</strong> Umschalten zwischen <em>Random</em> (nächstes Lied ist zufällig),
-<em>Single</em> (höre nach diesem Lied auf zu spielen), <em>Repeat</em> (spring zum Anfang
-der Playlist nach dem letzten Lied) und <em>Consume</em> (Lösche das Lied aus der
-Playlist nach dem Abspielen).</p>
-</li>
-<li><p class="first"><strong>Seekbar:</strong> Ermöglicht das wahlfreie Hin- und Herspringen innerhalb des
-aktuellen Liedes.  Übersprungene Abschnitte eines Liedes fließen nicht in
-den <em>Höranteil</em> ein. Doppelt gehörte Parts schon.  Daher sind Werte
-<span class="math">\(\ge 100\%\)</span> möglich.</p>
-</li>
-<li><p class="first"><strong>Playbuttons:</strong> Die ,,üblichen&quot; Kontrollen eines Musicplayers zum
-<em>Pausieren/Abspielen</em> (an momentaner Stelle anhalten/weiterspielen),
-<em>Stoppen</em> (Anhalt und zum Anfang der Playlist springen), <em>Nächstes</em> und
-<em>Vorheriges</em> Lied .</p>
-</li>
-<li><p class="first"><strong>Suche:</strong> Erlaubt das Filtern der Playlist oder Datenbank.</p>
-<p>Suchbegriffe können einfacher Natur wie <em>,,beat&quot;</em> (Findet alles das
-<em>,,beat&quot;</em> im Künstler-, Album- oder Titel&ndash;Tag beeinhaltet) sein. Oder auch
-eher komplizierter Natur: <em>,,(genre:rock + y:2001..2003) | artist:Beat&quot;</em>
-(Findet alles das <em>,,rock&quot;</em> im Genre hat und in den Jahren <em>2001</em> bis
-einschließlich <em>2003</em> released wurde, oder dessen Künstler ein Wort enthält,
-das mit ,,Beat&quot; beginnt).</p>
-<p><em>Anmerkung:</em> Die ,,Such&ndash;Engine&quot; dahinter ist in <em>Moosecat</em> implementiert.
-Die Suche kann mit <tt class="kbd docutils literal"><span class="pre">Strg-f</span></tt> oder <tt class="kbd docutils literal"><span class="pre">/</span></tt> <em>(Slash)</em> aktiviert und mit
-<tt class="kbd docutils literal"><span class="pre">Esc</span></tt> wieder versteckt werden.</p>
-</li>
-</ol>
-<div class="figure align-center" id="fig-demo-overview">
-<a class="reference internal image-reference" href="../../_images/demo_overview.svg"><img alt="Übersicht über die Demoanwendung" src="../../_images/demo_overview.svg" width="80%" /></a>
-<p class="caption"><strong>Figure 6.2:</strong> Übersicht über die Demonanwendung.</p>
+<p><strong>Projektdokumentation:</strong>
+Das Projekt wird nach dem Prinzip der <em>literalen Programmierung</em> entwickelt, wie
+von <em>Donald E. Knuth</em> (siehe <a class="reference internal" href="../zzz_bibliography.html#knuth" id="id8">[Link&ndash;41]</a>) empfohlen. Hierbei liegen Quelltext
+und Dokumentation des Programms in der gleichen Datei.</p>
+<p>Die Dokumentation kann so über spezielle Softwaredokumentationswerkzeuge
+generiert werden. Unter Python wird hier das Softwaredokumentationswerkzeug
+<em>Sphinx</em> (siehe <a class="reference internal" href="../zzz_bibliography.html#sphinxdoc" id="id9">[Link&ndash;42]</a>) verwendet. Die offizielle
+Projektdokumentation, aktuell hauptsächlich der <em>libhugin-harvest</em> Teil, ist auf
+der Plattform <em>ReadTheDocs</em> (siehe <a class="reference internal" href="../zzz_bibliography.html#rtfd" id="id10">[Link&ndash;43]</a>) gehostet und unter folgender
+Adresse zu finden:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://libhugin.rtfd.org">http://libhugin.rtfd.org</a></li>
+</ul>
+</div></blockquote>
+<p>Dieses kann eine Dokumentation in verschiedenen Formaten generieren, auch diese
+Projektarbeit wurde in <em>reStructuredText</em> (siehe <a class="reference internal" href="../zzz_bibliography.html#rst" id="id11">[Link&ndash;44]</a>) geschrieben und
+mit <em>Sphinx</em> generiert.</p>
+<p>Des Weiteren wird dem Entwickler bei Nutzung der
+Bibliothek in der interaktiven Python&ndash;Shell eine zusätzliche Hilfestellung
+geboten (siehe Abbildung <a href="#fig-knuth">6.3</a>).</p>
+<div class="figure align-center" id="fig-knuth">
+<a class="reference internal image-reference" href="../../_images/knuth.png"><img alt="API--Dokumentation als Hilfestellung in der interaktiven Python--Shell bpython" src="../../_images/knuth.png" style="width: 80%;" /></a>
+<p class="caption"><strong>Figure 6.3:</strong> API&ndash;Dokumentation als Hilfestellung in der interaktiven Python&ndash;Shell bpython.</p>
 </div>
-</div>
+<p><strong>Projektumfang:</strong>
+Der Projektumfang beträgt ca. 3500 <em>lines of code</em>,  hinzu kommt noch
+die Onlinedokumentation. Eine Statistik zum Projekt, welche mit dem Tool
+<em>cloc</em> erstellt wurde, ist im Anhang unter <a class="reference internal" href="../appendix.html#ref-cloc"><em>Projektstatistik (cloc)</em></a> zu finden.</p>
+<p><strong>Externe Bibliotheken:</strong>
+Die Tabelle <a href="#table-libs">6.4</a> listet alle verwendeten externen Abhängigkeiten
+für die <em>libhugin</em>&ndash;Bibliothek.</p>
+<div class="figure align-center" id="table-libs">
+<center><table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="23%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="headalign-center"><em>Abhängigkeit</em></th>
+<th class="headalign-center"><em>Verwendung in</em></th>
+<th class="headalign-center"><em>Einsatzzweck</em></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td class="align-center"><em>yapsy</em></td>
+<td class="align-center">Pluginsystem</td>
+<td class="align-center">Laden von Plugins</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>charade</em></td>
+<td class="align-center">Downloadqueue</td>
+<td class="align-center">Encodingerkennung</td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>parse</em></td>
+<td class="align-center">Plugins</td>
+<td class="align-center">Parsen von Zeitstrings</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>httplib2</em></td>
+<td class="align-center">Downloadqueue</td>
+<td class="align-center">Content download</td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>jinja2</em></td>
+<td class="align-center">Plugins</td>
+<td class="align-center">HTML Template Engine</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>docopt</em></td>
+<td class="align-center">Cli&ndash;Tools</td>
+<td class="align-center">CLI&ndash;Optionparser</td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>Flask</em></td>
+<td class="align-center">Huginproxy</td>
+<td class="align-center">Webframework, RESTful interface</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>guess_language-spirit</em></td>
+<td class="align-center">Plugins</td>
+<td class="align-center">Spracherkennung</td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>PyStemmer</em></td>
+<td class="align-center">Plugins</td>
+<td class="align-center">Stemming von Wörtern</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>pyxDamerauLevenshtein</em></td>
+<td class="align-center">Plugins, Utils</td>
+<td class="align-center">Vergleich von Strings</td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>Pyaml</em></td>
+<td class="align-center">Plugins</td>
+<td class="align-center">Verarbeitung von Yaml Dateien</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>beaufifulsoup4</em></td>
+<td class="align-center">Plugins</td>
+<td class="align-center">Parsen von HTML Seiten</td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>xmltodict</em></td>
+<td class="align-center">Plugins</td>
+<td class="align-center">Verarbeitung von XML Dokumenten</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>hachoir-metadata</em></td>
+<td class="align-center">Plugins</td>
+<td class="align-center">Extraktion von Datei&ndash;Metadaten</td>
+</tr>
+</tbody>
+</table>
+<p class="caption"><strong>Figure 6.4:</strong> Übersicht über externe Abhängigkeiten.</p>
+<span class="target" id="table-libs"></span></center></div></div>
 </div>
 </div>
 
 
+          </div>
           <footer>
   
-    <div class="rst-footer-buttons">
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../VII/index.html" class="btn btn-neutral float-right" title="7 Zusammenfassung"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../VII/index.html" class="btn btn-neutral float-right" title="7 Demoanwendungen"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../V/index.html" class="btn btn-neutral" title="5 Implementierung"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../V/index.html" class="btn btn-neutral" title="5 Entwurf"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
 
   <hr/>
 
-  <p>
-      &copy; Copyright by Christopher Pahl, 2013-2014..
-  </p>
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright by Christoph Piechula, 2013-2014..
+    </p>
+  </div>
 
-  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
         </div>
       </div>
@@ -429,6 +655,39 @@ Die Suche kann mit <tt class="kbd docutils literal"><span class="pre">Strg-f</sp
 
   </div>
   
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
 
 </body>
 </html>

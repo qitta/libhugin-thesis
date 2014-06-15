@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5 Implementierung &mdash; Projektarbeit</title>
+  <title>5 Entwurf &mdash; Projektarbeit</title>
   
 
   
@@ -18,21 +18,6 @@
 
   
   
-
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:'../../',
-        VERSION:'0.1',
-        COLLAPSE_INDEX:false,
-        FILE_SUFFIX:'.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
     
 
   
@@ -40,13 +25,12 @@
   
   
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   
     <link rel="top" title="Projektarbeit" href="../../index.html"/>
-        <link rel="next" title="6 Demonstrationsanwendung" href="../VI/index.html"/>
-        <link rel="prev" title="4 Design" href="../IV/index.html"/>
+        <link rel="next" title="6 Implementierung" href="../VI/index.html"/>
+        <link rel="prev" title="4 Softwarespezifikation" href="../IV/index.html"/>
 
 <!-- Include all CSS and JS files, let's you use your own theme. -->
 
@@ -75,26 +59,29 @@
 </script>
 
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="icon icon-home"> Projektarbeit</a>
-        <form class="wy-form" action="../../search.html" method="get">
-  <input type="text" name="q" placeholder="Search docs" />
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
+        <a href="../index.html" class="fa fa-home"> Projektarbeit</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
             <ul>
@@ -103,62 +90,65 @@
 <li class="toctree-l1"><a class="reference internal" href="../dedication.html">Widmung</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../I/index.html">1 Motivation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../I/index.html#stand-der-technik">1.1 Stand der Technik</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../I/index.html#zielsetzung">1.2 Zielsetzung</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../I/index.html#verbesserungsmoglichkeiten">1.3 Verbesserungsmöglichkeiten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../I/index.html">1 Einleitung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#motivation">1.1 Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#projektziel">1.2 Projektziel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../I/index.html#projektlizenz">1.3 Projektlizenz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../I/index.html#namensgebung">1.4 Namensgebung</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../II/index.html">2 Einführung</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#zielsetzung">2.1 Zielsetzung</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#vorhandene-alternativen">2.2 Vorhandene Alternativen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#vorhandene-arbeiten">2.3 Vorhandene Arbeiten</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#id17">2.4 Schlussfolgerungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#anforderungen">2.5 Anforderungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../II/index.html#zielgruppe">2.6 Zielgruppe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../II/index.html">2 Begriffsdefinitionen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../II/index.html#fachbegriffe">2.1 Fachbegriffe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../II/index.html#kontextspezifische-fachbegriffe">2.2 Kontextspezifische Fachbegriffe</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../III/index.html">3 Begriffsklärungen</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../III/index.html#allgemeine-fachbegriffe">3.1 Allgemeine Fachbegriffe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../III/index.html#kontextspezifische-fachbegriffe">3.2 Kontextspezifische Fachbegriffe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../III/index.html">3 Stand der Metadatenpflege</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#metadatenarten-und-quellen">3.1 Metadatenarten und Quellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#software-und-metadatenformate">3.2 Software und Metadatenformate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#probleme-bei-der-metadatenpflege">3.3 Probleme bei der Metadatenpflege</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#probleme-bei-der-metadatensuche">3.4 Probleme bei der Metadatensuche</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../III/index.html#anforderungen-an-das-projekt">3.5 Anforderungen an das Projekt</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../IV/index.html">4 Design</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../IV/index.html#algorithmik">4.1 Algorithmik</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../IV/index.html#integration-von-libmunin-in-die-umwelt">4.2 Integration von <em>libmunin</em> in die Umwelt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../IV/index.html#entwurf-der-software">4.3 Entwurf der Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IV/index.html">4 Softwarespezifikation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../IV/index.html#anforderungen-an-die-bibliothek">4.1 Anforderungen an die Bibliothek</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">5 Implementierung</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#anwendungsbeispiel">5.1 Anwendungsbeispiel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kurze-implementierungshistorie">5.2 Kurze Implementierungshistorie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#liste-verfugbarer-empfehlungs-strategien">5.3 Liste verfügbarer Empfehlungs&ndash;Strategien</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#liste-der-provider">5.4 Liste der Provider</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#liste-der-distanzfunktionen">5.5 Liste der Distanzfunktionen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#modul-und-paketubersicht">5.6 Modul&ndash; und Paketübersicht</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#trivia">5.7 Trivia</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">5 Entwurf</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#grunduberlegungen">5.1 Grundüberlegungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libhugin-architektur-uberblick">5.2 Libhugin Architektur&ndash;Überblick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bibliothek-dateistruktur">5.3 Bibliothek Dateistruktur</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../VI/index.html">6 Demonstrationsanwendung</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#intro">6.1 Intro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#anwendungsubersicht">6.2 Anwendungsübersicht</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VI/index.html">6 Implementierung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#libhugin-harvest-api">6.1 Libhugin&ndash;harvest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#libhugin-harvest-plugins">6.2 Libhugin&ndash;harvest Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#libhugin-analyze-api">6.3 Libhugin&ndash;analyze API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#libhugin-analyze-plugins">6.4 Libhugin&ndash;analyze Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VI/index.html#verschiedenes">6.5 Verschiedenes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../VII/index.html">7 Zusammenfassung</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#aktueller-stand">7.1 Aktueller Stand</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#zusammenhang-mit-datamining">7.2 Zusammenhang mit Datamining</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#nicht-oder-unvollstandig-erfullte-anforderungen">7.3 Nicht oder unvollständig erfüllte Anforderungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#implementierungsdefizite">7.4 Implementierungsdefizite</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#denkbare-weiterentwicklungen">7.5 Denkbare Weiterentwicklungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#abschlieszendes-fazit">7.6 Abschließendes Fazit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VII/index.html">7 Demoanwendungen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#libhugin-harvest-cli-tool-geri">7.1 Libhugin&ndash;harvest CLI&ndash;Tool Geri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#libhugin-analyze-cli-tool-freki">7.2 Libhugin&ndash;analyze CLI&ndash;Tool Freki</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#xbmc-plugin-integration">7.3 XBMC Plugin Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VII/index.html#weitere-einsatzmoglichkeiten">7.4 Weitere Einsatzmöglichkeiten</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../VIII/index.html">8 Zusammenfassung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#aktueller-stand">8.1 Aktueller Stand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#erfullung-der-gesetzten-anforderungen">8.2 Erfüllung der gesetzten Anforderungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#defizite-und-verbesserungen">8.3 Defizite und Verbesserungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#denkbare-weiterentwicklungen">8.4 Denkbare Weiterentwicklungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VIII/index.html#abschlieszendes-fazit">8.5 Abschließendes Fazit</a></li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../appendix.html"><tt class="docutils literal"><span class="pre">coldstart.py</span></tt></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendix.html#ausfuhrliches-beispiel">Ausführliches Beispiel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendix.html#bilder-der-demoanwendung">Bilder der Demoanwendung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Helferfunktion für NFO&ndash;Dateien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html#xbmc-scraper-plugin">XBMC&ndash;Scraper&ndash;Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html#libhugin-xbmc-proxy">Libhugin XBMC Proxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html#projektstatistik-cloc">Projektstatistik (<em>cloc</em>)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz_bibliography.html">Bibliographie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz_bibliography.html#weblink-verzeichnis">Weblink Verzeichnis</a></li>
 </ul>
@@ -171,971 +161,596 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top">
-        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
-        <a href="/">Projektarbeit</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Projektarbeit</a>
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <ul class="wy-breadcrumbs">
-  <li><a href="../index.html">Docs</a> &raquo;</li>
-  <li><a href="">5 Implementierung</a></li>
-  
-</ul>
-<hr/>
-
-          
-  <div class="section" id="implementierung">
-<h1>5 Implementierung<a class="headerlink" href="#implementierung" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="anwendungsbeispiel">
-<h2>5.1 Anwendungsbeispiel<a class="headerlink" href="#anwendungsbeispiel" title="Permalink to this headline">¶</a></h2>
-<p>Beispiele sind oft ein guter Weg, um ein Gefühl für eine Bibliothek
-zu bekommen. Das folgende minimale, in Python gechriebene Beispiel liest <em>Songs</em>
-aus einer Pseudodatenbank und erstellt für den ersten Song zwei Empfehlungen:</p>
-<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span class="hll"><span class="kn">from</span> <span class="nn">munin.easy</span> <span class="kn">import</span> <span class="n">EasySession</span>
-</span>
-<span class="hll"><span class="n">MY_DATABASE</span> <span class="o">=</span> <span class="p">[</span>
-</span>    <span class="c"># Artist:           Album:               Title:             Genre:</span>
-    <span class="p">(</span><span class="s">&#39;Akrea&#39;</span>          <span class="p">,</span> <span class="s">&#39;Lebenslinie&#39;</span>      <span class="p">,</span> <span class="s">&#39;Trugbild&#39;</span>       <span class="p">,</span> <span class="s">&#39;death metal&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;Vogelfrey&#39;</span>      <span class="p">,</span> <span class="s">&#39;Wiegenfest&#39;</span>       <span class="p">,</span> <span class="s">&#39;Heldentod&#39;</span>      <span class="p">,</span> <span class="s">&#39;folk metal&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;Letzte Instanz&#39;</span> <span class="p">,</span> <span class="s">&#39;Götter auf Abruf&#39;</span> <span class="p">,</span> <span class="s">&#39;Salve te&#39;</span>       <span class="p">,</span> <span class="s">&#39;folk rock&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;Debauchery&#39;</span>     <span class="p">,</span> <span class="s">&#39;Continue to Kill&#39;</span> <span class="p">,</span> <span class="s">&#39;Apostle of War&#39;</span> <span class="p">,</span> <span class="s">&#39;brutal death&#39;</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">EasySession</span><span class="p">()</span>
-<span class="hll"><span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">():</span>
-</span><span class="hll">    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">artist</span><span class="p">,</span> <span class="n">album</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">genre</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">MY_DATABASE</span><span class="p">):</span>
-</span>         <span class="n">session</span><span class="o">.</span><span class="n">mapping</span><span class="p">[</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">({</span>
-<span class="hll">             <span class="s">&#39;artist&#39;</span><span class="p">:</span> <span class="n">artist</span><span class="p">,</span>
-</span>             <span class="s">&#39;album&#39;</span><span class="p">:</span> <span class="n">album</span><span class="p">,</span>
-             <span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
-             <span class="s">&#39;genre&#39;</span><span class="p">:</span> <span class="n">genre</span>
-         <span class="p">})]</span> <span class="o">=</span> <span class="n">idx</span>
-
-<span class="k">for</span> <span class="n">munin_song</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">recommend_from_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-<span class="hll">    <span class="k">print</span><span class="p">(</span><span class="n">MY_DATABASE</span><span class="p">[</span><span class="n">munin_song</span><span class="o">.</span><span class="n">uid</span><span class="p">])</span>
-</span></pre></div>
-</td></tr></table></div>
-<p>Ist <em>libmunin</em> korrekt installiert <a class="footnote-reference" href="#f1" id="id1"><sup>1</sup></a>, so lässt sich dieses Skript als
-<tt class="docutils literal"><span class="pre">minimal.py</span></tt> ablegen und ausführen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python minimal.py
-<span class="o">(</span><span class="s1">&#39;Debauchery&#39;</span> , <span class="s1">&#39;Continue to Kill&#39;</span> , <span class="s1">&#39;Apostle of War&#39;</span> , <span class="s1">&#39;brutal death&#39;</span><span class="o">)</span>
-<span class="o">(</span><span class="s1">&#39;Vogelfrey&#39;</span>  , <span class="s1">&#39;Wiegenfest&#39;</span>       , <span class="s1">&#39;Heldentod&#39;</span>      , <span class="s1">&#39;folk metal&#39;</span><span class="o">)</span>,
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>5 Entwurf</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/rst/V/index.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="entwurf">
+<h1>5 Entwurf<a class="headerlink" href="#entwurf" title="Permalink to this headline">¶</a></h1>
+<p>Im Folgenden wird der systematische Entwurf der Software aufgezeigt. Die
+verwendeten Algorithmen, Probleme, sowie Möglichkeiten der technischen
+Umsetzung werden in der Bachelorarbeit genauer beleuchtet und diskutiert.</p>
+<div class="section" id="grunduberlegungen">
+<h2>5.1 Grundüberlegungen<a class="headerlink" href="#grunduberlegungen" title="Permalink to this headline">¶</a></h2>
+<p>Metadaten werden über verschiedene Onlinequellen bezogen. Hier wird
+grundsätzlich zwischen Onlinequellen mit API und ohne API unterschieden.
+Onlinequellen mit API bieten dem Entwickler direkt eine Schnittstelle, über
+welche die interne Datenbank des Metadatenanbieters abgefragt werden kann. Die
+Onlinequellen mit API unterteilen sich in die zwei Technologien RESTful (vgl.
+<a class="reference internal" href="../zzz_bibliography.html#fielding2000architectural" id="id1">[1]</a>) und SOAP (vgl. <a class="reference internal" href="../zzz_bibliography.html#snell2002webservice" id="id2">[3]</a>).</p>
+<p>Folgende Shellsitzung demonstriert einen Zugriff mit dem Webtransfer&ndash;Tool
+<em>cURL</em> (siehe <a class="reference internal" href="../zzz_bibliography.html#curl" id="id3">[Link&ndash;26]</a>) auf die API der OMDb&ndash;Onlinequelle (siehe
+<a class="reference internal" href="../zzz_bibliography.html#omdb" id="id4">[Link&ndash;27]</a>), es wird nach dem Film ,,The Matrix&quot; gesucht (Ausgabe gekürzt):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://www.omdbapi.com/?t<span class="o">=</span>The+Matrix
+<span class="o">{</span><span class="s2">&quot;Title&quot;</span>:<span class="s2">&quot;The Matrix&quot;</span>,
+<span class="s2">&quot;Year&quot;</span>:<span class="s2">&quot;1999&quot;</span>,
+<span class="s2">&quot;Runtime&quot;</span>:<span class="s2">&quot;136 min&quot;</span>,
+<span class="s2">&quot;Genre&quot;</span>:<span class="s2">&quot;Action, Sci--Fi&quot;</span>,
+<span class="s2">&quot;Director&quot;</span>:<span class="s2">&quot;Andy Wachowski, Lana Wachowski&quot;</span>,
+<span class="s2">&quot;Actors&quot;</span>:<span class="s2">&quot;Keanu Reeves, Laurence Fishburne, Carrie--Anne Moss, Hugo Weaving&quot;</span>,
+<span class="s2">&quot;Plot&quot;</span>:<span class="s2">&quot;A computer hacker learns from mysterious [...]&quot;</span>,
+<span class="s2">&quot;Country&quot;</span>:<span class="s2">&quot;USA, Australia&quot;</span>,
+<span class="s2">&quot;Poster&quot;</span>:<span class="s2">&quot;http://ia.media-imdb.com/images/M/SX300.jpg&quot;</span>,
+<span class="s2">&quot;imdbRating&quot;</span>:<span class="s2">&quot;8.7&quot;</span>,
+<span class="s2">&quot;imdbID&quot;</span>:<span class="s2">&quot;tt0133093&quot;</span>,
+<span class="o">[</span>...<span class="o">]</span>
+<span class="s2">&quot;Type&quot;</span>:<span class="s2">&quot;movie&quot;</span>,
+<span class="s2">&quot;Response&quot;</span>:<span class="s2">&quot;True&quot;</span>
+<span class="o">}</span>
 </pre></div>
 </div>
-<div class="section" id="kurze-erlauterung-des-beispiels">
-<h3>5.1.1 Kurze Erläuterung des Beispiels<a class="headerlink" href="#kurze-erlauterung-des-beispiels" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><p class="first"><strong>Zeile 1:</strong> Der Einstiegspunkt von <em>libmunin's</em> API ist immer eine <em>Session</em>.
-Da die Konfiguration (Auswahl von Provider, Distanzfunktionen und Gewichtung)
-einer solchen  recht anstrengend werden kann, greifen wir auf eine
-Session mit vorgefertigter Maske zurück &mdash; die sogenannte <tt class="docutils literal"><span class="pre">EasySession</span></tt>.</p>
-</li>
-<li><p class="first"><strong>Zeile 3:</strong> Hier erstellen wir uns eine Pseudodatenbank (als Python&ndash;Liste)
-aus vier Liedern mit vier einzelnen Attributen (als Quadrupel) jeweils.</p>
-</li>
-<li><p class="first"><strong>Zeile 10:</strong> Hier wird die oben erwähnte <tt class="docutils literal"><span class="pre">EasySession</span></tt> instanziert. Sie
-dient uns jetzt als <em>Sitzung</em> &mdash; alle relevanten Methoden von <em>libmunin</em>
-können auf der <em>Session</em> aufgerufen werden.</p>
-</li>
-<li><p class="first"><strong>Zeile 11:</strong> Beim initialen Importieren der Datenbank werden alle Songs über
-die <tt class="docutils literal"><span class="pre">add</span></tt>&ndash;Operation hinzugefügt. Da <tt class="docutils literal"><span class="pre">add</span></tt> noch keine Verbindungen
-zwischen den einzelnen Songs herstellt, stellen wir mit dieser Zeile sicher,
-dass nach dem Importieren ein <tt class="docutils literal"><span class="pre">rebuild</span></tt> ausgeführt wird (implizit in
-<strong>Zeile 19</strong>, nach dem Verlassen des vorherigen <em>,,Blocks&quot;</em>).</p>
-</li>
-<li><p class="first"><strong>Zeile 13:</strong> Wir iterieren (<strong>Zeile 12</strong>) über alle Songs in unserer
-Pseudodatenbank und fügen diese der <em>Session</em> hinzu (über die
-<tt class="docutils literal"><span class="pre">add</span></tt>&ndash;Operation). Zu beachten ist dabei: Es wird eine Hashtabelle übergeben
-in der bestimmte Schlüssel (wie <tt class="docutils literal"><span class="pre">artist</span></tt>) von der <tt class="docutils literal"><span class="pre">EasySession</span></tt> vorgegeben
-sind.  Erstellt man eine eigene Session, kann man diese nach Belieben
-konfigurieren.</p>
-<p>Ein Problem, dass man bei der Benutzung der Bibliothek hat ist: <em>libmunin</em> und
-der Nutzer halten zwei verschiedene Datenbanken im Speicher. Der Benutzer
-verwaltet die Originaldaten mit denen er arbeitet, während <em>libmunin</em> nur
-normalisierte Daten speichert. Das Problem dabei: Wie soll der Benutzer
-wissen, welche Empfehlung zu welchem Song in seinen Originaldaten gehört?</p>
-<p>Dazu ist eine Abbildung erforderlich, welche die <em>ID,</em> die <tt class="docutils literal"><span class="pre">add()</span></tt>
-zurückgibt, auf den Index innerhalb von <em>MY_DATABASE</em> abbildet. Diese
-Abbildung ist im Beispiel <tt class="docutils literal"><span class="pre">session.mapping</span></tt>. Sie erlaubt eine
-bidirektionales Auflösen der <em>ID</em> von <em>libmunin</em> zum Index in
-<em>MY_DATABASE</em>, und umgekehrt.</p>
-<p><em>Anmerkung:</em> Zugegeben, dieses Beispiel ist hier etwas konstruiert. Später hat man meist
-keinen Index in einer Pseudodatenbank, sondern beispielsweise einen Dateipfad
-als <em>UID</em>.</p>
-</li>
-<li><p class="first"><strong>Zeile 21:</strong> In dieser Zeile geben wir die ersten Empfehlungen aus. Wir lassen
-uns von der <tt class="docutils literal"><span class="pre">EasySession</span></tt> über die Methode <tt class="docutils literal"><span class="pre">recommend_from_seed</span></tt> zwei
-Empfehlungen zum ersten Song, der über <tt class="docutils literal"><span class="pre">add</span></tt> hinzugefügt wurde, geben. Die
-Empfehlung selbst wird als <tt class="docutils literal"><span class="pre">Song</span></tt> Objekt ausgegeben. Dieses hat unter
-anderen eine <em>ID</em> gespeichert, mit der wir die ursprünglichen Daten finden
-können.</p>
-</li>
-</ul>
-<p>Dieses und weitere Beispiele finden sich auf der API-Dokumentation <a class="reference internal" href="../zzz_bibliography.html#lx" id="id2">[Link&ndash;24]</a>
-im Web.</p>
-</div>
-<div class="section" id="kurze-erlauterung-der-ausgabe">
-<h3>5.1.2 Kurze Erläuterung der Ausgabe<a class="headerlink" href="#kurze-erlauterung-der-ausgabe" title="Permalink to this headline">¶</a></h3>
-<p>Die Ausgabe ist, bei näherer Betrachtung, nicht weiter überraschend: Da sich nur
-das Genre effektiv vergleichen lässt und wir uns von dem ersten Song
-<em>,,Trugbild&quot;</em> zwei Empfehlungen geben ließen, werden die zwei Songs mit dem
-ähnlichsten Genre ausgegeben.</p>
-<p>In Abb. <a href="#fig-minigraph">5.1</a> ist dies nochmal zu sehen: Der <em>Seedsong</em> <em>(ID 0)</em>
-ist direkt mit den Songs <em>1</em> (<em>Vogelfrey</em>) und <em>3</em> (<em>Debauchery</em>) benachbart.
-Da die beiden Genres <em>folk rock</em> und <em>death metal</em> keine gemeinsame Schnittmenge
-haben, ist dieser auch kein Nachbar. Verbindungen zwischen zwei Knoten, werden
-nur dann hergestellt, wenn die Distanz <span class="math">\(&lt; 1.0\)</span> ist.</p>
-<p>Ein komplizierteres Beispiel, das die meisten Aspekte von <em>libmunin</em> abdeckt,
-findet sich im Anhang, unter <a class="reference internal" href="../appendix.html#complex-example"><em>Ausführliches Beispiel</em></a>.</p>
-<div class="figure align-center" id="fig-minigraph">
-<a class="reference internal image-reference" href="../../_images/minigraph.png"><img alt="Minimaler Beispielgraph" src="../../_images/minigraph.png" style="width: 42%;" /></a>
-<p class="caption"><strong>Figure 5.1:</strong> Minimaler Beispielgraph der hinter dem obigen Beispiel steht. Die Dicke der
-Kanten indiziert die Distanz. Dünne Kanten implizieren eine kleine Distanz.
-Die Farbe der Knoten ist hier nicht relevant.</p>
-</div>
-</div>
-</div>
-<div class="section" id="kurze-implementierungshistorie">
-<h2>5.2 Kurze Implementierungshistorie<a class="headerlink" href="#kurze-implementierungshistorie" title="Permalink to this headline">¶</a></h2>
-<p>Am 11. Oktober 2013 wurde mit der Implementierung begonnen.
-Anfangs war, wie im Exposé vorgesehen, noch eine Distanzmatrix zur Speicherung
-der Distanzen und das Berechnen jeder einzelnen Song&ndash;Kombination vorgesehen &mdash;
-aus den bereits erwähnten Gründen hat sich das zu einer Approximation geändert.
-Hierbei eine vernünftige Herangehensweise zu finden, hat letztlich ca. 1
-<span class="math">\(^1/_2\)</span> Monate beansprucht.</p>
-<p>Die zwischenzeitlich aufgekommene Idee, Audiodaten mittels Audiofingerprints wie
-<em>Chromaprint</em> <a class="reference internal" href="../zzz_bibliography.html#chromaprint" id="id3">[Link&ndash;25]</a> zu vergleichen wurde wieder aufgegeben. Damit
-ließen sich wirklich nur fast gleiche Stücke ermitteln. Selbst <em>Live-</em> und
-<em>Studio&ndash;Versionen</em> der Lieder ließen sich manchmal nicht differenzieren.</p>
-<p>Parallel zur Implementierung wurde ein ,,Tagebuch&quot; <a class="reference internal" href="../zzz_bibliography.html#thv" id="id4">[Link&ndash;26]</a> verfasst, das
-dazu dienen sollte Ideen und Geschehnisse festzuhalten, allerdings weniger als
-Information für Dritte, mehr als persönliches Notizheft.</p>
-<p>Nach gut drei Monaten wurde am 15. Januar 2014 der erste Prototyp fertiggestellt.
-Die letzten 3 <span class="math">\(^1/_2\)</span> Wochen dieser Zeit wurden für die
-Implementierung einer Demo&ndash;Anwendung aufgewendet.</p>
-</div>
-<div class="section" id="liste-verfugbarer-empfehlungs-strategien">
-<span id="list-of-recom-strategies"></span><h2>5.3 Liste verfügbarer Empfehlungs&ndash;Strategien<a class="headerlink" href="#liste-verfugbarer-empfehlungs-strategien" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first"><strong>Basierend auf einem Seedsong:</strong> Basierend auf einem vom Endnutzer
-ausgewählten Song wird ein Iterator zurückgegeben, der gemäß Kapitel
-<a class="reference internal" href="../IV/index.html#recom-out">4.1.3</a> eine Breitensuche von diesem Seedsong aus ausführt. Optional
-wird  der <em>Iterator</em> gemäß Kapitel <a class="reference internal" href="../IV/index.html#recom-filter">4.1.4</a> gefiltert.</p>
-</li>
-<li><p class="first"><strong>Basierend auf einer Heuristik:</strong> <em>libmunin</em> kann auch automatisch einen oder
-mehrere geeignete Seedsongs auswählen. Dabei wird der Reihe nach das Folgende
-probiert:</p>
-<ol class="arabic simple">
-<li>Wähle die Regel mit der besten Bewertung aus und nehme alle darin erwähnten
-Songs als Seedsongs an.</li>
-<li>Wähle den Song mit der höchsten Abspielanzahl als Seedsong.</li>
-<li>Schlägt beides schief weil keine Regeln vorhanden sind oder noch nichts
-abgespielt wurde, so wird ein zufälliger Seedsong gezogen.</li>
-</ol>
-<p>Optional wird  der entstehende Iterator gemäß Kapitel <a class="reference internal" href="../IV/index.html#recom-filter">4.1.4</a> gefiltert.</p>
-</li>
-<li><p class="first"><strong>Basierend auf einer Attributsuche:</strong> Es kann nach einen oder mehreren Songs
-gesucht werden die gewisse Attribut&ndash;Werte&ndash;Paare aufweisen. Als Beispiel kann
-ein Song gesucht werden der die Merkmale <em>,,Genre: Rock&quot;</em> und <em>,,Date: 2012&quot;</em>
-aufweist.</p>
-<p>Alle passenden Songs, aber maximal 20, werden dann als Seedsongs angenommen.
-Optional wird  der entstehende Iterator gemäß Kapitel <a class="reference internal" href="../IV/index.html#recom-filter">4.1.4</a>
-gefiltert.</p>
-</li>
-</ul>
-</div>
-<div class="section" id="liste-der-provider">
-<span id="provider-list"></span><h2>5.4 Liste der Provider<a class="headerlink" href="#liste-der-provider" title="Permalink to this headline">¶</a></h2>
-<p>Insgesamt wurden 13 unterschiedliche Provider und 9 Distanzfunktionen
-implementiert. Davon variieren einige allerdings nur in Details.</p>
-<p>Die genaue Funktionsweise der Provider wird in der Bachelorarbeit betrachtet.
-Im Folgenden wird nur eine Auflistung verfügbarer Provider gegeben und welche
-Eingabe sie erwarten, sowie welche Ausgabe sie produzieren.</p>
-<ul>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Date</span></tt>: Wandelt und normalisiert ein Datum, das als String übergeben wird zu
-einer Jahreszahl (<em>1975</em> beispielsweise). Dabei werden die häufigsten
-Datumformatierungen automatisch erkannt. Dies ist nötig, da je nach Region ganz
-unterschiedliche Datumsangaben in den Audiofiles getaggt sind.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Moodbar</span></tt>: Berechnet mit dem <tt class="docutils literal"><span class="pre">moodbar</span></tt> (vgl. <a class="reference internal" href="../zzz_bibliography.html#wood2005techniques" id="id5">[10]</a>)
-Programm aus einem beliebigen Audio File einen Vektor mit 1000 RGB&ndash;Farbwerten
-(siehe Abb. <a href="#fig-moodbar-suidakra">5.2</a>). Jeder dieser Farbwerte repräsentiert
-den Anteil niedriger <em>(rot),</em> mittlerer <em>(grün)</em> und hoher
-Frequenzen <em>(blau)</em> in einem Tausendstel der Audiodaten.</p>
-<p>Obwohl man aus dem Namen dieses Verfahrens schließen könnte, dass hier die
-<em>Stimmung</em> im Lied angedeutet wird, kann man aus diesen Informationen
-lediglich herauslesen, wie ,,energiegeladen&quot; die Stimmung in einem Lied zu
-einem bestimmten Zeitpunkt ist, mit etwas Glück kann man auch Instrumente
-erkennen, so ist die Kombination von E&ndash;Gitarre und Drums oft ein helles
-Türkis. Akustikgitarren hingegen erscheinen meist in einem dunklem Orange.</p>
-<p>Aus diesem RGB&ndash;Vektoren werden die prägnantesten Merkmale abgeleitet: die
-dominanten Farben, der Stilleanteil (<em>schwarz</em>) und einige weitere Merkmale.</p>
-<p>Dieser Provider kommt in drei verschiedenen Ausführungen daher, die sich in dem
-Typ ihrer Eingabe unterscheiden:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal"><span class="pre">Moodbar</span></tt>: Nimmt eine Liste von 1000 RGB&ndash;Werten.</li>
-<li><tt class="docutils literal"><span class="pre">MoodbarFile</span></tt>: Nimmt einen Dateipfad zu einer von der <tt class="docutils literal"><span class="pre">moodbar</span></tt>
-erstellten Datei entgegen die einen Vektor aus 1000 RGB&ndash;Werten binär
-beinhaltet.</li>
-<li><tt class="docutils literal"><span class="pre">MoodbarAudioFile</span></tt>: Nimmt einen Dateipfad zu einer beliebigen Audiodatei
-entgegen und führt das <tt class="docutils literal"><span class="pre">moodbar</span></tt>-Utility darauf aus, falls noch keine
-weitere Datei mit demselben Dateipfad plus der zusätzlichen Endung <tt class="docutils literal"><span class="pre">.mood</span></tt>
-vorhanden ist.</li>
-</ol>
-<div class="figure align-center" id="fig-moodbar-suidakra">
-<a class="reference internal image-reference" href="../../_images/moodbar_suidakra.svg"><img alt="Moodbar Beispielsvisualisierung" src="../../_images/moodbar_suidakra.svg" width="100%" /></a>
-<p class="caption"><strong>Figure 5.2:</strong> Anzeige des RGB-Vektors samt Histogramm und Verlauf für das Lied ,,Over
-Nine Waves&quot; der Band ,,Suidakra&quot;. Der grüne Teil am Anfang ist ein
-Dudelsack&ndash;Intro. Bei 30% setzen relativ plötzlich harte E&ndash;Gitarren und
-Drums ein, die in verschiedenen Variationen durch das ganze Lied gehen.
-Musik&ndash;Link auf YouTube: <a class="reference internal" href="../zzz_bibliography.html#yts" id="id6">[Link&ndash;27]</a>.</p>
-</div>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Wordlist</span></tt>: Bricht einen String in eine Liste von Wörtern auf.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">BPM</span></tt>: Berechnet die ,,Beats&ndash;Per&ndash;Minute&quot; eines Lieds, also einem Maß für
-die Schnelligkeit. Dies funktioniert nicht nur für stark <em>beatlastige</em>
-Musikrichtungen wie <em>Techno,</em> sondern auch für <em>normale</em> Musik mit
-herkömmlichen Instrumenten.</p>
-<p>Die Funktionalität wird momentan, eher primitiv, durch den Aufruf eines externen
-Tools, namens <tt class="docutils literal"><span class="pre">bpm-tools</span></tt> realisiert <a class="reference internal" href="../zzz_bibliography.html#yz" id="id7">[Link&ndash;28]</a>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Normalize</span></tt>, <tt class="docutils literal"><span class="pre">ArtistNormalize</span></tt>, <tt class="docutils literal"><span class="pre">AlbumNormalize</span></tt>, <tt class="docutils literal"><span class="pre">TitleNormalize</span></tt>:
-Diese Provider normalisieren die häufig unsauberen Tags einer Musiksammlung
-auf verschiedene Art und Weise:</p>
-<ul class="simple">
-<li><tt class="docutils literal"><span class="pre">Normalize</span></tt>: Normalisiert einen String mittels <em>NKFC Unicode
-Normalization</em>.  Bei Unicode gibt es oft mehrere Arten einen <em>Glyph</em> zu
-schreiben. So kann ein <em>ä</em> als einzelner Glyph (<em>Codepoint</em> U+e4) oder als
-<em>Composite Glyph</em> geschrieben werden: <em>&quot;+a</em> (U+30B + U+61). Dieser
-Provider macht daraus stets den ersten Fall.</li>
-<li><tt class="docutils literal"><span class="pre">ArtistNormalize</span></tt>: Entfernt zusätzlich <em>Unrat</em> (welcher beim Vergleichen
-stört) der oft bei <em>Artist&ndash;Tags</em> vorhanden ist. Beispielsweise wird aus
-<em>,,The Beatles&quot;</em> der String <em>,,beatles&quot;</em></li>
-<li><tt class="docutils literal"><span class="pre">AlbumNormalize</span></tt>: Entfernt analog zu <tt class="docutils literal"><span class="pre">ArtistNormalize</span></tt> <em>Unrat</em> aus
-Album&ndash;Namen wie <em>,,(live 2012)&quot;</em> .</li>
-<li><tt class="docutils literal"><span class="pre">TitleNormalize</span></tt>: Momentan ein Synonym für <tt class="docutils literal"><span class="pre">AlbumNormalize</span></tt>.</li>
-</ul>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Composite</span></tt>: Erlaubt das Verketten von Providern. Der erste Eingabewert wird
-dem ersten Provider in der Kette gegeben und die Ausgabe, ähnlich wie bei
-einer Unix&ndash;Pipe, wird an den nächsten Provider in der Kette als Eingabe
-weitergegeben.</p>
-<p>Ein Anwendungsbeispiel wäre das Zusammenschalten mehrerer Provider nach
-Baukastenprinzip:</p>
-<p class="graphviz">
-<img src="../../_images/graphviz-930912a032f10249dcffed35664779fd4ae53789.png" alt="digraph foo {
-size=5;
-
-node [shape=record];
-
-subgraph {
-    rank = same; PlyrLyrics; Keywords; Stem
-}
-
-&quot;Eingabe: Artist, Album&quot; -&gt;  PlyrLyrics [label=&quot; Sucht im Web &quot;]
-PlyrLyrics -&gt; Keywords [label=&quot;liefert Songtext&quot;]
-Keywords -&gt; Stem [label=&quot;extrahiert Keywords&quot;]
-Stem -&gt; &quot;Ausgabe: Stemmed Keywords&quot; [label=&quot; Wortstamm--Keywords &quot;]
-}" />
-</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Stem</span></tt>: Bringt mithilfe des Porter&ndash;Stemmer&ndash;Algorithmus (<a class="reference internal" href="../zzz_bibliography.html#prt" id="id8">[Link&ndash;29]</a>)
-einzelne Wörter oder eine Liste von Wörtern auf ihren Wortstamm zurück. Aus
-den Wörtern <em>Fisher</em>, <em>Fish</em>, <em>fishing</em> wird beispielsweise stets <em>fish</em>. Dies
-ist natürlich abhängig von der Eingabesprache. Momentan wird aber stets
-Englisch angenommen.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">GenreTree</span></tt>: Der wohl komplizierteste Provider.
-Ein beliebiges Eingabegenre wird in einzelne Untergenres aufgeteilt und
-normalisiert.  Beispielsweise wird die Genrebeschreibung <em>Rock, Reggae /
-Alternative Rock</em> mittels eines regulären Ausdrucks in die Unterbestandteile
-aufgebrochen: <em>Rock</em>, <em>Reggae</em> und <em>Alternative Rock</em>.</p>
-<p>Danach wird jedes so entstandene Untergenre in einzelne Wörter aufgebrochen und
-in einem <em>Baum</em> bekannter Genres (momentan 1876 einzelne Genres) eingepasst:</p>
-<p class="graphviz">
-<img src="../../_images/graphviz-c65f905c3bb28504a5ae66c84178cf750ae33936.png" alt="digraph foo {
-size=3;
-node [shape=record];
-
-&quot;music (#0)&quot;  -&gt; &quot;rock (#771)&quot;
-&quot;music (#0)&quot;  -&gt; &quot;alternative (#14)&quot;
-&quot;music (#0)&quot;  -&gt; &quot;reggae (#753)&quot;
-&quot;rock (#771)&quot; -&gt; &quot;alternative (#3)&quot;
-}" />
-</p>
-<p>Hier werden aus Platzgründen nur die Untergenres im obigen Beispiel gezeigt.
-Jeder Knoten hat zudem einen Indexwert der in Klammern angegeben ist.  Das
-finale Resultat dieses Providers mit der obigen Eingabe, ist dann in
-Python&ndash;Listen Notation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[[</span><span class="mi">14</span><span class="p">],</span> <span class="p">[</span><span class="mi">771</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">753</span><span class="p">],</span> <span class="p">[</span><span class="mi">771</span><span class="p">]]</span>
+<p>Die <em>Such&ndash;URL</em> bekommt den Titel als Query&ndash;Parameter (<tt class="docutils literal"><span class="pre">t=The+Matrix</span></tt>)
+übergeben, zurück kommt ein in <em>JSON</em> formatiertes Response. Dieses kann nun vom
+Aufrufer der API beliebig verarbeitet werden.</p>
+<p>Bietet eine Webseite wie beispielsweise <em>filmstarts.de</em> (siehe
+<a class="reference internal" href="../zzz_bibliography.html#filmstarts" id="id5">[Link&ndash;28]</a>) keine API an, so muss der ,,normale Weg&quot; wie über den
+Webbrowser erfolgen. Hierzu muss man herausfinden, aus welchen Parametern sich
+die <em>Such&ndash;URL</em> zusammensetzt, die im Hintergrund an den Webserver geschickt
+wird, sobald die Suchanfrage losgeschickt wird. Bei <em>filmstarts.de</em> setzt sich
+die <em>Such</em>&ndash;URL wie folgt zusammen:</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">http://www.filmstarts.de/suche/?q=Filmtitel</span></tt></div></blockquote>
+<p>Wird nun mit <em>cURL</em> die URL mit dem oben genannten Film als Query&ndash;Parameter
+aufgerufen, so kommt als Antwort ein HTML&ndash;Dokument zurück, welches auch der
+Webbrowser erhalten würde. Folgende Shellsitzung demonstriert den Aufruf
+(Ausgabe gekürzt):</p>
+<div class="highlight-html"><div class="highlight"><pre>$ curl  http://www.filmstarts.de/suche/?q=The+Matrix
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;&lt;title&gt;</span>The Matrix – Suchen auf FILMSTARTS.de<span class="nt">&lt;/title&gt;&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span><span class="c">&lt;!-- Weiterer Content --&gt;</span><span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<p>Das Resultat ist also eine Liste mit einzelnen <em>Pfaden</em> durch den Genrebaum.
-Jeder Pfad ist dabei eine Liste von mindestens einem Indexwert.
-Da der Wurzelknoten (<em>music</em>) immer den Index <em>0</em> hat, wird dieser weggelassen.
-Löst man diese wieder auf, so erhält man die ursprünglichen Genres:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[[</span><span class="s">&#39;alternative&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;alternative&#39;</span><span class="p">,</span> <span class="s">&#39;rock&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;reggae&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;rock&#39;</span><span class="p">]]</span>
+<p>Man bekommt als Aufrufer der URL die Webseite zurückgeliefert und muss nun die
+Daten aus dem Dokument extrahieren. Dies ist in der Regel mühsamer als der
+Zugriff über eine API, welche die Daten sauber im <em>JSON</em>&ndash; oder <em>XML</em>&ndash;Format
+zurückliefert.</p>
+<div class="section" id="ubertragung-vom-grundprinzip-auf-das-pluginsystem">
+<h3>5.1.1 Übertragung vom Grundprinzip auf das Pluginsystem<a class="headerlink" href="#ubertragung-vom-grundprinzip-auf-das-pluginsystem" title="Permalink to this headline">¶</a></h3>
+<p>Ein Ziel bei der Entwicklung der Plugin&ndash;Spezifikation ist, den Aufwand für das
+Implementieren eines Plugins so gering wie möglich zu halten, um
+Programmierfehler beziehungsweise Fehlverhalten durch Plugins zu minimieren,
+aber auch um Entwickler zu motivieren, Plugins zu schreiben.</p>
+<p>Das oben genannte Prinzip beim Beschaffen von Metadaten ist immer gleich und
+lässt sich somit gut auf das Pluginsystem übertragen. Die Provider&ndash;Plugins
+müssen im Prinzip nur folgende zwei Punkte können (siehe Abbildung
+<a href="#fig-provider-concept">5.1</a>):</p>
+<blockquote>
+<div><ul class="simple">
+<li>Aus den Suchparametern die <em>Such&ndash;URL</em> zusammenbauen.</li>
+<li>Extrahieren der Daten aus dem zurückgelieferten <em>HTTP&ndash;Response</em>.</li>
+</ul>
+</div></blockquote>
+<p>Um den Download selbst muss sich das Provider&ndash;Plugin bei diesem Ansatz nicht
+kümmern. Das entlastet den Pluginentwickler und gibt <em>libhugin</em> die
+Kontrolle über das Downloadmanagement.</p>
+<div class="figure align-center" id="fig-provider-concept">
+<a class="reference internal image-reference" href="../../_images/provider-concept-svg.pdf"><img alt="Grundprinzip Kommunikationsablauf mit Provider--Plugin" src="../../_images/provider-concept-svg.pdf" style="width: 90%;" /></a>
+<p class="caption"><strong>Figure 5.1:</strong> Grundprinzip Kommunikationsablauf mit Provider&ndash;Plugin.</p>
+</div>
+<p>Damit der Provider weiß, welche <em>Roh&ndash;Daten</em> er zurückliefern soll, muss
+hierfür noch eine Struktur mit Attributen festgelegt werden, an welche sich alle
+Provider&ndash;Plugins halten müssen.</p>
+<p>Für den Prototypen richten sich die möglichen Attribute nach der
+TMDb&ndash;Onlinequelle (siehe <em>libhugin</em>&ndash;API <a class="reference internal" href="../zzz_bibliography.html#movieprovider" id="id6">[Link&ndash;29]</a>).</p>
+</div>
+</div>
+<div class="section" id="libhugin-architektur-uberblick">
+<h2>5.2 Libhugin Architektur&ndash;Überblick<a class="headerlink" href="#libhugin-architektur-uberblick" title="Permalink to this headline">¶</a></h2>
+<p>Die Bibliothek soll über die Metadatenbeschaffung hinaus Werkzeuge zur
+Metadatenanalyse bereitstellen. Um eine saubere Trennung zwischen
+den beiden zu schaffen, wird die Bibliothek in die zwei Teile
+<em>libhugin&ndash;harvest</em> und <em>libhugin&ndash;analyze</em> aufgeteilt (siehe Abbildung
+<a href="#fig-harvest-arch">5.2</a>).</p>
+<p><strong>libhugin&ndash;harvest:</strong>
+Dieser Teil soll für die Metadatenbeschaffung zuständig sein und Schnittstellen
+für die folgenden Pluginarten bereitstellen:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Provider</li>
+<li>Postprocessor</li>
+<li>Converter</li>
+</ul>
+</div></blockquote>
+<div class="figure align-center" id="fig-harvest-arch">
+<a class="reference internal image-reference" href="../../_images/arch-overview-svg.pdf"><img alt="Architekturübersicht von libhugin" src="../../_images/arch-overview-svg.pdf" style="width: 80%;" /></a>
+<p class="caption"><strong>Figure 5.2:</strong> Die Grafik zeigt eine Architekturübersicht der <em>libhugin</em>&ndash;Bibliothek welche
+sich in die zwei Teile <em>libhugin&ndash;harvest</em> und <em>libhugin&ndash;analyze</em> aufteilt.</p>
+</div>
+<p><strong>libhugin&ndash;analyze:</strong>
+Dieser Teil soll für die nachträgliche Metadatenanalyse zuständig sein und
+Schnittstellen für folgende Pluginarten bereitstellen:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Modifier</li>
+<li>Analyzer</li>
+<li>Comparator</li>
+</ul>
+</div></blockquote>
+<p>Der Analyze&ndash;Teil der Bibliothek soll über eine interne Datenbank verfügen, in welche
+externe Metadaten zur Analyse importiert werden. So können alle Plugins auf
+einem definierten Zustand arbeiten.</p>
+<div class="section" id="klassenubersicht-von-libhugin-harvest">
+<h3>5.2.1 Klassenübersicht von <em>libhugin&ndash;harvest</em><a class="headerlink" href="#klassenubersicht-von-libhugin-harvest" title="Permalink to this headline">¶</a></h3>
+<p>Die Architektur von <em>libhugin</em> ist objektorientiert. Aus der Architekturübersicht
+und den Anforderungen an das System wurden die folgenden Klassen und Schnittstellen
+abgeleitet. Abbildung <a href="#fig-klassenuebersicht-harvest">5.3</a> zeigt eine
+Klassenübersicht von <em>libhugin&ndash;harvest</em>, samt Interaktion mit den Schnittstellen.</p>
+<p>Im Folgenden werden die grundlegenden Objekte und Schnittstellen
+erläutert.</p>
+<div class="figure align-center" id="fig-klassenuebersicht-harvest">
+<a class="reference internal image-reference" href="../../_images/klassenuebersicht-harvest-svg.pdf"><img alt="Libhugin--harvest Klassenübersicht mit Klasseninteraktion" src="../../_images/klassenuebersicht-harvest-svg.pdf" style="width: 100%;" /></a>
+<p class="caption"><strong>Figure 5.3:</strong> &lt;emphasis&gt;Libhugin&ndash;harvest&lt;/emphasis&gt; Klassenübersicht mit Klasseninteraktion.</p>
+</div>
+<p><strong>Session:</strong>
+Diese Klasse bildet den Grundstein für <em>libhugin&ndash;harvest</em>. Über eine Sitzung
+konfiguriert der Benutzer das System und hat Zugriff auf die verschiedenen
+Plugins.
+Von der Session werden folgende Methoden bereitgestellt:</p>
+<p><tt class="docutils literal"><span class="pre">create_query(**kwargs):</span></tt> Schnittstelle zur Konfiguration der Suchanfrage. Die
+Methode gibt ein Query&ndash;Objekt zurück, das einem Python&ndash;Dictionary (Hashtabelle)
+entspricht.  Diese Methode dient als Hilfestellung für den Benutzer der API.
+Theoretisch kann der Benutzer die Query auch manuell zusammenbauen. <tt class="docutils literal"><span class="pre">Kwargs</span></tt>
+ist eine optionale Liste aus Key&ndash;Value&ndash;Paaren. Für weitere Informationen und
+Konfigurationsparameter siehe <em>libhugin</em>&ndash;API <a class="reference internal" href="../zzz_bibliography.html#queryapi" id="id7">[Link&ndash;30]</a>.</p>
+<p><tt class="docutils literal"><span class="pre">submit(query):</span></tt> Schnittstelle um eine Suchanfrage zu starten. Die Methode
+gibt eine Liste mit gefundenen Metadaten als <em>Ergebnisobjekte</em> zurück.</p>
+<p>Die Methode initialisiert eine Downloadqueue und einen Zwischenspeicher (Cache),
+falls dieser vom Benutzer über die Query nicht deaktiviert wurde. Anschließend
+generiert sie für jeden Provider eine sogenannte <em>Job</em>&ndash;Struktur. Diese
+<em>Job</em>&ndash;Struktur kapselt jeweils einen Provider, die Suchanfrage und die
+Zwischenergebnisse, die während der Suchanfrage generiert werden.</p>
+<p>Zur Veranschaulichung wird eine leere <em>Job</em>&ndash;Struktur in Python&ndash;Notation
+gezeigt:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">job_structure</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>          <span class="c"># URL die als nächstes von Downloadqueue geladen werden soll</span>
+    <span class="s">&#39;provider&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>     <span class="c"># Referenz auf Provider--Plugin</span>
+    <span class="s">&#39;future&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>       <span class="c"># Referenz auf Future Objekt bei async. Ausführung</span>
+    <span class="s">&#39;response&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>     <span class="c"># Ergebnis des Downloads, Http Response</span>
+    <span class="s">&#39;return_code&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>  <span class="c"># Return Code der Http Anfrage</span>
+    <span class="s">&#39;retries_left&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="c"># Anzahl der noch übrigen Versuche</span>
+    <span class="s">&#39;done&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>         <span class="c"># Flag das gesetzt wird wenn Job fertig ist</span>
+    <span class="s">&#39;result&#39;</span><span class="p">:</span> <span class="bp">None</span>        <span class="c"># Ergebnis der Suchanfrage</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>Da die einzelnen Pfade allerdings weniger Speicher verbrauchen und sich bei
-weitem leichter auflösen und vergleichen lassen, werden diese vom Provider
-zurückgegeben.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Keywords</span></tt>: Extrahiert aus einem Text als Eingabe alle <em>relevanten</em>
-Stichwörter.  Ein Beispiel dieser <em>Keywords</em> wird in Tabelle
-<a href="#fig-yellow-keywords">5.3</a> gezeigt.  Zudem wird die Sprache des Eingabetextes
-erkannt und mit abgespeichert.</p>
-<div class="figure align-center" id="fig-yellow-keywords">
+<p>Nachdem ein Job fertiggestellt wurde, wird er in ein <em>Ergebnisobjekt</em> gekapselt.
+Am Ende der <tt class="docutils literal"><span class="pre">submit()</span></tt>&ndash;Methode wird eine Liste mit <em>Ergebnisobjekten</em>
+an den Aufrufer zurückgegeben. Das <em>Ergebnisobjekt</em> kapselt die folgenden
+Informationen:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Provider, welcher das Ergebnis geliefert hat.</li>
+<li>Suchparemeter, welche für die Suchanfrage verwendet wurden.</li>
+<li>Metadatenart, Movie oder Person.</li>
+<li>Anzahl der Downloadversuche.</li>
+<li>Das eigentliche Ergebnis als Hashtabelle.</li>
+</ul>
+</div></blockquote>
+<p>Der prinzipielle Ablauf der <tt class="docutils literal"><span class="pre">submit()</span></tt>&ndash;Methode wird in Abbildung
+<a href="#fig-submit">5.4</a> dargestellt.</p>
+<div class="figure align-center" id="fig-submit">
+<a class="reference internal image-reference" href="../../_images/submit.pdf"><img alt="Prinzipieller Ablauf der Submit--Methode" src="../../_images/submit.pdf" style="width: 50%;" /></a>
+<p class="caption"><strong>Figure 5.4:</strong> Prinzipieller Ablauf der Submit&ndash;Methode.</p>
+</div>
+<p><tt class="docutils literal"><span class="pre">submit_async()</span></tt>: Methode für eine asynchrone Nutzung der API. Diese führt
+<tt class="docutils literal"><span class="pre">submit()</span></tt> asynchron aus und gibt ein Python&ndash;<em>Future&ndash;Objekt</em> zurück,
+welches die Anfrage kapselt. Durch Aufrufen der <tt class="docutils literal"><span class="pre">done()</span></tt>&ndash;Methode auf dem
+<em>Future&ndash;Objekt</em>, kann festgestellt werden ob die Suchanfrage bereits fertig ist.
+Ein Aufruf der <tt class="docutils literal"><span class="pre">result()</span></tt>&ndash;Methode auf dem <em>Future&ndash;Objekt</em> liefert das
+eigentliche <em>Ergebnisobjekt</em> zurück. Für mehr Informationen siehe Python API
+<a class="reference internal" href="../zzz_bibliography.html#futures" id="id8">[Link&ndash;31]</a>.</p>
+<p><tt class="docutils literal"><span class="pre">provider_plugins(pluginname=None)</span></tt>: Diese Methode gibt eine Liste mit den
+Provider&ndash;Plugins zurück oder bei Angabe eines Plugins, dieses direkt. Mit
+<tt class="docutils literal"><span class="pre">pluginname=None</span></tt> wird der Standardwert gesetzt, falls kein Wert übergeben
+wird.</p>
+<p><tt class="docutils literal"><span class="pre">postprocessor_plugins(pluginname=None)</span></tt>: Analog zu <tt class="docutils literal"><span class="pre">provider_plugins()</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">converter_plugins(pluginname=None)</span></tt>: Analog zu <tt class="docutils literal"><span class="pre">provider_plugins()</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">cancel()</span></tt>: Diese Methode dient zum Abbrechen einer asynchronen Suchanfrage.
+Hier sollte anschließend noch die <tt class="docutils literal"><span class="pre">clean_up()</span></tt>&ndash;Methode aufgerufen werden um
+alle Ressourcen wieder freizugeben.</p>
+<p><tt class="docutils literal"><span class="pre">clean_up()</span></tt>: Methode zum Aufräumen nach dem Abbrechen einer asynchronen
+Suchanfrage. Die Methode blockt solange noch nicht alle Ressourcen freigegeben
+wurden.</p>
+<p><strong>Queue:</strong>
+Die Queue kapselt die Parameter der Suchanfrage. Sie wird direkt mit
+den Parametern der Suchanfrage instanziiert, hierbei werden bestimmte Werte, die
+übergeben werden, validiert und es werden <em>Standardwerte</em> gesetzt.</p>
+<p><strong>Cache:</strong>
+Der Cache wird intern verwendet, um erfolgreiche Suchanfragen persistent
+zwischenzuspeichern. So können die Daten bei wiederholter Anfrage aus dem Cache
+geladen werden. Dadurch gewinnt man Geschwindigkeit und der Metadatenanbieter
+wird entlastet. Zum persistenten Speichern wird ein Python&ndash;Shelve (siehe
+<a class="reference internal" href="../zzz_bibliography.html#shelve" id="id9">[Link&ndash;32]</a>) verwendet.</p>
+<p><tt class="docutils literal"><span class="pre">open(path,</span> <span class="pre">cache_name)</span></tt>: Öffnet den übergebenen Cache.</p>
+<p><tt class="docutils literal"><span class="pre">read(key)</span></tt>: Liest Element an Position <em>key</em> aus dem Cache.</p>
+<p><tt class="docutils literal"><span class="pre">write(key,</span> <span class="pre">value)</span></tt>: Schreibt das Element <tt class="docutils literal"><span class="pre">value</span></tt> an Position <tt class="docutils literal"><span class="pre">key</span></tt> in den
+Cache.</p>
+<p><tt class="docutils literal"><span class="pre">close()</span></tt>: Schließt den Cache.</p>
+<p><strong>Downloadqueue:</strong>
+Die Downloadqueue ist für den eigentlichen Download der Daten zuständig. Sie
+arbeitet mit den oben genannten <em>Job</em>&ndash;Strukturen. Die Provider&ndash;Plugins müssen
+so keine eigene Downloadqueue implementieren.</p>
+<p><tt class="docutils literal"><span class="pre">push(job)</span></tt>: Fügt einen <tt class="docutils literal"><span class="pre">Job</span></tt> der Downloadqueue hinzu.</p>
+<p><tt class="docutils literal"><span class="pre">pop()</span></tt>: Holt den nächsten fertigen <tt class="docutils literal"><span class="pre">Job</span></tt> aus der Downloadqueue.</p>
+<p><tt class="docutils literal"><span class="pre">running_jobs()</span></tt>: Gibt die Anzahl der <tt class="docutils literal"><span class="pre">Jobs</span></tt> die in Verarbeitung sind zurück.</p>
+<p><strong>GenreNormalize:</strong>
+GenreNormalize kann von den Provider&ndash;Plugins verwendet werden, um das Genre zu
+normalisieren. Hierzu müssen die Provider eine Genre&ndash;Mapping&ndash;Datei erstellen.
+Für mehr Informationen siehe auch API <a class="reference internal" href="../zzz_bibliography.html#movieprovider" id="id10">[Link&ndash;29]</a>.</p>
+<p><tt class="docutils literal"><span class="pre">normalize_genre(genre)</span></tt>: Normalisiert ein Genre anhand einer festgelegten
+Abbildungstabelle.</p>
+<p><tt class="docutils literal"><span class="pre">normalize_genre_list(genrelist)</span></tt>: Normalisiert eine Liste aus Genres jeweils
+mittels der <tt class="docutils literal"><span class="pre">normalize_genre()</span></tt> Funktion.</p>
+<p>Die Problematik der Genrenormalisierung ist Bestandteil der Bachelorarbeit.</p>
+<p><strong>PluginHandler:</strong>
+Das Pluginsystem wurde mit Hilfe der <em>Yapsy</em>&ndash;Bibliothek (siehe
+<a class="reference internal" href="../zzz_bibliography.html#yapsy" id="id11">[Link&ndash;33]</a>) umgesetzt. Es bietet folgende Schnittstellen nach außen:</p>
+<p><tt class="docutils literal"><span class="pre">activate_plugin_by_category(category)</span></tt>: Aktiviert Plugins einer bestimmten
+Kategorie.</p>
+<p><tt class="docutils literal"><span class="pre">deactivate_plugin_by_category(category)</span></tt>: Deaktiviert Plugins einer bestimmten
+Kategorie.</p>
+<p><tt class="docutils literal"><span class="pre">get_plugins_from_category(category)</span></tt>: Liefert Plugins einer bestimmten
+Kategorie zurück.</p>
+<p><tt class="docutils literal"><span class="pre">is_activated(category)</span></tt>: Gibt einen Wahrheitswert zurück, wenn eine Kategorie
+bereits aktiviert ist.</p>
+</div>
+<div class="section" id="plugininterface-libhugin-harvest">
+<h3>5.2.2 Plugininterface libhugin&ndash;harvest<a class="headerlink" href="#plugininterface-libhugin-harvest" title="Permalink to this headline">¶</a></h3>
+<p><em>Libhugin&ndash;harvest</em> bietet für jeden Plugintyp eine bestimmte Schnittstelle an,
+die vom jeweiligen Plugintyp implementiert werden muss (siehe Abbildung <a href="#fig-harvest">5.5</a>).</p>
+<div class="figure align-center" id="fig-harvest">
+<a class="reference internal image-reference" href="../../_images/harvest-plugin-interface.pdf"><img alt="Libhugin--harvest Plugin Schnittstellenbeschreibung" src="../../_images/harvest-plugin-interface.pdf" style="width: 100%;" /></a>
+<p class="caption"><strong>Figure 5.5:</strong> Libhugin&ndash;harvest Plugin Schnittstellenbeschreibung.</p>
+</div>
+<p>Diese <em>libhugin&ndash;harvest</em> Plugins haben die Möglichkeiten von verschiedenen
+Oberklassen abzuleiten (siehe Abbildung <a href="#table-harvest-plugins">5.6</a>).
+Mehrfachvererbung ist unter Python möglich.</p>
+<div class="figure align-center" id="table-harvest-plugins">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="15%" />
-<col width="85%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="headalign-center">Rating</th>
-<th class="headalign-center">Keywords</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td class="align-center">22.558</td>
-<td class="align-center">yellow, submarin</td>
-</tr>
-<tr class="row-odd"><td class="align-center">20.835</td>
-<td class="align-center">full, speed, ahead, mr</td>
-</tr>
-<tr class="row-even"><td class="align-center">8.343</td>
-<td class="align-center">live, beneath</td>
-</tr>
-<tr class="row-odd"><td class="align-center">5.247</td>
-<td class="align-center">band, begin</td>
-</tr>
-<tr class="row-even"><td class="align-center">3.297</td>
-<td class="align-center">sea</td>
-</tr>
-<tr class="row-odd"><td class="align-center">3.227</td>
-<td class="align-center">green</td>
-</tr>
-<tr class="row-even"><td class="align-center">2.797</td>
-<td class="align-center">captain</td>
-</tr>
-<tr class="row-odd"><td class="align-center">...</td>
-<td class="align-center">...</td>
-</tr>
-</tbody>
-</table>
-<p class="caption"><strong>Figure 5.3:</strong> Die extrahierten Keywords aus ,,Yellow Submarine”, samt deren
-Rating. Das Rating soll hier nicht weiter erklärt werden.</p>
-</center></div></li>
-<li id="fig-yellow-keywords"><p class="first"><tt class="docutils literal"><span class="pre">PlyrLyrics</span></tt>: Beschafft mittels <em>libglyr</em> Liedtexte aus dem Internet.
-Bereits gesuchte Liedtexte werden dabei zwischengespeichert. Dieser Provider
-eignet sich besonders im Zusammenhang mit dem <em>Keywords</em>&ndash;Provider zusammen
-als <em>Composite</em>&ndash;Provider.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">DiscogsGenre</span></tt>: Beschafft von dem Online&ndash;Musikmarktplatz <em>Discogs</em> Genre
-Informationen. Dies ist nötig, da Musiksammlungen für gewöhnlich mittels einer
-Online&ndash;Musikdatenbank getaggt werden &mdash; die meisten bieten aber leider keine
-Genreinformationen.</p>
-</li>
-</ul>
-</div>
-<div class="section" id="liste-der-distanzfunktionen">
-<span id="distance-function-list"></span><h2>5.5 Liste der Distanzfunktionen<a class="headerlink" href="#liste-der-distanzfunktionen" title="Permalink to this headline">¶</a></h2>
-<p>Die genaue Funktionsweise der einzelnen Distanzfunktionen wird in der
-Bachelorarbeit genauer betrachtet. Im Folgenden wird aber eine kurze Auflistung
-jeder vorhandenen Distanzfunktion und der Annahme auf der sie basiert
-gegeben.</p>
-<ul>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Date</span></tt>: Vergleicht zwei Jahreszahlen. Eine hohe Differenz führt dabei zu
-einer hohen Distanz. Also ,,erstes&quot; Jahr wird das Jahr 1950 angenommen.</p>
-<p><em>Annahme:</em> Lieder mit einer großen zeitlichen Differenz zueinander werden
-selten zusammen gehört.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Moodbar</span></tt> Vergleicht die <tt class="docutils literal"><span class="pre">moodbar</span></tt> zweier unterschiedlicher Lieder.</p>
-<p><em>Annahme:</em> Ähnliche <em>Moodbars</em> implizieren auch ähnliche Lieder. Da man oft
-gewisse Instrumente anhand deren Farbe erkennen kann werden unter anderen die
-dominanten Farben und der Stilleanteil verglichen.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Rating</span></tt>: Vergleicht ein vom Benutzer vergebenes Rating. Dabei wird zwischen
-nicht gesetzten <em>(z.B. 0)</em> und gesetzten Rating unterschieden <em>(z.B. 1-5)</em> die
-sich unterschiedlich auf die finale Distanz auswirken.  Die Werte für das
-Minima, Maxima und den Nullwert können beim Erstellen der Session konfiguriert
-werden.</p>
-<p><em>Annahme:</em> Zeichnet der Benutzer ein Lied mit einem hohen Rating aus, so möchte
-er vermutlich Empfehlungen zu ebenfalls hoch ausgezeichneten Liedern haben.
-Dies bietet dem Nutzer eine Möglichkeit direkte <em>Hinweise</em> an <em>libmunin</em> zu
-geben (Stichwort <em>explizites Lernen</em>).</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">BPM</span></tt>: Vergleicht den ,,Beats-per&ndash;Minute`` Wert zweier Lieder.  Als
-Minimalwert wird 50 und als Maximalwert 250 angenommen.</p>
-<p><em>Annahme:</em> Ähnlich schnelle Lieder werden oft zusammen gespielt.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Wordlist</span></tt>: Vergleicht eine Menge von Wörtern auf Identität. Sind die Mengen
-identisch, so kommt eine Distanz von <span class="math">\(0\)</span> dabei heraus.</p>
-<p><em>Annahme:</em> Diese Distanzfunktion ist beispielsweise beim Vergleich von Titeln
-nützlich. Ähnliche Wörter in Titeln deuten oft auf ähnliche Themen hin.  Als
-Beispiel kann man die Titel <em>,,Hey Staat&quot; (Hans Söllner)</em> und <em>,,Lieber Staat&quot;
-(Farin Urlaub)</em> nennen.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Levenshtein</span></tt>: Wie <tt class="docutils literal"><span class="pre">Wordlist</span></tt>, die einzelnen Wörter werden aber mittels
-der Levenshtein&ndash;Distanzfunktion <a class="reference internal" href="../zzz_bibliography.html#brill2000improved" id="id9">[1]</a> verglichen.  So
-spielen kleine Abweichungen, wie der Vergleich von <tt class="docutils literal"><span class="pre">color</span></tt> und <tt class="docutils literal"><span class="pre">colour</span></tt>,
-keine große Rolle mehr. Der große Nachteil ist der erhöhte Rechenaufwand.</p>
-<p><em>Annahme:</em> Ähnlich wie bei <tt class="docutils literal"><span class="pre">Wordlist</span></tt>, aber eben auch für Daten bei denen man
-kleine Unterschiede in der Schreibweise erwartet. Beispielsweise bei Künstlern
-<tt class="docutils literal"><span class="pre">ZZ-Top</span></tt> und <tt class="docutils literal"><span class="pre">zz</span> <span class="pre">Top</span></tt>.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Keywords</span></tt>: Nimmt die Ergebnisse des <tt class="docutils literal"><span class="pre">Keyword</span></tt>&ndash;Providers entgegen und
-bezieht die Sprache beider Keywordmengen sowie die Länge der einzelnen
-Keywords in die Distanz mit ein.</p>
-<p><em>Annahme:</em> Der Nutzer möchte Lieder mit ähnlichen Themen zu einem Lied
-vorgeschlagen bekommen, oder wenigstens in derselben Sprache.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">GenreTree</span></tt>, <tt class="docutils literal"><span class="pre">GenreTreeAvg</span></tt>: Vergleicht die vom <tt class="docutils literal"><span class="pre">GenreTree</span></tt>&ndash;Provider
-erzeugten Genrepfade.</p>
-<ul>
-<li><p class="first"><tt class="docutils literal"><span class="pre">GenreTree</span></tt>: Vergleicht alle Pfade in beiden Eingabemengen miteinander und
-nimmt die <em>geringste</em> Distanz von allen.</p>
-<p>Diese Distanzfunktion sollte gewählt werden, wenn die Genre&ndash;Tags eher kurz
-gefasst sind. Beispielsweise wenn nur <em>Rock</em> darin steht.</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">GenreTreeAvg</span></tt>: Vergleicht alle Pfade in beiden Eingabemengen miteinander
-und nimmt die <em>durchschnittliche</em> Distanz von allen.</p>
-<p>Diese Distanzfunktion sollte gewählt werden, wenn ausführliche Genre&ndash;Tags
-vorhanden sind &mdash; wie sie beispielsweise vom <tt class="docutils literal"><span class="pre">DiscogsGenre</span></tt>&ndash;Provider
-geliefert werden.</p>
-</li>
-</ul>
-<p><em>Annahme:</em> Viele Hörer bleiben oft innerhalb eines Genres.</p>
-</li>
-</ul>
-</div>
-<div class="section" id="modul-und-paketubersicht">
-<h2>5.6 Modul&ndash; und Paketübersicht<a class="headerlink" href="#modul-und-paketubersicht" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="fig-module-tree">
-<center><table border="1" class="docutils">
-<colgroup>
-<col width="18%" />
-<col width="17%" />
-<col width="15%" />
-<col width="7%" />
-<col width="43%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="headalign-center"><strong>Verzeichnisse</strong></th>
-<th class="headalign-center">(gekürzt)</th>
-<th class="headalign-center">&nbsp;</th>
-<th class="headalign-center">&nbsp;</th>
-<th class="headalign-center"><strong>Beschreibung</strong></th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td class="align-center"><strong>munin/</strong></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Quelltextverzeichnis</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">__init__.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Versionierungs Info</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">__main__.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Beispielprogramm</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">database.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung von <tt class="docutils literal"><span class="pre">Database</span></tt></td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">dbus_service.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Unfertiger DBus Service.</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center"><em>dbus_client</em></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Unfertiger DBus Beispielclient.</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center"><strong>distance/</strong></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Unterverzeichnis für Distanzfunktionen</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">__init__.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung von <tt class="docutils literal"><span class="pre">DistanceFunction</span></tt></td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">bpm.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung von <tt class="docutils literal"><span class="pre">BPMDistance</span></tt></td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">date.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung von <tt class="docutils literal"><span class="pre">DateDistance</span></tt></td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center"><em>...</em></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Weitere Subklassen von <tt class="docutils literal"><span class="pre">DistanceFunction</span></tt></td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">session.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung der <tt class="docutils literal"><span class="pre">Session</span></tt> (API)</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">easy.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung der <tt class="docutils literal"><span class="pre">EasySession</span></tt></td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">graph.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung der Graphenoperationen</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">helper.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Gesammelte, oftgenutzte Funktionen</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">history.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung der <tt class="docutils literal"><span class="pre">History</span></tt> u. Regeln</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">plot.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Visualisierungsfunktionen für Graphen</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center"><strong>provider/</strong></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Unterverzeichnis für Provider</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">__init__.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung von <tt class="docutils literal"><span class="pre">Provider</span></tt></td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">bpm.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung von <tt class="docutils literal"><span class="pre">BPMProvider</span></tt></td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">composite.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung des <tt class="docutils literal"><span class="pre">CompositeProvider</span></tt></td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center"><em>...</em></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Weitere Subklassen von <tt class="docutils literal"><span class="pre">Provider</span></tt></td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">rake.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung des RAKE-Algorightmus</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center"><strong>scripts/</strong></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Unterverzeichnis für ,,Test Scripts&quot;</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">visualizer.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Zeichnet ein mood-file mittels <tt class="docutils literal"><span class="pre">cairo</span></tt></td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">walk.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Berechnet vieles mood-files parallel</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">song.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung von <tt class="docutils literal"><span class="pre">Song</span></tt></td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center"><strong>stopwords/</strong></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Stoppwortimplementierung:</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">__init__.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Implementierung des StopwordsLoader</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center"><strong>data/</strong></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Unterverzeichnis für die Stoppwortlisten</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center"><em>de</em></td>
-<td class="align-center">Gemäß ISO 638-1 benannte Dateien;</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center"><em>en</em></td>
-<td class="align-center">Pro Zeile ist ein Stoppwort gelistet;</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center"><em>es</em></td>
-<td class="align-center">Insgesamt 17 verschiedene Listen.</td>
-</tr>
-<tr class="row-odd"><td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center"><em>...</em></td>
-<td class="align-center">&nbsp;</td>
-</tr>
-<tr class="row-even"><td class="align-center">&nbsp;</td>
-<td class="align-center">testing.py</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Fixtures und Helper für Unit&ndash;Tests</td>
-</tr>
-</tbody>
-</table>
-<p class="caption"><strong>Figure 5.4:</strong> Verzeichnisbaum mit den einzelnen Modulen von libmunin's
-Implementierung</p>
-</center></div><p id="fig-module-tree">In der Programmiersprache <em>Python</em> entspricht jede einzelne <tt class="docutils literal"><span class="pre">.py</span></tt> Datei einem
-<em>Modul</em>. Die Auflistung unter Tabelle <a href="#fig-module-tree">5.4</a> soll eine Übersicht
-darüber geben, welche Funktionen in welchem Modul implementiert worden.</p>
-<p><em>Anmerkung:</em> <tt class="docutils literal"><span class="pre">__init__.py</span></tt> ist eine spezielle Datei, die beim Laden
-eines Verzeichnisses durch Python ausgeführt wird.</p>
-</div>
-<div class="section" id="trivia">
-<h2>5.7 Trivia<a class="headerlink" href="#trivia" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="entwicklungsumgebung">
-<h3>5.7.1 Entwicklungsumgebung<a class="headerlink" href="#entwicklungsumgebung" title="Permalink to this headline">¶</a></h3>
-<p>Als Programmiersprache wurde <em>Python</em>, in Version <span class="math">\(3.2\)</span>, aus folgenden
-Gründen ausgewählt:</p>
-<ul class="simple">
-<li>Exzellenter Support für <em>Rapid Prototyping</em> &mdash; eine wichtige Eigenschaft bei
-nur knapp drei Monaten Implementierungszeit.</li>
-<li>Große Zahl an nützlichen Bibliotheken, besonders für den wissenschaftlichen
-Einsatz.</li>
-<li>Bei Performanceproblemen ist eine Auslagerung von Code nach
-<span class="math">\(\mathrm{C/C{\scriptstyle\overset{\!++}{\vphantom{\_}}}}\)</span> mittels
-<em>Cython</em> sehr einfach möglich.</li>
-<li>Der Autor hat gute Erfahrungen mit Python in mehreren Projekten gesammelt.</li>
-</ul>
-<p>Alle Quellen die während dieses Projektes entstanden sind, finden sich auf der
-sozialen Code&ndash;Hosting Plattform <em>GitHub</em> <a class="reference internal" href="../zzz_bibliography.html#y41" id="id10">[Link&ndash;30]</a>. Zur Versionierung der
-Quelltexte wird entsprechend das <em>Distributed Version Control System</em> <tt class="docutils literal"><span class="pre">git</span></tt>
-genutzt.</p>
-<p>Der Vorteil dieser Plattform besteht darin, dass sie von sehr vielen Entwicklern
-besucht wird, die die Software ausprobieren und möglicherweise verbessern (durch
-sogenannte <em>Forks</em> und <em>Pull Requests</em>) oder sich zumindest die Seite für
-spätere Projekte merken.</p>
-<p>Die dazugehörige Dokumentation wird bei jedem <em>Commit</em> <a class="footnote-reference" href="#f2" id="id11"><sup>2</sup></a> automatisch aus
-den Quellen, mittels des freien Dokumentations&ndash;Generators Sphinx, auf der für
-Python&ndash;Projekte populären, Dokumentations&ndash;Hosting&ndash;Plattform <em>ReadTheDocs</em>
-gebaut und dort verfügbar gemacht. <a class="reference internal" href="../zzz_bibliography.html#lx" id="id12">[Link&ndash;24]</a></p>
-<p>Zudem werden pro <em>Commit</em> Unit&ndash;Tests auf der Continious&ndash;Integration Plattform
-<em>TravisCI</em> <a class="reference internal" href="../zzz_bibliography.html#jiu" id="id13">[Link&ndash;31]</a> für verschiedene Python&ndash;Versionen durchgeführt. Dies hat
-den Vorteil, dass fehlerhafte Versionen aufgedeckt werden, selbst wenn man
-vergessen hat, die Unit-Tests lokal durchzuführen.</p>
-<div class="figure align-center" id="fig-travis-badge">
-<img alt="Screenshot der Statusbuttons auf der Github--Seite." src="../../_images/travis_badge.png" />
-<p class="caption"><strong>Figure 5.5:</strong> Screenshot der Statusbuttons auf der Github&ndash;Seite.</p>
-</div>
-<p>Schlägt der <em>Build</em> fehl, so färben sich kleine Buttons in den oben genannten
-Diensten rot und man wird per Mail benachrichtigt (Siehe Abb.
-<a href="#fig-travis-badge">5.5</a>).
-Versionen die als stabil eingestuft werden, werden auf <em>PyPi (Python Package Index)</em>
-veröffentlicht <a class="reference internal" href="../zzz_bibliography.html#o6q" id="id14">[Link&ndash;32]</a>, wo sie mithilfe des folgenden Befehles samt
-Python&ndash;Abhängigkeiten installiert werden können (Setzt Python <span class="math">\(\ge 3.2\)</span>
-vorraus):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install libmunin
-</pre></div>
-</div>
-<p>Auf lokaler Seite wird jede Änderungen versioniert, um die Fehlersuche zu
-vereinfachen. Im Notfall kann man stets auf funktionierende Versionen
-zurückgehen.</p>
-<p>Der Quelltext selber wird in <em>gVim</em> geschrieben. Um sich an die gängigen
-Python&ndash;Konventionen zu halten, wird bei jedem Speichern der Quelltext mit den
-Zusatzprogrammen <em>PEP8</em> und <em>flake8</em> statisch überprüft.</p>
-<p>Auch dieses Dokument wurde mit dem 
-        <style type="text/css">
-            .tex sub, .latex sub, .latex sup {
-                text-transform: uppercase;
-            }
-
-            .tex sub, .latex sub {
-                vertical-align: -0.5ex;
-                margin-left: -0.1667em;
-                margin-right: -0.125em;
-            }
-
-            .tex, .latex, .tex sub, .latex sub {
-                font-size: 1em;
-            }
-
-            .latex sup {
-                font-size: 0.85em;
-                vertical-align: 0.15em;
-                margin-left: -0.36em;
-                margin-right: -0.15em;
-            }
-        </style>
-        <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span>
-    -Backend einer
-modifizierten Sphinxversion erstellt. Der Vorteil ist dabei, dass die Arbeit in
-<em>reStructuredText</em> geschrieben werden kann und einerseits als PDF- und als
-HTML&ndash;Variante <a class="reference internal" href="../zzz_bibliography.html#md" id="id15">[Link&ndash;33]</a> erstellt wird &mdash; letztere- ist sogar für mobile
-Endgeräte ausgelegt.</p>
-</div>
-<div class="section" id="abhangigkeiten-von-libmunin">
-<h3>5.7.2 Abhängigkeiten von <em>libmunin</em><a class="headerlink" href="#abhangigkeiten-von-libmunin" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-center" id="table-deps">
-<center><table border="1" class="docutils">
-<colgroup>
-<col width="21%" />
-<col width="16%" />
-<col width="16%" />
 <col width="22%" />
-<col width="25%" />
+<col width="17%" />
+<col width="17%" />
+<col width="45%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="headalign-center"><em>Abhängigkeit</em></th>
-<th class="headalign-center"><em>PyPI?</em></th>
-<th class="headalign-center"><em>Optional?</em></th>
-<th class="headalign-center"><em>Referenz</em></th>
-<th class="headalign-center"><em>Aufgabe</em></th>
+<tr class="row-odd"><th class="headalign-center"><em>Schnittstellenname</em></th>
+<th class="headalign-center"><em>text</em></th>
+<th class="headalign-center"><em>grafisch</em></th>
+<th class="headalign-center"><em>Beschreibung</em></th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td class="align-center"><tt class="docutils literal"><span class="pre">moodbar</span></tt></td>
-<td class="align-center">&nbsp;</td>
+<tr class="row-even"><td class="align-center"><em>IMovieProvider</em></td>
 <td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center"><a class="reference internal" href="../zzz_bibliography.html#wood2005techniques" id="id16">[10]</a></td>
-<td class="align-center">Moodbar&ndash;Berechnung.</td>
+<td class="align-center">&nbsp;</td>
+<td class="align-center">Provider&ndash;Plugins, liefert Filmmetadaten</td>
 </tr>
-<tr class="row-odd"><td class="align-center"><tt class="docutils literal"><span class="pre">bpm-utils</span></tt></td>
+<tr class="row-odd"><td class="align-center"><em>IMoviePictureProvider</em></td>
 <td class="align-center">&nbsp;</td>
 <td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center"><a class="reference internal" href="../zzz_bibliography.html#yz" id="id17">[Link&ndash;28]</a></td>
-<td class="align-center">BPM&ndash;Berechnung.</td>
+<td class="align-center">Provider&ndash;Plugins, liefert Filmmetadaten</td>
 </tr>
-<tr class="row-even"><td class="align-center"><tt class="docutils literal"><span class="pre">plyr</span></tt></td>
+<tr class="row-even"><td class="align-center"><em>IPersonProvider</em></td>
 <td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center"><a class="reference internal" href="../zzz_bibliography.html#xu" id="id18">[Link&ndash;17]</a></td>
-<td class="align-center">Liedtextbeschaffung.</td>
+<td class="align-center">&nbsp;</td>
+<td class="align-center">Provider&ndash;Plugins, liefert Personenmetadaten</td>
 </tr>
-<tr class="row-odd"><td class="align-center"><tt class="docutils literal"><span class="pre">python-igraph</span></tt></td>
+<tr class="row-odd"><td class="align-center"><em>IPersonPictureProvider</em></td>
+<td class="align-center">&nbsp;</td>
 <td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center"><a class="reference internal" href="../zzz_bibliography.html#igr" id="id19">[Link&ndash;22]</a></td>
-<td class="align-center">Graphenplotting.</td>
+<td class="align-center">Provider&ndash;Plugins, liefert Personenmetadaten</td>
 </tr>
-<tr class="row-even"><td class="align-center"><tt class="docutils literal"><span class="pre">pymining</span></tt></td>
-<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<tr class="row-even"><td class="align-center"><em>IPostProcessor</em></td>
 <td class="align-center">&nbsp;</td>
 <td class="align-center">&nbsp;</td>
-<td class="align-center">Datamining&ndash;Hilfsfunktionen.</td>
+<td class="align-center">Postprocessor&ndash;Plugins für Metadatennachbearbeitung</td>
 </tr>
-<tr class="row-odd"><td class="align-center"><tt class="docutils literal"><span class="pre">bidict</span></tt></td>
-<td class="align-center"><span class="math">\(\checkmark\)</span></td>
+<tr class="row-odd"><td class="align-center"><em>IConverter</em></td>
 <td class="align-center">&nbsp;</td>
 <td class="align-center">&nbsp;</td>
-<td class="align-center">Bidirektionale Hashtabelle.</td>
-</tr>
-<tr class="row-even"><td class="align-center"><tt class="docutils literal"><span class="pre">guess_language</span></tt></td>
-<td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Spracherkennung.</td>
-</tr>
-<tr class="row-odd"><td class="align-center"><tt class="docutils literal"><span class="pre">pyenchant</span></tt></td>
-<td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Verbesserte Spracherkennung.</td>
-</tr>
-<tr class="row-even"><td class="align-center"><tt class="docutils literal"><span class="pre">magicdate</span></tt></td>
-<td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Datumsformaterkennung.</td>
-</tr>
-<tr class="row-odd"><td class="align-center"><tt class="docutils literal"><span class="pre">pyxDamerauLevenshtein</span></tt></td>
-<td class="align-center"><span class="math">\(\checkmark\)</span></td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">&nbsp;</td>
-<td class="align-center">Levenshtein&ndash;Distanzfunktion.</td>
+<td class="align-center">Converter&ndash;Plugins für verschiedene Metadatenformate</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><strong>Figure 5.6:</strong> Übersicht über die Abhängigkeiten von libmunin. Es wird
-angezeigt ob das Paket auf PyPI vorhanden ist und ob es
-rein optionale Funktionalität bereitstellt.</p>
-</center></div><p id="table-deps">In Tabelle <a href="#table-deps">5.6</a> wird eine Übersicht über die <em>direkten</em>
-Abhängigkeiten von <em>libmunin</em> gegeben.  Abhängigkeiten von Drittanbietern sind nicht
-aufgelistet. Auf die Abhängigkeiten ohne Referenz wird noch in der
-Bachelorarbeit genauer eingegangen.
-Die auf <em>PyPI</em> gelisteten Pakete werden automatisch mit dem <tt class="docutils literal"><span class="pre">libmunin</span></tt>&ndash;Paket
-installiert. Die anderen Pakete müssen über das Paketsystem der verwendeten
-Distribution, oder aus den Quellen installiert werden.</p>
+<p class="caption"><strong>Figure 5.6:</strong> Libhugin Plugininterfaces für die verschiedenen libhugin&ndash;harvest Plugins.</p>
+</center></div><p id="table-harvest-plugins">Plugins, die für die Metadatenbeschaffung zuständig sind, müssen von den
+Providerklassen ableiten (siehe Abbildung <a href="#table-harvest-plugins">5.6</a>). Des
+Weiteren müssen diese Plugins die folgenden Methoden implementieren:</p>
+<p><tt class="docutils literal"><span class="pre">build_url(search_params)</span></tt>: Diese Methode bekommt die <em>Such&ndash;Parameter</em>
+übergeben und baut aus diesen die <em>Such&ndash;URL</em> zusammen.
+Für weitere Informationen siehe auch API <a class="reference internal" href="../zzz_bibliography.html#buildurl" id="id12">[Link&ndash;34]</a>.</p>
+<p><tt class="docutils literal"><span class="pre">parse_response(response,</span> <span class="pre">search_params)</span></tt>: Diese Methode bekommt die
+HTTP&ndash;Response zu der vorher von <tt class="docutils literal"><span class="pre">build_url(search_params)</span></tt> erstellten
+<em>Anfrage&ndash;URL</em>. Die Methode ist für das Extrahieren der Attribute aus dem Response
+zuständig. Sie gibt entweder eine neue URL zurück, die angefordert werden soll,
+oder befüllt eine Hashtabelle mit gefundenen Attributen und gibt diese zurück.
+Für weitere Informationen siehe auch <em>libhugin</em>&ndash;API <a class="reference internal" href="../zzz_bibliography.html#parseresponse" id="id13">[Link&ndash;35]</a>.</p>
+<p><tt class="docutils literal"><span class="pre">supported_attrs()</span></tt>: Diese Methode gibt eine Liste mit Attributen zurück die
+vom Provider befüllt werden.</p>
+<p>Plugins, die für die Metadatennachbearbeitung zuständig sind, müssen von
+<em>IPostProcessor</em> ableiten (siehe Abbildung <a href="#table-harvest-plugins">5.6</a>).
+Des Weiteren müssen diese Plugins die folgenden Methoden implementieren:</p>
+<p><tt class="docutils literal"><span class="pre">process(results,</span> <span class="pre">**kwargs)</span></tt>: Diese Methode bekommt ein Liste mit
+<em>Ergebnisobjekten</em> übergeben und manipuliert dieses nach bestimmten Kriterien
+oder gibt eine neue Liste mit <em>Ergebnisobjekten</em> zurück.</p>
+<p><tt class="docutils literal"><span class="pre">parameters()</span></tt>: Die Methode listet die Keyword&ndash;Argumente für ein
+<em>Postprocessor</em>&ndash;Plugin.</p>
+<p>Plugins, die für das Konvertieren der Ergebnisse in bestimmte Metadatenformate
+zuständig sind, müssen von <em>IConverter</em> ableiten (siehe Abbildung
+<a href="#table-harvest-plugins">5.6</a>).  Des Weiteren müssen diese Plugins die folgenden
+Methoden implementieren:</p>
+<p><tt class="docutils literal"><span class="pre">convert(results,</span> <span class="pre">**kwargs)</span></tt>: Diese Methode bekommt ein <em>Ergebnisobjekt</em>
+übergeben und gibt die String&ndash;Repräsentation von diesem in einem spezifischen
+Metadatenformat wieder.</p>
+<p><tt class="docutils literal"><span class="pre">parameters()</span></tt>: Die Methode listet die Keyword&ndash;Argumente für ein
+Converter&ndash;Plugin.</p>
 </div>
-<div class="section" id="unit-tests">
-<h3>5.7.3 Unit&ndash;Tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h3>
-<p>Die meisten Module sind mit <tt class="docutils literal"><span class="pre">unittests</span></tt> ausgestattet, die sich, für Python
-typisch, am Ende von jeder <tt class="docutils literal"><span class="pre">.py</span></tt>&ndash;Datei befinden:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">func</span><span class="p">():</span> <span class="k">return</span> <span class="mi">42</span>
-
-<span class="c"># Tests werden nur ausgeführt wenn das Skript direkt ausgeführt wird.</span>
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">unittest</span>
-    <span class="k">class</span> <span class="nc">TestFunc</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>  <span class="c"># Ein einzelner Unittest:</span>
-        <span class="k">def</span> <span class="nf">test_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">func</span><span class="p">(),</span> <span class="mi">42</span><span class="p">)</span>
-    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>  <span class="c"># Führe tests aus.</span>
+<div class="section" id="klassenubersicht-libhugin-analyze">
+<h3>5.2.3 Klassenübersicht <em>libhugin&ndash;analyze</em><a class="headerlink" href="#klassenubersicht-libhugin-analyze" title="Permalink to this headline">¶</a></h3>
+<p>Dieser Teil der <em>libhugin</em>&ndash;Bibliothek ist für die nachträgliche Metadatenaufbereitung
+zuständig (siehe Abbildung <a href="#fig-klassenuebersicht-analyze">5.7</a>).</p>
+<div class="figure align-center" id="fig-klassenuebersicht-analyze">
+<a class="reference internal image-reference" href="../../_images/klassenuebersicht-analyze-svg.pdf"><img alt="Libhugin--analyze Klassenübersicht und Interaktion" src="../../_images/klassenuebersicht-analyze-svg.pdf" style="width: 100%;" /></a>
+<p class="caption"><strong>Figure 5.7:</strong> &lt;emphasis&gt;Libhugin&ndash;analyze&lt;/emphasis&gt; Klassenübersicht mit Klasseninteraktion.</p>
+</div>
+<p><strong>Session:</strong>
+Diese Klasse bildet den Grundstein für <em>libhugin&ndash;analyze</em>. Sie stellt analog
+zur <em>libhugin&ndash;harvest</em> Session die API bereit.</p>
+<p><tt class="docutils literal"><span class="pre">add(metadata_file,</span> <span class="pre">helper)</span></tt>: Diese Methode dient zum Importieren externer
+Metadaten. Sie erwartet eine Datei mit Metadaten (<tt class="docutils literal"><span class="pre">metadata_file</span></tt>) und als
+Callback&ndash;Funktion eine <em>Helferfunktion</em> welche weiß, wie die Metadaten zu
+extrahieren sind.</p>
+<p>Kurzer Exkurs zur <em>Helferfunktion</em>. Die <em>Helferfunktion</em> hat folgende
+Schnittstelle:</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">helper_func(metadata,</span> <span class="pre">attr_mask)</span></tt></div></blockquote>
+<p>Der <tt class="docutils literal"><span class="pre">attr_mask</span></tt> Parameter gibt die Abbildungen der Attribute zwischen der
+<em>externen</em> und <em>internen</em> Datenbank an.</p>
+<p>Wir nehmen an unsere Metadaten sind im <em>JSON</em>&ndash;Format gespeichert, beim Einlesen
+der <em>JSON&ndash;Datei</em> wird diese zu einer <a class="reference internal" href="../II/index.html#term-hashtabelle"><em class="xref std std-term">Hashtabelle</em></a> konvertiert, die wie
+folgt aussieht:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">metadata_the_movie</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="s1">&#39;Filmtitel&#39;</span> <span class="o">=</span> <span class="s1">&#39;The Movie&#39;</span>,
+    <span class="s1">&#39;Erscheinungsjahr&#39;</span> <span class="o">=</span> <span class="s1">&#39;2025&#39;</span>,
+    <span class="s1">&#39;Inhaltsbeschreibung&#39;</span> <span class="o">=</span> <span class="s1">&#39;Es war einmal vor langer langer Zeit...&#39;</span>
+<span class="o">}</span>
 </pre></div>
 </div>
-<p>Auf einer detaillierten Erklärung der im einzelnen getesteten Funktionalitäten
-wird verzichtet. Diese würden den Rahmen der Projektarbeit ohne erkenntlichen
-Mehrwert sprengen.</p>
-</div>
-<div class="section" id="lines-of-code-loc">
-<h3>5.7.4 Lines of Code (<em>LoC</em>)<a class="headerlink" href="#lines-of-code-loc" title="Permalink to this headline">¶</a></h3>
-<p>Was die <em>Lines of Code</em> betrifft so verteilen sich insgesamt 4867 Zeilen
-Quelltext auf 46 einzelne Dateien. Die im nächsten Kapitel vorgestellte
-Demo&ndash;Anwendung ist dabei mit eingerechnet. Dazu gesellen sich 2169 Zeilen
-Kommentare, die zum größten Teil zur Generation der Online&ndash;Dokumentation
-genutzt werden.</p>
-<p>Dazu kommen einige weitere Zeilen von <em>reStructuredText</em> (einer einfachen, aber
-mächtigen Markup&ndash;Sprache) die das Gerüst der Online&ndash;Dokumentation bilden:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>wc -l <span class="k">$(</span>find . -iname <span class="s1">&#39;*.rst&#39;</span><span class="k">)</span>
-2231 insgesamt
+<p>Folgendes Python&ndash;Snippet zeigt nun die Funktionalität der <em>Helferfunktion</em>,
+welche die Abbildung von externer Quelle auf die interne Datenbank verdeutlicht:</p>
+<div class="highlight-python"><div class="highlight"><pre> <span class="n">attr_mask</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="s">&#39;Filmtitel&#39;</span><span class="p">:</span> <span class="s">&#39;title&#39;</span><span class="p">,</span>
+     <span class="c"># Filmtitel = Attributname unter welchem der Filmtitel</span>
+     <span class="c"># in der externen Metadatendatei hinterlegt ist</span>
+     <span class="c"># title = Attributname unter dem der Titel</span>
+     <span class="c"># in der internen Datenbank abgelegt werden soll</span>
+     <span class="c">#</span>
+     <span class="c"># folgenden zwei Attribute analog zum Filmtitel</span>
+     <span class="s">&#39;Erscheinungsjahr&#39;</span> <span class="o">=</span> <span class="s">&#39;year&#39;</span><span class="p">,</span>
+     <span class="s">&#39;Inhaltsbeschreibung&#39;</span><span class="p">:</span> <span class="s">&#39;plot&#39;</span>
+ <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">helper</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">attr_mask</span><span class="p">):</span>
+    <span class="n">internal_repr</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">metadata_key</span><span class="p">,</span> <span class="n">internal_db_key</span> <span class="ow">in</span> <span class="n">attr_mask</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">internal_repr</span><span class="p">[</span><span class="n">internal_db_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="n">metadata_key</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">internal_repr</span>
 </pre></div>
 </div>
-<p>Die Online&ndash;Dokumentation wird aus den Kommentaren im Quelltext
-extrahiert. Das entspricht dem vom <em>Donald Knuth</em> vorgeschlagenem
-Ansatz des <em>Literate Programming</em>.</p>
+<p>Weitere Methoden der Session&ndash;Klasse:</p>
+<p><tt class="docutils literal"><span class="pre">analyzer_plugins(pluginname=None)</span></tt>: Liefert eine Liste mit den vorhandenen
+Analyzer&ndash;Plugins zurück. Bei Angabe eines bestimmten Pluginnamen, wird dieses
+Plugin direkt zurückgeliefert.</p>
+<p><tt class="docutils literal"><span class="pre">modifier_plugins(pluginname=None)</span></tt>: Analog zu <tt class="docutils literal"><span class="pre">analyzer_plugins()</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">comparator_plugins(pluginname=None)</span></tt>: Analog zu <tt class="docutils literal"><span class="pre">analyzer_plugins()</span></tt>.</p>
+<p>Folgende weitere Methoden erlauben es, die <em>libhugin&ndash;analyze</em> Plugins auf <em>externe</em>
+Daten anzuwenden:</p>
+<p><tt class="docutils literal"><span class="pre">analyze_raw(plugin,</span> <span class="pre">attr,</span> <span class="pre">data)</span></tt>: Wrapper Methode, welche es erlaubt die
+Analyzer&ndash;Plugins auf <em>externen</em> Daten auszuführen.</p>
+<p><tt class="docutils literal"><span class="pre">modify_raw(plugin,</span> <span class="pre">attr,</span> <span class="pre">data)</span></tt>: Analog zu <tt class="docutils literal"><span class="pre">analyze_raw(plugin,</span> <span class="pre">attr,</span> <span class="pre">data)</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">compare_raw(plugin,</span> <span class="pre">attr,</span> <span class="pre">data)</span></tt>: Analog zu <tt class="docutils literal"><span class="pre">analyze_raw(plugin,</span> <span class="pre">attr,</span> <span class="pre">data)</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">get_database()</span></tt>: Liefert die interne Datenbank (Python&ndash;Dictionary) zurück.</p>
+<p>Für das Öffnen und Schließen der internen Datenbank der Session gibt es folgende
+zwei Methoden:</p>
+<p><tt class="docutils literal"><span class="pre">database_open(databasename)</span></tt>: Lädt die angegebene Datenbank.</p>
+<p><tt class="docutils literal"><span class="pre">database_close()</span></tt>: Schließt und schreibt die aktuelle Datenbank persistent auf
+die Festplatte.</p>
+<p><strong>Movie:</strong>
+Die Movie Klasse repräsentiert ein Metadatenobjekt welches in der internen
+Datenbank zur Analyse gespeichert wird. Es enthält folgende Attribute:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Schlüssel, über den die Metadaten eindeutig zugeordnet werden können.</li>
+<li>Pfad zur Metadatendatei.</li>
+<li>Hashtabelle mit den Metadaten.</li>
+<li>Hashtabelle mit Analyzer&ndash;Analysedaten.</li>
+<li>Hashtabelle mit Comparator&ndash;Analysedaten.</li>
+</ul>
+</div></blockquote>
+<p><strong>PluginHandler:</strong>
+Die PluginHandler&ndash;Klasse hat analog zum <em>libhugin&ndash;harvest</em> die folgenden
+Schnittstellen:</p>
+<p><tt class="docutils literal"><span class="pre">activate_plugin_by_category(category)</span></tt>: Aktiviert Plugins einer bestimmten
+Kategorie.</p>
+<p><tt class="docutils literal"><span class="pre">deactivate_plugin_by_category(category)</span></tt>: Deaktiviert Plugins einer bestimmten
+Kategorie.</p>
+<p><tt class="docutils literal"><span class="pre">get_plugins_from_category(category)</span></tt>: Liefert Plugins einer bestimmten
+Kategorie zurück.</p>
+<p><tt class="docutils literal"><span class="pre">is_activated(category)</span></tt>: Gibt einen Wahrheitswert zurück, wenn eine Kategorie
+bereits aktiviert ist.</p>
 </div>
-<div class="section" id="sonstige-statistiken">
-<h3>5.7.5 Sonstige Statistiken<a class="headerlink" href="#sonstige-statistiken" title="Permalink to this headline">¶</a></h3>
-<p>Zudem lassen sich einige Statistiken präsentieren, die aus dem <tt class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></tt>
-generiert wurden:</p>
-<p><strong>GitHub Visualisierungen:</strong> <em>GitHub</em> stellt einige optisch ansprechende und
-interaktive Statistiken bereit die beispielsweise viel über den eigenen
-Arbeitszyklus verraten: <a class="reference internal" href="../zzz_bibliography.html#ibl" id="id20">[Link&ndash;34]</a>.</p>
-<p><tt class="docutils literal"><span class="pre">gitstats</span></tt> <strong>Visualisierungen:</strong> Das kleine Programm <tt class="docutils literal"><span class="pre">gitstats</span></tt> baut aus dem
-<tt class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></tt> eine HTML-Seite mit einigen interessanten Statistiken, wie
-beispielsweise der absoluten Anzahl von geschriebenen (und wieder gelöschten)
-Zeilen: <a class="reference internal" href="../zzz_bibliography.html#md" id="id21">[Link&ndash;33]</a>.</p>
-<p><strong>Commit&ndash;Graph Visualisierungsvideo</strong>: <tt class="docutils literal"><span class="pre">gource</span></tt> ist ein Programm,
-das in einem optisch ansprechenden Video zeigt wie sich das <tt class="docutils literal"><span class="pre">git</span></tt>-Repository
-mit der Zeit aufbaut. Unter <a class="reference internal" href="../zzz_bibliography.html#mc" id="id22">[Link&ndash;35]</a> findet sich ein ein&ndash;minütiges Video dass
-entsprechend die Entwicklung von <em>libmunin</em> zeigt.</p>
-<p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
+<div class="section" id="plugininterface-libhugin-analyze">
+<h3>5.2.4 Plugininterface libhugin&ndash;analyze<a class="headerlink" href="#plugininterface-libhugin-analyze" title="Permalink to this headline">¶</a></h3>
+<p><em>Libhugin&ndash;analyze</em> bietet für jeden Plugintyp eine bestimmte Schnittstelle an,
+die vom jeweiligen Plugintyp implementiert werden muss (siehe Abbildung <a href="#fig-analyze">5.8</a>).</p>
+<div class="figure align-center" id="fig-analyze">
+<a class="reference internal image-reference" href="../../_images/analyze-plugin-interface.pdf"><img alt="Libhugin--analyze Plugin Schnittstellenbeschreibung" src="../../_images/analyze-plugin-interface.pdf" style="width: 100%;" /></a>
+<p class="caption"><strong>Figure 5.8:</strong> Libhugin&ndash;analyze Plugin Schnittstellenbeschreibung.</p>
+</div>
+<p>Die <em>libhugin&ndash;analyze</em> Plugins haben die Möglichkeiten, von den folgenden
+Oberklassen abzuleiten:</p>
+<div class="figure align-center" id="table-analyze-plugins">
+<center><table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="headalign-center"><em>Schnittstellenname</em></th>
+<th class="headalign-center"><em>Beschreibung</em></th>
+</tr>
+</thead>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">libmunin</span></tt> &ndash; bisher nur auf Entwicklersystem getestet!</td></tr>
+<tr class="row-even"><td class="align-center"><em>IModifier</em></td>
+<td class="align-center">Modifier&ndash;Plugins, die Metadaten direkt modifizieren.</td>
+</tr>
+<tr class="row-odd"><td class="align-center"><em>IAnalyzer</em></td>
+<td class="align-center">Analyzer&ndash;Plugins, die für die Analyse der Metadaten zuständig sind.</td>
+</tr>
+<tr class="row-even"><td class="align-center"><em>IComparator</em></td>
+<td class="align-center">Comparator&ndash;Plugins, die Metadaten für statistische Zwecke vergleichen.</td>
+</tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="f2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[2]</a></td><td>In einem <em>Commit</em> werden eine Reihe zusammengehöriger Änderungen
-verpackt. Später kann man einen <em>Commit</em> immer wieder zurückspulen.</td></tr>
-</tbody>
-</table>
+<p class="caption"><strong>Figure 5.9:</strong> Libhugin Plugininterfaces für die verschiedenen libhugin&ndash;analyze Plugins.</p>
+</center></div><p id="table-analyze-plugins">Plugins, die Metadaten modifizieren, müssen von <em>IModifier</em> ableiten (siehe
+Abbildung <a href="#table-analyze-plugins">5.9</a>). Diese Plugins müssen folgende Methoden
+implementieren:</p>
+<p><tt class="docutils literal"><span class="pre">modify(movie,</span> <span class="pre">**kwargs)</span></tt>: Die Standardmethode für Modifierplugins. Die
+Methode bekommt ein <em>Movie&ndash;Objekt</em> und optional Keyword&ndash;Argumente übergeben.
+Die nötigen Keyword&ndash;Argumente können über die <tt class="docutils literal"><span class="pre">parameters()</span></tt>&ndash;Methode abgefragt
+werden.</p>
+<p><tt class="docutils literal"><span class="pre">modify_all(database,</span> <span class="pre">**kwargs)</span></tt>: Analog zur <tt class="docutils literal"><span class="pre">modify(movie,</span>
+<span class="pre">kwagrs)</span></tt>&ndash;Methode. Diese Methode arbeitet jedoch nicht mit nur einem Movie
+Objekt sondern mit der ganzen ,,Datenbank&quot;.</p>
+<p><tt class="docutils literal"><span class="pre">parameters()</span></tt>: Die Methode listet die Keyword&ndash;Argumente für ein Modifierplugin.</p>
+<p>Plugins, die für die Analyse der Metadaten zuständig sind, müssen von <em>IAnalyzer</em>
+ableiten (siehe Abbildung <a href="#table-analyze-plugins">5.9</a>). Diese Plugins schreiben
+ihre Analysedaten in das <em>Analyzerdata</em>&ndash;Attribut des <em>Movie&ndash;Objekts</em>.  Sie
+müssen folgende Methoden implementieren:</p>
+<p><tt class="docutils literal"><span class="pre">analyze(movie,</span> <span class="pre">**kwargs)</span></tt>: Die Standardmethode für Analyzerplugins. Die
+Anwendung hier ist analog den Modifierplugins.</p>
+<p><tt class="docutils literal"><span class="pre">analyze_all(database,</span> <span class="pre">**kwargs)</span></tt>: Analog Modifierplugins.</p>
+<p><tt class="docutils literal"><span class="pre">parameters()</span></tt>: Analog zu Modifierplugins.</p>
+<p>Plugins, die Metadaten für statistische Zwecke analysieren und vergleichen
+können, müssen von <em>IComparator</em> ableiten (siehe Abbildung
+<a href="#table-analyze-plugins">5.9</a>). Des Weiteren müssen diese Plugins folgende
+Methoden implementieren:</p>
+<p><tt class="docutils literal"><span class="pre">compare(movie_a,</span> <span class="pre">movie_b,</span> <span class="pre">**kwargs)</span></tt>: Die Standardmethode für
+Comparatorplugins. Diese erwartet als Parameter zwei <em>Movie&ndash;Objekte</em>, die
+verglichen werden sollen. Die Keyword&ndash;Argumente können analog den Modifier&ndash;
+und Analyzerplugins verwendet werden.</p>
+<p><tt class="docutils literal"><span class="pre">compare_all(database,</span> <span class="pre">**kwargs)</span></tt>: Diese Methode vergleicht alle
+<em>Movie&ndash;Objekt</em> Kombinationen aus der Datenbank.</p>
+<p><tt class="docutils literal"><span class="pre">parameters()</span></tt>: Analog zu Modifier- und Analyzerplugins.</p>
+</div>
+</div>
+<div class="section" id="bibliothek-dateistruktur">
+<h2>5.3 Bibliothek Dateistruktur<a class="headerlink" href="#bibliothek-dateistruktur" title="Permalink to this headline">¶</a></h2>
+<p>Die folgende Auflistung zeigt die Ordnerstruktur der Bibliothek.  Normalerweise
+enthält unter Python jeder Ordner eine <cite>__init__.py&ndash;Datei</cite> welche diesen Ordner
+dann als Modul erscheinen lässt. Diese wurden wegen der Übersichtlichkeit
+weggelassen.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hugin</span>
+<span class="o">|--</span> <span class="n">harvest</span><span class="o">/</span>                           <span class="c"># libhugin--harvest Ordner</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">session</span><span class="o">.</span><span class="n">py</span>                     <span class="c"># Implementierungen der Session</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">query</span><span class="o">.</span><span class="n">py</span>                       <span class="c"># Implementierungen der Query</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">cache</span><span class="o">.</span><span class="n">py</span>                       <span class="c"># Implementierungen vom Cache</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">downloadqueue</span><span class="o">.</span><span class="n">py</span>               <span class="c"># Implementierungen der Downloadqueue</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">pluginhandler</span><span class="o">.</span><span class="n">py</span>               <span class="c"># Implementierungen vom PluginHandler</span>
+<span class="o">|</span>   <span class="o">|</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">converter</span><span class="o">/</span>                      <span class="c"># Ordner für Converter--Plugins</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">postprocessor</span><span class="o">/</span>                  <span class="c"># Ordner für Postprocessor--Plugins</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">provider</span><span class="o">/</span>                       <span class="c"># Ordner für Provider--Plugins</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="o">|--</span> <span class="n">genrefiles</span><span class="o">/</span>                 <span class="c"># Genre Dateien für ,,Normalisierung&quot;</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>   <span class="o">|--</span> <span class="n">normalized_genre</span><span class="o">.</span><span class="n">dat</span>    <span class="c"># Globale Normalisierungstabelle Genre</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="o">|--</span> <span class="n">result</span><span class="o">.</span><span class="n">py</span>                   <span class="c"># Implementierung ,,ErgebnisObjekt&quot;</span>
+<span class="o">|</span>   <span class="o">|</span>   <span class="o">|--</span> <span class="n">genrenorm</span><span class="o">.</span><span class="n">py</span>                <span class="c"># Implementierung Genrenormalisierung</span>
+<span class="o">|--</span> <span class="n">utils</span><span class="o">/</span>                              <span class="c"># Gemeinsame Hilfsfunktionen</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">logutil</span><span class="o">.</span><span class="n">py</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">stringcompare</span><span class="o">.</span><span class="n">py</span>
+<span class="o">|</span>
+<span class="o">|--</span> <span class="n">analyze</span><span class="o">/</span>                            <span class="c"># libhugin--analyze Ordner</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">session</span><span class="o">.</span><span class="n">py</span>                      <span class="c"># Implementierungen der o.g. Klassen</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">movie</span><span class="o">.</span><span class="n">py</span>                        <span class="c"># Implementierung des ,,Movie&quot; Objektes</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">pluginhandler</span><span class="o">.</span><span class="n">py</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">rake</span><span class="o">.</span><span class="n">py</span>                         <span class="c"># Implementierung Rake Algorithmus</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">analyzer</span><span class="o">/</span>                       <span class="c"># Ordner für Analyzer--Plugins</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">comparator</span><span class="o">/</span>                     <span class="c"># Ordner für Comparator--Plugins</span>
+<span class="o">|</span>   <span class="o">|--</span> <span class="n">modifier</span><span class="o">/</span>                       <span class="c"># Ordner für Modifier--Plugins</span>
+<span class="o">|--</span> <span class="n">filewalk</span><span class="o">.</span><span class="n">py</span>                         <span class="c"># Helferfunktion für Import/Export</span>
+</pre></div>
 </div>
 </div>
 </div>
 
 
+          </div>
           <footer>
   
-    <div class="rst-footer-buttons">
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../VI/index.html" class="btn btn-neutral float-right" title="6 Demonstrationsanwendung"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../VI/index.html" class="btn btn-neutral float-right" title="6 Implementierung"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../IV/index.html" class="btn btn-neutral" title="4 Design"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../IV/index.html" class="btn btn-neutral" title="4 Softwarespezifikation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
 
   <hr/>
 
-  <p>
-      &copy; Copyright by Christopher Pahl, 2013-2014..
-  </p>
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright by Christoph Piechula, 2013-2014..
+    </p>
+  </div>
 
-  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
         </div>
       </div>
@@ -1144,6 +759,39 @@ verpackt. Später kann man einen <em>Commit</em> immer wieder zurückspulen.</td
 
   </div>
   
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
 
 </body>
 </html>

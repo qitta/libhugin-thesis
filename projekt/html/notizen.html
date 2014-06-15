@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Projektarbeit</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Projektarbeit" href="index.html"/>
+
+<!-- Include all CSS and JS files, let's you use your own theme. -->
+
+<link rel="stylesheet" type="text/css" href="_static/custom.css" />
+<script type="text/javascript">
+	function endsWith(str, suffix) {
+	    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+	}
+
+    $(document).ready(function() {
+    	var im, imsrc;
+    	$('img').each(function() {
+    		im = $(this);
+    		imsrc = im.attr('src');
+    		imalt = im.attr('alt');
+    		if (endsWith(imsrc, 'svg')) {
+    			im.wrap($('<a>').attr({'href': imsrc, 'title': imalt}).addClass('svglink'));
+    		}
+    	});
+
+    	$('a.svglink').colorbox({
+    		'width': '95%',
+    		'height': '95%',
+    		'photo': true});
+    });
+</script>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="rst/index.html" class="fa fa-home"> Projektarbeit</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="rst/abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/acknowledgements.html">Danksagung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/dedication.html">Widmung</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst/I/index.html">1 Einleitung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/I/index.html#motivation">1.1 Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/I/index.html#projektziel">1.2 Projektziel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/I/index.html#projektlizenz">1.3 Projektlizenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/I/index.html#namensgebung">1.4 Namensgebung</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst/II/index.html">2 Begriffsdefinitionen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/II/index.html#fachbegriffe">2.1 Fachbegriffe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/II/index.html#kontextspezifische-fachbegriffe">2.2 Kontextspezifische Fachbegriffe</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst/III/index.html">3 Stand der Metadatenpflege</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/III/index.html#metadatenarten-und-quellen">3.1 Metadatenarten und Quellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/III/index.html#software-und-metadatenformate">3.2 Software und Metadatenformate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/III/index.html#probleme-bei-der-metadatenpflege">3.3 Probleme bei der Metadatenpflege</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/III/index.html#probleme-bei-der-metadatensuche">3.4 Probleme bei der Metadatensuche</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/III/index.html#anforderungen-an-das-projekt">3.5 Anforderungen an das Projekt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst/IV/index.html">4 Softwarespezifikation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/IV/index.html#anforderungen-an-die-bibliothek">4.1 Anforderungen an die Bibliothek</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst/V/index.html">5 Entwurf</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/V/index.html#grunduberlegungen">5.1 Grundüberlegungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/V/index.html#libhugin-architektur-uberblick">5.2 Libhugin Architektur&ndash;Überblick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/V/index.html#bibliothek-dateistruktur">5.3 Bibliothek Dateistruktur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst/VI/index.html">6 Implementierung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/VI/index.html#libhugin-harvest-api">6.1 Libhugin&ndash;harvest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VI/index.html#libhugin-harvest-plugins">6.2 Libhugin&ndash;harvest Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VI/index.html#libhugin-analyze-api">6.3 Libhugin&ndash;analyze API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VI/index.html#libhugin-analyze-plugins">6.4 Libhugin&ndash;analyze Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VI/index.html#verschiedenes">6.5 Verschiedenes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst/VII/index.html">7 Demoanwendungen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/VII/index.html#libhugin-harvest-cli-tool-geri">7.1 Libhugin&ndash;harvest CLI&ndash;Tool Geri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VII/index.html#libhugin-analyze-cli-tool-freki">7.2 Libhugin&ndash;analyze CLI&ndash;Tool Freki</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VII/index.html#xbmc-plugin-integration">7.3 XBMC Plugin Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VII/index.html#weitere-einsatzmoglichkeiten">7.4 Weitere Einsatzmöglichkeiten</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst/VIII/index.html">8 Zusammenfassung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/VIII/index.html#aktueller-stand">8.1 Aktueller Stand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VIII/index.html#erfullung-der-gesetzten-anforderungen">8.2 Erfüllung der gesetzten Anforderungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VIII/index.html#defizite-und-verbesserungen">8.3 Defizite und Verbesserungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VIII/index.html#denkbare-weiterentwicklungen">8.4 Denkbare Weiterentwicklungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst/VIII/index.html#abschlieszendes-fazit">8.5 Abschließendes Fazit</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst/appendix.html">Helferfunktion für NFO&ndash;Dateien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/appendix.html#xbmc-scraper-plugin">XBMC&ndash;Scraper&ndash;Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/appendix.html#libhugin-xbmc-proxy">Libhugin XBMC Proxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/appendix.html#projektstatistik-cloc">Projektstatistik (<em>cloc</em>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/zzz_bibliography.html">Bibliographie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/zzz_bibliography.html#weblink-verzeichnis">Weblink Verzeichnis</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="rst/index.html">Projektarbeit</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="rst/index.html">Docs</a> &raquo;</li>
+      
+    <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/notizen.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <p>Motivation</p>
+<blockquote>
+<div><ul class="simple">
+<li>Überblick - Digitale Medienwelt</li>
+<li>Anforderungen an die Metadatenbeschaffung</li>
+<li>Zielsetzung (automatisierte Verarbeitung großer Datenmengen)</li>
+</ul>
+</div></blockquote>
+<p>Einführung</p>
+<blockquote>
+<div><ul class="simple">
+<li>Überblick - Filme und Metadatenverwaltung (grafik webservice -&gt; tools -&gt; outputformate)</li>
+<li>Resultierende Probleme</li>
+<li>Zielsetzung (grafik webservices -&gt; libhugin -&gt; outputfomrate/post und preprocessing)</li>
+<li>Anforderungen an das System (libhugin)
++ OpenSource um Weiterentwicklung zu gewährleisten
++ Logo und Namensgebung</li>
+<li>Zielgruppe</li>
+</ul>
+</div></blockquote>
+<p>Glossar</p>
+<blockquote>
+<div><ul class="simple">
+<li>Fachbegriffe</li>
+<li>Kontextspezifische Fachbegriffe</li>
+</ul>
+</div></blockquote>
+<p>Design</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>Grundüberlegungen</dt>
+<dd><ul class="first last simple">
+<li>modularer ansatz (pluginsystem)</li>
+<li>hugin harvest (provider, converter, postprocessor)</li>
+<li>hugin analyze (analyzer, modifier, comparator (experimentiel -&gt; DataMining))</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Integration in die Umwelt (anpassbar nach baukastenprinzip, grafik umelt ohne libhugin, umwelt mit libhugin)</p>
+</li>
+<li><p class="first">Spezifikation und Entwurf</p>
+</li>
+</ul>
+</div></blockquote>
+<p>Implementierung</p>
+<blockquote>
+<div><ul class="simple">
+<li>Kurzüberblick API (hugin harvest)</li>
+<li>Grundlegender Ablauf Metadaten Suche</li>
+<li>Liste und Beschreibung Provider, Converter, Postprocessor</li>
+<li>Kurzüberblick API (hugin analyze)</li>
+<li>Grundlegender Ablauf Metadaten Analyze</li>
+<li>Liste und Beschreibung modifier, analyzer, comparator</li>
+<li>Modul und Paketübersicht</li>
+</ul>
+</div></blockquote>
+<p>Verschiedenes (Entwicklungumgebung &amp; Co.)</p>
+<blockquote>
+<div><ul class="simple">
+<li>Codeing Richtilinen</li>
+<li>Vim und Ipython</li>
+<li>Testumgebung</li>
+</ul>
+</div></blockquote>
+<p>Demonstration von libhugin in der ,,Praxis''</p>
+<blockquote>
+<div><ul class="simple">
+<li>Demoanwendung libhugin</li>
+<li>Konzeptionelle Integration von libhugin als Plugin in das OpenSource Projekt XBMC</li>
+<li>Weitere Einsatzmöglichkeiten in der Praxis</li>
+</ul>
+</div></blockquote>
+<p>Ausblick</p>
+<blockquote>
+<div><ul class="simple">
+<li>Aktueller Stand libhugin</li>
+<li>Erfüllte- und nicht erfüllte Anforderungen</li>
+<li>Verbesserungsmöglichkeiten</li>
+<li>Ideen Weiterentwicklung</li>
+<li>Abschließendes Fazit</li>
+</ul>
+</div></blockquote>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright by Christoph Piechula, 2013-2014..
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
