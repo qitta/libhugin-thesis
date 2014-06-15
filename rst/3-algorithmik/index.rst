@@ -14,7 +14,18 @@ eingeschränkt möglich ist.
 Der *GIL* ist ein Mutex, welcher verhindert, dass mehrere native Threads Python
 Bytecode gleichzeitig ausführen können. Die Parallelisierung beispielsweise von
 Funktionen kann sogar zu Performanceeinbußen im Vergleich zur
-Singlethreaded--Ausführung führen.
+Singlethreaded--Ausführung führen, siehe Abbildung :num:`fig-gil-limitation`.
+Zum Testen wurde das Script :ref:`gil-limitation` verwendet, welches als Aufgabe
+die Dekrementierung einer Variablen hat.
+
+.. _fig-gil-limitation:
+
+.. figure:: fig/gil_limitation.pdf
+    :alt: Limitierung der Geschwindigkeit durch den global interpreter lock bei CPU-abhängigen Aufgaben. Hier wird über einer Funktion der Wert 100.000.000 dekrementiert.
+    :width: 100%
+    :align: center
+
+    Limitierung der Geschwindigkeit durch den global interpreter lock bei CPU-abhängigen Aufgaben. Hier wird über einer Funktion der Wert 100.000.000 dekrementiert.
 
 Diese Einschränkung gilt jedoch nicht für lange laufende oder blockierende
 Operationen wie beispielsweise der Zugriff auf die Festplatte (vgl.
