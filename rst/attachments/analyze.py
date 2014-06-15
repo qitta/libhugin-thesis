@@ -7,60 +7,46 @@ import os
 import sys
 import json
 
-
 def analyze_folder(path):
-    d = {}
-    for f in os.listdir(path):
-        with open(os.path.join(path, f), 'r') as fp:
-            provider, _, _ = f.split(';')
-            d[provider] = json.loads(fp.read())
-    return d
+    result = {}
+    for json_file in os.listdir(path):
+        with open(os.path.join(path, json_file), 'r') as handle:
+            provider, _, _ = json_file.split(';')
+            result[provider] = json.loads(handle.read())
+    return result
 
-def count_genre(attribute):
-    d = {
-        'tmdb': Counter(),
-        'ofdb': Counter(),
-        'omdb': Counter(),
-        'videobuster': Counter(),
-        'filmstarts': Counter()
-    }
-    attrs = [attribute]
+PROVIDERS = ['tmdb', 'ofdb', 'omdb', 'videobuster', 'filmstarts']
+
+def json_iterator():
     for folder in os.listdir(sys.argv[1]):
-        if os.path.isdir(folder):
-            providers = analyze_folder(folder)
-            for provider, value in  providers.items():
-                if value[attribute]:
-                    for attr in value[attribute]:
-                        d[provider][attr] += 1
-                else:
-                    d[provider]['none'] += 1
-    return d
+        if not os.path.isdir(folder):
+            continue
 
-def count_genre_len(attribute):
-    d = {
-        'tmdb': list(), 'ofdb': list(), 'omdb': list(),
-        'videobuster': list(), 'filmstarts': list()
-    }
-    attrs = [attribute]
-    for folder in os.listdir(sys.argv[1]):
-        if os.path.isdir(folder):
-            providers = analyze_folder(folder)
-            for provider, value in  providers.items():
-                if value[attribute]:
-                    d[provider].append(len(value[attribute]))
-                else:
-                    d[provider].append(0)
+        providers = analyze_folder(folder)
+        for provider, json_file in providers.items():
+            yield provider, json_file
 
-    return d
+def count_attribute(attribute):
+    results = {provider: Counter() for provider in PROVIDERS}
+    for provider, json_file in json_iterator():
+        for attr in json_file[attribute] or ['Kein Genre']:
+            results[provider][attr] += 1
+    return results
+
+def count_attribute_len(attribute):
+    results = {provider: [] for provider in PROVIDERS}
+    for provider, json_file in json_iterator():
+        results[provider].append(len(json_file[attribute] or []))
+    return results
 
 if __name__ == '__main__':
-    d = count_genre('genre')
-    pprint.pprint(d)
+    counts = count_attribute('genre')
+    pprint.pprint(counts)
 
-    d = count_genre_len('genre')
-    for prov, gen in d.items():
-        print(prov, 'min:', min(gen), 'mean:', round(mean(gen), 2), 'max:', max(gen))
-        for x in range(8):
-            print('Num:', x, 'Count:', gen.count(x))
-
-
+    counts = count_attribute_len('genre')
+    for prov, gen in counts.items():
+        print('{p}: ({i}/{a}/{x})'.format(
+            p=prov, i=min(gen), a=round(mean(gen), 2), x=max(gen))
+        )
+        for i in range(8):
+            print('#{i}: {c}'.format(i=i, c=gen.count(i)))
