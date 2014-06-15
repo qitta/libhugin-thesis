@@ -136,3 +136,15 @@ Metadaten verwendet:
 
 .. literalinclude:: ./attachments/completeness.py
    :language: python
+
+
+.. _gil-limitation:
+
+Anhang M (GIL Limitierung)
+==========================
+
+Das folgende Code--Snippet wurde verwendet um die GIL--Limitierung bei
+CPU--abhängigen Aufgaben zu messen:
+
+.. literalinclude:: ./attachments/gil_limitation_bench.py
+   :language: python
