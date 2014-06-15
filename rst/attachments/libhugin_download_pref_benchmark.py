@@ -2,7 +2,6 @@
 
 from collections import defaultdict
 from statistics import mean
-import time
 import timeit
 import numpy
 import matplotlib.pyplot as plt
@@ -12,26 +11,7 @@ from hugin.harvest.session import Session
 def benchmark(s, q):
     return s.submit(q)
 
-
-if __name__ == "__main__":
-
-    movies = [
-            'Prometheus', 'Avatar', 'Matrix', 'Shame', 'Juno', 'Drive',
-            'Hulk', 'Rio', 'Alien', 'Wrong'
-            ]
-
-    s = Session(parallel_downloads_per_job=10, cache_path='lecachex')
-    times = defaultdict(list)
-    for x in range(10):
-        for title in movies:
-            for provider in ['ofdbmovie', 'tmdbmovie', 'videobustermovie', 'omdbmovie', 'filmstartsmovie']:
-                q = s.create_query(title=title, cache=True, providers=[provider], amount=1, retries=150)
-                result = timeit.Timer(partial(benchmark, s, q)).timeit(number=1)
-                times[provider].append(result * 1000)
-
-    for k, v in times.items():
-        times[k] = (min(v), mean(v), max(v))
-
+def plot(times):
     providers = list(times.keys())
     y_pos = numpy.arange(len(providers))
 
@@ -43,3 +23,34 @@ if __name__ == "__main__":
     plt.xlabel('time in milliseconds')
     plt.title('libhugin download performance by online source.')
     plt.show()
+
+if __name__ == "__main__":
+    do_cache = False
+    movies = [
+        'Prometheus', 'Avatar', 'Matrix', 'Shame', 'Juno', 'Drive',
+        'Hulk', 'Rio', 'Alien', 'Wrong'
+    ]
+
+    providers = [
+        'ofdbmovie', 'tmdbmovie', 'videobustermovie', 'omdbmovie', 'filmstartsmovie'
+    ]
+
+    N = 10
+
+    s = Session(parallel_downloads_per_job=10, cache_path='lecchex')
+    times = defaultdict(list)
+
+    for _ in range(N):
+        for title in movies:
+            for provider in providers:
+                qry = s.create_query(
+                    title=title, cache=do_cache, providers=[provider],
+                    amount=1, retries=150
+                )
+                result = timeit.Timer(partial(benchmark, s, qry)).timeit(number=1)
+                times[provider].append(result * 1000)
+
+    for key, value in times.items():
+        times[key] = (min(value), mean(value), max(value))
+
+    plot(times)
