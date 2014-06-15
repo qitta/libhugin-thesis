@@ -3,9 +3,7 @@
 import os
 import sys
 import json
-import time
 from hugin.harvest.session import Session
-
 
 def read_file(filename):
     with open(filename, 'r') as f:
@@ -41,24 +39,12 @@ def file_exists(folder, source):
     fmt = 'metadata/{}/{};{};{}.json'.format(folder, source, title, year)
     return os.path.isfile(fmt)
 
-
-def print_flush(msg):
-    print(' ' * 80 + '\r', end='')
-    print('{}\r'.format(msg), end='')
-
-
-
 if __name__ == '__main__':
-
-    if sys.argv[1] not in ['create', 'download']:
-        print('Wrong usage. Use "create" or "download"')
-        sys.exit(0)
-
-    if sys.argv[1] == 'create':
+    if 'create' in sys.argv:
         moviefolders = read_file(sys.argv[2])
         create_folders(moviefolders)
 
-    if sys.argv[1] == 'download':
+    if 'download' in sys.argv:
         not_found = []
         folders = os.listdir(sys.argv[2])
         folderlist = [
@@ -74,7 +60,6 @@ if __name__ == '__main__':
             cnt_not_found = 0
             for num, folder in enumerate(folderlist):
                 msg = '{} <= [{}:{}:{}]'.format(source, num, len(folderlist), cnt_not_found)
-                print_flush(msg)
                 t, y, mid = folder.split(';')
                 if not file_exists(folder, source):
                     r = fetch_data(
@@ -91,5 +76,6 @@ if __name__ == '__main__':
             with open('metadata/{}-notfound.txt'.format(source), 'w') as f:
                 elements = str(not_found)
                 f.write('{}::{}'.format(len(not_found), elements))
+
             print()
             print(len(folderlist), cnt_not_found, source)
