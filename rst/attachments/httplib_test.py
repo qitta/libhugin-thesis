@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
 import concurrent.futures
 from collections import defaultdict
 import urllib.request
