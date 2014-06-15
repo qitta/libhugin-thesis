@@ -5,16 +5,14 @@ import numpy
 from threading import Thread
 import time
 
-
 def countdown(n):
     while n > 0:
         n -= 1
 
-
 def plot(times):
     threads = [x for x, _ in times]
-    y_pos = numpy.arange(len(threads))
     values = [x for _, x in times]
+    y_pos = numpy.arange(len(threads))
 
     plt.barh(y_pos, values, align='center', alpha=0.7, color='g')
     plt.yticks(y_pos, threads)
@@ -24,27 +22,20 @@ def plot(times):
 
 
 if __name__ == '__main__':
-
     CNT = 100000000
     times = []
 
     for thread_cnt in range(0, 9, 2):
-        if thread_cnt == 0:
-            thread_cnt = 1
+        thread_cnt = max(1, thread_cnt)
 
-        threads = []
+        cnt = range(1, thread_cnt + 1)
+        threads = [Thread(target=countdown, args=(CNT // thread_cnt, )) for _ in cnt]
+        for thread in threads:
+            thread.start()
 
-        # starting timer and threads
         start = time.time()
-        for z in range(1, thread_cnt + 1):
-            t = Thread(target=countdown, args=(CNT//thread_cnt,))
-            threads.append(t)
-            t.start()
+        for thread in threads:
+            thread.join()
+        times.append((thread_cnt, time.time() - start))
 
-        # joining threads and stoping timer
-        for t in threads:
-            t = t.join()
-
-        end = time.time() # stoping timer
-        times.append( (thread_cnt, end - start) )
     plot(sorted(times))
