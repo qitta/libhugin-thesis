@@ -1,27 +1,22 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
-from pyxdameraulevenshtein import normalized_damerau_levenshtein_distance
-import math
-import pprint
 from adj_dlevenshtein import string_similarity_ratio
+from pprint import pprint
 
-def compare(search_title, titles):
+def compare(search_title, titles, max_years=15):
     ratings = {}
     for title in titles:
         t, y = title.split(';')
         st, sy = search_title.split(';')
-        penalty = 1 - min(1, abs(int(y) - int(sy)) / 15)
-        rating = round((string_similarity_ratio(t, st) * 3 + penalty) / 4, 3)
+        year_sim = 1 - min(1, abs(int(y) - int(sy)) / max_years)
+        rating = round((string_similarity_ratio(t, st) * 3 + year_sim) / 4, 3)
         ratings[title] = rating
     return ratings
 
 def compare_dl(search_title, titles):
-    ratings = {}
-    for title in titles:
-        rating = round(string_similarity_ratio(search_title, title), 3)
-        ratings[title] = rating
-    return ratings
-
+    s = string_similarity_ratio
+    return {title: round(s(search_title, title), 3) for title in titles}
 
 if __name__ == '__main__':
     a = 'Matrix; 1999'
@@ -30,13 +25,7 @@ if __name__ == '__main__':
         'Matrix, The; 1999', 'The Matrix; 2013', 'The East; 1999'
     ]
 
-    ratings = compare(a, b)
-    ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
-    pprint.pprint(ratings)
-
-    ratings = compare_dl(a, b)
-    ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
-    pprint.pprint(ratings)
-
-
-
+    for func in (compare, compare_dl):
+        ratings = func(a, b)
+        ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
+        pprint(ratings)
