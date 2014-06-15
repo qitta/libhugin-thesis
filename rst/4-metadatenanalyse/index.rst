@@ -57,7 +57,7 @@ den Test wurde das Script aus :ref:`timeout` verwendet.
     +-----------+----------+--------------+----------+-----------------+----------------+
     | **Tag 4** | (0/0/0)  | (0/4.61/55)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
     +-----------+----------+--------------+----------+-----------------+----------------+
-    | **Tag 5** | (0/0/0)  | (0/0/0)      | (0/0/0)  | (0/0/0)         | (0/0/0)        |
+    | **Tag 5** | (0/0/0)  | (0/3.56/55)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
     +-----------+----------+--------------+----------+-----------------+----------------+
 
 Der OFDb--Provider verteilt die Anfragen über ein Gateway, siehe :cite:`ofdbgw`.
@@ -68,7 +68,7 @@ Filme ohne Inhaltsbeschreibung zurückgeliefert.
 Ein Testen der einzelnen Mirror ergab, dass ``http://ofdbgw.geeksphere.de`` als
 einziger Mirror die erwarteten Ergebnisse lieferte. Dieser wurde somit im
 Prototypen direkt als einziger Mirror aktiviert. Weitere Analysen der Metadaten
-sollen Außschluß darüber geben ob das Problem weiterhin auftritt.
+sollen Aufschluß darüber geben ob das Problem weiterhin auftritt.
 
 .. raw:: Latex
 
@@ -653,3 +653,34 @@ drei Anbietern nahezu gleichverteilt ist.
 
 
 Die vorliegenden Daten wurden mit dem Script in :ref:`rating` analysiert.
+
+######
+Trivia
+######
+
+Testumgebung
+============
+
+Die Bibliothek wurde in der Python--Version 3.4 getestet. Die Script Anhang
+wurden für die jeweiligen Auswertungen verwendet. Hier wurde immer darauf
+geachtet, dass immer der Durchschnitt aus mehreren Durchläufen genommen wurde um
+statistische Ausreißer zu unterdrücken.
+
+Als Testumgebung wurde das folgende System verwendet:
+
+    * OS  : Arch Linux, 3.14.6-1-ARCH x86_64 (64 bit)
+    * CPU : Intel Core 2 Quad Q6600  @ 2.40GHz
+    * RAM : 4 GB DDR2 RAM
+    * HDD : Hitachi 120GB, 5400 upm
+
+Als Internetanbindung wurde eine VDSL 50 Mbit Leitung der Telekom verwendet.
+Diese hat laut Internet--Messverfahren eine tatsächliche Geschwindigkeit von
+47,9 Mbit/s (upstream) und 7,7 Mbit/s (downstream).
+
+Statistiken und Plots
+=====================
+
+Für das Analysieren Metadaten wurden eigene Scripte geschreiben. Diese sind im
+jeweiligen Thema genannt und befinden sich im Anhang. Für das Erstellen der
+Grafiken/Plots wurde die Python Matplotlib Bibliothek verwendet (siehe
+:cite:`matplotlib`).
