@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
 from collections import Counter
 from statistics import mean
