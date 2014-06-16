@@ -1,7 +1,7 @@
 .. _motivation:
 
 #####################################
-Grundlegende Architektur von Libhugin
+Probleme bei der Metadatenbeschaffung
 #####################################
 
 Die Filmmetadaten eines Films stehen in der Regel auf der DVD--Hülle oder finden
