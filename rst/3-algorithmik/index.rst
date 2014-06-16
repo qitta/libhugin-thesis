@@ -15,8 +15,8 @@ Der *GIL* ist ein Mutex, welcher verhindert, dass mehrere native Threads Python
 Bytecode gleichzeitig ausführen können. Die Parallelisierung beispielsweise von
 Funktionen kann sogar zu Performanceeinbußen im Vergleich zur
 Singlethreaded--Ausführung führen, siehe Abbildung :num:`fig-gil-limitation`.
-Zum Testen wurde das Script :ref:`gil-limitation` verwendet, welches als Aufgabe
-die Dekrementierung einer Variablen hat.
+Zum Testen wurde das Skript im :ref:`gil-limitation` verwendet, welches als
+Aufgabe die Dekrementierung einer Variablen hat.
 
 .. _fig-gil-limitation:
 
@@ -57,8 +57,8 @@ wird:
 
 .. code-block:: python
 
-   from urllib.request import urlopen
-   urlopen('http://httpbin.org/gzip').read()
+   >>> from urllib.request import urlopen
+   >>> urlopen('http://httpbin.org/gzip').read()
    b'\x1f\x8b\x08\x00\xc0\xa5\x8bS\x02\xff5\x8f\xc1n\x830\x10D\xef\xf9\n\xe4s\xec\[...]'
 
 
@@ -67,17 +67,17 @@ Im Gegenzug dazu wird der Zugriff über *urllib3*-- und die
 
 .. code-block:: python
 
-   from httplib2 import Http
-   Http().request('http://httpbin.org/gzip')
+   >>> from httplib2 import Http
+   >>> Http().request('http://httpbin.org/gzip')
    b'{\n  "gzipped": true,\n  "headers": {\n    "Accept-Encoding": "gzip, deflate"[...]'
 
-   import urllib3
-   urllib3.PoolManager(1).request(url='http://httpbin.org/gzip', method='GET').data
+   >>> import urllib3
+   >>> urllib3.PoolManager(1).request(url='http://httpbin.org/gzip', method='GET').data
    b'{\n  "gzipped": true,\n  "headers": {\n    "Accept-Encoding": "identity",\n [...]'
 
 
 Aufgrund der genannten Eigenschaften und der vergleichsweise guten Performance
-(siehe :num:`fig-threaded-download`) wurde für *libhugin* die
+(siehe Abbildung :num:`fig-threaded-download`) wurde für *libhugin* die
 *httplib2*--Bibliothek gewählt. Da diese jedoch nicht Thread--Safe ist, wird
 hier der in der Google Developer API genannte Ansatz (siehe :cite:`gdev`), eine
 Instanz pro Thread zu starten, gewählt.
@@ -89,12 +89,13 @@ Benchmark wurde mit einer *VDSL* 50Mbit--Leitung durchgeführt.
 
 .. _fig-threaded-download:
 
-.. figure:: fig/threaded_download.png
+.. figure:: fig/threaded_download.pdf
     :alt: Performancevorteil beim Parallelisieren von Downloads.
     :width: 100%
     :align: center
 
-    Performancevorteil beim Parellisieren von Downloads.
+    Performancevorteil beim Parellisieren von Downloads. Fünft Durchläufte,
+    Zugriff auf 15 verschiedene Webseiten, siehe Benchmark-Skript Anhang A.
 
 
 #####################
@@ -225,15 +226,19 @@ unter Python verfügbaren Implementierungen durchgeführt:
     :width: 100%
     :align: center
 
-    String comparsion algorithms performance anlysis.
+    Vergleich der Algorithmen für den Zeichenkettenvergleich. Pro Vergleich 50
+    Durchläufe. Die Länge der jeweils verglichenen Zeichenketten, ist die
+    Basis--Zeichenkette, mit dem Faktor multipliziert.
 
 Abbildung :num:`fig-stringcompare` zeigt, dass die Laufzeit--Komplexität bei
-allen drei Algorithmen ähnlich ist. Aufgrund der Tatsache, dass der
-Damerau--Levenshtein vertauschte Zeichen ,,erkennen" kann, eignet er sich gut
-für die Bibliothek. Des Weiteren zeigt die Abbildung, dass die beiden
+allen drei Algorithmen ähnlich ist. Des Weiteren zeigt die Abbildung, dass die beiden
 Implementierungen *distance* (C) und *pyxDamerauLevenshtein* (C) sehr
-performant im Vergleich zur *difflib* (Python) Implementierung arbeiten. Der
-Benchmark wurde mit dem Skript aus :ref:`string_comparsion_algorithms`
+performant im Vergleich zur *difflib* (Python) Implementierung arbeiten.
+Aufgrund der Tatsache, dass der Damerau--Levenshtein vertauschte Zeichen
+,,erkennen" kann und gleichzeitig performant implementiert ist, wurde er für den
+Einsatz in der Bibliothek gewählt.
+
+Der Benchmark wurde mit dem Skript aus :ref:`string_comparsion_algorithms`
 durchgeführt.
 
 Je nach verwendeten Algorithmus variiert das Ergebnis leicht. Das liegt daran,
@@ -253,25 +258,43 @@ vergleichen zu können:
     0.6666666666666667
 
 Weitere Werte, um die unterschiedliche Wertung der beiden Algorithmen zu
-demonstrieren, finden sich in der Tabelle :num:`fig-comparsion-diff`.
-
+demonstrieren, finden sich in der Tabelle :num:`fig-comparsion-diff-1` und
+:num:`fig-comparsion-diff-2`. Die Werte wurden mit dem Script in :ref:`comparsion-rating`.
 
 .. figtable::
-    :label: fig-comparsion-diff
-    :caption: Ähnlichkeitswerte Ratcliff-Obershelp (links unten) und Damerau-Levenshtein (rechts oben)
-    :alt: Ähnlichkeitswerte Ratcliff-Obershelp (links unten) und Damerau-Levenshtein (rechts oben)
+    :label: fig-comparsion-diff-1
+    :caption: Ähnlichkeitswerte Damerau-Levenshtein.
+    :alt: Ähnlichkeitswerte Damerau-Levenshtein.
 
     +---------------+--------------+------------+--------------+---------------+
     |               | **Superman** | **Batman** | **Iron-Man** | **Spiderman** |
     +===============+==============+============+==============+===============+
     | **Superman**  | 1.0          | 0.38       | 0.25         | 0.67          |
     +---------------+--------------+------------+--------------+---------------+
-    | **Batman**    | 0.43         | 1.0        | 0.25         | 0.33          |
+    | **Batman**    |              | 1.0        | 0.25         | 0.33          |
     +---------------+--------------+------------+--------------+---------------+
-    | **Iron-Man**  | 0.38         | 0.29       | 1.0          | 0.22          |
+    | **Iron-Man**  |              |            | 1.0          | 0.22          |
+    +---------------+--------------+------------+--------------+---------------+
+    | **Spiderman** |              |            |              | 1.0           |
+    +---------------+--------------+------------+--------------+---------------+
+
+.. figtable::
+    :label: fig-comparsion-diff-2
+    :caption: Ähnlichkeitswerte Ratcliff-Obershelp.
+    :alt: Ähnlichkeitswerte Ratcliff-Obershelp.
+
+    +---------------+--------------+------------+--------------+---------------+
+    |               | **Superman** | **Batman** | **Iron-Man** | **Spiderman** |
+    +===============+==============+============+==============+===============+
+    | **Superman**  | 1.0          |            |              |               |
+    +---------------+--------------+------------+--------------+---------------+
+    | **Batman**    | 0.43         | 1.0        |              |               |
+    +---------------+--------------+------------+--------------+---------------+
+    | **Iron-Man**  | 0.38         | 0.29       | 1.0          |               |
     +---------------+--------------+------------+--------------+---------------+
     | **Spiderman** | 0.82         | 0.4        | 0.35         | 1.0           |
     +---------------+--------------+------------+--------------+---------------+
+
 
 Da der Vergleich von der Groß-- und Kleinschreibung abhängig ist, fällt die
 Ähnlichkeit der Titel *,,Sin"* und *,,sin"*, wie folgende *IPython*--Sitzung
@@ -345,18 +368,20 @@ Diese Vorgehensweise normalisiert ebenso die Personensuche. Hier wird
 beispielsweise der Name *,,Emma Stone"* und *,,Stone, Emma"* in beiden Fällen zu
 der Zeichenkette ``'emma stone'``.
 
-Die Anpassungen des Algorithmus für den Zeichenkettenvergleich wirken sich auf
-die Performance aus.  Abbildung :num:`fig-finalstringcompare` zeigt den
-Performanceunterschied zum ursprünglichen Algorithmus.
+Die Anpassungen des Algorithmus für den Zeichenkettenvergleich wirken sich fast
+kaum auf die Performance aus.  Abbildung :num:`fig-finalstringcompare` zeigt
+den Performanceunterschied zum ursprünglichen Algorithmus.
 
 .. _fig-finalstringcompare:
 
 .. figure:: fig/adjusted_algo_compare.pdf
-    :alt: Angepasster Algorithmus auf Basis von Damerau-Levenshtein Algorithmus.
+    :alt: Angepasster Algorithmus auf Basis von Damerau-Levenshtein im
+          Vergleich zu den ursprünglichen Algorithmen.
     :width: 100%
     :align: center
 
-    Angepasster Algorithmus auf Basis von Damerau-Levenshtein Algorithmus.
+    Angepasster Algorithmus auf Basis von Damerau-Levenshtein im Vergleich zu
+    den ursprünglichen Algorithmen.
 
 Ein weiteres Attribut, das bei der Suche von Filmen angegeben werden kann, ist
 das Erscheinungsjahr. Dieses wird verwendet um Suchergebnisse genauer
@@ -410,13 +435,13 @@ berechnet:
 
  .. math::
 
-    year\_similarity(year_a, year_b, max_years) = 1 - min \left\{ 1, \frac{\vert year_{a} - year_{b}  \vert}{max_years} \right\}
+    year\_similarity(year_a, year_b, max_{years}) = 1 - min \left\{ 1, \frac{\vert year_{a} - year_{b}  \vert}{max_{years}} \right\}
 
 :math:`max_years` ist hierbei die maximale Anzahl von Jahren die betrachtet werden
 sollen.
 
-Anschließend wird das Jahr noch zusätzlich gewichtet, da der Titel wichtiger ist
-als das Erscheinungsjahr. Durch die Gewichtung soll dies sichergestellt werden.
+Anschließend wird das Jahr noch zusätzlich gewichtet, da der Titel wichtiger
+als das Erscheinungsjahr ist. Durch die Gewichtung soll dies sichergestellt werden.
 
  .. math::
 
@@ -430,26 +455,26 @@ verwendet werden soll.
 
 .. figtable::
     :label: fig-rating
-    :caption: Vergleich Rating von Suchergebnissen mit und ohne Jahresgewichtung.
-    :alt: Vergleich Rating von Suchergebnissen mit und ohne Jahresgewichtung.
+    :caption: Unterschied im Rating bei gewichteter Betrachtung des Titels.
+    :alt: Unterschied im Rating bei gewichteter Betrachtung des Titels.
 
-    +------------------+--------------------------------+----------------------------+
-    | **Titel**        | **Rating mit Gewichtung, n=3** | **Rating ohne Gewichtung** |
-    +==================+================================+============================+
-    | Matrix 1999      | 1.0                            | 1.0                        |
-    +------------------+--------------------------------+----------------------------+
-    | Matrix 2000      | 0.983                          | 0.636                      |
-    +------------------+--------------------------------+----------------------------+
-    | Matrix 1997      | 0.967                          | 0.909                      |
-    +------------------+--------------------------------+----------------------------+
-    | Matrix 2001      | 0.967                          | 0.636                      |
-    +------------------+--------------------------------+----------------------------+
-    | Matrix, The 1999 | 0.7                            | 0.538                      |
-    +------------------+--------------------------------+----------------------------+
-    | The Matrix 2013  | 0.467                          | 0.467                      |
-    +------------------+--------------------------------+----------------------------+
-    | The East 1999    | 0.438                          | 0.538                      |
-    +------------------+--------------------------------+----------------------------+
+    +------------------+-------------------------------------+------------------------------------+
+    | **Titel**        | **Rating mit Gewichtung, weight=3** | **Rating mit Damerau-Levenshtein** |
+    +==================+=====================================+====================================+
+    | Matrix 1999      | 1.0                                 | 1.0                                |
+    +------------------+-------------------------------------+------------------------------------+
+    | Matrix 2000      | 0.983                               | 0.636                              |
+    +------------------+-------------------------------------+------------------------------------+
+    | Matrix 1997      | 0.967                               | 0.909                              |
+    +------------------+-------------------------------------+------------------------------------+
+    | Matrix 2001      | 0.967                               | 0.636                              |
+    +------------------+-------------------------------------+------------------------------------+
+    | Matrix, The 1999 | 0.7                                 | 0.538                              |
+    +------------------+-------------------------------------+------------------------------------+
+    | The Matrix 2013  | 0.467                               | 0.467                              |
+    +------------------+-------------------------------------+------------------------------------+
+    | The East 1999    | 0.438                               | 0.538                              |
+    +------------------+-------------------------------------+------------------------------------+
 
 
 Abbildung :num:`fig-rating` zeigt das Rating mit einer
@@ -580,15 +605,16 @@ Normalisierung des Genre
 Die Normalisierung der Metadaten aus unterschiedlichen Quellen ist sehr
 schwierig, da es bei den Filmmetadaten keinen einheitlichen Standard gibt. Um
 fehlerhafte oder fehlende Metadaten über unterschiedliche Quellen zu ergänzen,
-müssen die Metadatenattribute, insbesondere das Genre, aufgrund der in
+müssen die Metadatenattribute, insbesondere das Genre, aufgrund der in Kapitel
 :ref:`motivation` gelisteten Problematik, normalisiert werden.
 
-Durch den in :ref:`motivation` (siehe Abbildung :num:`fig-genre-redundanzen`,
-Abbildung :num:`fig-genre-detail`) genannten Umstand werden die Genreinformation
-redundant in der Datenbank der Abspielsoftware, wie beispielsweise dem
-XBMC--Media--Center, abgelegt. Es ist nicht mehr möglich ein Filmgenre
-eindeutig zu identifizieren. Es ist somit weder eine Gruppierung nach diesem
-Genre noch eine eindeutige Filterung möglich.
+Durch den in Kapitel :ref:`motivation` (siehe Abbildung
+:num:`fig-genre-redundanzen`, Abbildung :num:`fig-genre-detail`) genannten
+Umstand werden die Genreinformation redundant in der Datenbank der
+Abspielsoftware, wie beispielsweise dem XBMC--Media--Center, abgelegt. Es ist
+nicht mehr möglich ein Filmgenre eindeutig zu identifizieren. Es ist somit
+weder eine Gruppierung nach diesem Genre noch eine eindeutige Filterung
+möglich.
 
 Dieses Problem betrifft grundsätzlich alle Filmmetadaten--Attribute, jedoch
 lassen sich andere Attribute wie die Inhaltsbeschreibung problemlos austauschen,
@@ -744,7 +770,7 @@ Das Postprocessor--Plugin *,,Compose"* ist ein Plugin, welches es erlaubt dem
 Benutzer verschiedene Metadatenquellen zusammenzuführen. Dies ist im
 in der aktuellen Version auf zwei verschiedene Arten möglich.
 
-1.) Das ,,automatische" Zusammenführen der Daten Hierbei werden die gefundenen
+1.) Das ,,automatische" Zusammenführen der Daten. Hierbei werden die gefundenen
 Suchergebnisse nach IMDb--ID gruppiert. Dies garantiert, dass die Metadaten
 nur zwischen gleichen Filmen ausgetauscht werden.
 
@@ -765,11 +791,11 @@ gruppieren.
 .. _fig-compose:
 
 .. figure:: fig/compose.pdf
-    :alt: Automatisches ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung
+    :alt: Automatisches Ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
     :width: 80%
     :align: center
 
-    Automatisches ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung
+    Automatisches Ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
 
 2.) Eine weitere Möglichkeit neben dem automatischen Zusammenführen von Attributen
 verschiedener Provider ist die Angabe eine benutzerdefinierten Profilmaske.

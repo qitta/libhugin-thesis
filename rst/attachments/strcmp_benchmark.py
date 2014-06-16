@@ -16,11 +16,8 @@ FUNCS = [{
     'func': '1 - distance.nlevenshtein("{s1}", "{s2}")',
     'fimport': 'import distance',
     'label': 'levenshtein'
-}, {
-    'func': '1 - distance.jaccard("{s1}", "{s2}")',
-    'fimport': 'import distance',
-    'label': 'jaccard'
-}, {
+}
+, {
     'func': 'adj_dlevenshtein.string_similarity_ratio("{s1}", "{s2}")',
     'fimport': 'import adj_dlevenshtein',
     'label': 'adjusted damerau levenshtein'
@@ -34,7 +31,7 @@ def benchmark(s1, s2, n, **kwargs):
 def plot(N, STEP):
     plt.title('String compare analysis with ,,Erdmännchen" vs ,,Khaleesi"')
     plt.ylabel('time in milliseconds')
-    plt.xlabel('amount of string comparisons')
+    plt.xlabel('string multiplication factor')
     plt.xlim(1, N / STEP)
 
     # plt.xscale('log')
@@ -42,6 +39,7 @@ def plot(N, STEP):
 
     plt.axes().xaxis.set_ticks_position('bottom')
     plt.axes().yaxis.set_ticks_position('left')
+    plt.grid(True)
 
     plt.legend()
     plt.show()
@@ -50,6 +48,7 @@ def add_plot(plt, data, label):
     plt.plot(
         [y for y, _ in data],
         [x for _, x in data],
+        'o-',
         label=label
     )
 
@@ -63,7 +62,8 @@ if __name__ == "__main__":
         print('Benchmarking {algo}'.format(algo=algo['label']))
         for num in range(1, N + 1, STEP):
             fac = num // STEP + 1
-            timing = benchmark(s1 * fac, s2 * fac, 100, **algo)
+            print(num, fac, STEP)
+            timing = benchmark(s1 * fac, s2 * fac, 50, **algo)
             data.append((fac, timing * 100))
         add_plot(plt, data, algo['label'])
         data = []

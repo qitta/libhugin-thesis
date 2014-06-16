@@ -148,3 +148,15 @@ CPU--abhängigen Aufgaben zu messen:
 
 .. literalinclude:: ./attachments/gil_limitation_bench.py
    :language: python
+
+
+.. _comparsion-rating:
+
+Anhang M (Rating Differenz)
+===========================
+
+Das folgende Code--Snippet wurde verwendet um Vergleichswerte zwischen
+Damerau--Levenshtein und Ratcliff--Obershelp zu ermitteln.
+
+.. literalinclude:: ./attachments/comparsion_rating.py
+   :language: python

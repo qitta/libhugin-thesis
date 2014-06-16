@@ -3,6 +3,7 @@
 
 import concurrent.futures
 from collections import defaultdict
+from statistics import mean
 import urllib.request
 import time
 import urllib3
@@ -13,15 +14,19 @@ URLS = [
     'http://www.zeit.de',
     'http://www.heise.de',
     'http://www.golem.de',
-    'http://www.linux-pro.de',
     'http://www.krawall.de',
-    'http://www.archlinux.de',
-    'http://www.archlinux.org',
     'http://www.phoronix.com',
-    'http://www.bild.de',
     'http://www.spiegel.de',
     'http://www.zeit.de',
-    'http://www.faz.de'
+    'http://www.faz.de',
+    'http://www.focus.de',
+    'http://www.filmstarts.de',
+    'http://www.moviepilot.de',
+    'http://www.imdb.com',
+    'http://www.themoviedb.org',
+    'http://www.debian.org',
+    'http://www.freebsd.org/de/'
+
 ]
 
 def fetch_urllib(url, timeout):
@@ -54,30 +59,33 @@ def download(threads=1, func=None):
                 pass
 
     end = int(round(time.time() * 1000))
-    return end - start
+    result = end - start
+    time.sleep(1)
+    return result
 
 def plot(results):
     for lib in FUNCS.keys():
         t = [x[0] for x in results[lib]]
         s = [x[1] for x in results[lib]]
-        pylab.plot(t, s, label=lib)
+        pylab.plot(t, s, 'o-', label=lib)
 
-    pylab.xlim(1, 10)  # decreasing time
+    pylab.xlim(1, 15)
     pylab.xlabel('number of download threads')
     pylab.ylabel('time in milliseconds')
-    pylab.title('performance comparsion threaded download')
+    pylab.title('performance scaling multithreaded download')
     pylab.grid(True)
     pylab.legend()
     pylab.show()
 
 if __name__ == '__main__':
-    N = 10
+    N = 5
+    MAX_THREADS = 15
     results = defaultdict(dict)
 
     for name, func in FUNCS.items():
         run_results = []
-        for threads in range(1, 10 + 1, 1):
-            avg_time = sum(download(threads=threads, func=func) for _ in range(N))
+        for threads in range(1, MAX_THREADS + 1, 1):
+            avg_time = mean(download(threads=threads, func=func) for _ in range(N))
             run_results.append((threads, avg_time))
         results[name] = run_results
 
