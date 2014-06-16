@@ -5,11 +5,9 @@
     Abstract
     ========
 
-This paper shows a way to build a music recommendation system based on
-datamining algorithms and a neighbor graph. A extensible python library
-is developed, using a variety of inputs differing from music metadata like
-lyrics or the genre to the analysis of the associated audio data. In order to
-demonstrate and verify the results, a Gtk+--based MPD client is developed that can
-be used either as debugging tool or normal media player. Various techniques are
-shown to compare all possible attributes of a song with each other in an
-efficient way.
+This paper shows and evaluates algorithms used by the previously developed movie
+metadata search and analysis system *libhugin*. Additionally the behavior of the
+system under various circumstances is analyzed. Apart that all metadata sources
+used by *libhugin* are evaluated. The purpose of the analysis of the metadata
+sources is to evaluate all previously asumed asumptions. Another goal of this
+paper is to discover unknown issues and point up possible solutions.

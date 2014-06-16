@@ -5,8 +5,8 @@
     Danksagung
     ==========
 
-Danke an folgende Personen und Dinge: Katzen, Vögel aller Art, Teehersteller
-aller Länder, Herrn Prof. Dr. Jörg Scheidt (für die Zelle), Herrn Prof. Dr.
-Günter Köhler (für die Freiheit) und meiner Familie. 
+Mein Dank gilt folgenden Personen: Herrn Prof. Dr. Günther Köhler
+(Projektbetreuung), Herrn Prof. Dr. Jörg Scheidt (Bereitstellung eines Raumes
+für den Projektzeitraum), Teegeschwendner, Cricetulus, Micrathene Whitneyi,
+Columbidae und natürlich auch — Alces alces.
 
-Ihr wisst schon warum.
