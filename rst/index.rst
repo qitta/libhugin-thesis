@@ -3,7 +3,7 @@
 .. _doc-title:
 
 ############################
-libmunin: |br| Projektarbeit
+libhugin: |br| Projektarbeit
 ############################
 
 .. only:: not singlehtml
