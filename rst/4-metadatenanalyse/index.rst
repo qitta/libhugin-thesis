@@ -661,9 +661,9 @@ Testumgebung
 ============
 
 Die Bibliothek wurde in der Python--Version 3.4 getestet. Die Skripte im Anhang
-wurden für die jeweiligen Auswertungen verwendet. Hier wurde immer darauf
-geachtet, dass immer der Durchschnitt aus mehreren Durchläufen genommen wurde,
-um statistische Ausreißer zu unterdrücken.
+wurden für die jeweiligen Auswertungen verwendet. Bei zeitabhängigen Messungen
+wurde immer darauf geachtet, dass immer der Durchschnitt aus mehreren
+Durchläufen genommen wurde, um statistische Ausreißer zu unterdrücken.
 
 Als Testumgebung wurde das folgende System verwendet:
 
