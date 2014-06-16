@@ -43,22 +43,22 @@ den Test wurde das Script aus :ref:`timeout` verwendet.
 
 .. figtable::
     :label: fig-timeout
-    :caption: Anzahl der ,,retries" beim Herunterladen von Metadaten für jeweils 100 Filme (min/avg/max)
-    :alt: Anzahl der ,,retries" beim Herunterladen von Metadaten für jeweils 100 Filme
+    :caption: Anzahl der ,,retries" beim Herunterladen von Metadaten für jeweils 100 Filme.
+    :alt: Anzahl der ,,retries" beim Herunterladen von Metadaten für jeweils 100 Filme.
 
-    +-----------+----------+--------------+----------+-----------------+----------------+
-    |           | **tmdb** | **ofdb**     | **omdb** | **videobuster** | **filmstarts** |
-    +===========+==========+==============+==========+=================+================+
-    | **Tag 1** | (0/0/0)  | (0/31,87/60) | (0/0/0)  | (0/0/0)         | (0/0/0)        |
-    +-----------+----------+--------------+----------+-----------------+----------------+
-    | **Tag 2** | (0/0/0)  | (0/0.87/6)   | (0/0/0)  | (0/0/0)         | (0/0/0)        |
-    +-----------+----------+--------------+----------+-----------------+----------------+
-    | **Tag 3** | (0/0/0)  | (0/1.23/13)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
-    +-----------+----------+--------------+----------+-----------------+----------------+
-    | **Tag 4** | (0/0/0)  | (0/4.61/55)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
-    +-----------+----------+--------------+----------+-----------------+----------------+
-    | **Tag 5** | (0/0/0)  | (0/3.56/55)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
-    +-----------+----------+--------------+----------+-----------------+----------------+
+    +-------------------------+----------+--------------+----------+-----------------+----------------+
+    |                         | **TMDb** | **OFDb**     | **OMDb** | **Videobuster** | **Filmstarts** |
+    +=========================+==========+==============+==========+=================+================+
+    | **Tag 1 (min/avg/max)** | (0/0/0)  | (0/31,87/60) | (0/0/0)  | (0/0/0)         | (0/0/0)        |
+    +-------------------------+----------+--------------+----------+-----------------+----------------+
+    | **Tag 2 (min/avg/max)** | (0/0/0)  | (0/0.87/6)   | (0/0/0)  | (0/0/0)         | (0/0/0)        |
+    +-------------------------+----------+--------------+----------+-----------------+----------------+
+    | **Tag 3 (min/avg/max)** | (0/0/0)  | (0/1.23/13)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
+    +-------------------------+----------+--------------+----------+-----------------+----------------+
+    | **Tag 4 (min/avg/max)** | (0/0/0)  | (0/4.61/55)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
+    +-------------------------+----------+--------------+----------+-----------------+----------------+
+    | **Tag 5 (min/avg/max)** | (0/0/0)  | (0/3.56/55)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
+    +-------------------------+----------+--------------+----------+-----------------+----------------+
 
 Der OFDb--Provider verteilt die Anfragen über ein Lastverteiler, siehe
 :cite:`ofdbgw`.  Während der Entwicklung hat eine Stichprobe mit 10 Filmen
@@ -83,7 +83,7 @@ Plattformen/Metadatenanbieter.
 Hier wurde mit dem Script im :ref:`source_response` die Zeit beim Zugriff
 auf die implementierten Online--Plattformen gemessen. Für die Messung wurden die
 in  :ref:`source_response` verwendeten Parameter angewandt. Die Anzahl der
-Durchläufe war 10.
+Durchläufe war 5.
 
 .. _fig-sourceresponse:
 
@@ -93,7 +93,7 @@ Durchläufe war 10.
     :align: center
 
     Antwortzeiten der vom libhugin Prototypen verwendeten Onlineplattformen im
-    Überblick. Minimum (grün), Durchschnitt (geld), Maximum (rot). Das jeweilige
+    Überblick. Minimum (grün), Durchschnitt (gelb), Maximum (rot). Das jeweilige
     Balkenende repräsentiert den exakten Wert.
 
 
@@ -152,11 +152,13 @@ Auffällig ist hier die fast doppelt so lange Zeit bei den Providern ohne API.
 .. _fig-hugindownload:
 
 .. figure:: fig/libhugin_download_time.pdf
-    :alt: Downloadzeiten pro Provider mit libhugin-harvest.
+    :alt: Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
+          libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen.
     :width: 100%
     :align: center
 
-    Downloadzeiten pro Provider mit libhugin-harvest.
+    Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
+    libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen.
 
 Eine zweite Auswertung mit den gleichen Daten und aktivierten Festplatten--Cache
 (Metadaten werden von der Festplatte geladen, es findet kein Webzugriff statt)
@@ -166,11 +168,15 @@ Metadaten in sehr kurzer Zeit verarbeiten.
 .. _fig-hugindownload-cache:
 
 .. figure:: fig/libhugin_download_time_cache.pdf
-    :alt: Downloadzeiten pro Provider mit libhugin-harvest mit aktiviertem Cache.
+    :alt: Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
+          libhugin-harvest mit aktiviertem Cache. Durchschnitt aus 10 verschiedenen
+          Filmen.
     :width: 100%
     :align: center
 
-    Downloadzeiten pro Provider mit libhugin-harvest mit aktiviertem Cache.
+    Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
+    libhugin-harvest mit aktiviertem Cache. Durchschnitt aus 10 verschiedenen
+    Filmen.
 
 Die auffällige Antwortzeit mit aktivierten Festplatten--Cache (Abbildung
 :num:`fig-hugindownload-cache`) deutet darauf hin, dass das Extrahieren der
