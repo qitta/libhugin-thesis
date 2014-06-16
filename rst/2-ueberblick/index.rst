@@ -81,16 +81,16 @@ Genre--Attribut unterschiedlich detailiert gepflegt.
 .. _fig-genre-detail:
 
 .. figure:: fig/genre-detail.pdf
-    :alt: Unterschiedlicher Detailgrad beim verschiedenen Onlinequellen im Genre.
+    :alt: Unterschiedlicher Detailgrad im Genre bei verschiedenen Onlinequellen.
     :width: 80%
     :align: center
 
-    Unterschiedlicher Detailgrad beim verschiedenen Onlinequellen im Genre.
+    Unterschiedlicher Detailgrad im Genre bei verschiedenen Onlinequellen.
 
 Neben den genannten Problemen kommt hinzu, dass unter *unixoiden*
 Betriebssystemen die Auswahl an gut funktionierenden Filmmetadaten--Managern,
-wie in einem Test in der Projektarbeit festgestellt wurde (vgl.
-:cite:`cpiechula`), beschränkt ist.
+wie in einem Test in der Projektarbeit festgestellt wurde (siehe
+:cite:`cpiechula`, 3.4.2 Probleme bei Movie–Metadaten–Managern), beschränkt ist.
 
 Um die aktuell vorhanden Schwierigkeiten bei der Metadaten--Pflege zu beheben,
 beziehungsweise abzumildern wurde das modulare pluginbasierte System *libhugin*
@@ -123,11 +123,11 @@ aufgeteilt. Siehe auch Architektur--Übersicht :num:`fig-arch-overview`.
 .. _fig-arch-overview:
 
 .. figure:: fig/arch-overview.pdf
-    :alt: Architektur-Übersicht Libhugin.
+    :alt: Übersicht der Architektur von libhugin.
     :width: 80%
     :align: center
 
-    Architektur-Überslicht Libhugin.
+    Übersicht der Architektur von libhugin.
 
 **Libhugin--harvest**
 
