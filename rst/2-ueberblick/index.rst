@@ -107,9 +107,6 @@ ebenso ein pluginbasierter Ansatz gewählt.
 Das Hauptaugenmerk von *Libhugin* liegt auf der automatisierten Metadatenpflege
 großer Filmsammlungen von mehreren tausend Filmen.
 
-.. raw:: Latex
-
-   \newpage
 
 ###################################
 Übersicht der Software--Architektur
@@ -143,6 +140,9 @@ Methoden implementieren:
     * ``parse_response()``--Methode (extrahiert die Daten aus der HTTP--Response)
 
 Abbildung :num:`fig-provider-concept` zeigt die grundlegende Funktionsweise.
+Dabei müssen alle Provider ein vorgegebenes Ergebnisobjekt mit ihren Metadaten
+befüllen. Für weitere Informationen zum Ergebnisobjekt siehe *libhugin*--API
+:cite:`rtfdresult`.
 
 .. _fig-provider-concept:
 
@@ -193,3 +193,12 @@ Weitere Informationen zu der unter :ref:`motivation` genannten Problematik oder
 zum Software--Design selbst werden in der Arbeit zum Projekt *,,Design und
 Implementierung eines modularen Filmmetadaten Such-- und Analysesystems"*, siehe
 :cite:`cpiechula`, sowie in der offiziellen API :cite:`rtfd`, behandelt.
+
+Für die *libhugin*--Bibliothek wurden in der Projektarbeit die zwei
+Kommandozeilen Tools Geri (für *libhugin--harvest*) und Freki (für
+*libhugin-analyze*) entwickelt. Diese Tools demonstrieren die Funktionsweise und
+Features der Bibliothek und dienen gleichzeitig als einfache Schnittstelle
+für den direkten Einsatz der Bibliothek.  Des Weiteren wurde auch ein
+konzeptioneller Ansatz für die Integration von *libhugin* in andere Projekte
+gezeigt. Siehe :cite:`cpiechula`, ,insbesondere Kapitel 7 Demoanwendungen, für
+weitere Informationen zu den Funktionen und Features von *libhugin*.
