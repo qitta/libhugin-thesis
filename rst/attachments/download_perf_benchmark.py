@@ -55,10 +55,10 @@ def plot(providers):
     plt.show()
 
 if __name__ == "__main__":
-    N = 5
+    N = 10
     movies = [
-        'Prometheus', 'Avatar', 'Matrix', 'Shame', 'Juno',
-        'Hulk', 'Rio', 'Alien', 'Wrong', 'Drive',
+        'Prometheus', 'Avatar', 'Matrix' #, 'Shame', 'Juno',
+        #'Hulk', 'Rio', 'Alien', 'Wrong', 'Drive',
     ]
 
     times = defaultdict(list)
@@ -68,7 +68,6 @@ if __name__ == "__main__":
             for algo in [ofdb, tmdb, videobuster, omdb, filmstarts]:
                 result = benchmark(title, **algo)
                 times[algo['label']].append(result * 1000)
-        time.sleep(2)
 
     for k, v in times.items():
         times[k] = (min(v), mean(v), max(v))

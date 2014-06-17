@@ -14,6 +14,7 @@ HTTP--Bibliotheken verwendet.
 .. literalinclude:: ./attachments/httplib_test.py
    :language: python
 
+
 .. _string_comparsion_algorithms:
 
 Anhang B (Analyse Zeichenkettenvergleich)
@@ -24,6 +25,7 @@ Zeichenkettenvergleichsalgorithmen verwendet.
 
 .. literalinclude:: ./attachments/strcmp_benchmark.py
    :language: python
+
 
 .. _source_response:
 
@@ -48,6 +50,8 @@ Antwortzeiten der Online--Plattformen verwendet.
 .. literalinclude:: ./attachments/libhugin_download_pref_benchmark.py
    :language: python
 
+
+.. _gewichtetes_rating:
 
 Anhang E (Gewichtetes Rating)
 =============================
@@ -125,6 +129,7 @@ Stichprobe verwendet:
 
 .. literalinclude:: ./attachments/rating.py
    :language: python
+
 
 .. _completness:
 
