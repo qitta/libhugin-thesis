@@ -166,14 +166,14 @@
 % \sloppy
 
 % don't print trivial gripes
-\hbadness = 4000                
+\hbadness = 4000
 \vbadness = 10000
 
 % start this way; change for
-\pagestyle{fancy}               
+\pagestyle{fancy}
 
 % ToC & chapters
-\pagenumbering{roman}           
+\pagenumbering{roman}
 
 \renewcommand{\chaptermark}[1]{%
     \markboth{\ #1}{}
@@ -194,20 +194,21 @@
 }%
 
 % Configure footer and header
-\fancyfoot[C]{%
-    % EasterEgg
-    \ifthenelse{\value{page}=42}{%
-        % Horizontal and vertical flip
-        \reflectbox{\scalebox{1}[-1]{\prettypage}}
-    }{%
-        \ifthenelse{\value{page}=23}{%
-            % Horizontal flip
-            \reflectbox{\prettypage}
-        }{%
-            \prettypage
-        }%
-    }%
-}%
+\fancyfoot[C]{\prettypage}
+%\fancyfoot[C]{%
+%    % EasterEgg
+%    \ifthenelse{\value{page}=42}{%
+%        % Horizontal and vertical flip
+%        \reflectbox{\scalebox{1}[-1]{\prettypage}}
+%    }{%
+%        \ifthenelse{\value{page}=23}{%
+%            % Horizontal flip
+%            \reflectbox{\prettypage}
+%        }{%
+%            \prettypage
+%        }%
+%    }%
+%}%
 \setlength{\footskip}{25pt}
 
 % Remove the header from pages with chapters on them:
@@ -216,7 +217,7 @@
     \renewcommand{\headrule}{}
 }%
 
-% \setlength{\headheight}{24pt} 
+% \setlength{\headheight}{24pt}
 
 % Comment out for normal twoside:
 % \newcommand{\ONESIDEFAKE}
@@ -232,7 +233,7 @@
 \fi
 
 
-% Dotted line: 
+% Dotted line:
 % \renewcommand{\headrule}{\vbox to 0pt{\hbox to \headwidth{\dotfill}\vss}}
 
 % Empty
@@ -362,7 +363,7 @@
     pdfcreator={pdflatex},
     bookmarks=true,     % show or hide the bookmarks bar when displaying the document
     bookmarksopen=true, % Zeige Untermenus in PDF
-    bookmarksopenlevel=1, % Gliederungstiefe in PDF beim Start festlegen 
+    bookmarksopenlevel=1, % Gliederungstiefe in PDF beim Start festlegen
     bookmarksnumbered=true, % Gliederung in PDF nummierieren
     % plainpages=false,   % zur korrekten Erstellung der Bookmarks
     pdfpagelabels,      % zur korrekten Erstellung der Bookmarks
@@ -434,7 +435,7 @@
 %%%%%% Compression %%%%%%
 
 \pdfminorversion=5
-\pdfobjcompresslevel=3 
+\pdfobjcompresslevel=3
 \pdfcompresslevel=9
 
 %%%%%%%%%%%%%% Title Formatting %%%%%%%%%%%%%%%%%
@@ -510,4 +511,4 @@
   \setlength{\itemsep}{0pt plus 0.5ex}
 }%
 % Hack
-\addto\captionsngerman{\renewcommand{\bibname}{\textcolor{gray75}{D~|~}Literaturverzeichnis}}
+\addto\captionsngerman{\renewcommand{\bibname}{\textcolor{gray75}{P~|~}Literaturverzeichnis}}
