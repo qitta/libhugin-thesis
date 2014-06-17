@@ -121,8 +121,8 @@ genommen:
 
 .. _rating:
 
-Anhang K (Raing Verteilung)
-===========================
+Anhang K (Rating Verteilung)
+============================
 
 Das folgende Code--Snippet wurde für die Analyse der Ratingverteilung in der
 Stichprobe verwendet:
