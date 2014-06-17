@@ -120,10 +120,11 @@ aufgeteilt. Siehe auch Architektur--Übersicht Abbildung :num:`fig-arch-overview
 
 .. figure:: fig/arch-overview.pdf
     :alt: Übersicht der Architektur von libhugin.
-    :width: 80%
+    :width: 70%
     :align: center
 
     Übersicht der Architektur von libhugin.
+
 
 **Libhugin--harvest**
 

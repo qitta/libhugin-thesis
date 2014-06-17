@@ -93,13 +93,14 @@ Es wurde jeweils der Durchschnitt von 10 einzeln angeforderten Filmen genommen.
     Überblick. Minimum (grün), Durchschnitt (gelb), Maximum (rot). Das jeweilige
     Balkenende repräsentiert den exakten Wert.
 
-
 Der Zugriff in Abbildung :num:`fig-sourceresponse` zeigt hier den
 direkten Zugriff über die HTTP--Bibliothek. Bei *libhugin--harvest* besteht die
 Standardsuche (über Titel) nach Metadaten in der Regel aus mehreren Zugriffen
 (siehe Abbildung :num:`num-downloads`). Zusätzlich kommt hier noch der Aufwand für
 das Extrahieren der Metadaten aus den jeweiligen HTTP--Response Objekten hinzu.
 
+Bei der Suche nach Metadaten für einen Film haben die Provider jeweils einen
+Zugriff für die Suchanfrage und einen weiteren Zugriff für den jeweiligen Film.
 
 .. figtable::
     :label: num-downloads
@@ -111,9 +112,6 @@ das Extrahieren der Metadaten aus den jeweiligen HTTP--Response Objekten hinzu.
     +=========================+==========+==========+==========+=================+================+
     | **Anzahl der Zugriffe** | 2        | 2        | 2        | 2               | 3              |
     +-------------------------+----------+----------+----------+-----------------+----------------+
-
-Bei der Suche nach Metadaten für einen Film haben die Provider jeweils einen
-Zugriff für die Suchanfrage und einen weiteren Zugriff für den jeweiligen Film.
 
 Der Filmstarts Provider benötigt bei Zugriff auf den jeweiligen Film zwei
 Suchanfragen (siehe :num:`num-downloads`), da auf dieser Plattform die
@@ -194,28 +192,31 @@ Bei den API--Provider ist eine signifikante zeitliche Verbesserung mit
 steigender Download--Thread Anzahl erkennbar. Hier ist die Zeit von ca. 9
 Sekunden auf 2 Sekunden gefallen (siehe Abbildung, :num:`fig-hugin-search-api`).
 
-.. _fig-hugin-search:
-
-.. figure:: fig/libhugin_threaded_search.pdf
-    :alt: Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
-          Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
-          heisst, jeder Provider zieht maximal 10 Filme.
-    :width: 90%
-    :align: center
-
-    Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
-    Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
-    heisst, jeder Provider zieht maximal 10 Filme.
-
 Die non--API Provider bremsen die Performance aufgrund des aufwendigen
 Extrahierens mittels ``Beautiful--Soup``--Bibliothek stark aus. Hier bewegt
 sich die Zeit zwischen 35 - 42  Sekunden für die Beschaffung von 10
 Ergebnissen.
 
 
+.. _fig-hugin-search:
+
+.. figure:: fig/libhugin_threaded_search.pdf
+    :alt: Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
+          Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
+          heisst, jeder Provider zieht maximal 10 Filme.
+    :width: 100%
+    :align: center
+
+    Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
+    Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
+    heisst, jeder Provider zieht maximal 10 Filme.
+
 Die theoretischen Annahmen über die Skalierung der Downloadgeschwindigkeit aus
 Kapitel :ref:`tech_grundlagen` werden mit der Einschränkung auf die Limitierung
 der non--API Provider bestätigt.
+
+Die Auswertung der Skalierung der Downloadgeschwindigkeit wurde mit dem Script
+:ref:`hugin_search_benchmark` durchgeführt.
 
 .. _fig-hugin-search-api:
 
@@ -223,15 +224,13 @@ der non--API Provider bestätigt.
     :alt: Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
           Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
           heisst, jeder Provider zieht maximal 10 Filme.
-    :width: 90%
+    :width: 100%
     :align: center
 
     Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
     Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
     heisst, jeder Provider zieht maximal 10 Filme.
 
-Die Auswertung der Skalierung der Downloadgeschwindigkeit wurde mit dem Script
-:ref:`hugin_search_benchmark` durchgeführt.
 
 #####################
 Analyse der Metadaten
@@ -358,6 +357,11 @@ gefunden, falls vorhanden.
 
 Die Stichprobe der 10 Filme zeigt, dass die nicht gefundenen Filme durchaus auf
 der jeweiligen Plattform gepflegt sein können.
+
+.. raw:: Latex
+
+   \newpage
+
 
 .. _genreinformationen:
 
@@ -562,7 +566,7 @@ Attribut ,,plot" 2353 mal nicht gefunden hat. Die manuelle Überprüfung dieses
 Wertes bestätigt, dass es hier bei dem verwendeten API--Mirror, wie bereits
 erwähnt in Kapitel :ref:`timeoutverhalten` Timeoutverhalten, entgegen der
 vorherigen Annahme, weiterhin zu Problemen kommt. Die Daten wurden mit dem
-Skript :ref:`completeness` analysiert.
+Skript :ref:`completness` analysiert.
 
 
 .. figtable::
@@ -619,6 +623,10 @@ gepflegt haben. Bei diesem Anbieter handelt es sich um eine
 Videoverleihplattform, welche anscheinend darauf Wert legt, dass jeder
 ausleihbare Film auch ein digitales Cover besitzt.
 
+.. raw:: Latex
+
+   \newpage
+
 
 .. _ratingkapitel:
 
@@ -642,7 +650,7 @@ Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
     :alt: Ratingverteilung der Stichprobe.
 
     +----------------------------------------------+----------+----------+----------+
-    | **Rating**                                   | **OMDb** | **TMDb** | **OFDb** |
+    |                                              | **OMDb** | **TMDb** | **OFDb** |
     +==============================================+==========+==========+==========+
     | **Minimales Rating in der Stichprobe**       | 1.9      | 0.2      | 0        |
     +----------------------------------------------+----------+----------+----------+
@@ -650,6 +658,11 @@ Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
     +----------------------------------------------+----------+----------+----------+
     | **Maximales Rating der Stichprobe**          | 10.0     | 10.0     | 9.0      |
     +----------------------------------------------+----------+----------+----------+
+
+
+.. raw:: Latex
+
+   \newpage
 
 Die Abbildung :num:`fig-rating` zeigt weiterhin die Verteilung des Ratings der drei
 API--Provider.  Hier zeigt sich, dass das Rating in der Stichprobe bei allen
@@ -677,7 +690,7 @@ Testumgebung
 Die Bibliothek wurde in der Python--Version 3.4 getestet. Die Skripte im Anhang
 wurden für die jeweiligen Auswertungen verwendet. Für das Einlesen der Metadaten
 verwenden manche Skripte die Funktion analyze_folder. Diese Funktion wurde in
-die ``utils.py``--Datei ausgelagert.
+die ``utils.py``--Datei ausgelagert (siehe :ref:`utils`).
 
 Bei zeitabhängigen Messungen wurde darauf geachtet, dass immer der
 Durchschnitt aus mehreren Durchläufen genommen wurde, um statistische Ausreißer

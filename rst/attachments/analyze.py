@@ -4,10 +4,7 @@
 from collections import Counter
 from statistics import mean
 from utils import analyze_folder
-import pprint
-import os
-import sys
-import json
+import pprint, os, sys, json
 
 PROVIDERS = ['tmdb', 'ofdb', 'omdb', 'videobuster', 'filmstarts']
 

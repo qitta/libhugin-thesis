@@ -3,11 +3,7 @@
 
 from collections import Counter
 from utils import analyze_folder
-import pprint
-import sys
-
-import os
-import json
+import pprint, sys, os, json
 
 PROVIDERS = {
     'tmdb':2500, 'ofdb':2500, 'omdb':2500, 'videobuster':2444, 'filmstarts':2427

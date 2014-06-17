@@ -47,7 +47,7 @@ def plot_distribution(data):
     axes = list(axes)
 
     axes[0].set_ylabel('Number of given ratings')
-    axes[0].set_xlabel('Rating')
+    # axes[0].set_xlabel('Rating')
 
     for idx, provider in enumerate(data.keys()):
         ax = axes.pop()

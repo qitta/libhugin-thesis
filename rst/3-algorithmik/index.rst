@@ -41,6 +41,16 @@ parallelisiert. Das parallele Herunterladen zeigt deutliche
 Geschwindigkeitsvorteile im Vergleich zur seriellen Verarbeitung (siehe
 Abbildung :num:`fig-threaded-download`).
 
+.. _fig-threaded-download:
+
+.. figure:: fig/threaded_download.pdf
+    :alt: Performancevorteil beim Parallelisieren von Downloads.
+    :width: 90%
+    :align: center
+
+    Performancevorteil beim Parallelisieren von Downloads. Durchschnitt aus drei
+    Durchläufen, jeweils mit Zugriff auf 15 verschiedene Webseiten.
+
 Zum Herunterladen wird auf die Python HTTP--Bibliothek *urllib* verzichtet, weil
 diese grundlegende HTTP--Standards, wie beispielsweise Kompression, nicht
 unterstützt.
@@ -90,16 +100,6 @@ Abbildung :num:`fig-threaded-download` zeigt wie sich das Parallelisieren
 mehrerer Downloads auf die Performance auswirkt. Hier wurden die drei genannten
 HTTP--Bibliotheken mit dem Script in :ref:`http_benchmark` getestet.  Der
 Benchmark wurde mit einer *VDSL* 50Mbit--Leitung durchgeführt.
-
-.. _fig-threaded-download:
-
-.. figure:: fig/threaded_download.pdf
-    :alt: Performancevorteil beim Parallelisieren von Downloads.
-    :width: 100%
-    :align: center
-
-    Performancevorteil beim Parallelisieren von Downloads. Durchschnitt aus drei
-    Durchläufen, jeweils mit Zugriff auf 15 verschiedene Webseiten.
 
 
 #########################
@@ -225,18 +225,6 @@ unter Python verfügbaren Implementierungen durchgeführt:
     * pyxDamerauLevenshtein, auf C basierte Implementierung von Damerau--Levenshtein
     * distance, externes Modul mit Levenshtein--Implementierung in C
 
-.. _fig-stringcompare:
-
-.. figure:: fig/algo_compare.pdf
-    :alt: String comparsion algorithms.
-    :width: 100%
-    :align: center
-
-    Performancevergleich der Algorithmen für den Zeichenkettenvergleich in
-    Abhängigkeit von der Zeichenkettenlänge. Pro Vergleich 50 Durchläufe. Die
-    Länge der jeweils verglichenen Zeichenketten, ist die Basis--Zeichenkette,
-    mit dem Faktor multipliziert.
-
 Abbildung :num:`fig-stringcompare` zeigt, dass die Laufzeit--Komplexität bei
 allen drei Algorithmen ähnlich ist. Des Weiteren zeigt die Abbildung, dass die
 beiden Implementierungen *distance* (C) und *pyxDamerauLevenshtein* (C) sehr
@@ -244,6 +232,18 @@ performant im Vergleich zur *difflib* (Python) Implementierung arbeiten.
 Aufgrund der Tatsache, dass der Damerau--Levenshtein--Algorithmus vertauschte
 Zeichen ,,erkennen" kann und gleichzeitig performant implementiert ist, wurde er
 für den Einsatz in der Bibliothek gewählt.
+
+.. _fig-stringcompare:
+
+.. figure:: fig/algo_compare.pdf
+    :alt: String comparsion algorithms.
+    :width: 90%
+    :align: center
+
+    Performancevergleich der Algorithmen für den Zeichenkettenvergleich in
+    Abhängigkeit von der Zeichenkettenlänge. Pro Vergleich 50 Durchläufe. Die
+    Länge der jeweils verglichenen Zeichenketten, ist die Basis--Zeichenkette,
+    mit dem Faktor multipliziert.
 
 Der Benchmark wurde mit dem Skript aus :ref:`string_comparsion_algorithms`
 durchgeführt.
@@ -359,6 +359,10 @@ Ein anderer Ansatz, der bei *libhugin* gewählt wurde, ist, die
 Satztrennungszeichen zu entfernen und die einzelnen Wörter des Titels
 alphabetisch zu sortieren.
 
+.. raw:: Latex
+
+   \newpage
+
 Anhand des Beispieltitel *,,East, The"* wird folgend das Vorgehen erläutert:
 
     1. Titel auf Kleinschreibung umwandeln →  ``'east, the'``
@@ -385,11 +389,12 @@ den Performanceunterschied zum ursprünglichen Algorithmus.
 .. figure:: fig/adjusted_algo_compare.pdf
     :alt: Angepasster Algorithmus auf Basis von Damerau-Levenshtein im
           Vergleich zu den ursprünglichen Algorithmen.
-    :width: 100%
+    :width: 90%
     :align: center
 
     Angepasster Algorithmus auf Basis von Damerau-Levenshtein im Vergleich zu
-    den ursprünglichen Algorithmen.
+    den ursprünglichen Algorithmen. Performancevergleich der Algorithmen für den
+    Zeichenkettenvergleich in Abhängigkeit von der Zeichenkettenlänge.
 
 Ein weiteres Attribut, das bei der Suche von Filmen angegeben werden kann, ist
 das Erscheinungsjahr. Dieses wird verwendet, um Suchergebnisse genauer
@@ -468,7 +473,7 @@ Verhalten, da das Jahr nur unterstützend beim Filtern der Ergebnismenge
 verwendet werden soll.
 
 .. figtable::
-    :label: fig-rating
+    :label: fig-ratingstr
     :caption: Unterschied im Rating bei gewichteter Betrachtung des Titels.
     :alt: Unterschied im Rating bei gewichteter Betrachtung des Titels.
 
@@ -491,7 +496,7 @@ verwendet werden soll.
     +------------------+-------------------------------------+------------------------------------+
 
 
-Abbildung :num:`fig-rating` zeigt das Rating mit einer
+Abbildung :num:`fig-ratingstr` zeigt das Rating mit einer
 Gewichtung von :math:`weight` = 3 für die Zeichenkette ,,Matrix 1999". Das
 Skript für die Auswertung findet sich im :ref:`gewichtetes_rating`.
 
@@ -644,10 +649,8 @@ auf einem globalen Genre ab. Die Normalisierung erfolgt über eine statische
 Genre--Tabelle, welche der Autor eines Provider--Plugins bereitstellen muss. Der
 Nachteil dieser Variante ist, dass das Genrespektrum der Onlinequelle bekannt
 sein muss. Das Provider--Genre wird über einen Index auf einem globalen Genre
-abgebildet.
-
-Abbildung :num:`fig-genrenorm` zeigt konzeptuell die Vorgehensweise beim
-,,Normalisieren" der Genreinformationen.
+abgebildet. Abbildung :num:`fig-genrenorm` zeigt konzeptuell die Vorgehensweise
+beim ,,Normalisieren" der Genreinformationen.
 
 .. _fig-genrenorm:
 
@@ -703,15 +706,6 @@ Die gefundenen Ergebnisse können einerseits nach Provider--Priorität betrachte
 oder aber nach ,,Ergebnisqualität" betrachtet werden. Aus diesem Grund wurde die
 *,,deep"*-- und die *,,flat"*--Suchstrategie implementiert.
 
-.. _fig-searchstrategy:
-
-.. figure:: fig/searchstrategy.pdf
-    :alt: Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
-    :width: 80%
-    :align: center
-
-    Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
-
 Bei der *,,deep"*--Strategie werden die Ergebnisobjekte nach Provider (Priorität)
 gruppiert und die Ergebnisse innerhalb jeder Gruppe nach Übereinstimmung mit
 der gesuchten Zeichenkette sortiert.
@@ -719,6 +713,15 @@ der gesuchten Zeichenkette sortiert.
 Anschließend werden die Ergebnisse, angefangen beim Provider mit der höchsten
 Priorität, zurückgeliefert bis die gewünschte Anzahl an Ergebnissen
 zurückgegeben wurde (siehe Abbildung :num:`fig-searchstrategy`).
+
+.. _fig-searchstrategy:
+
+.. figure:: fig/searchstrategy.pdf
+    :alt: Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
+    :width: 90%
+    :align: center
+
+    Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
 
 Das folgende Beispiel zeigt das tatsächliche Ergebnis der im *libhugin*--Prototyp
 implementierten ,,deep"--Strategie:
@@ -841,7 +844,7 @@ nachstehenden Leerzeichen.
 Auf weitere Algorithmik, welche innerhalb der Converter--Plugins realisiert ist,
 wird aufgrund ihrer Einfachheit nicht weiter eingegangen. Hier werden jeweils
 nur Formatierungen der Ergebnisobjekte in ein bestimmtes Ausgabeformat wie
-beispielsweise XML, durchgeführt.
+beispielsweise XML [#f3]_, durchgeführt.
 
 Libhugin analyze plugins
 ========================
@@ -1084,4 +1087,6 @@ ein bestimmtes Genre--Schema eignet.
 .. rubric:: Footnotes
 
 .. [#f1] http://de.wikipedia.org/wiki/Hauskatze
-.. [#f2] http://members.unine.ch/jacques.savoy/clef/index.html
+.. [#f2] http://members.unine.ch/jacques.savoy/clef/index.htm
+.. [#f3] XML ist eine Auszeichnungssprache zur baumartig strukturierten
+         Darstellung von Daten in Form von Textdateien.
