@@ -7,6 +7,6 @@
 
 Mein Dank gilt folgenden Personen: Herrn Prof. Dr. Günther Köhler
 (Projektbetreuung), Herrn Prof. Dr. Jörg Scheidt (Bereitstellung eines Raumes
-für den Projektzeitraum), Teegeschwendner, Cricetulus, Micrathene Whitneyi,
+für den Projektzeitraum), Teegschwendner, Cricetulus, Micrathene Whitneyi,
 Columbidae und natürlich auch — Alces alces.
 
