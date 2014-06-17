@@ -21,22 +21,22 @@ wird, hat aktuell die fünf Movie--Provider implementiert, siehe Abbildung
     | **Plattformtyp** | Filmdatenbank | Filmdatenbank | Metadatenanbieter | Verleihdienst   | Allg. Plattform |
     +------------------+---------------+---------------+-------------------+-----------------+-----------------+
 
-Desweiteren wurden noch Personen--Provider für TMDb und OFDb implementiert.
+Des Weiteren wurden Personen--Provider für TMDb und OFDb implementiert.
 
 .. _timeoutverhalten:
 
 Timeoutverhalten
 ================
 
-Bereits während der Entwicklung, ist bei der Erhebung der Daten aufgefallen,
+Bereits während der Entwicklung ist bei der Erhebung der Daten aufgefallen,
 dass der OFDb--Provider kaum Metadaten findet. Nach kurzer Recherche war zu
 beobachten, dass hier der Zugriff über die API sehr oft einen Timeout mit der
 Fehlermeldung ``,,Fehler oder Timeout bei OFDB Anfrage"`` liefert.
 
 Eine genauere Analyse des Timeout--Verhaltens der Provider zeigt, dass die API
-vom OFDb--Provider sehr instabil ist, hierzu wurden Metadaten für 100 Filme je
+vom OFDb--Provider sehr instabil ist. Hierzu wurden Metadaten für 100 Filme je
 Provider gezogen. Abbildung :num:`fig-timeout` zeigt wie oft es zu Fehlern pro
-Provider gekommen ist. Der Test wurde, um gegebenenfalls Server oder
+Provider gekommen ist. Der Test wurde, um gegebenenfalls Server- oder
 Leitungsprobleme  auszuschließen, an fünf verschiedenen Tagen durchgeführt. Für
 den Test wurde das Script aus :ref:`timeout` verwendet.
 
@@ -60,7 +60,7 @@ den Test wurde das Script aus :ref:`timeout` verwendet.
     | **Tag 5 (min/avg/max)** | (0/0/0)  | (0/3.56/55)  | (0/0/0)  | (0/0/0)         | (0/0/0)        |
     +-------------------------+----------+--------------+----------+-----------------+----------------+
 
-Der OFDb--Provider verteilt die Anfragen über ein Lastverteiler, siehe
+Der OFDb--Provider verteilt die Anfragen über einen Lastverteiler, siehe
 :cite:`ofdbgw`.  Während der Entwicklung hat eine Stichprobe mit 10 Filmen
 gezeigt, dass Anfragen über den Lastverteiler zu unvollständigen Ergebnissen führten.
 Hier wurden die Filme ohne Inhaltsbeschreibung zurückgeliefert.
@@ -68,14 +68,14 @@ Hier wurden die Filme ohne Inhaltsbeschreibung zurückgeliefert.
 Ein Testen der einzelnen Server ergab, dass ``http://ofdbgw.geeksphere.de`` als
 einziger Mirror die erwarteten Ergebnisse lieferte. Dieser wurde somit im
 Prototypen direkt als einziger Server aktiviert. Weitere Analysen der Metadaten
-sollen Aufschluß darüber geben ob das Problem weiterhin auftritt.
+sollen Aufschluß darüber geben, ob das Problem weiterhin auftritt.
 
 
 Antwortzeiten der Onlinequellen
 ===============================
 
 Abbildung :num:`fig-sourceresponse` zeigt die Antwortzeiten der jeweiligen
-Plattformen/Metadatenanbieter die *libhugin* als Provider implementiert hat.
+Plattformen/Metadatenanbieter, die *libhugin* als Provider implementiert hat.
 Hierbei wurde jeweils die ,,Suchseite" des jeweiligen Anbieters angefordert.
 
 Die Zeit wurde mit dem Script im :ref:`source_response` gemessen.  Für die
@@ -96,7 +96,7 @@ Es wurde jeweils der Durchschnitt von 10 einzeln angeforderten Filmen genommen.
 
 Der Zugriff in Abbildung :num:`fig-sourceresponse` zeigt hier den
 direkten Zugriff über die HTTP--Bibliothek. Bei *libhugin--harvest* besteht die
-Standardsuche, über Titel, nach Metadaten in der Regel aus mehreren Zugriffen
+Standardsuche (über Titel) nach Metadaten in der Regel aus mehreren Zugriffen
 (siehe Abbildung :num:`num-downloads`). Zusätzlich kommt hier noch der Aufwand für
 das Extrahieren der Metadaten aus den jeweiligen HTTP--Response Objekten hinzu.
 
@@ -149,12 +149,12 @@ Auffällig ist hier die fast doppelt so lange Zeit bei den Providern ohne API.
 
 .. figure:: fig/libhugin_download_time.pdf
     :alt: Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
-          libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen und 10 Durchläufen.
+          libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen.
     :width: 100%
     :align: center
 
     Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
-    libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen und 10 Durchläufen.
+    libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen.
 
 Eine zweite Auswertung mit den gleichen Daten und aktivierten Festplatten--Cache
 (Metadaten werden von der Festplatte geladen, es findet kein Webzugriff statt)
@@ -164,13 +164,13 @@ Metadaten in sehr kurzer Zeit verarbeiten.
 .. _fig-hugindownload-cache:
 
 .. figure:: fig/libhugin_download_time_cache.pdf
-    :alt: Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
+    :alt: Abfragegeschwindigkeit der Metadaten für einen Film pro Provider mit
           libhugin-harvest mit aktiviertem Cache. Durchschnitt aus 10 verschiedenen
           Filmen.
     :width: 100%
     :align: center
 
-    Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
+    Abfragegeschwindigkeit der Metadaten für einen Film pro Provider mit
     libhugin-harvest mit aktiviertem Cache. Durchschnitt aus 10 verschiedenen
     Filmen.
 
@@ -178,7 +178,7 @@ Die auffällige Antwortzeit mit aktivierten Festplatten--Cache (Abbildung
 :num:`fig-hugindownload-cache`) deutet darauf hin, dass das Extrahieren der
 Metadaten mittels der ``Beautiful-Soup``--Bibliothek sehr aufwendig ist. Das
 Aktivieren eines anderen internen Parsers, hat das Ergebnis verschlechtert.
-Der `lxml`--Parser, welcher auch in Abbildung :num:`fig-hugindownload-cache`,
+Der `lxml`--Parser, welcher auch in Abbildung :num:`fig-hugindownload-cache`
 verwendet wird, ist hier schneller als die Alternativen (siehe :cite:`bs`).
 
 
@@ -187,12 +187,12 @@ Skalierung der Downloadgeschwindigkeit
 
 Abbildung :num:`fig-hugin-search` zeigt das Herunterladen von Metadaten mit
 einer unterschiedlichen Anzahl von parallelen Downloads. Hier wurden jeweils
-separat die API und non--API Provider ausgewertet um genauere Aussagen über die
-Effektivität beim parallelen Herunterladen machen zu können.
+separat die API und non--API Provider ausgewertet, um genauere Aussagen über die
+Effizienz beim parallelen Herunterladen machen zu können.
 
 Bei den API--Provider ist eine signifikante zeitliche Verbesserung mit
-steigender Download--Thread Anzahl erkennbar. Hier ist die Zeit von ca. 15
-Sekunden auf 4 Sekunden gefallen (siehe Abbildung, :num:`fig-hugin-search-api`).
+steigender Download--Thread Anzahl erkennbar. Hier ist die Zeit von ca. 9
+Sekunden auf 2 Sekunden gefallen (siehe Abbildung, :num:`fig-hugin-search-api`).
 
 .. _fig-hugin-search:
 
@@ -208,14 +208,14 @@ Sekunden auf 4 Sekunden gefallen (siehe Abbildung, :num:`fig-hugin-search-api`).
     heisst, jeder Provider zieht maximal 10 Filme.
 
 Die non--API Provider bremsen die Performance aufgrund des aufwendigen
-Extrahieren mittels ``Beautiful--Soup``--Bibliothek stark aus. Hier bewegt
-sich die Zeit zwischen 35 -- 42  Sekunden für die Beschaffung von 20
+Extrahierens mittels ``Beautiful--Soup``--Bibliothek stark aus. Hier bewegt
+sich die Zeit zwischen 35 - 42  Sekunden für die Beschaffung von 10
 Ergebnissen.
 
 
-Die theoretischen Annahmen über die Skalierung die Skalierung der
-Downloadgeschwindigkeit aus Kapitel :ref:`tech_grundlagen` werden mit der
-Einschränkung auf die Limitierung der non--API Provider bestätigt.
+Die theoretischen Annahmen über die Skalierung der Downloadgeschwindigkeit aus
+Kapitel :ref:`tech_grundlagen` werden mit der Einschränkung auf die Limitierung
+der non--API Provider bestätigt.
 
 .. _fig-hugin-search-api:
 
@@ -237,7 +237,7 @@ Die Auswertung der Skalierung der Downloadgeschwindigkeit wurde mit dem Script
 Analyse der Metadaten
 #####################
 
-Die im Prototypen implementieren Metadatenquellen weisen unterschiedliche
+Die im Prototypen implementierten Metadatenquellen weisen unterschiedliche
 Eigenschaften auf. Allgemein und auch für die Entwicklung des Prototypen wurden
 bestimmte Annahmen getroffen:
 
@@ -255,7 +255,7 @@ Testdatenbeschaffung
 Für die Analyse der Metadaten wurde eine Metadaten--Stichprobe von 2500 Filmen
 mit Hilfe der *libhugin-harvest*--Bibliothek beschafft. Die Zusammenstellung
 besteht aus möglichst zufällig gewählten Filmen verschiedener Kategorien. Es ist
-grundsätzlich schwierig eine ,,optimale" Metadaten--Stichprobe auszusuchen, da
+grundsätzlich schwierig, eine ,,optimale" Metadaten--Stichprobe auszusuchen, da
 die Plattformen unterschiedliche Ziele verfolgen.
 
 Abbildung :num:`fig-testdata` zeigt die Verteilung der Filme anhand vom
@@ -263,8 +263,8 @@ Erscheinungsjahr.
 
 .. figtable::
     :label: fig-testdata
-    :caption: Testdaten nach Erscheinungsjahr
-    :alt: Testdaten nach Erscheinungsjahr
+    :caption: Testdaten nach Erscheinungsjahr.
+    :alt: Testdaten nach Erscheinungsjahr.
 
     +----------------------+------------+----------------------+------------+----------------------+------------+
     | **Erscheinungsjahr** | **Anzahl** | **Erscheinungsjahr** | **Anzahl** | **Erscheinungsjahr** | **Anzahl** |
@@ -303,7 +303,7 @@ gleiche Script verwendet.
 
 Anschließend  wurden die Metadaten mit Hilfe von *libhugin--harvest* über die
 fünf genannten Provider bezogen. Hierbei wurden die Metadaten bei den Providern
-mit IMDb--ID Unterstützung, über diese bezogen.  Provider die keine IMDb--ID
+mit IMDb--ID Unterstützung über diese bezogen.  Provider, die keine IMDb--ID
 Unterstützung besitzen, wurden über den, über IMDb ,,normalisierten" deutschen
 Titel, mit Erscheinungsjahr bezogen. Die Metadaten wurden ebenso mit dem Script
 :ref:`imdblookup_script` bezogen. Ein komprimiertes Archiv mit den Testdaten
@@ -315,8 +315,8 @@ Abbildung :num:`fig-foundmetadata`.
 
 .. figtable::
     :label: fig-foundmetadata
-    :caption: Überblick Metadatensuche für 2500 Filme
-    :alt: Überblick Metadatensuche für 2500 Filme
+    :caption: Überblick Metadatensuche für 2500 Filme.
+    :alt: Überblick Metadatensuche für 2500 Filme.
 
     +----------------------------+---------------------+--------------------+--------------------+-----------------+----------------+
     |                            | **tmdb**            | **ofdb**           | **omdb**           | **videobuster** | **filmstarts** |
@@ -368,7 +368,7 @@ Das Genre unterscheidet sich oft bei den gepflegten Plattformen. Das
 liegt daran, dass das Genre an sich nicht standardisiert ist und die
 Onlineplattformen teils divergente Genre--Bezeichnungen haben.  Die folgenden
 Auswertungen sollen den Umstand anhand der gewählten Stichprobe, sowie alle
-bisher für die Entwicklung getroffenen Maßnahmen, bestätigen.
+bisher für die Entwicklung getroffenen Annahmen, bestätigen.
 
 Die Daten in Abbildung :num:`fig-genres` wurden mit dem Script im :ref:`genre-table`
 erhoben und zeigen die Genreverteilung der fünf Provider für die Metadaten der
@@ -453,13 +453,13 @@ auf 2427 Filme, bei Videobuster nur auf 2444 Filme.
 
 Beim TMDb und Videobuster Provider war das Genre Komödie auf jeweils drei Genre
 aufgrund eines fehlerhaften Encoding verteilt. Dieser Umstand wurde per Hand
-korrigiert. Des Weiteren wurden vereinzelt Genres abgekürzt um die Tabelle
+korrigiert. Des Weiteren wurden vereinzelt Genres abgekürzt, um die Tabelle
 darstellen zu können (f./F. :math:`\hat{=}` Film).
 
 Aus Abbildung :num:`fig-genres` ist nur schwer ersichtlich wie sich die
 Genreinformationen im Schnitt pro Film verteilen, beziehungsweise wie
-detailiert die Filme im Schnitt gepflegt sind. Abbildung
-:num:`fig-genre-avg` zeigt wie detailiert die Genreverteilung im Schnitt
+detailliert die Filme im Schnitt gepflegt sind. Abbildung
+:num:`fig-genre-avg` zeigt wie detailliert die Genreverteilung im Schnitt
 pro Film ist.
 
 .. figtable::
@@ -508,40 +508,41 @@ zwei Jahren kommen kann.
 Die erhobenen Metadaten wurden dahingehend mit dem Skript im :ref:`code_yeardiff`
 analysiert.  Hier werden für die Betrachtung die API--Provider und die
 non--API--Provider hergenommen. Bei den API--Providern wird die Gleichheit des
-Films anhand der IMDb--ID definiert. Bei den non--API--Provider Daten, die keine
+Films anhand der IMDb--ID definiert. Bei den non--API--Provider--Daten, die keine
 IMDb--ID besitzen, wird eine Titelübereinstimmung von 90% gefordert.
-Filme die diese Eigenschaft erfüllen, fließen in die
+Filme, die diese Eigenschaft erfüllen, fließen in die
 Erscheinungsjahrdifferenz--Auswertung ein (siehe Abbildung :num:`fig-yeardiff`).
+Als Bezugsreferenz wurde hier der TMDb Provider genommen.
 
 .. figtable::
     :label: fig-yeardiff
-    :caption: Überblick der unterschiedlich gepflegten Erscheinungsjahre gleichen Filmen.
-    :alt: Überblick der unterschiedlich gepflegten Erscheinungsjahre bei gleichen Filmen.
+    :caption: Überblick der unterschiedlich gepflegten Erscheinungsjahre gleicher Filme.
+    :alt: Überblick der unterschiedlich gepflegten Erscheinungsjahre gleicher Filme.
 
-        +------------------------+------------+----------+----------------+-----------------+
-        |   **Jahresdifferenz:** |   **OFDb** | **OMDb** | **Filmstarts** | **Videobuster** |
-        +========================+============+==========+================+=================+
-        |   **0 Jahre**          | 2378       | 2403     | 1844           | 1792            |
-        +------------------------+------------+----------+----------------+-----------------+
-        |   **1 Jahre**          | 109        | 87       | 198            | 118             |
-        +------------------------+------------+----------+----------------+-----------------+
-        |   **2 Jahre**          | 8          | 5        | 13             | 8               |
-        +------------------------+------------+----------+----------------+-----------------+
-        |   **3 Jahre**          | 2          | 2        | 3              | 3               |
-        +------------------------+------------+----------+----------------+-----------------+
-        |   **> 3 Jahre**        | 0          | 0        | 42             | 36              |
-        +------------------------+------------+----------+----------------+-----------------+
+        +--------------------------------+------------+----------+----------------+-----------------+
+        |   **Jahresdifferenz zu TMDb:** |   **OFDb** | **OMDb** | **Filmstarts** | **Videobuster** |
+        +================================+============+==========+================+=================+
+        |   **0 Jahre**                  | 2378       | 2403     | 1844           | 1792            |
+        +--------------------------------+------------+----------+----------------+-----------------+
+        |   **1 Jahre**                  | 109        | 87       | 198            | 118             |
+        +--------------------------------+------------+----------+----------------+-----------------+
+        |   **2 Jahre**                  | 8          | 5        | 13             | 8               |
+        +--------------------------------+------------+----------+----------------+-----------------+
+        |   **3 Jahre**                  | 2          | 2        | 3              | 3               |
+        +--------------------------------+------------+----------+----------------+-----------------+
+        |   **> 3 Jahre**                | 0          | 0        | 42             | 36              |
+        +--------------------------------+------------+----------+----------------+-----------------+
 
-Die Videobuster und Filmstarts Ergebnisse wurden zusätzlich manuell auf die Übereinstimmung
-des Regisseurs überprüft. Hier wurde eine Übereinstimmung des Namens von 95%
-gefordert. Dieser stimmt in insgesamt 317 von 343 Fällen überein. In den
-restlichen 26 Fällen, war in 13 Fällen ein Vergleich nicht möglich, in weiteren
-13 war der Film unterschiedlich.
+Die Videobuster und Filmstarts Ergebnisse wurden zusätzlich manuell auf die
+Übereinstimmung des Regisseurs überprüft. Hier wurde eine Übereinstimmung des
+Namens von 95% gefordert. Dieser stimmt in insgesamt 317 von 343 (1 - 3 Jahre)
+Fällen überein. In den restlichen 26 Fällen, war in 13 Fällen ein Vergleich
+nicht möglich, in weiteren 13 war der Film unterschiedlich.
 
-Die restlichen, insgesamt 68, Filme, die bei der Jahresdifferenz
+Die restlichen, insgesamt 78 Filme, die bei der Jahresdifferenz
 :math:`\textgreater` 3 gelistet sind, wurden manuell auf Regisseur
 Übereinstimmung untersucht. Hier gab es nur eine einzige Übereinstimmung, die
-restlichen 67 Filme waren ,,Remakes", Filme mit zufälligerweise gleichem Titel
+restlichen 77 Filme waren ,,Remakes", Filme mit zufälligerweise gleichem Titel
 oder Filme ohne gelisteten Regisseur.
 
 
@@ -556,12 +557,12 @@ Anzahl der Metadaten (siehe Abbildung :num:`fig-foundmetadata`). Die mit
 :math:`\times` markierten Felder deuten darauf hin, dass das Attribut vom
 Provider nicht ausgefüllt wird.
 
-Auffällig in Abbildung :num:`fig-completeness` ist, dass der OMDb--Provider das
+Auffällig in Abbildung :num:`fig-completeness` ist, dass der OFDb--Provider das
 Attribut ,,plot" 2353 mal nicht gefunden hat. Die manuelle Überprüfung dieses
 Wertes bestätigt, dass es hier bei dem verwendeten API--Mirror, wie bereits
 erwähnt in Kapitel :ref:`timeoutverhalten` Timeoutverhalten, entgegen der
 vorherigen Annahme, weiterhin zu Problemen kommt. Die Daten wurden mit dem
-Skript :num:`completeness` analysiert.
+Skript :ref:`completeness` analysiert.
 
 
 .. figtable::
@@ -630,15 +631,15 @@ Rating nicht.
 
 Die Analyse soll darüber Auskunft geben, ob es bei den Plattformen in der Bewertung
 signifikante Unterschiede gibt. Bei allen drei Anbietern bewegt sich das Rating
-auf einer Skala von 1 -- 10.
+auf einer Skala von 0 -- 10.
 
 Abbildung :num:`rating` zeigt, dass das Rating der Stichprobe bei allen drei
 Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
 
 .. figtable::
     :label: rating
-    :caption: Ratinggrenzen der Stichprobe.
-    :alt: Ratinggrenzen der Stichprobe.
+    :caption: Ratingverteilung der Stichprobe.
+    :alt: Ratingverteilung der Stichprobe.
 
     +----------------------------------------------+----------+----------+----------+
     | **Rating**                                   | **OMDb** | **TMDb** | **OFDb** |
@@ -651,20 +652,20 @@ Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
     +----------------------------------------------+----------+----------+----------+
 
 Die Abbildung :num:`fig-rating` zeigt weiterhin die Verteilung des Ratings der drei
-API--Provider.  Hier zeigt sich, dass das ,,Rating" in der Stichprobe bei allen
-drei Anbietern nahezu gleichverteilt ist.
+API--Provider.  Hier zeigt sich, dass das Rating in der Stichprobe bei allen
+drei Anbietern nahezu normalverteilt ist.
 
 .. _fig-rating:
 
 .. figure:: fig/rating.pdf
-    :alt: Nahezu gleichverteiles Rating der Stichprobe von 2500 Filmen.
+    :alt: Nahezu normalverteilt Rating der Stichprobe von 2500 Filmen.
     :width: 90%
     :align: center
 
-    Nahezu gleichverteiles Rating der Stichprobe von 2500 Filmen.
+    Nahezu normalverteilt Rating der Stichprobe von 2500 Filmen.
 
 
-Die vorliegenden Daten wurden mit dem Script in :ref:`rating` analysiert.
+Die vorliegenden Daten wurden mit dem Skript in :ref:`rating` analysiert.
 
 ######
 Trivia
@@ -674,11 +675,11 @@ Testumgebung
 ============
 
 Die Bibliothek wurde in der Python--Version 3.4 getestet. Die Skripte im Anhang
-wurden für die jeweiligen Auswertungen verwendet. Für das Einlesen des Ordners
-verwenden ein paar Skripte die Funktion analyze_folder. Diese Funktion wurde in
+wurden für die jeweiligen Auswertungen verwendet. Für das Einlesen der Metadaten
+verwenden manche Skripte die Funktion analyze_folder. Diese Funktion wurde in
 die ``utils.py``--Datei ausgelagert.
 
-Bei zeitabhängigen Messungen wurde immer darauf geachtet, dass immer der
+Bei zeitabhängigen Messungen wurde darauf geachtet, dass immer der
 Durchschnitt aus mehreren Durchläufen genommen wurde, um statistische Ausreißer
 zu unterdrücken.
 
@@ -696,7 +697,7 @@ Diese hat laut Internet--Messverfahren eine tatsächliche Geschwindigkeit von
 Statistiken und Plots
 =====================
 
-Für das Analysieren der Metadaten wurden eigene Skripte geschreiben. Diese sind
-im jeweiligen Thema genannt und befinden sich im Anhang. Für das Erstellen der
+Für das Analysieren der Metadaten wurden eigene Skripte geschrieben. Diese sind
+an jeweiliger Stelle genannt und befinden sich im Anhang. Für das Erstellen der
 Grafiken/Plots wurde die Python Matplotlib--Bibliothek verwendet (siehe
 :cite:`matplotlib`).

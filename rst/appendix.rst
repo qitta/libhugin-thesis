@@ -157,7 +157,7 @@ CPU--abhängigen Aufgaben zu messen:
 
 .. _comparsion-rating:
 
-Anhang M (Rating Differenz)
+Anhang N (Rating Differenz)
 ===========================
 
 Das folgende Code--Snippet wurde verwendet um Vergleichswerte zwischen

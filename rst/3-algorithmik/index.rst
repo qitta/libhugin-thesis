@@ -642,7 +642,7 @@ des Autors, zu den wichtigsten Auswahlkriterien bei Filmen zählt, wurde bei
 Die Normalisierung bei *libhugin* bildet hierzu jedes Genre einer Onlinequelle
 auf einem globalen Genre ab. Die Normalisierung erfolgt über eine statische
 Genre--Tabelle, welche der Autor eines Provider--Plugins bereitstellen muss. Der
-Nachteil dieser Variante ist, dass das Genre--Spektrum der Onlinequelle bekannt
+Nachteil dieser Variante ist, dass das Genrespektrum der Onlinequelle bekannt
 sein muss. Das Provider--Genre wird über einen Index auf einem globalen Genre
 abgebildet.
 
@@ -770,7 +770,7 @@ Libhugin harvest Plugins
 Die bisher erläuterten Ansätze und Algorithmen werden direkt durch *libhugin*
 realisiert oder als Hilfsfunktionen bereitgestellt.
 
-Des weiteren wurden für den Prototypen Postprocessor--Plugins geschrieben,
+Des Weiteren wurden für den Prototypen Postprocessor--Plugins geschrieben,
 welche weitere Probleme der Metadatenbeschaffung angehen. Ob der Benutzer ein
 Plugin, beziehungsweise welche Plugins der Benutzer nutzen möchte,
 bleibt ihm überlassen.

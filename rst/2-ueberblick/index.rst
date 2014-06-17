@@ -76,7 +76,7 @@ möglich ist.
 
 
 Ein weiteres Problem zeigt Abbildung :num:`fig-genre-detail`. Hier ist das
-Genre--Attribut unterschiedlich detailiert gepflegt.
+Genre--Attribut unterschiedlich detailliert gepflegt.
 
 .. _fig-genre-detail:
 
