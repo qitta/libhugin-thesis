@@ -7,21 +7,22 @@ import timeit
 FUNCS = [{
     'func': '1 - normalized_damerau_levenshtein_distance("{s1}", "{s2}")',
     'fimport': 'from pyxdameraulevenshtein import normalized_damerau_levenshtein_distance',
-    'label': 'dameraudamerau  levenshtein'
+    'label': 'damerau levenshtein'
 }, {
     'func': 'difflib.SequenceMatcher(None, "{s1}", "{s2}", autojunk=False).ratio()',
     'fimport': 'import difflib',
-    'label': 'ratcliff_obershelp'
+    'label': 'ratcliff obershelp'
 }, {
     'func': '1 - distance.nlevenshtein("{s1}", "{s2}")',
     'fimport': 'import distance',
     'label': 'levenshtein'
 }
-, {
-    'func': 'adj_dlevenshtein.string_similarity_ratio("{s1}", "{s2}")',
-    'fimport': 'import adj_dlevenshtein',
-    'label': 'adjusted damerau levenshtein'
-}]
+#, {
+#    'func': 'adj_dlevenshtein.string_similarity_ratio("{s1}", "{s2}")',
+#    'fimport': 'import adj_dlevenshtein',
+#    'label': 'adjusted damerau levenshtein'
+#}]
+]
 
 def benchmark(s1, s2, n, **kwargs):
     return timeit.timeit(
