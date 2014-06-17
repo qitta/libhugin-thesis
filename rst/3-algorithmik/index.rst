@@ -94,13 +94,13 @@ Benchmark wurde mit einer *VDSL* 50Mbit--Leitung durchgeführt.
     :width: 100%
     :align: center
 
-    Performancevorteil beim Parellisieren von Downloads. Fünft Durchläufte,
-    Zugriff auf 15 verschiedene Webseiten, siehe Benchmark-Skript Anhang A.
+    Performancevorteil beim Parellisieren von Downloads. Durchschnitt aus drei
+    Durchläuften, jeweils auf Zugriff auf 15 verschiedene Webseiten.
 
 
-#####################
-Algorithmik Filmsuche
-#####################
+#########################
+Algorithmik der Filmsuche
+#########################
 
 Für die Suche nach Filmmetadaten gibt es unter *libhugin* mehrere Möglichkeiten.
 Je nach Metadaten--Provider ist eine Suche nach IMDb--ID und Titel möglich. Die
@@ -139,6 +139,7 @@ Aufrufer der Methode kann also in der Zwischenzeit andere Sachen erledigen.
 Siehe :cite:`cpiechula` und *libhugin* API :cite:`rtfd` für eine vollständige
 Liste der Konfigurationsparameter der Session und Query.
 
+.. _standardsuche:
 
 Standardsuche
 =============
@@ -437,7 +438,7 @@ berechnet:
 
     year\_similarity(year_a, year_b, max_{years}) = 1 - min \left\{ 1, \frac{\vert year_{a} - year_{b}  \vert}{max_{years}} \right\}
 
-:math:`max_years` ist hierbei die maximale Anzahl von Jahren die betrachtet werden
+:math:`max_{years}` ist hierbei die maximale Anzahl von Jahren die betrachtet werden
 sollen.
 
 Anschließend wird das Jahr noch zusätzlich gewichtet, da der Titel wichtiger
@@ -445,7 +446,13 @@ als das Erscheinungsjahr ist. Durch die Gewichtung soll dies sichergestellt werd
 
  .. math::
 
-    similarity(title_a, year_a, title_b, year_b) = \frac{string\_similarity\_ratio(title_a, title_b) \times weight + year\_similarity(year_a, year_b)}{weight + 1}
+    similarity(t_a, y_a, t_b, y_b) = \frac{string\_similarity\_ratio(t_a, t_b) \times weight + year\_similarity(y_a, y_b)}{weight + 1}
+
+:math:`t_a, t_b` sind die jeweiligen Titel.
+
+:math:`y_a, y_b` sind die jeweiligen Erscheinungsjahre.
+
+``string_similarity_ratio`` ist die angepasste Damerau--Levenshtein Funktion für den Zeichenkettenvergleich.
 
 :math:`weight` ist hierbei der Gewichtungsfaktor für den Titel. Durch die
 Gewichtung des Titels fällt ein falsch gepflegtes Erscheinungsjahr nicht so
@@ -478,7 +485,8 @@ verwendet werden soll.
 
 
 Abbildung :num:`fig-rating` zeigt das Rating mit einer
-Gewichtung von :math:`weight` = 3 für die Zeichenkette ,,Matrix 1999".
+Gewichtung von :math:`weight` = 3 für die Zeichenkette ,,Matrix 1999". Das
+Skript für die Auswertung findet sich im :ref:`gewichtetes_rating`.
 
 
 IMDb--ID Suche
