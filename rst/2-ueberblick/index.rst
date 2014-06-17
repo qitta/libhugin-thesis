@@ -4,9 +4,9 @@
 Probleme bei der Metadatenbeschaffung
 #####################################
 
-Die Filmmetadaten eines Films stehen in der Regel auf der DVD--Hülle oder finden
+Die Metadaten eines Films stehen in der Regel auf der DVD--Hülle oder finden
 sich in der TV--Programmübersicht. Nach dem Digitalisieren der eigenen
-DVD--Sammlung oder dem Aufzeichnen von Sendungen, fehlen diese und müssen vom
+DVD--Sammlung oder dem Aufzeichnen von Sendungen fehlen diese und müssen vom
 Benutzer nachträglich manuell gepflegt werden.
 
 Die ,,digitale Filmsammlung" wird in der Regel von sogenannter
@@ -27,13 +27,13 @@ Des Weiteren gibt es sogenannte Movie--Metadaten--Manager--Software, welche
 primär nur für das Pflegen und Verwalten der digitalen Medien gedacht ist.  Zu
 dieser Art von Software gehört beispielsweise MediaElch (siehe
 :cite:`mediaelch`). Die Metadaten--Manager unterstützen oft mehrere
-Onlinequellen. Die Software erlaubt es auch oft die gepflegten Metadaten zu
+Onlinequellen. Die Software erlaubt es häufig, die gepflegten Metadaten zu
 exportieren, um diese in Kombination mit einer Home--Theater--Abspielsoftware
 nutzen zu können.
 
 Bei der Pflege von Filmsammlungen von mehreren hundert Filmen, kommt es immer
 wieder zu Problemen. Es gibt hier nicht das Werkzeug der Wahl. Jede
-Software hat ihre Vor-- und Nachteile und die Bedürfnisse der Benutzer hier sind
+Software hat ihre Vor-- und Nachteile und die Bedürfnisse der Benutzer sind hier
 unterschiedlich.
 
 Zu den generellen Problemen hierbei gehören folgende Punkte:
@@ -50,7 +50,7 @@ Inhaltsbeschreibung nur in einer bestimmten Sprache vorliegt oder die Metadaten
 unvollständig sind.
 
 Unterstützt die Abspielsoftware beziehungsweise der Metadaten--Manager mehrere
-Onlinequellen, so entstehen oft aufgrund der nicht normalisierten Metadaten
+Onlinequellen, so entstehen häufig aufgrund der nicht normalisierten Metadaten
 Probleme beim parallelen Bezug der Metadaten aus mehreren Quellen. Das
 Hauptproblem sind Redundanzen der Metadaten in der internen Datenbank der
 Abspielsoftware. Diese entstehen hauptsächlich beim Genre, wenn mehrere Filme
@@ -68,11 +68,11 @@ möglich ist.
 .. _fig-genre-redundanzen:
 
 .. figure:: fig/genre-redundanzen.pdf
-    :alt: Reduntante Metadaten beim Bezug von Filmen aus mehreren Onlinequellen.
+    :alt: Redundante Metadaten beim Bezug von Filmen aus mehreren Onlinequellen.
     :width: 90%
     :align: center
 
-    Reduntante Metadaten beim Bezug von Filmen aus mehreren Onlinequellen.
+    Redundante Metadaten beim Bezug von Filmen aus mehreren Onlinequellen.
 
 
 Ein weiteres Problem zeigt Abbildung :num:`fig-genre-detail`. Hier ist das
@@ -92,11 +92,11 @@ Betriebssystemen die Auswahl an gut funktionierenden Filmmetadaten--Managern,
 wie in einem Test in der Projektarbeit festgestellt wurde (siehe
 :cite:`cpiechula`, 3.4.2 Probleme bei Movie–Metadaten–Managern), beschränkt ist.
 
-Um die aktuell vorhanden Schwierigkeiten bei der Metadaten--Pflege zu beheben,
+Um die aktuell vorhandenen Schwierigkeiten bei der Metadatenpflege zu beheben,
 beziehungsweise abzumildern wurde das modulare pluginbasierte System *libhugin*
 entwickelt. Das System fungiert als Bibliothek zur Metadatenbeschaffung und
 zeigt im Vergleich zu den bestehenden Lösungen eine andere Herangehensweise,
-die es dem Benutzer erlaubt das System durch den pluginbasierten Ansatz besser
+die es dem Benutzer erlaubt, das System durch den pluginbasierten Ansatz besser
 an die eigenen Bedürfnisse anzupassen.
 
 Zusätzlich wurde das System um das Konzept der Metadatenaufbereitung erweitert.
@@ -104,7 +104,7 @@ Hierdurch soll dem Benutzer die Möglichkeit geboten werden, nachträglich
 Metadaten automatisiert zu analysieren und Fehler zu bereinigen. Hier wurde
 ebenso ein pluginbasierter Ansatz gewählt.
 
-Das Hauptaugenmerk von *Libhugin* liegt auf der automatisierten Metadatenpflege
+Das Hauptaugenmerk von *libhugin* liegt auf der automatisierten Metadatenpflege
 großer Filmsammlungen von mehreren tausend Filmen.
 
 
@@ -114,8 +114,7 @@ großer Filmsammlungen von mehreren tausend Filmen.
 
 Die Bibliothek wurde in die zwei Teile *libhugin--harvest*
 (Metadatenbeschaffung) und *libhugin--analyze* (Metadatenaufbereitung)
-aufgeteilt. Siehe auch Architektur--Übersicht :num:`fig-arch-overview`.
-
+aufgeteilt. Siehe auch Architektur--Übersicht Abbildung :num:`fig-arch-overview`.
 
 .. _fig-arch-overview:
 
@@ -147,11 +146,11 @@ befüllen. Für weitere Informationen zum Ergebnisobjekt siehe *libhugin*--API
 .. _fig-provider-concept:
 
 .. figure:: fig/provider-concept.pdf
-    :alt: Provider Konzept für die Beschaffung von Metadaten.
+    :alt: Provider-Konzept für die Beschaffung von Metadaten.
     :width: 80%
     :align: center
 
-    Provider Konzept für die Beschaffung von Metadaten.
+    Provider-Konzept für die Beschaffung von Metadaten.
 
 
 **Postprocessor--Plugins:** Diese Plugins sind für das Nachbearbeiten der
@@ -189,10 +188,11 @@ zum Vergleich von Filmmetadaten untereinander dienen. Comparator--Plugins müsse
 von der Comparator--Oberklasse ableiten und eine ``compare()``--Methode
 implementieren.
 
-Weitere Informationen zu der unter :ref:`motivation` genannten Problematik oder
-zum Software--Design selbst werden in der Arbeit zum Projekt *,,Design und
-Implementierung eines modularen Filmmetadaten Such-- und Analysesystems"*, siehe
-:cite:`cpiechula`, sowie in der offiziellen API :cite:`rtfd`, behandelt.
+Weitere Informationen zu der unter Kapitel :ref:`motivation` genannten
+Problematik oder zum Software--Design selbst werden in der Arbeit zum Projekt
+*,,Design und Implementierung eines modularen Filmmetadaten Such-- und
+Analysesystems"*, siehe :cite:`cpiechula`, sowie in der offiziellen API
+:cite:`rtfd`, behandelt.
 
 Für die *libhugin*--Bibliothek wurden in der Projektarbeit die zwei
 Kommandozeilen Tools Geri (für *libhugin--harvest*) und Freki (für
@@ -200,5 +200,5 @@ Kommandozeilen Tools Geri (für *libhugin--harvest*) und Freki (für
 Features der Bibliothek und dienen gleichzeitig als einfache Schnittstelle
 für den direkten Einsatz der Bibliothek.  Des Weiteren wurde auch ein
 konzeptioneller Ansatz für die Integration von *libhugin* in andere Projekte
-gezeigt. Siehe :cite:`cpiechula`, ,insbesondere Kapitel 7 Demoanwendungen, für
+gezeigt. Siehe :cite:`cpiechula`, insbesondere Kapitel 7 Demoanwendungen, für
 weitere Informationen zu den Funktionen und Features von *libhugin*.
