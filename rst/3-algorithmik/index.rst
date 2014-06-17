@@ -541,7 +541,7 @@ Filmstarts und Videobuster benötigen in der Regel exakte Suchanfragen. Bei eine
 Tippfehler wie *,,Unly god forgives"* (Originaltitel: *,,Only god forgives"*),
 wird der Film von den genannten Online--Plattformen nicht gefunden.
 
-.. python-code:: python
+.. code-block:: python
 
     >>> from hugin.harvest.session import Session
     >>> s = Session()
