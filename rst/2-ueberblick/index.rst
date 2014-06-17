@@ -36,7 +36,7 @@ wieder zu Problemen. Es gibt hier nicht das Werkzeug der Wahl. Jede
 Software hat ihre Vor-- und Nachteile und die Bedürfnisse der Benutzer sind hier
 unterschiedlich.
 
-Zu den generellen Problemen hierbei gehören folgende Punkte:
+Zu den generellen Problemen gehören folgende Punkte:
 
     * Filmmetadaten werden nicht gefunden.
     * Filmmetadaten sind unvollständig.

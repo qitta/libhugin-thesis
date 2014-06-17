@@ -146,8 +146,7 @@ Auffällig ist hier die fast doppelt so lange Zeit bei den Providern ohne API.
 .. _fig-hugindownload:
 
 .. figure:: fig/libhugin_download_time.pdf
-    :alt: Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
-          libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen.
+    :alt: Downloadgeschwindigkeit der Metadaten für einen Film mit libhugin-harvest.
     :width: 100%
     :align: center
 
@@ -162,9 +161,7 @@ Metadaten in sehr kurzer Zeit verarbeiten.
 .. _fig-hugindownload-cache:
 
 .. figure:: fig/libhugin_download_time_cache.pdf
-    :alt: Abfragegeschwindigkeit der Metadaten für einen Film pro Provider mit
-          libhugin-harvest mit aktiviertem Cache. Durchschnitt aus 10 verschiedenen
-          Filmen.
+    :alt: Abfragegeschwindigkeit der Metadaten für einen Film mit libhugin-harvest und aktiviertem Cache.
     :width: 100%
     :align: center
 
@@ -202,8 +199,7 @@ Ergebnissen.
 
 .. figure:: fig/libhugin_threaded_search.pdf
     :alt: Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
-          Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
-          heisst, jeder Provider zieht maximal 10 Filme.
+          Download-Threads (non-API Provider).
     :width: 100%
     :align: center
 
@@ -222,8 +218,7 @@ Die Auswertung der Skalierung der Downloadgeschwindigkeit wurde mit dem Script
 
 .. figure:: fig/libhugin_threaded_search_api.pdf
     :alt: Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
-          Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
-          heisst, jeder Provider zieht maximal 10 Filme.
+          Download-Threads (API Provider).
     :width: 100%
     :align: center
 

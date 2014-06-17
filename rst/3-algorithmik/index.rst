@@ -22,8 +22,7 @@ Variablen hat.
 
 .. figure:: fig/gil_limitation.pdf
     :alt: Limitierung der Geschwindigkeit durch den global interpreter lock bei
-          CPU-abhängigen Aufgaben. Hier wird über einer Funktion der Wert
-          100.000.000 dekrementiert.
+          CPU-abhängigen Aufgaben.
     :width: 100%
     :align: center
 
@@ -205,9 +204,9 @@ folgende *IPython*--Sitzung zeigt:
     >>> from pyxdameraulevenshtein import damerau_levenshtein_distance
     >>> from distance import levenshtein as levenshtein_distance
     >>> levenshtein_distance("the matrix", "teh matrix")
-    >>> 2
+    2
     >>> damerau_levenshtein_distance("the matrix", "teh matrix")
-    >>> 1
+    1
 
 Von der Levenshtein- und Damerau--Levenshtein--Distanz gibt es jeweils eine
 normalisierte Variante. Hierbei bewegt sich die Distanz zwischen 0.0 und 1.0.
@@ -767,8 +766,8 @@ Abbildung :num:`fig-searchstrategy` visualisiert die Vorgehensweise der beiden
 Strategien.
 
 
-Libhugin harvest Plugins
-========================
+Libhugin--harvest Plugins
+=========================
 
 Die bisher erläuterten Ansätze und Algorithmen werden direkt durch *libhugin*
 realisiert oder als Hilfsfunktionen bereitgestellt.
@@ -810,7 +809,7 @@ gruppieren.
 
 .. figure:: fig/compose.pdf
     :alt: Automatisches Ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
-    :width: 80%
+    :width: 90%
     :align: center
 
     Automatisches Ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
@@ -820,8 +819,14 @@ verschiedener Provider ist die Angabe einer benutzerdefinierten Profilmaske.
 Diese Profilmaske ist eine Hash--Tabelle mit den jeweiligen Attributen als
 Schlüssel und den gewünschten Providern als Wert. Folgende Python Notation gibt
 an, dass der Standardanbieter TMDb sein soll und die Inhaltsbeschreibung immer
-vom Provider OFDb befüllt werden soll. Wenn dieser keine Inhaltsbeschreibung
-besitzt, soll das Ergebnis des OMDb--Provider genommen werden.
+vom Provider OFDb befüllt werden soll.
+
+.. raw:: Latex
+
+   \newpage
+
+Wenn dieser keine Inhaltsbeschreibung besitzt, soll das Ergebnis des
+OMDb--Provider genommen werden.
 
 .. code-block:: python
 
@@ -846,8 +851,8 @@ wird aufgrund ihrer Einfachheit nicht weiter eingegangen. Hier werden jeweils
 nur Formatierungen der Ergebnisobjekte in ein bestimmtes Ausgabeformat wie
 beispielsweise XML [#f3]_, durchgeführt.
 
-Libhugin analyze plugins
-========================
+Libhugin--analyze Plugins
+=========================
 
 Der *libhugin--analyze* Teil der Bibliothek ist für das nachträgliche Bearbeiten
 von Metadaten gedacht. Insbesondere ist dieser Teil der Bibliothek konzipiert
@@ -1033,13 +1038,14 @@ Die folgende *IPython*--Sitzung zeigt die Funktionalität der Bibliothek:
 .. code-block:: python
 
     >>> from guess_language import guess_language
-    >>> guess_language("Der Elfenkauz ist die einzige Art der Eulengattung der Elfenkäuze.")
+    >>> text = "Der Elfenkauz ist die einzige Art der Eulengattung der Elfenkäuze."
+    >>> guess_language(text)
     'de'
 
 **Algorithmik der Modifier--Plugins**
 
 Die Modifier--Plugins modifizieren die Metadaten direkt. Hier wurde ein Plugin
-zum bereinigen von Inhaltsangaben entwickelt, welches mittels Regulärer
+zum Bereinigen von Inhaltsangaben entwickelt, welches mittels Regulärer
 Ausdrücke (vgl. :cite:`friedl2009regulare`) unerwünschte, in Klammern stehende
 Inhalte, entfernt.
 
