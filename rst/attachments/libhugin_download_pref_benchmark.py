@@ -22,6 +22,7 @@ def plot(times):
     plt.yticks(y_pos, providers)
     plt.xlabel('time in milliseconds')
     plt.title('libhugin download performance by online source.')
+    plt.grid(True)
     plt.show()
 
 if __name__ == "__main__":
@@ -35,9 +36,9 @@ if __name__ == "__main__":
         'ofdbmovie', 'tmdbmovie', 'videobustermovie', 'omdbmovie', 'filmstartsmovie'
     ]
 
-    N = 10
+    N = 3
 
-    s = Session(parallel_downloads_per_job=10, cache_path='lecchex')
+    s = Session(parallel_downloads_per_job=1, cache_path='.')
     times = defaultdict(list)
 
     for _ in range(N):

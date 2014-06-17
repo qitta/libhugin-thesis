@@ -3,18 +3,11 @@
 
 from collections import Counter
 from statistics import mean
+from utils import analyze_folder
 import pprint
 import os
 import sys
 import json
-
-def analyze_folder(path):
-    result = {}
-    for json_file in os.listdir(path):
-        with open(os.path.join(path, json_file), 'r') as handle:
-            provider, _, _ = json_file.split(';')
-            result[provider] = json.loads(handle.read())
-    return result
 
 PROVIDERS = ['tmdb', 'ofdb', 'omdb', 'videobuster', 'filmstarts']
 

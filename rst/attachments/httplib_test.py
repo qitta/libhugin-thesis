@@ -11,23 +11,15 @@ import httplib2
 import pylab
 
 URLS = [
-    'http://www.zeit.de',
-    'http://www.heise.de',
-    'http://www.golem.de',
-    'http://www.krawall.de',
-    'http://www.phoronix.com',
-    'http://www.spiegel.de',
-    'http://www.zeit.de',
-    'http://www.faz.de',
-    'http://www.focus.de',
-    'http://www.filmstarts.de',
-    'http://www.moviepilot.de',
-    'http://www.imdb.com',
-    'http://www.themoviedb.org',
-    'http://www.debian.org',
+    'http://www.zeit.de', 'http://www.heise.de', 'http://www.golem.de',
+    'http://www.krawall.de', 'http://www.phoronix.com', 'http://www.spiegel.de',
+    'http://www.zeit.de', 'http://www.faz.de', 'http://www.focus.de',
+    'http://www.filmstarts.de', 'http://www.moviepilot.de',
+    'http://www.imdb.com', 'http://www.themoviedb.org', 'http://www.debian.org',
     'http://www.freebsd.org/de/'
+] # 15 URLS
 
-]
+MAX_THREADS = 10
 
 def fetch_urllib(url, timeout):
     return urllib.request.urlopen(url, timeout=timeout).readall()
@@ -60,7 +52,6 @@ def download(threads=1, func=None):
 
     end = int(round(time.time() * 1000))
     result = end - start
-    time.sleep(1)
     return result
 
 def plot(results):
@@ -69,7 +60,7 @@ def plot(results):
         s = [x[1] for x in results[lib]]
         pylab.plot(t, s, 'o-', label=lib)
 
-    pylab.xlim(1, 15)
+    pylab.xlim(1, MAX_THREADS)
     pylab.xlabel('number of download threads')
     pylab.ylabel('time in milliseconds')
     pylab.title('performance scaling multithreaded download')
@@ -78,13 +69,13 @@ def plot(results):
     pylab.show()
 
 if __name__ == '__main__':
-    N = 5
-    MAX_THREADS = 15
+    N = 3
     results = defaultdict(dict)
 
     for name, func in FUNCS.items():
         run_results = []
-        for threads in range(1, MAX_THREADS + 1, 1):
+        for threads in range(0, MAX_THREADS + 1, 2):
+            threads = max(1, threads)
             avg_time = mean(download(threads=threads, func=func) for _ in range(N))
             run_results.append((threads, avg_time))
         results[name] = run_results

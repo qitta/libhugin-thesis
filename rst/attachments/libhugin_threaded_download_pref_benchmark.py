@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from statistics import mean
 import time
 import timeit
@@ -11,37 +11,44 @@ from hugin.harvest.session import Session
 from pylab import *
 import pprint
 
+THREADS = 10
+RUNS = 3
+
 def benchmark(s, q):
     r = s.submit(q)
     return r
 
 def run(label, providers):
     times = defaultdict(list)
-    for thread in range(1, 21):
+    for thread in range(0, THREADS + 1, 2):
+        thread = max(1, thread)
         s = Session(parallel_downloads_per_job=thread)
-        q = s.create_query(title='Sin', cache=False, amount=20, retries=5,
+        q = s.create_query(title='Sin', cache=False, amount=THREADS,
                 strategy='flat', providers=providers)
-        result = timeit.Timer(partial(benchmark, s, q)).timeit(number=5)
-        times[thread].append(result)
+        result = timeit.Timer(partial(benchmark, s, q)).timeit(number=RUNS)
+        times[thread].append(result/RUNS)
+
+    times = OrderedDict(sorted(times.items(), key=lambda t: t[0]))
+    print(times)
     t = [x[0] for x in times.items()]
     s = [x[1] for x in times.items()]
-    plot(t, s, label=label)
+    plot(t, s, 'o-', label=label)
 
 if __name__ == "__main__":
 
     config = {
-        'api':['tmdbmovie', 'ofdbmovie', 'omdbmovie'],
-        'no api':['videobustermovie', 'filmstartsmovie'],
-        'api + no api':[ 'tmdbmovie', 'ofdbmovie', 'omdbmovie', 'videobustermovie', 'filmstartsmovie' ]
+        'api providers':['tmdbmovie', 'ofdbmovie','omdbmovie']
+        #'no api providers':['videobustermovie', 'filmstartsmovie'],
+        #'api + no api providers':[ 'tmdbmovie', 'ofdbmovie', 'omdbmovie', 'videobustermovie', 'filmstartsmovie' ]
     }
 
     for label, providers in config.items():
         run(label, providers)
 
-    xlim(1,20)  # decreasing time
-    xlabel('number of download threads', fontsize=14)
-    ylabel('time in seconds', fontsize=14)
-    title('libhugin threaded download comparsion', fontsize=14)
+    xlim(1, THREADS)
+    xlabel('number of download threads')
+    ylabel('time in seconds')
+    title('libhugin threaded download comparsion')
     grid(True)
     legend()
 

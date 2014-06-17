@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 from collections import Counter
+from utils import analyze_folder
 import difflib
 import pprint
 import os
@@ -9,14 +10,6 @@ import sys
 import json
 
 COUNTER = 0
-
-def analyze_folder(path):
-    result = {}
-    for json_file in os.listdir(path):
-        with open(os.path.join(path, json_file), 'r') as handle:
-            provider, _, _ = json_file.split(';')
-            result[provider] = json.loads(handle.read())
-    return result
 
 def directors_equal(tmdb, nontmdb, threshold=0.95):
     d1, d2 = tmdb.get('directors', []), nontmdb.get('directors', [])

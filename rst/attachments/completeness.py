@@ -2,18 +2,12 @@
 # encoding: utf-8
 
 from collections import Counter
+from utils import analyze_folder
 import pprint
 import sys
 
 import os
 import json
-def analyze_folder(path):
-    d = {}
-    for f in os.listdir(path):
-        with open(os.path.join(path, f), 'r') as fp:
-            provider, _, _ = f.split(';')
-            d[provider] = json.loads(fp.read())
-    return d
 
 PROVIDERS = {
     'tmdb':2500, 'ofdb':2500, 'omdb':2500, 'videobuster':2444, 'filmstarts':2427

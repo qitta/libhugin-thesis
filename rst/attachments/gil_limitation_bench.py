@@ -16,9 +16,11 @@ def plot(times):
 
     plt.barh(y_pos, values, align='center', alpha=0.7, color='g')
     plt.yticks(y_pos, threads)
+    plt.xlim(0, 30)
     plt.xlabel('time in seconds')
     plt.ylabel('number of threads')
     plt.title('python threaded cpu bound limitation because of the GIL.')
+    plt.grid(True)
     plt.show()
 
 

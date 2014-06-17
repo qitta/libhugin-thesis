@@ -5,6 +5,7 @@ from collections import defaultdict
 from statistics import mean
 import timeit
 import numpy
+import time
 import matplotlib.pyplot as plt
 
 ofdb = {
@@ -49,11 +50,12 @@ def plot(providers):
     plt.yticks(y_pos, providers)
     plt.xlabel('time in milliseconds')
     plt.title('response time by online source.')
+    plt.grid(True)
     plt.legend()
     plt.show()
 
 if __name__ == "__main__":
-    N = 10
+    N = 5
     movies = [
         'Prometheus', 'Avatar', 'Matrix', 'Shame', 'Juno',
         'Hulk', 'Rio', 'Alien', 'Wrong', 'Drive',
@@ -66,6 +68,7 @@ if __name__ == "__main__":
             for algo in [ofdb, tmdb, videobuster, omdb, filmstarts]:
                 result = benchmark(title, **algo)
                 times[algo['label']].append(result * 1000)
+        time.sleep(2)
 
     for k, v in times.items():
         times[k] = (min(v), mean(v), max(v))

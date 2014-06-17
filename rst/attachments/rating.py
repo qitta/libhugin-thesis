@@ -4,6 +4,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
+from utils import analyze_folder
 from statistics import mean
 import pprint
 import sys
@@ -12,17 +13,11 @@ import json
 
 PROVIDERS = ['tmdb', 'ofdb', 'omdb']
 
-def analyze_folder(path):
-    data = {}
-    for f in os.listdir(path):
-        with open(os.path.join(path, f), 'r') as fp:
-            provider, _, _ = f.split(';')
-            data[provider] = json.loads(fp.read())
-    return data
-
 def analyze():
     results = {p: [] for p in PROVIDERS}
     for folder in filter(os.path.isdir, os.listdir(sys.argv[1])):
+        if folder == '__pycache__':
+            continue
         for name, metadata in analyze_folder(folder).items():
             if name not in PROVIDERS:
                 continue
