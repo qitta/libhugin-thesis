@@ -38,7 +38,7 @@ vom OFDb--Provider sehr instabil ist. Hierzu wurden Metadaten für 100 Filme je
 Provider gezogen. Abbildung :num:`fig-timeout` zeigt wie oft es zu Fehlern pro
 Provider gekommen ist. Der Test wurde, um gegebenenfalls Server- oder
 Leitungsprobleme  auszuschließen, an fünf verschiedenen Tagen durchgeführt. Für
-den Test wurde das Script aus :ref:`timeout` verwendet.
+den Test wurde das Skript aus :ref:`timeout` verwendet.
 
 
 .. figtable::
@@ -78,7 +78,7 @@ Abbildung :num:`fig-sourceresponse` zeigt die Antwortzeiten der jeweiligen
 Plattformen/Metadatenanbieter, die *libhugin* als Provider implementiert hat.
 Hierbei wurde jeweils die ,,Suchseite" des jeweiligen Anbieters angefordert.
 
-Die Zeit wurde mit dem Script im :ref:`source_response` gemessen.  Für die
+Die Zeit wurde mit dem Skript im :ref:`source_response` gemessen.  Für die
 Messung wurden die in  :ref:`source_response` verwendeten Parameter angewandt.
 Es wurde jeweils der Durchschnitt von 10 einzeln angeforderten Filmen genommen.
 
@@ -138,7 +138,7 @@ Abbildung  :num:`fig-hugindownload` zeigt die Geschwindigkeit beim Zugriff auf
 Metadaten über die *libhugin--harvest*--Bibliothek. Hier wurde
 *libhugin--harvest* so konfiguriert, dass pro Provider einzeln jeweils 10 Filme
 heruntergeladen werden. Das Ergebnis ist jeweils der Durchschnitt aus 10
-Durchläufen. Das Script in :ref:`libhugin_source_response` wurde für diesen
+Durchläufen. Das Skript in :ref:`libhugin_source_response` wurde für diesen
 Benchmark verwendet.
 
 Auffällig ist hier die fast doppelt so lange Zeit bei den Providern ohne API.
@@ -211,7 +211,7 @@ Die theoretischen Annahmen über die Skalierung der Downloadgeschwindigkeit aus
 Kapitel :ref:`tech_grundlagen` werden mit der Einschränkung auf die Limitierung
 der non--API Provider bestätigt.
 
-Die Auswertung der Skalierung der Downloadgeschwindigkeit wurde mit dem Script
+Die Auswertung der Skalierung der Downloadgeschwindigkeit wurde mit dem Skript
 :ref:`hugin_search_benchmark` durchgeführt.
 
 .. _fig-hugin-search-api:
@@ -289,17 +289,17 @@ Erscheinungsjahr.
     +----------------------+------------+----------------------+------------+----------------------+------------+
 
 Für die Beschaffung der Metadaten wurden die IMDb--IDs von 2500 Filmen in einer
-Datei gesammelt. Anschließend wurden über ein IMDb--Lookup--Script (siehe
+Datei gesammelt. Anschließend wurden über ein IMDb--Lookup--Skript (siehe
 :ref:`imdblookup_script`) alle deutschsprachigen Titel und Erscheinungsjahre
 anhand der IMDb--ID bezogen. Mit diesen Informationen wurden 2500 Ordner mit der
 Struktur ``[Filmtitel;Erscheinungsjahr;Imdbid]`` angelegt, hierzu wurde das
-gleiche Script verwendet.
+gleiche Skript verwendet.
 
 Anschließend  wurden die Metadaten mit Hilfe von *libhugin--harvest* über die
 fünf genannten Provider bezogen. Hierbei wurden die Metadaten bei den Providern
 mit IMDb--ID Unterstützung über diese bezogen.  Provider, die keine IMDb--ID
 Unterstützung besitzen, wurden über den, über IMDb ,,normalisierten" deutschen
-Titel, mit Erscheinungsjahr bezogen. Die Metadaten wurden ebenso mit dem Script
+Titel, mit Erscheinungsjahr bezogen. Die Metadaten wurden ebenso mit dem Skript
 :ref:`imdblookup_script` bezogen. Ein komprimiertes Archiv mit den Testdaten
 findet sich unter :cite:`metadata`.
 
@@ -369,7 +369,7 @@ Onlineplattformen teils divergente Genre--Bezeichnungen haben.  Die folgenden
 Auswertungen sollen den Umstand anhand der gewählten Stichprobe, sowie alle
 bisher für die Entwicklung getroffenen Annahmen, bestätigen.
 
-Die Daten in Abbildung :num:`fig-genres` wurden mit dem Script im :ref:`genre-table`
+Die Daten in Abbildung :num:`fig-genres` wurden mit dem Skript im :ref:`genre-table`
 erhoben und zeigen die Genreverteilung der fünf Provider für die Metadaten der
 2500 Filme. Bei Filmstarts beziehen sich die Genreinformationen lediglich nur
 auf 2427 Filme, bei Videobuster nur auf 2444 Filme.
@@ -666,11 +666,11 @@ drei Anbietern nahezu normalverteilt ist.
 .. _fig-rating:
 
 .. figure:: fig/rating.pdf
-    :alt: Nahezu normalverteilt Rating der Stichprobe von 2500 Filmen.
+    :alt: Nahezu normalverteiltes Rating der Stichprobe von 2500 Filmen.
     :width: 90%
     :align: center
 
-    Nahezu normalverteilt Rating der Stichprobe von 2500 Filmen.
+    Nahezu normalverteiltes Rating der Stichprobe von 2500 Filmen.
 
 
 Die vorliegenden Daten wurden mit dem Skript in :ref:`rating` analysiert.

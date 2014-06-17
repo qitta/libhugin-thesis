@@ -97,7 +97,7 @@ Instanz pro Thread zu starten, gewählt.
 
 Abbildung :num:`fig-threaded-download` zeigt wie sich das Parallelisieren
 mehrerer Downloads auf die Performance auswirkt. Hier wurden die drei genannten
-HTTP--Bibliotheken mit dem Script in :ref:`http_benchmark` getestet.  Der
+HTTP--Bibliotheken mit dem Skript in :ref:`http_benchmark` getestet.  Der
 Benchmark wurde mit einer *VDSL* 50Mbit--Leitung durchgeführt.
 
 
@@ -265,7 +265,7 @@ vergleichen zu können.
 
 Weitere Werte, um die unterschiedliche Wertung der beiden Algorithmen zu
 demonstrieren, finden sich in der Tabelle :num:`fig-comparsion-diff-1` und
-:num:`fig-comparsion-diff-2`. Die Werte wurden mit dem Script in
+:num:`fig-comparsion-diff-2`. Die Werte wurden mit dem Skript in
 :ref:`comparsion-rating` ermittelt.
 
 .. figtable::
