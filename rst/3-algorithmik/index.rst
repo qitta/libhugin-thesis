@@ -4,28 +4,32 @@
 Technische Grundüberlegungen
 ############################
 
-Bestimmte Teile von *libhugin* wurden parallisiert entwickelt. Hierzu zählt
+Bestimmte Teile von *libhugin* arbeiten parallelisiert. Hierzu zählt
 der Downloadmechanismus, sowie die Möglichkeit einer asynchronen Suchanfrage.
 
-Auf weiteren Einsatz von Parellisierung wurde verzichtet, da parallele
-Verarbeitung unter Python aufgrund vom *GIL* (Global Interpreter Lock) nur
+Auf weiteren Einsatz von Parallelisierung wurde verzichtet, da parallele
+Verarbeitung unter Python aufgrund vom *GIL* (global interpreter lock) nur
 eingeschränkt möglich ist.
 
 Der *GIL* ist ein Mutex, welcher verhindert, dass mehrere native Threads Python
-Bytecode gleichzeitig ausführen können. Die Parallelisierung beispielsweise von
-Funktionen kann sogar zu Performanceeinbußen im Vergleich zur
-Singlethreaded--Ausführung führen, siehe Abbildung :num:`fig-gil-limitation`.
-Zum Testen wurde das Skript im :ref:`gil-limitation` verwendet, welches als
-Aufgabe die Dekrementierung einer Variablen hat.
+Bytecode gleichzeitig ausführen können. Die Parallelisierung von Funktionen kann
+zu Performanceeinbußen im Vergleich zur Singlethreaded--Ausführung führen,
+siehe Abbildung :num:`fig-gil-limitation`.  Zum Testen wurde das Skript im
+:ref:`gil-limitation` verwendet, welches als Aufgabe die Dekrementierung einer
+Variablen hat.
 
 .. _fig-gil-limitation:
 
 .. figure:: fig/gil_limitation.pdf
-    :alt: Limitierung der Geschwindigkeit durch den global interpreter lock bei CPU-abhängigen Aufgaben. Hier wird über einer Funktion der Wert 100.000.000 dekrementiert.
+    :alt: Limitierung der Geschwindigkeit durch den global interpreter lock bei
+          CPU-abhängigen Aufgaben. Hier wird über einer Funktion der Wert
+          100.000.000 dekrementiert.
     :width: 100%
     :align: center
 
-    Limitierung der Geschwindigkeit durch den global interpreter lock bei CPU-abhängigen Aufgaben. Hier wird über einer Funktion der Wert 100.000.000 dekrementiert.
+    Limitierung der Geschwindigkeit durch den global interpreter lock bei
+    CPU-abhängigen Aufgaben. Hier wird über einer Funktion der Wert 100.000.000
+    dekrementiert.
 
 Diese Einschränkung gilt jedoch nicht für lange laufende oder blockierende
 Operationen wie beispielsweise der Zugriff auf die Festplatte (vgl.
@@ -43,11 +47,11 @@ unterstützt.
 
 Zwei weitere HTTP--Bibliotheken unter Python sind die beiden freien
 Implementierungen *urllib3* und *httplib2*, auf welche zurückgegriffen werden
-kann. Bei aktivierter Kompression, hier ist im RFC1950-RFC1952 der *deflate*
+kann. Bei aktivierter Kompression, hier ist im RFC1951-RFC1952 der *deflate*
 und *gzip* Algorithmus vorgesehen, wird der Inhalt vor dem Versenden komprimiert
 und auf Empfängerseite transparent dekomprimiert. Textdateien lassen sich in
 der Regel gut komprimieren. Durch die Kompression müssen weniger Daten
-übertragen, werden was sich bei großen Datenmengen und einer geringen Bandbreite
+übertragen werden, was sich bei großen Datenmengen und einer geringen Bandbreite
 auf die Performance auswirken kann.
 
 Folgende Python--Sitzung zeigt die Standard HTTP--Bibliothek *urllib* der Python
@@ -94,8 +98,8 @@ Benchmark wurde mit einer *VDSL* 50Mbit--Leitung durchgeführt.
     :width: 100%
     :align: center
 
-    Performancevorteil beim Parellisieren von Downloads. Durchschnitt aus drei
-    Durchläuften, jeweils auf Zugriff auf 15 verschiedene Webseiten.
+    Performancevorteil beim Parallelisieren von Downloads. Durchschnitt aus drei
+    Durchläufen, jeweils mit Zugriff auf 15 verschiedene Webseiten.
 
 
 #########################
@@ -121,23 +125,23 @@ funktioniert:
      <filmstartsmovie <movie> : Matrix (1999)>]
 
 Beim Erstellen der Sitzung können *libhugin* Konfigurationsparameter übergeben
-werden. Beispielsweise:
+werden, wie beispielsweise:
 
     * Cache Pfad, Pfad zum lokalen HTTP--Anfragen Zwischenspeicher.
     * Anzahl paralleler Downloads per Thread
 
-Anschließend muss eine Suchanfrage erstellt werden. Dazu gibt es die Möglichkeit
-die Methode ``create_query()`` zur Hilfe zu nehmen. Hier hat der Benutzer eine
-Vielzahl von Möglichkeiten seine Suchanfrage zu konfigurieren.
+Anschließend muss eine Suchanfrage erstellt werden. Dazu gibt es die
+Möglichkeit, die Methode ``create_query()`` zur Hilfe zu nehmen. Hier hat der
+Benutzer eine Vielzahl von Möglichkeiten, seine Suchanfrage zu konfigurieren.
 
-Der letzte Schritt ist das Losschicken der Suchanfrage. Hier gibt es die
+Der letzte Schritt ist das Absenden der Suchanfrage. Hier gibt es die
 Möglichkeit einer *synchronen* (``submit()``--Methode) oder einer *asynchronen*
 Anfrage (``submit_async()``--Methode). Der Hauptunterschied ist, dass die
 *asynchrone* Anfrage im Gegensatz zu der *synchronen* nicht blockiert. Der
-Aufrufer der Methode kann also in der Zwischenzeit andere Sachen erledigen.
+Aufrufer der Methode kann also in der Zwischenzeit andere Aufgaben erledigen.
 
 Siehe :cite:`cpiechula` und *libhugin* API :cite:`rtfd` für eine vollständige
-Liste der Konfigurationsparameter der Session und Query.
+Liste der Konfigurationsparameter der Session und der Query.
 
 .. _standardsuche:
 
@@ -148,11 +152,11 @@ Bei der Suchanfrage über den Filmtitel wird von den Onlinequellen in der Regel
 eine Liste mit mehreren Möglichkeiten geliefert. Das Provider--Plugin muss
 anschließend die Filmtitel mit der größten Übereinstimmung herausfinden. Für die
 Ähnlichkeit bei der Suche nach übereinstimmenden Zeichenketten, wurde ein
-Ähnlichkeitsmaß definiert, welches von 0.0 (keine Ähnlichkeit) bis 1.0
-(volle Übereinstimmung) geht.
+Ähnlichkeitsmaß definiert, welches eine Spanne von 0.0 (keine Ähnlichkeit) bis
+1.0 (volle Übereinstimmung) aufweist.
 
 Der Vergleich der Zeichenketten sollte möglichst fehlertolerant sein und
-Zeichenketten mit der höhsten Übereinstimmung liefern.
+Zeichenketten mit der höchsten Übereinstimmung liefern.
 
 Ein simpler Vergleich wie beispielsweise
 
@@ -164,9 +168,10 @@ Ein simpler Vergleich wie beispielsweise
     False
 
 
-funktioniert nur bei exakt den gleichen Zeichenketten. Für den Vergleich von
+funktioniert nur bei exakt den gleichen Zeichenketten. Des Weiteren ist so auch
+die Umsetzung einer Werte--Spanne nicht möglich. Für den Vergleich von
 Zeichenketten bietet die Python Standard--Bibliothek das *difflib*--Modul. Das
-Modul erlaubt es zwei Sequenzen zu vergleichen. Es arbeitet mit dem
+Modul erlaubt es, zwei Sequenzen zu vergleichen. Es arbeitet mit dem
 Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von :math:`O(n^{3})`
 im *worst case* und eine erwartete Komplexität von :math:`O(n^{2})`. Der
 Algorithmus basiert auf der Idee, die Anzahl der Sequenzen mit
@@ -174,19 +179,19 @@ Algorithmus basiert auf der Idee, die Anzahl der Sequenzen mit
 die Summe der Länge der beiden Zeichenketten zu teilen (vgl :cite:`ratcliffpattern`).
 
 Ein weiteres Maß für die Ähnlichkeit von Zeichenketten ist die Hamming--Distanz.
-Diese Distanz arbeitet nach der Idee die ,,Ersetzungen" zu zählen. Der
+Diese Distanz arbeitet nach der Idee, die ,,Ersetzungen" zu zählen. Der
 Algorithmus hat jedoch die Einschränkung, dass er sich nur auf gleich lange
 Zeichenketten anwenden lässt (vgl. :cite:`navarro2001guided`,
 :cite:`ranka2009ic3`).
 
-Ein weiterer Algorithmus der für Zeichenkettenvergleiche eingesetzt wird ist der
-Levenshtein--Algorithmus (auch Levenshtein--Distanz genannt). Der Algorithmus
-hat eine Laufzeitkomplexität von :math:`O(nm)`. Die Levenshtein--Distanz basiert
-auf der Idee, der minimalen Editiervorgänge (Einfügen, Löschen, Ersetzen) um von
-einer Zeichenkette auf eine andere zu kommen (vgl :cite:`atallah2010algorithms`,
-:cite:`navarro2001guided`, :cite:`ranka2009ic3`) zu zählen. Die normalisierte
-Levenshtein--Distanz bewegt sich zwischen 0.0 (Übereinstimmung) und 1.0 (keine
-Ähnlichkeit).
+Ein weiterer Algorithmus, der für Zeichenkettenvergleiche eingesetzt wird, ist
+der Levenshtein--Algorithmus (auch Levenshtein--Distanz genannt). Der
+Algorithmus hat eine Laufzeitkomplexität von :math:`O(nm)`. Die
+Levenshtein--Distanz basiert auf der Idee, die minimalen Editiervorgänge
+(Einfügen, Löschen, Ersetzen), um von einer Zeichenkette auf eine andere zu
+kommen (vgl :cite:`atallah2010algorithms`, :cite:`navarro2001guided`,
+:cite:`ranka2009ic3`), zu zählen. Die normalisierte Levenshtein--Distanz bewegt sich
+zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
 
 Eine Erweiterung der Levenshtein--Distanz ist die Damerau--Levenshtein--Distanz.
 Diese wurde um die Funktionalität erweitert, vertauschte Zeichen zu erkennen.
@@ -207,7 +212,7 @@ folgende *IPython*--Sitzung zeigt:
 Von der Levenshtein- und Damerau--Levenshtein--Distanz gibt es jeweils eine
 normalisierte Variante. Hierbei bewegt sich die Distanz zwischen 0.0 und 1.0.
 Dies wird dadurch erreicht, indem die Anzahl der Operationen durch die Länge der
-Längeren der beiden Zeichenketten geteilt wird.
+längeren der beiden Zeichenketten geteilt wird.
 
 Da es bei der Filmsuche zu vielen Zeichenkettenvergleichen kommt sollte der
 Algorithmus zum Vergleich von Zeichenketten performant sein.
@@ -216,7 +221,7 @@ Um die jeweiligen Algorithmen, beziehungsweise die Implementierungen dieser,
 bezüglich der Performance zu überprüfen, wurde eine Messung mit den folgenden
 unter Python verfügbaren Implementierungen durchgeführt:
 
-    * difflib, Modul aus der Python--Standard--Bibliothek  (Ratcliff-Obershelp)
+    * difflib, Modul aus der Python--Standardbibliothek  (Ratcliff-Obershelp)
     * pyxDamerauLevenshtein, auf C basierte Implementierung von Damerau--Levenshtein
     * distance, externes Modul mit Levenshtein--Implementierung in C
 
@@ -227,17 +232,18 @@ unter Python verfügbaren Implementierungen durchgeführt:
     :width: 100%
     :align: center
 
-    Vergleich der Algorithmen für den Zeichenkettenvergleich. Pro Vergleich 50
-    Durchläufe. Die Länge der jeweils verglichenen Zeichenketten, ist die
-    Basis--Zeichenkette, mit dem Faktor multipliziert.
+    Performancevergleich der Algorithmen für den Zeichenkettenvergleich in
+    Abhängigkeit von der Zeichenkettenlänge. Pro Vergleich 50 Durchläufe. Die
+    Länge der jeweils verglichenen Zeichenketten, ist die Basis--Zeichenkette,
+    mit dem Faktor multipliziert.
 
 Abbildung :num:`fig-stringcompare` zeigt, dass die Laufzeit--Komplexität bei
-allen drei Algorithmen ähnlich ist. Des Weiteren zeigt die Abbildung, dass die beiden
-Implementierungen *distance* (C) und *pyxDamerauLevenshtein* (C) sehr
+allen drei Algorithmen ähnlich ist. Des Weiteren zeigt die Abbildung, dass die
+beiden Implementierungen *distance* (C) und *pyxDamerauLevenshtein* (C) sehr
 performant im Vergleich zur *difflib* (Python) Implementierung arbeiten.
-Aufgrund der Tatsache, dass der Damerau--Levenshtein vertauschte Zeichen
-,,erkennen" kann und gleichzeitig performant implementiert ist, wurde er für den
-Einsatz in der Bibliothek gewählt.
+Aufgrund der Tatsache, dass der Damerau--Levenshtein--Algorithmus vertauschte
+Zeichen ,,erkennen" kann und gleichzeitig performant implementiert ist, wurde er
+für den Einsatz in der Bibliothek gewählt.
 
 Der Benchmark wurde mit dem Skript aus :ref:`string_comparsion_algorithms`
 durchgeführt.
@@ -246,10 +252,10 @@ Je nach verwendeten Algorithmus variiert das Ergebnis leicht. Das liegt daran,
 dass die Algorithmen eine unterschiedliche Idee verfolgen.
 
 Folgende interaktive *IPython*--Sitzung zeigt das Ergebnisverhalten von *difflib*
-und *pyxDamerauLevenshtein*, da das Ähnlichkeitsmaß beim der zu letzt genannten
+und *pyxDamerauLevenshtein*. Da das Ähnlichkeitsmaß bei der zu letzt genannten
 Implementierung eine ,,Distanz" ist, wird das Ergebnis zu einem Ähnlichkeitsmaß
-modifiziert (durch das Abziehen von eins) um das Verhalten besser
-vergleichen zu können:
+modifiziert (durch das Abziehen von eins), um das Verhalten besser
+vergleichen zu können.
 
 .. code-block:: python
 
@@ -260,41 +266,42 @@ vergleichen zu können:
 
 Weitere Werte, um die unterschiedliche Wertung der beiden Algorithmen zu
 demonstrieren, finden sich in der Tabelle :num:`fig-comparsion-diff-1` und
-:num:`fig-comparsion-diff-2`. Die Werte wurden mit dem Script in :ref:`comparsion-rating`.
+:num:`fig-comparsion-diff-2`. Die Werte wurden mit dem Script in
+:ref:`comparsion-rating` ermittelt.
 
 .. figtable::
     :label: fig-comparsion-diff-1
-    :caption: Ähnlichkeitswerte Damerau-Levenshtein.
+    :caption: Ähnlichkeitswerte ermittelt mit Damerau-Levenshtein.
     :alt: Ähnlichkeitswerte Damerau-Levenshtein.
 
-    +---------------+--------------+------------+--------------+---------------+
-    |               | **Superman** | **Batman** | **Iron-Man** | **Spiderman** |
-    +===============+==============+============+==============+===============+
-    | **Superman**  | 1.0          | 0.38       | 0.25         | 0.67          |
-    +---------------+--------------+------------+--------------+---------------+
-    | **Batman**    |              | 1.0        | 0.25         | 0.33          |
-    +---------------+--------------+------------+--------------+---------------+
-    | **Iron-Man**  |              |            | 1.0          | 0.22          |
-    +---------------+--------------+------------+--------------+---------------+
-    | **Spiderman** |              |            |              | 1.0           |
-    +---------------+--------------+------------+--------------+---------------+
+    +---------------+----------------+----------------+-----------------+---------------+
+    |               | **Superman**   | **Batman**     | **Iron-Man**    | **Spiderman** |
+    +===============+================+================+=================+===============+
+    | **Superman**  | 1.0            | 0.38           | 0.25            | 0.67          |
+    +---------------+----------------+----------------+-----------------+---------------+
+    | **Batman**    | :math:`\times` | 1.0            | 0.25            | 0.33          |
+    +---------------+----------------+----------------+-----------------+---------------+
+    | **Iron-Man**  | :math:`\times` | :math:`\times` | 1.0             | 0.22          |
+    +---------------+----------------+----------------+-----------------+---------------+
+    | **Spiderman** | :math:`\times` | :math:`\times` |  :math:`\times` | 1.0           |
+    +---------------+----------------+----------------+-----------------+---------------+
 
 .. figtable::
     :label: fig-comparsion-diff-2
-    :caption: Ähnlichkeitswerte Ratcliff-Obershelp.
-    :alt: Ähnlichkeitswerte Ratcliff-Obershelp.
+    :caption: Ähnlichkeitswerte ermittelt mit Ratcliff-Obershelp.
+    :alt: Ähnlichkeitswerte ermittelt mit Ratcliff-Obershelp.
 
-    +---------------+--------------+------------+--------------+---------------+
-    |               | **Superman** | **Batman** | **Iron-Man** | **Spiderman** |
-    +===============+==============+============+==============+===============+
-    | **Superman**  | 1.0          |            |              |               |
-    +---------------+--------------+------------+--------------+---------------+
-    | **Batman**    | 0.43         | 1.0        |              |               |
-    +---------------+--------------+------------+--------------+---------------+
-    | **Iron-Man**  | 0.38         | 0.29       | 1.0          |               |
-    +---------------+--------------+------------+--------------+---------------+
-    | **Spiderman** | 0.82         | 0.4        | 0.35         | 1.0           |
-    +---------------+--------------+------------+--------------+---------------+
+    +---------------+----------------+----------------+----------------+---------------+
+    |               | **Superman**   | **Batman**     | **Iron-Man**   | **Spiderman** |
+    +===============+================+================+================+===============+
+    | **Superman**  | 1.0            |  0.43          | 0.38           | 0.82          |
+    +---------------+----------------+----------------+----------------+---------------+
+    | **Batman**    | :math:`\times` | 1.0            | 0.29           |  0.4          |
+    +---------------+----------------+----------------+----------------+---------------+
+    | **Iron-Man**  | :math:`\times` | :math:`\times` | 1.0            | 0.35          |
+    +---------------+----------------+----------------+----------------+---------------+
+    | **Spiderman** | :math:`\times` | :math:`\times` | :math:`\times` | 1.0           |
+    +---------------+----------------+----------------+----------------+---------------+
 
 
 Da der Vergleich von der Groß-- und Kleinschreibung abhängig ist, fällt die
@@ -326,7 +333,7 @@ East" oder ,,Horror in the East" besetzt.
 
 Dies lag daran, dass der Film auf dieser Online--Plattform in der Schreibweise
 *,,East, The"* gepflegt ist. Dies ist eine valide und nicht unübliche
-Schreibweise um Filme alphabetisch schneller zu finden.
+Schreibweise, um Filme alphabetisch schneller zu finden.
 
 Betrachtet man die Ähnlichkeit der beiden Zeichenketten, so stellt man fest,
 dass bei dieser Schreibweise, je nach Algorithmus, eine geringe bis gar keine
@@ -360,8 +367,8 @@ Anhand des Beispieltitel *,,East, The"* wird folgend das Vorgehen erläutert:
     4. Liste alphabetisch sortieren und in Zeichenkette zurückwandeln → ``'east the'``
     5. Vergleich mittels Damerau--Levenshtein Algorithmus
 
-Wendet man diesen Ansatz auf ,,The East" und ,,East, The" an so erhält man in
-beiden Fällen die Zeichenkette "east the". Die Umsetzung des Algorithmus bei der
+Wendet man diesen Ansatz auf ,,The East" und ,,East, The" an, so erhält man in
+beiden Fällen die Zeichenkette "east the". Die Umsetzung dieses Algorithmus bei der
 Titelsuche löst das Problem beim OFDb--Provider. Der eben genannte Film wird
 durch die Normalisierung gefunden und erscheint an der ersten Position.
 
@@ -369,8 +376,8 @@ Diese Vorgehensweise normalisiert ebenso die Personensuche. Hier wird
 beispielsweise der Name *,,Emma Stone"* und *,,Stone, Emma"* in beiden Fällen zu
 der Zeichenkette ``'emma stone'``.
 
-Die Anpassungen des Algorithmus für den Zeichenkettenvergleich wirken sich fast
-kaum auf die Performance aus.  Abbildung :num:`fig-finalstringcompare` zeigt
+Die Anpassungen des Algorithmus für den Zeichenkettenvergleich wirken sich nur
+wenig auf die Performance aus.  Abbildung :num:`fig-finalstringcompare` zeigt
 den Performanceunterschied zum ursprünglichen Algorithmus.
 
 .. _fig-finalstringcompare:
@@ -385,20 +392,20 @@ den Performanceunterschied zum ursprünglichen Algorithmus.
     den ursprünglichen Algorithmen.
 
 Ein weiteres Attribut, das bei der Suche von Filmen angegeben werden kann, ist
-das Erscheinungsjahr. Dieses wird verwendet um Suchergebnisse genauer
+das Erscheinungsjahr. Dieses wird verwendet, um Suchergebnisse genauer
 einzugrenzen.
 
 Wird der Titel und ein Erscheinungsjahr bei der Suche angegeben, so
 kann der ,,richtigere" Film näherungsweise durch das Erscheinungsjahr ermittelt
-werden.  Beim simplen Verglich des Jahres mittels Damerau--Levenshtein
-Algorithmus ergibt sich hier jedoch ein neues ,,Problem".
+werden.  Beim simplen Vergleich des Jahres mittels Damerau--Levenshtein
+Algorithmus ergibt sich hier jedoch ein neues Problem.
 
-Bei zusätzlicher Anwendung des Damerau--Levenshtein Algorithmus auf dem
+Bei zusätzlicher Anwendung des Damerau--Levenshtein--Algorithmus auf das
 Erscheinungsjahr, kann es zu dem Fall kommen, dass das logisch gesehen
 ,,nähere" Erscheinungsjahr als ,,schlechter" gewertet wird. Das liegt daran,
 dass es Fälle gibt, bei denen der logische Jahresunterschied zum Suchstring
-geringer sein kann als der Zeichenkettenunterschied. In diesem Fall würde ein
-Film der den gleichen Titel hat, aber zeitlich gesehen viel weiter vom gesuchten
+geringer sein kann, als der Zeichenkettenunterschied. In diesem Fall würde ein
+Film, der den gleichen Titel hat, aber zeitlich gesehen viel weiter vom gesuchten
 Film entfernt ist, als ,,besser" bewertet werden.
 
 Folgende *IPython*--Sitzung zeigt die Problematik:
@@ -410,7 +417,7 @@ Folgende *IPython*--Sitzung zeigt die Problematik:
    >>> 1 - normalized_damerau_levenshtein_distance("Drive 2000", "Drive 1997")
    0.6
 
-Bei separater Betrachtung der Zeichenkette für das Jahr, würde die Differenz noch
+Bei separater Betrachtung der Zeichenkette für das Jahr würde die Differenz noch
 größer ausfallen, da die beiden Zeichenketten ,,1997" und ,,2000" keine
 Ähnlichkeit aufweisen, die Zeichenketten ,,2000" und ,,2011" eine Ähnlichkeit
 von 0.5 aufweisen.
@@ -421,16 +428,16 @@ exakte Jahr nicht mehr wusste, jedoch den Zeitraum mit einer Abweichung von drei
 Jahren angeben konnte.
 
 Die genannte Problematik äußert sich beispielsweise auch bei Film--Remakes oder
-Filmen, die beispielsweise mit einer Ungenauigkeit von :math:`\pm 1` Jahr auf
-einer Plattform eingepflegt wurden. Nach Beobachtung des Autors, gibt es hier
-zwischen den Onlinequellen manchmal Differenzen beim Erscheinungsjahr für den
-gleichen Film.
+Filmen, die mit einer Ungenauigkeit von :math:`\pm 1` Jahr auf
+einer Plattform eingepflegt wurden. Nach Beobachtung des Autors gibt es hier
+zwischen den Onlinequellen für den gleichen Film vereinzelt Differenzen beim
+Erscheinungsjahr.
 
 Ob dieser Umstand weiterhin präsent ist, beziehungsweise wie oft dieser Fall
 vorkommt, zeigt die Auswertung der Stichprobe der Metadaten mehrerer
-Onlinequellen (siehe Analyse Differenz Erscheinungsjahr :ref:`yeardiff`).
+Onlinequellen (siehe Analyse der Erscheinungsjahrdifferenz :ref:`yeardiff`).
 
-Um das Problem ,,abzumildern" wird beim Selektieren der Ergebnisse das Jahr
+Um das Problem abzumildern wird beim Selektieren der Ergebnisse das Jahr
 einzeln betrachtet. Hier wird mittels folgender Funktion die Ähnlichkeit
 berechnet:
 
@@ -438,8 +445,8 @@ berechnet:
 
     year\_similarity(year_a, year_b, max_{years}) = 1 - min \left\{ 1, \frac{\vert year_{a} - year_{b}  \vert}{max_{years}} \right\}
 
-:math:`max_{years}` ist hierbei die maximale Anzahl von Jahren die betrachtet werden
-sollen.
+:math:`max_{years}` ist hierbei die maximale Anzahl von Jahren, die betrachtet
+werden sollen.
 
 Anschließend wird das Jahr noch zusätzlich gewichtet, da der Titel wichtiger
 als das Erscheinungsjahr ist. Durch die Gewichtung soll dies sichergestellt werden.
@@ -498,7 +505,7 @@ ab. Onlinequellen wie TMDb, OFDb oder auch OMDb unterstützen direkt die Suche
 Videobuster--Portal unterstützen keine Suche über IMDb--ID.
 
 Um trotzdem eine onlinequellenübergreifende Suche über die IMDb--ID zu
-ermöglichen bietet die *libhugin--harvest*--Bibliothek den sogenannten
+ermöglichen, bietet die *libhugin--harvest*--Bibliothek den sogenannten
 ,,Lookup--Mode".
 
 Hierbei wird intern vor der Metadatensuche ein sogenannter *Lookup*
@@ -511,12 +518,12 @@ god forgives (2013)"* mit der IMDb--ID ``tt1602613`` ist wie folgt aufgebaut:
 
 Wenn der *Lookup--Mode* aktiviert wird, wird vor der Kommunikation mit den
 Provider--Plugins ein *Lookup* über ``http://imdb.com`` getriggert. Hierbei
-wird die URL aus der zu suchenden ID zusammengesetzt und ein IMDb Anfrage
+wird die URL aus der zu suchenden ID zusammengesetzt und eine IMDb Anfrage
 gestartet. Anschließend wird auf dem zurückgelieferten HTTP--Response ein
 Regulärer Ausdruck ausgeführt, welcher die Zeichenkette bestehend aus
 ``<Titelname> <(4-stellige Jahreszahl)>``, extrahiert.
 
-Der algorithmische Ansatz schaut unter Python wie folgt aus:
+Der algorithmische Ansatz sieht unter Python wie folgt aus:
 
 .. code-block:: python
 
@@ -530,7 +537,7 @@ Nach dem Extrahieren der Attribute Titel und Erscheinungsjahr, wird die Query
 mit den Suchparametern, welche an alle Provider--Plugins für die Suche
 weitergegeben wird, mit diesen ergänzt. Die Provider--Plugins, die keine IMDb--ID
 unterstützen, können so eine Suche über den Titel und das Erscheinungsjahr
-durchführen. Für den Benutzer schaut dies nach außen so aus, als würde jeder
+durchführen. Für den Benutzer sieht dies nach außen so aus, als würde jeder
 Provider eine IMDb--ID Suche unterstützen.
 
 Unschärfesuche
@@ -550,11 +557,11 @@ wird der Film von den genannten Online--Plattformen nicht gefunden.
     >>> print(r)
     []
 
-Diesen Fehler auf Seite von *libhugin* zu beheben ist schwierig, man müsste eine
+Diesen Fehler auf Seite von *libhugin* zu beheben ist schwierig. Man müsste eine
 große Datenbank an Filmtiteln pflegen und aktuell halten und könnte so mit
 Hilfe dieser den Fehler vom Benutzer korrigieren, indem man die ähnlichste aller
 Zeichenketten aus der Datenbank nehmen würde. Mit der angepassten
-Damerau--Levenshtein Ähnlichkeit, die *libhugin* zum Zeichenkettenvergleich
+Damerau--Levenshtein--Ähnlichkeit, die *libhugin* zum Zeichenkettenvergleich
 anbietet, hätte die falsche Anfrage eine Ähnlichkeit von 0.94.
 
 Eine lokale beziehungsweise zentrale Datenbank aufzubauen wäre möglich, da die
@@ -583,7 +590,7 @@ zur Hauskatze [#f1]_ angezeigt.
 
 *Libhugin* bedient sich dieser Funktionalität und führt einen *Lookup* mit den
 Parametern *Filmtitel*, *Erscheinungsjahr*, *imdb* und *movie* aus. Anschließend
-wird die zurückgegebene URL betrachtet, und aus dieser die IMDb--ID extrahiert.
+wird die zurückgegebene URL betrachtet und aus dieser die IMDb--ID extrahiert.
 
 Folgende *IPython*--Sitzung zeigt den Ansatz:
 
@@ -596,7 +603,7 @@ Folgende *IPython*--Sitzung zeigt den Ansatz:
     >>> imdbid.pop().strip('/')
     'tt0780504'
 
-Hier wurde der Ansatz gewählt die IMDb--ID aus der URL mit einem Regulären
+Hier wurde der Ansatz gewählt, die IMDb--ID aus der URL mit einem Regulären
 Ausdruck zu parsen. Dies erspart das Parsen der kompletten HTTP--Response, was
 deutlich aufwendiger wäre.
 
@@ -620,7 +627,7 @@ Durch den in Kapitel :ref:`motivation` (siehe Abbildung
 :num:`fig-genre-redundanzen`, Abbildung :num:`fig-genre-detail`) genannten
 Umstand werden die Genreinformation redundant in der Datenbank der
 Abspielsoftware, wie beispielsweise dem XBMC--Media--Center, abgelegt. Es ist
-nicht mehr möglich ein Filmgenre eindeutig zu identifizieren. Es ist somit
+nicht mehr möglich, ein Filmgenre eindeutig zu identifizieren. Es ist somit
 weder eine Gruppierung nach diesem Genre noch eine eindeutige Filterung
 möglich.
 
@@ -629,7 +636,7 @@ lassen sich andere Attribute wie die Inhaltsbeschreibung problemlos austauschen,
 da diese von Natur aus individuell ist und sich somit nicht normalisieren lässt.
 
 Da das Filmgenre, neben der Inhaltsbeschreibung und Filmbewertung, nach Meinung
-des Autors, zu den wichtigsten Auswahlkriterien bei Filmen zählt, wurde hier bei
+des Autors, zu den wichtigsten Auswahlkriterien bei Filmen zählt, wurde bei
 *libhugin* ein statisches Konzept der Normalisierung umgesetzt.
 
 Die Normalisierung bei *libhugin* bildet hierzu jedes Genre einer Onlinequelle
@@ -659,8 +666,8 @@ englische Sprache.
 
 Ein weiterer Ansatz bei der Genrenormalisierung war die automatische Erkennung
 des Genres anhand der Wortähnlichkeit. Dies erwies sich jedoch als nicht
-praxistauglich. Eine automatische Genreerkennung benötigt eine Wortschatz aus
-Referenz--Genres, mit welchen das ,,unbekannte" Provider--Genre verglichen werden
+praxistauglich. Eine automatische Genreerkennung benötigt einen Wortschatz aus
+Referenz--Genres, mit welchen das unbekannte Provider--Genre verglichen werden
 muss. Bei Genres wie Science--Fiction, Drama oder Thriller funktioniert das
 System noch relativ gut. Kommen aber seltene oder unbekannte Genrenamen wie
 ,,Mondo" oder ,,Suspense" hinzu, kann je nach Referenz--Wortschatz keine
@@ -671,12 +678,12 @@ vom Benutzer korrigiert werden können. Dies ist jedoch bei einer
 Software--Bibliothek wie sie durch *libhugin* bereitgestellt wird, weniger
 praktikabel.
 
-Ein weiteres Problem das hier jedoch hinzukommt ist, dass das ,,Genre" an sich
+Ein weiteres Problem das hier jedoch hinzukommt ist, dass das Genre an sich
 in keiner Form standardisiert ist. Je nach Onlinequelle gibt es
 Genrebezeichnungen wie Animationsfilm oder Kinderfilm, welche jedoch im engeren
 Sinne nicht zum ,,Filmgenre"--Begriff gezählt werden dürften (siehe
-:cite:`wikigenre`). Des Weiteren kommt hinzu, dass über die Jahre immer wieder
-neue Genre entstanden sind.
+:cite:`wikigenre`). Des Weiteren kommt hinzu, dass im Laufe der Zeit immer
+wieder neue Genre entstanden sind.
 
 
 Suchstrategien
@@ -714,7 +721,7 @@ Priorität, zurückgeliefert bis die gewünschte Anzahl an Ergebnissen
 zurückgegeben wurde (siehe Abbildung :num:`fig-searchstrategy`).
 
 Das folgende Beispiel zeigt das tatsächliche Ergebnis der im *libhugin*--Prototyp
-implementierten ,,deep" Strategie:
+implementierten ,,deep"--Strategie:
 
 .. code-block:: python
 
@@ -737,7 +744,7 @@ beim Provider mit der höchsten Priorität, zurückgeliefert bis die gewünschte
 Anzahl erreicht ist.
 
 Das folgende Beispiel zeigt das tatsächliche Ergebnis der im *libhugin*--Prototyp
-implementierten ,,flat" Strategie:
+implementierten ,,flat"--Strategie:
 
 .. code-block:: python
 
@@ -769,14 +776,14 @@ Plugin, beziehungsweise welche Plugins der Benutzer nutzen möchte,
 bleibt ihm überlassen.
 
 Durch die einfach gestalteten Schnittstellen (vgl :cite:`cpiechula`) ist es
-möglich *libhugin* um ein eigenes Plugin mit gewünschter
+möglich, *libhugin* um ein eigenes Plugin mit gewünschter
 Funktionalität zu erweitern.
 
 **Algorithmik der Postprocessor--Plugins**
 
-Das Postprocessor--Plugin *,,Compose"* ist ein Plugin, welches es erlaubt dem
-Benutzer verschiedene Metadatenquellen zusammenzuführen. Dies ist im
-in der aktuellen Version auf zwei verschiedene Arten möglich.
+Das Postprocessor--Plugin *,,Compose"* ist ein Plugin, welches es dem Benutzer
+erlaubt, verschiedene Metadatenquellen zusammenzuführen. Dies ist in
+der aktuellen Version auf zwei verschiedene Arten möglich.
 
 1.) Das ,,automatische" Zusammenführen der Daten. Hierbei werden die gefundenen
 Suchergebnisse nach IMDb--ID gruppiert. Dies garantiert, dass die Metadaten
@@ -792,8 +799,8 @@ Ergebnisobjekte ergänzt,  soweit diese vorhanden sind. Dabei erfolgt das
 Auffüllen der fehlenden Attribute *iterativ*, anfangend beim Provider mit der
 nächst niedrigeren Priorität. Dieser Ansatz funktioniert aktuell nur mit
 Onlinequellen, die eine IMDb--ID bereitstellen. Eine Erweiterung um Provider, die
-keine IMDb--ID bieten wäre möglich, indem hier zusätzliche alternativ Attribute
-wie beispielsweise der Regiesseur, herangezogen werden um gleiche Filme zu
+keine IMDb--ID bieten wäre möglich, indem hier zusätzliche Attribute
+wie beispielsweise der Regisseur herangezogen werden, um gleiche Filme zu
 gruppieren.
 
 .. _fig-compose:
@@ -806,12 +813,12 @@ gruppieren.
     Automatisches Ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
 
 2.) Eine weitere Möglichkeit neben dem automatischen Zusammenführen von Attributen
-verschiedener Provider ist die Angabe eine benutzerdefinierten Profilmaske.
+verschiedener Provider ist die Angabe einer benutzerdefinierten Profilmaske.
 Diese Profilmaske ist eine Hash--Tabelle mit den jeweiligen Attributen als
 Schlüssel und den gewünschten Providern als Wert. Folgende Python Notation gibt
 an, dass der Standardanbieter TMDb sein soll und die Inhaltsbeschreibung immer
-vom Provider OFDb befüllt werden soll. Wenn dieser keine besitzt, soll das
-Ergebnis des OMDb--Provider genommen werden.
+vom Provider OFDb befüllt werden soll. Wenn dieser keine Inhaltsbeschreibung
+besitzt, soll das Ergebnis des OMDb--Provider genommen werden.
 
 .. code-block:: python
 
@@ -861,20 +868,20 @@ Metadaten wie Titel, Erscheinungsjahr et cetera auch Zusatzinformationen zu
 Filmen an. Ein Attribut, welches beim ,,Stöbern" oder der Auswahl eines Filmes
 hilfreich sein kann, sind Schlüsselwörter.
 
-Alternativ zu Providern die Schlüsselwörter für Filme anbieten, gibt es auch die
-Möglichkeit Schlüsselwörter aus Texten automatisiert zu Extrahieren. Hierzu
+Alternativ zu Providern, die Schlüsselwörter für Filme anbieten, gibt es auch die
+Möglichkeit, Schlüsselwörter aus Texten automatisiert zu extrahieren. Hierzu
 gibt es verschiedene Algorithmen, jedoch werden hier zur Extraktion der
 Schlüsselwörter meistens sprachabhängige Korpora (Wort--Datenbanken) benötigt
 (vgl. :cite:`steinautomatische`).
 
-Ein weiterer Algorithmus der ohne Korpus auskommt und dabei ähnlich gute
+Ein weiterer Algorithmus, der ohne Korpus auskommt und dabei ähnlich gute
 Ergebnisse wie die korporabasierten Algorithmen liefert, ist der
 RAKE--Algorithmus (Rapid Automatic Keyword Extraction), vgl.
 :cite:`rose2010automatic`, :cite:`berry2010text`.
 
 Hier wurde eine bereits existierende Implementierung in Kooperation mit dem
 Kommilitonen, Christopher Pahl, reimplementiert. Herr Pahl verwendet den
-Algorithmus zur Extraktion von Schlüsselwörtern aus Liedtexten, vgl
+Algorithmus zur Extraktion von Schlüsselwörtern aus Liedtexten, vgl.
 :cite:`bacpahl`.  Der Algorithmus wurde um das automatische Laden einer
 *Stoppwortliste* und einen *Stemmer* erweitert.
 
@@ -926,7 +933,7 @@ TMDb:
     mehr in den Wahnsinn. Als es ihm gelingt, den 216-stelligen Code zu knacken,
     macht er eine Entdeckung, für die alle bereit sind, ihn zu töten...*
 
-Tabelle :num:`fig-keywords` zeigt die relevanten (*Score* > 1.0)
+Abbildung :num:`fig-keywords` zeigt die relevanten (*Score* > 1.0)
 Schlüsselwörter, die aus dem oben genannten Text, mittels RAKE--Algorithmus,
 extrahiert wurden.
 
@@ -969,13 +976,13 @@ Plattform folgende Schlüsselwörter gepflegt:
         *hacker, mathematician, helix, headache, chaos theory, migraine, torah, börse,
         mathematics, insanity, genius*
 
-**Filetypeanalyze--Plugin:** Dieses Plugin dient dazu Datei--Metadaten aus
+**FiletypeAnalyze--Plugin:** Dieses Plugin dient dazu, Datei--Metadaten aus
 Filmdateien zu extrahieren. Da dies, aufgrund der Vielzahl von Containern und
 Codecs, ein nicht triviales Problem ist, implementiert der *libhugin--analyze*
 Prototyp diese Funktionalität mit Hilfe des Tools ``hachoir-metadata``. Dieses
 Tool basiert auf der ,,Hachoir"--Bibliothek welche die Extraktion verschiedener
-Metadaten aus Multimedia--Dateien unterstützt. Das *Filetypeanalyze*--Plugin
-führt das ``Hachoir-metadata``--Kommandozeilen Tool aus welches folgenden
+Metadaten aus Multimedia--Dateien unterstützt. Das *FiletypeAnalyze*--Plugin
+führt das ``Hachoir-metadata``--Kommandozeilen Tool aus, welches folgenden
 Output liefert:
 
 .. code-block:: bash
@@ -1001,21 +1008,21 @@ Output liefert:
     - language: German
     - compression: S_TEXT/UTF8
 
-Diese Ausgabe wird vom Plugin angeschaut und die relevanten Informationen wie
-Auflösung, Laufzeit, et cetera extrahiert. Die Extraktion hier ist relativ
+Diese Ausgabe wird vom Plugin betrachtet und die relevanten Informationen wie
+Auflösung, Laufzeit, et cetera extrahiert. Die Extraktion ist relativ
 einfach, da die ``hachoir--metadata``--Ausgabe ein valides *Json*--Dokument ist,
 welches direkt in eine Python Hash--Tabelle umgewandelt werden kann. *Json* ist
 ein schlankes Dateiaustauschformat, ähnlich wie *XML*.
 
-**Langidentify--Plugin:** Dieses Plugin erkennt die Sprache des übergebenen Textes.
+**LangIdentify--Plugin:** Dieses Plugin erkennt die Sprache des übergebenen Textes.
 Es ist für die Analyse der Sprache der Inhaltsbeschreibung gedacht. Mittels dem
 Plugin können große Filmsammlungen effizient analysiert werden und nicht
 vorhandene oder in einer unerwünschten Sprache gepflegte Inhaltsbeschreibungen
-in wenigen Sekunden identifiziert werden. Das Plugin verwendend die
+in wenigen Sekunden identifiziert werden. Das Plugin verwendet die
 Python--Bibliothek ``guess_language-spirit``, welche die Sprache anhand von
 Sprachstatistiken erkennt. Die zusätzliche optionale Bibliothek ``pyEnchant``
 kann von ``guess_language-spirit`` verwendet werden, um Texte mit weniger als 20
-Zeichen zu erkennen. ``Enchant`` ist eine Bibliothek welche auf verschiedene
+Zeichen zu erkennen. ``Enchant`` ist eine Bibliothek, welche auf verschiedene
 Sprachbibliotheken zugreifen kann.
 
 Die folgende *IPython*--Sitzung zeigt die Funktionalität der Bibliothek:
@@ -1030,8 +1037,8 @@ Die folgende *IPython*--Sitzung zeigt die Funktionalität der Bibliothek:
 
 Die Modifier--Plugins modifizieren die Metadaten direkt. Hier wurde ein Plugin
 zum bereinigen von Inhaltsangaben entwickelt, welches mittels Regulärer
-Ausdrücke (vgl. :cite:`friedl2009regulare`) unerwünschte in Klammern stehende
-Inhalte entfernt.
+Ausdrücke (vgl. :cite:`friedl2009regulare`) unerwünschte, in Klammern stehende
+Inhalte, entfernt.
 
 Die folgende *IPython*--Sitzung zeigt den Algorithmus im Einsatz:
 
@@ -1044,7 +1051,7 @@ Die folgende *IPython*--Sitzung zeigt den Algorithmus im Einsatz:
 
 
 Je nach Metadatenquelle finden sich hinter den jeweiligen Rollennamen, die Namen
-der Schauspieler in Klammen.  Der Einsatz dieses Plugins soll eine
+der Schauspieler in Klammern.  Der Einsatz dieses Plugins soll eine
 einheitlichere Basis für weitere Untersuchungen der Inhaltsbeschreibung zwischen
 allen Metadatenquellen ermöglichen.
 
@@ -1058,12 +1065,12 @@ untereinander zu gewinnen, um beispielsweise Empfehlungen für ähnliche Filme
 aussprechen zu können.
 
 Aktuell gibt es ein ``KeywordCompare``--Plugin welches die Schlüsselwörter
-verschiedener Filme vergleicht um eine Ähnlichkeit zu ermitteln.
-Der Ansatz über Schlüsselwörter ähnliche Filme zu finden, hat bisher keine
+verschiedener Filme vergleicht, um eine Ähnlichkeit zu ermitteln.
+Der Ansatz, über Schlüsselwörter ähnliche Filme zu finden, hat bisher keine
 nennenswerten Erkenntnisse liefern können.
 
 Das Comparator--Plugin ``GenreCompare`` versucht anhand vom Genre, Ähnlichkeiten
-zwischen Filmen zu ermitteln. Die bisherigen Ergebnisse hier sind je nach
+zwischen Filmen zu ermitteln. Die bisherigen Ergebnisse sind je nach
 verwendeter Metadatenquelle unterschiedlich gut. Je feingranularer das Genre bei
 einem Anbieter gepflegt ist, umso *,,ähnlicher"* ist die Grund--Thematik. Ein
 Film, der als Genre nur ,,Drama" gepflegt hat, kann zusätzlich in die Richtung
