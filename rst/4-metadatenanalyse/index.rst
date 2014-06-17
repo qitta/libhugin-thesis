@@ -3,7 +3,7 @@ Analyse von Libhugin
 #####################
 
 Der *libhugin-harvest* Prototyp, der für die Beschaffung der Metadaten verwendet
-wird, hat aktuell die fünf Movie--Provider implementiert, siehe Tabelle
+wird, hat aktuell die fünf Movie--Provider implementiert, siehe Abbildung
 :num:`fig-provider`.
 
 .. figtable::
@@ -35,7 +35,7 @@ Fehlermeldung ``,,Fehler oder Timeout bei OFDB Anfrage"`` liefert.
 
 Eine genauere Analyse des Timeout--Verhaltens der Provider zeigt, dass die API
 vom OFDb--Provider sehr instabil ist, hierzu wurden Metadaten für 100 Filme je
-Provider gezogen. Tabelle :num:`fig-timeout` zeigt wie oft es zu Fehlern pro
+Provider gezogen. Abbildung :num:`fig-timeout` zeigt wie oft es zu Fehlern pro
 Provider gekommen ist. Der Test wurde, um gegebenenfalls Server oder
 Leitungsprobleme  auszuschließen, an fünf verschiedenen Tagen durchgeführt. Für
 den Test wurde das Script aus :ref:`timeout` verwendet.
@@ -70,20 +70,17 @@ einziger Mirror die erwarteten Ergebnisse lieferte. Dieser wurde somit im
 Prototypen direkt als einziger Server aktiviert. Weitere Analysen der Metadaten
 sollen Aufschluß darüber geben ob das Problem weiterhin auftritt.
 
-.. raw:: Latex
-
-   \newpage
 
 Antwortzeiten der Onlinequellen
 ===============================
 
 Abbildung :num:`fig-sourceresponse` zeigt die Antwortzeiten der jeweiligen
-Plattformen/Metadatenanbieter.
+Plattformen/Metadatenanbieter die *libhugin* als Provider implementiert hat.
+Hierbei wurde jeweils die ,,Suchseite" des jeweiligen Anbieters angefordert.
 
-Hier wurde mit dem Script im :ref:`source_response` die Zeit beim Zugriff
-auf die implementierten Online--Plattformen gemessen. Für die Messung wurden die
-in  :ref:`source_response` verwendeten Parameter angewandt. Die Anzahl der
-Durchläufe war 5.
+Die Zeit wurde mit dem Script im :ref:`source_response` gemessen.  Für die
+Messung wurden die in  :ref:`source_response` verwendeten Parameter angewandt.
+Es wurde jeweils der Durchschnitt von 10 einzeln angeforderten Filmen genommen.
 
 .. _fig-sourceresponse:
 
@@ -100,7 +97,7 @@ Durchläufe war 5.
 Der Zugriff in Abbildung :num:`fig-sourceresponse` zeigt hier den
 direkten Zugriff über die HTTP--Bibliothek. Bei *libhugin--harvest* besteht die
 Standardsuche, über Titel, nach Metadaten in der Regel aus mehreren Zugriffen
-(siehe Tabelle :num:`num-downloads`). Zusätzlich kommt hier noch der Aufwand für
+(siehe Abbildung :num:`num-downloads`). Zusätzlich kommt hier noch der Aufwand für
 das Extrahieren der Metadaten aus den jeweiligen HTTP--Response Objekten hinzu.
 
 
@@ -133,9 +130,8 @@ Zugriff auf Seiten mit Metadaten zum Film *,,The Matrix"*:
     1. ``http://www.filmstarts.de/kritiken/35616-Matrix.html``
     2. ``http://www.filmstarts.de/kritiken/35616-Matrix/castcrew.html``
 
-.. raw:: Latex
 
-   \newpage
+.. _antwortzeiten:
 
 Antwortzeiten der Libhugin--Provider
 ====================================
@@ -153,12 +149,12 @@ Auffällig ist hier die fast doppelt so lange Zeit bei den Providern ohne API.
 
 .. figure:: fig/libhugin_download_time.pdf
     :alt: Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
-          libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen.
+          libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen und 10 Durchläufen.
     :width: 100%
     :align: center
 
     Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
-    libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen.
+    libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen und 10 Durchläufen.
 
 Eine zweite Auswertung mit den gleichen Daten und aktivierten Festplatten--Cache
 (Metadaten werden von der Festplatte geladen, es findet kein Webzugriff statt)
@@ -185,9 +181,6 @@ Aktivieren eines anderen internen Parsers, hat das Ergebnis verschlechtert.
 Der `lxml`--Parser, welcher auch in Abbildung :num:`fig-hugindownload-cache`,
 verwendet wird, ist hier schneller als die Alternativen (siehe :cite:`bs`).
 
-.. raw:: Latex
-
-   \newpage
 
 Skalierung der Downloadgeschwindigkeit
 ======================================
@@ -204,28 +197,38 @@ Sekunden auf 4 Sekunden gefallen (siehe Abbildung, :num:`fig-hugin-search-api`).
 .. _fig-hugin-search:
 
 .. figure:: fig/libhugin_threaded_search.pdf
-    :alt: Suche nach dem Film ,,Sin" mit der Beschränkung auf 20 Ergebnisse.
+    :alt: Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
+          Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
+          heisst, jeder Provider zieht maximal 10 Filme.
     :width: 90%
     :align: center
 
-    Suche nach dem Film ,,Sin" mit der Beschränkung auf 20 Ergebnisse.
+    Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
+    Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
+    heisst, jeder Provider zieht maximal 10 Filme.
 
 Die non--API Provider bremsen die Performance aufgrund des aufwendigen
 Extrahieren mittels ``Beautiful--Soup``--Bibliothek stark aus. Hier bewegt
-sich die Zeit zwischen 45 -- 60 Sekunden für die Beschaffung von 20 Ergebnissen.
+sich die Zeit zwischen 35 -- 42  Sekunden für die Beschaffung von 20
+Ergebnissen.
 
-Die theoretischen Annahmen über die Skalierung der Downloadgeschwindigkeit aus
-Kapitel :ref:`tech-grundlagen` werden mit der Einschränkung auf die Limitierung
-der non--API Provider bestätigt.
+
+Die theoretischen Annahmen über die Skalierung die Skalierung der
+Downloadgeschwindigkeit aus Kapitel :ref:`tech_grundlagen` werden mit der
+Einschränkung auf die Limitierung der non--API Provider bestätigt.
 
 .. _fig-hugin-search-api:
 
 .. figure:: fig/libhugin_threaded_search_api.pdf
-    :alt: Suche nach dem Film ,,Sin" mit der Beschränkung auf 20 Ergebnisse.
+    :alt: Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
+          Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
+          heisst, jeder Provider zieht maximal 10 Filme.
     :width: 90%
     :align: center
 
-    Suche nach dem Film ,,Sin" mit der Beschränkung auf 20 Ergebnisse.
+    Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
+    Download-Threads. Die Ergebnisanzahl wurde auf 10 beschränkt. Das
+    heisst, jeder Provider zieht maximal 10 Filme.
 
 Die Auswertung der Skalierung der Downloadgeschwindigkeit wurde mit dem Script
 :ref:`hugin_search_benchmark` durchgeführt.
@@ -307,8 +310,8 @@ Titel, mit Erscheinungsjahr bezogen. Die Metadaten wurden ebenso mit dem Script
 findet sich unter :cite:`metadata`.
 
 Die API basierten Provider haben jeweils 2500 Filme gefunden. Bei den
-Provider ohne API wurden ca. 2-3 :math:`\%` nicht  gefunden, siehe dazu Tabelle
-:num:`fig-foundmetadata`.
+Provider ohne API wurden ca. 2-3 :math:`\%` nicht  gefunden, siehe dazu
+Abbildung :num:`fig-foundmetadata`.
 
 .. figtable::
     :label: fig-foundmetadata
@@ -356,6 +359,7 @@ gefunden, falls vorhanden.
 Die Stichprobe der 10 Filme zeigt, dass die nicht gefundenen Filme durchaus auf
 der jeweiligen Plattform gepflegt sein können.
 
+.. _genreinformationen:
 
 Analyse der Genreinformationen
 ==============================
@@ -366,7 +370,7 @@ Onlineplattformen teils divergente Genre--Bezeichnungen haben.  Die folgenden
 Auswertungen sollen den Umstand anhand der gewählten Stichprobe, sowie alle
 bisher für die Entwicklung getroffenen Maßnahmen, bestätigen.
 
-Die Daten in Tabelle :num:`fig-genres` wurden mit dem Script im :ref:`genre-table`
+Die Daten in Abbildung :num:`fig-genres` wurden mit dem Script im :ref:`genre-table`
 erhoben und zeigen die Genreverteilung der fünf Provider für die Metadaten der
 2500 Filme. Bei Filmstarts beziehen sich die Genreinformationen lediglich nur
 auf 2427 Filme, bei Videobuster nur auf 2444 Filme.
@@ -452,13 +456,14 @@ aufgrund eines fehlerhaften Encoding verteilt. Dieser Umstand wurde per Hand
 korrigiert. Des Weiteren wurden vereinzelt Genres abgekürzt um die Tabelle
 darstellen zu können (f./F. :math:`\hat{=}` Film).
 
-Aus Tabelle :num:`fig-genres` ist nur schwer ersichtlich wie sich die
+Aus Abbildung :num:`fig-genres` ist nur schwer ersichtlich wie sich die
 Genreinformationen im Schnitt pro Film verteilen, beziehungsweise wie
-detailiert die Filme im Schnitt gepflegt sind. Tabelle :num:`fig-genre-detail`
-zeigt wie detailiert die Genreverteilung im Schnitt pro Film ist.
+detailiert die Filme im Schnitt gepflegt sind. Abbildung
+:num:`fig-genre-avg` zeigt wie detailiert die Genreverteilung im Schnitt
+pro Film ist.
 
 .. figtable::
-    :label: fig-genres-detail
+    :label: fig-genre-avg
     :caption: Anzahl der vergebenen Genres pro Film.
     :alt: Anzahl der vergebenen Genres pro Film.
     :spec: c|l|l|l|l|l
@@ -487,7 +492,7 @@ zeigt wie detailiert die Genreverteilung im Schnitt pro Film ist.
 
 Die Auswertung bestätigt die bisherigen Annahmen. Die Genreinformationen sind
 hier sehr divergent (siehe Abbildung :num:`fig-genres`) gepflegt und
-unterscheiden sich auch im Detailgrad  (siehe :num:`fig-genre-detail`).
+unterscheiden sich auch im Detailgrad  (siehe Abbildung :num:`fig-genre-avg`).
 
 .. _yeardiff:
 
@@ -506,7 +511,7 @@ non--API--Provider hergenommen. Bei den API--Providern wird die Gleichheit des
 Films anhand der IMDb--ID definiert. Bei den non--API--Provider Daten, die keine
 IMDb--ID besitzen, wird eine Titelübereinstimmung von 90% gefordert.
 Filme die diese Eigenschaft erfüllen, fließen in die
-Erscheinungsjahrdifferenz--Auswertung ein (siehe Tabelle :num:`fig-yeardiff`).
+Erscheinungsjahrdifferenz--Auswertung ein (siehe Abbildung :num:`fig-yeardiff`).
 
 .. figtable::
     :label: fig-yeardiff
@@ -539,25 +544,24 @@ Die restlichen, insgesamt 68, Filme, die bei der Jahresdifferenz
 restlichen 67 Filme waren ,,Remakes", Filme mit zufälligerweise gleichem Titel
 oder Filme ohne gelisteten Regisseur.
 
-.. raw:: Latex
 
-   \newpage
+.. _unvoll:
 
 Unvollständigkeit der Metadaten
 ===============================
 
-Tabelle :num:`fig-completeness` zeigt die Anzahl der nicht gepflegten Attribute
+Abbildung :num:`fig-completeness` zeigt die Anzahl der nicht gepflegten Attribute
 je Provider. Die Menge bezieht sich hier auf die, pro Provider, jeweils gefundene
-Anzahl der Metadaten (siehe :num:`fig-foundmetadata`). Die mit :math:`\times`
-markierten Felder deuten darauf hin, dass das Attribut vom Provider nicht
-ausgefüllt wird.
+Anzahl der Metadaten (siehe Abbildung :num:`fig-foundmetadata`). Die mit
+:math:`\times` markierten Felder deuten darauf hin, dass das Attribut vom
+Provider nicht ausgefüllt wird.
 
-Auffällig in Tabelle :num:`fig-completeness` ist, dass der OMDb--Provider das
+Auffällig in Abbildung :num:`fig-completeness` ist, dass der OMDb--Provider das
 Attribut ,,plot" 2353 mal nicht gefunden hat. Die manuelle Überprüfung dieses
 Wertes bestätigt, dass es hier bei dem verwendeten API--Mirror, wie bereits
-erwähnt unter :ref:`timeoutverhalten`, entgegen der vorherigen Annahme,
-weiterhin zu Problemen kommt. Die Daten wurden mit dem Skript
-:num:`completeness` analysiert.
+erwähnt in Kapitel :ref:`timeoutverhalten` Timeoutverhalten, entgegen der
+vorherigen Annahme, weiterhin zu Problemen kommt. Die Daten wurden mit dem
+Skript :num:`completeness` analysiert.
 
 
 .. figtable::
@@ -614,6 +618,9 @@ gepflegt haben. Bei diesem Anbieter handelt es sich um eine
 Videoverleihplattform, welche anscheinend darauf Wert legt, dass jeder
 ausleihbare Film auch ein digitales Cover besitzt.
 
+
+.. _ratingkapitel:
+
 Ratingverteilung der Stichprobe
 ===============================
 
@@ -625,7 +632,7 @@ Die Analyse soll darüber Auskunft geben, ob es bei den Plattformen in der Bewer
 signifikante Unterschiede gibt. Bei allen drei Anbietern bewegt sich das Rating
 auf einer Skala von 1 -- 10.
 
-Tabelle :num:`rating` zeigt, dass das Rating der Stichprobe bei allen drei
+Abbildung :num:`rating` zeigt, dass das Rating der Stichprobe bei allen drei
 Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
 
 .. figtable::
@@ -667,9 +674,13 @@ Testumgebung
 ============
 
 Die Bibliothek wurde in der Python--Version 3.4 getestet. Die Skripte im Anhang
-wurden für die jeweiligen Auswertungen verwendet. Bei zeitabhängigen Messungen
-wurde immer darauf geachtet, dass immer der Durchschnitt aus mehreren
-Durchläufen genommen wurde, um statistische Ausreißer zu unterdrücken.
+wurden für die jeweiligen Auswertungen verwendet. Für das Einlesen des Ordners
+verwenden ein paar Skripte die Funktion analyze_folder. Diese Funktion wurde in
+die ``utils.py``--Datei ausgelagert.
+
+Bei zeitabhängigen Messungen wurde immer darauf geachtet, dass immer der
+Durchschnitt aus mehreren Durchläufen genommen wurde, um statistische Ausreißer
+zu unterdrücken.
 
 Als Testumgebung wurde das folgende System verwendet:
 
