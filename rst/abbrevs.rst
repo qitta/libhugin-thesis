@@ -27,6 +27,9 @@
     API                      *Application Programming Interface*
     URL                      *Uniform Resource Locator*
     HTTP                     *Hypertext Transfer Protocol*
+    ID                       *Idendifier*
+    XML                      *Extensible Markup Language*
+    JSON                     *JavaScript Object Notation*
     =======================  ==================================
 
 .. raw:: latex
