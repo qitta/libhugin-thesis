@@ -7,12 +7,13 @@ Motivation
 
 Heutzutage wird der Großteil unserer Medien digital konsumiert und verwaltet.
 Ein großer Teil davon ist, neben der Musiksammlung, die private Filmsammlung.
-Nach dem Digitalisieren müssen die Filmmetadaten, die in der Regel auf der
-DVD--Hülle stehen, gepflegt werden. Hier bietet oft die Abspielsoftware die
-Möglichkeit, die Metadaten über diverse Onlinequellen, wie beispielsweise über
-IMDb (siehe :cite:`imdb`), zu beziehen.  Eine andere Möglichkeit, die private
-Filmsammlung zu pflegen, bieten die sogenannten Movie--Metadaten--Manager. Diese
-Software ist speziell für das Verwalten von Filmmetadaten konzipiert.
+Nach dem Aufzeichnen oder überspielen von Filmen auf einen Home--Theater--PC
+[#f1]_ müssen die Filmmetadaten, die in der Regel auf der DVD--Hülle stehen,
+gepflegt werden. Hier bietet oft die Abspielsoftware die Möglichkeit, die
+Metadaten über diverse Onlinequellen, wie beispielsweise über IMDb (siehe
+:cite:`imdb`), zu beziehen.  Eine andere Möglichkeit, die private Filmsammlung
+zu pflegen, bieten die sogenannten Movie--Metadaten--Manager. Diese Software ist
+speziell für das Verwalten von Filmmetadaten konzipiert.
 
 Bei der Pflege der Metadaten ist man jedoch auf die Rahmenbedingungen der
 jeweiligen Software beschränkt. Nutzt man andererseits mehrere Applikationen um
@@ -52,3 +53,8 @@ Zu der Zielgruppe gehören Entwickler, die an der Weiterentwicklung der
 Bibliothek beteiligt sind, sowie auch interessierte Personen, die sich einen
 Überblick über die verwendeten Ansätze von *libhugin* und Unterschiede bei den
 Metadatenquellen verschaffen wollen.
+
+.. rubric:: Footnotes
+
+.. [#f1] Ein PC-Komponenten basiertes System zum Abspielen von
+   Multimedia--Inhalten
