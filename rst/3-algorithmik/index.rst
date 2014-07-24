@@ -173,9 +173,9 @@ Zeichenketten bietet die Python Standard--Bibliothek das *difflib*--Modul. Das
 Modul erlaubt es, zwei Sequenzen zu vergleichen. Es arbeitet mit dem
 Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von :math:`O(n^{3})`
 im *worst case* und eine erwartete Komplexität von :math:`O(n^{2})`. Der
-Algorithmus basiert auf der Idee, die Anzahl der Sequenzen mit
-übereinstimmenden Zeichen multipliziert mit zwei, durch
-die Summe der Länge der beiden Zeichenketten zu teilen (vgl :cite:`ratcliffpattern`).
+Algorithmus basiert auf der Idee, die Anzahl der übereinstimmenden Sequenzen (in
+Beiden Zeichenketten übereinstimmende Folgen von einem oder mehreren Zeichen)
+zu zählen. Für weitere Details zum Algorithmus siehe :cite:`ratcliffpattern`.
 
 Ein weiteres Maß für die Ähnlichkeit von Zeichenketten ist die Hamming--Distanz.
 Diese Distanz arbeitet nach der Idee, die ,,Ersetzungen" zu zählen. Der
@@ -185,12 +185,13 @@ Zeichenketten anwenden lässt (vgl. :cite:`navarro2001guided`,
 
 Ein weiterer Algorithmus, der für Zeichenkettenvergleiche eingesetzt wird, ist
 der Levenshtein--Algorithmus (auch Levenshtein--Distanz genannt). Der
-Algorithmus hat eine Laufzeitkomplexität von :math:`O(nm)`. Die
+Algorithmus hat eine Laufzeitkomplexität von :math:`O(nm)`, :math:`n` und
+:math:`m` repräsentieren jeweils die Länge der Zeichenkette. Die
 Levenshtein--Distanz basiert auf der Idee, die minimalen Editiervorgänge
 (Einfügen, Löschen, Ersetzen), um von einer Zeichenkette auf eine andere zu
 kommen (vgl :cite:`atallah2010algorithms`, :cite:`navarro2001guided`,
-:cite:`ranka2009ic3`), zu zählen. Die normalisierte Levenshtein--Distanz bewegt sich
-zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
+:cite:`ranka2009ic3`), zu zählen. Die normalisierte Levenshtein--Distanz bewegt
+sich zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
 
 Eine Erweiterung der Levenshtein--Distanz ist die Damerau--Levenshtein--Distanz.
 Diese wurde um die Funktionalität erweitert, vertauschte Zeichen zu erkennen.
@@ -251,10 +252,17 @@ Je nach verwendeten Algorithmus variiert das Ergebnis leicht. Das liegt daran,
 dass die Algorithmen eine unterschiedliche Idee verfolgen.
 
 Folgende interaktive *IPython*--Sitzung zeigt das Ergebnisverhalten von *difflib*
-und *pyxDamerauLevenshtein*. Da das Ähnlichkeitsmaß bei der zu letzt genannten
-Implementierung eine ,,Distanz" ist, wird das Ergebnis zu einem Ähnlichkeitsmaß
-modifiziert (durch das Abziehen von eins), um das Verhalten besser
-vergleichen zu können.
+und *pyxDamerauLevenshtein*. 
+
+Beim Levenshtein--Algorithmus wird eine Distanz (0.0 volle Übereinstimmung, 1.0
+keine Übereinstimmung) zum ermitteln der Ähnlichkeit zweier Zeichenketten
+angewandt. Beim Ratcliff--Obershelp--Algorithmus hingegen wird die Ähnlichkeit
+durch ein Ähnlichkeitsmaß (0.0 keine Übereinstimmung, 1.0 volle Übereinstimmung)
+ermittelt. Um eine Vergleichbarkeit des Ergebnisverhaltens der beiden
+Algorithmen herzustellen, wird die vom Levenshtein--Algorithmus errechnete
+Distanz von einer Eins abgezogen. So lässt sich das Verhalten der beiden
+Algorihmen besser untereinander vergleichen.
+
 
 .. code-block:: python
 
