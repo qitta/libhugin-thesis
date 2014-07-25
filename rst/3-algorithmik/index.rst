@@ -240,10 +240,13 @@ für den Einsatz in der Bibliothek gewählt.
     :width: 90%
     :align: center
 
-    Performancevergleich der Algorithmen für den Zeichenkettenvergleich in
-    Abhängigkeit von der Zeichenkettenlänge. Pro Vergleich 50 Durchläufe. Die
-    Länge der jeweils verglichenen Zeichenketten, ist die Basis--Zeichenkette,
-    mit dem Faktor multipliziert.
+    Performancevergleich der Algorithmen für den Zeichenkettenvergleich.
+    Verglichen werden jeweils die beiden Basis-Zeichenketten 'Erdmännchen' und
+    'Khaleesi' miteinander, der string length multiplication factor gibt
+    indirekt die Länge der jeweiligen Zeichenkette an. Ein Faktor von
+    beispielsweise zwei bedeutet, dass an dieser Stelle die beiden Zeichenketten
+    "ErdmännchenErdmännchen" und "KhaleesiKhaleesi" miteinander verglichen
+    werden.
 
 Der Benchmark wurde mit dem Skript aus :ref:`string_comparsion_algorithms`
 durchgeführt.
@@ -387,9 +390,13 @@ Diese Vorgehensweise normalisiert ebenso die Personensuche. Hier wird
 beispielsweise der Name *,,Emma Stone"* und *,,Stone, Emma"* in beiden Fällen zu
 der Zeichenkette ``'emma stone'``.
 
-Die Anpassungen des Algorithmus für den Zeichenkettenvergleich wirken sich nur
-wenig auf die Performance aus.  Abbildung :num:`fig-finalstringcompare` zeigt
-den Performanceunterschied zum ursprünglichen Algorithmus.
+Abbildung :num:`fig-finalstringcompare` zeigt wie sich die im Kapitel
+:ref:`standardsuche` Standardsuche vorgenommenen Anpassungen auf die Performance auswirken.
+Wie in der Auswertung zu sehen ist, fallen die Anpassungen kaum ins Gewicht.
+Anfangs sind lediglich kleine Performanceeinbußen messbar, bei längeren
+Zeichenketten ab ungefähr 20 Zeichen ist kein Unterschied messbar. Aufgrund
+dieser Tatsache kann der Algorithmus trotz Anpassungen in *libhugin* verwendet
+werden, ohne das man mit Performanceeinbußen rechnen muss.
 
 .. _fig-finalstringcompare:
 
@@ -400,8 +407,14 @@ den Performanceunterschied zum ursprünglichen Algorithmus.
     :align: center
 
     Angepasster Algorithmus auf Basis von Damerau-Levenshtein im Vergleich zu
-    den ursprünglichen Algorithmen. Performancevergleich der Algorithmen für den
-    Zeichenkettenvergleich in Abhängigkeit von der Zeichenkettenlänge.
+    den ursprünglichen Algorithmen aus Abbildung :num:`fig-stringcompare`. 
+    Verglichen werden jeweils die beiden Basis-Zeichenketten 'Erdmännchen' und
+    'Khaleesi' miteinander, der string length multiplication factor gibt
+    indirekt die Länge der jeweiligen Zeichenkette an. Ein Faktor von
+    beispielsweise zwei bedeutet, dass an dieser Stelle die beiden Zeichenketten
+    "ErdmännchenErdmännchen" und "KhaleesiKhaleesi" miteinander verglichen
+    werden.
+
 
 Ein weiteres Attribut, das bei der Suche von Filmen angegeben werden kann, ist
 das Erscheinungsjahr. Dieses wird verwendet, um Suchergebnisse genauer
@@ -449,19 +462,26 @@ Ob dieser Umstand weiterhin präsent ist, beziehungsweise wie oft dieser Fall
 vorkommt, zeigt die Auswertung der Stichprobe der Metadaten mehrerer
 Onlinequellen (siehe Analyse der Erscheinungsjahrdifferenz :ref:`yeardiff`).
 
-Um das Problem abzumildern wird beim Selektieren der Ergebnisse das Jahr
-einzeln betrachtet. Hier wird mittels folgender Funktion die Ähnlichkeit
-berechnet:
+Die gerade im Kapitel :ref:`standardsuche` Standardsuche erläuterten Probleme 
+beim Titelvergleich mit Erscheinungsjahr können durch das separate Betrachten
+des Erscheinungsjahres und das Einführen einer Gewichtung abgemildert werden.
+
+Hierzu wird zuerst mittels folgender Formel die Ähnlichkeit für das
+Erscheinungsjahres ermittelt:
 
  .. math::
 
     year\_similarity(year_a, year_b, max_{years}) = 1 - min \left\{ 1, \frac{\vert year_{a} - year_{b}  \vert}{max_{years}} \right\}
 
-:math:`max_{years}` ist hierbei die maximale Anzahl von Jahren, die betrachtet
-werden sollen.
+:math:`max_{years}` ist hierbei die maximale Anzahl von Jahren
+(Jahresdifferenz), die betrachtet werden sollen.
 
 Anschließend wird das Jahr noch zusätzlich gewichtet, da der Titel wichtiger
-als das Erscheinungsjahr ist. Durch die Gewichtung soll dies sichergestellt werden.
+als das Erscheinungsjahr ist. Durch die Gewichtung soll die Wichtigkeit des
+Titels zusätzlich sichergestellt werden. 
+
+Die Berechnung der Ähnlichkeit samt Gewichtung kann anschließend mit folgender Formel
+berechnet werden:
 
  .. math::
 
@@ -471,41 +491,51 @@ als das Erscheinungsjahr ist. Durch die Gewichtung soll dies sichergestellt werd
 
 :math:`y_a, y_b` sind die jeweiligen Erscheinungsjahre.
 
-``string_similarity_ratio`` ist die angepasste Damerau--Levenshtein Funktion für den Zeichenkettenvergleich.
+`string_similarity_ratio()` ist die angepasste Damerau--Levenshtein Funktion für
+den Zeichenkettenvergleich.
 
-:math:`weight` ist hierbei der Gewichtungsfaktor für den Titel. Durch die
-Gewichtung des Titels fällt ein falsch gepflegtes Erscheinungsjahr nicht so
-stark ins Gewicht wie ein ,,Buchstabendreher" beim Titel. Dies ist ein gewolltes
-Verhalten, da das Jahr nur unterstützend beim Filtern der Ergebnismenge
-verwendet werden soll.
+:math:`weight` ist hierbei der Gewichtungsfaktor für den Titel. Eine Gewichtung
+von beispielsweise fünf lässt den Titel fünf mal stärker wie das Jahr in das
+Ergebnis einfließen. Je höher der Gewichtungsfaktor :math:`weight`, desto
+stärker fließt der Titel ins Ergebnis ein.
+
+Durch die Gewichtung des Titels fällt ein falsch gepflegtes Erscheinungsjahr
+nicht so stark ins Gewicht wie ein ,,Buchstabendreher" beim Titel. Die
+Gewichtung wurdeDies ist ein gewolltes Verhalten, da das Jahr nur unterstützend
+beim Filtern der Ergebnismenge verwendet werden soll.
 
 .. figtable::
     :label: fig-ratingstr
-    :caption: Unterschied im Rating bei gewichteter Betrachtung des Titels.
     :alt: Unterschied im Rating bei gewichteter Betrachtung des Titels.
+    :caption: Unterschied im Rating bei gewichteter Betrachtung des Titels.
+          Gewichtetes Rating mit angepasstem Damerau-Levenshtein-Algorithmus,
+          nicht gewichtetes Rating mit Standard Damerau-Levenshtein-Algorithmus.
+          Alle in der Tabelle genannten Titel wurden jeweils mit der
+          Zeichenkette ,,Matrix 1999" verglichen.
 
-    +------------------+-------------------------------------+------------------------------------+
-    | **Titel**        | **Rating mit Gewichtung, weight=3** | **Rating mit Damerau-Levenshtein** |
-    +==================+=====================================+====================================+
-    | Matrix 1999      | 1.0                                 | 1.0                                |
-    +------------------+-------------------------------------+------------------------------------+
-    | Matrix 2000      | 0.983                               | 0.636                              |
-    +------------------+-------------------------------------+------------------------------------+
-    | Matrix 1997      | 0.967                               | 0.909                              |
-    +------------------+-------------------------------------+------------------------------------+
-    | Matrix 2001      | 0.967                               | 0.636                              |
-    +------------------+-------------------------------------+------------------------------------+
-    | Matrix, The 1999 | 0.7                                 | 0.538                              |
-    +------------------+-------------------------------------+------------------------------------+
-    | The Matrix 2013  | 0.467                               | 0.467                              |
-    +------------------+-------------------------------------+------------------------------------+
-    | The East 1999    | 0.438                               | 0.538                              |
-    +------------------+-------------------------------------+------------------------------------+
+    +------------------+-------------------------------------+----------------------------+
+    | **Titel**        | **Rating mit Gewichtung, weight=3** | **Rating ohne Gewichtung** |
+    +==================+=====================================+============================+
+    | Matrix 1999      | 1.0                                 | 1.0                        |
+    +------------------+-------------------------------------+----------------------------+
+    | Matrix 2000      | 0.983                               | 0.636                      |
+    +------------------+-------------------------------------+----------------------------+
+    | Matrix 1997      | 0.967                               | 0.909                      |
+    +------------------+-------------------------------------+----------------------------+
+    | Matrix 2001      | 0.967                               | 0.636                      |
+    +------------------+-------------------------------------+----------------------------+
+    | Matrix, The 1999 | 0.7                                 | 0.538                      |
+    +------------------+-------------------------------------+----------------------------+
+    | The Matrix 2013  | 0.467                               | 0.467                      |
+    +------------------+-------------------------------------+----------------------------+
+    | The East 1999    | 0.438                               | 0.538                      |
+    +------------------+-------------------------------------+----------------------------+
 
 
-Abbildung :num:`fig-ratingstr` zeigt das Rating mit einer
-Gewichtung von :math:`weight` = 3 für die Zeichenkette ,,Matrix 1999". Das
-Skript für die Auswertung findet sich im :ref:`gewichtetes_rating`.
+Abbildung :num:`fig-ratingstr` zeigt das Rating mit und ohne Gewichtung für die
+Zeichenkette ,,Matrix 1999". Hier wurde für die Gewichtung exemplarisch der Wert
+:math:`n =3` gewählt. Das Skript für die Auswertung findet sich im
+:ref:`gewichtetes_rating`.
 
 
 IMDb--ID Suche
@@ -597,8 +627,9 @@ Feeling Lucky"*--Funktionalität:
 
     * http://www.google.com/search?hl=de&q=Hauskatze&btnI=1
 
-Gibt man diese URL direkt im Browser ein, so wird direkt der Wikipedia--Artikel
-zur Hauskatze [#f1]_ angezeigt.
+Gibt man diese URL direkt im Browser ein, so wird beispielsweise direkt der
+Wikipedia--Artikel zur Hauskatze [#f1]_ angezeigt und nicht die Seite der
+Google--Suchanfrage wie es in der Regel der Fall wäre.
 
 *Libhugin* bedient sich dieser Funktionalität und führt einen *Lookup* mit den
 Parametern *Filmtitel*, *Erscheinungsjahr*, *imdb* und *movie* aus. Anschließend
@@ -629,10 +660,10 @@ Funktionalität lässt sich durch das zusätzliche Aktivieren des
 Normalisierung des Genre
 ========================
 
-Die Normalisierung der Metadaten aus unterschiedlichen Quellen ist sehr
-schwierig, da es bei den Filmmetadaten keinen einheitlichen Standard gibt. Um
-fehlerhafte oder fehlende Metadaten über unterschiedliche Quellen zu ergänzen,
-müssen die Metadatenattribute, insbesondere das Genre, aufgrund der in Kapitel
+Die Normalisierung der Metadaten aus unterschiedlichen Quellen ist schwierig, da
+es bei den Filmmetadaten keinen einheitlichen Standard gibt. Um fehlerhafte oder
+fehlende Metadaten über unterschiedliche Quellen zu ergänzen, müssen die
+Metadatenattribute, insbesondere das Genre, aufgrund der in Kapitel
 :ref:`motivation` gelisteten Problematik, normalisiert werden.
 
 Durch den in Kapitel :ref:`motivation` (siehe Abbildung

@@ -17,11 +17,11 @@ FUNCS = [{
     'fimport': 'import distance',
     'label': 'levenshtein'
 }
-#, {
-#    'func': 'adj_dlevenshtein.string_similarity_ratio("{s1}", "{s2}")',
-#    'fimport': 'import adj_dlevenshtein',
-#    'label': 'adjusted damerau levenshtein'
-#}]
+, {
+    'func': 'adj_dlevenshtein.string_similarity_ratio("{s1}", "{s2}")',
+    'fimport': 'import adj_dlevenshtein',
+    'label': 'adjusted damerau levenshtein'
+}
 ]
 
 def benchmark(s1, s2, n, **kwargs):
@@ -30,9 +30,9 @@ def benchmark(s1, s2, n, **kwargs):
     )
 
 def plot(N, STEP):
-    plt.title('String compare analysis with ,,Erdmännchen" vs ,,Khaleesi"')
+    plt.title('String compare algorithm comparsion')
     plt.ylabel('time in milliseconds')
-    plt.xlabel('string multiplication factor')
+    plt.xlabel('string length multiplication factor')
     plt.xlim(1, N / STEP)
 
     # plt.xscale('log')
