@@ -191,7 +191,7 @@ Sekunden auf 2 Sekunden gefallen (siehe Abbildung, :num:`fig-hugin-search-api`).
 
 Die non--API Provider bremsen die Performance aufgrund des aufwendigen
 Extrahierens mittels ``Beautiful--Soup``--Bibliothek stark aus. Hier bewegt
-sich die Zeit zwischen 35 - 42  Sekunden für die Beschaffung von 10
+sich die Zeit zwischen 35 -- 42  Sekunden für die Beschaffung von 10
 Ergebnissen.
 
 
@@ -659,9 +659,8 @@ Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
 
    \newpage
 
-Die Abbildung :num:`fig-rating` zeigt weiterhin die Verteilung des
-Movie--Ratings der drei API--Provider.  Hier zeigt sich, dass das Rating in der
-Stichprobe bei allen drei Anbietern sehr ähnlich ausfällt.
+Die Abbildung :num:`fig-rating` zeigt,  dass die Verteilung der
+Filmbewerung der drei API--Provider bei allen drei Onlinequellen sehr ähnlich ausfällt.
 
 .. _fig-rating:
 
