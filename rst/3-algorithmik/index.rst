@@ -1085,8 +1085,8 @@ Die folgende *IPython*--Sitzung zeigt die Funktionalität der Bibliothek:
 
 Die Modifier--Plugins modifizieren die Metadaten direkt. Hier wurde ein Plugin
 zum Bereinigen von Inhaltsangaben entwickelt, welches mittels Regulärer
-Ausdrücke (vgl. :cite:`friedl2009regulare`) unerwünschte, in Klammern stehende
-Inhalte, entfernt.
+Ausdrücke (vgl. :cite:`friedl2009regulare`) unerwünschte, beispielsweise in
+Klammern stehende Inhalte, entfernt.
 
 Die folgende *IPython*--Sitzung zeigt den Algorithmus im Einsatz:
 
