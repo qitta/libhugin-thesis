@@ -174,8 +174,8 @@ Modul erlaubt es, zwei Sequenzen zu vergleichen. Es arbeitet mit dem
 Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von :math:`O(n^{3})`
 im *worst case* und eine erwartete Komplexität von :math:`O(n^{2})`. Der
 Algorithmus basiert auf der Idee, die Anzahl der übereinstimmenden Sequenzen (in
-Beiden Zeichenketten übereinstimmende Folgen von einem oder mehreren Zeichen)
-zu zählen. Für weitere Details zum Algorithmus siehe :cite:`ratcliffpattern`.
+beiden Zeichenketten übereinstimmende Folgen von einem oder mehreren Zeichen)
+zu zählen. Für weitere Details zum Algorithmus, siehe :cite:`ratcliffpattern`.
 
 Ein weiteres Maß für die Ähnlichkeit von Zeichenketten ist die Hamming--Distanz.
 Diese Distanz arbeitet nach der Idee, die ,,Ersetzungen" zu zählen. Der
@@ -186,7 +186,7 @@ Zeichenketten anwenden lässt (vgl. :cite:`navarro2001guided`,
 Ein weiterer Algorithmus, der für Zeichenkettenvergleiche eingesetzt wird, ist
 der Levenshtein--Algorithmus (auch Levenshtein--Distanz genannt). Der
 Algorithmus hat eine Laufzeitkomplexität von :math:`O(nm)`, :math:`n` und
-:math:`m` repräsentieren jeweils die Länge der Zeichenkette. Die
+:math:`m` repräsentieren jeweils die Längen der Zeichenketten. Die
 Levenshtein--Distanz basiert auf der Idee, die minimalen Editiervorgänge
 (Einfügen, Löschen, Ersetzen), um von einer Zeichenkette auf eine andere zu
 kommen (vgl :cite:`atallah2010algorithms`, :cite:`navarro2001guided`,
@@ -254,9 +254,6 @@ durchgeführt.
 Je nach verwendeten Algorithmus variiert das Ergebnis leicht. Das liegt daran,
 dass die Algorithmen eine unterschiedliche Idee verfolgen.
 
-Folgende interaktive *IPython*--Sitzung zeigt das Ergebnisverhalten von *difflib*
-und *pyxDamerauLevenshtein*. 
-
 Beim Levenshtein--Algorithmus wird eine Distanz (0.0 volle Übereinstimmung, 1.0
 keine Übereinstimmung) zum ermitteln der Ähnlichkeit zweier Zeichenketten
 angewandt. Beim Ratcliff--Obershelp--Algorithmus hingegen wird die Ähnlichkeit
@@ -266,6 +263,8 @@ Algorithmen herzustellen, wird die vom Levenshtein--Algorithmus errechnete
 Distanz von einer Eins abgezogen. So lässt sich das Verhalten der beiden
 Algorihmen besser untereinander vergleichen.
 
+Folgende interaktive *IPython*--Sitzung zeigt das Ergebnisverhalten von *difflib*
+und *pyxDamerauLevenshtein*. 
 
 .. code-block:: python
 
@@ -396,7 +395,7 @@ Wie in der Auswertung zu sehen ist, fallen die Anpassungen kaum ins Gewicht.
 Anfangs sind lediglich kleine Performanceeinbußen messbar, bei längeren
 Zeichenketten ab ungefähr 20 Zeichen ist kein Unterschied messbar. Aufgrund
 dieser Tatsache kann der Algorithmus trotz Anpassungen in *libhugin* verwendet
-werden, ohne das man mit Performanceeinbußen rechnen muss.
+werden, ohne dass man mit Performanceeinbußen rechnen muss.
 
 .. _fig-finalstringcompare:
 
@@ -500,9 +499,9 @@ Ergebnis einfließen. Je höher der Gewichtungsfaktor :math:`weight`, desto
 stärker fließt der Titel ins Ergebnis ein.
 
 Durch die Gewichtung des Titels fällt ein falsch gepflegtes Erscheinungsjahr
-nicht so stark ins Gewicht wie ein ,,Buchstabendreher" beim Titel. Die
-Gewichtung wurdeDies ist ein gewolltes Verhalten, da das Jahr nur unterstützend
-beim Filtern der Ergebnismenge verwendet werden soll.
+nicht so stark ins Gewicht wie ein ,,Buchstabendreher" beim Titel. Dies ist ein
+gewolltes Verhalten, da das Jahr nur unterstützend beim Filtern der
+Ergebnismenge verwendet werden soll.
 
 .. figtable::
     :label: fig-ratingstr
@@ -944,12 +943,20 @@ Im Anschluß die Funktionsweise des RAKE--Algorithmus, analog zu :cite:`bacpahl`
 1. Aufteilung des Eingabetextes in Sätze anhand von Interpunktionsregeln.
 2. Extrahieren von *Phrasen* aus den jeweiligen Sätzen. Eine *Phrase* ist eine Sequenz aus nicht Stoppwörtern.
 3. Berechnung eines *Scores* für jedes Wort einer *Phrase* aus dem *Degree* und
-   der *Frequency* eines Wortes. :math:`P`  entspricht der Menge aller Phrasen,
+   der *Frequency* eines Wortes. 
+   
+   
+   :math:`P`  entspricht der Menge aller Phrasen,
    :math:`\vert p\vert` ist die Anzahl der Wörter einer Phrase.
+
+   :math:`degree(word)` gibt an, wie Häufig ein Wort pro Phrase vorkommt.
 
    .. math::
 
       degree(word) = \sum_{p \in P} \left\{\begin{array}{cl} \vert p\vert, & \mbox{falls } word \in p\\ 0, & \mbox{sonst} \end{array}\right.
+
+   :math:`frequency(word)` ist der absolute Anteil der Phrasen in denen das jeweilige
+   Wort  vorkommt.
 
    .. math::
 
@@ -963,6 +970,7 @@ Im Anschluß die Funktionsweise des RAKE--Algorithmus, analog zu :cite:`bacpahl`
 
       score(word) = \frac{degree(word)}{frequency(word)}
 
+Für weitere Details siehe :cite:`rose2010automatic`.
 
 Im Gegensatz zur Extraktion von Schlüsselwörtern aus Liedtexten werden bei der
 Extraktion aus der Film--Inhaltsbeschreibung die Sätzen nur anhand von
@@ -1034,7 +1042,7 @@ Output liefert:
 
 .. code-block:: bash
 
-    hachoir-metadata --raw Sintel.2010.1080p.mkv
+    $ hachoir-metadata --raw Sintel.2010.1080p.mkv
     Common:
     - duration: 0:14:48.032000
     - creation_date: 2011-04-25 12:57:46
