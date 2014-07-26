@@ -701,8 +701,8 @@ Als Testumgebung wurde das folgende System verwendet:
     * HDD: Hitachi 120GB, 5400 upm
 
 Als Internetanbindung wurde eine VDSL 50 Mbit Leitung der Telekom verwendet.
-Diese hat laut Internet--Messverfahren eine tatsächliche Geschwindigkeit von
-47,9 Mbit/s (downstream) und 7,7 Mbit/s (upstream).
+Diese hat laut Internet--Messverfahren eine gemittelte Geschwindigkeit von
+ca. 48 Mbit/s (downstream) und 8 Mbit/s (upstream).
 
 Statistiken und Plots
 =====================
