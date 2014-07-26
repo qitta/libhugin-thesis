@@ -30,7 +30,7 @@ def benchmark(s1, s2, n, **kwargs):
     )
 
 def plot(N, STEP):
-    plt.title('String compare algorithm comparsion')
+    plt.title('String compare algorithm performance comparison')
     plt.ylabel('time in milliseconds')
     plt.xlabel('string length multiplication factor')
     plt.xlim(1, N / STEP)
