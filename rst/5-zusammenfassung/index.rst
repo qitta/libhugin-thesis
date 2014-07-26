@@ -12,7 +12,7 @@ Filmtitel mit nachziehenden Artikeln zu finden. Hier skaliert der Algorithmus
 basierend auf der Damerau--Levenshtein--Distanz weiterhin gut (siehe Kabitel
 :ref:`standardsuche` Abbildung :num:`fig-finalstringcompare`). Die zusätzliche
 Gewichtung vom Jahr, erwies sich mit der kleinen Testdatenmenge als
-wirkungsvoll (siehe Kapitel :ref:`standardsuche`, Abbildung :num:`fig-rating`).
+wirkungsvoll (siehe Kapitel :ref:`standardsuche`, Abbildung :num:`fig-ratingstr`).
 
 Der verwendete Ansatz beim ,,Lookup"--Mode funktioniert ebenso wkirkungsvoll.
 Dieser Ansatz wurde zum Normalisieren der Filmtitel für die
@@ -23,10 +23,6 @@ beurteilt werden. Hier gibt es je falsch geschriebenen Titel Toleranzen. Im
 Grunde kommt es hier auf die Genauigkeit der Suchmaschine an. Kleine Stichproben
 in der Projektarbeit zeigten eine hohe Erfolgsquote (siehe :cite:`cpiechula`,
 Kapitel 7.4 Demoanwendungen).
-
-Die Normalisierung des Genre funktioniert momentan nur mit den API--Providern
-über statische Tabellen. Hier wären noch andere Ansätze beziehungsweise Ideen
-wünschenswert.
 
 Die verwendeten Algorithmen bei den Plugins greifen aktuell zum Teil auf externe
 Tools zurück, wie beispielsweise das *FileTypeAnalyze* Plugin. Hier wären in
@@ -53,11 +49,12 @@ Grundproblematik der Metadatenbeschaffung unterstreicht, wurde anhand der
 Stichprobe bestätigt (siehe Kapitel :ref:`unvoll`, Abbildung
 :num:`fig-completeness`).
 
-Die Annahme, dass sich die Bewertung je nach Plattform stark unterscheidet,
-konnte nicht direkt bestätigt werden. Hier wurde ein Test mit Metadaten der drei
-API--Provider durchgeführt, welcher zeigt, dass die Bewertung bei allen drei
-Providern im Schnitt fast identisch ist. Lediglich die Verteilung variiert hier
-leicht, es ist jedoch bei allen drei Anbietern nahezu eine Normalverteilung
+Die Annahme, dass sich die Filmbewertungen je nach Plattform stark unterscheiden,
+konnte nicht direkt bestätigt werden (siehe :ref:`ratingkapitel`, Abbildung
+:num:`fig-rating`). Hier wurde ein Test mit Metadaten der drei API--Provider
+durchgeführt, welcher zeigt, dass die Bewertung bei allen drei Providern im
+Schnitt fast identisch ist. Lediglich die Verteilung variiert hier leicht, es
+ist jedoch bei allen drei Anbietern eine ähnliche Verteilung zu beobachten
 (siehe Kapitel :ref:`ratingkapitel`, Abbildung :num:`fig-rating`).
 
 
