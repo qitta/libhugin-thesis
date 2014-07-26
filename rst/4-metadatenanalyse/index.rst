@@ -659,18 +659,20 @@ Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
 
    \newpage
 
-Die Abbildung :num:`fig-rating` zeigt weiterhin die Verteilung des Ratings der drei
-API--Provider.  Hier zeigt sich, dass das Rating in der Stichprobe bei allen
-drei Anbietern nahezu normalverteilt ist.
+Die Abbildung :num:`fig-rating` zeigt weiterhin die Verteilung des
+Movie--Ratings der drei API--Provider.  Hier zeigt sich, dass das Rating in der
+Stichprobe bei allen drei Anbietern sehr ähnlich ausfällt.
 
 .. _fig-rating:
 
 .. figure:: fig/rating.pdf
-    :alt: Nahezu normalverteiltes Rating der Stichprobe von 2500 Filmen.
+    :alt: Verteilung vom Movie-Rating der Stichprobe von 2500 Filmen der drei
+          Anbieter TMDb, OMDb und OFDb.
     :width: 90%
     :align: center
 
-    Nahezu normalverteiltes Rating der Stichprobe von 2500 Filmen.
+    Verteilung vom Movie-Rating der Stichprobe von 2500 Filmen der drei Anbieter
+    TMDb, OMDb und OFDb.
 
 
 Die vorliegenden Daten wurden mit dem Skript in :ref:`rating` analysiert.
