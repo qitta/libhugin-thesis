@@ -174,7 +174,7 @@ Die auffällige Antwortzeit mit aktivierten Festplatten--Cache (Abbildung
 Metadaten mittels der ``Beautiful-Soup``--Bibliothek sehr aufwendig ist. Das
 Aktivieren eines anderen internen Parsers, hat das Ergebnis verschlechtert.
 Der `lxml`--Parser, welcher auch in Abbildung :num:`fig-hugindownload-cache`
-verwendet wird, ist hier schneller als die Alternativen (siehe :cite:`bs`).
+verwendet wird, ist hier schneller als mögliche Alternativen (siehe :cite:`bs`).
 
 
 Skalierung der Downloadgeschwindigkeit
