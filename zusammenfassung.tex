@@ -1,0 +1,69 @@
+\documentclass{scrartcl}
+\thispagestyle{empty}
+\usepackage{geometry}
+\geometry{top=20mm, left=30mm, right=30mm, bottom=20mm}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[onehalfspacing]{setspace}
+\RequirePackage{garamondx}
+\begin{document}
+\begin{center}
+    \LARGE \textbf{Zusammenfassung} \\
+    \vspace{.1in}
+    \large der Bachelorarbeit \\
+    \vspace{.1in}
+    \small ,,Algorithmik und Evaluation des Filmmetadaten Such- und
+    Analysesystems libhugin" \\
+    \vspace{.1in}
+    \small \textit{Christoph Piechula, \today}
+    \vspace{.2in}
+\end{center}
+
+\textit{Libhugin} ist eine in der Projektarbeit \cite{cpiechula} entwickelte
+modulare Bibliothek für die Suche und Analyse von Filmmetadaten. Die Bibliothek
+verfolgt, im Vergleich zu den bestehenden Filmmetadaten Such- und
+Analysewerkzeugen, einen modularen Ansatz. Filmmetadaten gibt es in
+verschiedenen Sprachen und Ausprägungen. Durch den modularen Ansatz wird dem
+Benutzer die Möglichkeit gegeben, das System durch den Entwurf von Plugins
+\footnote{Eine Modul welches nicht direkter Bestandteil des Softwarekerns ist}
+besser an die eigenen Bedürfnisse anzupassen. Hier gibt es verschiedene
+Pluginarten, welche neben der Metadatenbeschaffung auch für das direkte
+Verarbeiten oder Exportieren der Metadaten zuständig sind. Neben der
+Metadatenbeschaffung gibt es auch die Möglichkeit einer Metadatenaufbereitung.
+Hierdurch lassen sich Metadaten auch nachträglich analysieren und Änderungen an
+diesen vornehmen. Dieser Teil der Bibliothek ist ebenso durch den Entwurf eigener
+Plugins erweiterbar. Zusätzlich zur Bibliothek wurden Werkzeuge zu
+Demonstrationszwecken und Testen der Bibliothek entwickelt.
+\\
+
+Diese Arbeit thematisiert die hinter \textit{libhugin} stehenden Ansätze und
+Algorithmen und untersucht anhand von Stichproben die bisher, auch während der
+Entwicklung, getroffenen Annahmen zu den Metadaten und Metadatenquellen.
+Einleitend wird ein Überblick über die Software-Architektur der Bibliothek
+vermittelt.  Anschließend werden die technischen Grundüberlegungen erläutert.
+Der Hauptteil befasst sich mit der Algorithmik der Bibliothek, der Analyse
+dieser sowie der Analyse der Metadaten und Metadatenquellen. Hier wird auf die
+Entwicklung der Standard--Algorithmen zur Filmsuche eingegangen. Es wird auch
+explizit auf die Algorithmik von Features wie beispielsweise der ,,IMDb-ID
+Suche`` oder der ,,Unschärfesuche`` eingegangen. Anschließend werden bestimmte
+Kriterien wie das Antwortverhalten der implementierten Metadatenquellen-Plugins
+oder auch die Verarbeitungszeiten der Metadaten untersucht. Gegen Ende der
+Arbeit werden die von den Metadatenquellen erhobenen Daten anhand einer
+Stichprobe untersucht, um die bisherigen Annahmen zu bestätigen oder zu
+revidieren. Die Analyse zeigt beispielsweise die Unterschiede verschiedener
+Metadatenquellen auf, zeigt aber auch auf, wie die Vollständigkeit der Metadaten
+je nach Onlinequellen variiert.  
+\\
+
+Abschließend werden anhand der gewonnenen Daten noch bestehende Probleme
+identifiziert sowie Ideen und Verbesserungsvorschläge für die weitere
+Entwicklung genannt.
+\\
+\\
+\vspace*{-2em}\large\textbf{Literatur}
+\renewcommand*{\refname}{} 
+\vspace*{-1em}
+\small
+\bibliographystyle{unsrt}
+\bibliography{refs.bib}
+\end{document}
