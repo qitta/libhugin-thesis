@@ -660,18 +660,18 @@ Providern sich im Schnitt bei ca 6,5 von 10 bewegt.
    \newpage
 
 Die Abbildung :num:`fig-rating` zeigt,  dass die Verteilung der
-Filmbewerung der drei API--Provider bei allen drei Onlinequellen sehr ähnlich ausfällt.
+Filmbewertung der drei API--Provider bei allen drei Onlinequellen sehr ähnlich ausfällt.
 
 .. _fig-rating:
 
 .. figure:: fig/rating.pdf
-    :alt: Verteilung vom Movie-Rating der Stichprobe von 2500 Filmen der drei
-          Anbieter TMDb, OMDb und OFDb.
+    :alt: Verteilung von der Filmbewertung der Stichprobe von 2500 Filmen der
+          drei Anbieter TMDb, OMDb und OFDb.
     :width: 90%
     :align: center
 
-    Verteilung vom Movie-Rating der Stichprobe von 2500 Filmen der drei Anbieter
-    TMDb, OMDb und OFDb.
+    Verteilung von der Filmbewertung der Stichprobe von 2500 Filmen der drei
+    Anbieter TMDb, OMDb und OFDb.
 
 
 Die vorliegenden Daten wurden mit dem Skript in :ref:`rating` analysiert.
@@ -701,7 +701,7 @@ Als Testumgebung wurde das folgende System verwendet:
 
 Als Internetanbindung wurde eine VDSL 50 Mbit Leitung der Telekom verwendet.
 Diese hat laut Internet--Messverfahren eine gemittelte Geschwindigkeit von
-ca. 48 Mbit/s (downstream) und 8 Mbit/s (upstream).
+ungefähr 48 Mbit/s (downstream) und 8 Mbit/s (upstream).
 
 Statistiken und Plots
 =====================

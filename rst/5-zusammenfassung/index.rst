@@ -94,7 +94,7 @@ Ausblick
 
 Zusammengefasst kann gesagt werden, dass mit dem *libhugin*--Prototyp das
 angesetzte Vorhaben, eine andere Herangehensweise beim Beschaffen der Metadaten,
-im Vergleich zu den bisherigen Tools, gut umsetzt wurde. Aktuell gibt es jedoch
+im Vergleich zu den bisherigen Tools, gut umgesetzt wurde. Aktuell gibt es jedoch
 noch vereinzelt Probleme, wie beispielsweise das oben genannte Problem
 mit dem Encoding oder auch die Geschwindigkeitseinbußen bei der Nutzung eines
 Providers ohne API.

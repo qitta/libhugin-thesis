@@ -255,13 +255,13 @@ Je nach verwendeten Algorithmus variiert das Ergebnis leicht. Das liegt daran,
 dass die Algorithmen eine unterschiedliche Idee verfolgen.
 
 Beim Levenshtein--Algorithmus wird eine Distanz (0.0 volle Übereinstimmung, 1.0
-keine Übereinstimmung) zum ermitteln der Ähnlichkeit zweier Zeichenketten
+keine Übereinstimmung) zum Ermitteln der Ähnlichkeit zweier Zeichenketten
 angewandt. Beim Ratcliff--Obershelp--Algorithmus hingegen wird die Ähnlichkeit
 durch ein Ähnlichkeitsmaß (0.0 keine Übereinstimmung, 1.0 volle Übereinstimmung)
 ermittelt. Um eine Vergleichbarkeit des Ergebnisverhaltens der beiden
 Algorithmen herzustellen, wird die vom Levenshtein--Algorithmus errechnete
-Distanz von einer Eins abgezogen. So lässt sich das Verhalten der beiden
-Algorihmen besser untereinander vergleichen.
+Distanz von Eins subtrahiert. So lässt sich das Verhalten der beiden
+Algorithmen besser miteinander vergleichen.
 
 Folgende interaktive *IPython*--Sitzung zeigt das Ergebnisverhalten von *difflib*
 und *pyxDamerauLevenshtein*. 
@@ -368,10 +368,6 @@ Ein anderer Ansatz, der bei *libhugin* gewählt wurde, ist, die
 Satztrennungszeichen zu entfernen und die einzelnen Wörter des Titels
 alphabetisch zu sortieren.
 
-.. raw:: Latex
-
-   \newpage
-
 Anhand des Beispieltitel *,,East, The"* wird folgend das Vorgehen erläutert:
 
     1. Titel auf Kleinschreibung umwandeln →  ``'east, the'``
@@ -390,12 +386,13 @@ beispielsweise der Name *,,Emma Stone"* und *,,Stone, Emma"* in beiden Fällen z
 der Zeichenkette ``'emma stone'``.
 
 Abbildung :num:`fig-finalstringcompare` zeigt wie sich die im Kapitel
-:ref:`standardsuche` Standardsuche vorgenommenen Anpassungen auf die Performance auswirken.
-Wie in der Auswertung zu sehen ist, fallen die Anpassungen kaum ins Gewicht.
-Anfangs sind lediglich kleine Performanceeinbußen messbar, bei längeren
-Zeichenketten ab ungefähr 20 Zeichen ist kein Unterschied messbar. Aufgrund
-dieser Tatsache kann der Algorithmus trotz Anpassungen in *libhugin* verwendet
-werden, ohne dass man mit Performanceeinbußen rechnen muss.
+:ref:`standardsuche` Standardsuche vorgenommenen Anpassungen auf die Performance
+auswirken.  Wie in der Auswertung zu sehen ist, fallen die Anpassungen kaum ins
+Gewicht. Das Laufzeitverhalten hat sich nicht verschlechtert, anfangs sind
+lediglich kleine Performanceeinbußen messbar, bei längeren Zeichenketten ab
+ungefähr 20 Zeichen ist kein Unterschied messbar. Aufgrund dieser Tatsache kann
+der Algorithmus trotz Anpassungen in *libhugin* verwendet werden, ohne dass man
+mit Performanceeinbußen rechnen muss.
 
 .. _fig-finalstringcompare:
 
@@ -466,7 +463,7 @@ beim Titelvergleich mit Erscheinungsjahr können durch das separate Betrachten
 des Erscheinungsjahres und das Einführen einer Gewichtung abgemildert werden.
 
 Hierzu wird zuerst mittels folgender Formel die Ähnlichkeit für das
-Erscheinungsjahres ermittelt:
+Erscheinungsjahr ermittelt:
 
  .. math::
 
@@ -970,7 +967,7 @@ Im Anschluß die Funktionsweise des RAKE--Algorithmus, analog zu :cite:`bacpahl`
 
       score(word) = \frac{degree(word)}{frequency(word)}
 
-Für weitere Details siehe :cite:`rose2010automatic`.
+Für weitere Details zum RAKE--Algorithmus siehe :cite:`rose2010automatic`.
 
 Im Gegensatz zur Extraktion von Schlüsselwörtern aus Liedtexten werden bei der
 Extraktion aus der Film--Inhaltsbeschreibung die Sätzen nur anhand von
