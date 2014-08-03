@@ -150,7 +150,7 @@ Standardsuche
 Bei der Suchanfrage über den Filmtitel wird von den Onlinequellen in der Regel
 eine Liste mit mehreren Möglichkeiten geliefert. Das Provider--Plugin muss
 anschließend die Filmtitel mit der größten Übereinstimmung herausfinden. Für die
-Ähnlichkeit bei der Suche nach übereinstimmenden Zeichenketten, wurde ein
+Ähnlichkeit bei der Suche nach übereinstimmenden Zeichenketten wurde ein
 Ähnlichkeitsmaß definiert, welches eine Spanne von 0.0 (keine Ähnlichkeit) bis
 1.0 (volle Übereinstimmung) aufweist.
 
@@ -217,7 +217,7 @@ längeren der beiden Zeichenketten geteilt wird.
 Da es bei der Filmsuche zu vielen Zeichenkettenvergleichen kommt sollte der
 Algorithmus zum Vergleich von Zeichenketten performant sein.
 
-Um die jeweiligen Algorithmen, beziehungsweise die Implementierungen dieser,
+Um die jeweiligen Algorithmen, beziehungsweise ihre Implementierungen,
 bezüglich der Performance zu überprüfen, wurde eine Messung mit den folgenden
 unter Python verfügbaren Implementierungen durchgeführt:
 
@@ -361,12 +361,10 @@ Um dieses Problem zu umgehen, müssen die Filmtitel auf ein bestimmtes Schema
 normalisiert werden. Ein möglicher Ansatz wäre, den Artikel zu entfernen. Dies
 würde jedoch das Problem mit sich bringen, dass Filme wie *,,Drive (2011)"* und
 *"The Drive (1996)"* fälschlicherweise als identisch erkannt werden würden. Ein
-weiteres Problem, welches hinzu kommt ist, dass der Artikel--Ansatz
-sprachabhängig ist.
+weiteres Problem besteht darin, dass der Artikel--Ansatz sprachabhängig ist.
 
-Ein anderer Ansatz, der bei *libhugin* gewählt wurde, ist, die
-Satztrennungszeichen zu entfernen und die einzelnen Wörter des Titels
-alphabetisch zu sortieren.
+Die Satztrennungszeichen zu entfernen und die einzelnen Wörter des Titels
+alphabetisch zu sortieren ist ein anderer Ansatz, der bei *libhugin* gewählt wurde.
 
 Anhand des Beispieltitel *,,East, The"* wird folgend das Vorgehen erläutert:
 
@@ -422,7 +420,7 @@ werden.  Beim simplen Vergleich des Jahres mittels Damerau--Levenshtein
 Algorithmus ergibt sich hier jedoch ein neues Problem.
 
 Bei zusätzlicher Anwendung des Damerau--Levenshtein--Algorithmus auf das
-Erscheinungsjahr, kann es zu dem Fall kommen, dass das logisch gesehen
+Erscheinungsjahr kann es zu dem Fall kommen, dass das logisch gesehen
 ,,nähere" Erscheinungsjahr als ,,schlechter" gewertet wird. Das liegt daran,
 dass es Fälle gibt, bei denen der logische Jahresunterschied zum Suchstring
 geringer sein kann, als der Zeichenkettenunterschied. In diesem Fall würde ein
@@ -491,7 +489,7 @@ berechnet werden:
 den Zeichenkettenvergleich.
 
 :math:`weight` ist hierbei der Gewichtungsfaktor für den Titel. Eine Gewichtung
-von beispielsweise fünf lässt den Titel fünf mal stärker wie das Jahr in das
+von beispielsweise fünf lässt den Titel fünf mal stärker als das Jahr in das
 Ergebnis einfließen. Je höher der Gewichtungsfaktor :math:`weight`, desto
 stärker fließt der Titel ins Ergebnis ein.
 
@@ -558,8 +556,8 @@ Wenn der *Lookup--Mode* aktiviert wird, wird vor der Kommunikation mit den
 Provider--Plugins ein *Lookup* über ``http://imdb.com`` getriggert. Hierbei
 wird die URL aus der zu suchenden ID zusammengesetzt und eine IMDb Anfrage
 gestartet. Anschließend wird auf dem zurückgelieferten HTTP--Response ein
-Regulärer Ausdruck ausgeführt, welcher die Zeichenkette bestehend aus
-``<Titelname> <(4-stellige Jahreszahl)>``, extrahiert.
+regulärer Ausdruck ausgeführt, welcher die Zeichenkette bestehend aus
+``<Titelname> <(4-stellige Jahreszahl)>`` extrahiert.
 
 Der algorithmische Ansatz sieht unter Python wie folgt aus:
 
@@ -571,9 +569,9 @@ Der algorithmische Ansatz sieht unter Python wie folgt aus:
    >>> print(title, year)
    'Only God Forgives 2013'
 
-Nach dem Extrahieren der Attribute Titel und Erscheinungsjahr, wird die Query
+Nach dem Extrahieren der Attribute Titel und Erscheinungsjahr wird die Query
 mit den Suchparametern, welche an alle Provider--Plugins für die Suche
-weitergegeben wird, mit diesen ergänzt. Die Provider--Plugins, die keine IMDb--ID
+weitergegeben werden, mit diesen ergänzt. Die Provider--Plugins, die keine IMDb--ID
 unterstützen, können so eine Suche über den Titel und das Erscheinungsjahr
 durchführen. Für den Benutzer sieht dies nach außen so aus, als würde jeder
 Provider eine IMDb--ID Suche unterstützen.
@@ -597,7 +595,7 @@ wird der Film von den genannten Online--Plattformen nicht gefunden.
 
 Diesen Fehler auf Seite von *libhugin* zu beheben ist schwierig. Man müsste eine
 große Datenbank an Filmtiteln pflegen und aktuell halten und könnte so mit
-Hilfe dieser den Fehler vom Benutzer korrigieren, indem man die ähnlichste aller
+Hilfe dieser den Fehler des Benutzers korrigieren, indem man die ähnlichste aller
 Zeichenketten aus der Datenbank nehmen würde. Mit der angepassten
 Damerau--Levenshtein--Ähnlichkeit, die *libhugin* zum Zeichenkettenvergleich
 anbietet, hätte die falsche Anfrage eine Ähnlichkeit von 0.94.
@@ -623,7 +621,7 @@ Feeling Lucky"*--Funktionalität:
 
     * http://www.google.com/search?hl=de&q=Hauskatze&btnI=1
 
-Gibt man diese URL direkt im Browser ein, so wird beispielsweise direkt der
+Gibt man diese URL im Browser ein, so wird beispielsweise direkt der
 Wikipedia--Artikel zur Hauskatze [#f1]_ angezeigt und nicht die Seite der
 Google--Suchanfrage wie es in der Regel der Fall wäre.
 
@@ -642,7 +640,7 @@ Folgende *IPython*--Sitzung zeigt den Ansatz:
     >>> imdbid.pop().strip('/')
     'tt0780504'
 
-Hier wurde der Ansatz gewählt, die IMDb--ID aus der URL mit einem Regulären
+Hier wurde der Ansatz gewählt, die IMDb--ID aus der URL mit einem regulären
 Ausdruck zu parsen. Dies erspart das Parsen der kompletten HTTP--Response, was
 deutlich aufwendiger wäre.
 
@@ -660,12 +658,12 @@ Die Normalisierung der Metadaten aus unterschiedlichen Quellen ist schwierig, da
 es bei den Filmmetadaten keinen einheitlichen Standard gibt. Um fehlerhafte oder
 fehlende Metadaten über unterschiedliche Quellen zu ergänzen, müssen die
 Metadatenattribute, insbesondere das Genre, aufgrund der in Kapitel
-:ref:`motivation` gelisteten Problematik, normalisiert werden.
+:ref:`motivation` gelisteten Problematik normalisiert werden.
 
 Durch den in Kapitel :ref:`motivation` (siehe Abbildung
 :num:`fig-genre-redundanzen`, Abbildung :num:`fig-genre-detail`) genannten
 Umstand werden die Genreinformation redundant in der Datenbank der
-Abspielsoftware, wie beispielsweise dem XBMC--Media--Center, abgelegt. Es ist
+Abspielsoftware abgelegt, wie beispielsweise dem XBMC--Media--Center. Es ist
 nicht mehr möglich, ein Filmgenre eindeutig zu identifizieren. Es ist somit
 weder eine Gruppierung nach diesem Genre noch eine eindeutige Filterung
 möglich.
@@ -715,12 +713,12 @@ vom Benutzer korrigiert werden können. Dies ist jedoch bei einer
 Software--Bibliothek wie sie durch *libhugin* bereitgestellt wird, weniger
 praktikabel.
 
-Ein weiteres Problem das hier jedoch hinzukommt ist, dass das Genre an sich
+Ein weiteres Problem, das hier jedoch hinzukommt besteht darin, dass das Genre an sich
 in keiner Form standardisiert ist. Je nach Onlinequelle gibt es
 Genrebezeichnungen wie Animationsfilm oder Kinderfilm, welche jedoch im engeren
 Sinne nicht zum ,,Filmgenre"--Begriff gezählt werden dürften (siehe
 :cite:`wikigenre`). Des Weiteren kommt hinzu, dass im Laufe der Zeit immer
-wieder neue Genre entstanden sind.
+wieder neue Genres entstanden sind.
 
 
 Suchstrategien
@@ -827,8 +825,8 @@ Suchergebnisse nach IMDb--ID gruppiert. Dies garantiert, dass die Metadaten
 nur zwischen gleichen Filmen ausgetauscht werden.
 
 Findet der höchstpriorisierte Provider Metadaten zu einem Film, fehlt jedoch die
-Inhaltsbeschreibung, so wird diese, durch den nächst niedriger priorisierten
-Provider der eine Inhaltsbeschreibung besitzt, ergänzt. Abbildung :num:`fig-compose`
+Inhaltsbeschreibung, so wird diese ergänzt, durch den nächst niedriger priorisierten
+Provider, der eine Inhaltsbeschreibung besitzt. Abbildung :num:`fig-compose`
 zeigt die Funktionalität des *Compose*--Plugins. Zuerst wird eine
 Ergebnisobjekt--Kopie vom Provider mit der höchsten Priorität erstellt,
 anschließend werden fehlende Attribute durch Attribute der anderen
@@ -874,7 +872,7 @@ Nach dem Befüllen der fehlenden Attribute wird das Genre zusammengeführt.
 Dies passiert indem die normalisierten Genres der verschiedenen
 Provider--Ergebnisse zu einer Liste aus Genres zusammengeführt werden.
 
-Um die Postprocessor--Plugins vollständig zu benennen, existiert noch ein
+Um die Postprocessor--Plugins vollständig zu benennen existiert noch ein
 *,,Trim"*--Plugin. Dieses iteriert über alle Attribute eines Ergebnisobjektes
 und entfernt dabei mittels der Python ``strip()``--Funktion die führenden und
 nachstehenden Leerzeichen.
@@ -884,7 +882,7 @@ nachstehenden Leerzeichen.
 Auf weitere Algorithmik, welche innerhalb der Converter--Plugins realisiert ist,
 wird aufgrund ihrer Einfachheit nicht weiter eingegangen. Hier werden jeweils
 nur Formatierungen der Ergebnisobjekte in ein bestimmtes Ausgabeformat wie
-beispielsweise XML [#f3]_, durchgeführt.
+beispielsweise XML [#f3]_ durchgeführt.
 
 Libhugin--analyze Plugins
 =========================
@@ -923,7 +921,7 @@ RAKE--Algorithmus (Rapid Automatic Keyword Extraction), vgl.
 :cite:`rose2010automatic`, :cite:`berry2010text`.
 
 Hier wurde eine bereits existierende Implementierung in Kooperation mit dem
-Kommilitonen, Christopher Pahl, reimplementiert. Herr Pahl verwendet den
+Kommilitonen Christopher Pahl reimplementiert. Herr Pahl verwendet den
 Algorithmus zur Extraktion von Schlüsselwörtern aus Liedtexten, vgl.
 :cite:`bacpahl`.  Der Algorithmus wurde um das automatische Laden einer
 *Stoppwortliste* und einen *Stemmer* erweitert.
@@ -986,7 +984,7 @@ TMDb:
     macht er eine Entdeckung, für die alle bereit sind, ihn zu töten...*
 
 Abbildung :num:`fig-keywords` zeigt die relevanten (*Score* > 1.0)
-Schlüsselwörter, die aus dem oben genannten Text, mittels RAKE--Algorithmus,
+Schlüsselwörter, die aus dem oben genannten Text, mittels RAKE--Algorithmus
 extrahiert wurden.
 
 .. figtable::
@@ -1029,9 +1027,9 @@ Plattform folgende Schlüsselwörter gepflegt:
         mathematics, insanity, genius*
 
 **FiletypeAnalyze--Plugin:** Dieses Plugin dient dazu, Datei--Metadaten aus
-Filmdateien zu extrahieren. Da dies, aufgrund der Vielzahl von Containern und
-Codecs, ein nicht triviales Problem ist, implementiert der *libhugin--analyze*
-Prototyp diese Funktionalität mit Hilfe des Tools ``hachoir-metadata``. Dieses
+Filmdateien zu extrahieren. Da dies aufgrund der Vielzahl von Containern und
+Codecs ein nicht triviales Problem ist, implementiert der *libhugin--analyze*
+Prototyp diese Funktionalität mit Hilfe des Tools ``hachoirmetadata``. Dieses
 Tool basiert auf der ,,Hachoir"--Bibliothek welche die Extraktion verschiedener
 Metadaten aus Multimedia--Dateien unterstützt. Das *FiletypeAnalyze*--Plugin
 führt das ``Hachoir-metadata``--Kommandozeilen Tool aus, welches folgenden
@@ -1089,7 +1087,7 @@ Die folgende *IPython*--Sitzung zeigt die Funktionalität der Bibliothek:
 **Algorithmik der Modifier--Plugins**
 
 Die Modifier--Plugins modifizieren die Metadaten direkt. Hier wurde ein Plugin
-zum Bereinigen von Inhaltsangaben entwickelt, welches mittels Regulärer
+zum Bereinigen von Inhaltsangaben entwickelt, welches mittels regulärer
 Ausdrücke (vgl. :cite:`friedl2009regulare`) unerwünschte, beispielsweise in
 Klammern stehende Inhalte, entfernt.
 
@@ -1122,7 +1120,7 @@ verschiedener Filme vergleicht, um eine Ähnlichkeit zu ermitteln.
 Der Ansatz, über Schlüsselwörter ähnliche Filme zu finden, hat bisher keine
 nennenswerten Erkenntnisse liefern können.
 
-Das Comparator--Plugin ``GenreCompare`` versucht anhand vom Genre, Ähnlichkeiten
+Das Comparator--Plugin ``GenreCompare`` versucht anhand vom Genre Ähnlichkeiten
 zwischen Filmen zu ermitteln. Die bisherigen Ergebnisse sind je nach
 verwendeter Metadatenquelle unterschiedlich gut. Je feingranularer das Genre bei
 einem Anbieter gepflegt ist, umso *,,ähnlicher"* ist die Grund--Thematik. Ein
