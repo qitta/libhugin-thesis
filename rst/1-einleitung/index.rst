@@ -26,7 +26,7 @@ Autor das modulare Filmmetadaten Such- und Analysesystem *libhugin* entwickelt
 Benutzer die Möglichkeit, es an die eigenen Bedürfnisse anzupassen.
 
 Diese Arbeit behandelt die Theorie zu dem vom Autor entwickelten System. Des
-Weiteren sollen die Metadaten, der von *libhugin* verwendeten Metadatenquellen,
+Weiteren sollen die Metadaten der von *libhugin* verwendeten Metadatenquellen
 untersucht werden, um die bisherigen Annahmen über diese zu bestätigen oder zu
 revidieren.
 
@@ -37,13 +37,13 @@ Ziel der Arbeit ist es, die verwendeten Ansätze der Bibliothek zu evaluieren un
 bisherige Annahmen über Filmmetadaten stichprobenartig anhand der in der
 Projektarbeit implementierten Metadatenanbieter--Plugins zu untersuchen. Ein
 Ziel dabei ist, die verwendeten Ansätze nochmals kritisch zu reflektieren und
-mögliche bisher noch nicht bekannten Probleme zu identifizieren.
+mögliche, bisher noch nicht bekannte, Probleme zu identifizieren.
 
 Neben der Evaluierung der Bibliothek soll die Untersuchung der Metadaten
 Aufschluß über die weitere Vorgehensweise bei der Weiterentwicklung der
 Bibliothek geben.
 
-Zusammengefasst soll der aktuelle Prototyp und die bisherigen Annahmen über die
+Zusammengefasst sollen der aktuelle Prototyp und die bisherigen Annahmen über die
 Verteilung und die Probleme mit Metadaten untersucht werden.
 
 Zielgruppe
