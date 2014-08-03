@@ -76,11 +76,8 @@ Antwortzeiten der Onlinequellen
 
 Abbildung :num:`fig-sourceresponse` zeigt die Antwortzeiten der jeweiligen
 Plattformen/Metadatenanbieter, die *libhugin* als Provider implementiert hat.
-Hierbei wurde jeweils die ,,Suchseite" des jeweiligen Anbieters angefordert.
-
-Die Zeit wurde mit dem Skript im :ref:`source_response` gemessen.  Für die
-Messung wurden die in  :ref:`source_response` verwendeten Parameter angewandt.
-Es wurde jeweils der Durchschnitt von 10 einzeln angeforderten Filmen genommen.
+Hierbei wurde jeweils die ,,Suchseite" des jeweiligen Anbieters angefordert. Die
+Zeit wurde mit dem Skript im :ref:`source_response` gemessen.  
 
 .. _fig-sourceresponse:
 
@@ -114,7 +111,7 @@ Zugriff für die Suchanfrage und einen weiteren Zugriff für den jeweiligen Film
     +-------------------------+----------+----------+----------+-----------------+----------------+
 
 Der Filmstarts Provider benötigt bei Zugriff auf den jeweiligen Film zwei
-Suchanfragen (siehe :num:`num-downloads`), da auf dieser Plattform die
+Suchanfragen (siehe Abbildung :num:`num-downloads`), da auf dieser Plattform die
 Schauspieler--Informationen zum Film auf einer separaten Seite zu finden sind.
 
 Folgende Auflistung zeigt die angesprochenen Seiten des Filmstarts--Providers:
@@ -151,7 +148,9 @@ Auffällig ist hier die fast doppelt so lange Zeit bei den Providern ohne API.
     :align: center
 
     Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
-    libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen.
+    libhugin-harvest. Durchschnitt aus 10 verschiedenen Filmen. Minimum (grün),
+    Durchschnitt (gelb), Maximum (rot). Das jeweilige Balkenende repräsentiert
+    den jeweiligen Wert.
 
 Eine zweite Auswertung mit den gleichen Daten und aktivierten Festplatten--Cache
 (Metadaten werden von der Festplatte geladen, es findet kein Webzugriff statt)
@@ -165,9 +164,10 @@ Metadaten in sehr kurzer Zeit verarbeiten.
     :width: 100%
     :align: center
 
-    Abfragegeschwindigkeit der Metadaten für einen Film pro Provider mit
+    Downloadgeschwindigkeit der Metadaten für einen Film pro Provider mit
     libhugin-harvest mit aktiviertem Cache. Durchschnitt aus 10 verschiedenen
-    Filmen.
+    Filmen. Minimum (grün), Durchschnitt (gelb), Maximum (rot). Das jeweilige
+    Balkenende repräsentiert den jeweiligen Wert.
 
 Die auffällige Antwortzeit mit aktivierten Festplatten--Cache (Abbildung
 :num:`fig-hugindownload-cache`) deutet darauf hin, dass das Extrahieren der

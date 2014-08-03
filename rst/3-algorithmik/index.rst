@@ -758,6 +758,10 @@ zurückgegeben wurde (siehe Abbildung :num:`fig-searchstrategy`).
 
     Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
 
+.. raw:: Latex
+
+   \newpage
+
 Das folgende Beispiel zeigt das tatsächliche Ergebnis der im *libhugin*--Prototyp
 implementierten ,,deep"--Strategie:
 
