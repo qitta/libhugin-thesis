@@ -3,9 +3,21 @@
    \appendix
 
 
+.. _gil-limitation:
+
+Anhang A (GIL Limitierung)
+==========================
+
+Das folgende Code--Snippet wurde verwendet, um die GIL--Limitierung bei
+CPU--abhängigen Aufgaben zu messen:
+
+.. literalinclude:: ./attachments/gil_limitation_bench.py
+   :language: python
+
+
 .. _http_benchmark:
 
-Anhang A (Httplib Benchmark)
+Anhang B (Httplib Benchmark)
 ============================
 
 Das folgende Code--Snippet wurde zum Benchmarken der unterschiedlichen Python
@@ -17,7 +29,7 @@ HTTP--Bibliotheken verwendet.
 
 .. _string_comparsion_algorithms:
 
-Anhang B (Analyse Zeichenkettenvergleich)
+Anhang C (Analyse Zeichenkettenvergleich)
 =========================================
 
 Das folgende Code--Snippet wurde zum Benchmarken von unterschiedlichen
@@ -27,27 +39,15 @@ Zeichenkettenvergleichsalgorithmen verwendet.
    :language: python
 
 
-.. _source_response:
+.. _comparsion-rating:
 
-Anhang C (Antwortzeiten Http Metadatenquellen)
-==============================================
+Anhang D (Rating Differenz)
+===========================
 
-Das folgende Code--Snippet wurde zum Benchmarken von unterschiedlichen
-Antwortzeiten der Online--Plattformen verwendet.
+Das folgende Code--Snippet wurde verwendet um Vergleichswerte zwischen
+Damerau--Levenshtein und Ratcliff--Obershelp zu ermitteln.
 
-.. literalinclude:: ./attachments/download_perf_benchmark.py
-   :language: python
-
-
-.. _libhugin_source_response:
-
-Anhang D (Antwortzeiten Libhugin Metadatenquellen)
-==================================================
-
-Das folgende Code--Snippet wurde zum Benchmarken der Abfragegeschwindigkeit von
-*libhugin* verwendet.
-
-.. literalinclude:: ./attachments/libhugin_download_pref_benchmark.py
+.. literalinclude:: ./attachments/comparsion_rating.py
    :language: python
 
 
@@ -62,20 +62,9 @@ Das folgende Code--Snippet wurde zur gewichteten Rating--Ermittlung verwendet:
    :language: python
 
 
-.. _imdblookup_script:
-
-Anhang F (IMDB Title Lookup)
-============================
-
-Das folgende Code--Snippet wurde zum Beschaffen der Metadaten verwendet:
-
-.. literalinclude:: ./attachments/imdblookup.py
-   :language: python
-
-
 .. _timeout:
 
-Anhang G (Timeoutverhalten)
+Anhang F (Timeoutverhalten)
 ===========================
 
 Das folgende Code--Snippet wurde für den Timeout--Test verwendet:
@@ -84,9 +73,33 @@ Das folgende Code--Snippet wurde für den Timeout--Test verwendet:
    :language: python
 
 
+.. _source_response:
+
+Anhang G (Antwortzeiten Http Metadatenquellen)
+==============================================
+
+Das folgende Code--Snippet wurde zum Benchmarken von unterschiedlichen
+Antwortzeiten der Online--Plattformen verwendet.
+
+.. literalinclude:: ./attachments/download_perf_benchmark.py
+   :language: python
+
+
+.. _libhugin_source_response:
+
+Anhang H (Antwortzeiten Libhugin Metadatenquellen)
+==================================================
+
+Das folgende Code--Snippet wurde zum Benchmarken der Abfragegeschwindigkeit von
+*libhugin* verwendet.
+
+.. literalinclude:: ./attachments/libhugin_download_pref_benchmark.py
+   :language: python
+
+
 .. _hugin_search_benchmark:
 
-Anhang H (Libhugin Threaded Downloadgeschwindigkeit)
+Anhang I (Libhugin Threaded Downloadgeschwindigkeit)
 ====================================================
 
 Das folgende Code--Snippet wurde für den Threaded--Search--Benchmark verwendet:
@@ -95,9 +108,20 @@ Das folgende Code--Snippet wurde für den Threaded--Search--Benchmark verwendet:
    :language: python
 
 
+.. _imdblookup_script:
+
+Anhang J (IMDB Title Lookup)
+============================
+
+Das folgende Code--Snippet wurde zum Beschaffen der Metadaten verwendet:
+
+.. literalinclude:: ./attachments/imdblookup.py
+   :language: python
+
+
 .. _genre-table:
 
-Anhang I (Genre Analyse)
+Anhang K (Genre Analyse)
 ========================
 
 Das folgende Code--Snippet wurde für die Analyse der Genreinformationen verwendet:
@@ -108,7 +132,7 @@ Das folgende Code--Snippet wurde für die Analyse der Genreinformationen verwend
 
 .. _code_yeardiff:
 
-Anhang J (Differenz Erscheinungsjahr)
+Anhang L (Differenz Erscheinungsjahr)
 =====================================
 
 Das folgende Code--Snippet wurde für die Analyse der Erscheinungsjahr--Differenzen
@@ -118,21 +142,9 @@ verwendet:
    :language: python
 
 
-.. _rating:
-
-Anhang K (Ratingverteilung)
-============================
-
-Das folgende Code--Snippet wurde für die Analyse der Ratingverteilung in der
-Stichprobe verwendet:
-
-.. literalinclude:: ./attachments/rating.py
-   :language: python
-
-
 .. _completness:
 
-Anhang L (Unvollständigkeit Metadaten)
+Anhang M (Unvollständigkeit Metadaten)
 ======================================
 
 Das folgende Code--Snippet wurde für die Analyse der Unvollständigkeit der
@@ -142,27 +154,15 @@ Metadaten verwendet:
    :language: python
 
 
-.. _gil-limitation:
+.. _rating:
 
-Anhang M (GIL Limitierung)
-==========================
+Anhang N (Ratingverteilung)
+============================
 
-Das folgende Code--Snippet wurde verwendet, um die GIL--Limitierung bei
-CPU--abhängigen Aufgaben zu messen:
+Das folgende Code--Snippet wurde für die Analyse der Ratingverteilung in der
+Stichprobe verwendet:
 
-.. literalinclude:: ./attachments/gil_limitation_bench.py
-   :language: python
-
-
-.. _comparsion-rating:
-
-Anhang N (Rating Differenz)
-===========================
-
-Das folgende Code--Snippet wurde verwendet um Vergleichswerte zwischen
-Damerau--Levenshtein und Ratcliff--Obershelp zu ermitteln.
-
-.. literalinclude:: ./attachments/comparsion_rating.py
+.. literalinclude:: ./attachments/rating.py
    :language: python
 
 

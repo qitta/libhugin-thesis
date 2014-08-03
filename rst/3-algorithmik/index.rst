@@ -216,7 +216,7 @@ längeren der beiden Zeichenketten geteilt wird.
 Da es bei der Filmsuche zu vielen Zeichenkettenvergleichen kommt sollte der
 Algorithmus zum Vergleich von Zeichenketten performant sein.
 
-Um die jeweiligen Algorithmen, beziehungsweise ihre Implementierungen,
+Um die jeweiligen Algorithmen beziehungsweise ihre Implementierungen
 bezüglich der Performance zu überprüfen, wurde eine Messung mit den folgenden
 unter Python verfügbaren Implementierungen durchgeführt:
 
@@ -558,6 +558,10 @@ gestartet. Anschließend wird auf dem zurückgelieferten HTTP--Response ein
 regulärer Ausdruck ausgeführt, welcher die Zeichenkette bestehend aus
 ``<Titelname> <(4-stellige Jahreszahl)>`` extrahiert.
 
+.. raw:: Latex
+
+   \newpage
+
 Der algorithmische Ansatz sieht unter Python wie folgt aus:
 
 .. code-block:: python
@@ -712,7 +716,7 @@ vom Benutzer korrigiert werden können. Dies ist jedoch bei einer
 Software--Bibliothek wie sie durch *libhugin* bereitgestellt wird, weniger
 praktikabel.
 
-Ein weiteres Problem, das hier jedoch hinzukommt besteht darin, dass das Genre an sich
+Ein weiteres Problem, das hier jedoch hinzukommt, besteht darin, dass das Genre an sich
 in keiner Form standardisiert ist. Je nach Onlinequelle gibt es
 Genrebezeichnungen wie Animationsfilm oder Kinderfilm, welche jedoch im engeren
 Sinne nicht zum ,,Filmgenre"--Begriff gezählt werden dürften (siehe
@@ -824,8 +828,8 @@ Suchergebnisse nach IMDb--ID gruppiert. Dies garantiert, dass die Metadaten
 nur zwischen gleichen Filmen ausgetauscht werden.
 
 Findet der höchstpriorisierte Provider Metadaten zu einem Film, fehlt jedoch die
-Inhaltsbeschreibung, so wird diese ergänzt, durch den nächst niedriger priorisierten
-Provider, der eine Inhaltsbeschreibung besitzt. Abbildung :num:`fig-compose`
+Inhaltsbeschreibung, so wird diese durch den nächst niedriger priorisierten
+Provider ergänzt, der eine Inhaltsbeschreibung besitzt. Abbildung :num:`fig-compose`
 zeigt die Funktionalität des *Compose*--Plugins. Zuerst wird eine
 Ergebnisobjekt--Kopie vom Provider mit der höchsten Priorität erstellt,
 anschließend werden fehlende Attribute durch Attribute der anderen
@@ -868,7 +872,7 @@ OMDb--Provider genommen werden.
    }
 
 Nach dem Befüllen der fehlenden Attribute wird das Genre zusammengeführt.
-Dies passiert indem die normalisierten Genres der verschiedenen
+Dies passiert, indem die normalisierten Genres der verschiedenen
 Provider--Ergebnisse zu einer Liste aus Genres zusammengeführt werden.
 
 Um die Postprocessor--Plugins vollständig zu benennen existiert noch ein
@@ -1059,7 +1063,7 @@ Output liefert:
 
 Diese Ausgabe wird vom Plugin betrachtet und die relevanten Informationen wie
 Auflösung, Laufzeit, et cetera extrahiert. Die Extraktion ist relativ
-einfach, da die ``hachoir--metadata``--Ausgabe ein valides *Json*--Dokument ist,
+einfach, da die ``hachoir-metadata``--Ausgabe ein valides *Json*--Dokument ist,
 welches direkt in eine Python Hash--Tabelle umgewandelt werden kann. *Json* ist
 ein schlankes Dateiaustauschformat, ähnlich wie *XML*.
 

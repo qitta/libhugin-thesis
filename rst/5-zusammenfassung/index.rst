@@ -11,14 +11,14 @@ Die Algorithmik für den Zeichenkettenvergleich wurde angepasst, um auch
 Filmtitel mit nachziehenden Artikeln zu finden. Hier skaliert der Algorithmus
 basierend auf der Damerau--Levenshtein--Distanz weiterhin gut (siehe Kabitel
 :ref:`standardsuche` Abbildung :num:`fig-finalstringcompare`). Die zusätzliche
-Gewichtung vom Erscheinungsjahr, erwies sich mit der kleinen Testdatenmenge als
+Gewichtung vom Erscheinungsjahr erwies sich mit der kleinen Testdatenmenge als
 wirkungsvoll (siehe Kapitel :ref:`standardsuche`, Abbildung :num:`fig-ratingstr`).
 
 Der verwendete Ansatz beim ,,Lookup"--Mode funktioniert ebenso wkirkungsvoll.
 Dieser Ansatz wurde zum Normalisieren der Filmtitel für die
 Metadaten--Stichprobe verwendet.
 
-Weitere Ansätze, wie die Implementierung der Unschärfesuche, können nur schwer
+Weitere Ansätze wie die Implementierung der Unschärfesuche können nur schwer
 beurteilt werden. Hier gibt es je falsch geschriebenen Titel Toleranzen. Im
 Grunde kommt es hier auf die Genauigkeit der Suchmaschine an. Kleine Stichproben
 in der Projektarbeit zeigten eine hohe Erfolgsquote (siehe :cite:`cpiechula`,

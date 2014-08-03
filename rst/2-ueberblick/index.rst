@@ -5,13 +5,13 @@ Probleme bei der Metadatenbeschaffung
 #####################################
 
 Die Metadaten eines Films stehen in der Regel auf der DVD--Hülle oder finden
-sich in der TV--Programmübersicht. Nach dem Digitalisieren der eigenen
+sich in der TV--Programmübersicht. Nach dem Überspielen der eigenen
 DVD--Sammlung oder dem Aufzeichnen von Sendungen fehlen diese und müssen vom
 Benutzer nachträglich manuell gepflegt werden.
 
 Die ,,digitale Filmsammlung" wird in der Regel von sogenannter
-Home--Theater--Software abgespielt und verwaltet. Hierzu gehört beispielsweise
-Software wie das XBMC--Media--Center (siehe :cite:`xbmc`) oder
+Home--Theater--Software abgespielt und verwaltet. Hierzu gehören beispielsweise
+Anwendungen wie das XBMC--Media--Center (siehe :cite:`xbmc`) oder
 Windows--Media--Center (siehe :cite:`wmc`). Diese Software kann in der Regel
 Metadaten für die digitalisierten Filme beschaffen, ist jedoch oft nur auf
 bestimmte Onlinequellen beschränkt, die nur eine bestimmte Sprache unterstützen.
@@ -92,7 +92,7 @@ beschränkt ist, wie in einem Test in der Projektarbeit festgestellt wurde (sieh
 :cite:`cpiechula`, 3.4.2 Probleme bei Movie–Metadaten–Managern).
 
 Um die aktuell vorhandenen Schwierigkeiten bei der Metadatenpflege zu beheben
-beziehungsweise abzumildern wurde das modulare pluginbasierte System *libhugin*
+beziehungsweise abzumildern, wurde das modulare pluginbasierte System *libhugin*
 entwickelt. Das System fungiert als Bibliothek zur Metadatenbeschaffung und
 zeigt im Vergleich zu den bestehenden Lösungen eine andere Herangehensweise,
 die es dem Benutzer erlaubt, das System durch den pluginbasierten Ansatz besser
@@ -159,8 +159,8 @@ heruntergeladenen Metadaten zuständig. Diese Plugins müssen eine
 ableiten.
 
 
-**Converter--Plugins:** Diese Plugins sind für das Exportieren der Metadaten, in
-verschiedene Metadaten--Formate, zuständig. Sie müssen von der
+**Converter--Plugins:** Diese Plugins sind für das Exportieren der Metadaten in
+verschiedene Metadaten--Formate zuständig. Sie müssen von der
 Converter--Oberklasse ableiten und eine ``convert()``--Methode implementieren.
 
 
