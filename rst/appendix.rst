@@ -168,8 +168,8 @@ Stichprobe verwendet:
 
 .. _utils:
 
-Anhang O (Utils)
-================
+Anhang O (Utilities)
+====================
 
 Die Funktion im folgenden Code--Snippet wird von Skripten zum Einlesen der
 Metadaten verwendet:
