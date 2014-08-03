@@ -11,7 +11,7 @@ Die Algorithmik für den Zeichenkettenvergleich wurde angepasst, um auch
 Filmtitel mit nachziehenden Artikeln zu finden. Hier skaliert der Algorithmus
 basierend auf der Damerau--Levenshtein--Distanz weiterhin gut (siehe Kabitel
 :ref:`standardsuche` Abbildung :num:`fig-finalstringcompare`). Die zusätzliche
-Gewichtung vom Jahr, erwies sich mit der kleinen Testdatenmenge als
+Gewichtung vom Erscheinungsjahr, erwies sich mit der kleinen Testdatenmenge als
 wirkungsvoll (siehe Kapitel :ref:`standardsuche`, Abbildung :num:`fig-ratingstr`).
 
 Der verwendete Ansatz beim ,,Lookup"--Mode funktioniert ebenso wkirkungsvoll.
@@ -26,7 +26,7 @@ Kapitel 7.4 Demoanwendungen).
 
 Die verwendeten Algorithmen bei den Plugins greifen aktuell zum Teil auf externe
 Tools zurück, wie beispielsweise das *FileTypeAnalyze* Plugin. Hier wären in
-naher Zukunft Ansätze, die sich mehr in die Bibliothek integrieren, wünschenswert.
+naher Zukunft Ansätze wünschenswert, die sich mehr in die Bibliothek integrieren.
 
 
 Untersuchungen der Metadaten
@@ -72,10 +72,10 @@ macht weiterhin Probleme. Hier zeigt das Erheben der Testmetadaten mit der
 besteht (siehe Kapitel :ref:`unvoll`, Abbildung :num:`fig-completeness`). Hier
 werden Filme häufig ohne Inhaltsbeschreibung zurückgegeben.  Des Weiteren
 wurde festgestellt, dass die API je nach Tageszeit und Serverauslastung, im
-Vergleich zu den anderen Providern, instabil ist (siehe Kapitel
+Vergleich zu den anderen Providern instabil ist (siehe Kapitel
 :ref:`timeoutverhalten`, Abbildung :num:`fig-timeout`).
 
-Tests der Geschwindigkeit von der *libhugin--harvest*--Bibliothek haben gezeigt,
+Geschwindigkeitstests der *libhugin--harvest*--Bibliothek haben gezeigt,
 dass es hier bei den Providern ohne API Performanceunterschiede zu den Providern
 mit API gibt (siehe Kapitel :ref:`antwortzeiten`, Abbildung
 :num:`fig-hugindownload`, Abbildung :num:`fig-hugindownload-cache`). Als Grund
@@ -93,8 +93,8 @@ Ausblick
 ========
 
 Zusammengefasst kann gesagt werden, dass mit dem *libhugin*--Prototyp das
-angesetzte Vorhaben, eine andere Herangehensweise beim Beschaffen der Metadaten,
-im Vergleich zu den bisherigen Tools, gut umgesetzt wurde. Aktuell gibt es jedoch
+angesetzte Vorhaben, eine andere Herangehensweise beim Beschaffen der Metadaten
+im Vergleich zu den bisherigen Tools gut umgesetzt wurde. Aktuell gibt es jedoch
 noch vereinzelt Probleme, wie beispielsweise das oben genannte Problem
 mit dem Encoding oder auch die Geschwindigkeitseinbußen bei der Nutzung eines
 Providers ohne API.
