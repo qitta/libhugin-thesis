@@ -850,7 +850,7 @@ gruppieren.
     :width: 90%
     :align: center
 
-    Automatisches Ergänzung fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
+    Automatische Ergänzung fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
 
 2.) Eine weitere Möglichkeit neben dem automatischen Zusammenführen von Attributen
 verschiedener Provider ist die Angabe einer benutzerdefinierten Profilmaske.
