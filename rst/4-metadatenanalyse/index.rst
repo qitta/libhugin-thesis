@@ -172,7 +172,7 @@ Metadaten in sehr kurzer Zeit verarbeiten.
 Die auffällige Antwortzeit mit aktivierten Festplatten--Cache (Abbildung
 :num:`fig-hugindownload-cache`) deutet darauf hin, dass das Extrahieren der
 Metadaten mittels der ``Beautiful-Soup``--Bibliothek sehr aufwendig ist. Das
-Aktivieren eines anderen internen Parsers, hat das Ergebnis verschlechtert.
+Aktivieren eines anderen internen Parsers hat das Ergebnis verschlechtert.
 Der `lxml`--Parser, welcher auch in Abbildung :num:`fig-hugindownload-cache`
 verwendet wird, ist hier schneller als mögliche Alternativen (siehe :cite:`bs`).
 
@@ -190,7 +190,7 @@ steigender Download--Thread Anzahl erkennbar. Hier ist die Zeit von ca. 9
 Sekunden auf 2 Sekunden gefallen (siehe Abbildung, :num:`fig-hugin-search-api`).
 
 Die non--API Provider bremsen die Performance aufgrund des aufwendigen
-Extrahierens mittels ``Beautiful--Soup``--Bibliothek stark aus. Hier bewegt
+Extrahierens mittels ``Beautiful-Soup``--Bibliothek stark aus. Hier bewegt
 sich die Zeit zwischen 35 -- 42  Sekunden für die Beschaffung von 10
 Ergebnissen.
 
@@ -298,8 +298,8 @@ gleiche Skript verwendet.
 Anschließend  wurden die Metadaten mit Hilfe von *libhugin--harvest* über die
 fünf genannten Provider bezogen. Hierbei wurden die Metadaten bei den Providern
 mit IMDb--ID Unterstützung über diese bezogen.  Provider, die keine IMDb--ID
-Unterstützung besitzen, wurden über den, über IMDb ,,normalisierten" deutschen
-Titel, mit Erscheinungsjahr bezogen. Die Metadaten wurden ebenso mit dem Skript
+Unterstützung besitzen, wurden über den über IMDb ,,normalisierten" deutschen
+Titel mit Erscheinungsjahr bezogen. Die Metadaten wurden ebenso mit dem Skript
 :ref:`imdblookup_script` bezogen. Ein komprimiertes Archiv mit den Testdaten
 findet sich unter :cite:`metadata`.
 
@@ -346,7 +346,7 @@ Filmstarts wurde genauer betrachtet:
 einen Titelzusatz. Beispielsweise der Film ,,Secretary (2002)" wurde über IMDb
 auf ,,Secretary -- Womit kann ich dienen? (2002)" normalisiert.
 
-Der Stichprobe nach zu urteilen, gibt es hier bei Videobuster und Filmstarts
+Der Stichprobe nach zu urteilen gibt es hier bei Videobuster und Filmstarts
 Probleme. Bei der Suche nach dem Filmtitel ohne Titelzusatz werden die Titel
 gefunden, falls vorhanden.
 
@@ -535,10 +535,10 @@ Als Bezugsreferenz wurde hier der TMDb Provider genommen.
 Die Videobuster und Filmstarts Ergebnisse wurden zusätzlich manuell auf die
 Übereinstimmung des Regisseurs überprüft. Hier wurde eine Übereinstimmung des
 Namens von 95% gefordert. Dieser stimmt in insgesamt 317 von 343 (1 - 3 Jahre)
-Fällen überein. In den restlichen 26 Fällen, war in 13 Fällen ein Vergleich
+Fällen überein. In den restlichen 26 Fällen war in 13 Fällen ein Vergleich
 nicht möglich, in weiteren 13 war der Film unterschiedlich.
 
-Die restlichen, insgesamt 78 Filme, die bei der Jahresdifferenz
+Die restlichen insgesamt 78 Filme, die bei der Jahresdifferenz
 :math:`\textgreater` 3 gelistet sind, wurden manuell auf Regisseur
 Übereinstimmung untersucht. Hier gab es nur eine einzige Übereinstimmung, die
 restlichen 77 Filme waren ,,Remakes", Filme mit zufälligerweise gleichem Titel
@@ -551,7 +551,7 @@ Unvollständigkeit der Metadaten
 ===============================
 
 Abbildung :num:`fig-completeness` zeigt die Anzahl der nicht gepflegten Attribute
-je Provider. Die Menge bezieht sich hier auf die, pro Provider, jeweils gefundene
+je Provider. Die Menge bezieht sich hier auf die pro Provider jeweils gefundene
 Anzahl der Metadaten (siehe Abbildung :num:`fig-foundmetadata`). Die mit
 :math:`\times` markierten Felder deuten darauf hin, dass das Attribut vom
 Provider nicht ausgefüllt wird.
@@ -613,7 +613,7 @@ Skript :ref:`completness` analysiert.
 
 Die Abbildung :num:`fig-completeness` zeigt, dass je nach Onlinequelle die
 Vollständigkeit der Metadaten nicht gewährleistet werden kann. Es zeigt ebenso,
-dass Plattformen, wie Videobuster das Attribut ,,Poster/Cover" vollständig
+dass Plattformen wie Videobuster das Attribut ,,Poster/Cover" vollständig
 gepflegt haben. Bei diesem Anbieter handelt es sich um eine
 Videoverleihplattform, welche anscheinend darauf Wert legt, dass jeder
 ausleihbare Film auch ein digitales Cover besitzt.
@@ -628,7 +628,7 @@ ausleihbare Film auch ein digitales Cover besitzt.
 Ratingverteilung der Stichprobe
 ===============================
 
-Folgend finden sich eine Rating--Auswertung zu den drei API--basierten Providern.
+Folgend findet sich eine Rating--Auswertung zu den drei API--basierten Providern.
 Die non--API--basierten Provider befüllen in der aktuellen Version das Attribut
 Rating nicht.
 
