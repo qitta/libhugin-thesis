@@ -21,8 +21,7 @@ Variablen hat.
 .. _fig-gil-limitation:
 
 .. figure:: fig/gil_limitation.pdf
-    :alt: Limitierung der Geschwindigkeit durch den global interpreter lock bei
-          CPU-abhängigen Aufgaben.
+    :alt: Limitierung der Geschwindigkeit durch den global interpreter lock 
     :width: 100%
     :align: center
 
@@ -749,7 +748,7 @@ zurückgegeben wurde (siehe Abbildung :num:`fig-searchstrategy`).
 .. _fig-searchstrategy:
 
 .. figure:: fig/searchstrategy.pdf
-    :alt: Suchstrategien. Suche nach dem Film ,,Drive (2011)" mit der Begrenzung der Suchergebnisse auf fünf.
+    :alt: Suche nach dem Film ,,Drive (2011)" mit verschiedenen Suchstrategien.
     :width: 90%
     :align: center
 
@@ -841,11 +840,11 @@ gruppieren.
 .. _fig-compose:
 
 .. figure:: fig/compose.pdf
-    :alt: Automatisches Ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
+    :alt: Ergänzung fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
     :width: 90%
     :align: center
 
-    Automatisches Ergänzen fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
+    Automatisches Ergänzung fehlender Attribute mittels Compose-Plugin mit Genre Zusammenführung.
 
 2.) Eine weitere Möglichkeit neben dem automatischen Zusammenführen von Attributen
 verschiedener Provider ist die Angabe einer benutzerdefinierten Profilmaske.

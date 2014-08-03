@@ -174,5 +174,5 @@ Anhang O (Utils)
 Die Funktion im folgenden Code--Snippet wird von Skripten zum Einlesen der
 Metadaten verwendet:
 
-.. literalinclude:: ./attachments/comparsion_rating.py
+.. literalinclude:: ./attachments/utils.py
    :language: python

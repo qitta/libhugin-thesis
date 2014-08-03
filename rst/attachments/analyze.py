@@ -1,12 +1,17 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+
 from collections import Counter
 from statistics import mean
 from utils import analyze_folder
-import pprint, os, sys, json
+import pprint
+import os
+import sys
+
 
 PROVIDERS = ['tmdb', 'ofdb', 'omdb', 'videobuster', 'filmstarts']
+
 
 def json_iterator():
     for folder in os.listdir(sys.argv[1]):
@@ -17,12 +22,14 @@ def json_iterator():
         for provider, json_file in providers.items():
             yield provider, json_file
 
+
 def count_attribute(attribute):
     results = {provider: Counter() for provider in PROVIDERS}
     for provider, json_file in json_iterator():
         for attr in json_file[attribute] or ['Kein Genre']:
             results[provider][attr] += 1
     return results
+
 
 def count_attribute_len(attribute):
     results = {provider: [] for provider in PROVIDERS}

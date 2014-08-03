@@ -161,7 +161,7 @@ Metadaten in sehr kurzer Zeit verarbeiten.
 .. _fig-hugindownload-cache:
 
 .. figure:: fig/libhugin_download_time_cache.pdf
-    :alt: Abfragegeschwindigkeit der Metadaten für einen Film mit libhugin-harvest und aktiviertem Cache.
+    :alt: Metadaten--Abfragegeschwindigkeit von libhugin-harvest mit aktiviertem Cache.
     :width: 100%
     :align: center
 
@@ -198,8 +198,7 @@ Ergebnissen.
 .. _fig-hugin-search:
 
 .. figure:: fig/libhugin_threaded_search.pdf
-    :alt: Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
-          Download-Threads (non-API Provider).
+    :alt: Filmsuche mit unterschiedlicher Anzahl von Download--Threads (non-API Provider).
     :width: 100%
     :align: center
 
@@ -211,14 +210,17 @@ Die theoretischen Annahmen über die Skalierung der Downloadgeschwindigkeit aus
 Kapitel :ref:`tech_grundlagen` werden mit der Einschränkung auf die Limitierung
 der non--API Provider bestätigt.
 
+.. raw:: Latex
+
+   \newpage
+
 Die Auswertung der Skalierung der Downloadgeschwindigkeit wurde mit dem Skript
 :ref:`hugin_search_benchmark` durchgeführt.
 
 .. _fig-hugin-search-api:
 
 .. figure:: fig/libhugin_threaded_search_api.pdf
-    :alt: Suche nach dem Film ,,Sin" mit einer unterschiedlichen Anzahl von
-          Download-Threads (API Provider).
+    :alt: Filmsuche mit unterschiedlicher Anzahl von Download--Threads (API Provider).
     :width: 100%
     :align: center
 
