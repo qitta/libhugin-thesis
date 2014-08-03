@@ -31,7 +31,7 @@ Variablen hat.
 
 Diese Einschränkung gilt jedoch nicht für lange laufende oder blockierende
 Operationen wie beispielsweise der Zugriff auf die Festplatte (vgl.
-:cite:`hellmann2011python`).
+:cite:`lutz2010programming`).
 
 Da der Zugriff auf Onlinequellen je nach Serverauslastung und Internetanbindung
 in der Performance stark variiert, wurde das Herunterladen der Metadaten
@@ -174,13 +174,13 @@ Ratcliff--Obershelp--Algorithmus und hat eine Komplexität von :math:`O(n^{3})`
 im *worst case* und eine erwartete Komplexität von :math:`O(n^{2})`. Der
 Algorithmus basiert auf der Idee, die Anzahl der übereinstimmenden Sequenzen (in
 beiden Zeichenketten übereinstimmende Folgen von einem oder mehreren Zeichen)
-zu zählen. Für weitere Details zum Algorithmus, siehe :cite:`ratcliffpattern`.
+zu zählen. Für weitere Details zum Algorithmus, siehe :cite:`ratcliffpattern`,
+:cite:`cordts2012datenqualität`.
 
 Ein weiteres Maß für die Ähnlichkeit von Zeichenketten ist die Hamming--Distanz.
 Diese Distanz arbeitet nach der Idee, die ,,Ersetzungen" zu zählen. Der
 Algorithmus hat jedoch die Einschränkung, dass er sich nur auf gleich lange
-Zeichenketten anwenden lässt (vgl. :cite:`navarro2001guided`,
-:cite:`ranka2009ic3`).
+Zeichenketten anwenden lässt (vgl. :cite:`cordts2012datenqualität`, :cite:`navarro2001guided`).
 
 Ein weiterer Algorithmus, der für Zeichenkettenvergleiche eingesetzt wird, ist
 der Levenshtein--Algorithmus (auch Levenshtein--Distanz genannt). Der
@@ -188,9 +188,7 @@ Algorithmus hat eine Laufzeitkomplexität von :math:`O(nm)`, :math:`n` und
 :math:`m` repräsentieren jeweils die Längen der Zeichenketten. Die
 Levenshtein--Distanz basiert auf der Idee, die minimalen Editiervorgänge
 (Einfügen, Löschen, Ersetzen), um von einer Zeichenkette auf eine andere zu
-kommen (vgl :cite:`atallah2010algorithms`, :cite:`navarro2001guided`,
-:cite:`ranka2009ic3`), zu zählen. Die normalisierte Levenshtein--Distanz bewegt
-sich zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
+kommen (vgl :cite:`cordts2012datenqualität`, :cite:`navarro2001guided`, :cite:`atallah2010algorithms` und :cite:`christen2012data`), zu zählen. Die normalisierte Levenshtein--Distanz bewegt sich zwischen 0.0 (Übereinstimmung) und 1.0 (keine Ähnlichkeit).
 
 Eine Erweiterung der Levenshtein--Distanz ist die Damerau--Levenshtein--Distanz.
 Diese wurde um die Funktionalität erweitert, vertauschte Zeichen zu erkennen.
