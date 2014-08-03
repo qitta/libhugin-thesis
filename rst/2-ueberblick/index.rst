@@ -14,8 +14,7 @@ Home--Theater--Software abgespielt und verwaltet. Hierzu gehört beispielsweise
 Software wie das XBMC--Media--Center (siehe :cite:`xbmc`) oder
 Windows--Media--Center (siehe :cite:`wmc`). Diese Software kann in der Regel
 Metadaten für die digitalisierten Filme beschaffen, ist jedoch oft nur auf
-bestimmte Onlinequellen, die nur eine bestimmte Sprache unterstützen,
-beschränkt.
+bestimmte Onlinequellen beschränkt, die nur eine bestimmte Sprache unterstützen.
 
 Da es für das Speichern der Metadaten keinen durchgesetzten Standard gibt,
 verwenden die genannten ,,Media--Center" ein unterschiedliches Format zur
@@ -31,9 +30,9 @@ Onlinequellen. Die Software erlaubt es häufig, die gepflegten Metadaten zu
 exportieren, um diese in Kombination mit einer Home--Theater--Abspielsoftware
 nutzen zu können.
 
-Bei der Pflege von Filmsammlungen von mehreren hundert Filmen, kommt es immer
+Bei der Pflege von Filmsammlungen von mehreren hundert Filmen kommt es immer
 wieder zu Problemen. Es gibt hier nicht das Werkzeug der Wahl. Jede
-Software hat ihre Vor-- und Nachteile und die Bedürfnisse der Benutzer sind hier
+Software hat ihre Vor-- und Nachteile und die Bedürfnisse der Benutzer sind 
 unterschiedlich.
 
 Zu den generellen Problemen gehören folgende Punkte:
@@ -88,11 +87,11 @@ Genre--Attribut unterschiedlich detailliert gepflegt.
     Unterschiedlicher Detailgrad im Genre bei verschiedenen Onlinequellen.
 
 Neben den genannten Problemen kommt hinzu, dass unter *unixoiden*
-Betriebssystemen die Auswahl an gut funktionierenden Filmmetadaten--Managern,
-wie in einem Test in der Projektarbeit festgestellt wurde (siehe
-:cite:`cpiechula`, 3.4.2 Probleme bei Movie–Metadaten–Managern), beschränkt ist.
+Betriebssystemen die Auswahl an gut funktionierenden Filmmetadaten--Managern
+beschränkt ist, wie in einem Test in der Projektarbeit festgestellt wurde (siehe
+:cite:`cpiechula`, 3.4.2 Probleme bei Movie–Metadaten–Managern).
 
-Um die aktuell vorhandenen Schwierigkeiten bei der Metadatenpflege zu beheben,
+Um die aktuell vorhandenen Schwierigkeiten bei der Metadatenpflege zu beheben
 beziehungsweise abzumildern wurde das modulare pluginbasierte System *libhugin*
 entwickelt. Das System fungiert als Bibliothek zur Metadatenbeschaffung und
 zeigt im Vergleich zu den bestehenden Lösungen eine andere Herangehensweise,
