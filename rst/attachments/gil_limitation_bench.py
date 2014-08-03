@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
 import matplotlib.pyplot as plt
 import numpy, time
@@ -23,7 +24,6 @@ def plot(times):
 if __name__ == '__main__':
     CNT = 100000000
     times = []
-
     for thread_cnt in range(0, 9, 2):
         thread_cnt = max(1, thread_cnt)
         cnt = range(1, thread_cnt + 1)

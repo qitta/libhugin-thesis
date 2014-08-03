@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
 from collections import defaultdict, OrderedDict
 from statistics import mean

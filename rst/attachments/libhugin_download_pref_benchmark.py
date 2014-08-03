@@ -1,12 +1,12 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
 from collections import defaultdict
 from statistics import mean
-import timeit
-import numpy
-import matplotlib.pyplot as plt
 from functools import partial
 from hugin.harvest.session import Session
+import timeit, numpy
+import matplotlib.pyplot as plt
 
 def benchmark(s, q):
     return s.submit(q)
