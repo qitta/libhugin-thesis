@@ -92,8 +92,8 @@ Im Gegenzug dazu wird der Zugriff über *urllib3*-- und die
 Aufgrund der genannten Eigenschaften und der vergleichsweise guten Performance
 (siehe Abbildung :num:`fig-threaded-download`) wurde für *libhugin* die
 *httplib2*--Bibliothek gewählt. Da diese jedoch nicht Thread--Safe ist, wird
-hier der in der Google Developer API genannte Ansatz (siehe :cite:`gdev`), eine
-Instanz pro Thread zu starten, gewählt.
+hier der in der Google Developer API genannte Ansatz gewählt (siehe :cite:`gdev`), eine
+Instanz pro Thread zu starten.
 
 Abbildung :num:`fig-threaded-download` zeigt wie sich das Parallelisieren
 mehrerer Downloads auf die Performance auswirkt. Hier wurden die drei genannten
